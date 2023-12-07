@@ -10,368 +10,374 @@ import SocialIcons from '../svg/social.svg?url'
 
 const {lang} = Astro.props;
 
-const pathname = Astro.url.pathname;
-const pathnameDE = pathname;
-const pathnameRU = pathname;
+const menuProgramm = { link: "programm", ru: "Афиша", de: "Spielplan" };
+const menuPlays = { link: "plays", ru: "Спектакли", de: "Repertoire" };
+const menuTheater = { link: "", ru: "Театр", de: "Theater" };
+const menuMediathek = { link: "galerie", ru: "Галерея", de: "Mediathek" };
+const menuSupport = { link: "support", ru: "Поддержать", de: "Unterstützen" };
+const menuTickets = { link: "tickets", ru: "Билеты", de: "Tickets" };
 
+const changeThemeHint = {ru: "Сменить тему оформления", de: "Farbmodus wechseln"}
+const changeThemeTextDark = {ru: "Темная тема", de: "Dunkelmodus" };
+const changeThemeTextLight = {ru: "Светлая тема", de: "Lightmodus" };
 ---
 
 
-		<header class="toolbar-grid" id="header">
-			<div class="toolbar-lang-item expand-menu">
-				<div class="toolbar-dropbtn" tabindex="-1">
-					<div>
-						<svg class="toolbar-icon-language">
-							<use href={Symbols + '#language'}></use>
+<header class="toolbar-grid" id="header">
+	<div class="toolbar-lang-item expand-menu">
+		<div class="toolbar-dropbtn" tabindex="-1">
+			<div>
+				<svg class="toolbar-icon-language">
+					<use href={Symbols + '#language'}></use>
+				</svg>
+				<span id="language-text"></span>
+			</div>
+		</div>
+		<div class="dropdown-box">
+			<ul class="dropdown-list">
+				<li class="dropdown-item">
+					<a
+						href="#"
+						class="link-de dropdown-item-link"
+					>
+						<span class="lang-brief">DE</span>
+						<span class="lang-title">Deutsch</span>
+					</a>
+				</li>
+				<li class="dropdown-item">
+					<a
+						href="#"
+						class="link-ru dropdown-item-link"
+					>
+						<span class="lang-brief">RU</span>
+						<span class="lang-title">Русский</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<nav class="navigator-grid">
+		<div class="navigator-logo-item">
+			<a href={"/" + lang + "/"}>
+				<svg class="navigator-icon-logo-text">
+					<use href={Logo + "#logo-text-" + lang}></use>
+				</svg>
+				<svg class="navigator-icon-logo">
+					<use href={Logo + "#logo"}></use>
+				</svg>
+			</a>
+		</div>
+		<div>
+			<div class="navigator-menu-grid">
+				<div><a href={"/" + lang + "/" + menuProgramm.link}>{menuProgramm[lang]}</a></div>
+				<div class="expand-menu">
+					<div class="toolbar-dropbtn">
+						<a href={"/" + lang + "/" + menuPlays.link}>{menuPlays[lang]}</a>
+						&nbsp;
+						<svg class="menu-drop-down-symbol">
+							<use href={Symbols + "#drop-down"}></use>
 						</svg>
-						<span id="language-text"></span>
+						&nbsp;
+					</div>
+					<div class="dropdown-box">
+						<ul class="dropdown-list">
+							<li class="dropdown-item">
+								<a class="dropdown-item-link" href="play-suk.html"
+									>Steppke und Karlson</a
+								>
+							</li>
+							<li class="dropdown-item">
+								<a class="dropdown-item-link" href="play-mik.html"
+									>Малыш и Карлсон</a
+								>
+							</li>
+							<li class="dropdown-item">
+								<a class="dropdown-item-link" href="play-op.html"
+									>Опасный поворот</a
+								>
+							</li>
+							<li class="dropdown-item">
+								<a class="dropdown-item-link" href="play-dk.html"
+									>Дорогая квартира</a
+								>
+							</li>
+							<li class="dropdown-item">
+								<a class="dropdown-item-link" href="play-ts.html"
+									>Три сестры</a
+								>
+							</li>
+							<li class="dropdown-item">
+								<a class="dropdown-item-link" href="play-pip.html"
+									>Победа или предательство</a
+								>
+							</li>
+						</ul>
 					</div>
 				</div>
-				<div class="dropdown-box">
-					<ul class="dropdown-list">
-						<li class="dropdown-item">
-							<a
-								href="{pathnameDE}"
-								class="link-de dropdown-item-link"
-							>
-								<span class="lang-brief">DE</span>
-								<span class="lang-title">Deutsch</span>
-							</a>
+				<div class="expand-menu">
+					<div class="toolbar-dropbtn">
+						{menuTheater[lang]}&nbsp;
+						<svg class="menu-drop-down-symbol">
+							<use href={Symbols + "#drop-down"}></use>
+						</svg>
+						&nbsp;
+					</div>
+					<div class="dropdown-box">
+						<ul class="dropdown-list">
+							<li class="dropdown-item">
+								<a class="dropdown-item-link" href=""> Item 1 </a>
+							</li>
+							<li class="dropdown-item">
+								<a class="dropdown-item-link" href="">Item 2 </a>
+							</li>
+							<li class="dropdown-item">
+								<a class="dropdown-item-link" href="">Item 3 </a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div><a href={"/" + lang + "/" + menuMediathek.link}>{menuMediathek[lang]}</a></div>
+				<div><a href={"/" + lang + "/" + menuSupport.link}>{menuSupport[lang]}</a></div>
+			</div>
+		</div>
+		<a class="header-tickets-button" href={"/" + lang + "/" + menuTickets.link}>{menuTickets[lang]}</a>
+
+		<!-- <div class="navigator-tickets-item">
+			<a href="tickets.html" class="tickets-btn">Билеты</a>
+		</div> -->
+		<div class="navigator-social-grid">
+			<div class="social-item">
+				<a
+					href="https://www.facebook.com/AntreprizaBerlin"
+					target="_blank"
+					rel="noopener external"
+				>
+					<svg class="social-icon toolbar-icon facebook-svg">
+						<use href={SocialIcons + "#facebook-outline"}></use>
+					</svg>
+				</a>
+			</div>
+			<div class="social-item">
+				<a
+					href="https://www.instagram.com/AntreprizaBerlin"
+					target="_blank"
+					rel="noopener external"
+				>
+					<svg class="social-icon toolbar-icon">
+						<use href={SocialIcons + "#instagram-outline2"}></use>
+					</svg>
+				</a>
+			</div>
+			<div class="social-item">
+				<a
+					href="https://www.youtube.com/@AntreprizaBerlin"
+					target="_blank"
+					rel="noopener external"
+				>
+					<svg class="social-icon toolbar-icon">
+						<use href={SocialIcons + "#youtube-outline2"}></use>
+					</svg>
+				</a>
+			</div>
+		</div>
+	</nav>
+	<div class="toolbar-tools-grid">
+		<div class="tools-item">
+			<label
+				class="theme-changer"
+				for="theme__checkbox"
+				title={changeThemeHint[lang]}
+			>
+				<input
+					class="theme-checkbox"
+					type="checkbox"
+					id="theme__checkbox"
+				/>
+				<span class="dark-mode-checkbox">
+					<svg class="toolbar-icon">
+						<use href={Symbols + "#dark-mode"}></use>
+					</svg>
+				</span>
+				<span class="light-mode-checkbox">
+					<svg class="toolbar-icon">
+						<use href={Symbols + "#light-mode"}></use>
+					</svg>
+				</span>
+			</label>
+		</div>
+		<div class="tools-item">
+			<svg class="toolbar-icon">
+				<use href={Symbols + "#search"}></use>
+			</svg>
+		</div>
+	</div>
+</header>
+<header class="header-mobile" id="header-mobile">
+	<div class="header-burger">
+		<button class="header-burger-button">
+			<svg class="burger-icon" viewBox="0 0 100 100">
+				<rect
+					class="line top"
+					width="80"
+					height="8"
+					x="10"
+					y="25"
+					rx="5"
+				></rect>
+				<rect
+					class="line middle"
+					width="55"
+					height="8"
+					x="10"
+					y="46"
+					rx="5"
+				></rect>
+				<rect
+					class="line bottom"
+					width="80"
+					height="8"
+					x="10"
+					y="67"
+					rx="5"
+				></rect>
+			</svg>
+		</button>
+		<nav class="burger-menu">
+			<ul class="burger-list">
+				<li class="burger-item"><a href={"/" + lang + "/" + menuProgramm.link}>{menuProgramm[lang]}</a></li>
+				<li class="burger-item expanded">
+					<div class="burger-submenu-title">
+						<div class="submenu-title-text">
+							<a href={"/" + lang + "/" + menuPlays.link}>{menuPlays[lang]}</a>
+						</div>
+						<button class="submenu-symbol-button">
+							<svg class="submenu-symbol">
+								<use href={Symbols + "#drop-down"}></use>
+							</svg>
+						</button>
+					</div>
+					<ul class="burger-submenu-list">
+						<li class="burger-submenu-item">
+							<a href="play-suk.html">Steppke und Karlson</a>
 						</li>
-						<li class="dropdown-item">
-							<a
-								href="{pathnameRU}"
-								class="link-ru dropdown-item-link"
-							>
-								<span class="lang-brief">RU</span>
-								<span class="lang-title">Русский</span>
-							</a>
+						<li class="burger-submenu-item">
+							<a href="play-mik.html">Малыш и Карлсон</a>
+						</li>
+						<li class="burger-submenu-item">
+							<a href="play-op.html">Опасный поворот</a>
+						</li>
+						<li class="burger-submenu-item">
+							<a href="play-dk.html">Дорогая квартира</a>
+						</li>
+						<li class="burger-submenu-item">
+							<a href="play-ts.html">Три сестры</a>
+						</li>
+						<li class="burger-submenu-item">
+							<a href="play-pip.html">Победа или предательство</a>
 						</li>
 					</ul>
-				</div>
-			</div>
-			<nav class="navigator-grid">
-				<div class="navigator-logo-item">
-					<a href="antrepriza.html">
-						<svg class="navigator-icon-logo-text">
-							<use href={Logo + "#logo-text-" + lang}></use>
-						</svg>
-						<svg class="navigator-icon-logo">
-							<use href={Logo + "#logo"}></use>
-						</svg>
-					</a>
-				</div>
-				<div>
-					<div class="navigator-menu-grid">
-						<div><a href="programm.html">Афиша</a></div>
-						<div class="expand-menu">
-							<div class="toolbar-dropbtn">
-								<a href="plays.html"> Спектакли </a>
-								&nbsp;
-								<svg class="menu-drop-down-symbol">
-									<use href={Symbols + "#drop-down"}></use>
-								</svg>
-								&nbsp;
-							</div>
-							<div class="dropdown-box">
-								<ul class="dropdown-list">
-									<li class="dropdown-item">
-										<a class="dropdown-item-link" href="play-suk.html"
-											>Steppke und Karlson</a
-										>
-									</li>
-									<li class="dropdown-item">
-										<a class="dropdown-item-link" href="play-mik.html"
-											>Малыш и Карлсон</a
-										>
-									</li>
-									<li class="dropdown-item">
-										<a class="dropdown-item-link" href="play-op.html"
-											>Опасный поворот</a
-										>
-									</li>
-									<li class="dropdown-item">
-										<a class="dropdown-item-link" href="play-dk.html"
-											>Дорогая квартира</a
-										>
-									</li>
-									<li class="dropdown-item">
-										<a class="dropdown-item-link" href="play-ts.html"
-											>Три сестры</a
-										>
-									</li>
-									<li class="dropdown-item">
-										<a class="dropdown-item-link" href="play-pip.html"
-											>Победа или предательство</a
-										>
-									</li>
-								</ul>
-							</div>
-						</div>
-						<div class="expand-menu">
-							<div class="toolbar-dropbtn">
-								Театр &nbsp;
-								<svg class="menu-drop-down-symbol">
-									<use href={Symbols + "#drop-down"}></use>
-								</svg>
-								&nbsp;
-							</div>
-							<div class="dropdown-box">
-								<ul class="dropdown-list">
-									<li class="dropdown-item">
-										<a class="dropdown-item-link" href=""> Item 1 </a>
-									</li>
-									<li class="dropdown-item">
-										<a class="dropdown-item-link" href="">Item 2 </a>
-									</li>
-									<li class="dropdown-item">
-										<a class="dropdown-item-link" href="">Item 3 </a>
-									</li>
-								</ul>
-							</div>
-						</div>
-						<div><a href="contacts.html">Контакты</a></div>
-						<div><a href="support.html">Поддержать</a></div>
+				</li>
+				<li class="burger-item expanded">
+					<div class="burger-submenu-title">
+						<div class="submenu-title-text">{menuTheater[lang]}</div>
+						<button class="submenu-symbol-button">
+							<svg class="submenu-symbol">
+								<use href={Symbols + "#drop-down"}></use>
+							</svg>
+						</button>
 					</div>
-				</div>
-				<a class="header-tickets-button" href="tickets.html">Билеты</a>
-
-				<!-- <div class="navigator-tickets-item">
-					<a href="tickets.html" class="tickets-btn">Билеты</a>
-				</div> -->
-				<div class="navigator-social-grid">
-					<div class="social-item">
+					<div class="burger-submenu">
+						<ul class="burger-submenu-list">
+							<li class="burger-submenu-item"><a href="">Актеры</a></li>
+							<li class="burger-submenu-item"><a href="">История</a></li>
+						</ul>
+					</div>
+				</li>
+				<li class="burger-item"><a href={"/" + lang + "/" + menuMediathek.link}>{menuMediathek[lang]}</a></li>
+				<li class="burger-item"><a href={"/" + lang + "/" + menuSupport.link}>{menuSupport[lang]}</a></li>
+				<li class="burger-separate-item"></li>
+				<li class="burger-item">
+					<div class="social-pages">
 						<a
 							href="https://www.facebook.com/AntreprizaBerlin"
 							target="_blank"
 							rel="noopener external"
 						>
-							<svg class="social-icon toolbar-icon facebook-svg">
+							<svg class="header-icon facebook">
 								<use href={SocialIcons + "#facebook-outline"}></use>
 							</svg>
 						</a>
-					</div>
-					<div class="social-item">
 						<a
 							href="https://www.instagram.com/AntreprizaBerlin"
 							target="_blank"
 							rel="noopener external"
 						>
-							<svg class="social-icon toolbar-icon">
+							<svg class="header-icon">
 								<use href={SocialIcons + "#instagram-outline2"}></use>
 							</svg>
 						</a>
-					</div>
-					<div class="social-item">
 						<a
 							href="https://www.youtube.com/@AntreprizaBerlin"
 							target="_blank"
 							rel="noopener external"
 						>
-							<svg class="social-icon toolbar-icon">
+							<svg class="header-icon">
 								<use href={SocialIcons + "#youtube-outline2"}></use>
 							</svg>
 						</a>
 					</div>
-				</div>
-			</nav>
-			<div class="toolbar-tools-grid">
-				<div class="tools-item">
+				</li>
+				<li class="burger-item">
 					<label
 						class="theme-changer"
-						for="theme__checkbox"
+						for="burger-theme__checkbox"
 						title="Сменить тему оформления"
 					>
 						<input
 							class="theme-checkbox"
 							type="checkbox"
-							id="theme__checkbox"
+							id="burger-theme__checkbox"
 						/>
-						<span class="dark-mode-checkbox">
-							<svg class="toolbar-icon">
+						<div class="dark-mode-checkbox">
+							<svg class="header-icon theme">
 								<use href={Symbols + "#dark-mode"}></use>
 							</svg>
-						</span>
-						<span class="light-mode-checkbox">
-							<svg class="toolbar-icon">
+							<span class="theme-changer-text">{changeThemeTextDark[lang]}</span>
+						</div>
+						<div class="light-mode-checkbox">
+							<svg class="header-icon theme">
 								<use href={Symbols + "#light-mode"}></use>
 							</svg>
-						</span>
+							<span class="theme-changer-text">{changeThemeTextLight[lang]}</span>
+						</div>
 					</label>
-				</div>
-				<div class="tools-item">
-					<svg class="toolbar-icon">
-						<use href={Symbols + "#search"}></use>
-					</svg>
-				</div>
-			</div>
-		</header>
-		<header class="header-mobile" id="header-mobile">
-			<div class="header-burger">
-				<button class="header-burger-button">
-					<svg class="burger-icon" viewBox="0 0 100 100">
-						<rect
-							class="line top"
-							width="80"
-							height="8"
-							x="10"
-							y="25"
-							rx="5"
-						></rect>
-						<rect
-							class="line middle"
-							width="55"
-							height="8"
-							x="10"
-							y="46"
-							rx="5"
-						></rect>
-						<rect
-							class="line bottom"
-							width="80"
-							height="8"
-							x="10"
-							y="67"
-							rx="5"
-						></rect>
-					</svg>
-				</button>
-				<div class="burger-menu">
-					<ul class="burger-list">
-						<li class="burger-item"><a href="programm.html">Афиша</a></li>
-						<li class="burger-item expanded">
-							<div class="burger-submenu-title">
-								<div class="submenu-title-text">
-									<a href="plays.html">Спектакли</a>
-								</div>
-								<button class="submenu-symbol-button">
-									<svg class="submenu-symbol">
-										<use href={Symbols + "#drop-down"}></use>
-									</svg>
-								</button>
-							</div>
-							<ul class="burger-submenu-list">
-								<li class="burger-submenu-item">
-									<a href="play-suk.html">Steppke und Karlson</a>
-								</li>
-								<li class="burger-submenu-item">
-									<a href="play-mik.html">Малыш и Карлсон</a>
-								</li>
-								<li class="burger-submenu-item">
-									<a href="play-op.html">Опасный поворот</a>
-								</li>
-								<li class="burger-submenu-item">
-									<a href="play-dk.html">Дорогая квартира</a>
-								</li>
-								<li class="burger-submenu-item">
-									<a href="play-ts.html">Три сестры</a>
-								</li>
-								<li class="burger-submenu-item">
-									<a href="play-pip.html">Победа или предательство</a>
-								</li>
-							</ul>
-						</li>
-						<li class="burger-item expanded">
-							<div class="burger-submenu-title">
-								<div class="submenu-title-text">Театр</div>
-								<button class="submenu-symbol-button">
-									<svg class="submenu-symbol">
-										<use href={Symbols + "#drop-down"}></use>
-									</svg>
-								</button>
-							</div>
-							<div class="burger-submenu">
-								<ul class="burger-submenu-list">
-									<li class="burger-submenu-item"><a href="">Актеры</a></li>
-									<li class="burger-submenu-item"><a href="">История</a></li>
-								</ul>
-							</div>
-						</li>
-						<li class="burger-item"><a href="contacts.html">Контакты</a></li>
-						<li class="burger-item"><a href="support.html">Поддержать</a></li>
-						<li class="burger-separate-item"></li>
-						<li class="burger-item">
-							<div class="social-pages">
-								<a
-									href="https://www.facebook.com/AntreprizaBerlin"
-									target="_blank"
-									rel="noopener external"
-								>
-									<svg class="header-icon facebook">
-										<use href={SocialIcons + "#facebook-outline"}></use>
-									</svg>
-								</a>
-								<a
-									href="https://www.instagram.com/AntreprizaBerlin"
-									target="_blank"
-									rel="noopener external"
-								>
-									<svg class="header-icon">
-										<use href={SocialIcons + "#instagram-outline2"}></use>
-									</svg>
-								</a>
-								<a
-									href="https://www.youtube.com/@AntreprizaBerlin"
-									target="_blank"
-									rel="noopener external"
-								>
-									<svg class="header-icon">
-										<use href={SocialIcons + "#youtube-outline2"}></use>
-									</svg>
-								</a>
-							</div>
-						</li>
-						<li class="burger-item">
-							<label
-								class="theme-changer"
-								for="burger-theme__checkbox"
-								title="Сменить тему оформления"
-							>
-								<input
-									class="theme-checkbox"
-									type="checkbox"
-									id="burger-theme__checkbox"
-								/>
-								<div class="dark-mode-checkbox">
-									<svg class="header-icon theme">
-										<use href={Symbols + "#dark-mode"}></use>
-									</svg>
-									<span class="theme-changer-text">Темная тема</span>
-								</div>
-								<div class="light-mode-checkbox">
-									<svg class="header-icon theme">
-										<use href={Symbols + "#light-mode"}></use>
-									</svg>
-									<span class="theme-changer-text">Светлая тема</span>
-								</div>
-							</label>
-						</li>
+				</li>
 
-						<li class="burger-item">
-							<a href="{pathnameDE}" class="link-de">
-								<span class="lang-brief">DE</span>
-								<span class="lang-title">Deutsch</span>
-							</a>
-							<!-- </li>
-						<li class="burger-item"> -->
-							<a href="{pathnameDE}" class="link-ru">
-								<span class="lang-brief">RU</span>
-								<span class="lang-title">Русский</span>
-							</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-			<a class="header-logo" href="antrepriza.html">
-				<!-- <svg class="navigator-icon-logo-text"> -->
-				<svg class="header-logo-text-icon">
-					<use href={Logo + "#logo-text-" + lang}></use>
-				</svg>
-				<svg class="header-logo-icon">
-					<use href={Logo + "#logo"}></use>
-				</svg>
-			</a>
-			<div></div>
-			<a class="header-tickets-button" href="tickets.html">Билеты</a>
-		</header>
-		<div class="main-padding-top"></div>
+				<li class="burger-item">
+					<a href="#" class="link-de">
+						<span class="lang-brief">DE</span>
+						<span class="lang-title">Deutsch</span>
+					</a>
+					<!-- </li>
+				<li class="burger-item"> -->
+					<a href="#" class="link-ru">
+						<span class="lang-brief">RU</span>
+						<span class="lang-title">Русский</span>
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+	<a class="header-logo" href={"/" + lang + "/"}>
+		<!-- <svg class="navigator-icon-logo-text"> -->
+		<svg class="header-logo-text-icon">
+			<use href={Logo + "#logo-text-" + lang}></use>
+		</svg>
+		<svg class="header-logo-icon">
+			<use href={Logo + "#logo"}></use>
+		</svg>
+	</a>
+	<div></div>
+	<a class="header-tickets-button" href={"/" + lang + "/" + menuTickets.link}>{menuTickets[lang]}</a>
+</header>
+<div class="main-padding-top"></div>

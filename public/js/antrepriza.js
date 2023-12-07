@@ -70,15 +70,15 @@ function getSystemValidLang() {
 function getCurrentPageLang() {
 	let page = window.location.pathname;
 	for (let lang of LANG_LIST) {
-		if (page.includes(`/${lang}/`)) {
+		if (page.includes(`/${lang}`)) {
 			return lang;
 		}
 	}
 }
 
 function replaceLangPath(path, prevLang, newLang) {
-	if (path.includes(`/${prevLang}/`)) {
-		return path.replace(`/${prevLang}/`, `/${newLang}/`);
+	if (path.includes(`/${prevLang}`)) {
+		return path.replace(`/${prevLang}`, `/${newLang}`);
 	}
 }
 
