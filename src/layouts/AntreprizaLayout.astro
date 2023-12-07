@@ -1,0 +1,42 @@
+---
+import Header from "../components/header.astro";
+
+const {title,lang} = Astro.props;
+const pageTitle = title || ( lang === "de" ? "Theater Antrepriza Berlin" : "Театр Антреприза Берлин");
+
+---
+
+<html lang={lang}>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{pageTitle}</title>
+		<!-- <link rel="icon" href="/images/icon-192.png" type="image/png" /> -->
+		<link rel="icon" href="/favicon.ico" sizes="any" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<!-- <link rel="apple-touch-icon" href="/apple-touch-icon-180.png" /> -->
+		<!-- <link rel="manifest" href="/manifest.webmanifest" /> -->
+		<!-- SEO -->
+		<meta name="description" content="Театр Антреприза Берлин" />
+		<meta
+			name="keyword"
+			content="Театр Антреприза Берлин, русский театр, русскоязычный, классика, 
+			драма, детектив, комедия, детский спектакль, Чехов, Станиславский, Мамонтов,
+			актер, досуг, культура, искусство, билеты, спектакли, сцена"
+		/>
+	<meta name="generator" content={Astro.generator} />
+	</head>
+	<body>
+		<Header lang={lang}></Header>
+		<slot/>
+
+		<script is:inline src="/js/antrepriza.js"></script>
+		<script is:inline>
+			initLangEnv();
+			initColorMode();
+			initHeaderSubMenuListener();
+		</script>
+
+	</body>
+</html>

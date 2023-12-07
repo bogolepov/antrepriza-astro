@@ -1,0 +1,147 @@
+:root {
+	--grey-200: #262626;
+	--grey-140: #2a2a29;
+	--grey-120: #313130;
+	--grey-78: #404040;
+	--grey-56: #585756;
+	--grey-46: #716f6e;
+	--grey-30: #908e8d;
+	--grey-24: #a6a4a2;
+	--grey-16: #c6c4c2;
+	--grey-13: #d9d6d5;
+	--grey-11: #e9e6e4;
+	--grey-10: #f7f4f3;
+
+	--toolbarGap: 10px;
+	--headerHeight: 60px;
+	--headerBorderWidth: 4px;
+	--toolbarHeight: 56px;
+	--toolbarBorderWeight: 4px;
+	--toolbarLogoWidth: 50.4px;
+	--toolbarLogoTextWidth: 120.7px;
+	--toolbarLogoHeight: 40px;
+	--toolbarNormalIconSize: 26px;
+	--toolbarSmallIconSize: 23px;
+	--menuNormalFontSize: 16px;
+	--menuSmallFontSize: 14px;
+	--scrollBarWidth: 10px;
+}
+
+/* --------------------------------------------------- */
+/* ---------------- dark/light theme ----------------- */
+/* --------------------------------------------------- */
+[data-theme='dark'] {
+	color-scheme: dark;
+	--colorBkgToolbar: var(--grey-120);
+	--colorBkgSubMenu: var(--grey-140);
+	--colorFontToolbar: var(--grey-16);
+	--colorBorderToolbar: var(--grey-46);
+	--colorTicketsBtn: #8c5956;
+	--colorBoxShadowDropList: rgba(245, 245, 245, 0.25);
+	--colorDisabled: var(--grey-30);
+	--colorBkgPage: var(--grey-200);
+	--colorFontPage: var(--grey-13);
+	--colorAntreprizaRed: #e30d15;
+	/* --colorFocusAntreprizaRed: #f57a7e; */
+	--colorFocusAntreprizaRed: #e30d15;
+	/* --colorScrollBarBackground: var(--grey-46);
+	--colorScrollBarThumb: var(--grey-78);
+	--colorScrollBarTrack: var(--grey-30); */
+	--colorScrollBarBackground: var(--grey-16);
+	--colorScrollBarThumb: var(--grey-30);
+	--colorScrollBarTrack: var(--grey-24);
+	--font-normal-weight: 300;
+	--font-thin-weight: 100;
+	--font-bold-weight: 500;
+	--font-logo-weight: 700;
+}
+
+[data-theme='light'] {
+	color-scheme: light;
+	--colorBkgToolbar: var(--grey-10);
+	--colorBkgSubMenu: var(--grey-16);
+	--colorFontToolbar: var(--grey-78);
+	--colorBorderToolbar: var(--grey-11);
+	--colorTicketsBtn: #fbccc7;
+	--colorBoxShadowDropList: rgba(0, 0, 0, 0.12);
+	--colorDisabled: var(--grey-30);
+	--colorBkgPage: white;
+	--colorFontPage: var(--grey-78);
+	--colorAntreprizaRed: #e30d15;
+	/* --colorFocusAntreprizaRed: #f57a7e; */
+	--colorFocusAntreprizaRed: #e30d15;
+	--colorScrollBarBackground: var(--grey-11);
+	--colorScrollBarThumb: var(--grey-30);
+	--colorScrollBarTrack: var(--grey-24);
+	--font-normal-weight: 400;
+	--font-thin-weight: 300;
+	--font-bold-weight: 700;
+	--font-logo-weight: 900;
+}
+
+html,
+body {
+	color: var(--colorFontPage);
+	background-color: var(--colorBkgPage);
+	font-family: 'Roboto', Verdana, Arial, Tahoma, sans-serif;
+	font-weight: var(--font-normal-weight);
+}
+
+/* --------------------------------------------------- */
+/* --------------- browser scroll bar ---------------- */
+/* --------------------------------------------------- */
+::-webkit-scrollbar {
+	width: var(--scrollBarWidth);
+	background: var(--colorScrollBarBackground);
+}
+
+::-webkit-scrollbar-track {
+	border: 2px solid var(--colorScrollBarTrack);
+	border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--colorScrollBarThumb);
+	border-radius: 5px;
+}
+
+/* --------------------------------------------------- */
+/* ------------------ screen reader ------------------ */
+/* --------------------------------------------------- */
+.screen-reader-text {
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	font-size: 14px;
+	font-weight: 400;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	word-wrap: normal;
+}
+
+.screen-reader-text:focus {
+	background-color: var(--colorBkgToolbar);
+	border-radius: 3px;
+	box-shadow: 0 0 2px 2px var(--colorFocusAntreprizaRed);
+	/* outline-color: var(--colorFocusAntreprizaRed); */
+	outline: none;
+	clip: auto;
+	clip-path: none;
+	color: var(--colorAntreprizaRed);
+	/* display: block; */
+	font-size: 14px;
+	font-size: 0.875rem;
+	font-weight: bold;
+	height: auto;
+	left: 5px;
+	line-height: normal;
+	padding: 15px 23px 14px;
+	text-decoration: none;
+	top: 5px;
+	width: auto;
+	z-index: 10000;
+}

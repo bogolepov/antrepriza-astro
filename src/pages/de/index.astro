@@ -1,0 +1,15 @@
+---
+import AntreprizaLayout from "../../layouts/AntreprizaLayout.astro";
+const pageTitle = "Theater Antrepriza Berlin";
+const pageLang = "de";
+---
+
+<AntreprizaLayout title={pageTitle} lang={pageLang}>
+	<h1>Astro</h1>
+		<h2>Antrepriza.eu</h2>
+
+				<h3>The current URL is: {Astro.url}</h3>
+<h3>The current URL pathname is: {Astro.url.pathname}</h3>
+<h3>The current URL origin is: {Astro.url.origin}</h3>
+</AntreprizaLayout>
+
