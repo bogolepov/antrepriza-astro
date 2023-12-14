@@ -4,7 +4,7 @@ import "@styles/init.css"
 import "@styles/antrepriza.css"
 import "@styles/header.css"
 
-import Logo from '../svg/logo.svg?url'
+import AntreprizaLogo from '@svg/logo.svg?url'
 import Symbols from '@svg/symbols.svg?url'
 import SocialIcons from '@svg/social.svg?url'
 
@@ -69,10 +69,10 @@ const changeThemeTextLight = {ru: "Светлая тема", de: "Lightmodus" };
 		<div class="navigator-logo-item">
 			<a href={"/" + lang + "/"}>
 				<svg class="navigator-icon-logo-text">
-					<use href={Logo + '#logo-text-' + lang}></use>
+					<use href={AntreprizaLogo + '#logo-text-' + lang}></use>
 				</svg>
 				<svg class="navigator-icon-logo">
-					<use href={Logo + '#logo'}></use>
+					<use href={AntreprizaLogo + '#logo'}></use>
 				</svg>
 			</a>
 		</div>
@@ -350,10 +350,10 @@ const changeThemeTextLight = {ru: "Светлая тема", de: "Lightmodus" };
 	<a class="header-logo" href={"/" + lang + "/"}>
 		<!-- <svg class="navigator-icon-logo-text"> -->
 		<svg class="header-logo-text-icon">
-			<use href={Logo + "#logo-text-" + lang}></use>
+			<use href={AntreprizaLogo + "#logo-text-" + lang}></use>
 		</svg>
 		<svg class="header-logo-icon">
-			<use href={Logo + "#logo"}></use>
+			<use href={AntreprizaLogo + "#logo"}></use>
 		</svg>
 	</a>
 	<div></div>
