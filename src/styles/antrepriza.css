@@ -15,6 +15,7 @@
 	--toolbarGap: 10px;
 	--headerHeight: 60px;
 	--headerBorderWidth: 4px;
+	--footerBorderWidth: 2px;
 	--toolbarHeight: 56px;
 	--toolbarBorderWeight: 4px;
 	--toolbarLogoWidth: 54.4px;
@@ -25,6 +26,8 @@
 	--menuNormalFontSize: 16px;
 	--menuSmallFontSize: 14px;
 	--scrollBarWidth: 10px;
+	--footerLogoWidth: 145.1px;
+	--footerLogoHeight: 55px;
 }
 
 /* --------------------------------------------------- */
@@ -33,9 +36,12 @@
 [data-theme='dark'] {
 	color-scheme: dark;
 	--colorBkgToolbar: var(--grey-120);
+	--colorBkgFooter: var(--colorBkgToolbar);
 	--colorBkgSubMenu: var(--grey-140);
 	--colorFontToolbar: var(--grey-16);
+	--colorFontFooter: var(--colorFontToolbar);
 	--colorBorderToolbar: var(--grey-46);
+	--colorBorderFooter: var(--colorBorderToolbar);
 	--colorTicketsBtn: #8c5956;
 	--colorBoxShadowDropList: rgba(245, 245, 245, 0.25);
 	--colorDisabled: var(--grey-30);
@@ -59,9 +65,12 @@
 [data-theme='light'] {
 	color-scheme: light;
 	--colorBkgToolbar: var(--grey-10);
+	--colorBkgFooter: var(--colorBkgToolbar);
 	--colorBkgSubMenu: var(--grey-16);
 	--colorFontToolbar: var(--grey-78);
+	--colorFontFooter: var(--colorFontToolbar);
 	--colorBorderToolbar: var(--grey-11);
+	--colorBorderFooter: var(--colorBorderToolbar);
 	--colorTicketsBtn: #fbccc7;
 	--colorBoxShadowDropList: rgba(0, 0, 0, 0.12);
 	--colorDisabled: var(--grey-30);

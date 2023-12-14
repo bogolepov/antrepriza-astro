@@ -44,8 +44,6 @@ function initLangEnv() {
 	}
 
 	if (currLang) {
-		let langText = document.getElementById('language-text');
-		langText.innerText = currLang.toUpperCase();
 		localStorage.setItem(CNF_LANG, currLang);
 	}
 }

@@ -1,14 +1,22 @@
 ---
-import "../styles/font.css"
-import "../styles/init.css"
-import "../styles/antrepriza.css"
-import "../styles/header.css"
+import "@styles/font.css"
+import "@styles/init.css"
+import "@styles/antrepriza.css"
+import "@styles/header.css"
 
-import Logo from '../svg/logo.svg?url'
-import Symbols from '../svg/symbols.svg?url'
-import SocialIcons from '../svg/social.svg?url'
+import Logo from '@svg/logo.svg?url'
+import Symbols from '@svg/symbols.svg?url'
+import SocialIcons from '@svg/social.svg?url'
 
 const {lang} = Astro.props;
+
+import plays from '@data/plays_ru.json'
+// import plays from Object.toString("@data/plays_"+lang+".json")
+// const plays = await import(`@data/plays_${lang}.json`);
+
+// const response = await fetch(`@data/plays_${lang}.json`);
+// const plays = await response.json();
+
 
 const menuProgramm = { link: "programm", ru: "Афиша", de: "Spielplan" };
 const menuPlays = { link: "plays", ru: "Спектакли", de: "Repertoire" };
@@ -20,6 +28,7 @@ const menuTickets = { link: "tickets", ru: "Билеты", de: "Tickets" };
 const changeThemeHint = {ru: "Сменить тему оформления", de: "Farbmodus wechseln"}
 const changeThemeTextDark = {ru: "Темная тема", de: "Dunkelmodus" };
 const changeThemeTextLight = {ru: "Светлая тема", de: "Lightmodus" };
+
 ---
 
 
@@ -30,7 +39,7 @@ const changeThemeTextLight = {ru: "Светлая тема", de: "Lightmodus" };
 				<svg class="toolbar-icon-language">
 					<use href={Symbols + '#language'}></use>
 				</svg>
-				<span id="language-text"></span>
+				<span id="language-text">{lang}</span>
 			</div>
 		</div>
 		<div class="dropdown-box">
@@ -81,36 +90,15 @@ const changeThemeTextLight = {ru: "Светлая тема", de: "Lightmodus" };
 					</div>
 					<div class="dropdown-box">
 						<ul class="dropdown-list">
-							<li class="dropdown-item">
-								<a class="dropdown-item-link" href="play-suk.html"
-									>Steppke und Karlson</a
-								>
-							</li>
-							<li class="dropdown-item">
-								<a class="dropdown-item-link" href="play-mik.html"
-									>Малыш и Карлсон</a
-								>
-							</li>
-							<li class="dropdown-item">
-								<a class="dropdown-item-link" href="play-op.html"
-									>Опасный поворот</a
-								>
-							</li>
-							<li class="dropdown-item">
-								<a class="dropdown-item-link" href="play-dk.html"
-									>Дорогая квартира</a
-								>
-							</li>
-							<li class="dropdown-item">
-								<a class="dropdown-item-link" href="play-ts.html"
-									>Три сестры</a
-								>
-							</li>
-							<li class="dropdown-item">
-								<a class="dropdown-item-link" href="play-pip.html"
-									>Победа или предательство</a
-								>
-							</li>
+							{
+								plays.map((plays) => {
+									return (
+										<li class="dropdown-item">
+											<a class="dropdown-item-link" href={"play-"+plays.id_suffix+".html"}>{plays.title}</a>
+										</li>
+									);
+								} )
+							}
 						</ul>
 					</div>
 				</div>
@@ -257,24 +245,15 @@ const changeThemeTextLight = {ru: "Светлая тема", de: "Lightmodus" };
 						</button>
 					</div>
 					<ul class="burger-submenu-list">
-						<li class="burger-submenu-item">
-							<a href="play-suk.html">Steppke und Karlson</a>
-						</li>
-						<li class="burger-submenu-item">
-							<a href="play-mik.html">Малыш и Карлсон</a>
-						</li>
-						<li class="burger-submenu-item">
-							<a href="play-op.html">Опасный поворот</a>
-						</li>
-						<li class="burger-submenu-item">
-							<a href="play-dk.html">Дорогая квартира</a>
-						</li>
-						<li class="burger-submenu-item">
-							<a href="play-ts.html">Три сестры</a>
-						</li>
-						<li class="burger-submenu-item">
-							<a href="play-pip.html">Победа или предательство</a>
-						</li>
+					{
+						plays.map((plays) => {
+							return (
+								<li class="burger-submenu-item">
+									<a href={"play-"+plays.id_suffix+".html"}>{plays.title}</a>
+								</li>
+							);
+						} )
+					}
 					</ul>
 				</li>
 				<li class="burger-item expanded">

@@ -1,0 +1,29 @@
+---
+import "../styles/footer.css"
+
+import Logo from '../svg/logo.svg?url'
+// import Symbols from '../svg/symbols.svg?url'
+import SocialIcons from '../svg/social.svg?url'
+
+const {lang} = Astro.props;
+
+---
+
+<footer>
+  <div class="footer-logo">
+    <svg class="footer-logo-svg">
+			<use href={Logo + "#logo-text-" + lang}></use>
+		</svg>
+  </div>
+  <div class="address">
+  <p>Boxhagener Str. 18</p>
+  <p>10245 Berlin</p>
+  </div>
+  <div class="tel-number" >
+  <a href="tel:+49 176 49787741">Tel +49 176 49787741</a>
+  </div>
+  <div>
+  <a class="footer-text-link" href="#">IMPRESSUM</a>
+  <a class="footer-text-link" href="#">DATENSCHUTZ</a>
+  </div>
+</footer>
