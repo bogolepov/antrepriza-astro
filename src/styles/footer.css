@@ -19,11 +19,16 @@ footer a {
 }
 
 .footer-logo-svg {
-	width: var(--footerLogoWidth);
-	height: var(--footerLogoHeight);
-	fill: var(--colorFontFooter);
-	font-family: 'Roboto';
-	font-weight: var(--font-logo-weight);
+	/* width: var(--footerLogoWidth);
+	height: var(--footerLogoHeight); */
+	width: 150px;
+	height: 70px;
+	/* fill: var(--colorFontFooter); */
+	fill: red;
+	/* font-family: 'Roboto'; */
+	font-family: sans-serif;
+	/* font-weight: var(--font-logo-weight); */
+	font-weight: 500;
 	font-size: 9px;
 	stroke-width: 0px;
 }
