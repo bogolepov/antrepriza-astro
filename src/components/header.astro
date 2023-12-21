@@ -4,17 +4,19 @@ import "@styles/init.css"
 import "@styles/antrepriza.css"
 import "@styles/header.css"
 
-import AntreprizaLogo from '@svg/logo.svg?url'
 import Symbols from '@svg/symbols.svg?url'
+import AntreprizaLogo from '@svg/logo.svg?url'
+import AntrLogo from '@svg/antr_logo.svg?url'
 import SocialIcons from '@svg/social.svg?url'
 
 const {lang} = Astro.props;
 
 import plays from '@data/plays_ru.json'
+
 // import plays from Object.toString("@data/plays_"+lang+".json")
 // const plays = await import(`@data/plays_${lang}.json`);
 
-// const response = await fetch(`@data/plays_${lang}.json`);
+// const response = await fetch(`../../data/plays_${lang}.json`);
 // const plays = await response.json();
 
 
@@ -32,7 +34,7 @@ const changeThemeTextLight = {ru: "Светлая тема", de: "Lightmodus" };
 ---
 
 
-<header class="toolbar-grid" id="header">
+<header class="toolbar-grid" id="header" lang={lang}>
 	<div class="toolbar-lang-item expand-menu">
 		<div class="toolbar-dropbtn" tabindex="-1">
 			<div>
@@ -200,7 +202,8 @@ const changeThemeTextLight = {ru: "Светлая тема", de: "Lightmodus" };
 		</div>
 	</div>
 </header>
-<header class="header-mobile" id="header-mobile">
+
+<header class="header-mobile" id="header-mobile" lang={lang}>
 	<div class="header-burger">
 		<button class="header-burger-button">
 			<svg class="burger-icon" viewBox="0 0 100 100">

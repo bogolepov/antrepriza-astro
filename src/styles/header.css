@@ -1,3 +1,26 @@
+:root {
+	--toolbarGap: 10px;
+	--headerHeight: 60px;
+	--headerBorderWidth: 4px;
+	--toolbarHeight: 56px;
+	--toolbarBorderWeight: 4px;
+	--toolbarNormalIconSize: 26px;
+	--toolbarSmallIconSize: 23px;
+	--toolbarLogoHeight: 40px;
+	--menuNormalFontSize: 16px;
+	--menuSmallFontSize: 14px;
+}
+
+[lang='ru'] {
+	--toolbarLogoWidth: 35.4px;
+	--toolbarLogoTextWidth: 119.5px;
+}
+
+[lang='de'] {
+	--toolbarLogoWidth: 34.1px;
+	--toolbarLogoTextWidth: 112.4px;
+}
+
 /* --------------------------------------------------- */
 .toolbar-grid {
 	display: grid;

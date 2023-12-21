@@ -1,0 +1,178 @@
+[
+	{
+		"id": 7,
+		"id_suffix": "suk",
+		"title": "Steppke und Karlson (DE)",
+		"author": "А.Линдгрен",
+		"genre": "детский",
+		"description": "",
+		"posters": {
+			"wall": "",
+			"facebook": "",
+			"minimum": ""
+		},
+		"photos": ["", "", ""],
+		"lang": "de",
+		"roles": [
+			{ "id": 1, "name": "Андрей Прозоров", "description": "" },
+			{ "id": 2, "name": "Ольга", "description": "сестра Андрея Прозорова, старшая" },
+			{ "id": 3, "name": "Мария", "description": "сестра Андрея Прозорова, средняя" },
+			{ "id": 4, "name": "Ирина", "description": "сестра Андрея Прозорова, младшая" },
+			{ "id": 5, "name": "Ирина", "description": "сестра Андрея Прозорова, младшая" }
+		],
+		"people": {
+			"regie": 1
+		}
+	},
+	{
+		"id": 6,
+		"id_suffix": "mik",
+		"title": "Steppke und Karlson",
+		"author": "А.Линдгрен",
+		"genre": "детский",
+		"description": "",
+		"posters": {
+			"wall": "",
+			"facebook": "",
+			"minimum": ""
+		},
+		"photos": ["", "", ""],
+		"lang": "ru",
+		"roles": [
+			{ "id": 1, "name": "Андрей Прозоров", "description": "" },
+			{ "id": 2, "name": "Ольга", "description": "сестра Андрея Прозорова, старшая" },
+			{ "id": 3, "name": "Мария", "description": "сестра Андрея Прозорова, средняя" },
+			{ "id": 4, "name": "Ирина", "description": "сестра Андрея Прозорова, младшая" },
+			{ "id": 5, "name": "Ирина", "description": "сестра Андрея Прозорова, младшая" }
+		],
+		"people": {
+			"regie": 1
+		}
+	},
+	{
+		"id": 5,
+		"id_suffix": "op",
+		"title": "Gefährliche Kurve",
+		"author": "Дж.Б.Пристли",
+		"genre": "детектив",
+		"description": "",
+		"posters": {
+			"wall": "",
+			"facebook": "",
+			"minimum": ""
+		},
+		"photos": ["", "", ""],
+		"lang": "ru",
+		"roles": [
+			{ "id": 1, "name": "Андрей Прозоров", "description": "" },
+			{ "id": 2, "name": "Ольга", "description": "сестра Андрея Прозорова, старшая" },
+			{ "id": 3, "name": "Мария", "description": "сестра Андрея Прозорова, средняя" },
+			{ "id": 4, "name": "Ирина", "description": "сестра Андрея Прозорова, младшая" },
+			{ "id": 5, "name": "Ирина", "description": "сестра Андрея Прозорова, младшая" }
+		],
+		"people": {
+			"regie": 1
+		}
+	},
+	{
+		"id": 4,
+		"id_suffix": "dk",
+		"title": "Teure Wohnung",
+		"author": "Т.Москвина",
+		"genre": "трагикомедия",
+		"description": "",
+		"posters": {
+			"wall": "",
+			"facebook": "",
+			"minimum": ""
+		},
+		"photos": ["", "", ""],
+		"lang": "ru",
+		"roles": [
+			{ "id": 1, "name": "Андрей Прозоров", "description": "" },
+			{ "id": 2, "name": "Ольга", "description": "сестра Андрея Прозорова, старшая" },
+			{ "id": 3, "name": "Мария", "description": "сестра Андрея Прозорова, средняя" },
+			{ "id": 4, "name": "Ирина", "description": "сестра Андрея Прозорова, младшая" },
+			{ "id": 5, "name": "Ирина", "description": "сестра Андрея Прозорова, младшая" }
+		],
+		"people": {
+			"regie": 1
+		}
+	},
+	{
+		"id": 3,
+		"id_suffix": "ts",
+		"title": "Три сестры",
+		"author": "А.Чехов",
+		"genre": "драма",
+		"description": "",
+		"posters": {
+			"wall": "",
+			"facebook": "",
+			"minimum": ""
+		},
+		"photos": ["", "", ""],
+		"lang": "ru",
+		"roles": [
+			{ "id": 1, "name": "Андрей Прозоров", "description": "" },
+			{ "id": 2, "name": "Ольга", "description": "сестра Андрея Прозорова, старшая" },
+			{ "id": 3, "name": "Мария", "description": "сестра Андрея Прозорова, средняя" },
+			{ "id": 4, "name": "Ирина", "description": "сестра Андрея Прозорова, младшая" },
+			{ "id": 5, "name": "Ирина", "description": "сестра Андрея Прозорова, младшая" }
+		],
+		"people": {
+			"regie": 1
+		}
+	},
+	{
+		"id": 2,
+		"id_suffix": "pip",
+		"title": "Sieg oder Verrat",
+		"author": "А.Чехов",
+		"genre": "драма",
+		"description": "",
+		"posters": {
+			"wall": "",
+			"facebook": "",
+			"minimum": ""
+		},
+		"photos": ["", "", ""],
+		"lang": "ru",
+		"roles": [
+			{ "id": 1, "name": "Андрей Прозоров", "description": "" },
+			{ "id": 2, "name": "Ольга", "description": "сестра Андрея Прозорова, старшая" },
+			{ "id": 3, "name": "Мария", "description": "сестра Андрея Прозорова, средняя" },
+			{ "id": 4, "name": "Ирина", "description": "сестра Андрея Прозорова, младшая" },
+			{ "id": 5, "name": "Ирина", "description": "сестра Андрея Прозорова, младшая" }
+		],
+		"people": {
+			"regie": 1
+		}
+	},
+	{
+		"id": 1,
+		"id_suffix": "ts",
+		"title": "Drei Schwestern",
+		"author": "A.Tschechow",
+		"genre": "драма",
+		"description": "",
+		"posters": {
+			"wall": "",
+			"facebook": "",
+			"minimum": ""
+		},
+		"photos": ["", "", ""],
+		"lang": "ru",
+		"roles": [
+			{ "id": 1, "name": "Андрей Прозоров", "description": "" },
+			{ "id": 2, "name": "Ольга", "description": "сестра Андрея Прозорова, старшая" },
+			{ "id": 3, "name": "Мария", "description": "сестра Андрея Прозорова, средняя" },
+			{ "id": 4, "name": "Ирина", "description": "сестра Андрея Прозорова, младшая" },
+			{ "id": 5, "name": "Ирина", "description": "сестра Андрея Прозорова, младшая" }
+		],
+		"people": {
+			"regie": 1,
+			"music": 2
+		}
+	}
+]
