@@ -1,0 +1,16 @@
+---
+import "../../styles/font.css"
+import "../../styles/init.css"
+import "../../styles/antrepriza.css"
+import "../../styles/header.css"
+
+import AntreprizaLayout from "@layouts/AntreprizaLayout.astro";
+import Programm from "@components/programm.astro";
+const pageTitle = "Театр Антреприза - Афиша";
+const pageLang = "ru";
+---
+
+<AntreprizaLayout title={pageTitle} lang={pageLang}>
+  <Programm lang={pageLang}/>
+</AntreprizaLayout>
+

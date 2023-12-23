@@ -106,7 +106,7 @@
 	.toolbar-icon:hover,
 	.theme-changer:hover svg {
 		fill: var(--colorAntreprizaRed);
-		stroke-width: 0px;
+		/* stroke-width: 0px; */
 	}
 	.dropdown-item-link:hover .lang-brief {
 		color: var(--colorAntreprizaRed);
@@ -115,14 +115,15 @@
 	.toolbar-grid a:hover {
 		color: var(--colorAntreprizaRed);
 		fill: var(--colorAntreprizaRed);
+		font-weight: inherit;
 		cursor: pointer;
-		stroke-width: 0px;
+		/* stroke-width: 0px; */
 	}
 	.expand-menu:hover {
 		color: var(--colorAntreprizaRed);
+		font-weight: inherit;
 		.toolbar-icon-language {
 			fill: var(--colorAntreprizaRed);
-			stroke-width: 0px;
 		}
 	}
 

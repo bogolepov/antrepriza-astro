@@ -6,12 +6,15 @@ import "@styles/header.css"
 
 import Symbols from '@svg/symbols.svg?url'
 import AntreprizaLogo from '@svg/logo.svg?url'
-import AntrLogo from '@svg/antr_logo.svg?url'
 import SocialIcons from '@svg/social.svg?url'
 
 const {lang} = Astro.props;
 
-import plays from '@data/plays_ru.json'
+import plays_ru from '@data/plays_ru.json'
+import plays_de from '@data/plays_de.json'
+
+let plays = (lang === 'de') ? plays_de : plays_ru; 
+
 
 // import plays from Object.toString("@data/plays_"+lang+".json")
 // const plays = await import(`@data/plays_${lang}.json`);

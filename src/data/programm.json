@@ -1,0 +1,70 @@
+[
+	{
+		"data": "2023-12-23",
+		"time": "16:00",
+		"play_id": 6,
+		"price": 20,
+		"price_child": 25,
+		"price_reduce": 11
+	},
+	{
+		"data": "2023-12-22",
+		"time": "16:00",
+		"play_id": 6,
+		"price": 20,
+		"price_child": 25,
+		"price_reduce": 11
+	},
+	{
+		"data": "2023-12-21",
+		"time": "16:00",
+		"play_id": 6,
+		"price": 20,
+		"price_child": 25,
+		"price_reduce": 11
+	},
+	{
+		"data": "2024-01-20",
+		"time": "16:00",
+		"play_id": 6,
+		"price": 20,
+		"price_child": 25,
+		"price_reduce": 11
+	},
+	{
+		"data": "2024-01-21",
+		"time": "16:00",
+		"play_id": 6,
+		"price": 20,
+		"price_child": 25,
+		"price_reduce": 11
+	},
+	{
+		"data": "2024-02-03",
+		"time": "19:30",
+		"play_id": 4,
+		"price": 19,
+		"price_reduce": 11
+	},
+	{
+		"data": "2024-02-04",
+		"time": "19:30",
+		"play_id": 5,
+		"price": 19,
+		"price_reduce": 11
+	},
+	{
+		"data": "2024-03-02",
+		"time": "19:30",
+		"play_id": 1,
+		"price": 19,
+		"price_reduce": 11
+	},
+	{
+		"data": "2024-03-03",
+		"time": "19:30",
+		"play_id": 5,
+		"price": 19,
+		"price_reduce": 11
+	}
+]
