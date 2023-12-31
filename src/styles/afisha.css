@@ -1,0 +1,54 @@
+.programm {
+	width: 100%;
+	padding: 0px 50px;
+	color: var(--colorFont);
+	/* text-align: center; */
+}
+
+.programm-month h2 {
+	font-family: 'Roboto', Verdana, Arial, Tahoma, sans-serif;
+	font-weight: var(--font-bold-weight);
+	text-transform: uppercase;
+	letter-spacing: 0.1rem;
+	border-bottom: 1px solid var(--colorFont);
+	padding: 20px 0px 25px 0px;
+	text-align: center;
+}
+
+.programm-play-block {
+	font-family: 'Roboto', Verdana, Arial, Tahoma, sans-serif;
+	font-weight: var(--font-normal-weight);
+	padding: 10px 0px 15px 0px;
+}
+
+.programm-play-block:not(:last-of-type) {
+	border-bottom: 1px solid var(--colorFont);
+}
+
+.programm-date,
+.programm-title {
+	font-size: 1.8rem;
+	font-weight: var(--font-extra-weight);
+	text-transform: uppercase;
+}
+
+.programm-day {
+	font-size: 1.4rem;
+	font-weight: var(--font-extra-weight);
+	text-transform: uppercase;
+}
+
+.programm-time {
+	font-size: 1.6rem;
+	font-weight: var(--font-bold-weight);
+}
+
+.programm-title {
+	padding-bottom: 15px;
+}
+
+@media screen and (max-width: 910px) {
+	.programm {
+		padding: 0px 15px;
+	}
+}

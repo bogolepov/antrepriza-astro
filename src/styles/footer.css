@@ -8,6 +8,7 @@
 
 footer {
 	width: 100%;
+	padding: 0px 50px;
 	background-color: var(--colorBkgFooter);
 	color: var(--colorFontFooter);
 	border-top: var(--footerBorderWidth) solid var(--colorBorderFooter);

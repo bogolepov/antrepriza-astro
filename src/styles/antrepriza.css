@@ -20,11 +20,12 @@
 /* --------------------------------------------------- */
 [data-theme='dark'] {
 	color-scheme: dark;
+	--colorFont: var(--grey-16);
 	--colorBkgToolbar: var(--grey-120);
 	--colorBkgFooter: var(--colorBkgToolbar);
 	--colorBkgSubMenu: var(--grey-140);
-	--colorFontToolbar: var(--grey-16);
-	--colorFontFooter: var(--colorFontToolbar);
+	--colorFontToolbar: var(--colorFont);
+	--colorFontFooter: var(--colorFont);
 	--colorBorderToolbar: var(--grey-46);
 	--colorBorderFooter: var(--colorBorderToolbar);
 	--colorTicketsBtn: #8c5956;
@@ -44,16 +45,18 @@
 	--font-normal-weight: 300;
 	--font-thin-weight: 100;
 	--font-bold-weight: 500;
+	--font-extra-weight: 700;
 	--font-logo-weight: 700;
 }
 
 [data-theme='light'] {
 	color-scheme: light;
+	--colorFont: var(--grey-78);
 	--colorBkgToolbar: var(--grey-10);
 	--colorBkgFooter: var(--colorBkgToolbar);
 	--colorBkgSubMenu: var(--grey-16);
-	--colorFontToolbar: var(--grey-78);
-	--colorFontFooter: var(--colorFontToolbar);
+	--colorFontToolbar: var(--colorFont);
+	--colorFontFooter: var(--colorFont);
 	--colorBorderToolbar: var(--grey-11);
 	--colorBorderFooter: var(--colorBorderToolbar);
 	--colorTicketsBtn: #fbccc7;
@@ -70,6 +73,7 @@
 	--font-normal-weight: 400;
 	--font-thin-weight: 300;
 	--font-bold-weight: 700;
+	--font-extra-weight: 900;
 	--font-logo-weight: 900;
 }
 

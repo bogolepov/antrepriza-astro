@@ -1,0 +1,94 @@
+---
+import "@styles/font.css"
+import "@styles/init.css"
+import "@styles/antrepriza.css"
+import "@styles/afisha.css"
+
+const {lang} = Astro.props;
+
+import programm from '@data/afisha.json'
+
+import plays_ru from '@data/plays_ru.json'
+import plays_de from '@data/plays_de.json'
+import type { generateHydrateScript } from "astro/runtime/server/hydration.js";
+
+let plays = (lang === 'de') ? plays_de : plays_ru; 
+
+let sortProgramm = programm.sort((play1, play2) => 
+	Date.parse(play1.date+"T"+play1.time) - Date.parse(play2.data+"T"+play2.time))
+
+let iMonth: number = -1;
+---
+
+<div class="programm">
+{
+	programm.map((playInProgramm) => {
+		let playInfo;
+		plays.some((playInRepertoire) => {
+			// console.log("play in Program: " + playInProgramm.play_id + "; play in Plays: " + playInRepertoire.id);
+			if (playInProgramm.play_id === playInRepertoire.id) {
+				playInfo = playInRepertoire;
+				return; 
+			}
+		} )
+		if (playInfo) {
+			let showMonth: boolean = false;
+			let monthName: string;
+			let strYear: string;
+			let playDate: Date = new Date(playInProgramm.date);
+			if (iMonth < 0 || iMonth != playDate.getMonth()) {
+				iMonth = playDate.getMonth();
+				showMonth = true;
+				monthName = playDate.toLocaleString(lang, { month: 'long' });
+				strYear = playDate.getFullYear().toString();
+				// console.log(monthName);
+			}
+			return (
+				<div class="programm-month" data-month={iMonth}>
+					{showMonth && 
+						<h2>{monthName}&ensp;{strYear}</h2>
+					}
+				</div>
+				<div class="programm-play-block" data-date={playInProgramm.date} data-month={iMonth}>
+					<div>
+						<span class="programm-date">
+							{playDate.getDate().toString().padStart(2, '0')}.{(playDate.getMonth()+1).toString().padStart(2, '0')},
+						</span>
+						<span class="programm-day">
+							{playDate.toLocaleDateString(lang, { weekday: 'short' })}
+						</span>
+					</div>
+					<div>
+						<span class="programm-time">
+							{playInProgramm.time}
+						</span>
+					</div>
+					<div class="programm-title">
+						{playInfo.title}
+					</div>
+					<h5>{playInfo.genre}, {playInfo.age}</h5>
+				</div>
+			);
+		}
+	} )
+}
+</div>
+
+<script>
+	const PLAYS_IN_MONTH = new Array(12).fill(0);
+	const ONE_DAY = 24*60*60*1000;	
+	let playCards = document.getElementsByClassName('programm-play-block');
+	for (let playCard of playCards) {
+		if (Date.parse(playCard.getAttribute("data-date")) + ONE_DAY  < Date.now())
+			(playCard as HTMLElement).hidden = true;
+		else
+			PLAYS_IN_MONTH[playCard.getAttribute("data-month")]++;
+	}
+	let monthElems = document.getElementsByClassName('programm-month');
+	let iMonth;
+	for (let month of monthElems) {
+			iMonth = month.getAttribute("data-month");
+			if (!PLAYS_IN_MONTH[iMonth])
+				(month as HTMLElement).hidden = true;
+		}
+</script>
