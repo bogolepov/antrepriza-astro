@@ -10,6 +10,8 @@ import SocialIcons from '@svg/social.svg?url'
 
 const {lang} = Astro.props;
 
+import dictionary from '@data/dictionary.json'
+
 import plays_ru from '@data/plays_ru.json'
 import plays_de from '@data/plays_de.json'
 
@@ -23,16 +25,16 @@ let plays = (lang === 'de') ? plays_de : plays_ru;
 // const plays = await response.json();
 
 
-const menuProgramm = { link: "programm", ru: "Афиша", de: "Spielplan" };
-const menuPlays = { link: "plays", ru: "Спектакли", de: "Repertoire" };
-const menuTheater = { link: "", ru: "Театр", de: "Theater" };
-const menuMediathek = { link: "galerie", ru: "Галерея", de: "Mediathek" };
-const menuSupport = { link: "support", ru: "Поддержать", de: "Unterstützen" };
-const menuTickets = { link: "tickets", ru: "Билеты", de: "Tickets" };
+const menuProgramm = { link: "programm", text: dictionary.programm[lang] };
+const menuPlays = { link: "plays", text: dictionary.plays[lang] };
+const menuTheater = { link: "", text: dictionary.theater[lang] };
+const menuMediathek = { link: "galerie", text: dictionary.galerie[lang] };
+const menuSupport = { link: "support", text: dictionary.support[lang] };
+const menuTickets = { link: "tickets", text: dictionary.tickets[lang] };
 
-const changeThemeHint = {ru: "Сменить тему оформления", de: "Farbmodus wechseln"}
-const changeThemeTextDark = {ru: "Темная тема", de: "Dunkelmodus" };
-const changeThemeTextLight = {ru: "Светлая тема", de: "Lightmodus" };
+const changeThemeHint: string = dictionary.themeHint[lang];
+const changeThemeTextDark: string = dictionary.themeTextDark[lang];
+const changeThemeTextLight: string = dictionary.themeTextLight[lang];
 
 ---
 
@@ -83,10 +85,10 @@ const changeThemeTextLight = {ru: "Светлая тема", de: "Lightmodus" };
 		</div>
 		<div>
 			<div class="navigator-menu-grid">
-				<div><a href={"/" + lang + "/" + menuProgramm.link}>{menuProgramm[lang]}</a></div>
+				<div><a href={"/" + lang + "/" + menuProgramm.link}>{menuProgramm.text}</a></div>
 				<div class="expand-menu">
 					<div class="toolbar-dropbtn">
-						<a href={"/" + lang + "/" + menuPlays.link}>{menuPlays[lang]}</a>
+						<a href={"/" + lang + "/" + menuPlays.link}>{menuPlays.text}</a>
 						&nbsp;
 						<svg class="menu-drop-down-symbol">
 							<use href={Symbols + "#drop-down"}></use>
@@ -109,7 +111,7 @@ const changeThemeTextLight = {ru: "Светлая тема", de: "Lightmodus" };
 				</div>
 				<div class="expand-menu">
 					<div class="toolbar-dropbtn">
-						{menuTheater[lang]}&nbsp;
+						{menuTheater.text}&nbsp;
 						<svg class="menu-drop-down-symbol">
 							<use href={Symbols + "#drop-down"}></use>
 						</svg>
@@ -129,11 +131,11 @@ const changeThemeTextLight = {ru: "Светлая тема", de: "Lightmodus" };
 						</ul>
 					</div>
 				</div>
-				<div><a href={"/" + lang + "/" + menuMediathek.link}>{menuMediathek[lang]}</a></div>
-				<div><a href={"/" + lang + "/" + menuSupport.link}>{menuSupport[lang]}</a></div>
+				<div><a href={"/" + lang + "/" + menuMediathek.link}>{menuMediathek.text}</a></div>
+				<div><a href={"/" + lang + "/" + menuSupport.link}>{menuSupport.text}</a></div>
 			</div>
 		</div>
-		<a class="header-tickets-button" href={"/" + lang + "/" + menuTickets.link}>{menuTickets[lang]}</a>
+		<a class="header-tickets-button" href={"/" + lang + "/" + menuTickets.link}>{menuTickets.text}</a>
 
 		<!-- <div class="navigator-tickets-item">
 			<a href="tickets.html" class="tickets-btn">Билеты</a>
@@ -179,7 +181,7 @@ const changeThemeTextLight = {ru: "Светлая тема", de: "Lightmodus" };
 			<label
 				class="theme-changer"
 				for="theme__checkbox"
-				title={changeThemeHint[lang]}
+				title={changeThemeHint}
 			>
 				<input
 					class="theme-checkbox"
@@ -238,11 +240,11 @@ const changeThemeTextLight = {ru: "Светлая тема", de: "Lightmodus" };
 		</button>
 		<nav class="burger-menu">
 			<ul class="burger-list">
-				<li class="burger-item"><a href={"/" + lang + "/" + menuProgramm.link}>{menuProgramm[lang]}</a></li>
+				<li class="burger-item"><a href={"/" + lang + "/" + menuProgramm.link}>{menuProgramm.text}</a></li>
 				<li class="burger-item expanded">
 					<div class="burger-submenu-title">
 						<div class="submenu-title-text">
-							<a href={"/" + lang + "/" + menuPlays.link}>{menuPlays[lang]}</a>
+							<a href={"/" + lang + "/" + menuPlays.link}>{menuPlays.text}</a>
 						</div>
 						<button class="submenu-symbol-button">
 							<svg class="submenu-symbol">
@@ -264,7 +266,7 @@ const changeThemeTextLight = {ru: "Светлая тема", de: "Lightmodus" };
 				</li>
 				<li class="burger-item expanded">
 					<div class="burger-submenu-title">
-						<div class="submenu-title-text">{menuTheater[lang]}</div>
+						<div class="submenu-title-text">{menuTheater.text}</div>
 						<button class="submenu-symbol-button">
 							<svg class="submenu-symbol">
 								<use href={Symbols + "#drop-down"}></use>
@@ -278,8 +280,8 @@ const changeThemeTextLight = {ru: "Светлая тема", de: "Lightmodus" };
 						</ul>
 					</div>
 				</li>
-				<li class="burger-item"><a href={"/" + lang + "/" + menuMediathek.link}>{menuMediathek[lang]}</a></li>
-				<li class="burger-item"><a href={"/" + lang + "/" + menuSupport.link}>{menuSupport[lang]}</a></li>
+				<li class="burger-item"><a href={"/" + lang + "/" + menuMediathek.link}>{menuMediathek.text}</a></li>
+				<li class="burger-item"><a href={"/" + lang + "/" + menuSupport.link}>{menuSupport.text}</a></li>
 				<li class="burger-separate-item"></li>
 				<li class="burger-item">
 					<div class="social-pages">
@@ -327,13 +329,13 @@ const changeThemeTextLight = {ru: "Светлая тема", de: "Lightmodus" };
 							<svg class="header-icon theme">
 								<use href={Symbols + "#dark-mode"}></use>
 							</svg>
-							<span class="theme-changer-text">{changeThemeTextDark[lang]}</span>
+							<span class="theme-changer-text">{changeThemeTextDark}</span>
 						</div>
 						<div class="light-mode-checkbox">
 							<svg class="header-icon theme">
 								<use href={Symbols + "#light-mode"}></use>
 							</svg>
-							<span class="theme-changer-text">{changeThemeTextLight[lang]}</span>
+							<span class="theme-changer-text">{changeThemeTextLight}</span>
 						</div>
 					</label>
 				</li>
@@ -363,6 +365,6 @@ const changeThemeTextLight = {ru: "Светлая тема", de: "Lightmodus" };
 		</svg>
 	</a>
 	<div></div>
-	<a class="header-tickets-button" href={"/" + lang + "/" + menuTickets.link}>{menuTickets[lang]}</a>
+	<a class="header-tickets-button" href={"/" + lang + "/" + menuTickets.link}>{menuTickets.text}</a>
 </header>
 <div class="main-padding-top"></div>

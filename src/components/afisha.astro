@@ -7,6 +7,7 @@ import "@styles/afisha.css"
 const {lang} = Astro.props;
 
 import programm from '@data/afisha.json'
+import dictionary from '@data/dictionary.json'
 
 import plays_ru from '@data/plays_ru.json'
 import plays_de from '@data/plays_de.json'
@@ -66,7 +67,7 @@ let iMonth: number = -1;
 					<div class="programm-title">
 						{playInfo.title}
 					</div>
-					<h5>{playInfo.genre}, {playInfo.age}</h5>
+					<h5>{dictionary.genre[lang]}: {playInfo.genre}, {playInfo.age}</h5>
 				</div>
 			);
 		}

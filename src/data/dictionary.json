@@ -1,0 +1,12 @@
+{
+	"programm": { "ru": "Афиша", "de": "Spielplan" },
+	"plays": { "ru": "Спектакли", "de": "Repertoire" },
+	"theater": { "ru": "Театр", "de": "Theater" },
+	"galerie": { "ru": "Галерея", "de": "Mediathek" },
+	"support": { "ru": "Поддержать", "de": "Unterstützen" },
+	"tickets": { "ru": "Билеты", "de": "Tickets" },
+	"themeHint": { "ru": "Сменить тему оформления", "de": "Farbmodus wechseln" },
+	"themeTextDark": { "ru": "Темная тема", "de": "Dunkelmodus" },
+	"themeTextLight": { "ru": "Светлая тема", "de": "Lightmodus" },
+	"genre": { "ru": "Жанр", "de": "Genre" }
+}
