@@ -1,0 +1,7 @@
+.not-found {
+	width: 100%;
+	padding: 0px 50px;
+	color: var(--colorFont);
+	font-family: 'Roboto', Verdana, Arial, Tahoma, sans-serif;
+	font-weight: var(--font-normal-weight);
+}

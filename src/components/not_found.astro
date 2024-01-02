@@ -1,5 +1,7 @@
 ---
 
+import "@styles/not_found.css"
+
 const {lang} = Astro.props;
 
 const errorMsg = {
@@ -17,9 +19,11 @@ const errorOffer = {
 
 ---
 
-<h2>{errorMsg[lang]}</h2>
-<h4>{errorReason[lang]}</h4>
-<h4>{errorOffer[lang]}</h4> 
+<div class:list={"not-found"}>
+  <h2>{errorMsg[lang]}</h2>
+  <h4>{errorReason[lang]}</h4>
+  <h4>{errorOffer[lang]}</h4> 
+</div>
 
 
 
