@@ -17,14 +17,6 @@ import plays_de from '@data/plays_de.json'
 
 let plays = (lang === 'de') ? plays_de : plays_ru; 
 
-
-// import plays from Object.toString("@data/plays_"+lang+".json")
-// const plays = await import(`@data/plays_${lang}.json`);
-
-// const response = await fetch(`../../data/plays_${lang}.json`);
-// const plays = await response.json();
-
-
 const menuProgramm = { link: "programm", text: dictionary.programm[lang] };
 const menuPlays = { link: "plays", text: dictionary.plays[lang] };
 const menuTheater = { link: "", text: dictionary.theater[lang] };
@@ -35,6 +27,10 @@ const menuTickets = { link: "tickets", text: dictionary.tickets[lang] };
 const changeThemeHint: string = dictionary.themeHint[lang];
 const changeThemeTextDark: string = dictionary.themeTextDark[lang];
 const changeThemeTextLight: string = dictionary.themeTextLight[lang];
+
+const pathname: string = new URL(Astro.request.url).pathname;
+const currentPath: string[] = pathname.split("/").filter(Boolean);
+console.log(currentPath);
 
 ---
 
@@ -74,7 +70,7 @@ const changeThemeTextLight: string = dictionary.themeTextLight[lang];
 	</div>
 	<nav class="navigator-grid">
 		<div class="navigator-logo-item">
-			<a href={"/" + lang + "/"}>
+			<a href={"/" + lang + "/"} class:list={{active_link: currentPath[1] === undefined}}>
 				<svg class="navigator-icon-logo-text">
 					<use href={AntreprizaLogo + '#logo-text-' + lang}></use>
 				</svg>
@@ -85,10 +81,12 @@ const changeThemeTextLight: string = dictionary.themeTextLight[lang];
 		</div>
 		<div>
 			<div class="navigator-menu-grid">
-				<div><a href={"/" + lang + "/" + menuProgramm.link}>{menuProgramm.text}</a></div>
+				<div><a href={"/" + lang + "/" + menuProgramm.link} class:list={{active_link: currentPath[1] === menuProgramm.link}}>{menuProgramm.text}</a></div>
 				<div class="expand-menu">
 					<div class="toolbar-dropbtn">
-						<a href={"/" + lang + "/" + menuPlays.link}>{menuPlays.text}</a>
+						<a href={"/" + lang + "/" + menuPlays.link} class:list={{active_link: currentPath[1] === menuPlays.link}}>
+							{menuPlays.text}
+						</a>
 						&nbsp;
 						<svg class="menu-drop-down-symbol">
 							<use href={Symbols + "#drop-down"}></use>
@@ -131,8 +129,16 @@ const changeThemeTextLight: string = dictionary.themeTextLight[lang];
 						</ul>
 					</div>
 				</div>
-				<div><a href={"/" + lang + "/" + menuMediathek.link}>{menuMediathek.text}</a></div>
-				<div><a href={"/" + lang + "/" + menuSupport.link}>{menuSupport.text}</a></div>
+				<div>
+					<a href={"/" + lang + "/" + menuMediathek.link} class:list={{active_link: currentPath[1] === menuMediathek.link}}>
+						{menuMediathek.text}
+					</a>
+				</div>
+				<div>
+					<a href={"/" + lang + "/" + menuSupport.link} class:list={{active_link: currentPath[1] === menuSupport.link}}>
+						{menuSupport.text}
+					</a>
+				</div>
 			</div>
 		</div>
 		<a class="header-tickets-button" href={"/" + lang + "/" + menuTickets.link}>{menuTickets.text}</a>
@@ -240,11 +246,17 @@ const changeThemeTextLight: string = dictionary.themeTextLight[lang];
 		</button>
 		<nav class="burger-menu">
 			<ul class="burger-list">
-				<li class="burger-item"><a href={"/" + lang + "/" + menuProgramm.link}>{menuProgramm.text}</a></li>
+				<li class="burger-item">
+					<a href={"/" + lang + "/" + menuProgramm.link} class:list={{active_link: currentPath[1] === menuProgramm.link}}>
+						{menuProgramm.text}
+					</a>
+				</li>
 				<li class="burger-item expanded">
 					<div class="burger-submenu-title">
 						<div class="submenu-title-text">
-							<a href={"/" + lang + "/" + menuPlays.link}>{menuPlays.text}</a>
+							<a href={"/" + lang + "/" + menuPlays.link} class:list={{active_link: currentPath[1] === menuPlays.link}}>
+								{menuPlays.text}
+							</a>
 						</div>
 						<button class="submenu-symbol-button">
 							<svg class="submenu-symbol">
@@ -280,8 +292,16 @@ const changeThemeTextLight: string = dictionary.themeTextLight[lang];
 						</ul>
 					</div>
 				</li>
-				<li class="burger-item"><a href={"/" + lang + "/" + menuMediathek.link}>{menuMediathek.text}</a></li>
-				<li class="burger-item"><a href={"/" + lang + "/" + menuSupport.link}>{menuSupport.text}</a></li>
+				<li class="burger-item">
+					<a href={"/" + lang + "/" + menuMediathek.link} class:list={{active_link: currentPath[1] === menuMediathek.link}}>
+						{menuMediathek.text}
+					</a>
+				</li>
+				<li class="burger-item">
+					<a href={"/" + lang + "/" + menuSupport.link} class:list={{active_link: currentPath[1] === menuSupport.link}}>
+						{menuSupport.text}
+					</a>
+				</li>
 				<li class="burger-separate-item"></li>
 				<li class="burger-item">
 					<div class="social-pages">
@@ -355,7 +375,7 @@ const changeThemeTextLight: string = dictionary.themeTextLight[lang];
 			</ul>
 		</nav>
 	</div>
-	<a class="header-logo" href={"/" + lang + "/"}>
+	<a class="header-logo" href={"/" + lang + "/"} class:list={{active_link: currentPath[1] === undefined}}>
 		<!-- <svg class="navigator-icon-logo-text"> -->
 		<svg class="header-logo-text-icon">
 			<use href={AntreprizaLogo + "#logo-text-" + lang}></use>

@@ -1,0 +1,25 @@
+---
+
+const {lang} = Astro.props;
+
+const errorMsg = {
+  "ru": "Страницу не удалось найти.", 
+  "de": "Diese Seite konnte nicht gefunden werden."
+};
+const errorReason = {
+  "ru": "Возможно, Вы получили доступ к неправильному или устаревшему URL-адресу, либо мы могли переименовать или удалить страницу.", 
+  "de": "Möglicherweise haben Sie eine falsche oder veraltete URL aufgerufen, oder wir haben die Seite umbenannt oder gelöscht."
+};
+const errorOffer = {
+  "ru": "Может быть, Вы сможете найти нужную информацию с помощью нашей навигации?", 
+  "de": "Vielleicht können Sie den gewünschten Inhalt über unsere Navigation finden?"
+};
+
+---
+
+<h2>{errorMsg[lang]}</h2>
+<h4>{errorReason[lang]}</h4>
+<h4>{errorOffer[lang]}</h4> 
+
+
+

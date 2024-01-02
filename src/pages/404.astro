@@ -1,0 +1,29 @@
+---
+// import AntreprizaLayout from "../layouts/AntreprizaLayout.astro";
+// const pageTitle = "Театр Антреприза Берлин";
+// const pageLang = "ru";
+
+---
+
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="robots" content="noindex, follow" />
+	</head>
+	<body>
+		<script>
+			const LANG_RU = 'ru';
+			const LANG_DE = 'de';
+			const CNF_LANG = 'LANG';
+
+			let currLang;
+			let userLang = localStorage.getItem(CNF_LANG) || navigator.language || navigator.userLanguage;
+			if (userLang && (userLang = userLang.toLowerCase()) && userLang.includes(LANG_DE)) {
+				currLang = LANG_DE;
+			} else {
+				currLang = LANG_RU;
+			}
+			window.location.replace(`/${currLang}/404`);
+		</script>
+	</body>
+</html>
