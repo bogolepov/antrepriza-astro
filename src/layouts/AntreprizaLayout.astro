@@ -29,9 +29,13 @@ const pageTitle = title || ( lang === "de" ? "Theater Antrepriza Berlin" : "Те
 	<meta name="generator" content={Astro.generator} />
 	</head>
 	<body>
-		<Header lang={lang}></Header>
-		<slot/>
-		<Footer lang={lang}></Footer>
+		<div class="wrapper">
+			<Header lang={lang} />
+			<div class="wrapper-main">
+				<slot/>
+			</div>
+			<Footer lang={lang} />
+		</div>
 	
 		<script is:inline src="/js/antrepriza.js"></script>
 		<script is:inline>

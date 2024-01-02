@@ -83,8 +83,18 @@ body {
 	background-color: var(--colorBkgPage);
 	font-family: 'Roboto', Verdana, Arial, Tahoma, sans-serif;
 	font-weight: var(--font-normal-weight);
+	height: 100%;
 }
 
+.wrapper {
+	min-height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.wrapper-main {
+	flex-grow: 1;
+}
 /* --------------------------------------------------- */
 /* --------------- browser scroll bar ---------------- */
 /* --------------------------------------------------- */
