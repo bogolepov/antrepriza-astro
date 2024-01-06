@@ -267,15 +267,12 @@
 	align-self: center;
 }
 
-.navigator-social-grid {
-	padding-left: calc(2 * var(--toolbarGap));
-	padding-right: calc(2 * var(--toolbarGap));
-	display: grid;
-	grid-template-columns: repeat(3, max-content);
-	column-gap: var(--toolbarGap);
-	align-items: center;
-	align-self: center;
-	justify-self: center;
+.navigator-social-pages {
+	list-style: none;
+	display: flex;
+	gap: clamp(0.5rem, 2vw, 0.8rem);
+	padding-left: clamp(var(--toolbarGap), 1.3vw, 2 * var(--toolbarGap));
+	padding-right: clamp(var(--toolbarGap), 1.3vw, 2 * var(--toolbarGap));
 }
 
 .social-item,
@@ -365,7 +362,7 @@
 	transform: rotate(180deg) translate(0px, 2px);
 }
 
-.facebook-svg {
+.facebook:where(.toolbar-icon) {
 	width: 15px;
 	stroke-width: 0px;
 }
@@ -406,7 +403,7 @@
 		/* width: var(--toolbarSmallIconSize);
 		height: var(--toolbarSmallIconSize); */
 	}
-	.facebook-svg {
+	.facebook:where(.toolbar-icon) {
 		width: 12px;
 	}
 }
@@ -625,7 +622,8 @@ html[lang='de'] .burger-item .link-de {
 }
 
 .burger-list,
-.burger-submenu-list {
+.burger-submenu-list,
+.social-pages {
 	padding: 0px 0px;
 	margin: 0px;
 	list-style: none;

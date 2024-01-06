@@ -31,6 +31,13 @@ const changeThemeTextLight: string = dictionary.themeTextLight[lang];
 const pathname: string = new URL(Astro.request.url).pathname;
 const currentPath: string[] = pathname.split("/").filter(Boolean);
 
+const SocialPages = [ 
+	{ "type": "facebook", "url": "https://www.facebook.com/AntreprizaBerlin", "svg": "#facebook-outline" },
+	{ "type": "instagram", "url": "https://www.instagram.com/AntreprizaBerlin", "svg": "#instagram-outline2" },
+	{ "type": "youtube", "url": "https://www.youtube.com/@AntreprizaBerlin", "svg": "#youtube-outline2" },
+	{ "type": "threads", "url": "https://www.threads.net/@AntreprizaBerlin", "svg": "#instagram-outline2" }
+];
+
 ---
 
 
@@ -145,41 +152,21 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 		<!-- <div class="navigator-tickets-item">
 			<a href="tickets.html" class="tickets-btn">Билеты</a>
 		</div> -->
-		<div class="navigator-social-grid">
-			<div class="social-item">
-				<a
-					href="https://www.facebook.com/AntreprizaBerlin"
-					target="_blank"
-					rel="noopener external"
-				>
-					<svg class="social-icon toolbar-icon facebook-svg">
-						<use href={SocialIcons + "#facebook-outline"}></use>
-					</svg>
-				</a>
-			</div>
-			<div class="social-item">
-				<a
-					href="https://www.instagram.com/AntreprizaBerlin"
-					target="_blank"
-					rel="noopener external"
-				>
-					<svg class="social-icon toolbar-icon">
-						<use href={SocialIcons + "#instagram-outline2"}></use>
-					</svg>
-				</a>
-			</div>
-			<div class="social-item">
-				<a
-					href="https://www.youtube.com/@AntreprizaBerlin"
-					target="_blank"
-					rel="noopener external"
-				>
-					<svg class="social-icon toolbar-icon">
-						<use href={SocialIcons + "#youtube-outline2"}></use>
-					</svg>
-				</a>
-			</div>
-		</div>
+		<ul class="navigator-social-pages">
+		{
+			SocialPages.map((socialPage) => {
+				return (
+					<li class="social-item">
+						<a href={socialPage.url} target="_blank"	rel="noopener external">
+							<svg class:list={['social-icon', 'toolbar-icon', socialPage.type]}>
+								<use href={SocialIcons + socialPage.svg}></use>
+							</svg>
+						</a>
+					</li>
+				);
+			} )
+		}
+		</ul>
 	</nav>
 	<div class="toolbar-tools-grid">
 		<div class="tools-item">
@@ -303,35 +290,21 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 				</li>
 				<li class="burger-separate-item"></li>
 				<li class="burger-item">
-					<div class="social-pages">
-						<a
-							href="https://www.facebook.com/AntreprizaBerlin"
-							target="_blank"
-							rel="noopener external"
-						>
-							<svg class="header-icon facebook">
-								<use href={SocialIcons + "#facebook-outline"}></use>
-							</svg>
-						</a>
-						<a
-							href="https://www.instagram.com/AntreprizaBerlin"
-							target="_blank"
-							rel="noopener external"
-						>
-							<svg class="header-icon">
-								<use href={SocialIcons + "#instagram-outline2"}></use>
-							</svg>
-						</a>
-						<a
-							href="https://www.youtube.com/@AntreprizaBerlin"
-							target="_blank"
-							rel="noopener external"
-						>
-							<svg class="header-icon">
-								<use href={SocialIcons + "#youtube-outline2"}></use>
-							</svg>
-						</a>
-					</div>
+					<ul class="social-pages">
+					{
+						SocialPages.map((socialPage) => {
+							return (
+								<li>
+									<a href={socialPage.url} target="_blank"	rel="noopener external">
+										<svg class:list={['header-icon', socialPage.type]}>
+											<use href={SocialIcons + socialPage.svg}></use>
+										</svg>
+									</a>
+								</li>
+							);
+						} )
+					}
+					</ul>
 				</li>
 				<li class="burger-item">
 					<label
