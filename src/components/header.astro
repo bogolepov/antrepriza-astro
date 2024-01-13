@@ -349,6 +349,12 @@ const SocialPages = [
 	</div>
 	<a class="header-logo" href={"/" + lang + "/"} class:list={{active_link: currentPath[1] === undefined}}>
 		<!-- <svg class="navigator-icon-logo-text"> -->
+		<!-- <picture class="header-logo-text-icon">
+			<source srcset={AntreprizaLogo + "#logo-" + lang} type="image/svg+xml" media="(max-width: 570px)">
+			<source srcset={AntreprizaLogo + "#logo-text-" + lang} type="image/svg+xml">
+			<source srcset="logo_1x.png 1x, logo_2x.png 2x" media="(max-width: 570px)">
+			<img src={"logo_text_1x_" + lang + ".png"} srcset={"logo_text_2x_" + lang + ".png 2x"} alt="">
+		</picture> -->
 		<svg class="header-logo-text-icon">
 			<use href={AntreprizaLogo + "#logo-text-" + lang}></use>
 		</svg>

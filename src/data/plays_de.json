@@ -10,7 +10,8 @@
 		"age": "5+",
 		"description": "",
 		"posters": {
-			"wall": "",
+			"landscape": "steppke_und_karlson.jpg",
+			"portrait": "steppke_und_karlson_poster.jpg",
 			"facebook": "",
 			"minimum": ""
 		},
@@ -38,7 +39,8 @@
 		"age": "5+",
 		"description": "",
 		"posters": {
-			"wall": "",
+			"landscape": "steppke_und_karlson.jpg",
+			"portrait": "steppke_und_karlson_poster.jpg",
 			"facebook": "",
 			"minimum": ""
 		},
@@ -66,7 +68,8 @@
 		"age": "18+",
 		"description": "",
 		"posters": {
-			"wall": "",
+			"landscape": "gefaerliche_kurve.jpg",
+			"portrait": "gefaerliche_kurve_poster.jpg",
 			"facebook": "",
 			"minimum": ""
 		},
@@ -94,7 +97,8 @@
 		"age": "18+",
 		"description": "",
 		"posters": {
-			"wall": "",
+			"landscape": "teure_wohnung.jpg",
+			"portrait": "teure_wohnung_poster.jpg",
 			"facebook": "",
 			"minimum": ""
 		},
@@ -122,7 +126,8 @@
 		"age": "16+",
 		"description": "",
 		"posters": {
-			"wall": "",
+			"landscape": "",
+			"portrait": "",
 			"facebook": "",
 			"minimum": ""
 		},
@@ -150,7 +155,8 @@
 		"age": "16+",
 		"description": "",
 		"posters": {
-			"wall": "",
+			"landscape": "",
+			"portrait": "",
 			"facebook": "",
 			"minimum": ""
 		},
@@ -178,7 +184,8 @@
 		"age": "14+",
 		"description": "",
 		"posters": {
-			"wall": "",
+			"landscape": "drei_schwestern.jpg",
+			"portrait": "drei_schwestern_poster.jpg",
 			"facebook": "",
 			"minimum": ""
 		},

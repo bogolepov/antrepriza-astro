@@ -1,3 +1,9 @@
+.picture-test {
+	width: 300px;
+	height: auto;
+	max-width: 30%;
+}
+
 .programm {
 	width: 100%;
 	padding: 0px 50px;
@@ -13,16 +19,59 @@
 	border-bottom: 1px solid var(--colorFont);
 	padding: 20px 0px 25px 0px;
 	text-align: center;
+	margin-bottom: 0px;
+}
+
+.programm-play-link {
+	text-decoration: none;
 }
 
 .programm-play-block {
 	font-family: 'Roboto', Verdana, Arial, Tahoma, sans-serif;
 	font-weight: var(--font-normal-weight);
-	padding: 10px 0px 15px 0px;
+	/* padding: 0.5rem 0.5rem; */
+	padding: 15px 10px 8px 10px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.programm-play-block[hidden] {
+	display: none;
 }
 
 .programm-play-block:not(:last-of-type) {
 	border-bottom: 1px solid var(--colorFont);
+}
+
+.programm-play-text {
+	flex-grow: 2;
+	min-width: 60vw;
+	height: min-content;
+
+	display: grid;
+	grid-template-areas:
+		'when title'
+		'. genre';
+	padding-right: 15px;
+	align-items: start;
+	row-gap: 15px;
+	column-gap: 5px;
+}
+
+.programm-when {
+	grid-area: when;
+	align-self: start;
+}
+
+.programm-title {
+	grid-area: title;
+	align-self: start;
+}
+
+.programm-genre {
+	grid-area: genre;
+	align-self: start;
 }
 
 .programm-date,
@@ -43,12 +92,63 @@
 	font-weight: var(--font-bold-weight);
 }
 
-.programm-title {
-	padding-bottom: 15px;
+.programm-date,
+.programm-day,
+.programm-time {
+	color: var(--colorFontDate);
+}
+
+.programm-genre-label {
+	font-size: 1.05rem;
+	font-weight: var(--font-thin-weight);
+	text-transform: uppercase;
+}
+
+/* .programm-play-image {
+	align-self: flex-start;
+} */
+
+.play-image {
+	border-radius: 4px;
+	max-width: 100%;
+	height: auto;
+	object-fit: contain;
+
+	-webkit-filter: grayscale(95%);
+	filter: grayscale(95%);
+}
+
+.programm-play-block:hover {
+	background-color: var(--colorBkgProgrammItem);
+}
+.programm-play-block:hover .play-image {
+	-webkit-filter: grayscale(0%);
+	filter: grayscale(0%);
 }
 
 @media screen and (max-width: 910px) {
 	.programm {
 		padding: 0px 15px;
+	}
+	.programm-play-text {
+		min-width: 50vw;
+		grid-template-areas:
+			'title'
+			'when'
+			'genre';
+		align-items: start;
+	}
+}
+
+@media screen and (max-width: 660px) {
+	.programm-play-block {
+		flex-direction: column-reverse;
+	}
+	.programm-play-text {
+		min-width: 100%;
+	}
+
+	.programm-play-image {
+		padding-bottom: 15px;
 	}
 }

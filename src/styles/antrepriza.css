@@ -1,6 +1,7 @@
 :root {
 	--grey-200: #262626;
 	--grey-140: #2a2a29;
+	--grey-130: #2d2d2d;
 	--grey-120: #313130;
 	--grey-78: #404040;
 	--grey-56: #585756;
@@ -11,6 +12,10 @@
 	--grey-13: #d9d6d5;
 	--grey-11: #e9e6e4;
 	--grey-10: #f7f4f3;
+
+	--gray-rose-dark: #8c5956;
+	--gray-rose: #87605e;
+	--gray-rose-light: #fbccc7;
 
 	--scrollBarWidth: 10px;
 }
@@ -24,15 +29,17 @@
 	--colorBkgToolbar: var(--grey-120);
 	--colorBkgFooter: var(--colorBkgToolbar);
 	--colorBkgSubMenu: var(--grey-140);
+	--colorBkgProgrammItem: var(--grey-130);
 	--colorFontToolbar: var(--colorFont);
 	--colorFontFooter: var(--colorFont);
 	--colorBorderToolbar: var(--grey-46);
 	--colorBorderFooter: var(--colorBorderToolbar);
-	--colorTicketsBtn: #8c5956;
+	--colorTicketsBtn: var(--gray-rose-dark);
 	--colorBoxShadowDropList: rgba(245, 245, 245, 0.25);
 	--colorDisabled: var(--grey-30);
 	--colorBkgPage: var(--grey-200);
 	--colorFontPage: var(--grey-13);
+	--colorFontDate: var(--gray-rose);
 	--colorAntreprizaRed: #e30d15;
 	/* --colorFocusAntreprizaRed: #f57a7e; */
 	--colorFocusAntreprizaRed: #e30d15;
@@ -55,15 +62,17 @@
 	--colorBkgToolbar: var(--grey-10);
 	--colorBkgFooter: var(--colorBkgToolbar);
 	--colorBkgSubMenu: var(--grey-16);
+	--colorBkgProgrammItem: var(--grey-11);
 	--colorFontToolbar: var(--colorFont);
 	--colorFontFooter: var(--colorFont);
 	--colorBorderToolbar: var(--grey-11);
 	--colorBorderFooter: var(--colorBorderToolbar);
-	--colorTicketsBtn: #fbccc7;
+	--colorTicketsBtn: var(--gray-rose-light);
 	--colorBoxShadowDropList: rgba(0, 0, 0, 0.12);
 	--colorDisabled: var(--grey-30);
 	--colorBkgPage: white;
 	--colorFontPage: var(--grey-78);
+	--colorFontDate: var(--gray-rose-dark);
 	--colorAntreprizaRed: #e30d15;
 	/* --colorFocusAntreprizaRed: #f57a7e; */
 	--colorFocusAntreprizaRed: #e30d15;

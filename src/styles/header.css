@@ -26,6 +26,7 @@
 	display: grid;
 	height: calc(var(--toolbarHeight) + var(--toolbarBorderWeight));
 	width: 100%;
+	max-width: 100vw;
 	z-index: 999;
 	color: var(--colorFontToolbar);
 	background-color: var(--colorBkgToolbar);
@@ -465,6 +466,7 @@
 	top: 0;
 	height: var(--headerHeight);
 	width: 100%;
+	max-width: 100vw;
 	z-index: 999;
 	color: var(--colorFontToolbar);
 	background-color: var(--colorBkgToolbar);
