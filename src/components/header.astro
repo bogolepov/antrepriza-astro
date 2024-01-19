@@ -147,7 +147,7 @@ const SocialPages = [
 				</div>
 			</div>
 		</div>
-		<a class="header-tickets-button" href={"/" + lang + "/" + menuTickets.link}>{menuTickets.text}</a>
+		<a class="header-tickets-button" href={"/" + lang + "/" + menuTickets.link} class:list={{active_link: currentPath[1] === menuTickets.link}}>{menuTickets.text}</a>
 
 		<!-- <div class="navigator-tickets-item">
 			<a href="tickets.html" class="tickets-btn">Билеты</a>
@@ -363,6 +363,6 @@ const SocialPages = [
 		</svg>
 	</a>
 	<div></div>
-	<a class="header-tickets-button" href={"/" + lang + "/" + menuTickets.link}>{menuTickets.text}</a>
+	<a class="header-tickets-button" href={"/" + lang + "/" + menuTickets.link} class:list={{active_link: currentPath[1] === menuTickets.link}}>{menuTickets.text}</a>
 </header>
 <div class="main-padding-top"></div>

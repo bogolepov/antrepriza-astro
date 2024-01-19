@@ -21,8 +21,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 // if (!images[url]) throw new Error(`"${url}" does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif}"`);
 
 
-let sortProgramm = programm.sort((play1, play2) => 
-	Date.parse(play1.date+"T"+play1.time) - Date.parse(play2.date+"T"+play2.time))
+programm.sort((play1, play2) => Date.parse(play1.date+"T"+play1.time) - Date.parse(play2.date+"T"+play2.time));
 
 const ONE_DAY: number = 24*60*60*1000;	
 
@@ -74,6 +73,9 @@ let iMonth: number = -1;
 				<a class="programm-play-block programm-play-link" href={"play-"+playInfo.id_suffix+".html"} data-date={playInProgramm.date} data-month={iMonth}>
 					<div class="programm-play-text">
 						<div class="programm-when" >
+							{playInProgramm.premiere && 
+								<span class="programm-premiere">{dictionary.premiere[lang]}</span>
+							}
 							<div>
 								<span class="programm-date">
 									{playDate.getDate().toString().padStart(2, '0')}.{(playDate.getMonth()+1).toString().padStart(2, '0')},

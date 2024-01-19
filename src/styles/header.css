@@ -109,6 +109,13 @@
 	fill: var(--colorAntreprizaRed);
 }
 
+.header-tickets-button:is(.active_link) {
+	border-color: var(--colorAntreprizaRed);
+	font-weight: var(--font-normal-weight);
+	background-color: inherit;
+	color: var(--colorAntreprizaRed);
+}
+
 /* --------------------------------------------------- */
 /* ---------------------- :hover --------------------- */
 /* --------------------------------------------------- */
@@ -520,8 +527,12 @@
 
 .header-tickets-button {
 	text-decoration: none;
-	border: 2px solid var(--colorTicketsBtn);
-	color: var(--colorAntreprizaRed);
+	border: 2px solid var(--colorFontDate);
+	background-color: var(--colorFontDate);
+	font-weight: var(--font-bold-weight);
+	color: var(--colorFontTicketsBtn);
+	/* color: var(--colorTicketsBtn); */
+	/* color: var(--colorAntreprizaRed); */
 	padding: 0.25em 1.5em 0.25em 1.5em;
 	margin: 0px 10px;
 	line-height: 1.1rem;
@@ -569,6 +580,8 @@ html[lang='de'] .burger-item .link-de {
 
 	.header-tickets-button:hover {
 		border-color: var(--colorAntreprizaRed);
+		font-weight: var(--font-bold-weight);
+		background-color: inherit;
 	}
 }
 

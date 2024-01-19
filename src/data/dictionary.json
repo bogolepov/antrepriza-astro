@@ -10,5 +10,6 @@
 	"themeHint": { "ru": "Сменить тему оформления", "de": "Farbmodus wechseln" },
 	"themeTextDark": { "ru": "Темная тема", "de": "Dunkelmodus" },
 	"themeTextLight": { "ru": "Светлая тема", "de": "Lightmodus" },
-	"genre": { "ru": "Жанр", "de": "Genre" }
+	"genre": { "ru": "Жанр", "de": "Genre" },
+	"premiere": { "ru": "Премьера", "de": "Premiere" }
 }

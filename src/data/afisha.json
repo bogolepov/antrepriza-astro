@@ -133,20 +133,23 @@
 		"time": "19:30",
 		"play_id": 8,
 		"price": 19,
-		"price_reduce": 11
+		"price_reduce": 11,
+		"premiere": true
 	},
 	{
 		"date": "2024-05-18",
 		"time": "19:30",
 		"play_id": 8,
 		"price": 19,
-		"price_reduce": 11
+		"price_reduce": 11,
+		"premiere": true
 	},
 	{
 		"date": "2024-05-19",
 		"time": "19:30",
 		"play_id": 8,
 		"price": 19,
-		"price_reduce": 11
+		"price_reduce": 11,
+		"premiere": true
 	}
 ]

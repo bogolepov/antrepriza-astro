@@ -1,0 +1,11 @@
+---
+import AntreprizaLayout from "@layouts/AntreprizaLayout.astro";
+import Tickets from "@components/tickets.astro";
+const pageTitle = "Theater Antrepriza - Tickets";
+const pageLang = "de";
+---
+
+<AntreprizaLayout title={pageTitle} lang={pageLang}>
+  <Tickets lang={pageLang}/>
+</AntreprizaLayout>
+

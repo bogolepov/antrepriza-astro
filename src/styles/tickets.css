@@ -1,57 +1,39 @@
-.picture-test {
-	width: 300px;
-	height: auto;
-	max-width: 30%;
-}
-
-.section-programm {
+.section-tickets {
 	width: 100%;
 	color: var(--colorFont);
 	/* text-align: center; */
 }
 
-.programm-month h2 {
-	font-family: 'Roboto', Verdana, Arial, Tahoma, sans-serif;
-	font-weight: var(--font-bold-weight);
-	text-transform: uppercase;
-	letter-spacing: 0.1rem;
-	border-bottom: 1px solid var(--colorFont);
-	padding: 20px 0px 25px 0px;
-	text-align: center;
-	margin-bottom: 0px;
-}
-
-.programm-play-link {
+.tickets-play-link {
 	text-decoration: none;
 }
 
-.programm-play-block {
+.tickets-play-block {
 	font-family: 'Roboto', Verdana, Arial, Tahoma, sans-serif;
 	font-weight: var(--font-normal-weight);
-	/* padding: 0.5rem 0.5rem; */
 	padding: 15px 10px;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 }
 
-.programm-play-block[hidden] {
+.tickets-play-block[hidden] {
 	display: none;
 }
 
-.programm-play-block:not(:last-of-type) {
+.tickets-play-block:not(:last-of-type) {
 	border-bottom: 1px solid var(--colorFont);
 }
 
-.programm-play-text {
+.tickets-play-text {
 	flex-grow: 2;
 	min-width: 60vw;
 	height: min-content;
 
 	display: grid;
 	grid-template-areas:
-		'when title'
-		'. genre';
+		'play-name'
+		'info';
 	padding-right: 15px;
 	align-items: start;
 	row-gap: 15px;
@@ -63,29 +45,41 @@
 	align-self: start;
 }
 
-.programm-title {
+.tickets-play-name {
+	grid-area: play-name;
+	align-self: start;
+}
+
+.tickets-play-title {
 	grid-area: title;
 	align-self: start;
 }
 
-.programm-genre {
-	grid-area: genre;
+.tickets-play-info {
+	grid-area: info;
 	align-self: start;
 }
 
-.programm-date,
-.programm-title {
-	font-size: 1.8rem;
-	font-weight: var(--font-extra-weight);
-	text-transform: uppercase;
-}
+.tickets-premiere {
+	/* grid-area: premiere;
+	align-self: start; */
 
-.programm-premiere {
 	font-size: 0.9rem;
 	font-weight: var(--font-bold-weight);
 	color: var(--colorAntreprizaRed);
 	text-transform: uppercase;
 	letter-spacing: 0.07rem;
+}
+
+.tickets-premiere ~ .tickets-play-title {
+	margin-top: 0px;
+}
+
+.programm-date,
+.tickets-play-title {
+	font-size: 1.8rem;
+	font-weight: var(--font-extra-weight);
+	text-transform: uppercase;
 }
 
 .programm-day {
@@ -105,7 +99,7 @@
 	color: var(--colorFontDate);
 }
 
-.programm-genre-label {
+.tickets-genre-label {
 	font-size: 1.05rem;
 	font-weight: var(--font-thin-weight);
 	text-transform: uppercase;
@@ -115,7 +109,23 @@
 	align-self: flex-start;
 } */
 
-.programm-play-image picture {
+.tickets-book-buttons {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	row-gap: 1rem;
+}
+
+.tickets-book-btn {
+	margin-right: 1rem;
+	border: 2px solid var(--colorFontDate);
+	background-color: var(--colorFontDate);
+	color: var(--colorFontTicketsBtn);
+	width: max-content;
+}
+
+.tickets-play-image picture {
 	/* display: block; */
 }
 
@@ -130,38 +140,42 @@
 	filter: grayscale(95%);
 }
 
-.programm-play-block:hover {
+.tickets-play-block:hover {
 	background-color: var(--colorBkgProgrammItem);
 }
-.programm-play-block:hover .play-image {
+.tickets-play-block:hover .play-image {
 	-webkit-filter: grayscale(0%);
 	filter: grayscale(0%);
 }
 
-.section-programm a:focus-visible {
+.section-tickets a:focus-visible {
 	outline: 1px solid var(--colorFocusAntreprizaRed);
 }
 
+.tickets-book-link {
+	position: relative;
+	user-select: none;
+}
+
 @media screen and (max-width: 910px) {
-	.programm-play-text {
+	.tickets-play-text {
 		min-width: 50vw;
 		grid-template-areas:
-			'title'
-			'when'
-			'genre';
+			'play-name'
+			'info';
 		align-items: start;
 	}
 }
 
 @media screen and (max-width: 660px) {
-	.programm-play-block {
+	.tickets-play-block {
 		flex-direction: column-reverse;
 	}
-	.programm-play-text {
+	.tickets-play-text {
 		min-width: 100%;
 	}
 
-	.programm-play-image {
+	.tickets-play-image {
 		padding-bottom: 15px;
 	}
 }
