@@ -58,10 +58,12 @@
 .programm-play-text {
 	flex-grow: 2;
 	min-width: 60vw;
-	height: min-content;
+	/* height: min-content; */
+	min-height: 100%;
 
 	display: grid;
 	grid-template-columns: 2fr 4fr;
+	grid-template-rows: auto auto 1fr;
 	grid-template-areas:
 		'when title'
 		'. genre'
@@ -89,7 +91,7 @@
 
 .programm-tickets {
 	grid-area: tickets;
-	align-self: start;
+	align-self: end;
 }
 
 .programm-genre {
@@ -108,9 +110,11 @@
 	text-decoration: none;
 	border: 2px solid var(--colorFontDate);
 	background-color: var(--colorFontDate);
+	font-size: 1rem;
 	font-weight: var(--font-bold-weight);
+	letter-spacing: 1px;
 	color: var(--colorFontTicketsBtn);
-	margin-top: 1rem;
+	/* margin-top: 1rem; */
 	padding: 0.25em 1.5em 0.25em 1.5em;
 	line-height: 1.1rem;
 	border-radius: 3px;
