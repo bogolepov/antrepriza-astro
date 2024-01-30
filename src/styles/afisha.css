@@ -25,14 +25,26 @@
 	text-decoration: none;
 }
 
+.programm-play-link::before {
+	content: '';
+	display: block;
+	position: absolute;
+	z-index: 1;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+}
+
 .programm-play-block {
+	position: relative;
 	font-family: 'Roboto', Verdana, Arial, Tahoma, sans-serif;
 	font-weight: var(--font-normal-weight);
-	/* padding: 0.5rem 0.5rem; */
 	padding: 15px 10px;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
+	transition: background-color 250ms linear;
 }
 
 .programm-play-block[hidden] {
@@ -49,9 +61,11 @@
 	height: min-content;
 
 	display: grid;
+	grid-template-columns: 2fr 4fr;
 	grid-template-areas:
 		'when title'
-		'. genre';
+		'. genre'
+		'. tickets';
 	padding-right: 15px;
 	align-items: start;
 	row-gap: 15px;
@@ -71,6 +85,37 @@
 .programm-genre {
 	grid-area: genre;
 	align-self: start;
+}
+
+.programm-tickets {
+	grid-area: tickets;
+	align-self: start;
+}
+
+.programm-genre {
+	font-size: 1.2rem;
+	font-weight: 400;
+}
+
+.programm-genre::before {
+	content: attr(data-label);
+	font-size: 1.05rem;
+	font-weight: var(--font-thin-weight);
+	text-transform: uppercase;
+}
+
+.programm-tickets-btn {
+	text-decoration: none;
+	border: 2px solid var(--colorFontDate);
+	background-color: var(--colorFontDate);
+	font-weight: var(--font-bold-weight);
+	color: var(--colorFontTicketsBtn);
+	margin-top: 1rem;
+	padding: 0.25em 1.5em 0.25em 1.5em;
+	line-height: 1.1rem;
+	border-radius: 3px;
+	position: relative;
+	z-index: 5;
 }
 
 .programm-date,
@@ -105,6 +150,11 @@
 	color: var(--colorFontDate);
 }
 
+.programm-genre h5 {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
 .programm-genre-label {
 	font-size: 1.05rem;
 	font-weight: var(--font-thin-weight);
@@ -128,6 +178,7 @@
 
 	-webkit-filter: grayscale(95%);
 	filter: grayscale(95%);
+	transition: filter 250ms ease-in;
 }
 
 .programm-play-block:hover {
@@ -145,10 +196,12 @@
 @media screen and (max-width: 910px) {
 	.programm-play-text {
 		min-width: 50vw;
+		grid-template-columns: auto;
 		grid-template-areas:
 			'title'
 			'when'
-			'genre';
+			'genre'
+			'tickets';
 		align-items: start;
 	}
 }
@@ -165,3 +218,9 @@
 		padding-bottom: 15px;
 	}
 }
+
+/* @media screen and (max-width: 40px) {
+	.programm-tickets-btn {
+		width: 100%;
+	}
+} */

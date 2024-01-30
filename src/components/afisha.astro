@@ -44,7 +44,6 @@ let iMonth: number = -1;
 	programm.map((playInProgramm) => {
 		let playInfo;
 		plays.some((playInRepertoire) => {
-			// console.log("play in Program: " + playInProgramm.play_id + "; play in Plays: " + playInRepertoire.id);
 			if (playInProgramm.play_id === playInRepertoire.id) {
 				playInfo = playInRepertoire;
 				return; 
@@ -62,7 +61,6 @@ let iMonth: number = -1;
 				showMonth = true;
 				monthName = playDate.toLocaleString(lang, { month: 'long' });
 				strYear = playDate.getFullYear().toString();
-				// console.log(monthName);
 			}
 			return (
 				<div class="programm-month" data-month={iMonth}>
@@ -70,7 +68,7 @@ let iMonth: number = -1;
 						<h2>{monthName}&ensp;{strYear}</h2>
 					}
 				</div>
-				<a class="programm-play-block programm-play-link" href={"play-"+playInfo.id_suffix+".html"} data-date={playInProgramm.date} data-month={iMonth}>
+				<div class="programm-play-block" data-date={playInProgramm.date} data-month={iMonth}>
 					<div class="programm-play-text">
 						<div class="programm-when" >
 							{playInProgramm.premiere && 
@@ -90,11 +88,16 @@ let iMonth: number = -1;
 								</span>
 							</div>
 						</div>
-						<div class="programm-title">
+						<a class="programm-title programm-play-link" href={"play-"+playInfo.id_suffix+".html"} >
 							{playInfo.title}
+						</a>
+						<div class="programm-genre" data-label={dictionary.genre[lang]+": "}>
+							{playInfo.genre}, {playInfo.age}
 						</div>
-						<div class="programm-genre">
-							<h5><span class="programm-genre-label">{dictionary.genre[lang]}:</span> {playInfo.genre}, {playInfo.age}</h5>
+						<div class="programm-tickets">
+							<button class="programm-tickets-btn" type="button">
+								{dictionary.tickets[lang]}								
+							</button>
 						</div>
 					</div>
 					<div class="programm-play-image">
@@ -106,7 +109,7 @@ let iMonth: number = -1;
 							sizes={'(max-width: 320px) 280px, (max-width: 660px) 640px, (max-width: 1300px) 400px, 640px'}
 							alt={playInfo.title} />
 					</div>
-				</a>
+				</div>
 			);
 		}
 	} )
@@ -126,8 +129,16 @@ let iMonth: number = -1;
 	let monthElems = document.getElementsByClassName('programm-month');
 	let iMonth;
 	for (let month of monthElems) {
-			iMonth = month.getAttribute("data-month");
-			if (!PLAYS_IN_MONTH[iMonth])
-				(month as HTMLElement).hidden = true;
-		}
+		iMonth = month.getAttribute("data-month");
+		if (!PLAYS_IN_MONTH[iMonth])
+			(month as HTMLElement).hidden = true;
+	}
+
+	let ticketBtns = document.getElementsByClassName('programm-tickets-btn');
+	for (let btn of ticketBtns) {
+		btn.addEventListener("click", event => {
+			console.log("click!!!");
+		})
+	}
+
 </script>

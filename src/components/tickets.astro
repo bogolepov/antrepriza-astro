@@ -29,13 +29,7 @@ actualProgramm.forEach(element => {
 		playsWithGrouppedDatesMap.set(element.play_id, actualProgramm.filter(performance => performance.play_id === element.play_id));
 	}
 });
-// console.log(playsWithGrouppedDatesMap);
 let playsWithGrouppedDatesArray = Array.from(playsWithGrouppedDatesMap, ([key, value]) => ({ key, value }));
-console.log(playsWithGrouppedDatesArray);
-
-
-
-let iMonth: number = -1;
 
 ---
 
@@ -62,21 +56,32 @@ let iMonth: number = -1;
 
 			if (playInfo) {
 				return (
-					<a id={playInfo.id_suffix} class="tickets-play-block tickets-play-link" href={"play-"+playInfo.id_suffix+".html"}>
+					<div id={playInfo.id_suffix} class="tickets-play-block" data-play={playInfo.id}>
 						<div class="tickets-play-text">
 							<div class="tickets-play-name">
 								{item.value[0].premiere && 
 									<span class="tickets-premiere">{dictionary.premiere[lang]}</span>
 								}
-								<h2 class="tickets-play-title">{playInfo.title}</h2>
+								<a class="tickets-play-title tickets-play-link" href={"play-"+playInfo.id_suffix+".html"}>
+									{playInfo.title}
+								</a>
 							</div>
 							<div class="tickets-play-info">
-								<h5><span class="tickets-genre-label">{dictionary.genre[lang]}:</span> {playInfo.genre}, {playInfo.age}</h5>
+								<span class="tickets-play-genre" data-label={dictionary.genre[lang]+": "}>{playInfo.genre}, {playInfo.age}</span>
+							</div>
+							<div class="tickets-play-dates">
+								<span class="tickets-play-dates-label">{dictionary.nextDates[lang]}:</span>
 								<div class="tickets-book-buttons">
 									{
-										item.value.map((play_date) => 
-											<button class="tickets-book-btn" type="button">{play_date.date}</button>
-										)
+										item.value.map((play_date) => {
+												let playDate: Date = new Date(play_date.date);
+												return (
+													<button class="tickets-book-btn" type="button" data-date={playDate.toDateString()} data-play={playInfo.id}>
+														{playDate.getDate().toString().padStart(2, '0')}.{(playDate.getMonth()+1).toString().padStart(2, '0')},
+														{playDate.toLocaleDateString(lang, { weekday: 'short' })} / {play_date.time}
+													</button>
+												)
+										} )
 									}
 								</div>
 							</div>
@@ -90,7 +95,7 @@ let iMonth: number = -1;
 								sizes={'(max-width: 320px) 280px, (max-width: 660px) 640px, (max-width: 1300px) 400px, 640px'}
 								alt={playInfo.title} />
 						</div>
-					</a>
+					</div>
 				);
 			}
 		})
@@ -99,34 +104,26 @@ let iMonth: number = -1;
 
 
 <script>
-	/*
-	const PLAYS_IN_MONTH = new Array(12).fill(0);
-	const ONE_DAY = 24*60*60*1000;	
-	let playCards = document.getElementsByClassName('programm-play-block');
-	for (let playCard of playCards) {
-		if (Date.parse(playCard.getAttribute("data-date")) + ONE_DAY  < Date.now())
-			(playCard as HTMLElement).hidden = true;
-		else
-			PLAYS_IN_MONTH[playCard.getAttribute("data-month")]++;
-	}
-	let monthElems = document.getElementsByClassName('programm-month');
-	let iMonth;
-	for (let month of monthElems) {
-			iMonth = month.getAttribute("data-month");
-			if (!PLAYS_IN_MONTH[iMonth])
-				(month as HTMLElement).hidden = true;
+	const PLAYS = new Array(100).fill(0);
+
+	let ticketBtns = document.getElementsByClassName('tickets-book-btn');
+	for (let btn of ticketBtns) {
+		if (Date.parse(btn.getAttribute("data-date")) < Date.now()) {
+			//(btn as HTMLElement).hidden = true;
+			(btn as HTMLElement).disabled = true;
 		}
-	 */
-
-	let TicketBtns = document.getElementsByClassName('tickets-book-btn');
-	// console.log(TicketBtns);
-	for (let btn of TicketBtns) {
-		console.log(btn);
-		btn.addEventListener('click', (event) => {
-  		event.stopPropagation();
-  		// close popup
-		})
+		else {
+			PLAYS[btn.getAttribute("data-play")]++;
+			btn.addEventListener('click', (event) => {
+				// 
+			})
+		}
 	}
 
+	let playBolcks = document.getElementsByClassName('tickets-play-block');
+	for (let block of playBolcks) {
+		if (!PLAYS[block.getAttribute("data-play")])
+			(block as HTMLElement).hidden = true;
+	}
 
 </script>

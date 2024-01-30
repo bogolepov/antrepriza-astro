@@ -1,5 +1,12 @@
 [
 	{
+		"date": "2022-02-24",
+		"time": "19:30",
+		"play_id": 2,
+		"price": 19,
+		"price_reduce": 11
+	},
+	{
 		"date": "2023-11-08",
 		"time": "19:30",
 		"play_id": 4,
@@ -146,6 +153,22 @@
 	},
 	{
 		"date": "2024-05-19",
+		"time": "19:30",
+		"play_id": 8,
+		"price": 19,
+		"price_reduce": 11,
+		"premiere": true
+	},
+	{
+		"date": "2024-06-02",
+		"time": "19:30",
+		"play_id": 8,
+		"price": 19,
+		"price_reduce": 11,
+		"premiere": true
+	},
+	{
+		"date": "2024-06-09",
 		"time": "19:30",
 		"play_id": 8,
 		"price": 19,

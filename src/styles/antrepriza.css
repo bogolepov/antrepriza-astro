@@ -44,6 +44,8 @@
 	--colorAntreprizaRed: #ff3e44;
 	/* --colorFocusAntreprizaRed: #f57a7e; */
 	--colorFocusAntreprizaRed: #e30d15;
+	--colorBorderDisabledBtn: #999999;
+	--colorBkgDisabledBtn: #555555;
 	/* --colorScrollBarBackground: var(--grey-46);
 	--colorScrollBarThumb: var(--grey-78);
 	--colorScrollBarTrack: var(--grey-30); */
@@ -78,6 +80,8 @@
 	--colorAntreprizaRed: #e30d15;
 	/* --colorFocusAntreprizaRed: #f57a7e; */
 	--colorFocusAntreprizaRed: #e30d15;
+	--colorBorderDisabledBtn: var(--grey-46);
+	--colorBkgDisabledBtn: var(--grey-30);
 	--colorScrollBarBackground: var(--grey-11);
 	--colorScrollBarThumb: var(--grey-30);
 	--colorScrollBarTrack: var(--grey-24);
