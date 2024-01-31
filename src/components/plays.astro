@@ -22,7 +22,6 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 programm.sort((play1, play2) => Date.parse(play1.date+"T"+play1.time) - Date.parse(play2.date+"T"+play2.time));
 
 let actualProgramm = programm.filter(performance => Date.parse(performance.date) >= Date.now());
-// let actualProgramm = programm;
 
 let playsWithGrouppedDatesMap = new Map();
 actualProgramm.forEach(element => {
@@ -78,7 +77,7 @@ let playsWithGrouppedDatesArray = Array.from(playsWithGrouppedDatesMap, ([key, v
 										item.value.map((play_date) => {
 												let playDate: Date = new Date(play_date.date);
 												return (
-													<button class="tickets-book-btn" type="button" data-date={play_date.date} data-time={play_date.time} data-play={playInfo.id}>
+													<button class="tickets-book-btn" type="button" data-date={playDate.toDateString()} data-play={playInfo.id}>
 														{playDate.getDate().toString().padStart(2, '0')}.{(playDate.getMonth()+1).toString().padStart(2, '0')},
 														{playDate.toLocaleDateString(lang, { weekday: 'short' })} / {play_date.time}
 													</button>
@@ -117,7 +116,6 @@ let playsWithGrouppedDatesArray = Array.from(playsWithGrouppedDatesMap, ([key, v
 		else {
 			PLAYS[btn.getAttribute("data-play")]++;
 			btn.addEventListener('click', (event) => {
-				console.log("click: " + btn.getAttribute("data-date") + " " + btn.getAttribute("data-time"));
 				// 
 			})
 		}

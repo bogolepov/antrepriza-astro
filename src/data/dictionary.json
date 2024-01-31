@@ -11,6 +11,8 @@
 	"themeTextDark": { "ru": "Темная тема", "de": "Dunkelmodus" },
 	"themeTextLight": { "ru": "Светлая тема", "de": "Lightmodus" },
 	"genre": { "ru": "Жанр", "de": "Genre" },
+	"language": { "ru": "Язык", "de": "Sprache" },
+	"stage": { "ru": "Сцена", "de": "Bühne" },
 	"premiere": { "ru": "Премьера", "de": "Premiere" },
 	"nextDates": { "ru": "Ближайшие даты", "de": "Kommende Aufführungen" }
 }

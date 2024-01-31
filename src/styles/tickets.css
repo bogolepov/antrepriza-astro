@@ -56,11 +56,6 @@
 	column-gap: 5px;
 }
 
-.programm-when {
-	grid-area: when;
-	align-self: start;
-}
-
 .tickets-play-name {
 	grid-area: play-name;
 	align-self: start;
@@ -96,45 +91,25 @@
 	margin-top: 0px;
 }
 
-.programm-date,
 .tickets-play-title {
 	font-size: 1.8rem;
 	font-weight: var(--font-extra-weight);
 	text-transform: uppercase;
 }
 
-.programm-day {
-	font-size: 1.4rem;
-	font-weight: var(--font-extra-weight);
-	text-transform: uppercase;
-}
-
-.programm-time {
-	font-size: 1.6rem;
-	font-weight: var(--font-bold-weight);
-}
-
-.programm-date,
-.programm-day,
-.programm-time {
-	color: var(--colorFontDate);
-}
-
-.tickets-play-genre {
-	font-size: 1.2rem;
+.tickets-play-genre,
+.tickets-play-lang {
+	font-size: 1.15rem;
 	font-weight: 400;
 }
 
-.tickets-play-genre::before {
+.tickets-play-genre::before,
+.tickets-play-lang::before {
 	content: attr(data-label);
 	font-size: 1.05rem;
 	font-weight: var(--font-thin-weight);
 	text-transform: uppercase;
 }
-
-/* .programm-play-image {
-	align-self: flex-start;
-} */
 
 .tickets-play-dates-label {
 	display: inline-block;

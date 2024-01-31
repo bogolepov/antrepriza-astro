@@ -8,6 +8,7 @@ const {lang} = Astro.props;
 
 import programm from '@data/afisha.json'
 import dictionary from '@data/dictionary.json'
+import theater from '@data/theater.json'
 
 import plays_ru from '@data/plays_ru.json'
 import plays_de from '@data/plays_de.json'
@@ -91,11 +92,19 @@ let iMonth: number = -1;
 						<a class="programm-title programm-play-link" href={"play-"+playInfo.id_suffix+".html"} >
 							{playInfo.title}
 						</a>
-						<div class="programm-genre" data-label={dictionary.genre[lang]+": "}>
-							{playInfo.genre}, {playInfo.age}
+						<div class="programm-info">
+							<div class="programm-genre" data-label={dictionary.genre[lang]+": "}>
+								{playInfo.genre}, {playInfo.age}
+							</div>
+							<div class="programm-lang" data-label={dictionary.language[lang]+": "}>
+								{playInfo.lang}
+							</div>
+							<div class="programm-stage" data-label={dictionary.stage[lang]+": "}>
+								{ playInProgramm.address || theater.stageAddress }
+							</div>
 						</div>
 						<div class="programm-tickets">
-							<button class="programm-tickets-btn" type="button">
+							<button class="programm-tickets-btn" type="button" data-date={playInProgramm.date} data-time={playInProgramm.time}>
 								{dictionary.tickets[lang]}								
 							</button>
 						</div>
@@ -137,7 +146,7 @@ let iMonth: number = -1;
 	let ticketBtns = document.getElementsByClassName('programm-tickets-btn');
 	for (let btn of ticketBtns) {
 		btn.addEventListener("click", event => {
-			console.log("click!!!");
+			console.log("click: " + btn.getAttribute("data-date") + " " + btn.getAttribute("data-time"));
 		})
 	}
 

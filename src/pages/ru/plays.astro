@@ -1,0 +1,11 @@
+---
+import AntreprizaLayout from "@layouts/AntreprizaLayout.astro";
+import Plays from "@components/plays.astro";
+const pageTitle = "Театр Антреприза - Спектакли";
+const pageLang = "ru";
+---
+
+<AntreprizaLayout title={pageTitle} lang={pageLang}>
+  <Plays lang={pageLang}/>
+</AntreprizaLayout>
+
