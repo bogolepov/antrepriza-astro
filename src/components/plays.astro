@@ -2,7 +2,7 @@
 import "@styles/font.css"
 import "@styles/init.css"
 import "@styles/antrepriza.css"
-import "@styles/tickets.css"
+import "@styles/plays.css"
 
 const {lang} = Astro.props;
 
@@ -19,9 +19,11 @@ import { Picture } from 'astro:assets';
 
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg,jpg,png,gif}');
 
+plays.sort((play1, play2) => play1.title.toLowerCase().localeCompare(play2.title.toLowerCase(), lang));
 programm.sort((play1, play2) => Date.parse(play1.date+"T"+play1.time) - Date.parse(play2.date+"T"+play2.time));
 
 let actualProgramm = programm.filter(performance => Date.parse(performance.date) >= Date.now());
+// let actualProgramm = programm;
 
 let playsWithGrouppedDatesMap = new Map();
 actualProgramm.forEach(element => {
@@ -42,64 +44,39 @@ let playsWithGrouppedDatesArray = Array.from(playsWithGrouppedDatesMap, ([key, v
 </picture>
 -->
 
-<section class="section-tickets">
-	{
-		playsWithGrouppedDatesArray.map(item => {
-			// console.log("key: " + item.key);
-			let playInfo;
-			plays.some((piece) => {
-				if (item.key === piece.id) {
-					playInfo = piece;
-					return; 
-				}
-			} )
+<section class="section-plays">
+{
+	plays.map (play => {
+		let performs = actualProgramm.filter(performance => performance.play_id == play.id);
+		let isPremiere = (performs && performs.length>0 && performs[0].premiere);
+		return (
+			<div class="play-block">
+				<div class="play-block-image">
+					<Picture 
+						class:list={'play-image'} 
+						src={images["/src/assets/" + play.posters.landscape]()} 
+						formats={['avif', 'webp']} 
+						widths={[280, 400, 640]}
+						sizes={'(max-width: 320px) 280px, (max-width: 660px) 640px, (max-width: 1300px) 400px, 640px'}
+						alt={play.title} />
+				</div>
+				<div class="play-block-info">
+					<h3 class="play-info-name">
+						{isPremiere && 
+							<span class="play-info-premiere">{dictionary.premiere[lang]}</span>
+						}
+						<a class="play-info-title play-info-link" href={"play-"+play.id_suffix+".html"}>
+							{play.title}
+						</a>
+					</h3>
+					<div class="play-info-author">{play.author}</div>
+					<div class="play-info-genre" data-label={dictionary.genre[lang]+": "}>{play.genre}, {play.age}</div>
+					<div class="play-info-lang" data-label={dictionary.language[lang]+": "}>{play.lang}</div>
+				</div>
+			</div>
+		)
+	})
 
-			if (playInfo) {
-				return (
-					<div id={playInfo.id_suffix} class="tickets-play-block" data-play={playInfo.id}>
-						<div class="tickets-play-text">
-							<div class="tickets-play-name">
-								{item.value[0].premiere && 
-									<span class="tickets-premiere">{dictionary.premiere[lang]}</span>
-								}
-								<a class="tickets-play-title tickets-play-link" href={"play-"+playInfo.id_suffix+".html"}>
-									{playInfo.title}
-								</a>
-							</div>
-							<div class="tickets-play-info">
-								<div class="tickets-play-genre" data-label={dictionary.genre[lang]+": "}>{playInfo.genre}, {playInfo.age}</div>
-								<div class="tickets-play-lang" data-label={dictionary.language[lang]+": "}>{playInfo.lang}</div>
-							</div>
-							<div class="tickets-play-dates">
-								<span class="tickets-play-dates-label">{dictionary.nextDates[lang]}:</span>
-								<div class="tickets-book-buttons">
-									{
-										item.value.map((play_date) => {
-												let playDate: Date = new Date(play_date.date);
-												return (
-													<button class="tickets-book-btn" type="button" data-date={playDate.toDateString()} data-play={playInfo.id}>
-														{playDate.getDate().toString().padStart(2, '0')}.{(playDate.getMonth()+1).toString().padStart(2, '0')},
-														{playDate.toLocaleDateString(lang, { weekday: 'short' })} / {play_date.time}
-													</button>
-												)
-										} )
-									}
-								</div>
-							</div>
-						</div>
-						<div class="tickets-play-image">
-							<Picture 
-								class:list={'play-image'} 
-								src={images["/src/assets/" + playInfo.posters.landscape]()} 
-								formats={['avif', 'webp']} 
-								widths={[280, 400, 640]}
-								sizes={'(max-width: 320px) 280px, (max-width: 660px) 640px, (max-width: 1300px) 400px, 640px'}
-								alt={playInfo.title} />
-						</div>
-					</div>
-				);
-			}
-		})
 }
 </section>
 
@@ -116,6 +93,7 @@ let playsWithGrouppedDatesArray = Array.from(playsWithGrouppedDatesMap, ([key, v
 		else {
 			PLAYS[btn.getAttribute("data-play")]++;
 			btn.addEventListener('click', (event) => {
+				console.log("click: " + btn.getAttribute("data-date") + " " + btn.getAttribute("data-time"));
 				// 
 			})
 		}

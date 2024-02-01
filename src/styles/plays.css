@@ -1,0 +1,131 @@
+.section-plays {
+	width: 100%;
+	color: var(--colorFont);
+	/* text-align: center; */
+}
+
+.play-block {
+	position: relative;
+	font-family: 'Roboto', Verdana, Arial, Tahoma, sans-serif;
+	font-weight: var(--font-normal-weight);
+	padding: 15px 10px;
+	display: flex;
+	flex-direction: row;
+	column-gap: 2rem;
+	justify-content: space-between;
+	transition: background-color 250ms linear;
+}
+
+.play-block:not(:last-of-type) {
+	border-bottom: 1px solid var(--colorFont);
+}
+
+.play-block-info {
+	flex-grow: 2;
+	min-width: 55vw;
+	height: min-content;
+
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+}
+
+.play-info-name {
+	grid-area: name;
+	align-self: start;
+
+	margin: 0px;
+}
+
+.play-info-premiere {
+	display: block;
+	font-size: 0.9rem;
+	font-weight: var(--font-bold-weight);
+	color: var(--colorAntreprizaRed);
+	text-transform: uppercase;
+	letter-spacing: 0.07rem;
+}
+
+.play-info-premiere ~ .play-info-title {
+	margin-top: 0px;
+}
+
+.play-info-title {
+	font-size: 1.8rem;
+	font-weight: var(--font-extra-weight);
+	text-transform: uppercase;
+}
+
+.play-info-link {
+	text-decoration: none;
+	display: block;
+}
+
+.play-info-link::before {
+	content: '';
+	display: block;
+	position: absolute;
+	z-index: 1;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+}
+
+.play-info-author {
+	margin: 0px;
+	margin-bottom: 1rem;
+	font-size: 1.1rem;
+}
+
+.play-info-genre,
+.play-info-lang {
+	font-size: 1.2rem;
+	font-weight: 400;
+}
+
+.play-info-genre::before,
+.play-info-lang::before {
+	content: attr(data-label);
+	font-size: 1.05rem;
+	font-weight: var(--font-thin-weight);
+	text-transform: uppercase;
+}
+
+.play-block-image .play-image {
+	display: block;
+	border-radius: 4px;
+	max-width: 100%;
+	height: auto;
+	object-fit: contain;
+
+	-webkit-filter: grayscale(95%);
+	filter: grayscale(95%);
+	transition: filter 250ms ease-in;
+}
+
+.play-block:hover {
+	background-color: var(--colorBkgProgrammItem);
+}
+.play-block:hover .play-image {
+	-webkit-filter: grayscale(0%);
+	filter: grayscale(0%);
+}
+
+.section-plays a:focus-visible {
+	outline: 1px solid var(--colorFocusAntreprizaRed);
+}
+
+@media screen and (max-width: 660px) {
+	.play-block {
+		flex-direction: column;
+	}
+
+	.play-block-info {
+		min-width: 100%;
+	}
+
+	.play-block-image {
+		padding-bottom: 15px;
+	}
+}

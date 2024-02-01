@@ -126,6 +126,10 @@
 	z-index: 5;
 }
 
+.programm-tickets-btn:hover {
+	cursor: pointer;
+}
+
 .programm-date,
 .programm-title {
 	font-size: 1.8rem;

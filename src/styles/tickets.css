@@ -147,6 +147,13 @@
 	text-decoration: line-through;
 }
 
+.tickets-book-btn:hover {
+	cursor: pointer;
+}
+.tickets-book-btn[disabled]:hover {
+	cursor: default;
+}
+
 .tickets-play-image picture {
 	/* display: block; */
 }

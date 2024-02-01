@@ -2,16 +2,16 @@
 	{
 		"id": 8,
 		"id_suffix": "miks",
-		"title": "Малыш и Карл(Cон)",
-		"author": "К.Попов",
-		"genre": "современная история",
+		"title": "Steppke und Karl(Son)",
+		"author": "K.Popov",
+		"genre": "moderne Geschichte",
 		"length": 90,
 		"break": true,
 		"age": "18+",
 		"description": "",
 		"posters": {
-			"landscape": "steppke_und_karlson.jpg",
-			"portrait": "steppke_und_karlson_poster.jpg",
+			"landscape": "karl.son.jpg",
+			"portrait": "karl.son_poster.jpg",
 			"facebook": "",
 			"minimum": ""
 		},
@@ -128,35 +128,6 @@
 		"posters": {
 			"landscape": "teure_wohnung.jpg",
 			"portrait": "teure_wohnung_poster.jpg",
-			"facebook": "",
-			"minimum": ""
-		},
-		"photos": ["", "", ""],
-		"lang": "Russisch",
-		"roles": [
-			{ "id": 1, "name": "Андрей Прозоров", "description": "" },
-			{ "id": 2, "name": "Ольга", "description": "сестра Андрея Прозорова, старшая" },
-			{ "id": 3, "name": "Мария", "description": "сестра Андрея Прозорова, средняя" },
-			{ "id": 4, "name": "Ирина", "description": "сестра Андрея Прозорова, младшая" },
-			{ "id": 5, "name": "Ирина", "description": "сестра Андрея Прозорова, младшая" }
-		],
-		"people": {
-			"regie": 1
-		}
-	},
-	{
-		"id": 3,
-		"id_suffix": "ts",
-		"title": "Три сестры",
-		"author": "А.Чехов",
-		"genre": "драма",
-		"length": 60,
-		"break": false,
-		"age": "16+",
-		"description": "",
-		"posters": {
-			"landscape": "",
-			"portrait": "",
 			"facebook": "",
 			"minimum": ""
 		},
