@@ -51,7 +51,8 @@
 }
 
 .play-info-title {
-	font-size: 1.8rem;
+	font-size: clamp(1.5rem, 3vw, 1.8rem);
+	line-height: calc(1.1 * clamp(1.5rem, 3vw, 1.8rem));
 	font-weight: var(--font-extra-weight);
 	text-transform: uppercase;
 }
@@ -75,19 +76,20 @@
 .play-info-author {
 	margin: 0px;
 	margin-bottom: 1rem;
-	font-size: 1.1rem;
+	font-size: clamp(1.1rem, 3vw, 1.25rem);
+	line-height: calc(1.1 * clamp(1.1rem, 3vw, 1.4rem));
 }
 
 .play-info-genre,
 .play-info-lang {
-	font-size: 1.2rem;
+	font-size: clamp(1rem, 1.8vw, 1.2rem);
 	font-weight: 400;
 }
 
 .play-info-genre::before,
 .play-info-lang::before {
 	content: attr(data-label);
-	font-size: 1.05rem;
+	font-size: clamp(0.95rem, 1.8vw, 1.05rem);
 	font-weight: var(--font-thin-weight);
 	text-transform: uppercase;
 }

@@ -63,7 +63,7 @@ let playsWithGrouppedDatesArray = Array.from(playsWithGrouppedDatesMap, ([key, v
 				<div class="play-block-info">
 					<h3 class="play-info-name">
 						{isPremiere && 
-							<span class="play-info-premiere">{dictionary.premiere[lang]}</span>
+							<div class="play-info-premiere">{dictionary.premiere[lang]}</div>
 						}
 						<a class="play-info-title play-info-link" href={"play-"+play.id_suffix+".html"}>
 							{play.title}
