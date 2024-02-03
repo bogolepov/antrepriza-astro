@@ -12,7 +12,8 @@
 
 .programm-month h2 {
 	font-family: 'Roboto', Verdana, Arial, Tahoma, sans-serif;
-	font-weight: var(--font-bold-weight);
+	font-size: clamp(1.7rem, 3vw, 2rem);
+	font-weight: var(--font-extra-weight);
 	text-transform: uppercase;
 	letter-spacing: 0.1rem;
 	border-bottom: 1px solid var(--colorFont);
@@ -57,12 +58,11 @@
 
 .programm-play-text {
 	flex-grow: 2;
-	/* min-width: 60vw; */
 	min-width: clamp(50vw, 3vw, 60vw);
 	min-height: 100%;
 
 	display: grid;
-	grid-template-columns: clamp(1.7fr, 3vw, 2fr); 4fr;
+	grid-template-columns: clamp(1.7fr, 3vw, 2fr) 4fr;
 	grid-template-rows: auto auto 1fr;
 	grid-template-areas:
 		'when title'
@@ -77,6 +77,7 @@
 .programm-when {
 	grid-area: when;
 	align-self: start;
+	line-height: clamp(1.2rem, 2.5vw, 1.5rem);
 }
 
 .programm-title {
@@ -97,7 +98,7 @@
 .programm-genre,
 .programm-lang,
 .programm-stage {
-	font-size: 1.2rem;
+	font-size: clamp(1rem, 1.8vw, 1.2rem);
 	font-weight: 400;
 }
 
@@ -105,7 +106,7 @@
 .programm-lang::before,
 .programm-stage::before {
 	content: attr(data-label);
-	font-size: 1.05rem;
+	font-size: clamp(0.95rem, 1.8vw, 1.05rem);
 	font-weight: var(--font-thin-weight);
 	text-transform: uppercase;
 }
@@ -132,7 +133,8 @@
 
 .programm-date,
 .programm-title {
-	font-size: 1.8rem;
+	font-size: clamp(1.5rem, 3vw, 1.8rem);
+	line-height: calc(1.1 * clamp(1.5rem, 3vw, 1.8rem));
 	font-weight: var(--font-extra-weight);
 	text-transform: uppercase;
 }
@@ -145,19 +147,20 @@
 	letter-spacing: 0.07rem;
 }
 
-.programm-day {
-	font-size: 1.4rem;
+.programm-date::after {
+	content: attr(data-day);
+	font-size: clamp(1.3rem, 3vw, 1.5rem);
 	font-weight: var(--font-extra-weight);
 	text-transform: uppercase;
 }
 
 .programm-time {
-	font-size: 1.6rem;
+	font-size: clamp(1.4rem, 2.5vw, 1.6rem);
+	line-height: calc(1.1 * clamp(1.4rem, 2.5vw, 1.6rem));
 	font-weight: var(--font-bold-weight);
 }
 
 .programm-date,
-.programm-day,
 .programm-time {
 	color: var(--colorFontDate);
 }

@@ -73,35 +73,28 @@ let iMonth: number = -1;
 					<div class="programm-play-text">
 						<div class="programm-when" >
 							{playInProgramm.premiere && 
-								<span class="programm-premiere">{dictionary.premiere[lang]}</span>
+								<div class="programm-premiere">{dictionary.premiere[lang]}</div>
 							}
-							<div>
-								<span class="programm-date">
-									{playDate.getDate().toString().padStart(2, '0')}.{(playDate.getMonth()+1).toString().padStart(2, '0')},
-								</span>
-								<span class="programm-day">
-									{playDate.toLocaleDateString(lang, { weekday: 'short' })}
-								</span>
+							<div class="programm-date" data-day={playDate.toLocaleDateString(lang, { weekday: 'short' })}>
+								{playDate.getDate().toString().padStart(2, '0')}.{(playDate.getMonth()+1).toString().padStart(2, '0')},
 							</div>
-							<div>
-								<span class="programm-time">
+							<div class="programm-time">
 									{playInProgramm.time}
-								</span>
 							</div>
 						</div>
 						<a class="programm-title programm-play-link" href={"play-"+playInfo.id_suffix+".html"} >
 							{playInfo.title}
 						</a>
 						<div class="programm-info">
-							<div class="programm-genre" data-label={dictionary.genre[lang]+": "}>
+							<h4 class="programm-genre" data-label={dictionary.genre[lang]+": "}>
 								{playInfo.genre}, {playInfo.age}
-							</div>
-							<div class="programm-lang" data-label={dictionary.language[lang]+": "}>
+							</h4>
+							<h4 class="programm-lang" data-label={dictionary.language[lang]+": "}>
 								{playInfo.lang}
-							</div>
-							<div class="programm-stage" data-label={dictionary.stage[lang]+": "}>
+							</h4>
+							<h4 class="programm-stage" data-label={dictionary.stage[lang]+": "}>
 								{ playInProgramm.address || theater.stageAddress }
-							</div>
+							</h4>
 						</div>
 						<div class="programm-tickets">
 							<button class="programm-tickets-btn" type="button" data-date={playInProgramm.date} data-time={playInProgramm.time}>
