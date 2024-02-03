@@ -538,6 +538,10 @@
 	line-height: 1.1rem;
 	border-radius: 3px;
 	position: relative;
+	transition: all 0.3s ease;
+	/* transition: color 0.3s ease;
+	transition: background-color 0.3s ease; */
+	/* transition: border-color 0.3s ease; */
 }
 
 .theme-changer-text {

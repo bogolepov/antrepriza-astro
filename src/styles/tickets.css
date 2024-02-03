@@ -41,7 +41,7 @@
 
 .tickets-play-text {
 	flex-grow: 2;
-	min-width: 60vw;
+	min-width: clamp(50vw, 3.5vw, 60vw);
 	min-height: 100%;
 
 	display: grid;
@@ -52,7 +52,7 @@
 	grid-template-rows: auto auto 1fr;
 	padding-right: 15px;
 	align-items: start;
-	row-gap: 15px;
+	row-gap: clamp(7px, 0.7vw, 15px);
 	column-gap: 5px;
 }
 
@@ -185,17 +185,6 @@
 .tickets-book-link {
 	position: relative;
 	user-select: none;
-}
-
-@media screen and (max-width: 910px) {
-	.tickets-play-text {
-		min-width: 50vw;
-		grid-template-areas:
-			'play-name'
-			'info'
-			'dates';
-		align-items: start;
-	}
 }
 
 @media screen and (max-width: 660px) {

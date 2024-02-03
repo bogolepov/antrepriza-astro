@@ -8,6 +8,7 @@
 	--grey-46: #716f6e;
 	--grey-30: #908e8d;
 	--grey-24: #a6a4a2;
+	--grey-19: #b3b3b3;
 	--grey-16: #c6c4c2;
 	--grey-13: #d9d6d5;
 	--grey-11: #e9e6e4;
@@ -66,11 +67,11 @@
 	--colorFontPage: var(--grey-78);
 	--colorBkgToolbar: var(--grey-10);
 	--colorBkgFooter: var(--colorBkgToolbar);
-	--colorBkgSubMenu: var(--grey-16);
-	--colorBkgProgrammItem: var(--grey-11);
+	--colorBkgSubMenu: var(--grey-19);
+	--colorBkgProgrammItem: var(--grey-10);
 	--colorFontToolbar: var(--colorFont);
 	--colorFontFooter: var(--colorFont);
-	--colorBorderToolbar: var(--grey-11);
+	--colorBorderToolbar: var(--grey-13);
 	--colorBorderFooter: var(--colorBorderToolbar);
 	--colorTicketsBtn: var(--gray-rose-light);
 	--colorFontTicketsBtn: var(--colorBkgPage);
@@ -101,6 +102,11 @@ body {
 	height: 100%;
 }
 
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
 .wrapper {
 	min-height: 100%;
 	display: flex;
@@ -109,12 +115,7 @@ body {
 
 .wrapper-main {
 	flex-grow: 1;
-	margin: 0px 50px;
-}
-@media screen and (max-width: 910px) {
-	.wrapper-main {
-		margin: 0px 15px;
-	}
+	margin: 0px clamp(15px, 4.5vw, 50px);
 }
 
 /* --------------------------------------------------- */

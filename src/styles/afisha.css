@@ -57,12 +57,12 @@
 
 .programm-play-text {
 	flex-grow: 2;
-	min-width: 60vw;
-	/* height: min-content; */
+	/* min-width: 60vw; */
+	min-width: clamp(50vw, 3vw, 60vw);
 	min-height: 100%;
 
 	display: grid;
-	grid-template-columns: 2fr 4fr;
+	grid-template-columns: clamp(1.7fr, 3vw, 2fr); 4fr;
 	grid-template-rows: auto auto 1fr;
 	grid-template-areas:
 		'when title'
@@ -70,7 +70,7 @@
 		'. tickets';
 	padding-right: 15px;
 	align-items: start;
-	row-gap: 15px;
+	row-gap: clamp(7px, 0.7vw, 15px);
 	column-gap: 5px;
 }
 
@@ -196,7 +196,7 @@
 
 @media screen and (max-width: 1030px) {
 	.programm-play-text {
-		min-width: 50vw;
+		/* min-width: 50vw; */
 		grid-template-columns: auto;
 		grid-template-areas:
 			'title'
