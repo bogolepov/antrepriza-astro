@@ -52,7 +52,7 @@
 
 .play-info-title {
 	font-size: clamp(1.5rem, 3vw, 1.8rem);
-	line-height: calc(1.1 * clamp(1.5rem, 3vw, 1.8rem));
+	line-height: calc(1.3 * clamp(1.5rem, 3vw, 1.8rem));
 	font-weight: var(--font-extra-weight);
 	text-transform: uppercase;
 }
@@ -76,8 +76,8 @@
 .play-info-author {
 	margin: 0px;
 	margin-bottom: 1rem;
-	font-size: clamp(1.1rem, 3vw, 1.25rem);
-	line-height: calc(1.1 * clamp(1.1rem, 3vw, 1.4rem));
+	font-size: clamp(1.1rem, 2vw, 1.25rem);
+	line-height: calc(1.1 * clamp(1.1rem, 2vw, 1.4rem));
 }
 
 .play-info-genre,
