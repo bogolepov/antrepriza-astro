@@ -1,14 +1,28 @@
 ---
-// import "../../styles/font.css"
-// import "../../styles/init.css"
-// import "../../styles/antrepriza.css"
-// import "../../styles/header.css"
-
 import AntreprizaLayout from "../../layouts/AntreprizaLayout.astro";
+import PlaysCarusel from "@components/carusel_main.astro"
+import Afisha from "@components/afisha.astro";
+
 const pageTitle = "Театр Антреприза Берлин";
 const pageLang = "ru";
 ---
 
 <AntreprizaLayout title={pageTitle} lang={pageLang}>
+  <div class="wrapper1">
+    <PlaysCarusel lang={pageLang}>
+  </div>
+  <div class="wrapper2">
+    <Afisha lang={pageLang}/>
+  </div>
 </AntreprizaLayout>
+
+<style>
+  .wrapper1 {
+    margin-bottom: 2rem;
+  }
+
+  .wrapper2 {
+    margin: 0px clamp(15px, 4.5vw, 50px);
+  }
+</style>
 

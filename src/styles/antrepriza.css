@@ -58,6 +58,8 @@
 	--font-bold-weight: 500;
 	--font-extra-weight: 700;
 	--font-logo-weight: 700;
+	--minPosterOpacity: 1;
+	--maxPosterOpacity: 1;
 }
 
 [data-theme='light'] {
@@ -91,6 +93,8 @@
 	--font-bold-weight: 700;
 	--font-extra-weight: 900;
 	--font-logo-weight: 900;
+	--minPosterOpacity: 0.9;
+	--maxPosterOpacity: 1;
 }
 
 html,
@@ -111,11 +115,16 @@ a {
 	min-height: 100%;
 	display: flex;
 	flex-direction: column;
+	min-width: 0;
 }
 
 .wrapper-main {
 	flex-grow: 1;
 	margin: 0px clamp(15px, 4.5vw, 50px);
+
+	display: flex;
+	flex-direction: column;
+	align-content: start;
 }
 
 /* --------------------------------------------------- */

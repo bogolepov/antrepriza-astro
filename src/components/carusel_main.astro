@@ -1,0 +1,118 @@
+---
+import "@styles/font.css"
+import "@styles/init.css"
+import "@styles/swiper-bundle.css"
+import "@styles/antrepriza.css"
+import "@styles/carusel_main.css"
+
+const {lang} = Astro.props;
+
+import programm from '@data/afisha.json'
+import dictionary from '@data/dictionary.json'
+import theater from '@data/theater.json'
+
+import plays_ru from '@data/plays_ru.json'
+import plays_de from '@data/plays_de.json'
+let plays = (lang === 'de') ? plays_de : plays_ru; 
+
+import type { ImageMetadata } from 'astro';
+import { Picture } from 'astro:assets';
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg,jpg,png,gif}');
+
+programm.sort((play1, play2) => Date.parse(play1.date+"T"+play1.time) - Date.parse(play2.date+"T"+play2.time));
+
+let actualProgramm = programm.filter(performance => Date.parse(performance.date) >= Date.now());
+
+let playsWithGrouppedDatesMap = new Map();
+actualProgramm.forEach(element => {
+	if (!playsWithGrouppedDatesMap.has(element.play_id)) {
+		playsWithGrouppedDatesMap.set(element.play_id, actualProgramm.filter(performance => performance.play_id === element.play_id));
+	}
+});
+let playsWithGrouppedDatesArray = Array.from(playsWithGrouppedDatesMap, ([key, value]) => ({ key, value }));
+
+---
+<section class="swiper">
+  <div class="swiper-wrapper">
+    {
+      playsWithGrouppedDatesArray.map(item => {
+        let playInfo;
+        plays.some((piece) => {
+          if (item.key === piece.id) {
+            playInfo = piece;
+            return; 
+          }
+        } )
+
+        if (playInfo) {
+          return (
+            <a class="swiper-slide" data-play={playInfo.id} href={"play-"+playInfo.id_suffix+".html"} >
+              <div class="carusel-play-image">
+                <Picture 
+                  class:list={'carusel-picture'} 
+                  src={images["/src/assets/" + playInfo.posters.portrait]()} 
+                  formats={['avif', 'webp']} 
+                  widths={[280, 400, 640]}
+                  sizes={'(max-width: 320px) 280px, (max-width: 660px) 400px, 640px'}
+                  alt={playInfo.title} />
+              </div>
+            </a>
+          );
+        }
+      })
+    }
+  </div>
+
+  <div class="swiper-pagination"></div>
+
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+</section>
+
+<script is:inline src="/js/swiper-bundle.js"></script>
+<script>
+  let swiper = new Swiper('.swiper', {
+    direction: 'horizontal',
+    loop: true,
+    slidesPerView: 'auto',
+    spaceBetween: 200,
+    watchOverflow: true,
+    // grabCursor: true,
+    speed: 1100,
+    centeredSlides: true,
+  
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+
+    keyboard: {
+      enabled: true,
+      onlyInViewport: true,
+    },
+
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: true,
+    },
+  
+  });
+
+  // let swiperCards = document.getElementsByClassName("carusel-play-image");
+  // for (let card of swiperCards) {
+  //   card.addEventListener("mouseenter", event => {
+  //       swiper.autoplay.stop();
+  //       swiper.params.autoplay.disableOnInteraction = true;
+  //   });
+  //   card.addEventListener("mouseleave", event => {
+  //     swiper.autoplay.start();
+  //   });
+  // }
+
+</script>

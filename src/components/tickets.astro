@@ -21,7 +21,9 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 
 programm.sort((play1, play2) => Date.parse(play1.date+"T"+play1.time) - Date.parse(play2.date+"T"+play2.time));
 
-let actualProgramm = programm.filter(performance => Date.parse(performance.date) >= Date.now());
+const ONE_DAY: number = 24*60*60*1000;	
+
+let actualProgramm = programm.filter(performance => Date.parse(performance.date) + ONE_DAY >= Date.now());
 // let actualProgramm = programm;
 
 let playsWithGrouppedDatesMap = new Map();
@@ -76,9 +78,10 @@ let playsWithGrouppedDatesArray = Array.from(playsWithGrouppedDatesMap, ([key, v
 								<div class="tickets-book-buttons">
 									{
 										item.value.map((play_date) => {
-												let playDate: Date = new Date(play_date.date);
+												let fullDate: string = play_date.date+'T'+play_date.time;
+												let playDate: Date = new Date(fullDate);
 												return (
-													<button class="tickets-book-btn" type="button" data-date={play_date.date} data-time={play_date.time} data-play={playInfo.id}>
+													<button class="tickets-book-btn" type="button" data-date={fullDate} data-play={playInfo.id}>
 														{playDate.getDate().toString().padStart(2, '0')}.{(playDate.getMonth()+1).toString().padStart(2, '0')},
 														{playDate.toLocaleDateString(lang, { weekday: 'short' })} / {play_date.time}
 													</button>
