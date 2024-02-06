@@ -46,6 +46,11 @@ let playsWithGrouppedDatesArray = Array.from(playsWithGrouppedDatesMap, ([key, v
         } )
 
         if (playInfo) {
+          let performs = actualProgramm.filter(performance => performance.play_id == playInfo.id);
+          let isPremiere = (performs && performs.length>0 && performs[0].premiere);
+
+          let languageLabel = dictionary.language[lang];
+          if (lang === "ru") languageLabel = languageLabel.toLowerCase();
           return (
             <a class="swiper-slide" data-play={playInfo.id} href={"play-"+playInfo.id_suffix+".html"} >
               <div class="carusel-play-image">
@@ -56,6 +61,20 @@ let playsWithGrouppedDatesArray = Array.from(playsWithGrouppedDatesMap, ([key, v
                   widths={[280, 400, 640]}
                   sizes={'(max-width: 320px) 280px, (max-width: 660px) 400px, 640px'}
                   alt={playInfo.title} />
+              </div>
+              <div class="carusel-play-info">
+                {isPremiere && 
+                  <div class="carusel-play-info-premiere">{dictionary.premiere[lang]}</div>
+                }
+                <div class="carusel-play-title">
+                  {playInfo.alt_title}
+                  <!-- {playInfo.alt_title_notice && <small><sup> ({playInfo.alt_title_notice})</sup></small>}  -->
+                </div>
+                <div class="carusel-play-details">
+                  {playInfo.genre}, {playInfo.age},
+                  <br>
+                  {languageLabel}:&nbsp;{playInfo.lang}
+                </div>
               </div>
             </a>
           );
@@ -97,10 +116,10 @@ let playsWithGrouppedDatesArray = Array.from(playsWithGrouppedDatesMap, ([key, v
       onlyInViewport: true,
     },
 
-    autoplay: {
-      delay: 3000,
-      disableOnInteraction: true,
-    },
+    // autoplay: {
+    //   delay: 3000,
+    //   disableOnInteraction: true,
+    // },
   
   });
 

@@ -1,3 +1,10 @@
+.swiper {
+	--colorSmallFontMainGallery: var(--grey-13);
+	--colorBigFontMainGallery: rgb(125, 81, 79);
+	--colorPremiereFontMainGallery: #ce040b;
+	--colorBkgMainGallery: var(--grey-56);
+}
+
 .wrapper-main {
 	margin: 0;
 }
@@ -9,6 +16,8 @@
 	max-height: 120vw;
 	margin: 0;
 	position: relative;
+	background-color: var(--colorBkgProgrammItem);
+	/* background-color: var(--colorBkgMainGallery); */
 }
 
 .swiper-wrapper {
@@ -71,7 +80,7 @@
 }
 
 .swiper-pagination-bullet {
-	width: 1.7rem;
+	width: clamp(1rem, 10vw, 1.7rem);
 	height: 1rem;
 	border: 2px solid var(--colorFontDate);
 	background-color: transparent;
@@ -86,6 +95,8 @@
 .carusel-play-image {
 	width: min-content;
 	height: 100%;
+	/* -webkit-transform: scaleX(-1);
+	transform: scaleX(-1); */
 }
 
 .carusel-picture {
@@ -108,4 +119,56 @@
 	opacity: var(--maxPosterOpacity);
 	-webkit-filter: grayscale(20%);
 	filter: grayscale(20%);
+}
+
+/* --------------------------------------------------- */
+/* -------------------- block ------------------------ */
+/* --------------- carusel-play-info ----------------- */
+/* --------------------------------------------------- */
+.carusel-play-info {
+	position: absolute;
+	top: 0;
+	left: max(-50px, min(-5px, -4.2vw));
+	right: 0;
+	height: 100%;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+}
+
+.carusel-play-info-premiere {
+	justify-self: flex-start;
+	width: min-content;
+	font-size: clamp(13px, 5vw, 24px);
+	font-weight: 900;
+	color: var(--colorPremiereFontMainGallery);
+	text-transform: uppercase;
+	letter-spacing: 0.07em;
+	background-color: var(--colorSmallFontMainGallery);
+	border-radius: 4px;
+	padding: 0 clamp(4px, 5vw, 8px);
+	margin-bottom: clamp(10px, 5vw, 40px);
+}
+
+.carusel-play-title {
+	width: min-content;
+	flex-wrap: wrap;
+	color: var(--colorSmallFontMainGallery);
+	font-size: clamp(14px, 10vw, 56px);
+	line-height: 1.15em;
+	letter-spacing: 0.05em;
+	font-weight: 900;
+	text-transform: uppercase;
+	padding-bottom: clamp(8px, 5vw, 25px);
+}
+
+.carusel-play-details {
+	color: var(--colorSmallFontMainGallery);
+	flex-wrap: wrap;
+	font-size: clamp(13px, 5vw, 24px);
+	line-height: 1.2em;
+	letter-spacing: 0.05em;
+	font-weight: var(--font-bold-weight);
+	padding-bottom: clamp(8px, 5vw, 25px);
 }

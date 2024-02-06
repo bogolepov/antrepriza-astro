@@ -14,9 +14,9 @@
 	--grey-11: #e9e6e4;
 	--grey-10: #f7f4f3;
 
-	--gray-rose-dark: #8c5956;
-	--gray-rose: #87605e;
-	--gray-rose-light: #fbccc7;
+	--gray-rose-dark: rgb(140, 89, 86);
+	--gray-rose: rgb(135, 96, 94);
+	--gray-rose-light: rgb(251, 204, 199);
 
 	--scrollBarWidth: 10px;
 }

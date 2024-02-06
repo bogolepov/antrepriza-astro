@@ -16,7 +16,7 @@ import plays_ru from '@data/plays_ru.json'
 import plays_de from '@data/plays_de.json'
 
 let plays = (lang === 'de') ? plays_de : plays_ru; 
-plays.sort((play1, play2) => play1.title.toLowerCase().localeCompare(play2.title.toLowerCase(), lang));
+plays.sort((play1, play2) => play1.alt_title.toLowerCase().localeCompare(play2.alt_title.toLowerCase(), lang));
 
 const menuProgramm = { link: "programm", text: dictionary.programm[lang] };
 const menuPlays = { link: "plays", text: dictionary.plays[lang] };
@@ -106,7 +106,7 @@ const SocialPages = [
 								plays.map((plays) => {
 									return (
 										<li class="dropdown-item">
-											<a class="dropdown-item-link" href={"play-"+plays.id_suffix+".html"}>{plays.title}</a>
+											<a class="dropdown-item-link" href={"play-"+plays.id_suffix+".html"}>{plays.alt_title}</a>
 										</li>
 									);
 								} )
@@ -256,7 +256,7 @@ const SocialPages = [
 						plays.map((plays) => {
 							return (
 								<li class="burger-submenu-item">
-									<a href={"play-"+plays.id_suffix+".html"}>{plays.title}</a>
+									<a href={"play-"+plays.id_suffix+".html"}>{plays.alt_title}</a>
 								</li>
 							);
 						} )
