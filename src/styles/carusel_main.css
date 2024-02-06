@@ -6,6 +6,7 @@
 	display: flex;
 	width: 100%;
 	height: calc(100vh - var(--headerHeight));
+	max-height: 120vw;
 	margin: 0;
 	position: relative;
 }
@@ -56,13 +57,13 @@
 }
 
 .swiper .swiper-pagination {
-	bottom: var(--swiper-pagination-bottom, 5%);
+	bottom: clamp(0%, 6vw, var(--swiper-pagination-bottom, 5%));
 }
 
 .swiper-slide {
 	width: min-content;
 	height: 80%;
-	top: 6%;
+	top: clamp(0%, 7vw, var(--swiper-pagination-bottom, 6%));
 
 	display: flex;
 	justify-content: center;
