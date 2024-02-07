@@ -53,27 +53,29 @@ let playsWithGrouppedDatesArray = Array.from(playsWithGrouppedDatesMap, ([key, v
           if (lang === "ru") languageLabel = languageLabel.toLowerCase();
           return (
             <a class="swiper-slide" data-play={playInfo.id} href={"play-"+playInfo.id_suffix+".html"} >
-              <div class="carusel-play-image">
-                <Picture 
-                  class:list={'carusel-picture'} 
-                  src={images["/src/assets/" + playInfo.posters.portrait]()} 
-                  formats={['avif', 'webp']} 
-                  widths={[280, 400, 640]}
-                  sizes={'(max-width: 320px) 280px, (max-width: 660px) 400px, 640px'}
-                  alt={playInfo.title} />
-              </div>
-              <div class="carusel-play-info">
-                {isPremiere && 
-                  <div class="carusel-play-info-premiere">{dictionary.premiere[lang]}</div>
-                }
-                <div class="carusel-play-title">
-                  {playInfo.alt_title}
-                  <!-- {playInfo.alt_title_notice && <small><sup> ({playInfo.alt_title_notice})</sup></small>}  -->
+              <div class="carusel-play-card">
+                <div class="carusel-play-image">
+                  <Picture 
+                    class:list={'carusel-picture'} 
+                    src={images["/src/assets/" + playInfo.posters.portrait]()} 
+                    formats={['avif', 'webp']} 
+                    widths={[280, 400, 640]}
+                    sizes={'(max-width: 320px) 280px, (max-width: 660px) 400px, 640px'}
+                    alt={playInfo.title} />
                 </div>
-                <div class="carusel-play-details">
-                  {playInfo.genre}, {playInfo.age},
-                  <br>
-                  {languageLabel}:&nbsp;{playInfo.lang}
+                <div class="carusel-play-info">
+                  {isPremiere && 
+                    <div class="carusel-play-info-premiere">{dictionary.premiere[lang]}</div>
+                  }
+                  <div class="carusel-play-title">
+                    {playInfo.alt_title}
+                    <!-- {playInfo.alt_title_notice && <small><sup> ({playInfo.alt_title_notice})</sup></small>}  -->
+                  </div>
+                  <div class="carusel-play-details">
+                    {playInfo.genre}, {playInfo.age}
+                    <br>
+                    {languageLabel}:&nbsp;{playInfo.lang}
+                  </div>
                 </div>
               </div>
             </a>
@@ -98,7 +100,7 @@ let playsWithGrouppedDatesArray = Array.from(playsWithGrouppedDatesMap, ([key, v
     spaceBetween: 200,
     watchOverflow: true,
     // grabCursor: true,
-    speed: 1100,
+    speed: 900,
     centeredSlides: true,
   
     pagination: {
@@ -117,11 +119,31 @@ let playsWithGrouppedDatesArray = Array.from(playsWithGrouppedDatesMap, ([key, v
     },
 
     autoplay: {
-      delay: 3000,
+      delay: 5000,
       disableOnInteraction: true,
     },
   
   });
+
+  // let cards = document.getElementsByClassName("carusel-play-card");
+  // for (let card of cards) {
+  //   card.addEventListener("pointermove", event => {
+  //     if (event.isPrimary) {
+  //       // console.log('X: ' + event.clientX + ', Y: ' + event.clientY);
+  //       let coords = card.getBoundingClientRect();
+  //       let dx = event.clientX - (coords.left + coords.width/2);
+  //       let dy = event.clientY - (coords.top + coords.height/2);
+  //       // console.log('dX: ' + dx + ', dY: ' + dy);
+
+  //       let xAngle = (dx * 30 / coords.width).toFixed(2);
+  //       let yAngle = (dy * 30 / coords.height).toFixed(2);
+  //       // console.log('x: ' + xAngle + ' deg, y: ' + yAngle + ' deg');
+
+  //       (card as HTMLElement).style.setProperty('--rotate-x', xAngle + 'deg');
+  //       (card as HTMLElement).style.setProperty('--rotate-y', yAngle + 'deg');
+  //     }
+  //   });
+  // }
 
   // let swiperCards = document.getElementsByClassName("carusel-play-image");
   // for (let card of swiperCards) {

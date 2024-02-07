@@ -2,7 +2,7 @@
 	--colorSmallFontMainGallery: var(--grey-13);
 	--colorBigFontMainGallery: rgb(125, 81, 79);
 	--colorPremiereFontMainGallery: #ce040b;
-	--colorBkgMainGallery: var(--grey-56);
+	/* --colorBkgMainGallery: var(--grey-56); */
 }
 
 .wrapper-main {
@@ -16,7 +16,7 @@
 	max-height: 120vw;
 	margin: 0;
 	position: relative;
-	background-color: var(--colorBkgProgrammItem);
+	background-color: var(--colorBkgMainGallery);
 	/* background-color: var(--colorBkgMainGallery); */
 }
 
@@ -39,6 +39,7 @@
 	width: 50px;
 	height: 50px;
 	margin: 0 10px;
+	transition: transform 200ms ease;
 }
 
 .swiper .swiper-button-prev::after {
@@ -74,9 +75,9 @@
 	height: 80%;
 	top: clamp(0%, 7vw, var(--swiper-pagination-bottom, 6%));
 
-	display: flex;
+	/* display: flex;
 	justify-content: center;
-	align-content: center;
+	align-content: center; */
 }
 
 .swiper-pagination-bullet {
@@ -86,12 +87,32 @@
 	background-color: transparent;
 	border-radius: 2px;
 	opacity: 1;
+	transition: transform 200ms ease;
 }
 
 .swiper-pagination-bullet-active {
 	background-color: var(--colorFontDate);
 }
 
+@media (hover: hover) {
+	.swiper .swiper-button-prev:hover,
+	.swiper .swiper-button-next:hover {
+		transform: scale(1.08, 1.08);
+	}
+
+	.swiper .swiper-pagination-bullet:hover {
+		transform: scale(1.15, 1.15);
+	}
+}
+
+.carusel-play-card {
+	width: 100%;
+	height: 100%;
+
+	display: flex;
+	justify-content: center;
+	align-content: center;
+}
 .carusel-play-image {
 	width: min-content;
 	height: 100%;
@@ -171,4 +192,40 @@
 	letter-spacing: 0.05em;
 	font-weight: var(--font-bold-weight);
 	padding-bottom: clamp(8px, 5vw, 25px);
+}
+
+/* --------------------------------------------------- */
+/* ---------------- HOVER animation ------------------ */
+/* ------------------- for card ---------------------- */
+/* --------------------------------------------------- */
+.carusel-play-card {
+	/* --rotate-x: -45deg;
+	--rotate-y: -45deg;
+	perspective: 500px;
+	transform-style: preserve-3d; */
+	transition: transform 1000ms ease;
+}
+
+@media (hover: hover) {
+	.carusel-play-card:hover {
+		/* transform: scale3d(1.05, 1.05, 10); */
+		transform: scale(1.05, 1.05);
+	}
+}
+
+/* .carusel-play-image:hover {
+	transform: rotateX(var(--rotate-x)) rotateY(var(--rotate-y));
+} */
+
+.carusel-play-title {
+	transform: translate3d(0, 0, 80px);
+}
+
+/* .carusel-play-title:hover {
+	transform: rotateX(var(--rotate-x)) rotateY(var(--rotate-y));
+} */
+
+.carusel-play-info-premiere,
+.carusel-play-details {
+	transform: translate3d(0, 0, 35px);
 }

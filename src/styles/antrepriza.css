@@ -60,6 +60,7 @@
 	--font-logo-weight: 700;
 	--minPosterOpacity: 1;
 	--maxPosterOpacity: 1;
+	--colorBkgMainGallery: var(--grey-140);
 }
 
 [data-theme='light'] {
@@ -95,6 +96,7 @@
 	--font-logo-weight: 900;
 	--minPosterOpacity: 0.9;
 	--maxPosterOpacity: 1;
+	--colorBkgMainGallery: #b8b0ae;
 }
 
 html,
