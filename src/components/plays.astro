@@ -19,7 +19,7 @@ import { Picture } from 'astro:assets';
 
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg,jpg,png,gif}');
 
-plays.sort((play1, play2) => play1.title.toLowerCase().localeCompare(play2.title.toLowerCase(), lang));
+plays.sort((play1, play2) => play1.alt_title.toLowerCase().localeCompare(play2.alt_title.toLowerCase(), lang));
 programm.sort((play1, play2) => Date.parse(play1.date+"T"+play1.time) - Date.parse(play2.date+"T"+play2.time));
 
 let actualProgramm = programm.filter(performance => Date.parse(performance.date) >= Date.now());
@@ -58,7 +58,7 @@ let playsWithGrouppedDatesArray = Array.from(playsWithGrouppedDatesMap, ([key, v
 						formats={['avif', 'webp']} 
 						widths={[280, 400, 640]}
 						sizes={'(max-width: 320px) 280px, (max-width: 660px) 640px, (max-width: 1300px) 400px, 640px'}
-						alt={play.title} />
+						alt={play.alt_title} />
 				</div>
 				<div class="play-block-info">
 					<h2 class="play-info-name">
@@ -66,7 +66,7 @@ let playsWithGrouppedDatesArray = Array.from(playsWithGrouppedDatesMap, ([key, v
 							<div class="play-info-premiere">{dictionary.premiere[lang]}</div>
 						}
 						<a class="play-info-title play-info-link" href={"play-"+play.id_suffix+".html"}>
-							{play.title}
+							{play.alt_title}
 						</a>
 					</h2>
 					<div class="play-info-author">{play.author}</div>

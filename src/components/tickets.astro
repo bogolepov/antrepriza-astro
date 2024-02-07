@@ -66,7 +66,7 @@ let playsWithGrouppedDatesArray = Array.from(playsWithGrouppedDatesMap, ([key, v
 									<span class="tickets-premiere">{dictionary.premiere[lang]}</span>
 								}
 								<a class="tickets-play-title tickets-play-link" href={"play-"+playInfo.id_suffix+".html"}>
-									{playInfo.title}
+									{playInfo.alt_title}
 								</a>
 							</div>
 							<div class="tickets-play-info">
@@ -98,7 +98,7 @@ let playsWithGrouppedDatesArray = Array.from(playsWithGrouppedDatesMap, ([key, v
 								formats={['avif', 'webp']} 
 								widths={[280, 400, 640]}
 								sizes={'(max-width: 320px) 280px, (max-width: 660px) 640px, (max-width: 1300px) 400px, 640px'}
-								alt={playInfo.title} />
+								alt={playInfo.alt_title} />
 						</div>
 					</div>
 				);

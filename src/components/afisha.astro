@@ -83,7 +83,7 @@ let iMonth: number = -1;
 							</div>
 						</div>
 						<a class="programm-title programm-play-link" href={"play-"+playInfo.id_suffix+".html"} >
-							{playInfo.title}
+							{playInfo.alt_title}
 						</a>
 						<div class="programm-info">
 							<h4 class="programm-genre" data-label={dictionary.genre[lang]+": "}>
@@ -109,7 +109,7 @@ let iMonth: number = -1;
 							formats={['avif', 'webp']} 
 							widths={[280, 400, 640]}
 							sizes={'(max-width: 320px) 280px, (max-width: 660px) 640px, (max-width: 1300px) 400px, 640px'}
-							alt={playInfo.title} />
+							alt={playInfo.alt_title} />
 					</div>
 				</div>
 			);
