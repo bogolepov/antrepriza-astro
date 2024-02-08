@@ -19,8 +19,11 @@
 	display: none;
 }
 
-.tickets-play-block,
-.gift-block {
+.tickets-play-block {
+	border-bottom: 1px solid var(--colorFont);
+}
+
+.gift-block:not(:last-of-type) {
 	border-bottom: 1px solid var(--colorFont);
 }
 
