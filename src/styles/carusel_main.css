@@ -67,13 +67,13 @@
 }
 
 .swiper .swiper-pagination {
-	bottom: clamp(0%, 6vw, var(--swiper-pagination-bottom, 5%));
+	bottom: clamp(0%, min(4vh, 6vw), var(--swiper-pagination-bottom, 5%));
 }
 
 .swiper-slide {
 	width: min-content;
 	height: 80%;
-	top: clamp(0%, 7vw, var(--swiper-pagination-bottom, 6%));
+	top: clamp(0%, min(5.5vh, 7vw), var(--swiper-pagination-bottom, 6%));
 
 	/* display: flex;
 	justify-content: center;
@@ -81,7 +81,7 @@
 }
 
 .swiper-pagination-bullet {
-	width: clamp(1rem, 10vw, 1.7rem);
+	width: clamp(1rem, min(6.5vh, 10vw), 1.7rem);
 	height: 1rem;
 	border: 2px solid var(--colorFontDate);
 	background-color: transparent;
@@ -161,7 +161,7 @@
 .carusel-play-info-premiere {
 	justify-self: flex-start;
 	width: min-content;
-	font-size: clamp(13px, 5vw, 24px);
+	font-size: clamp(13px, min(3.5vh, 5vw), 24px);
 	font-weight: 900;
 	color: var(--colorPremiereFontMainGallery);
 	text-transform: uppercase;
@@ -169,29 +169,29 @@
 	background-color: var(--colorSmallFontMainGallery);
 	border-radius: 4px;
 	padding: 0 clamp(4px, 5vw, 8px);
-	margin-bottom: clamp(10px, 5vw, 40px);
+	margin-bottom: clamp(10px, min(3.5vh, 5vw), 40px);
 }
 
 .carusel-play-title {
 	width: min-content;
 	flex-wrap: wrap;
 	color: var(--colorSmallFontMainGallery);
-	font-size: clamp(14px, 10vw, 56px);
+	font-size: clamp(14px, min(7vh, 10vw), 56px);
 	line-height: 1.15em;
 	letter-spacing: 0.05em;
 	font-weight: 900;
 	text-transform: uppercase;
-	padding-bottom: clamp(8px, 5vw, 25px);
+	padding-bottom: clamp(8px, min(3.5vh, 5vw), 25px);
 }
 
 .carusel-play-details {
 	color: var(--colorSmallFontMainGallery);
 	flex-wrap: wrap;
-	font-size: clamp(13px, 5vw, 24px);
+	font-size: clamp(13px, min(3.5vh, 5vw), 24px);
 	line-height: 1.2em;
 	letter-spacing: 0.05em;
 	font-weight: var(--font-bold-weight);
-	padding-bottom: clamp(8px, 5vw, 25px);
+	padding-bottom: clamp(8px, min(3.5vh, 5vw), 25px);
 }
 
 /* --------------------------------------------------- */
