@@ -162,3 +162,26 @@ function initHeaderSubMenuListener() {
 		});
 	}
 }
+
+/* --------------------------------------------------- */
+/* ------------- Header Submenu Listener ------------- */
+/* --------------------------------------------------- */
+let currentHoverBlock;
+
+function initHoverModeForTouchScreen() {
+	let blocks = document.getElementsByClassName('hover-block');
+	for (let block of blocks) {
+		block.addEventListener('pointerdown', event => {
+			if (
+				event.isPrimary &&
+				(event.pointerType == 'pen' || event.pointerType == 'touch') &&
+				currentHoverBlock != block
+			) {
+				if (currentHoverBlock) currentHoverBlock.removeAttribute('hover');
+
+				currentHoverBlock = block;
+				currentHoverBlock.setAttribute('hover', '');
+			}
+		});
+	}
+}

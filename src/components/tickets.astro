@@ -67,7 +67,7 @@ for (let price of prices) {
 
 		if (playInfo) {
 			return (
-				<div id={playInfo.id_suffix} class="tickets-play-block" data-play={playInfo.id}>
+				<div id={playInfo.id_suffix} class="tickets-play-block hover-block" data-play={playInfo.id}>
 					<div class="tickets-play-text">
 						<div class="tickets-play-name">
 							{item.value[0].premiere && 
@@ -114,7 +114,7 @@ for (let price of prices) {
 	})
 }
 
-<div class="gift-block">
+<div class="gift-block hover-block">
 	<div class="gift-text">
 		<h2 class="giftticket play-title">{dictionary.giftticket[lang]}</h2>
 		<p class="gift-info">{giftTicketInfo}</p>
@@ -140,7 +140,7 @@ for (let price of prices) {
 	</div>
 </div>
 
-<div class="gift-block">
+<div class="gift-block hover-block">
 	<div class="gift-text">
 		<h2 class="giftcard play-title">{dictionary.giftcard[lang]}</h2>
 		<p class="gift-info">{dictionary.giftcard_info[lang]}</p>

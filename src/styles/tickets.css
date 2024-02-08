@@ -13,18 +13,15 @@
 	flex-direction: row;
 	justify-content: space-between;
 	transition: background-color 250ms linear;
+	border-bottom: 1px solid var(--colorFont);
 }
 
 .tickets-play-block[hidden] {
 	display: none;
 }
 
-.tickets-play-block {
-	border-bottom: 1px solid var(--colorFont);
-}
-
-.gift-block:not(:last-of-type) {
-	border-bottom: 1px solid var(--colorFont);
+.gift-block:last-of-type {
+	border-bottom: unset;
 }
 
 .tickets-play-text {
@@ -77,15 +74,6 @@
 	column-gap: 1rem;
 }
 
-.section-tickets a:focus-visible {
-	outline: 1px solid var(--colorFocusAntreprizaRed);
-}
-
-.tickets-book-link {
-	position: relative;
-	user-select: none;
-}
-
 /* --------------------------------------------------- */
 /* ------------------ gift block --------------------- */
 /* --------------------------------------------------- */
@@ -114,18 +102,6 @@
 /* --------------------------------------------------- */
 /* -------------------- @media ----------------------- */
 /* --------------------------------------------------- */
-@media (hover: hover) {
-	.tickets-play-block:hover,
-	.gift-block:hover {
-		background-color: var(--colorBkgProgrammItem);
-	}
-	.tickets-play-block:hover .black-white-filter,
-	.gift-block:hover .black-white-filter {
-		-webkit-filter: grayscale(0%);
-		filter: grayscale(0%);
-	}
-}
-
 @media screen and (max-width: 660px) {
 	.tickets-play-block,
 	.gift-block {

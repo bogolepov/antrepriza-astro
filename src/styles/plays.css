@@ -1,7 +1,6 @@
 .section-plays {
 	width: 100%;
 	color: var(--colorFont);
-	/* text-align: center; */
 }
 
 .play-block {
@@ -42,14 +41,6 @@
 	margin-bottom: 1rem;
 	font-size: clamp(1.1rem, 2vw, 1.25rem);
 	line-height: calc(1.1 * clamp(1.1rem, 2vw, 1.4rem));
-}
-
-.play-block:hover {
-	background-color: var(--colorBkgProgrammItem);
-}
-.play-block:hover .black-white-filter {
-	-webkit-filter: grayscale(0%);
-	filter: grayscale(0%);
 }
 
 .section-plays a:focus-visible {

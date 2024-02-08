@@ -285,6 +285,30 @@ h4.notification-label {
 }
 
 /* --------------------------------------------------- */
+/* ------------------- hover effect ------------------ */
+/* --------------------------------------------------- */
+
+@media (hover: hover) {
+	.hover-block:hover {
+		background-color: var(--colorBkgProgrammItem);
+	}
+
+	.hover-block:hover .black-white-filter {
+		-webkit-filter: grayscale(0%);
+		filter: grayscale(0%);
+	}
+}
+
+.hover-block[hover] {
+	background-color: var(--colorBkgProgrammItem);
+}
+
+.hover-block[hover] .black-white-filter {
+	-webkit-filter: grayscale(0%);
+	filter: grayscale(0%);
+}
+
+/* --------------------------------------------------- */
 /* ------------------ screen reader ------------------ */
 /* --------------------------------------------------- */
 .screen-reader-text {

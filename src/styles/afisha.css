@@ -127,16 +127,6 @@ h2.programm-month {
 	transition: filter 250ms ease-in;
 }
 
-@media (hover: hover) {
-	.programm-play-block:hover {
-		background-color: var(--colorBkgProgrammItem);
-	}
-	.programm-play-block:hover .black-white-filter {
-		-webkit-filter: grayscale(0%);
-		filter: grayscale(0%);
-	}
-}
-
 .section-programm a:focus-visible {
 	outline: 1px solid var(--colorFocusAntreprizaRed);
 }

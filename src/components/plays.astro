@@ -35,22 +35,13 @@ let playsWithGrouppedDatesArray = Array.from(playsWithGrouppedDatesMap, ([key, v
 
 ---
 
-<!-- 
-<picture>
-	<source srcset={AntreprizaLogo + "#logo-" + lang} type="image/svg+xml" media="(max-width: 570px)">
-	<source srcset={AntreprizaLogo + "#logo-text-" + lang} type="image/svg+xml">
-	<source srcset="logo_1x.png 1x, logo_2x.png 2x" media="(max-width: 570px)"> 
-	<img class="picture-test" src="/src/assets/logo_text_1x_ru.png" srcset="/src/assets/logo_text_2x_ru.png 2x" alt="">
-</picture>
--->
-
 <section class="section-plays">
 {
 	plays.map (play => {
 		let performs = actualProgramm.filter(performance => performance.play_id == play.id);
 		let isPremiere = (performs && performs.length>0 && performs[0].premiere);
 		return (
-			<div class="play-block">
+			<div class="play-block hover-block">
 				<div class="play-block-image">
 					<Picture 
 						class:list={'image-wrapper-landscape black-white-filter'} 
@@ -79,30 +70,3 @@ let playsWithGrouppedDatesArray = Array.from(playsWithGrouppedDatesMap, ([key, v
 
 }
 </section>
-
-
-<script>
-	const PLAYS = new Array(100).fill(0);
-
-	let ticketBtns = document.getElementsByClassName('tickets-book-btn');
-	for (let btn of ticketBtns) {
-		if (Date.parse(btn.getAttribute("data-date")) < Date.now()) {
-			//(btn as HTMLElement).hidden = true;
-			(btn as HTMLElement).disabled = true;
-		}
-		else {
-			PLAYS[btn.getAttribute("data-play")]++;
-			btn.addEventListener('click', (event) => {
-				console.log("click: " + btn.getAttribute("data-date") + " " + btn.getAttribute("data-time"));
-				// 
-			})
-		}
-	}
-
-	let playBolcks = document.getElementsByClassName('tickets-play-block');
-	for (let block of playBolcks) {
-		if (!PLAYS[block.getAttribute("data-play")])
-			(block as HTMLElement).hidden = true;
-	}
-
-</script>
