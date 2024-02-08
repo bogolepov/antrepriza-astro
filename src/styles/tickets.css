@@ -1,26 +1,10 @@
 .section-tickets {
 	width: 100%;
 	color: var(--colorFont);
-	/* text-align: center; */
 }
 
-.tickets-play-link {
-	text-decoration: none;
-	display: block;
-}
-
-.tickets-play-link::before {
-	content: '';
-	display: block;
-	position: absolute;
-	z-index: 1;
-	left: 0px;
-	top: 0px;
-	width: 100%;
-	height: 100%;
-}
-
-.tickets-play-block {
+.tickets-play-block,
+.gift-block {
 	position: relative;
 	font-family: 'Roboto', Verdana, Arial, Tahoma, sans-serif;
 	font-weight: var(--font-normal-weight);
@@ -35,13 +19,15 @@
 	display: none;
 }
 
-.tickets-play-block:not(:last-of-type) {
+.tickets-play-block,
+.gift-block {
 	border-bottom: 1px solid var(--colorFont);
 }
 
 .tickets-play-text {
 	flex-grow: 2;
 	min-width: clamp(50vw, 3.5vw, 60vw);
+	max-width: clamp(50vw, 3.5vw, 60vw);
 	min-height: 100%;
 
 	display: grid;
@@ -61,11 +47,6 @@
 	align-self: start;
 }
 
-.tickets-play-title {
-	grid-area: title;
-	align-self: start;
-}
-
 .tickets-play-info {
 	grid-area: info;
 	align-self: start;
@@ -76,42 +57,6 @@
 	align-self: end;
 }
 
-.tickets-premiere {
-	/* grid-area: premiere;
-	align-self: start; */
-
-	font-size: 0.9rem;
-	font-weight: var(--font-bold-weight);
-	color: var(--colorAntreprizaRed);
-	text-transform: uppercase;
-	letter-spacing: 0.07rem;
-}
-
-.tickets-premiere ~ .tickets-play-title {
-	margin-top: 0px;
-}
-
-.tickets-play-title {
-	font-size: clamp(1.5rem, 3vw, 1.8rem);
-	line-height: calc(1.1 * clamp(1.5rem, 3vw, 1.8rem));
-	font-weight: var(--font-extra-weight);
-	text-transform: uppercase;
-}
-
-.tickets-play-genre,
-.tickets-play-lang {
-	font-size: clamp(1rem, 1.8vw, 1.2rem);
-	font-weight: 400;
-}
-
-.tickets-play-genre::before,
-.tickets-play-lang::before {
-	content: attr(data-label);
-	font-size: clamp(0.95rem, 1.8vw, 1.05rem);
-	font-weight: var(--font-thin-weight);
-	text-transform: uppercase;
-}
-
 .tickets-play-dates-label {
 	display: inline-block;
 	font-size: clamp(0.95rem, 1.8vw, 1.05rem);
@@ -120,63 +65,13 @@
 	margin-bottom: 0.3rem;
 }
 
-.tickets-book-buttons {
+.buttons-block {
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-start;
 	flex-wrap: wrap;
 	row-gap: clamp(0.6rem, 1.5vw, 0.9rem);
 	column-gap: 1rem;
-}
-
-.tickets-book-btn {
-	border: 1px solid var(--colorFontDate);
-	background-color: var(--colorFontDate);
-	color: var(--colorFontTicketsBtn);
-	width: max-content;
-	text-transform: uppercase;
-	font-weight: 400;
-	padding: 0.25em 0.6em 0.25em 0.6em;
-	line-height: 1.1rem;
-	border-radius: 3px;
-	z-index: 5;
-}
-
-.tickets-book-btn[disabled] {
-	border: 1px solid var(--colorBkgDisabledBtn);
-	background-color: var(--colorBkgDisabledBtn);
-	text-decoration: line-through;
-}
-
-.tickets-book-btn:hover {
-	cursor: pointer;
-}
-.tickets-book-btn[disabled]:hover {
-	cursor: default;
-}
-
-.tickets-play-image picture {
-	/* display: block; */
-}
-
-.play-image {
-	display: block;
-	border-radius: 4px;
-	max-width: 100%;
-	height: auto;
-	object-fit: contain;
-
-	-webkit-filter: grayscale(95%);
-	filter: grayscale(95%);
-	transition: filter 250ms ease-in;
-}
-
-.tickets-play-block:hover {
-	background-color: var(--colorBkgProgrammItem);
-}
-.tickets-play-block:hover .play-image {
-	-webkit-filter: grayscale(0%);
-	filter: grayscale(0%);
 }
 
 .section-tickets a:focus-visible {
@@ -188,15 +83,59 @@
 	user-select: none;
 }
 
+/* --------------------------------------------------- */
+/* ------------------ gift block --------------------- */
+/* --------------------------------------------------- */
+
+.gift-text {
+	min-width: clamp(50vw, 3.5vw, 60vw);
+	max-width: clamp(50vw, 3.5vw, 60vw);
+	min-height: 100%;
+
+	display: flex;
+	flex-direction: column;
+	padding-right: 15px;
+	align-items: start;
+	row-gap: clamp(7px, 0.5vw, 15px);
+}
+
+.gift-info {
+	margin: 0;
+	margin-bottom: 5px;
+	font-size: clamp(0.9rem, 1.8vw, 1.05rem);
+	font-weight: 300;
+	line-height: 1.25em;
+	white-space: pre-wrap;
+}
+
+/* --------------------------------------------------- */
+/* -------------------- @media ----------------------- */
+/* --------------------------------------------------- */
+@media (hover: hover) {
+	.tickets-play-block:hover,
+	.gift-block:hover {
+		background-color: var(--colorBkgProgrammItem);
+	}
+	.tickets-play-block:hover .black-white-filter,
+	.gift-block:hover .black-white-filter {
+		-webkit-filter: grayscale(0%);
+		filter: grayscale(0%);
+	}
+}
+
 @media screen and (max-width: 660px) {
-	.tickets-play-block {
+	.tickets-play-block,
+	.gift-block {
 		flex-direction: column-reverse;
 	}
-	.tickets-play-text {
+	.tickets-play-text,
+	.gift-text {
 		min-width: 100%;
+		padding-right: 0;
 	}
 
-	.tickets-play-image {
+	.tickets-play-image,
+	.gift-image {
 		padding-bottom: 15px;
 	}
 }

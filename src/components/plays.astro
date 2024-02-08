@@ -53,7 +53,7 @@ let playsWithGrouppedDatesArray = Array.from(playsWithGrouppedDatesMap, ([key, v
 			<div class="play-block">
 				<div class="play-block-image">
 					<Picture 
-						class:list={'play-image'} 
+						class:list={'image-wrapper-landscape black-white-filter'} 
 						src={images["/src/assets/" + play.posters.landscape]()} 
 						formats={['avif', 'webp']} 
 						widths={[280, 400, 640]}
@@ -61,17 +61,17 @@ let playsWithGrouppedDatesArray = Array.from(playsWithGrouppedDatesMap, ([key, v
 						alt={play.alt_title} />
 				</div>
 				<div class="play-block-info">
-					<h2 class="play-info-name">
+					<div class="play-info-name">
 						{isPremiere && 
-							<div class="play-info-premiere">{dictionary.premiere[lang]}</div>
+							<h4 class="play-property-premiere">{dictionary.premiere[lang]}</h4>
 						}
-						<a class="play-info-title play-info-link" href={"play-"+play.id_suffix+".html"}>
-							{play.alt_title}
+						<a class="stretch-link" href={"play-"+play.id_suffix+".html"}>
+							<h2 class="play-title">{play.alt_title}</h2>
 						</a>
-					</h2>
+					</div>
 					<div class="play-info-author">{play.author}</div>
-					<div class="play-info-genre" data-label={dictionary.genre[lang]+": "}>{play.genre}, {play.age}</div>
-					<div class="play-info-lang" data-label={dictionary.language[lang]+": "}>{play.lang}</div>
+					<h4 class="play-property label-before" data-label={dictionary.genre[lang]+": "}>{play.genre}, {play.age}</h4>
+					<h4 class="play-property label-before" data-label={dictionary.language[lang]+": "}>{play.lang}</h4>
 				</div>
 			</div>
 		)

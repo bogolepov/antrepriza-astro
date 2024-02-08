@@ -6,8 +6,10 @@ import "@styles/tickets.css"
 
 const {lang} = Astro.props;
 
+import prices from '@data/prices.json'
 import programm from '@data/afisha.json'
 import dictionary from '@data/dictionary.json'
+import theater from '@data/theater.json'
 
 import plays_ru from '@data/plays_ru.json'
 import plays_de from '@data/plays_de.json'
@@ -34,6 +36,12 @@ actualProgramm.forEach(element => {
 });
 let playsWithGrouppedDatesArray = Array.from(playsWithGrouppedDatesMap, ([key, value]) => ({ key, value }));
 
+let giftTicketInfo = dictionary.giftticket_info[lang].replaceAll("{address}", theater.stageAddress);
+for (let price of prices) {
+	giftTicketInfo = giftTicketInfo.replaceAll("{" + price.type + "}", price.text_short[lang].toUpperCase());
+}
+// giftTicketInfo = giftTicketInfo.replaceAll("{br}", "\u000A");
+
 ---
 
 <!-- 
@@ -46,72 +54,124 @@ let playsWithGrouppedDatesArray = Array.from(playsWithGrouppedDatesMap, ([key, v
 -->
 
 <section class="section-tickets">
-	{
-		playsWithGrouppedDatesArray.map(item => {
-			// console.log("key: " + item.key);
-			let playInfo;
-			plays.some((piece) => {
-				if (item.key === piece.id) {
-					playInfo = piece;
-					return; 
-				}
-			} )
+{
+	playsWithGrouppedDatesArray.map(item => {
+		// console.log("key: " + item.key);
+		let playInfo;
+		plays.some((piece) => {
+			if (item.key === piece.id) {
+				playInfo = piece;
+				return; 
+			}
+		} )
 
-			if (playInfo) {
-				return (
-					<div id={playInfo.id_suffix} class="tickets-play-block" data-play={playInfo.id}>
-						<div class="tickets-play-text">
-							<div class="tickets-play-name">
-								{item.value[0].premiere && 
-									<span class="tickets-premiere">{dictionary.premiere[lang]}</span>
-								}
-								<a class="tickets-play-title tickets-play-link" href={"play-"+playInfo.id_suffix+".html"}>
-									{playInfo.alt_title}
-								</a>
-							</div>
-							<div class="tickets-play-info">
-								<div class="tickets-play-genre" data-label={dictionary.genre[lang]+": "}>{playInfo.genre}, {playInfo.age}</div>
-								<div class="tickets-play-lang" data-label={dictionary.language[lang]+": "}>{playInfo.lang}</div>
-							</div>
-							<div class="tickets-play-dates">
-								<span class="tickets-play-dates-label">{dictionary.nextDates[lang]}:</span>
-								<div class="tickets-book-buttons">
-									{
-										item.value.map((play_date) => {
-												let fullDate: string = play_date.date+'T'+play_date.time;
-												let playDate: Date = new Date(fullDate);
-												return (
-													<button class="tickets-book-btn" type="button" data-date={fullDate} data-play={playInfo.id}>
-														{playDate.getDate().toString().padStart(2, '0')}.{(playDate.getMonth()+1).toString().padStart(2, '0')},
-														{playDate.toLocaleDateString(lang, { weekday: 'short' })} / {play_date.time}
-													</button>
-												)
-										} )
-									}
-								</div>
-							</div>
+		if (playInfo) {
+			return (
+				<div id={playInfo.id_suffix} class="tickets-play-block" data-play={playInfo.id}>
+					<div class="tickets-play-text">
+						<div class="tickets-play-name">
+							{item.value[0].premiere && 
+								<h4 class="play-property-premiere">{dictionary.premiere[lang]}</h4>
+							}
+							<a class="stretch-link" href={"play-"+playInfo.id_suffix+".html"}>
+								<h2 class="play-title">{playInfo.alt_title}</h2>
+							</a>
 						</div>
-						<div class="tickets-play-image">
-							<Picture 
-								class:list={'play-image'} 
-								src={images["/src/assets/" + playInfo.posters.landscape]()} 
-								formats={['avif', 'webp']} 
-								widths={[280, 400, 640]}
-								sizes={'(max-width: 320px) 280px, (max-width: 660px) 640px, (max-width: 1300px) 400px, 640px'}
-								alt={playInfo.alt_title} />
+						<div class="tickets-play-info">
+							<h4 class="play-property label-before" data-label={dictionary.genre[lang]+": "}>{playInfo.genre}, {playInfo.age}</h4>
+							<h4 class="play-property label-before" data-label={dictionary.language[lang]+": "}>{playInfo.lang}</h4>
+						</div>
+						<div class="tickets-play-dates">
+							<h4 class="notification-label">{dictionary.nextDates[lang]}:</h4>
+							<div class="buttons-block">
+								{
+									item.value.map((play_date) => {
+											let fullDate: string = play_date.date+'T'+play_date.time;
+											let playDate: Date = new Date(fullDate);
+											return (
+												<button class="tickets-book-button" type="button" data-date={fullDate} data-play={playInfo.id}>
+													{playDate.getDate().toString().padStart(2, '0')}.{(playDate.getMonth()+1).toString().padStart(2, '0')},
+													{playDate.toLocaleDateString(lang, { weekday: 'short' })} / {play_date.time}
+												</button>
+											)
+									} )
+								}
+							</div>
 						</div>
 					</div>
-				);
-			}
-		})
+					<div class="tickets-play-image">
+						<Picture 
+							class:list={'image-wrapper-landscape black-white-filter'} 
+							src={images["/src/assets/" + playInfo.posters.landscape]()} 
+							formats={['avif', 'webp']} 
+							widths={[280, 400, 640]}
+							sizes={'(max-width: 320px) 280px, (max-width: 660px) 640px, (max-width: 1300px) 400px, 640px'}
+							alt={playInfo.alt_title} />
+					</div>
+				</div>
+			);
+		}
+	})
 }
+
+<div class="gift-block">
+	<div class="gift-text">
+		<h2 class="giftticket play-title">{dictionary.giftticket[lang]}</h2>
+		<p class="gift-info">{giftTicketInfo}</p>
+		<div class="giftticket buttons-block">
+		{
+			prices.map( price => {
+				return (
+					<button class="tickets-book-button" type="button" data-price={price.value}>{price.text_short[lang]}&nbsp;{price.value}€</button>
+				);
+			})
+		}
+		</div>
+	</div>
+	<div class="gift-image">
+		<Picture 
+			class:list={'image-wrapper-landscape black-white-filter'} 
+			src={images["/src/assets/logo_red_landscape.png"]()} 
+			formats={['avif', 'webp']} 
+			widths={[280, 400, 640]}
+			sizes={'(max-width: 320px) 280px, (max-width: 660px) 640px, (max-width: 1300px) 400px, 640px'}
+			alt={dictionary.giftcard[lang]} />
+	</div>
+</div>
+
+<div class="gift-block">
+	<div class="gift-text">
+		<h2 class="giftcard play-title">{dictionary.giftcard[lang]}</h2>
+		<p class="gift-info">{dictionary.giftcard_info[lang]}</p>
+		<div>
+			<h4 class="notification-label">{dictionary.giftcard_prices[lang]}:</h4>
+			<div class="giftcard buttons-block">
+				<button class="tickets-book-button" type="button" data-price='5'>5€</button>
+				<button class="tickets-book-button" type="button" data-price='10'>10€</button>
+				<button class="tickets-book-button" type="button" data-price='15'>15€</button>
+				<button class="tickets-book-button" type="button" data-price='30'>30€</button>
+				<button class="tickets-book-button" type="button" data-price='50'>50€</button>
+			</div>
+		</div>
+	</div>
+	<div class="gift-image">
+		<Picture 
+			class:list={'image-wrapper-landscape black-white-filter'} 
+			src={images["/src/assets/logo_red_landscape.png"]()} 
+			formats={['avif', 'webp']} 
+			widths={[280, 400, 640]}
+			sizes={'(max-width: 320px) 280px, (max-width: 660px) 640px, (max-width: 1300px) 400px, 640px'}
+			alt={dictionary.giftcard[lang]} />
+	</div>
+</div>
+
 </section>
 
 
 <script>
 	const PLAYS = new Array(100).fill(0);
 
-	let ticketBtns = document.getElementsByClassName('tickets-book-btn');
+	let ticketBtns = document.getElementsByClassName('tickets-book-button');
 	for (let btn of ticketBtns) {
 		if (Date.parse(btn.getAttribute("data-date")) < Date.now()) {
 			//(btn as HTMLElement).hidden = true;

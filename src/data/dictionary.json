@@ -14,5 +14,16 @@
 	"language": { "ru": "Язык", "de": "Sprache" },
 	"stage": { "ru": "Сцена", "de": "Bühne" },
 	"premiere": { "ru": "Премьера", "de": "Premiere" },
-	"nextDates": { "ru": "Ближайшие даты", "de": "Kommende Aufführungen" }
+	"nextDates": { "ru": "Ближайшие даты", "de": "Kommende Aufführungen" },
+	"giftcard": { "ru": "Подарочная карта", "de": "Geschenkkarte" },
+	"giftcard_prices": { "ru": "Номинал подарочной карты", "de": "Geschenkbetrag" },
+	"giftcard_info": {
+		"ru": "Подарочная карта может быть использована для оплаты билетов на входе и заказов в баре в размере суммы, соответствующей номиналу карты.",
+		"de": "Mit der Geschenkkarte können Eintrittskarten an der Abendkasse und Bestellungen an der Bar in Höhe des dem Wert der Karte entsprechenden Betrags bezahlt werden."
+	},
+	"giftticket": { "ru": "Подарочный билет", "de": "Geschenkticket" },
+	"giftticket_info": {
+		"ru": "Подарочный билет распространяется на спектакли Театра, проводимые на постоянной сцене по адресу {address}, и является разовым.\u000A\u000AДля детских спектаклей действуют билеты категории {adult} и {kids}. На остальные спектакли распространяется билет {standart}.\u000AДля льготных категорий, студентов и владельцев Berlinpass (Berlin-Ticket S) при предъявлении подтверждающих документов на входе действует билет {reduce} на любой спектакль.\u000A\u000AПРИМ. В Театре используется система рассадки 'свободное место'.",
+		"de": "Das Geschenkticket gilt für die Vorstellungen des Theaters auf der Festbühne an der {address} zum einmaligen Eintritt.\u000A\u000AFür Kinderaufführungen gelten Tickets der Kategorien {adult} und {kids}. Für andere Vorstellungen gilt {standart}-Ticket.\u000A{reduce}-Ticket ist für Studierende und Inhaber*innen des Berlinpasses (Berlin-Ticket S) für alle Vorstellungen gültig. Bitte bringen Sie einen Nachweis für die Ermäßigungsberechtigung mit.\u000A\u000ANB. Freie Platzwahl im Theater."
+	}
 }

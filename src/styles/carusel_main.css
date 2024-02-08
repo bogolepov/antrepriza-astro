@@ -97,11 +97,11 @@
 @media (hover: hover) {
 	.swiper .swiper-button-prev:hover,
 	.swiper .swiper-button-next:hover {
-		transform: scale(1.08, 1.08);
+		transform: scale(1.1, 1.1);
 	}
 
 	.swiper .swiper-pagination-bullet:hover {
-		transform: scale(1.15, 1.15);
+		transform: scale(1.2, 1.2);
 	}
 }
 
