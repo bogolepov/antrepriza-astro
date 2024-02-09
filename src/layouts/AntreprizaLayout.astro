@@ -28,7 +28,7 @@ const pageTitle = title || ( lang === "de" ? "Theater Antrepriza Berlin" : "Те
 		/>
 	<meta name="generator" content={Astro.generator} />
 	</head>
-	<body>
+	<body class="no-js">
 		<div class="wrapper">
 			<Header lang={lang} />
 			<main class="wrapper-main">
@@ -39,6 +39,7 @@ const pageTitle = title || ( lang === "de" ? "Theater Antrepriza Berlin" : "Те
 	
 		<script is:inline src="/js/antrepriza.js"></script>
 		<script is:inline>
+			removeNoJS();
 			initLangEnv();
 			initColorMode();
 			initHeaderSubMenuListener();

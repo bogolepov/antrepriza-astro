@@ -2,8 +2,8 @@
 	{
 		"id": 8,
 		"id_suffix": "miks",
-		"title": "Малыш и Карл(Cон)",
-		"alt_title": "Малыш\u00A0и Карл(Cон)",
+		"title": "Малыш и Карл(CОН)",
+		"alt_title": "Малыш\u00A0и Карл(CОН)",
 		"author": "Константин Попов",
 		"genre": "современная история",
 		"length": 90,
@@ -39,7 +39,7 @@
 		"genre": "детский",
 		"length": 60,
 		"break": false,
-		"age": "5+",
+		"age": "3+",
 		"description": "",
 		"posters": {
 			"landscape": "steppke_und_karlson.jpg",
@@ -69,7 +69,7 @@
 		"genre": "детский",
 		"length": 60,
 		"break": false,
-		"age": "5+",
+		"age": "3+",
 		"description": "",
 		"posters": {
 			"landscape": "steppke_und_karlson.jpg",

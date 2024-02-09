@@ -288,21 +288,22 @@ h4.notification-label {
 /* ------------------- hover effect ------------------ */
 /* --------------------------------------------------- */
 
+/* this hover-effect works only if javascript is out */
 @media (hover: hover) {
-	.hover-block:hover {
+	body.no-js .hover-block:hover {
 		background-color: var(--colorBkgProgrammItem);
 	}
 
-	.hover-block:hover .black-white-filter {
+	body.no-js .hover-block:hover .black-white-filter {
 		-webkit-filter: grayscale(0%);
 		filter: grayscale(0%);
 	}
 }
 
+/* this hover-effect works only if javascript is in */
 .hover-block[hover] {
 	background-color: var(--colorBkgProgrammItem);
 }
-
 .hover-block[hover] .black-white-filter {
 	-webkit-filter: grayscale(0%);
 	filter: grayscale(0%);

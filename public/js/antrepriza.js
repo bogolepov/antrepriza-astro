@@ -15,6 +15,17 @@ let currLang;
 let currMode;
 
 /* --------------------------------------------------- */
+/* ------------------- NoJS flag --------------------- */
+/* ----- remove NoJS flag, because JS isn't out ------ */
+/* --------------------------------------------------- */
+function removeNoJS() {
+	let elements = document.getElementsByClassName('no-js');
+	for (let element of elements) {
+		element.classList.remove('no-js');
+	}
+}
+
+/* --------------------------------------------------- */
 /* -------------------- LANGUAGE --------------------- */
 /* --------------------------------------------------- */
 
@@ -178,9 +189,21 @@ function initHoverModeForTouchScreen() {
 				currentHoverBlock != block
 			) {
 				if (currentHoverBlock) currentHoverBlock.removeAttribute('hover');
-
 				currentHoverBlock = block;
 				currentHoverBlock.setAttribute('hover', '');
+			}
+		});
+		block.addEventListener('pointerenter', event => {
+			if (event.pointerType == 'mouse' && currentHoverBlock != block) {
+				if (currentHoverBlock) currentHoverBlock.removeAttribute('hover');
+				currentHoverBlock = block;
+				currentHoverBlock.setAttribute('hover', '');
+			}
+		});
+		block.addEventListener('pointerleave', event => {
+			if (event.pointerType == 'mouse' && currentHoverBlock == block) {
+				currentHoverBlock.removeAttribute('hover');
+				currentHoverBlock = null;
 			}
 		});
 	}

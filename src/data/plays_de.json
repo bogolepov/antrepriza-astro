@@ -2,8 +2,8 @@
 	{
 		"id": 8,
 		"id_suffix": "miks",
-		"title": "Steppke und Karl(Son)",
-		"alt_title": "Steppke\u00A0und Karl(Son)",
+		"title": "Steppke und Karl(SON)",
+		"alt_title": "Steppke\u00A0und Karl(SON)",
 		"author": "K.Popov",
 		"genre": "moderne Geschichte",
 		"length": 90,
@@ -39,7 +39,7 @@
 		"genre": "детский",
 		"length": 60,
 		"break": false,
-		"age": "5+",
+		"age": "3+",
 		"description": "",
 		"posters": {
 			"landscape": "steppke_und_karlson.jpg",
@@ -63,14 +63,14 @@
 	{
 		"id": 6,
 		"id_suffix": "mik",
-		"title": "Малыш и Карлсон",
+		"title": "Steppke und Karlson",
 		"alt_title": "Steppke\u00A0und Karlson",
 		"alt_title_notice": "RU",
 		"author": "А.Линдгрен",
 		"genre": "детский",
 		"length": 60,
 		"break": false,
-		"age": "5+",
+		"age": "3+",
 		"description": "",
 		"posters": {
 			"landscape": "steppke_und_karlson.jpg",
