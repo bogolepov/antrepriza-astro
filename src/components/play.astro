@@ -1,0 +1,14 @@
+---
+
+const {lang, play_id} = Astro.props;
+
+import plays_ru from '@data/plays_ru.json'
+import plays_de from '@data/plays_de.json'
+
+let plays = (lang === 'de') ? plays_de : plays_ru;
+let thisPlay = plays.filter(play => play_id == play.id)[0];
+
+---
+
+<h1>{thisPlay.title}</h1>
+

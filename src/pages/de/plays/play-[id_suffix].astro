@@ -1,0 +1,29 @@
+---
+import AntreprizaLayout from "@layouts/AntreprizaLayout.astro";
+
+import type { GetStaticPaths } from "astro";
+
+import AntreprizaLayout from "@layouts/AntreprizaLayout.astro";
+import Play from "@components/play.astro";
+
+import plays from '@data/plays_de.json'
+
+export const getStaticPaths = (() => {  
+  return plays.map(play => {
+    let aTitle = "Theater Antrepriza - " + play.title;
+    if (play.title_notice) aTitle = aTitle + " [" + play.title_notice + "]";
+    return {
+      params: {id_suffix: play.id_suffix},
+      props: {pageLang: "de", pageTitle: aTitle, playID: play.id.toString()},
+    }
+  });
+}) satisfies GetStaticPaths;
+
+const {pageLang, pageTitle, playID} = Astro.props;
+
+---
+
+<AntreprizaLayout title={pageTitle} lang={pageLang}>
+  <Play lang={pageLang} play_id={playID}></Play>
+</AntreprizaLayout>
+

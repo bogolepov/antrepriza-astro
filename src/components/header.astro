@@ -106,7 +106,7 @@ const SocialPages = [
 								plays.map((plays) => {
 									return (
 										<li class="dropdown-item">
-											<a class="dropdown-item-link" href={"play-"+plays.id_suffix+".html"}>{plays.alt_title}</a>
+											<a class="dropdown-item-link" href={"/"+lang+"/plays/play-"+plays.id_suffix}>{plays.alt_title}</a>
 										</li>
 									);
 								} )
@@ -256,7 +256,7 @@ const SocialPages = [
 						plays.map((plays) => {
 							return (
 								<li class="burger-submenu-item">
-									<a href={"play-"+plays.id_suffix+".html"}>{plays.alt_title}</a>
+									<a href={"/"+lang+"/plays/play-"+plays.id_suffix}>{plays.alt_title}</a>
 								</li>
 							);
 						} )
