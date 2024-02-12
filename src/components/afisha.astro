@@ -84,7 +84,7 @@ let iMonth: number = -1;
 							</time>
 						</div>
 
-						<a class="programm-title stretch-link" href={"/"+lang+"/plays/play-"+playInfo.id_suffix}>
+						<a class="programm-title stretch-link" href={"/"+lang+"/plays/play-"+playInfo.suffix}>
 							<h2 class="play-title">{playInfo.alt_title}</h2>
 						</a>
 
@@ -96,7 +96,7 @@ let iMonth: number = -1;
 								{playInfo.lang}
 							</h4>
 							<address class="play-property label-before" data-label={dictionary.stage[lang]+": "}>
-								{ playInProgramm.address || theater.stageAddress }
+								{ playInProgramm.address || theater.stageAddress.full_string }
 							</address>
 						</div>
 

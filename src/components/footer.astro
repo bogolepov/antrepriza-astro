@@ -1,6 +1,8 @@
 ---
 import "../styles/footer.css"
 
+import theater from '@data/theater.json'
+
 import Logo from '../svg/logo.svg?url'
 // import Symbols from '../svg/symbols.svg?url'
 // import SocialIcons from '../svg/social.svg?url'
@@ -17,11 +19,11 @@ const {lang} = Astro.props;
 		</svg>
   </div>
   <div class="address">
-  <p>Boxhagener Str. 18</p>
-  <p>10245 Berlin</p>
+  <p>{theater.stageAddress.street} {theater.stageAddress.building}</p>
+  <p>{theater.stageAddress.index} {theater.stageAddress.city}</p>
   </div>
   <div class="tel-number" >
-  <a href="tel:+49 176 49787741">Tel +49 176 49787741</a>
+  <a href={"tel:"+theater.phone}>Tel {theater.phone}</a>
   </div>
   <div>
   <a class="footer-text-link" href="#">IMPRESSUM</a>

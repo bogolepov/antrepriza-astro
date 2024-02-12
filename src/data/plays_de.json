@@ -1,7 +1,7 @@
 [
 	{
 		"id": 8,
-		"id_suffix": "miks",
+		"suffix": "miks",
 		"title": "Steppke und Karl(SON)",
 		"alt_title": "Steppke\u00A0und Karl(SON)",
 		"author": "K.Popov",
@@ -19,20 +19,14 @@
 		},
 		"photos": ["", "", ""],
 		"lang": "Russisch",
-		"roles": [
-			{ "id": 1, "name": "Андрей Прозоров", "description": "" },
-			{ "id": 2, "name": "Ольга", "description": "сестра Андрея Прозорова, старшая" },
-			{ "id": 3, "name": "Мария", "description": "сестра Андрея Прозорова, средняя" },
-			{ "id": 4, "name": "Ирина", "description": "сестра Андрея Прозорова, младшая" },
-			{ "id": 5, "name": "Ирина", "description": "сестра Андрея Прозорова, младшая" }
-		],
-		"people": {
+		"characters": [{ "id": 3, "name": "Ольга", "description": "его сестра, старшая", "actors": [101] }],
+		"creators": {
 			"regie": 1
 		}
 	},
 	{
 		"id": 7,
-		"id_suffix": "suk",
+		"suffix": "suk",
 		"title": "Steppke und Karlson",
 		"alt_title": "Steppke\u00A0und Karlson",
 		"title_notice": "DE",
@@ -51,20 +45,14 @@
 		},
 		"photos": ["", "", ""],
 		"lang": "Deutsch",
-		"roles": [
-			{ "id": 1, "name": "Андрей Прозоров", "description": "" },
-			{ "id": 2, "name": "Ольга", "description": "сестра Андрея Прозорова, старшая" },
-			{ "id": 3, "name": "Мария", "description": "сестра Андрея Прозорова, средняя" },
-			{ "id": 4, "name": "Ирина", "description": "сестра Андрея Прозорова, младшая" },
-			{ "id": 5, "name": "Ирина", "description": "сестра Андрея Прозорова, младшая" }
-		],
-		"people": {
+		"characters": [{ "id": 3, "name": "Ольга", "description": "его сестра, старшая", "actors": [101] }],
+		"creators": {
 			"regie": 1
 		}
 	},
 	{
 		"id": 6,
-		"id_suffix": "mik",
+		"suffix": "mik",
 		"title": "Steppke und Karlson",
 		"alt_title": "Steppke\u00A0und Karlson",
 		"title_notice": "RU",
@@ -75,6 +63,8 @@
 		"break": false,
 		"age": "3+",
 		"description": "",
+		"trailer": "https://www.youtube.com/watch?v=_Paauq1_o4o",
+		"trailer_embed": "https://www.youtube-nocookie.com/embed/_Paauq1_o4o?si=TVh97Y3ddBCcJPle",
 		"posters": {
 			"landscape": "steppke_und_karlson.jpg",
 			"portrait": "steppke_und_karlson_poster.jpg",
@@ -83,20 +73,14 @@
 		},
 		"photos": ["", "", ""],
 		"lang": "Russisch",
-		"roles": [
-			{ "id": 1, "name": "Андрей Прозоров", "description": "" },
-			{ "id": 2, "name": "Ольга", "description": "сестра Андрея Прозорова, старшая" },
-			{ "id": 3, "name": "Мария", "description": "сестра Андрея Прозорова, средняя" },
-			{ "id": 4, "name": "Ирина", "description": "сестра Андрея Прозорова, младшая" },
-			{ "id": 5, "name": "Ирина", "description": "сестра Андрея Прозорова, младшая" }
-		],
-		"people": {
+		"characters": [{ "id": 3, "name": "Ольга", "description": "его сестра, старшая", "actors": [101] }],
+		"creators": {
 			"regie": 1
 		}
 	},
 	{
 		"id": 5,
-		"id_suffix": "op",
+		"suffix": "op",
 		"title": "Gefährliche Kurve",
 		"alt_title": "Gefährliche Kurve",
 		"author": "J.B.Priestley",
@@ -114,20 +98,14 @@
 		},
 		"photos": ["", "", ""],
 		"lang": "Russisch",
-		"roles": [
-			{ "id": 1, "name": "Андрей Прозоров", "description": "" },
-			{ "id": 2, "name": "Ольга", "description": "сестра Андрея Прозорова, старшая" },
-			{ "id": 3, "name": "Мария", "description": "сестра Андрея Прозорова, средняя" },
-			{ "id": 4, "name": "Ирина", "description": "сестра Андрея Прозорова, младшая" },
-			{ "id": 5, "name": "Ирина", "description": "сестра Андрея Прозорова, младшая" }
-		],
-		"people": {
+		"characters": [{ "id": 3, "name": "Ольга", "description": "его сестра, старшая", "actors": [101] }],
+		"creators": {
 			"regie": 1
 		}
 	},
 	{
 		"id": 4,
-		"id_suffix": "dk",
+		"suffix": "dk",
 		"title": "Teure Wohnung",
 		"alt_title": "Teure Wohnung",
 		"author": "T.Moskvina",
@@ -137,6 +115,8 @@
 		"break": true,
 		"age": "18+",
 		"description": "",
+		"trailer": "https://www.youtube.com/watch?v=1mspb4pzIHk",
+		"trailer_embed": "https://www.youtube-nocookie.com/embed/1mspb4pzIHk?si=u0t4x3ByniqyrTzO",
 		"posters": {
 			"landscape": "teure_wohnung.jpg",
 			"portrait": "teure_wohnung_poster.jpg",
@@ -145,20 +125,14 @@
 		},
 		"photos": ["", "", ""],
 		"lang": "Russisch",
-		"roles": [
-			{ "id": 1, "name": "Андрей Прозоров", "description": "" },
-			{ "id": 2, "name": "Ольга", "description": "сестра Андрея Прозорова, старшая" },
-			{ "id": 3, "name": "Мария", "description": "сестра Андрея Прозорова, средняя" },
-			{ "id": 4, "name": "Ирина", "description": "сестра Андрея Прозорова, младшая" },
-			{ "id": 5, "name": "Ирина", "description": "сестра Андрея Прозорова, младшая" }
-		],
-		"people": {
+		"characters": [{ "id": 3, "name": "Ольга", "description": "его сестра, старшая", "actors": [101] }],
+		"creators": {
 			"regie": 1
 		}
 	},
 	{
 		"id": 2,
-		"id_suffix": "pip",
+		"suffix": "pip",
 		"title": "Sieg oder Verrat",
 		"alt_title": "Sieg\u00A0oder Verrat",
 		"author": "А.Gonchukov, A.Slapovsky",
@@ -176,20 +150,14 @@
 		},
 		"photos": ["", "", ""],
 		"lang": "Russisch",
-		"roles": [
-			{ "id": 1, "name": "Андрей Прозоров", "description": "" },
-			{ "id": 2, "name": "Ольга", "description": "сестра Андрея Прозорова, старшая" },
-			{ "id": 3, "name": "Мария", "description": "сестра Андрея Прозорова, средняя" },
-			{ "id": 4, "name": "Ирина", "description": "сестра Андрея Прозорова, младшая" },
-			{ "id": 5, "name": "Ирина", "description": "сестра Андрея Прозорова, младшая" }
-		],
-		"people": {
+		"characters": [{ "id": 3, "name": "Ольга", "description": "его сестра, старшая", "actors": [101] }],
+		"creators": {
 			"regie": 1
 		}
 	},
 	{
 		"id": 1,
-		"id_suffix": "ts",
+		"suffix": "ts",
 		"title": "Drei Schwestern",
 		"alt_title": "Drei Schwestern",
 		"author": "A.Tschechow",
@@ -199,6 +167,8 @@
 		"break": true,
 		"age": "14+",
 		"description": "",
+		"trailer": "https://www.youtube.com/watch?v=8e44BfrkfzE",
+		"trailer_embed": "https://www.youtube-nocookie.com/embed/8e44BfrkfzE?si=ioMQimlAtF5AosQw",
 		"posters": {
 			"landscape": "drei_schwestern.jpg",
 			"portrait": "drei_schwestern_poster.jpg",
@@ -207,16 +177,27 @@
 		},
 		"photos": ["", "", ""],
 		"lang": "Russisch",
-		"roles": [
-			{ "id": 1, "name": "Андрей Прозоров", "description": "" },
-			{ "id": 2, "name": "Ольга", "description": "сестра Андрея Прозорова, старшая" },
-			{ "id": 3, "name": "Мария", "description": "сестра Андрея Прозорова, средняя" },
-			{ "id": 4, "name": "Ирина", "description": "сестра Андрея Прозорова, младшая" },
-			{ "id": 5, "name": "Ирина", "description": "сестра Андрея Прозорова, младшая" }
+		"characters": [
+			{ "id": 1, "name": "Прозоров Андрей Сергеевич", "description": "", "actors": [3] },
+			{ "id": 2, "name": "Наталья Ивановна", "description": "его невеста, потом жена", "actors": [102] },
+			{ "id": 3, "name": "Ольга", "description": "его сестра, старшая", "actors": [101] },
+			{ "id": 4, "name": "Маша", "description": "его сестра, средняя", "actors": [100] },
+			{ "id": 5, "name": "Ирина", "description": "его сестра, младшая", "actors": [104, 105] },
+			{
+				"id": 6,
+				"name": "Вершинин Александр Игнатьевич",
+				"description": "подполковник, батарейный командир",
+				"actors": [103]
+			},
+			{ "id": 7, "name": "Тузенбах Николай Львович", "description": "барон, поручик", "actors": [106, 123] },
+			{ "id": 8, "name": "Соленый Василий Васильевич", "description": "штабс-капитан", "actors": [107, 121] },
+			{ "id": 9, "name": "Чебутыкин Иван Романович", "description": "военный доктор", "actors": [1] },
+			{ "id": 10, "name": "Анфиса", "description": "нянька", "actors": [108] }
 		],
-		"people": {
+		"creators": {
 			"regie": 1,
-			"music": 2
+			"music": 2,
+			"costumes": 126
 		}
 	}
 ]

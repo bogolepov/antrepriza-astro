@@ -1,4 +1,57 @@
 {
-	"stageAddress": "Boxhagener Str. 18, 10245 Berlin",
-	"stageName": "Neue Bühne Friedrichshain"
+	"stageAddress": {
+		"full_string": "Boxhagener Str. 18, 10245 Berlin",
+		"street": "Boxhagener Str.",
+		"building": "18",
+		"index": "10245",
+		"city": "Berlin"
+	},
+	"stageName": "Neue Bühne Friedrichshain",
+	"main_website": "https://antrepriza.eu/",
+	"social_pages": [
+		{ "name": "Facebook", "url": "https://www.facebook.com/AntreprizaBerlin", "svg": "#facebook-outline" },
+		{ "name": "Instagram", "url": "https://www.instagram.com/AntreprizaBerlin", "svg": "#instagram-outline2" },
+		{ "name": "YouTube", "url": "https://www.youtube.com/@AntreprizaBerlin", "svg": "#youtube-outline2" },
+		{ "name": "Threads", "url": "https://www.threads.net/@AntreprizaBerlin", "svg": "#instagram-outline2" }
+	],
+	"email": "",
+	"phone": "+49 176 49787741",
+	"people": [
+		{
+			"id": 1,
+			"suffix": "alm",
+			"name": "Александр",
+			"surname": "Мамонтов",
+			"title": "Заслуженный деятель культуры Польши"
+		},
+		{ "id": 2, "name": "Тимур", "surname": "Исмагилов" },
+		{ "id": 3, "suffix": "bb", "name": "Борис", "surname": "Бирман" },
+		{ "id": 4, "name": "Илья", "surname": "Деньчуков" },
+		{ "id": 5, "name": "Денис", "surname": "Епифанцев" },
+		{ "id": 100, "suffix": "sl", "name": "Светлана", "surname": "Лучко" },
+		{ "id": 101, "suffix": "elm", "name": "Елена", "surname": "Марченко" },
+		{ "id": 102, "suffix": "irb", "name": "Ирина", "surname": "Бирман-Ясиницкая" },
+		{ "id": 103, "suffix": "ag", "name": "Алексей", "surname": "Голубев-Таубе" },
+		{ "id": 104, "suffix": "anl", "name": "Анна", "surname": "Линдеманн" },
+		{ "id": 105, "suffix": "mr", "name": "Мария", "surname": "Родина" },
+		{ "id": 106, "suffix": "vr", "name": "Вадим", "surname": "Романов" },
+		{ "id": 107, "suffix": "ksh", "name": "Кирилл", "surname": "Шевчук" },
+		{ "id": 108, "suffix": "vp", "name": "Вера", "surname": "Парахина" },
+		{ "id": 109, "suffix": "th", "name": "Томас", "surname": "Хекельманн" },
+		{ "id": 110, "suffix": "kt", "name": "Клим", "surname": "Тиманов" },
+		{ "id": 111, "suffix": "ms", "name": "Мария", "surname": "Симпсон" },
+		{ "id": 112, "suffix": "nt", "name": "Никита", "surname": "Томилов" },
+		{ "id": 116, "suffix": "ff", "name": "Fatal", "surname": "Flash" },
+		{ "id": 117, "suffix": "anak", "name": "Анна", "surname": "Акопян" },
+		{ "id": 118, "suffix": "ank", "name": "Анастасия", "surname": "Коваль" },
+		{ "id": 119, "suffix": "viv", "name": "Вадим", "surname": "Иванов" }
+	],
+	"ex_people": [
+		{ "id": 121, "suffix": "sv", "name": "Степан", "surname": "Волковский" },
+		{ "id": 122, "suffix": "ks", "name": "Карина", "surname": "Стульникова" },
+		{ "id": 123, "suffix": "almz", "name": "Алексей", "surname": "Мозговой" },
+		{ "id": 124, "suffix": "ld", "name": "Лариса", "surname": "Дмитриева" },
+		{ "id": 125, "suffix": "kz", "name": "Кирилл", "surname": "Цимкарженский" },
+		{ "id": 126, "suffix": "nl", "name": "Наталья", "surname": "Лимбах" }
+	]
 }

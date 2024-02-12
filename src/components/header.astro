@@ -11,6 +11,7 @@ import SocialIcons from '@svg/social.svg?url'
 const {lang} = Astro.props;
 
 import dictionary from '@data/dictionary.json'
+import theater from '@data/theater.json'
 
 import plays_ru from '@data/plays_ru.json'
 import plays_de from '@data/plays_de.json'
@@ -25,19 +26,8 @@ const menuMediathek = { link: "galerie", text: dictionary.galerie[lang] };
 const menuSupport = { link: "support", text: dictionary.support[lang] };
 const menuTickets = { link: "tickets", text: dictionary.tickets[lang] };
 
-const changeThemeHint: string = dictionary.themeHint[lang];
-const changeThemeTextDark: string = dictionary.themeTextDark[lang];
-const changeThemeTextLight: string = dictionary.themeTextLight[lang];
-
 const pathname: string = new URL(Astro.request.url).pathname;
 const currentPath: string[] = pathname.split("/").filter(Boolean);
-
-const SocialPages = [ 
-	{ "type": "facebook", "url": "https://www.facebook.com/AntreprizaBerlin", "svg": "#facebook-outline" },
-	{ "type": "instagram", "url": "https://www.instagram.com/AntreprizaBerlin", "svg": "#instagram-outline2" },
-	{ "type": "youtube", "url": "https://www.youtube.com/@AntreprizaBerlin", "svg": "#youtube-outline2" },
-	{ "type": "threads", "url": "https://www.threads.net/@AntreprizaBerlin", "svg": "#instagram-outline2" }
-];
 
 ---
 
@@ -103,10 +93,10 @@ const SocialPages = [
 					<div class="dropdown-box">
 						<ul class="dropdown-list">
 							{
-								plays.map((plays) => {
+								plays.map((play) => {
 									return (
 										<li class="dropdown-item">
-											<a class="dropdown-item-link" href={"/"+lang+"/plays/play-"+plays.id_suffix}>{plays.alt_title}</a>
+											<a class="dropdown-item-link" href={"/"+lang+"/plays/play-"+play.suffix}>{play.alt_title}</a>
 										</li>
 									);
 								} )
@@ -155,11 +145,11 @@ const SocialPages = [
 		</div> -->
 		<ul class="navigator-social-pages">
 		{
-			SocialPages.map((socialPage) => {
+			theater.social_pages.map((socialPage) => {
 				return (
 					<li class="social-item">
 						<a href={socialPage.url} target="_blank"	rel="noopener external">
-							<svg class:list={['social-icon', 'toolbar-icon', socialPage.type]}>
+							<svg class:list={['social-icon', 'toolbar-icon', socialPage.name.toLowerCase()]}>
 								<use href={SocialIcons + socialPage.svg}></use>
 							</svg>
 						</a>
@@ -174,7 +164,6 @@ const SocialPages = [
 			<label
 				class="theme-changer"
 				for="theme__checkbox"
-				title={changeThemeHint}
 			>
 				<input
 					class="theme-checkbox"
@@ -253,10 +242,10 @@ const SocialPages = [
 					</div>
 					<ul class="burger-submenu-list">
 					{
-						plays.map((plays) => {
+						plays.map((play) => {
 							return (
 								<li class="burger-submenu-item">
-									<a href={"/"+lang+"/plays/play-"+plays.id_suffix}>{plays.alt_title}</a>
+									<a href={"/"+lang+"/plays/play-"+play.suffix}>{play.alt_title}</a>
 								</li>
 							);
 						} )
@@ -293,11 +282,11 @@ const SocialPages = [
 				<li class="burger-item">
 					<ul class="social-pages">
 					{
-						SocialPages.map((socialPage) => {
+						theater.social_pages.map((socialPage) => {
 							return (
 								<li>
 									<a href={socialPage.url} target="_blank"	rel="noopener external">
-										<svg class:list={['header-icon', socialPage.type]}>
+										<svg class:list={['header-icon', socialPage.name.toLowerCase()]}>
 											<use href={SocialIcons + socialPage.svg}></use>
 										</svg>
 									</a>
@@ -311,7 +300,6 @@ const SocialPages = [
 					<label
 						class="theme-changer"
 						for="burger-theme__checkbox"
-						title="Сменить тему оформления"
 					>
 						<input
 							class="theme-checkbox"
@@ -322,13 +310,13 @@ const SocialPages = [
 							<svg class="header-icon theme">
 								<use href={Symbols + "#dark-mode"}></use>
 							</svg>
-							<span class="theme-changer-text">{changeThemeTextDark}</span>
+							<span class="theme-changer-text">{dictionary.themeTextDark[lang]}</span>
 						</div>
 						<div class="light-mode-checkbox">
 							<svg class="header-icon theme">
 								<use href={Symbols + "#light-mode"}></use>
 							</svg>
-							<span class="theme-changer-text">{changeThemeTextLight}</span>
+							<span class="theme-changer-text">{dictionary.themeTextLight[lang]}</span>
 						</div>
 					</label>
 				</li>

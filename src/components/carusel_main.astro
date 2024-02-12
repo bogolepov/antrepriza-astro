@@ -9,7 +9,7 @@ const {lang} = Astro.props;
 
 import programm from '@data/afisha.json'
 import dictionary from '@data/dictionary.json'
-import theater from '@data/theater.json'
+// import theater from '@data/theater.json'
 
 import plays_ru from '@data/plays_ru.json'
 import plays_de from '@data/plays_de.json'
@@ -52,7 +52,7 @@ let playsWithGrouppedDatesArray = Array.from(playsWithGrouppedDatesMap, ([key, v
           let languageLabel = dictionary.language[lang];
           if (lang === "ru") languageLabel = languageLabel.toLowerCase();
           return (
-            <a class="swiper-slide" data-play={playInfo.id} href={"/"+lang+"/plays/play-"+playInfo.id_suffix} >
+            <a class="swiper-slide" data-play={playInfo.id} href={"/"+lang+"/plays/play-"+playInfo.suffix} >
               <div class="carusel-play-card">
                 <div class="carusel-play-image">
                   <Picture 
@@ -119,7 +119,7 @@ let playsWithGrouppedDatesArray = Array.from(playsWithGrouppedDatesMap, ([key, v
     },
 
     autoplay: {
-      delay: 5000,
+      delay: 3500,
       disableOnInteraction: true,
     },
   

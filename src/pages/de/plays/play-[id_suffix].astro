@@ -13,7 +13,7 @@ export const getStaticPaths = (() => {
     let aTitle = "Theater Antrepriza - " + play.title;
     if (play.title_notice) aTitle = aTitle + " [" + play.title_notice + "]";
     return {
-      params: {id_suffix: play.id_suffix},
+      params: {id_suffix: play.suffix},
       props: {pageLang: "de", pageTitle: aTitle, playID: play.id.toString()},
     }
   });

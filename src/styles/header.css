@@ -527,8 +527,8 @@
 
 .header-tickets-button {
 	text-decoration: none;
-	border: 2px solid var(--colorFontDate);
-	background-color: var(--colorFontDate);
+	border: 1px solid var(--colorBkgTicketsBtn);
+	background-color: var(--colorBkgTicketsBtn);
 	font-weight: var(--font-bold-weight);
 	color: var(--colorFontTicketsBtn);
 	/* color: var(--colorTicketsBtn); */
