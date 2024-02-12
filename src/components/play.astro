@@ -23,7 +23,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
   <div class="media_container">
     <div class="media">
       { thisPlay.trailer_embed &&
-        <iframe class="trailer"
+        <iframe class="trailer float"
           src={thisPlay.trailer_embed} title="YouTube video player" 
           frameborder="0" 
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
@@ -31,7 +31,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
       }
       { !thisPlay.trailer_embed &&
         <Picture 
-          class:list={'image-wrapper-landscape black-white-filter'} 
+          class:list={'image-wrapper-landscape black-white-filter float'} 
           src={images["/src/assets/" + thisPlay.posters.landscape]()} 
           formats={['avif', 'webp']} 
           widths={[280,640,1200]}
