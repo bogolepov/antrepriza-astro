@@ -20,38 +20,160 @@
 		{
 			"id": 1,
 			"suffix": "alm",
-			"name": "Александр",
-			"surname": "Мамонтов",
-			"title": "Заслуженный деятель культуры Польши"
+			"name": { "ru": "Александр", "de": "Alexander" },
+			"surname": { "ru": "Мамонтов", "de": "Mamontov" },
+			"title": { "ru": "Заслуженный деятель культуры Польши", "de": "Verdienter Kulturarbeiter Polens" }
 		},
-		{ "id": 2, "name": "Тимур", "surname": "Исмагилов" },
-		{ "id": 3, "suffix": "bb", "name": "Борис", "surname": "Бирман" },
-		{ "id": 4, "name": "Илья", "surname": "Деньчуков" },
-		{ "id": 5, "name": "Денис", "surname": "Епифанцев" },
-		{ "id": 100, "suffix": "sl", "name": "Светлана", "surname": "Лучко" },
-		{ "id": 101, "suffix": "elm", "name": "Елена", "surname": "Марченко" },
-		{ "id": 102, "suffix": "irb", "name": "Ирина", "surname": "Бирман-Ясиницкая" },
-		{ "id": 103, "suffix": "ag", "name": "Алексей", "surname": "Голубев-Таубе" },
-		{ "id": 104, "suffix": "anl", "name": "Анна", "surname": "Линдеманн" },
-		{ "id": 105, "suffix": "mr", "name": "Мария", "surname": "Родина" },
-		{ "id": 106, "suffix": "vr", "name": "Вадим", "surname": "Романов" },
-		{ "id": 107, "suffix": "ksh", "name": "Кирилл", "surname": "Шевчук" },
-		{ "id": 108, "suffix": "vp", "name": "Вера", "surname": "Парахина" },
-		{ "id": 109, "suffix": "th", "name": "Томас", "surname": "Хекельманн" },
-		{ "id": 110, "suffix": "kt", "name": "Клим", "surname": "Тиманов" },
-		{ "id": 111, "suffix": "ms", "name": "Мария", "surname": "Симпсон" },
-		{ "id": 112, "suffix": "nt", "name": "Никита", "surname": "Томилов" },
-		{ "id": 116, "suffix": "ff", "name": "Fatal", "surname": "Flash" },
-		{ "id": 117, "suffix": "anak", "name": "Анна", "surname": "Акопян" },
-		{ "id": 118, "suffix": "ank", "name": "Анастасия", "surname": "Коваль" },
-		{ "id": 119, "suffix": "viv", "name": "Вадим", "surname": "Иванов" }
+		{ "id": 2, "name": { "ru": "Тимур", "de": "Timur" }, "surname": { "ru": "Исмагилов", "de": "Ismagilov" } },
+		{
+			"id": 3,
+			"suffix": "bb",
+			"name": { "ru": "Борис", "de": "Boris" },
+			"surname": { "ru": "Бирман", "de": "Birman" }
+		},
+		{ "id": 4, "name": { "ru": "Торстен", "de": "Torsten" }, "surname": { "ru": "Айсcрих", "de": "Eissrich" } },
+		{ "id": 5, "name": { "ru": "Илья", "de": "Ilya" }, "surname": { "ru": "Деньчуков", "de": "Denchukov" } },
+		{ "id": 6, "name": { "ru": "Денис", "de": "Denis" }, "surname": { "ru": "Епифанцев", "de": "Epifantsev" } },
+		{ "id": 7, "name": { "ru": "Дамир", "de": "Damir" }, "surname": { "ru": "Седа", "de": "Seda" } },
+		{
+			"id": 100,
+			"suffix": "sl",
+			"name": { "ru": "Светлана", "de": "Svetlana" },
+			"surname": { "ru": "Лучко", "de": "Lychko" }
+		},
+		{
+			"id": 101,
+			"suffix": "elm",
+			"name": { "ru": "Елена", "de": "Elena" },
+			"surname": { "ru": "Марченко", "de": "Marchenko" }
+		},
+		{
+			"id": 102,
+			"suffix": "irb",
+			"name": { "ru": "Ирина", "de": "Irina" },
+			"surname": { "ru": "Бирман-Ясиницкая", "de": "Birman-Yasinitskaya" }
+		},
+		{
+			"id": 103,
+			"suffix": "ag",
+			"name": { "ru": "Алексей", "de": "Alex" },
+			"surname": { "ru": "Голубев-Таубе", "de": "Golubev-Taube" }
+		},
+		{
+			"id": 104,
+			"suffix": "anl",
+			"name": { "ru": "Анна", "de": "Anna" },
+			"surname": { "ru": "Линдеманн", "de": "Lindemann" }
+		},
+		{
+			"id": 105,
+			"suffix": "mr",
+			"name": { "ru": "Мария", "de": "Maria" },
+			"surname": { "ru": "Родина", "de": "Rodina" }
+		},
+		{
+			"id": 106,
+			"suffix": "vr",
+			"name": { "ru": "Вадим", "de": "Vadim" },
+			"surname": { "ru": "Романов", "de": "Romanov" }
+		},
+		{
+			"id": 107,
+			"suffix": "ksh",
+			"name": { "ru": "Кирилл", "de": "Kirill" },
+			"surname": { "ru": "Шевчук", "de": "Shevchuk" }
+		},
+		{
+			"id": 108,
+			"suffix": "vp",
+			"name": { "ru": "Вера", "de": "Vera" },
+			"surname": { "ru": "Парахина", "de": "Parakhina" }
+		},
+		{
+			"id": 109,
+			"suffix": "th",
+			"name": { "ru": "Томас", "de": "Thomas" },
+			"surname": { "ru": "Хекельманн", "de": "Häckelmann" }
+		},
+		{
+			"id": 110,
+			"suffix": "kt",
+			"name": { "ru": "Клим", "de": "Klim" },
+			"surname": { "ru": "Тиманов", "de": "Timanov" }
+		},
+		{
+			"id": 111,
+			"suffix": "ms",
+			"name": { "ru": "Мария", "de": "Mariya" },
+			"surname": { "ru": "Симпсон", "de": "Simpson" }
+		},
+		{
+			"id": 112,
+			"suffix": "nt",
+			"name": { "ru": "Никита", "de": "Nikita" },
+			"surname": { "ru": "Томилов", "de": "Tomilov" }
+		},
+		{
+			"id": 116,
+			"suffix": "ff",
+			"name": { "ru": "Фаталь", "de": "Fatal" },
+			"surname": { "ru": "Флаш", "de": "Flash" }
+		},
+		{
+			"id": 117,
+			"suffix": "anak",
+			"name": { "ru": "Анна", "de": "Anna" },
+			"surname": { "ru": "Акопян", "de": "Akopyan" }
+		},
+		{
+			"id": 118,
+			"suffix": "ank",
+			"name": { "ru": "Анастасия", "de": "Anastasia" },
+			"surname": { "ru": "Коваль", "de": "Koval" }
+		},
+		{
+			"id": 119,
+			"suffix": "viv",
+			"name": { "ru": "Вадим", "de": "Vadim" },
+			"surname": { "ru": "Иванов", "de": "Ivanov" }
+		}
 	],
 	"ex_people": [
-		{ "id": 121, "suffix": "sv", "name": "Степан", "surname": "Волковский" },
-		{ "id": 122, "suffix": "ks", "name": "Карина", "surname": "Стульникова" },
-		{ "id": 123, "suffix": "almz", "name": "Алексей", "surname": "Мозговой" },
-		{ "id": 124, "suffix": "ld", "name": "Лариса", "surname": "Дмитриева" },
-		{ "id": 125, "suffix": "kz", "name": "Кирилл", "surname": "Цимкарженский" },
-		{ "id": 126, "suffix": "nl", "name": "Наталья", "surname": "Лимбах" }
+		{
+			"id": 121,
+			"suffix": "sv",
+			"name": { "ru": "Степан", "de": "Stepan" },
+			"surname": { "ru": "Волковский", "de": "Volkovskij" }
+		},
+		{
+			"id": 122,
+			"suffix": "ks",
+			"name": { "ru": "Карина", "de": "Karina" },
+			"surname": { "ru": "Стульникова", "de": "Stulnikova" }
+		},
+		{
+			"id": 123,
+			"suffix": "almz",
+			"name": { "ru": "Алексей", "de": "Alexey" },
+			"surname": { "ru": "Мозговой", "de": "Mozgovoy" }
+		},
+		{
+			"id": 124,
+			"suffix": "ld",
+			"name": { "ru": "Лариса", "de": "Larisa" },
+			"surname": { "ru": "Дмитриева", "de": "Dmitrieva" }
+		},
+		{
+			"id": 125,
+			"suffix": "kz",
+			"name": { "ru": "Кирилл", "de": "Kirill" },
+			"surname": { "ru": "Цимкарженский", "de": "Zimkargenskij" }
+		},
+		{
+			"id": 126,
+			"suffix": "nl",
+			"name": { "ru": "Наталья", "de": "Natalya" },
+			"surname": { "ru": "Лимбах", "de": "Limbakh" }
+		}
 	]
 }
