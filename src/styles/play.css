@@ -55,7 +55,8 @@ section.play {
 	flex-wrap: wrap;
 	column-gap: 30px;
 	width: 100%;
-	padding-top: clamp(5px, 1.8vw, 12px);
+	padding-top: clamp(8px, 1.8vw, 30px);
+	padding-bottom: clamp(5px, 1.8vw, 30px);
 }
 
 .list {

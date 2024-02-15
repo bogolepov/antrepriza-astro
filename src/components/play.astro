@@ -7,10 +7,8 @@ const {lang, play_id} = Astro.props;
 import theater from '@data/theater.json'
 import dictionary from "@data/dictionary.json"
 
-import plays_ru from '@data/plays_ru.json'
-import plays_de from '@data/plays_de.json'
+import plays from '@data/plays.json'
 
-let plays = (lang === 'de') ? plays_de : plays_ru;
 let thisPlay = plays.filter(play => play_id == play.id)[0];
 
 import type { ImageMetadata } from 'astro'
@@ -24,8 +22,8 @@ strDuration = strDuration + ", " + (thisPlay.break ? dictionary.break[lang] : di
 
 ---
 <section class="play">
-  <h1 class="play-title">{thisPlay.title.toUpperCase()}</h1>
-  <div class="play-author">{thisPlay.author_full.toUpperCase()}</div>
+  <h1 class="play-title">{thisPlay.title[lang].toUpperCase()}</h1>
+  <div class="play-author">{thisPlay.author_full[lang].toUpperCase()}</div>
   <div class="media_container">
     <div class="media">
       { thisPlay.trailer_embed &&
@@ -42,16 +40,16 @@ strDuration = strDuration + ", " + (thisPlay.break ? dictionary.break[lang] : di
           formats={['avif', 'webp']} 
           widths={[280,640,1200]}
           sizes={'(max-width: 320px) 280px, (max-width: 660px) 640px, 1200px'}
-          alt={thisPlay.alt_title} />
+          alt={thisPlay.alt_title[lang]} />
       } 
     </div>
     <div class="play-info">
-			<h4 class="play-property label-before" data-label={dictionary.genre[lang]+": "}>{thisPlay.genre}, {thisPlay.age}</h4>
-      <h4 class="play-property label-before" data-label={dictionary.language[lang]+": "}>{thisPlay.lang}</h4>
+			<h4 class="play-property label-before" data-label={dictionary.genre[lang]+": "}>{thisPlay.genre[lang]}, {thisPlay.age}</h4>
+      <h4 class="play-property label-before" data-label={dictionary.language[lang]+": "}>{thisPlay.lang[lang]}</h4>
       <h4 class="play-property label-before" data-label={dictionary.duration[lang]+": "}>{strDuration}</h4>
     </div>
   </div>
-  <br><br>
+  <br>
   <ul class="list"><h2>{dictionary.play_creators[lang].toUpperCase()}</h2></ul>
   {
     thisPlay.creators.map(creator => {
@@ -95,9 +93,9 @@ strDuration = strDuration + ", " + (thisPlay.break ? dictionary.break[lang] : di
       return (
         <li class="list-item">
           <div class="list-item-left">
-            <div>{character.name}</div>
+            <div>{character.name[lang]}</div>
             {character.description && 
-              <div class="small-description">{character.description}</div>}
+              <div class="small-description">{character.description[lang]}</div>}
           </div>
           <div class="list-item-right">
             {

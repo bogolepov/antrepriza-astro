@@ -13,11 +13,9 @@ const {lang} = Astro.props;
 import dictionary from '@data/dictionary.json'
 import theater from '@data/theater.json'
 
-import plays_ru from '@data/plays_ru.json'
-import plays_de from '@data/plays_de.json'
+import plays from '@data/plays.json'
 
-let plays = (lang === 'de') ? plays_de : plays_ru; 
-plays.sort((play1, play2) => play1.alt_title.toLowerCase().localeCompare(play2.alt_title.toLowerCase(), lang));
+plays.sort((play1, play2) => play1.alt_title[lang].toLowerCase().localeCompare(play2.alt_title[lang].toLowerCase(), lang));
 
 const menuProgramm = { link: "programm", text: dictionary.programm[lang] };
 const menuPlays = { link: "plays", text: dictionary.plays[lang] };
@@ -96,7 +94,7 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 								plays.map((play) => {
 									return (
 										<li class="dropdown-item">
-											<a class="dropdown-item-link" href={"/"+lang+"/plays/play-"+play.suffix}>{play.alt_title}</a>
+											<a class="dropdown-item-link" href={"/"+lang+"/plays/play-"+play.suffix}>{play.alt_title[lang]}</a>
 										</li>
 									);
 								} )
@@ -245,7 +243,7 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 						plays.map((play) => {
 							return (
 								<li class="burger-submenu-item">
-									<a href={"/"+lang+"/plays/play-"+play.suffix}>{play.alt_title}</a>
+									<a href={"/"+lang+"/plays/play-"+play.suffix}>{play.alt_title[lang]}</a>
 								</li>
 							);
 						} )
