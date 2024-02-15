@@ -59,6 +59,7 @@
 	--font-bold-weight: 500;
 	--font-extra-weight: 700;
 	--font-logo-weight: 700;
+	--font-part-opacity: 0.47;
 	--minPosterOpacity: 1;
 	--maxPosterOpacity: 1;
 	--colorBkgMainGallery: var(--grey-140);
@@ -96,6 +97,7 @@
 	--font-bold-weight: 700;
 	--font-extra-weight: 900;
 	--font-logo-weight: 900;
+	--font-part-opacity: 0.8;
 	--minPosterOpacity: 0.9;
 	--maxPosterOpacity: 1;
 	--colorBkgMainGallery: #b8b0ae;
@@ -128,7 +130,6 @@ a {
 
 	display: flex;
 	flex-direction: column;
-	align-content: start;
 }
 
 /* --------------------------------------------------- */
@@ -197,7 +198,9 @@ h4.notification-label {
 .label-before::before {
 	content: attr(data-label);
 	font-size: clamp(0.95rem, 1.8vw, 1.05rem);
-	font-weight: var(--font-thin-weight);
+	font-weight: var(--font-normal-weight);
+	/* font-weight: var(--font-thin-weight); */
+	opacity: var(--font-part-opacity);
 	text-transform: uppercase;
 }
 

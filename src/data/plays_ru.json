@@ -8,21 +8,24 @@
 		"author_full": "Константин Попов",
 		"genre": "современная история",
 		"length": 90,
-		"break": true,
+		"break": false,
 		"age": "18+",
 		"description": "",
 		"posters": {
 			"landscape": "karl.son.jpg",
+			"landscape_16_9": "karl.son_16_9.jpg",
 			"portrait": "karl.son_poster.jpg",
 			"facebook": "",
 			"minimum": ""
 		},
 		"photos": ["", "", ""],
 		"lang": "русский",
-		"characters": [{ "id": 3, "name": "Ольга", "description": "его сестра, старшая", "actors": [101] }],
-		"creators": {
-			"regie": 1
-		}
+		"characters": [],
+		"creators": [
+			{ "type": "regie", "people": [1] },
+			{ "type": "light", "people": [4] },
+			{ "type": "sound", "people": [7] }
+		]
 	},
 	{
 		"id": 7,
@@ -39,16 +42,24 @@
 		"description": "",
 		"posters": {
 			"landscape": "steppke_und_karlson.jpg",
+			"landscape_16_9": "steppke_und_karlson_16_9.jpg",
 			"portrait": "steppke_und_karlson_poster.jpg",
 			"facebook": "",
 			"minimum": ""
 		},
 		"photos": ["", "", ""],
 		"lang": "немецкий",
-		"characters": [{ "id": 3, "name": "Ольга", "description": "его сестра, старшая", "actors": [101] }],
-		"creators": {
-			"regie": 1
-		}
+		"characters": [
+			{ "id": 1, "name": "Малыш", "description": "", "actors": [] },
+			{ "id": 2, "name": "Карлсон", "description": "летающий человек", "actors": [] },
+			{ "id": 3, "name": "Фрау Свантесон", "description": "мама Малыша", "actors": [] },
+			{ "id": 4, "name": "Фрекен Бок", "description": "домработница Свантесонов", "actors": [] }
+		],
+		"creators": [
+			{ "type": "regie", "people": [1] },
+			{ "type": "light", "people": [4] },
+			{ "type": "sound", "people": [7] }
+		]
 	},
 	{
 		"id": 6,
@@ -67,16 +78,24 @@
 		"trailer_embed": "https://www.youtube-nocookie.com/embed/_Paauq1_o4o?si=TVh97Y3ddBCcJPle",
 		"posters": {
 			"landscape": "steppke_und_karlson.jpg",
+			"landscape_16_9": "steppke_und_karlson_16_9.jpg",
 			"portrait": "steppke_und_karlson_poster.jpg",
 			"facebook": "",
 			"minimum": ""
 		},
 		"photos": ["", "", ""],
 		"lang": "русский",
-		"characters": [{ "id": 3, "name": "Ольга", "description": "его сестра, старшая", "actors": [101] }],
-		"creators": {
-			"regie": 1
-		}
+		"characters": [
+			{ "id": 1, "name": "Малыш", "description": "", "actors": [110, 118] },
+			{ "id": 2, "name": "Карлсон", "description": "летающий человек", "actors": [103] },
+			{ "id": 3, "name": "Фрау Свантесон", "description": "мама Малыша", "actors": [100, 108] },
+			{ "id": 4, "name": "Фрекен Бок", "description": "домработница Свантесонов", "actors": [102, 116, 111] }
+		],
+		"creators": [
+			{ "type": "regie", "people": [1] },
+			{ "type": "light", "people": [4] },
+			{ "type": "sound", "people": [7] }
+		]
 	},
 	{
 		"id": 5,
@@ -92,16 +111,27 @@
 		"description": "",
 		"posters": {
 			"landscape": "gefaerliche_kurve.jpg",
+			"landscape_16_9": "gefaerliche_kurve_16_9.jpg",
 			"portrait": "gefaerliche_kurve_poster.jpg",
 			"facebook": "",
 			"minimum": ""
 		},
 		"photos": ["", "", ""],
 		"lang": "русский",
-		"characters": [{ "id": 3, "name": "Ольга", "description": "его сестра, старшая", "actors": [101] }],
-		"creators": {
-			"regie": 1
-		}
+		"characters": [
+			{ "id": 1, "name": "Роберт Кэплен", "actors": [103] },
+			{ "id": 2, "name": "Фреда Кэплен", "description": "жена Роберта", "actors": [100] },
+			{ "id": 3, "name": "Гордон Уайтхауз", "description": "брат Фреды", "actors": [112, 106] },
+			{ "id": 4, "name": "Бетти Уайтхауз", "description": "жена Гордона", "actors": [111, 117] },
+			{ "id": 5, "name": "Олуэн Пиил", "actors": [102, 105] },
+			{ "id": 6, "name": "Чарлз Стэнтон", "actors": [106, 121] },
+			{ "id": 7, "name": "Мод Мокридж", "actors": [108] }
+		],
+		"creators": [
+			{ "type": "regie", "people": [1] },
+			{ "type": "light", "people": [4] },
+			{ "type": "sound", "people": [7] }
+		]
 	},
 	{
 		"id": 4,
@@ -119,16 +149,28 @@
 		"trailer_embed": "https://www.youtube-nocookie.com/embed/1mspb4pzIHk?si=u0t4x3ByniqyrTzO",
 		"posters": {
 			"landscape": "teure_wohnung.jpg",
+			"landscape_16_9": "teure_wohnung_16_9.jpg",
 			"portrait": "teure_wohnung_poster.jpg",
 			"facebook": "",
 			"minimum": ""
 		},
 		"photos": ["", "", ""],
 		"lang": "русский",
-		"characters": [{ "id": 3, "name": "Ольга", "description": "его сестра, старшая", "actors": [101] }],
-		"creators": {
-			"regie": 1
-		}
+		"characters": [
+			{ "id": 1, "name": "Магдалина Марковна Филатова", "actors": [100] },
+			{ "id": 2, "name": "Алексей Андреевич", "description": "её муж", "actors": [109, 1] },
+			{ "id": 3, "name": "Алексей Андреевич", "description": "в молодости", "actors": [119] },
+			{ "id": 4, "name": "Наташа", "description": "их дочь", "actors": [111, 122] },
+			{ "id": 5, "name": "Матвей (Мотя)", "description": "сын Наташи", "actors": [106] },
+			{ "id": 6, "name": "Гаянэ Гаэтановна", "description": "риелтор", "actors": [102, 105] },
+			{ "id": 7, "name": "Олег Васильевич", "description": "покупатель", "actors": [3, 121] },
+			{ "id": 8, "name": "Сергей Иванович", "description": "сосед Филатовых", "actors": [103] }
+		],
+		"creators": [
+			{ "type": "regie", "people": [1] },
+			{ "type": "light", "people": [4] },
+			{ "type": "sound", "people": [7] }
+		]
 	},
 	{
 		"id": 2,
@@ -138,22 +180,41 @@
 		"author": "А.Гончуков, А.Слаповский",
 		"author_full": "Арсений Гончуков, Алексей Слаповский",
 		"genre": "трагикомедия",
-		"length": 60,
+		"length": 80,
 		"break": false,
 		"age": "16+",
 		"description": "",
 		"posters": {
 			"landscape": "gefaerliche_kurve.jpg",
+			"landscape_16_9": "gefaerliche_kurve_16_9.jpg",
 			"portrait": "gefaerliche_kurve_poster.jpg",
 			"facebook": "",
 			"minimum": ""
 		},
 		"photos": ["", "", ""],
 		"lang": "русский",
-		"characters": [{ "id": 3, "name": "Ольга", "description": "его сестра, старшая", "actors": [101] }],
-		"creators": {
-			"regie": 1
-		}
+		"characters": [
+			{ "id": 1, "name": "Полина", "description": "задержанная", "actors": [100, 102] },
+			{ "id": 2, "name": "Следователь СК", "description": "майор", "actors": [107, 103] },
+			{ "id": 3, "name": "Оперативник ФСБ", "description": "капитан", "actors": [103, 121] },
+			{ "id": 4, "name": "Первый омоновец", "actors": [107, 103] },
+			{ "id": 5, "name": "Второй омоновец", "actors": [103, 121] },
+			{ "id": 6, "name": "Данила", "description": "старшеклассник", "actors": [119, 106] },
+			{ "id": 7, "name": "Марина", "description": "подружка Данилы", "actors": [111] },
+			{ "id": 8, "name": "Сергей", "description": "телеведущий", "actors": [3, 106] },
+			{ "id": 9, "name": "Зарина", "description": "теленачальница Сергея", "actors": [100, 102] },
+			{ "id": 10, "name": "Борис", "description": "главред", "actors": [103] },
+			{ "id": 11, "name": "Светлана", "actors": [126] },
+			{ "id": 12, "name": "Ирина", "actors": [100] },
+			{ "id": 13, "name": "Этна", "description": "около … лет ", "actors": [102, 100] },
+			{ "id": 14, "name": "Кантор", "description": "за … лет", "actors": [3, 121] },
+			{ "id": 15, "name": "ГОЛОС", "actors": [103, 121] }
+		],
+		"creators": [
+			{ "type": "regie", "people": [1] },
+			{ "type": "light", "people": [4] },
+			{ "type": "sound", "people": [7] }
+		]
 	},
 	{
 		"id": 1,
@@ -163,7 +224,7 @@
 		"author": "А.Чехов",
 		"author_full": "Антон Чехов",
 		"genre": "драма",
-		"length": 120,
+		"length": 135,
 		"break": true,
 		"age": "14+",
 		"description": "",
@@ -171,6 +232,7 @@
 		"trailer_embed": "https://www.youtube-nocookie.com/embed/8e44BfrkfzE?si=ioMQimlAtF5AosQw",
 		"posters": {
 			"landscape": "drei_schwestern.jpg",
+			"landscape_16_9": "drei_schwestern_16_9.jpg",
 			"portrait": "drei_schwestern_poster.jpg",
 			"facebook": "",
 			"minimum": ""
@@ -178,7 +240,7 @@
 		"photos": ["", "", ""],
 		"lang": "русский",
 		"characters": [
-			{ "id": 1, "name": "Прозоров Андрей Сергеевич", "description": "", "actors": [3] },
+			{ "id": 1, "name": "Прозоров Андрей Сергеевич", "actors": [3] },
 			{ "id": 2, "name": "Наталья Ивановна", "description": "его невеста, потом жена", "actors": [102] },
 			{ "id": 3, "name": "Ольга", "description": "его сестра, старшая", "actors": [101] },
 			{ "id": 4, "name": "Маша", "description": "его сестра, средняя", "actors": [100] },
@@ -194,10 +256,12 @@
 			{ "id": 9, "name": "Чебутыкин Иван Романович", "description": "военный доктор", "actors": [1] },
 			{ "id": 10, "name": "Анфиса", "description": "нянька", "actors": [108] }
 		],
-		"creators": {
-			"regie": 1,
-			"music": 2,
-			"costumes": 126
-		}
+		"creators": [
+			{ "type": "regie", "people": [1] },
+			{ "type": "music", "people": [2] },
+			{ "type": "light", "people": [4] },
+			{ "type": "sound", "people": [7] },
+			{ "type": "costumes", "people": [126] }
+		]
 	}
 ]

@@ -13,6 +13,7 @@
 		"description": "",
 		"posters": {
 			"landscape": "karl.son.jpg",
+			"landscape_16_9": "karl.son_16_9.jpg",
 			"portrait": "karl.son_poster.jpg",
 			"facebook": "",
 			"minimum": ""
@@ -20,9 +21,11 @@
 		"photos": ["", "", ""],
 		"lang": "Russisch",
 		"characters": [{ "id": 3, "name": "Ольга", "description": "его сестра, старшая", "actors": [101] }],
-		"creators": {
-			"regie": 1
-		}
+		"creators": [
+			{ "type": "regie", "people": [1] },
+			{ "type": "light", "people": [4] },
+			{ "type": "sound", "people": [7] }
+		]
 	},
 	{
 		"id": 7,
@@ -39,6 +42,7 @@
 		"description": "",
 		"posters": {
 			"landscape": "steppke_und_karlson.jpg",
+			"landscape_16_9": "steppke_und_karlson_16_9.jpg",
 			"portrait": "steppke_und_karlson_poster.jpg",
 			"facebook": "",
 			"minimum": ""
@@ -46,9 +50,11 @@
 		"photos": ["", "", ""],
 		"lang": "Deutsch",
 		"characters": [{ "id": 3, "name": "Ольга", "description": "его сестра, старшая", "actors": [101] }],
-		"creators": {
-			"regie": 1
-		}
+		"creators": [
+			{ "type": "regie", "people": [1] },
+			{ "type": "light", "people": [4] },
+			{ "type": "sound", "people": [7] }
+		]
 	},
 	{
 		"id": 6,
@@ -67,6 +73,7 @@
 		"trailer_embed": "https://www.youtube-nocookie.com/embed/_Paauq1_o4o?si=TVh97Y3ddBCcJPle",
 		"posters": {
 			"landscape": "steppke_und_karlson.jpg",
+			"landscape_16_9": "steppke_und_karlson_16_9.jpg",
 			"portrait": "steppke_und_karlson_poster.jpg",
 			"facebook": "",
 			"minimum": ""
@@ -74,9 +81,11 @@
 		"photos": ["", "", ""],
 		"lang": "Russisch",
 		"characters": [{ "id": 3, "name": "Ольга", "description": "его сестра, старшая", "actors": [101] }],
-		"creators": {
-			"regie": 1
-		}
+		"creators": [
+			{ "type": "regie", "people": [1] },
+			{ "type": "light", "people": [4] },
+			{ "type": "sound", "people": [7] }
+		]
 	},
 	{
 		"id": 5,
@@ -92,6 +101,7 @@
 		"description": "",
 		"posters": {
 			"landscape": "gefaerliche_kurve.jpg",
+			"landscape_16_9": "gefaerliche_kurve_16_9.jpg",
 			"portrait": "gefaerliche_kurve_poster.jpg",
 			"facebook": "",
 			"minimum": ""
@@ -99,9 +109,11 @@
 		"photos": ["", "", ""],
 		"lang": "Russisch",
 		"characters": [{ "id": 3, "name": "Ольга", "description": "его сестра, старшая", "actors": [101] }],
-		"creators": {
-			"regie": 1
-		}
+		"creators": [
+			{ "type": "regie", "people": [1] },
+			{ "type": "light", "people": [4] },
+			{ "type": "sound", "people": [7] }
+		]
 	},
 	{
 		"id": 4,
@@ -119,6 +131,7 @@
 		"trailer_embed": "https://www.youtube-nocookie.com/embed/1mspb4pzIHk?si=u0t4x3ByniqyrTzO",
 		"posters": {
 			"landscape": "teure_wohnung.jpg",
+			"landscape_16_9": "teure_wohnung_16_9.jpg",
 			"portrait": "teure_wohnung_poster.jpg",
 			"facebook": "",
 			"minimum": ""
@@ -126,9 +139,11 @@
 		"photos": ["", "", ""],
 		"lang": "Russisch",
 		"characters": [{ "id": 3, "name": "Ольга", "description": "его сестра, старшая", "actors": [101] }],
-		"creators": {
-			"regie": 1
-		}
+		"creators": [
+			{ "type": "regie", "people": [1] },
+			{ "type": "light", "people": [4] },
+			{ "type": "sound", "people": [7] }
+		]
 	},
 	{
 		"id": 2,
@@ -144,6 +159,7 @@
 		"description": "",
 		"posters": {
 			"landscape": "gefaerliche_kurve.jpg",
+			"landscape_16_9": "gefaerliche_kurve_16_9.jpg",
 			"portrait": "gefaerliche_kurve_poster.jpg",
 			"facebook": "",
 			"minimum": ""
@@ -151,9 +167,11 @@
 		"photos": ["", "", ""],
 		"lang": "Russisch",
 		"characters": [{ "id": 3, "name": "Ольга", "description": "его сестра, старшая", "actors": [101] }],
-		"creators": {
-			"regie": 1
-		}
+		"creators": [
+			{ "type": "regie", "people": [1] },
+			{ "type": "light", "people": [4] },
+			{ "type": "sound", "people": [7] }
+		]
 	},
 	{
 		"id": 1,
@@ -194,10 +212,12 @@
 			{ "id": 9, "name": "Чебутыкин Иван Романович", "description": "военный доктор", "actors": [1] },
 			{ "id": 10, "name": "Анфиса", "description": "нянька", "actors": [108] }
 		],
-		"creators": {
-			"regie": 1,
-			"music": 2,
-			"costumes": 126
-		}
+		"creators": [
+			{ "type": "regie", "people": [1] },
+			{ "type": "music", "people": [2] },
+			{ "type": "light", "people": [4] },
+			{ "type": "sound", "people": [7] },
+			{ "type": "costumes", "people": [126] }
+		]
 	}
 ]

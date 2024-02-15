@@ -74,10 +74,6 @@
 	width: min-content;
 	height: 80%;
 	top: clamp(0%, min(5.5vh, 7vw), var(--swiper-pagination-bottom, 6%));
-
-	/* display: flex;
-	justify-content: center;
-	align-content: center; */
 }
 
 .swiper-pagination-bullet {
@@ -111,7 +107,7 @@
 
 	display: flex;
 	justify-content: center;
-	align-content: center;
+	align-items: center;
 }
 .carusel-play-image {
 	width: min-content;

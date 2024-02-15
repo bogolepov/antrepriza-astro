@@ -136,9 +136,7 @@
 			"suffix": "viv",
 			"name": { "ru": "Вадим", "de": "Vadim" },
 			"surname": { "ru": "Иванов", "de": "Ivanov" }
-		}
-	],
-	"ex_people": [
+		},
 		{
 			"id": 121,
 			"suffix": "sv",

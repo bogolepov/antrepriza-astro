@@ -16,8 +16,10 @@
 	"premiere": { "ru": "Премьера", "de": "Premiere" },
 	"nextDates": { "ru": "Ближайшие даты", "de": "Kommende Aufführungen" },
 	"duration": { "ru": "Продолжительность", "de": "Spieldauer" },
-	"break": { "ru": "с антрактом", "de": "inkl. Pause" },
-	"break_no": { "ru": "без антракта", "de": "keine Pause" },
+	"break": { "ru": "с\u00A0антрактом", "de": "mit\u00A0Pause" },
+	"break_no": { "ru": "без\u00A0антракта", "de": "keine\u00A0Pause" },
+	"hour_short": { "ru": "ч", "de": "Std" },
+	"minute_short": { "ru": "мин", "de": "Min" },
 	"giftcard": { "ru": "Подарочная карта", "de": "Geschenkkarte" },
 	"giftcard_prices": { "ru": "Номинал подарочной карты", "de": "Geschenkbetrag" },
 	"giftcard_info": {
@@ -30,5 +32,10 @@
 		"de": "Das Geschenkticket gilt für die Vorstellungen des Theaters auf der Festbühne an der {address} zum einmaligen Eintritt.\u000A\u000AFür Kinderaufführungen gelten Tickets der Kategorien {adult} und {kids}. Für andere Vorstellungen gilt {standart}-Ticket.\u000A{reduce}-Ticket ist für Studierende und Inhaber*innen des Berlinpasses (Berlin-Ticket S) für alle Vorstellungen gültig. Bitte bringen Sie einen Nachweis für die Ermäßigungsberechtigung mit.\u000A\u000ANB. Freie Platzwahl im Theater."
 	},
 	"play_team": { "ru": "Актерский состав", "de": "Besetzung" },
-	"play_creators": { "ru": "Создатели спектакля", "de": "Produktion" }
+	"play_creators": { "ru": "Создатели спектакля", "de": "Produktion" },
+	"regie": { "ru": "Режиссер", "de": "Regie" },
+	"music": { "ru": "Композитор", "de": "Komponist" },
+	"light": { "ru": "Свет", "de": "Licht" },
+	"sound": { "ru": "Звук", "de": "Ton" },
+	"costumes": { "ru": "Костюмы", "de": "Kostüme" }
 }
