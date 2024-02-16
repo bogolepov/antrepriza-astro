@@ -173,7 +173,9 @@ h2.play-title {
 
 h4.notification-label {
 	font-size: clamp(0.95rem, 1.8vw, 1.05rem);
-	font-weight: var(--font-thin-weight);
+	font-weight: var(--font-normal-weight);
+	/* font-weight: var(--font-thin-weight); */
+	opacity: var(--font-part-opacity);
 	text-transform: uppercase;
 	margin-bottom: 0.3rem;
 }

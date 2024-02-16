@@ -6,21 +6,29 @@ section.play {
 }
 
 .play-title {
-	font-size: 3rem;
+	font-size: clamp(1.6rem, 4vw, 3rem);
 	font-weight: var(--font-extra-weight);
 	line-height: 1.25em;
-	padding-top: 2rem;
+	padding-top: clamp(1.1rem, 2.6vw, 2rem);
+	text-transform: uppercase;
 	align-self: self-start;
 }
 
-.play-author {
-	font-size: 1.4rem;
+.play-author,
+.next-plays-label {
+	font-size: clamp(1rem, 1.9vw, 1.4rem);
 	font-weight: var(--font-bold-weight);
 	opacity: var(--font-part-opacity);
 	line-height: 1.25em;
-	padding-top: 0.5rem;
-	padding-bottom: 2rem;
+	text-transform: uppercase;
 	align-self: self-start;
+}
+.play-author {
+	padding-top: clamp(0.3rem, 0.7vw, 0.5rem);
+	padding-bottom: clamp(1.1rem, 2.6vw, 2rem);
+}
+.next-plays-label {
+	padding-bottom: clamp(0.3rem, 0.7vw, 0.5rem);
 }
 
 .media_container {
@@ -59,8 +67,37 @@ section.play {
 	padding-bottom: clamp(5px, 1.8vw, 30px);
 }
 
+.play-dates {
+	align-self: self-start;
+}
+
+.buttons-block {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	row-gap: clamp(0.6rem, 1.5vw, 0.9rem);
+	column-gap: 1rem;
+}
+
+.button-date {
+	padding-top: 0.3rem;
+	padding-bottom: 0.25rem;
+}
+.button-address {
+	font-size: clamp(0.85rem, 1.5vw, 1rem);
+	border-top: 1px solid var(--colorFontTicketsBtn);
+	padding-top: 0.25rem;
+	padding-bottom: 0.3rem;
+	text-transform: initial;
+	opacity: 0.7;
+}
+
 .list {
 	padding: 0;
+}
+.list h2 {
+	font-size: clamp(1.3rem, 2.8vw, 1.9rem);
 }
 
 .list-item {

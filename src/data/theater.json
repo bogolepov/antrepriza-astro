@@ -4,7 +4,9 @@
 		"street": "Boxhagener Str.",
 		"building": "18",
 		"index": "10245",
-		"city": "Berlin"
+		"city": "Berlin",
+		"name": "Neue Bühne Friedrichshain",
+		"name_short": "NBF"
 	},
 	"stageName": "Neue Bühne Friedrichshain",
 	"main_website": "https://antrepriza.eu/",
@@ -57,7 +59,7 @@
 			"id": 103,
 			"suffix": "ag",
 			"name": { "ru": "Алексей", "de": "Alex" },
-			"surname": { "ru": "Голубев-Таубе", "de": "Golubev-Taube" }
+			"surname": { "ru": "Голубев-Таубе", "de": "Taube" }
 		},
 		{
 			"id": 104,
