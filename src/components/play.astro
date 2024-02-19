@@ -5,9 +5,11 @@ import "@styles/play.css"
 const {lang, play_id} = Astro.props;
 
 import theater from '@data/theater.json'
-import dictionary from "@data/dictionary.json"
+import dictionary from '@data/dictionary.json'
 import plays from '@data/plays.json'
-import programm from "@data/afisha.json"
+import programm from '@data/afisha.json'
+
+import { getEntry } from 'astro:content';
 
 let thisPlay = plays.filter(play => play.id == play_id)[0];
 
@@ -24,6 +26,10 @@ let strDuration;
 if (thisPlay.length >= 60) strDuration = Math.trunc(thisPlay.length/60) + dictionary.hour_short[lang] + "\u00A0";
 strDuration = strDuration + (thisPlay.length%60).toString().padStart(2, '0') + dictionary.minute_short[lang];
 strDuration = strDuration + ", " + (thisPlay.break ? dictionary.break[lang] : dictionary.break_no[lang]);
+
+const description: string = thisPlay.description[lang] ? thisPlay.description[lang] : 'play_empty';
+const entry = await getEntry('plays', description);
+const { Content } = await entry.render();
 
 ---
 <section class="play">
@@ -85,8 +91,16 @@ strDuration = strDuration + ", " + (thisPlay.break ? dictionary.break[lang] : di
         </div>
       </div>
   }
+  {
+    thisPlay.description[lang] &&
+    <div class="play-description">
+      <br><br>
+      <h2>{dictionary.about_play[lang].toUpperCase()}</h2>
+      <Content/>
+    </div>
+  }
   <br>
-  <ul class="list"><h2>{dictionary.play_creators[lang].toUpperCase()}</h2></ul>
+  <ul class="list"><h3>{dictionary.play_creators[lang].toUpperCase()}</h3></ul>
   {
     thisPlay.creators.map(creator => {
       return (
@@ -123,7 +137,7 @@ strDuration = strDuration + ", " + (thisPlay.break ? dictionary.break[lang] : di
     })
   }
   <br>
-  <ul class="list"><h2>{dictionary.play_team[lang].toUpperCase()}</h2></ul>
+  <ul class="list"><h3>{dictionary.play_team[lang].toUpperCase()}</h3></ul>
   {
     thisPlay.characters.map(character => {
       return (

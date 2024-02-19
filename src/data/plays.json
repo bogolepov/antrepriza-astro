@@ -10,7 +10,7 @@
 		"length": 90,
 		"break": false,
 		"age": "18+",
-		"description": "",
+		"description": { "ru": "play_miks_ru", "de": "play_miks_de" },
 		"posters": {
 			"landscape": "karl.son.jpg",
 			"landscape_16_9": "karl.son_16_9.jpg",
@@ -39,7 +39,7 @@
 		"length": 60,
 		"break": false,
 		"age": "3+",
-		"description": "",
+		"description": { "ru": null, "de": null },
 		"posters": {
 			"landscape": "steppke_und_karlson.jpg",
 			"landscape_16_9": "steppke_und_karlson_16_9.jpg",
@@ -88,7 +88,7 @@
 		"length": 60,
 		"break": false,
 		"age": "3+",
-		"description": "",
+		"description": { "ru": null, "de": null },
 		"trailer": "https://www.youtube.com/watch?v=_Paauq1_o4o",
 		"trailer_embed": "https://www.youtube-nocookie.com/embed/_Paauq1_o4o?si=TVh97Y3ddBCcJPle",
 		"posters": {
@@ -138,7 +138,7 @@
 		"length": 120,
 		"break": true,
 		"age": "18+",
-		"description": "",
+		"description": { "ru": null, "de": null },
 		"posters": {
 			"landscape": "gefaerliche_kurve.jpg",
 			"landscape_16_9": "gefaerliche_kurve_16_9.jpg",
@@ -189,7 +189,7 @@
 		"length": 120,
 		"break": true,
 		"age": "18+",
-		"description": "",
+		"description": { "ru": null, "de": null },
 		"trailer": "https://www.youtube.com/watch?v=1mspb4pzIHk",
 		"trailer_embed": "https://www.youtube-nocookie.com/embed/1mspb4pzIHk?si=u0t4x3ByniqyrTzO",
 		"posters": {
@@ -267,7 +267,7 @@
 		"length": 80,
 		"break": false,
 		"age": "16+",
-		"description": "",
+		"description": { "ru": null, "de": null },
 		"posters": {
 			"landscape": "gefaerliche_kurve.jpg",
 			"landscape_16_9": "gefaerliche_kurve_16_9.jpg",
@@ -356,7 +356,7 @@
 		"length": 135,
 		"break": true,
 		"age": "14+",
-		"description": "",
+		"description": { "ru": "play_ts_ru", "de": "play_ts_de" },
 		"trailer": "https://www.youtube.com/watch?v=8e44BfrkfzE",
 		"trailer_embed": "https://www.youtube-nocookie.com/embed/8e44BfrkfzE?si=ioMQimlAtF5AosQw",
 		"posters": {
@@ -428,6 +428,7 @@
 		"creators": [
 			{ "type": "regie", "people": [1] },
 			{ "type": "music", "people": [2] },
+			{ "type": "stage", "people": [103, 106, 108] },
 			{ "type": "light", "people": [4] },
 			{ "type": "sound", "people": [7] },
 			{ "type": "costumes", "people": [126] }
