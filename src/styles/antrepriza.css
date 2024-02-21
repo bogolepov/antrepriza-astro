@@ -18,6 +18,10 @@
 	--gray-rose: rgb(135, 96, 94);
 	--gray-rose-light: rgb(251, 204, 199);
 
+	--red: rgb(227, 13, 21);
+	--red-dark: rgba(227, 13, 20, 0.85);
+	--red-light: rgba(227, 13, 20, 0.47);
+
 	--scrollBarWidth: 10px;
 }
 
@@ -194,6 +198,14 @@ h4.notification-label {
 	letter-spacing: 0.07rem;
 }
 
+.opacity1 {
+	opacity: var(--font-part-opacity);
+}
+
+.bold1 {
+	font-weight: var(--font-bold-weight);
+}
+
 /* --------------------------------------------------- */
 /* -------------- insert label ::before -------------- */
 /* --------------------------------------------------- */
@@ -243,6 +255,7 @@ h4.notification-label {
 	text-transform: uppercase;
 	border: 1px solid var(--colorBkgTicketsBtn);
 	border-radius: 3px;
+	/* transition: transform 200ms ease; */
 	z-index: 5;
 
 	padding: 0.25em 0.6em 0.25em 0.6em;
@@ -254,11 +267,15 @@ h4.notification-label {
 	text-decoration: line-through;
 }
 
-.tickets-book-button:hover {
-	cursor: pointer;
-}
-.tickets-book-button[disabled]:hover {
-	cursor: default;
+@media (hover: hover) {
+	.tickets-book-button:hover {
+		cursor: pointer;
+		/* transform: scale(1.1, 1.1); */
+	}
+	.tickets-book-button[disabled]:hover {
+		cursor: default;
+		/* transform: scale(1, 1); */
+	}
 }
 
 /* --------------------------------------------------- */

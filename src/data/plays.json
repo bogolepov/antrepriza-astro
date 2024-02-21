@@ -138,7 +138,7 @@
 		"length": 120,
 		"break": true,
 		"age": "18+",
-		"description": { "ru": null, "de": null },
+		"description": { "ru": "play_op_ru", "de": "play_op_de" },
 		"posters": {
 			"landscape": "gefaerliche_kurve.jpg",
 			"landscape_16_9": "gefaerliche_kurve_16_9.jpg",
@@ -189,7 +189,7 @@
 		"length": 120,
 		"break": true,
 		"age": "18+",
-		"description": { "ru": null, "de": null },
+		"description": { "ru": "play_dk_ru", "de": "play_dk_de" },
 		"trailer": "https://www.youtube.com/watch?v=1mspb4pzIHk",
 		"trailer_embed": "https://www.youtube-nocookie.com/embed/1mspb4pzIHk?si=u0t4x3ByniqyrTzO",
 		"posters": {
@@ -267,7 +267,7 @@
 		"length": 80,
 		"break": false,
 		"age": "16+",
-		"description": { "ru": null, "de": null },
+		"description": { "ru": "play_pip_ru", "de": "play_pip_de" },
 		"posters": {
 			"landscape": "gefaerliche_kurve.jpg",
 			"landscape_16_9": "gefaerliche_kurve_16_9.jpg",

@@ -108,6 +108,17 @@ section.play {
 	opacity: var(--font-part-opacity);
 }
 
+.description-content {
+	width: 100%;
+	max-width: 110vh;
+	/* text-align: justify; */
+	margin: auto;
+}
+.description-content i {
+	opacity: var(--font-part-opacity);
+	font-weight: var(--font-bold-weight);
+}
+
 .list {
 	padding: 0;
 }
