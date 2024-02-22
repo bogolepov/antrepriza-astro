@@ -94,7 +94,11 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 								plays.map((play) => {
 									return (
 										<li class="dropdown-item">
-											<a class="dropdown-item-link" href={"/"+lang+"/plays/play-"+play.suffix}>{play.alt_title[lang]}</a>
+											<a
+												class:list={['dropdown-item-link', {active_link: currentPath[1] === menuPlays.link && currentPath[2] === ('play-'+play.suffix)}]}												 
+												href={"/"+lang+"/plays/play-"+play.suffix}>
+													{play.alt_title[lang]}
+											</a>
 										</li>
 									);
 								} )
@@ -243,7 +247,11 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 						plays.map((play) => {
 							return (
 								<li class="burger-submenu-item">
-									<a href={"/"+lang+"/plays/play-"+play.suffix}>{play.alt_title[lang]}</a>
+									<a 
+										class:list={{active_link: currentPath[1] === menuPlays.link && currentPath[2] === ('play-'+play.suffix)}}												 
+										href={"/"+lang+"/plays/play-"+play.suffix}>
+											{play.alt_title[lang]}
+									</a>
 								</li>
 							);
 						} )
