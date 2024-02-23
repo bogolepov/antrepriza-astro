@@ -18,13 +18,13 @@
 			"facebook": "",
 			"minimum": ""
 		},
-		"photos": [],
 		"lang": { "ru": "русский", "de": "Russisch" },
 		"characters": [],
 		"creators": [
 			{ "type": "regie", "people": [1] },
 			{ "type": "light", "people": [4] },
-			{ "type": "sound", "people": [7] }
+			{ "type": "sound", "people": [7] },
+			{ "type": "graphic_design", "people": [6] }
 		]
 	},
 	{
@@ -47,7 +47,6 @@
 			"facebook": "",
 			"minimum": ""
 		},
-		"photos": [],
 		"lang": { "ru": "немецкий", "de": "Deutsch" },
 		"characters": [
 			{ "id": 1, "name": { "ru": "Малыш", "de": "Steppke" }, "actors": [] },
@@ -73,7 +72,8 @@
 		"creators": [
 			{ "type": "regie", "people": [1] },
 			{ "type": "light", "people": [4] },
-			{ "type": "sound", "people": [7] }
+			{ "type": "sound", "people": [7] },
+			{ "type": "graphic_design", "people": [6] }
 		]
 	},
 	{
@@ -98,7 +98,6 @@
 			"facebook": "",
 			"minimum": ""
 		},
-		"photos": [],
 		"lang": { "ru": "русский", "de": "Russisch" },
 		"characters": [
 			{ "id": 1, "name": { "ru": "Малыш", "de": "Steppke" }, "actors": [110, 118] },
@@ -124,7 +123,9 @@
 		"creators": [
 			{ "type": "regie", "people": [1] },
 			{ "type": "light", "people": [4] },
-			{ "type": "sound", "people": [7] }
+			{ "type": "sound", "people": [7] },
+			{ "type": "graphic_design", "people": [6] },
+			{ "type": "photographer", "people": [5] }
 		]
 	},
 	{
@@ -146,7 +147,6 @@
 			"facebook": "",
 			"minimum": ""
 		},
-		"photos": [],
 		"lang": { "ru": "русский", "de": "Russisch" },
 		"characters": [
 			{ "id": 1, "name": { "ru": "Роберт Кэплен", "de": "Robert Caplan" }, "actors": [103] },
@@ -175,7 +175,9 @@
 		"creators": [
 			{ "type": "regie", "people": [1] },
 			{ "type": "light", "people": [4] },
-			{ "type": "sound", "people": [7] }
+			{ "type": "sound", "people": [7] },
+			{ "type": "graphic_design", "people": [6] },
+			{ "type": "photographer", "people": [5] }
 		]
 	},
 	{
@@ -199,7 +201,6 @@
 			"facebook": "",
 			"minimum": ""
 		},
-		"photos": [],
 		"lang": { "ru": "русский", "de": "Russisch" },
 		"characters": [
 			{
@@ -253,7 +254,9 @@
 		"creators": [
 			{ "type": "regie", "people": [1] },
 			{ "type": "light", "people": [4] },
-			{ "type": "sound", "people": [7] }
+			{ "type": "sound", "people": [7] },
+			{ "type": "graphic_design", "people": [6] },
+			{ "type": "photographer", "people": [5] }
 		]
 	},
 	{
@@ -275,7 +278,6 @@
 			"facebook": "",
 			"minimum": ""
 		},
-		"photos": [],
 		"lang": { "ru": "русский", "de": "Russisch" },
 		"characters": [
 			{ "id": 1, "name": { "ru": "Полина", "de": "Polina" }, "actors": [100, 102] },
@@ -366,7 +368,6 @@
 			"facebook": "",
 			"minimum": ""
 		},
-		"photos": [],
 		"lang": { "ru": "русский", "de": "Russisch" },
 		"characters": [
 			{ "id": 1, "name": { "ru": "Прозоров Андрей Сергеевич", "de": "Andrej Sergejewitsch Prosorow" }, "actors": [3] },
@@ -431,7 +432,9 @@
 			{ "type": "stage", "people": [103, 106, 108] },
 			{ "type": "light", "people": [4] },
 			{ "type": "sound", "people": [7] },
-			{ "type": "costumes", "people": [126] }
+			{ "type": "costumes", "people": [126] },
+			{ "type": "graphic_design", "people": [6] },
+			{ "type": "photographer", "people": [5] }
 		]
 	}
 ]

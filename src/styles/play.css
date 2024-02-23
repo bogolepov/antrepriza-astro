@@ -5,6 +5,10 @@ section.play {
 	margin: 0 clamp(1px, 2vw, 100px);
 }
 
+.play h2 {
+	font-size: clamp(1.7rem, 3.6vw, 2.5rem);
+}
+
 .play-title {
 	font-size: clamp(1.6rem, 4vw, 3rem);
 	font-weight: var(--font-extra-weight);
@@ -96,9 +100,6 @@ section.play {
 .play-description {
 	width: 100%;
 	font-size: clamp(0.85rem, 1.5vw, 1rem);
-}
-.play-description h2 {
-	font-size: clamp(1.7rem, 3.6vw, 2.5rem);
 }
 .play-description p {
 	margin-bottom: 0;

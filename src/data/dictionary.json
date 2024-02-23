@@ -21,6 +21,7 @@
 	"break_no": { "ru": "без\u00A0антракта", "de": "keine\u00A0Pause" },
 	"hour_short": { "ru": "ч", "de": "Std" },
 	"minute_short": { "ru": "мин", "de": "Min" },
+	"photos": { "ru": "Фотографии", "de": "Fotos" },
 	"show_more": { "ru": "Читать далее", "de": "Weiterlesen" },
 	"show_less": { "ru": "Свернуть", "de": "Weniger anzeigen" },
 	"giftcard": { "ru": "Подарочная карта", "de": "Geschenkkarte" },
@@ -40,5 +41,7 @@
 	"music": { "ru": "Композитор", "de": "Komponist" },
 	"light": { "ru": "Свет", "de": "Licht" },
 	"sound": { "ru": "Звук", "de": "Ton" },
-	"costumes": { "ru": "Костюмы", "de": "Kostüme" }
+	"costumes": { "ru": "Костюмы", "de": "Kostüme" },
+	"graphic_design": { "ru": "Графический дизайн", "de": "Grafikdesign" },
+	"photographer": { "ru": "Фотограф", "de": "Fotograf" }
 }
