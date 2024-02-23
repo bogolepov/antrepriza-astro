@@ -18,7 +18,7 @@
 			"facebook": "",
 			"minimum": ""
 		},
-		"photos": ["", "", ""],
+		"photos": [],
 		"lang": { "ru": "русский", "de": "Russisch" },
 		"characters": [],
 		"creators": [
@@ -39,7 +39,7 @@
 		"length": 60,
 		"break": false,
 		"age": "3+",
-		"description": { "ru": null, "de": null },
+		"description": { "ru": "play_suk_ru", "de": "play_suk_de" },
 		"posters": {
 			"landscape": "steppke_und_karlson.jpg",
 			"landscape_16_9": "steppke_und_karlson_16_9.jpg",
@@ -47,7 +47,7 @@
 			"facebook": "",
 			"minimum": ""
 		},
-		"photos": ["", "", ""],
+		"photos": [],
 		"lang": { "ru": "немецкий", "de": "Deutsch" },
 		"characters": [
 			{ "id": 1, "name": { "ru": "Малыш", "de": "Steppke" }, "actors": [] },
@@ -88,7 +88,7 @@
 		"length": 60,
 		"break": false,
 		"age": "3+",
-		"description": { "ru": null, "de": null },
+		"description": { "ru": "play_mik_ru", "de": "play_mik_de" },
 		"trailer": "https://www.youtube.com/watch?v=_Paauq1_o4o",
 		"trailer_embed": "https://www.youtube-nocookie.com/embed/_Paauq1_o4o?si=TVh97Y3ddBCcJPle",
 		"posters": {
@@ -98,7 +98,7 @@
 			"facebook": "",
 			"minimum": ""
 		},
-		"photos": ["", "", ""],
+		"photos": [],
 		"lang": { "ru": "русский", "de": "Russisch" },
 		"characters": [
 			{ "id": 1, "name": { "ru": "Малыш", "de": "Steppke" }, "actors": [110, 118] },
@@ -146,7 +146,7 @@
 			"facebook": "",
 			"minimum": ""
 		},
-		"photos": ["", "", ""],
+		"photos": [],
 		"lang": { "ru": "русский", "de": "Russisch" },
 		"characters": [
 			{ "id": 1, "name": { "ru": "Роберт Кэплен", "de": "Robert Caplan" }, "actors": [103] },
@@ -199,7 +199,7 @@
 			"facebook": "",
 			"minimum": ""
 		},
-		"photos": ["", "", ""],
+		"photos": [],
 		"lang": { "ru": "русский", "de": "Russisch" },
 		"characters": [
 			{
@@ -275,7 +275,7 @@
 			"facebook": "",
 			"minimum": ""
 		},
-		"photos": ["", "", ""],
+		"photos": [],
 		"lang": { "ru": "русский", "de": "Russisch" },
 		"characters": [
 			{ "id": 1, "name": { "ru": "Полина", "de": "Polina" }, "actors": [100, 102] },
@@ -366,7 +366,7 @@
 			"facebook": "",
 			"minimum": ""
 		},
-		"photos": ["", "", ""],
+		"photos": [],
 		"lang": { "ru": "русский", "de": "Russisch" },
 		"characters": [
 			{ "id": 1, "name": { "ru": "Прозоров Андрей Сергеевич", "de": "Andrej Sergejewitsch Prosorow" }, "actors": [3] },
