@@ -42,5 +42,6 @@
 	{ "filename": "IMG__9141.jpg", "is_landscape": true, "play_id": 4, "actors": [] },
 	{ "filename": "IMG__7615.jpg", "is_landscape": true, "play_id": 4, "actors": [] },
 
+	{ "filename": null, "is_landscape": true, "play_id": 1, "actors": [] },
 	{ "filename": null, "is_landscape": true, "play_id": 1, "actors": [] }
 ]
