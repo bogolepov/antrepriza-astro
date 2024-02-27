@@ -1,0 +1,118 @@
+.play-gallery {
+	height: min(100vw, 60vh);
+	max-height: 67vw;
+	min-height: 220px;
+}
+.play-gallery-position {
+	position: absolute;
+	left: 0;
+	right: 0;
+	height: min(100vw, 60vh);
+	max-height: 67vw;
+	min-height: 220px;
+}
+
+.swiper {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	position: relative;
+}
+
+.swiper-wrapper {
+}
+
+.swiper-control {
+	/* display: flex;
+	flex-direction: row; */
+}
+
+.swiper .swiper-button-prev,
+.swiper .swiper-button-next {
+	top: unset;
+	bottom: 0;
+	color: var(--colorFontDate);
+	line-height: 0;
+	border-radius: 50%;
+	border: 2px solid var(--colorFontDate);
+	width: clamp(30px, 6vw, 40px);
+	height: clamp(30px, 6vw, 40px);
+	margin: 0 10px;
+	transition: transform 200ms ease;
+}
+
+.swiper .swiper-button-prev::after {
+	content: '‹';
+	font-size: clamp(30px, 6.8vw, 50px);
+	line-height: 100%;
+	position: absolute;
+	bottom: 1px;
+	left: clamp(6.8px, 1.4vw, 8.5px);
+}
+.swiper .swiper-button-next::after {
+	content: '›';
+	font-size: clamp(30px, 6.8vw, 50px);
+	line-height: 100%;
+	position: absolute;
+	bottom: 1px;
+	right: clamp(6.8px, 1.4vw, 8.5px);
+}
+
+@media screen and (max-width: 230px) {
+	/* .swiper .swiper-button-prev,
+	.swiper .swiper-button-next {
+		display: none;
+	} */
+
+	.swiper-pagination {
+		display: none;
+	}
+}
+
+.swiper-pagination {
+	bottom: clamp(0%, min(4vh, 6vw), var(--swiper-pagination-bottom, 5%));
+}
+
+.swiper-slide {
+	width: min-content;
+	align-self: flex-start;
+	/* height: auto; */
+	max-height: 85%;
+	top: clamp(0%, max(0.5vh, 2vw), 5%);
+}
+
+.swiper-pagination-bullet {
+	width: clamp(1rem, min(6.5vh, 5vw), 1.7rem);
+	height: clamp(0.7rem, min(6.5vh, 2.95vw), 1rem);
+	border: 2px solid var(--colorFontDate);
+	background-color: transparent;
+	border-radius: 2px;
+	opacity: 1;
+	transition: transform 200ms ease;
+}
+
+.swiper-pagination-bullet-active {
+	background-color: var(--colorFontDate);
+}
+
+@media (hover: hover) {
+	.swiper .swiper-button-prev:hover,
+	.swiper .swiper-button-next:hover {
+		transform: scale(1.1, 1.1);
+	}
+
+	.swiper .swiper-pagination-bullet:hover {
+		transform: scale(1.2, 1.2);
+	}
+}
+
+.play-picture {
+	display: block;
+	width: auto;
+	max-width: 80vw;
+	height: 100%;
+	/* max-height: 45vh; */
+	object-fit: contain;
+	border-radius: 4px;
+}

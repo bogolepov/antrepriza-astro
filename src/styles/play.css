@@ -161,3 +161,7 @@ section.play {
 .small-description {
 	opacity: var(--font-part-opacity);
 }
+
+.play-end {
+	margin-bottom: clamp(1.1rem, 2.6vw, 2rem);
+}

@@ -10,6 +10,9 @@ import plays from '@data/plays.json'
 import programm from '@data/afisha.json'
 import photos from '@data/plays_photos.json'
 
+import Gallery from "@components/play_gallery.astro";
+
+
 import { getEntry } from 'astro:content';
 
 let thisPlay = plays.filter(play => play.id == play_id)[0];
@@ -99,9 +102,9 @@ const { Content } = await entry.render();
     <div class="play-description">
       <br><br>
       <h2>{dictionary.about_play[lang].toUpperCase()}</h2>
-      <div class="description-content">
+      <article class="description-content">
         <Content/>
-      </div>
+      </article>
     </div>
   }
   <br>
@@ -182,7 +185,8 @@ const { Content } = await entry.render();
     <div class="play-description">
       <br><br>
       <h2>{dictionary.photos[lang].toUpperCase()}</h2>
-      <div class="play-author">{thisPlay.author_full[lang].toUpperCase()}</div>
+      <Gallery play_id={play_id} play_suffix={thisPlay.suffix}/>
     </div>
   }
+  <div class="play-end"></div>
 </section>
