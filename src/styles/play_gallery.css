@@ -20,18 +20,10 @@
 	position: relative;
 }
 
-.swiper-wrapper {
-}
-
-.swiper-control {
-	/* display: flex;
-	flex-direction: row; */
-}
-
 .swiper .swiper-button-prev,
 .swiper .swiper-button-next {
 	top: unset;
-	bottom: 0;
+	bottom: 2px;
 	color: var(--colorFontDate);
 	line-height: 0;
 	border-radius: 50%;
@@ -65,7 +57,7 @@
 		display: none;
 	} */
 
-	.swiper-pagination {
+	.swiper .swiper-pagination {
 		display: none;
 	}
 }
@@ -74,7 +66,7 @@
 	bottom: clamp(0%, min(4vh, 6vw), var(--swiper-pagination-bottom, 5%));
 }
 
-.swiper-slide {
+.swiper .swiper-slide {
 	width: min-content;
 	align-self: flex-start;
 	/* height: auto; */
