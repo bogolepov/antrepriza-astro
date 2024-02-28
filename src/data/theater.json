@@ -1,4 +1,11 @@
 {
+	"menu": [
+		{ "title": { "ru": "О театре", "de": "Über Theater" }, "url": "theater" },
+		{ "title": { "ru": "Руководство", "de": "Theaterleitung" }, "url": "management" },
+		{ "title": { "ru": "Артисты", "de": "Schauspieler" }, "url": "actors" },
+		{ "title": { "ru": "Актерская студия", "de": "Schauspielerstudio" }, "url": "studio" },
+		{ "title": { "ru": "Адрес и контакты", "de": "Kontakt" }, "url": "contact" }
+	],
 	"stageAddress": {
 		"full_string": "Boxhagener Str. 18, 10245 Berlin",
 		"street": "Boxhagener Str.",

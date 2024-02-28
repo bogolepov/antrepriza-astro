@@ -95,9 +95,13 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 									return (
 										<li class="dropdown-item">
 											<a
-												class:list={['dropdown-item-link', {active_link: currentPath[1] === menuPlays.link && currentPath[2] === ('play-'+play.suffix)}]}												 
+												class:list={['dropdown-item-link', 'item-flex', {active_link: currentPath[1] === menuPlays.link && currentPath[2] === ('play-'+play.suffix)}]}												 
 												href={"/"+lang+"/plays/play-"+play.suffix}>
-													{play.alt_title[lang]}
+													<div>{play.alt_title[lang]}</div>
+													{
+														play.title_notice &&
+														<div class="opacity1 bold1">{play.title_notice[lang]}</div>
+													}													
 											</a>
 										</li>
 									);
@@ -116,15 +120,19 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 					</div>
 					<div class="dropdown-box">
 						<ul class="dropdown-list">
-							<li class="dropdown-item">
-								<a class="dropdown-item-link" href=""> Item 1 </a>
-							</li>
-							<li class="dropdown-item">
-								<a class="dropdown-item-link" href="">Item 2 </a>
-							</li>
-							<li class="dropdown-item">
-								<a class="dropdown-item-link" href="">Item 3 </a>
-							</li>
+							{
+								theater.menu.map((info) => {
+									return (
+										<li class="dropdown-item">
+											<a
+												class:list={['dropdown-item-link', 'item-flex', {active_link: currentPath[1] === menuPlays.link && currentPath[2] === info.url}]}												 
+												href={"/"+lang+"/theater/"+info.url}>
+													<div>{info.title[lang]}</div>
+											</a>
+										</li>
+									);
+								} )
+							}
 						</ul>
 					</div>
 				</div>
@@ -247,10 +255,14 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 						plays.map((play) => {
 							return (
 								<li class="burger-submenu-item">
-									<a 
-										class:list={{active_link: currentPath[1] === menuPlays.link && currentPath[2] === ('play-'+play.suffix)}}												 
+									<a
+										class:list={['item-flex', {active_link: currentPath[1] === menuPlays.link && currentPath[2] === ('play-'+play.suffix)}]}												 
 										href={"/"+lang+"/plays/play-"+play.suffix}>
-											{play.alt_title[lang]}
+											<div>{play.alt_title[lang]}</div>
+											{
+												play.title_notice &&
+												<div class="opacity1 bold1">{play.title_notice[lang]}</div>
+											}													
 									</a>
 								</li>
 							);
@@ -269,8 +281,19 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 					</div>
 					<div class="burger-submenu">
 						<ul class="burger-submenu-list">
-							<li class="burger-submenu-item"><a href="">Актеры</a></li>
-							<li class="burger-submenu-item"><a href="">История</a></li>
+							{
+								theater.menu.map((info) => {
+									return (
+										<li class="burger-submenu-item">
+											<a
+												class:list={['item-flex', {active_link: currentPath[1] === menuPlays.link && currentPath[2] === info.url}]}												 
+												href={"/"+lang+"/theater/"+info.url}>
+													<div>{info.title[lang]}</div>
+											</a>
+										</li>
+									);
+								} )
+							}
 						</ul>
 					</div>
 				</li>

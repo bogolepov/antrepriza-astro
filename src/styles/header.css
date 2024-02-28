@@ -97,6 +97,16 @@
 .dropdown-item:has(+ .dropdown-separate-item) {
 	padding-bottom: 10px;
 }
+.dropdown-item-link {
+	display: block;
+}
+
+.item-flex {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	gap: 1rem;
+}
 
 /* --------------------------------------------------- */
 /* -------------- active - current pages-------------- */
@@ -621,12 +631,13 @@ html[lang='de'] .burger-item .link-de {
 
 .burger-menu {
 	position: absolute;
-	min-width: min(280px, 100vw);
-	width: max-content;
+	width: 280px;
+	max-width: 100vw;
 	left: 0;
 	top: var(--toolbarHeight);
 	line-height: 1.5;
 	z-index: 1110;
+	padding: 0.75rem 0.8rem 0.65rem 0.8rem;
 	color: var(--colorFontToolbar);
 	background-color: var(--colorBkgToolbar);
 	border: 4px solid var(--colorBorderToolbar);
@@ -657,16 +668,11 @@ html[lang='de'] .burger-item .link-de {
 
 .burger-item,
 .burger-submenu-item {
-	padding-left: 0.8rem;
-	line-height: 2rem;
+	padding-left: 1rem;
+	padding-bottom: 0.7rem;
+	line-height: 1.3rem;
 }
 
-.burger-item:first-child {
-	padding-top: 0.75rem;
-}
-.burger-item:last-child {
-	padding-bottom: 0.65rem;
-}
 .burger-separate-item {
 	border-top: 1px solid var(--colorBorderToolbar);
 	padding-bottom: 0.5rem;
