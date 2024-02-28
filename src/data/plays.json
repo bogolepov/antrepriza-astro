@@ -275,9 +275,9 @@
 		"age": "16+",
 		"description": { "ru": "play_pip_ru", "de": "play_pip_de" },
 		"posters": {
-			"landscape": "gefaerliche_kurve.jpg",
+			"landscape": "sieg_oder_verrat.jpg",
 			"landscape_16_9": "sieg_oder_verrat_16_9.jpg",
-			"portrait": "gefaerliche_kurve_poster.jpg",
+			"portrait": "sieg_oder_verrat_poster.jpg",
 			"facebook": "",
 			"minimum": ""
 		},
