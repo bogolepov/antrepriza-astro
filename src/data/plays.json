@@ -122,6 +122,7 @@
 		],
 		"creators": [
 			{ "type": "regie", "people": [1] },
+			{ "type": "stage", "people": [103] },
 			{ "type": "light", "people": [4] },
 			{ "type": "sound", "people": [7] },
 			{ "type": "graphic_design", "people": [6] },
@@ -175,6 +176,7 @@
 		"creators": [
 			{ "type": "regie", "people": [1] },
 			{ "type": "light", "people": [4] },
+			{ "type": "stage", "people": [103, 106] },
 			{ "type": "sound", "people": [7] },
 			{ "type": "graphic_design", "people": [6] },
 			{ "type": "photographer", "people": [5] }
@@ -253,6 +255,7 @@
 		],
 		"creators": [
 			{ "type": "regie", "people": [1] },
+			{ "type": "stage", "people": [103, 106] },
 			{ "type": "light", "people": [4] },
 			{ "type": "sound", "people": [7] },
 			{ "type": "graphic_design", "people": [6] },
@@ -273,7 +276,7 @@
 		"description": { "ru": "play_pip_ru", "de": "play_pip_de" },
 		"posters": {
 			"landscape": "gefaerliche_kurve.jpg",
-			"landscape_16_9": "gefaerliche_kurve_16_9.jpg",
+			"landscape_16_9": "sieg_oder_verrat_16_9.jpg",
 			"portrait": "gefaerliche_kurve_poster.jpg",
 			"facebook": "",
 			"minimum": ""
@@ -343,6 +346,7 @@
 		],
 		"creators": [
 			{ "type": "regie", "people": [1] },
+			{ "type": "stage", "people": [103] },
 			{ "type": "light", "people": [4] },
 			{ "type": "sound", "people": [7] }
 		]
