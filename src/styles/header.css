@@ -666,11 +666,16 @@ html[lang='de'] .burger-item .link-de {
 	display: none;
 }
 
-.burger-item,
+.burger-item {
+	line-height: 2rem;
+}
 .burger-submenu-item {
 	padding-left: 1rem;
 	padding-bottom: 0.7rem;
 	line-height: 1.3rem;
+}
+.burger-submenu-item:last-child {
+	padding-bottom: 0;
 }
 
 .burger-separate-item {

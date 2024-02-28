@@ -20,8 +20,7 @@
 	"social_pages": [
 		{ "name": "Facebook", "url": "https://www.facebook.com/AntreprizaBerlin", "svg": "#facebook-outline" },
 		{ "name": "Instagram", "url": "https://www.instagram.com/AntreprizaBerlin", "svg": "#instagram-outline2" },
-		{ "name": "YouTube", "url": "https://www.youtube.com/@AntreprizaBerlin", "svg": "#youtube-outline2" },
-		{ "name": "Threads", "url": "https://www.threads.net/@AntreprizaBerlin", "svg": "#instagram-outline2" }
+		{ "name": "YouTube", "url": "https://www.youtube.com/@AntreprizaBerlin", "svg": "#youtube-outline2" }
 	],
 	"email": "",
 	"phone": "+49 176 49787741",
