@@ -1,0 +1,25 @@
+---
+import theater from '@data/theater.json'
+import dictionary from '@data/dictionary.json'
+
+export function getStaticPaths () {
+  return theater.languages.map(lng => {
+    return {
+      params: {lang: lng},
+      props: {pageLang: lng, pageTitle: dictionary.longTheaterName[lng] },
+    };
+  });
+}
+
+const { pageLang, pageTitle } = Astro.props;
+
+import AntreprizaLayout from "@layouts/AntreprizaLayout.astro";
+import NotFound from "@components/not_found.astro";
+
+---
+
+<AntreprizaLayout title={pageTitle} lang={pageLang}>
+	<NotFound lang={pageLang}/>
+</AntreprizaLayout>
+
+

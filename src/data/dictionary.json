@@ -4,7 +4,7 @@
 	"programm": { "ru": "Афиша", "de": "Spielplan" },
 	"plays": { "ru": "Спектакли", "de": "Repertoire" },
 	"theater": { "ru": "Театр", "de": "Theater" },
-	"galerie": { "ru": "Галерея", "de": "Mediathek" },
+	"gallery": { "ru": "Галерея", "de": "Mediathek" },
 	"support": { "ru": "Поддержать", "de": "Unterstützen" },
 	"tickets": { "ru": "Билеты", "de": "Tickets" },
 	"themeHint": { "ru": "Сменить тему оформления", "de": "Farbmodus wechseln" },

@@ -1,4 +1,5 @@
 {
+	"languages": ["ru", "de"],
 	"menu": [
 		{ "title": { "ru": "О театре", "de": "Über Theater" }, "url": "theater" },
 		{ "title": { "ru": "Руководство", "de": "Theaterleitung" }, "url": "management" },
