@@ -18,13 +18,13 @@
 }
 
 .after-gallery {
-	margin-top: clamp(0.7rem, 2.6vw, 1.3rem);
-	/* border-bottom: 1px solid var(--colorFontDate); */
+	margin-top: 0;
+	border-bottom: 1px solid var(--colorFontDate);
 	margin-bottom: clamp(1.6rem, 2.6vw, 3rem);
 }
 
 .after-gallery:not(:last-of-type) {
-	border-bottom: 1px solid var(--colorFontDate);
+	/* border-bottom: 1px solid var(--colorFontDate); */
 }
 
 .media_container {

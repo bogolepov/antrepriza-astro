@@ -2,7 +2,7 @@
 import "@styles/swiper-bundle.css"
 import "@styles/play_gallery.css"
 
-const { play_id, play_suffix } = Astro.props;
+const { play_id, play_suffix, hover } = Astro.props;
 
 import photos from '@data/plays_photos.json'
 let gallery = photos.filter(photo => photo.filename && photo.play_id == play_id && photo.is_landscape);
@@ -15,7 +15,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*/*.{jp
 ---
 
 <div class="play-gallery">
-  <div class="play-gallery-position">
+  <div class:list={['play-gallery-position', {'hover-block': hover == 'true'}]} >
     <div class="swiper">
       <div class="swiper-wrapper">
         {

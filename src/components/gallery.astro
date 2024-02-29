@@ -21,7 +21,7 @@ import PlayGallery from "@components/play_gallery.astro";
       <div>
         {
           playFotos && playFotos.length &&
-          <PlayGallery play_id={play.id} play_suffix={play.suffix}/>
+          <PlayGallery play_id={play.id} play_suffix={play.suffix} hover="false"/>
         }
         {
           playFotos && playFotos.length && play.trailer_embed &&
