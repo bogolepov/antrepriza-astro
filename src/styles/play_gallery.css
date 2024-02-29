@@ -30,8 +30,14 @@
 	border: 2px solid var(--colorFontDate);
 	width: clamp(30px, 6vw, 40px);
 	height: clamp(30px, 6vw, 40px);
-	margin: 0 10px;
+	/* margin: 0 10px; */
 	transition: transform 200ms ease;
+}
+.swiper .swiper-button-prev {
+	left: clamp(15px, 4.5vw, 50px);
+}
+.swiper .swiper-button-next {
+	right: clamp(15px, 4.5vw, 50px);
 }
 
 .swiper .swiper-button-prev::after {
@@ -63,7 +69,7 @@
 }
 
 .swiper .swiper-pagination {
-	bottom: clamp(0%, min(4vh, 6vw), var(--swiper-pagination-bottom, 5%));
+	/* bottom: clamp(0%, min(4vh, 6vw), 5%); */
 }
 
 .swiper .swiper-slide {
