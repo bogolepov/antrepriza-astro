@@ -1,0 +1,8 @@
+---
+const { lang } = Astro.props;
+
+import dictionary from '@data/dictionary.json'
+
+---
+
+<h1>{dictionary.menu_actors[lang]}</h1>

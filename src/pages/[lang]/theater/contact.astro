@@ -6,19 +6,18 @@ export function getStaticPaths () {
   return theater.languages.map(lng => {
     return {
       params: {lang: lng},
-      props: {pageLang: lng, pageTitle: dictionary.shortTheaterName[lng] + " - " + dictionary.plays[lng] },
+      props: {pageLang: lng, pageTitle: dictionary.shortTheaterName[lng] + " - " + dictionary.menu_contact[lng] },
     };
   });
 }
 
 import AntreprizaLayout from "@layouts/AntreprizaLayout.astro";
-import Plays from "@components/plays.astro";
+import Contacts from "@components/contacts.astro";
 
 const { pageLang, pageTitle } = Astro.props;
 
 ---
 
 <AntreprizaLayout title={pageTitle} lang={pageLang}>
-  <Plays lang={pageLang}/>
+  <Contacts lang={pageLang}/>
 </AntreprizaLayout>
-

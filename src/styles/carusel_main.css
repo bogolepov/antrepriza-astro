@@ -124,7 +124,7 @@
 	transition: filter 600ms ease-in;
 }
 
-.swiper-slide-active .carusel-picture {
+.swiper .swiper-slide-active .carusel-picture {
 	opacity: var(--maxPosterOpacity);
 	-webkit-filter: grayscale(20%);
 	filter: grayscale(20%);

@@ -127,7 +127,7 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 											<a
 												class:list={['dropdown-item-link', 'item-flex', {active_link: currentPath[1] === menuPlays.link && currentPath[2] === info.url}]}												 
 												href={"/"+lang+"/theater/"+info.url}>
-													<div>{info.title[lang]}</div>
+													<div>{dictionary[info.dict_word][lang]}</div>
 											</a>
 										</li>
 									);
@@ -288,7 +288,7 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 											<a
 												class:list={['item-flex', {active_link: currentPath[1] === menuPlays.link && currentPath[2] === info.url}]}												 
 												href={"/"+lang+"/theater/"+info.url}>
-													<div>{info.title[lang]}</div>
+													<div>{dictionary[info.dict_word][lang]}</div>
 											</a>
 										</li>
 									);

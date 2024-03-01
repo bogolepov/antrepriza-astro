@@ -1,0 +1,9 @@
+---
+
+const { lang } = Astro.props;
+
+import dictionary from '@data/dictionary.json'
+
+---
+
+<h1>{dictionary.support[lang]}</h1>
