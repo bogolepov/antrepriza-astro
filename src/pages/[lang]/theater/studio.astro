@@ -1,0 +1,23 @@
+---
+import theater from '@data/theater.json'
+import dictionary from '@data/dictionary.json'
+
+export function getStaticPaths () {
+  return theater.languages.map(lng => {
+    return {
+      params: {lang: lng},
+      props: {pageLang: lng, pageTitle: dictionary.shortTheaterName[lng] + " - " + dictionary.menu_studio[lng] },
+    };
+  });
+}
+
+import AntreprizaLayout from "@layouts/AntreprizaLayout.astro";
+import Studio from "@components/studio.astro";
+
+const { pageLang, pageTitle } = Astro.props;
+
+---
+
+<AntreprizaLayout title={pageTitle} lang={pageLang}>
+  <Studio lang={pageLang}/>
+</AntreprizaLayout>
