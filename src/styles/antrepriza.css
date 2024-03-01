@@ -14,6 +14,9 @@
 	--grey-11: #e9e6e4;
 	--grey-10: #f7f4f3;
 
+	--gray-rose-dark-digital: 140, 89, 86;
+	--gray-rose-digital: 135, 96, 94;
+	--gray-rose-light-digital: 251, 204, 199;
 	--gray-rose-dark: rgb(140, 89, 86);
 	--gray-rose: rgb(135, 96, 94);
 	--gray-rose-light: rgb(251, 204, 199);
@@ -30,6 +33,9 @@
 /* --------------------------------------------------- */
 [data-theme='dark'] {
 	color-scheme: dark;
+	--font-part-opacity: 0.47;
+	--minPosterOpacity: 1;
+	--maxPosterOpacity: 1;
 	--colorFont: var(--grey-16);
 	--colorBkgPage: var(--grey-200);
 	--colorFontPage: var(--grey-13);
@@ -47,6 +53,7 @@
 	--colorBoxShadowDropList: rgba(245, 245, 245, 0.25);
 	--colorDisabled: var(--grey-30);
 	--colorFontDate: var(--gray-rose);
+	--colorFontDateOpacity: rgba(var(--gray-rose-dark-digital), var(--font-part-opacity));
 	--colorAntreprizaRed: #ff3e44;
 	/* --colorFocusAntreprizaRed: #f57a7e; */
 	--colorFocusAntreprizaRed: #e30d15;
@@ -63,15 +70,14 @@
 	--font-bold-weight: 500;
 	--font-extra-weight: 700;
 	--font-logo-weight: 700;
-	--font-part-opacity: 0.47;
-	--minPosterOpacity: 1;
-	--maxPosterOpacity: 1;
 	--colorBkgMainGallery: var(--grey-140);
-	--colorFontDateOpacity: rgba(135, 96, 94, var(--font-part-opacity));
 }
 
 [data-theme='light'] {
 	color-scheme: light;
+	--font-part-opacity: 0.8;
+	--minPosterOpacity: 0.9;
+	--maxPosterOpacity: 1;
 	--colorFont: var(--grey-78);
 	--colorBkgPage: white;
 	--colorFontPage: var(--grey-78);
@@ -89,6 +95,7 @@
 	--colorBoxShadowDropList: rgba(0, 0, 0, 0.12);
 	--colorDisabled: var(--grey-30);
 	--colorFontDate: var(--gray-rose-dark);
+	--colorFontDateOpacity: rgba(var(--gray-rose-digital), var(--font-part-opacity));
 	--colorAntreprizaRed: #e30d15;
 	/* --colorFocusAntreprizaRed: #f57a7e; */
 	--colorFocusAntreprizaRed: #e30d15;
@@ -102,11 +109,7 @@
 	--font-bold-weight: 700;
 	--font-extra-weight: 900;
 	--font-logo-weight: 900;
-	--font-part-opacity: 0.8;
-	--minPosterOpacity: 0.9;
-	--maxPosterOpacity: 1;
 	--colorBkgMainGallery: #b8b0ae;
-	--colorFontDateOpacity: rgba(135, 96, 94, var(--font-part-opacity));
 }
 
 html,

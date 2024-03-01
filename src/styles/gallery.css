@@ -3,7 +3,6 @@
 	width: 100%;
 	margin-top: clamp(1.1rem, 2.6vw, 2rem);
 	padding: clamp(0.5rem, 2.6vw, 1rem) 0;
-	/* border-top: 1px solid; */
 	border-bottom: 1px solid var(--colorFontDate);
 	align-self: self-start;
 }
@@ -16,13 +15,14 @@
 }
 
 .after-gallery {
+	position: relative;
 	margin-top: 0.3px;
-	border-bottom: 1px solid var(--colorFontDate);
+	border-top: 1px solid var(--colorFontDate);
 	margin-bottom: clamp(1.6rem, 2.6vw, 3rem);
 }
 
-.after-gallery:not(:last-of-type) {
-	/* border-bottom: 1px solid var(--colorFontDate); */
+.after-gallery:last-of-type {
+	margin-bottom: 4rem;
 }
 
 .media_container {
@@ -51,24 +51,30 @@
 	height: 100%;
 }
 
-.media-flex {
+.media-flex-top,
+.media-flex-bottom {
 	display: flex;
 	flex-direction: row-reverse;
 	font-size: 1rem;
 	line-height: 1em;
 	user-select: none;
 }
+.media-flex-bottom {
+	display: none;
+}
 
 .tabs {
 	position: absolute;
 	right: 0;
+}
+.tabs:is(.media-flex-top) {
 	bottom: -1px;
+}
+.tabs:is(.media-flex-bottom) {
+	top: -1px;
 }
 
 .tab-item {
-	padding: 0.3em 1em;
-	border-top-left-radius: 0.5em;
-	border-top-right-radius: 0.5em;
 	border: 1px solid var(--colorFontDate);
 	background-color: transparent;
 	color: var(--colorFontDateOpacity);
@@ -77,22 +83,36 @@
 	font-weight: var(--font-extra-weight);
 	text-transform: uppercase;
 }
-.tab-item:hover,
+.media-flex-top .tab-item {
+	border-top-left-radius: 0.5em;
+	border-top-right-radius: 0.5em;
+}
+.media-flex-bottom .tab-item {
+	border-bottom-left-radius: 0.5em;
+	border-bottom-right-radius: 0.5em;
+}
+
 .tab-item label:hover {
 	cursor: pointer;
 }
 
-input:checked + label {
-	/* background-color: var(--colorFontDate); */
-	color: var(--colorFontDate);
-}
 input {
 	-webkit-appearance: none;
 	appearance: none;
 }
+label {
+	display: inline-block;
+	padding: 0.4em 1em 0.3em 1em;
+}
+
+.gallery-block:has(input[value='photo']:checked) .media-photo label {
+	color: var(--colorFontDate);
+}
+.gallery-block:has(input[value='video']:checked) .media-video label {
+	color: var(--colorFontDate);
+}
 .tab-item:has(input:focus-visible) {
 	outline: 2px solid var(--colorFont);
-	/* outline-offset: 3px; */
 }
 
 .photo_container,
@@ -105,4 +125,13 @@ input {
 }
 .gallery-block:has(input[value='video']:checked) .video_container {
 	display: block;
+}
+
+@media screen and (max-width: 640px) {
+	.media-flex-top {
+		display: none;
+	}
+	.media-flex-bottom {
+		display: flex;
+	}
 }

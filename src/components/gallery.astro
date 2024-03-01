@@ -19,21 +19,22 @@ import dictionary from '@data/dictionary.json'
     if ( (!playFotos || !playFotos.length) && !play.trailer_embed) return;
     return (
       <div class="gallery-block">
+        <input type="radio" id={"photo-"+play.id} name={"media-"+play.id} value="photo" checked/>
+        <input type="radio" id={"video-"+play.id} name={"media-"+play.id} value="video" {!playFotos && !playFotos.length && checked} />
+
         <div class="block-title">
           <h1>{play.title[lang].toUpperCase()}</h1>
-          <div class="media-flex tabs">
+          <div class="media-flex-top tabs">
             {
               playFotos && playFotos.length &&
               <div class="media-photo tab-item">
-                <input type="radio" id={"photo_"+play.id} name={"media_"+play.id} value="photo" checked/>
-                <label for={"photo_"+play.id}>{dictionary.photo[lang]}</label>
+                <label for={"photo-"+play.id}>{dictionary.photo[lang]}</label>
               </div>
             }
             {
               play.trailer_embed &&
               <div class="media-video tab-item">
-                <input type="radio" id={"video_"+play.id} name={"media_"+play.id} value="video" {!playFotos && !playFotos.length && checked} />
-                <label for={"video_"+play.id}>{dictionary.video[lang]}</label>
+                <label for={"video-"+play.id}>{dictionary.video[lang]}</label>
               </div>
             }
           </div>
@@ -61,7 +62,22 @@ import dictionary from '@data/dictionary.json'
             </div>
           }
         </div>
-        <div class="after-gallery"></div>
+        <div class="after-gallery">
+          <div class="media-flex-bottom tabs">
+            {
+              playFotos && playFotos.length &&
+              <div class="media-photo tab-item">
+                <label for={"photo-"+play.id}>{dictionary.photo[lang]}</label>
+              </div>
+            }
+            {
+              play.trailer_embed &&
+              <div class="media-video tab-item">
+                <label for={"video-"+play.id}>{dictionary.video[lang]}</label>
+              </div>
+            }
+          </div>
+        </div>
       </div>
     );
   })
