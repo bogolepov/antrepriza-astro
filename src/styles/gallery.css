@@ -15,14 +15,8 @@
 	text-transform: uppercase;
 }
 
-.middle-gallery {
-	display: none;
-	/* margin-top: clamp(0.7rem, 2.6vw, 1.3rem); */
-	margin-bottom: clamp(1.6rem, 2.6vw, 3rem);
-}
-
 .after-gallery {
-	margin-top: 0;
+	margin-top: 0.3px;
 	border-bottom: 1px solid var(--colorFontDate);
 	margin-bottom: clamp(1.6rem, 2.6vw, 3rem);
 }
