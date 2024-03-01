@@ -10,6 +10,7 @@ import photos from '@data/plays_photos.json'
 
 import PlayGallery from "@components/play_gallery.astro";
 
+import dictionary from '@data/dictionary.json'
 ---
 
 {
@@ -17,31 +18,55 @@ import PlayGallery from "@components/play_gallery.astro";
     let playFotos = photos.filter(photo => photo.filename && photo.play_id == play.id && photo.is_landscape);
     if ( (!playFotos || !playFotos.length) && !play.trailer_embed) return;
     return (
-      <h1 class="play-title">{play.title[lang].toUpperCase()}</h1>
-      <div>
-        {
-          playFotos && playFotos.length &&
-          <PlayGallery play_id={play.id} play_suffix={play.suffix} hover="false"/>
-        }
-        {
-          playFotos && playFotos.length && play.trailer_embed &&
-          <div class="middle-gallery"></div>
-        }
-        {
-          play.trailer_embed &&
-          <div class="media_container">
-            <div class="media">
-              <iframe class="trailer float"
-                src={play.trailer_embed+"&rel=0&controls=2&hl="+lang.toUpperCase()} title="YouTube video player" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                allowfullscreen>
-              </iframe>
-            </div>
+      <div class="gallery-block">
+        <div class="block-title">
+          <h1>{play.title[lang].toUpperCase()}</h1>
+          <div class="media-flex tabs">
+            {
+              playFotos && playFotos.length &&
+              <div class="media-photo tab-item">
+                <input type="radio" id={"photo_"+play.id} name={"media_"+play.id} value="photo" checked/>
+                <label for={"photo_"+play.id}>{dictionary.photo[lang]}</label>
+              </div>
+            }
+            {
+              play.trailer_embed &&
+              <div class="media-video tab-item">
+                <input type="radio" id={"video_"+play.id} name={"media_"+play.id} value="video" {!playFotos && !playFotos.length && checked} />
+                <label for={"video_"+play.id}>{dictionary.video[lang]}</label>
+              </div>
+            }
           </div>
-        }
+        </div>
+        <div>
+          {
+            playFotos && playFotos.length &&
+            <div class="photo_container">
+              <PlayGallery play_id={play.id} play_suffix={play.suffix} hover="false"/>
+            </div>
+          }
+          {
+            playFotos && playFotos.length && play.trailer_embed &&
+            <div class="middle-gallery"></div>
+          }
+          {
+            play.trailer_embed &&
+            <div class="video_container">
+              <div class="media_container">
+                <div class="media">
+                  <iframe class="trailer float"
+                    src={play.trailer_embed+"&rel=0&controls=2&hl="+lang.toUpperCase()} title="YouTube video player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen>
+                  </iframe>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+        <div class="after-gallery"></div>
       </div>
-      <div class="after-gallery"></div>
     );
   })
 }

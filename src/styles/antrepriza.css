@@ -67,6 +67,7 @@
 	--minPosterOpacity: 1;
 	--maxPosterOpacity: 1;
 	--colorBkgMainGallery: var(--grey-140);
+	--colorFontDateOpacity: rgba(135, 96, 94, var(--font-part-opacity));
 }
 
 [data-theme='light'] {
@@ -105,6 +106,7 @@
 	--minPosterOpacity: 0.9;
 	--maxPosterOpacity: 1;
 	--colorBkgMainGallery: #b8b0ae;
+	--colorFontDateOpacity: rgba(135, 96, 94, var(--font-part-opacity));
 }
 
 html,

@@ -1,14 +1,18 @@
-.play-title {
+.block-title {
+	position: relative;
 	width: 100%;
-	font-size: clamp(1.6rem, 4vw, 3rem);
-	font-weight: var(--font-extra-weight);
-	line-height: 1.25em;
 	margin-top: clamp(1.1rem, 2.6vw, 2rem);
 	padding: clamp(0.5rem, 2.6vw, 1rem) 0;
 	/* border-top: 1px solid; */
 	border-bottom: 1px solid var(--colorFontDate);
-	text-transform: uppercase;
 	align-self: self-start;
+}
+
+.block-title h1 {
+	font-size: clamp(1.6rem, 4vw, 3rem);
+	font-weight: var(--font-extra-weight);
+	line-height: 1.25em;
+	text-transform: uppercase;
 }
 
 .middle-gallery {
@@ -37,8 +41,6 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-
-	display: none;
 }
 
 .media {
@@ -53,4 +55,59 @@
 	left: 0;
 	width: 100%;
 	height: 100%;
+}
+
+.media-flex {
+	display: flex;
+	flex-direction: row-reverse;
+	font-size: 1rem;
+	line-height: 1em;
+	user-select: none;
+}
+
+.tabs {
+	position: absolute;
+	right: 0;
+	bottom: -1px;
+}
+
+.tab-item {
+	padding: 0.3rem 1rem;
+	border-top-left-radius: 0.5rem;
+	border-top-right-radius: 0.5rem;
+	border: 1px solid var(--colorFontDate);
+	background-color: transparent;
+	color: var(--colorFontDateOpacity);
+
+	font-weight: var(--font-extra-weight);
+	text-transform: uppercase;
+}
+.tab-item:hover,
+.tab-item label:hover {
+	cursor: pointer;
+}
+
+input:checked + label {
+	/* background-color: var(--colorFontDate); */
+	color: var(--colorFontDate);
+}
+input {
+	-webkit-appearance: none;
+	appearance: none;
+}
+.tab-item:has(input:focus-visible) {
+	outline: 2px solid var(--colorFont);
+	/* outline-offset: 3px; */
+}
+
+.photo_container,
+.video_container {
+	display: none;
+}
+
+.gallery-block:has(input[value='photo']:checked) .photo_container {
+	display: block;
+}
+.gallery-block:has(input[value='video']:checked) .video_container {
+	display: block;
 }

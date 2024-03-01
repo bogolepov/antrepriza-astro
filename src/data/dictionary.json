@@ -48,5 +48,7 @@
 	"sound": { "ru": "Звук", "de": "Ton" },
 	"costumes": { "ru": "Костюмы", "de": "Kostüme" },
 	"graphic_design": { "ru": "Графический дизайн", "de": "Grafikdesign" },
-	"photographer": { "ru": "Фотограф", "de": "Fotograf" }
+	"photographer": { "ru": "Фотограф", "de": "Fotograf" },
+	"photo": { "ru": "Фото", "de": "Fotos" },
+	"video": { "ru": "Видео", "de": "Videos" }
 }

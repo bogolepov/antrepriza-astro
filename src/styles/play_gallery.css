@@ -23,6 +23,7 @@
 	height: 100%;
 	margin: 0;
 	position: relative;
+	user-select: none;
 }
 
 .swiper .swiper-button-prev,
