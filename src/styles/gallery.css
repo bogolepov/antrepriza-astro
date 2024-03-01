@@ -66,13 +66,14 @@
 }
 
 .tab-item {
-	padding: 0.3rem 1rem;
-	border-top-left-radius: 0.5rem;
-	border-top-right-radius: 0.5rem;
+	padding: 0.3em 1em;
+	border-top-left-radius: 0.5em;
+	border-top-right-radius: 0.5em;
 	border: 1px solid var(--colorFontDate);
 	background-color: transparent;
 	color: var(--colorFontDateOpacity);
 
+	font-size: clamp(0.85rem, 1.5vw, 1rem);
 	font-weight: var(--font-extra-weight);
 	text-transform: uppercase;
 }
