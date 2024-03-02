@@ -1,5 +1,19 @@
 [
 	{
+		"date": "2024-05-04",
+		"time": "17:00",
+		"play_id": 6,
+		"free_place": true,
+		"prices": ["price_reduce", "price_adult__kids_play", "price_child__kids_play"]
+	},
+	{
+		"date": "2024-05-05",
+		"time": "17:00",
+		"play_id": 6,
+		"free_place": true,
+		"prices": ["price_reduce", "price_adult__kids_play", "price_child__kids_play"]
+	},
+	{
 		"date": "2022-02-24",
 		"time": "19:30",
 		"play_id": 2,
