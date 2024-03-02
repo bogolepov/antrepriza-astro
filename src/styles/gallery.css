@@ -11,6 +11,7 @@
 	font-size: clamp(1.6rem, 4vw, 3rem);
 	font-weight: var(--font-extra-weight);
 	line-height: 1.25em;
+	letter-spacing: 0.04em;
 	text-transform: uppercase;
 }
 
@@ -81,6 +82,7 @@
 
 	font-size: clamp(0.85rem, 1.5vw, 1rem);
 	font-weight: var(--font-extra-weight);
+	letter-spacing: 0.07em;
 	text-transform: uppercase;
 }
 .media-flex-top .tab-item {

@@ -14,6 +14,7 @@ section.play {
 	font-weight: var(--font-extra-weight);
 	line-height: 1.25em;
 	padding-top: clamp(1.1rem, 2.6vw, 2rem);
+	letter-spacing: 0.04em;
 	text-transform: uppercase;
 	align-self: self-start;
 }
@@ -24,6 +25,7 @@ section.play {
 	font-weight: var(--font-bold-weight);
 	opacity: var(--font-part-opacity);
 	line-height: 1.25em;
+	letter-spacing: 0.04em;
 	text-transform: uppercase;
 	align-self: self-start;
 }
@@ -63,6 +65,7 @@ section.play {
 
 .play-info {
 	display: flex;
+	flex-direction: row;
 	justify-content: space-between;
 	flex-wrap: wrap;
 	column-gap: 30px;
@@ -164,4 +167,10 @@ section.play {
 
 .play-end {
 	margin-bottom: clamp(1.1rem, 2.6vw, 2rem);
+}
+
+@media screen and (max-width: 600px) {
+	.play-info {
+		flex-direction: column;
+	}
 }
