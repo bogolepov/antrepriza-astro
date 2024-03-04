@@ -9,8 +9,10 @@ import '@styles/gallery.css'
 import photos from '@data/plays_photos.json'
 
 import PlayGallery from "@components/play_gallery.astro";
+import YouTubePlayer from "@components/youtube_player.astro";
 
 import dictionary from '@data/dictionary.json'
+import YoutubePlayer from './youtube_player.astro';
 ---
 
 {
@@ -49,16 +51,7 @@ import dictionary from '@data/dictionary.json'
           {
             play.trailer_embed &&
             <div class="video_container">
-              <div class="media_container">
-                <div class="media">
-                  <iframe class="trailer float"
-                    src={play.trailer_embed+"&rel=0&controls=2&hl="+lang.toUpperCase()} title="YouTube video player" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                    allowfullscreen>
-                  </iframe>
-                </div>
-              </div>
+              <YoutubePlayer lang={lang} url={play.trailer_embed} />
             </div>
           }
         </div>

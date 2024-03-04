@@ -1,0 +1,25 @@
+.media_container {
+	width: 100%;
+	max-width: 110vh;
+	margin: 0 auto;
+	height: auto;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.media {
+	width: 100%;
+	padding-top: 56.25%;
+	position: relative;
+}
+
+.media .float {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
