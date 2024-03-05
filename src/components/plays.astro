@@ -38,7 +38,7 @@ let playsWithGrouppedDatesArray = Array.from(playsWithGrouppedDatesMap, ([key, v
 		let performs = actualProgramm.filter(performance => performance.play_id == play.id);
 		let isPremiere = (performs && performs.length>0 && performs[0].premiere);
 		return (
-			<div class="play-block hover-block">
+			<div class="play-block hover-block hover-background">
 				<div class="play-block-image">
 					<Picture 
 						class:list={'image-wrapper-landscape black-white-filter'} 

@@ -4,7 +4,7 @@ const { lang } = Astro.props;
 import dictionary from '@data/dictionary.json'
 import theater from '@data/theater.json'
 
-import '@styles/actors.css'
+import '@styles/people.css'
 
 import type { ImageMetadata } from 'astro'
 import { Picture } from 'astro:assets'
@@ -20,13 +20,13 @@ let actors = theater.actors.filter(actor_id => {
 
 <section class="actors">
   <h1 class="section-title">{dictionary.menu_actors[lang]}</h1>
-  <div class="actors-table">
+  <div class="people-table">
     {
       actors.map(actor_id => {
         let person = theater.people.find(actor => actor.id == actor_id);
         return (
-          <a class="actor-card" href={"/"+lang+"/theater/people/"+person.suffix}>
-            <div class="actor-photo">
+          <a class="person-card hover-block" href={"/"+lang+"/theater/people/"+person.suffix}>
+            <div class="person-photo">
               <Picture 
                 class:list={'image-wrapper-landscape black-white-filter'} 
                 src={images["/src/assets/people/" + person.photo]()} 
@@ -35,8 +35,8 @@ let actors = theater.actors.filter(actor_id => {
                 sizes={'(max-width: 320px) 210px, (max-width: 400px) 270px, 360px'}
                 alt={person.name[lang] + ' ' + person.surname[lang]} />
             </div>
-            <div class="actor-title opacity1 bold1">{(person.gender == 'f') && dictionary.actress[lang]}{(person.gender == 'm') && dictionary.actor[lang]}</div>
-            <div class="actor-name">{person.name[lang]} {person.surname[lang]}</div>
+            <div class="person-title opacity1 bold1">{(person.gender == 'f') && dictionary.actress[lang]}{(person.gender == 'm') && dictionary.actor[lang]}</div>
+            <div class="person-name">{person.name[lang]} {person.surname[lang]}</div>
           </a>
         )
       })

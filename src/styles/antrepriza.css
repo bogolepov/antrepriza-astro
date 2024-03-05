@@ -317,7 +317,7 @@ h4.notification-label {
 
 /* this hover-effect works only if javascript is out */
 @media (hover: hover) {
-	body.no-js .hover-block:hover {
+	body.no-js .hover-block.hover-background:hover {
 		background-color: var(--colorBkgProgrammItem);
 	}
 
@@ -328,7 +328,7 @@ h4.notification-label {
 }
 
 /* this hover-effect works only if javascript is in */
-.hover-block[hover] {
+.hover-block.hover-background[hover] {
 	background-color: var(--colorBkgProgrammItem);
 }
 .hover-block[hover] .black-white-filter {
