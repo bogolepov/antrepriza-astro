@@ -19,7 +19,7 @@ plays.sort((play1, play2) => play1.alt_title[lang].toLowerCase().localeCompare(p
 
 const menuProgramm = { link: "programm", text: dictionary.programm[lang] };
 const menuPlays = { link: "plays", text: dictionary.plays[lang] };
-const menuTheater = { link: "", text: dictionary.theater[lang] };
+const menuTheater = { link: "theater", text: dictionary.theater[lang] };
 const menuMediathek = { link: "gallery", text: dictionary.gallery[lang] };
 const menuSupport = { link: "support", text: dictionary.support[lang] };
 const menuTickets = { link: "tickets", text: dictionary.tickets[lang] };
@@ -112,7 +112,7 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 				</div>
 				<div class="expand-menu">
 					<div class="toolbar-dropbtn">
-						{menuTheater.text}&nbsp;
+						<span class:list={[{active_link: currentPath[1] === menuTheater.link}]}>{menuTheater.text}&nbsp;</span>
 						<svg class="menu-drop-down-symbol">
 							<use href={Symbols + "#drop-down"}></use>
 						</svg>
@@ -125,7 +125,7 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 									return (
 										<li class="dropdown-item">
 											<a
-												class:list={['dropdown-item-link', 'item-flex', {active_link: currentPath[1] === menuPlays.link && currentPath[2] === info.url}]}												 
+												class:list={['dropdown-item-link', 'item-flex', {active_link: currentPath[1] === menuTheater.link && currentPath[2] === info.url}]}												 
 												href={"/"+lang+"/theater/"+info.url}>
 													<div>{dictionary[info.dict_word][lang]}</div>
 											</a>
@@ -272,7 +272,9 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 				</li>
 				<li class="burger-item expanded">
 					<div class="burger-submenu-title">
-						<div class="submenu-title-text">{menuTheater.text}</div>
+						<div class:list={["submenu-title-text", {active_link: currentPath[1] === menuTheater.link}]}>
+							{menuTheater.text}
+						</div>
 						<button class="submenu-symbol-button">
 							<svg class="submenu-symbol">
 								<use href={Symbols + "#drop-down"}></use>
@@ -286,7 +288,7 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 									return (
 										<li class="burger-submenu-item">
 											<a
-												class:list={['item-flex', {active_link: currentPath[1] === menuPlays.link && currentPath[2] === info.url}]}												 
+												class:list={['item-flex', {active_link: currentPath[1] === menuTheater.link && currentPath[2] === info.url}]}												 
 												href={"/"+lang+"/theater/"+info.url}>
 													<div>{dictionary[info.dict_word][lang]}</div>
 											</a>
