@@ -1,0 +1,12 @@
+---
+const { lang, person_id } = Astro.props;
+
+import dictionary from '@data/dictionary.json'
+import theater from '@data/theater.json'
+
+const person = theater.people.find(item => item.id == person_id);
+---
+
+<div>
+  <h1>{person.name[lang]} {person.surname[lang]}</h1>
+</div>
