@@ -31,8 +31,8 @@ let actors = theater.actors.filter(actor_id => {
                 class:list={'image-wrapper-landscape black-white-filter'} 
                 src={images["/src/assets/people/" + person.photo]()} 
                 formats={['avif', 'webp']} 
-                widths={[210,270,360]}
-                sizes={'(max-width: 320px) 210px, (max-width: 400px) 270px, 360px'}
+                widths={[210,270,320]}
+                sizes={'(max-width: 320px) 210px, (max-width: 400px) 270px, 320px'}
                 alt={person.name[lang] + ' ' + person.surname[lang]} />
             </div>
             <div class="person-title opacity1 bold1">{(person.gender == 'f') && dictionary.actress[lang]}{(person.gender == 'm') && dictionary.actor[lang]}</div>
