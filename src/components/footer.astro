@@ -2,6 +2,7 @@
 import "../styles/footer.css"
 
 import theater from '@data/theater.json'
+import dictionary from '@data/dictionary.json'
 
 import Logo from '../svg/logo.svg?url'
 // import Symbols from '../svg/symbols.svg?url'
@@ -11,22 +12,29 @@ const {lang} = Astro.props;
 
 ---
 
-<footer>
-  <div class="footer-logo">
-    <svg class="footer-logo-svg">
-			<!-- <use href={Logo + "#logo"}></use> -->
-			<use href={Logo + "#logo-text-" + lang}></use>
-		</svg>
+<footer class="flex">
+  <div class="flex-item">
+    <div class="footer-logo">
+      <svg class="footer-logo-svg">
+        <!-- <use href={Logo + "#logo"}></use> -->
+        <use href={Logo + "#logo-text-" + lang}></use>
+      </svg>
+    </div>
+    <div class="address">
+      <address>{theater.stageAddress.full_string}</address>
+      <div class="tel-number" >
+        <a href={"tel:"+theater.phone}>
+          <span class="bold1">Tel :</span> {theater.phone}
+        </a>
+      </div>
+    </div>
   </div>
-  <div class="address">
-  <p>{theater.stageAddress.street} {theater.stageAddress.building}</p>
-  <p>{theater.stageAddress.index} {theater.stageAddress.city}</p>
-  </div>
-  <div class="tel-number" >
-  <a href={"tel:"+theater.phone}>Tel {theater.phone}</a>
-  </div>
-  <div>
-  <a class="footer-text-link" href="#">IMPRESSUM</a>
-  <a class="footer-text-link" href="#">DATENSCHUTZ</a>
+  <!-- <div class="flex-item">
+    <a class="footer-text-link" href="#">IMPRESSUM</a>
+    <a class="footer-text-link" href="#">DATENSCHUTZ</a>
+  </div> -->
+  <div class="web-developer flex-item">
+    <div class="label opacity1">{dictionary.web_developer[lang]}</div>
+    <a class="opacity1 bold1" href={theater.web_developer.url} target="_blank"	rel="noopener external">{theater.web_developer.name[lang]}</a> 
   </div>
 </footer>

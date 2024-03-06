@@ -7,6 +7,10 @@
 		{ "dict_word": "menu_studio", "url": "studio" },
 		{ "dict_word": "menu_contact", "url": "contact" }
 	],
+	"web_developer": {
+		"name": { "ru": "Вадим Боголепов", "de": "Vadim Bogolepov" },
+		"url": "https://www.linkedin.com/in/bogolepov/"
+	},
 	"stageAddress": {
 		"full_string": "Boxhagener Str. 18, 10245 Berlin",
 		"street": "Boxhagener Str.",
@@ -114,7 +118,7 @@
 			"gender": "m",
 			"name": { "ru": "Алексей", "de": "Alex" },
 			"surname": { "ru": "Голубев-Таубе", "de": "Taube" },
-			"jobs": ["actor", "job_stage"]
+			"jobs": ["job_stage", "actor"]
 		},
 		{
 			"id": 104,
@@ -139,7 +143,7 @@
 			"gender": "m",
 			"name": { "ru": "Вадим", "de": "Vadim" },
 			"surname": { "ru": "Романов", "de": "Romanov" },
-			"jobs": ["actor", "job_stage"]
+			"jobs": ["job_stage", "actor"]
 		},
 		{
 			"id": 107,

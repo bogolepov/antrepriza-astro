@@ -18,12 +18,21 @@ footer {
 
 	/* font-size: 1rem; */
 	font-size: clamp(0.8rem, 1.2vw, 1rem);
-	display: flex;
-	flex-direction: column;
 	/* justify-content: space-between; */
 	/* align-items: flex-start; */
 	padding-top: 16px;
 	padding-bottom: 8px;
+}
+
+footer.flex {
+	display: flex;
+	flex-direction: row;
+	column-gap: 40px;
+	justify-content: space-between;
+}
+
+.flex-item {
+	align-self: flex-end;
 }
 
 footer a {
@@ -68,4 +77,15 @@ footer a {
 
 footer a:focus-visible {
 	outline: 1px solid var(--colorFocusAntreprizaRed);
+}
+
+.web-developer {
+	text-align: right;
+	font-size: 0.9rem;
+	line-height: 1.3em;
+	letter-spacing: 0.05em;
+}
+
+.web-developer .label {
+	border-bottom: 1px solid;
 }
