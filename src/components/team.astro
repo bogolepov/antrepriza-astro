@@ -12,13 +12,20 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/people/
 
 ---
 
-<section class="actors">
-  <h1 class="section-title">{dictionary.menu_actors[lang]}</h1>
+<section class="team">
+  <h1 class="section-title">{dictionary.menu_team[lang]}</h1>
   <div class="people-table">
     {
-      theater.actors.map(actor_id => {
+      theater.team.map(actor_id => {
         let person = theater.people.find(actor => actor.id == actor_id);
+        let nJobs = 0;
+        let strJobs="";
+        for (let job of person.jobs) {
+          strJobs = strJobs + (nJobs ? ", " : "") + ( (nJobs && lang == "ru" )? dictionary[job][lang].toLowerCase() : dictionary[job][lang]);
+          nJobs++;
+        }
         let hasPage = person.suffix ? true : false;
+
         return (
           <div class="person-card hover-block">
             <div class="person-photo">
@@ -30,7 +37,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/people/
                 sizes={'(max-width: 320px) 210px, (max-width: 400px) 270px, 320px'}
                 alt={person.name[lang] + ' ' + person.surname[lang]} />
             </div>
-            <div class="person-title opacity1 bold1">{(person.gender == 'f') && dictionary.actress[lang]}{(person.gender == 'm') && dictionary.actor[lang]}</div>
+            <div class="person-title opacity1 bold1">{strJobs}</div>
             <div class="person-name">{person.name[lang]} {person.surname[lang]}</div>
             {
               hasPage &&
@@ -40,5 +47,5 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/people/
         )
       })
     }
-  </div>
+  </>
 </section>

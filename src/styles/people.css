@@ -6,7 +6,7 @@
 	padding-bottom: clamp(1.5rem, 2.6vw, 2rem);
 	letter-spacing: 0.04em;
 	text-transform: uppercase;
-	align-self: self-start;
+	word-wrap: break-word;
 }
 
 .people-table {
@@ -26,12 +26,12 @@
 	margin: auto;
 	align-self: flex-start;
 	justify-self: center;
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	width: 20%;
 	min-width: min(200px, 75vw);
 	max-width: 360px;
-	/* margin: 0 20px; */
 	text-align: center;
 	flex-grow: 1;
 	font-size: clamp(1rem, 1.8vw, 1.2rem);

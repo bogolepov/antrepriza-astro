@@ -8,7 +8,7 @@
 	"support": { "ru": "Поддержать", "de": "Unterstützen" },
 	"tickets": { "ru": "Билеты", "de": "Tickets" },
 	"menu_about": { "ru": "О театре", "de": "Über Theater" },
-	"menu_management": { "ru": "Руководство", "de": "Theaterleitung" },
+	"menu_team": { "ru": "Команда", "de": "Team" },
 	"menu_actors": { "ru": "Артисты", "de": "Schauspieler" },
 	"menu_studio": { "ru": "Актерская студия", "de": "Schauspielerstudio" },
 	"menu_contact": { "ru": "Адрес и контакты", "de": "Kontakt" },
@@ -51,6 +51,11 @@
 	"photographer": { "ru": "Фотограф", "de": "Fotograf" },
 	"actor": { "ru": "Актер", "de": "Schauspieler" },
 	"actress": { "ru": "Актриса", "de": "Schauspielerin" },
+	"job_regisseur": { "ru": "Режиссер", "de": "Regisseur" },
+	"job_producer": { "ru": "Продюсер", "de": "Produzent" },
+	"job_light": { "ru": "Художник по свету", "de": "Lichttechniker" },
+	"job_sound": { "ru": "Звукорежиссер", "de": "Tonregisseur" },
+	"job_stage": { "ru": "Оформитель сцены", "de": "Bühnenbildner" },
 	"photo": { "ru": "Фото", "de": "Fotos" },
 	"video": { "ru": "Видео", "de": "Videos" }
 }
