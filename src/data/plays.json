@@ -302,7 +302,7 @@
 				"id": 6,
 				"name": { "ru": "Данила", "de": "Danila" },
 				"description": { "ru": "старшеклассник", "de": "Oberstufenschüler" },
-				"actors": [119, 106]
+				"actors": [119]
 			},
 			{
 				"id": 7,
@@ -314,7 +314,7 @@
 				"id": 8,
 				"name": { "ru": "Сергей", "de": "Sergej" },
 				"description": { "ru": "телеведущий", "de": "TV-Moderator" },
-				"actors": [3, 106]
+				"actors": [3]
 			},
 			{
 				"id": 9,
@@ -427,7 +427,7 @@
 				"id": 10,
 				"name": { "ru": "Анфиса", "de": "Anfissa" },
 				"description": { "ru": "нянька", "de": "eine alte Kinderfrau" },
-				"actors": [108]
+				"actors": [108, 124]
 			}
 		],
 		"creators": [

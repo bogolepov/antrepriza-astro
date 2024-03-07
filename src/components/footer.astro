@@ -12,8 +12,8 @@ const {lang} = Astro.props;
 
 ---
 
-<footer class="flex">
-  <div class="flex-item">
+<footer class="flex1">
+  <div class="flex1-item">
     <div class="footer-logo">
       <svg class="footer-logo-svg">
         <!-- <use href={Logo + "#logo"}></use> -->
@@ -21,6 +21,7 @@ const {lang} = Astro.props;
       </svg>
     </div>
     <div class="address">
+      <address class="opacity1">{theater.stageAddress.name}</address>
       <address>{theater.stageAddress.full_string}</address>
       <div class="tel-number" >
         <a href={"tel:"+theater.phone}>
@@ -33,8 +34,14 @@ const {lang} = Astro.props;
     <a class="footer-text-link" href="#">IMPRESSUM</a>
     <a class="footer-text-link" href="#">DATENSCHUTZ</a>
   </div> -->
-  <div class="web-developer flex-item">
-    <div class="label opacity1">{dictionary.web_developer[lang]}</div>
-    <a class="opacity1 bold1" href={theater.web_developer.url} target="_blank"	rel="noopener external">{theater.web_developer.name[lang]}</a> 
+  <div class="flex1-item flex2">
+    <div class="parners">
+      <div class="opacity1">{dictionary.partners[lang].toUpperCase()}</div>
+      <div></div>
+    </div>
+    <div class="web-developer">
+      <div class="label opacity1">{dictionary.web_developer[lang]}</div>
+      <a class="opacity1 bold1" href={theater.web_developer.url} target="_blank"	rel="noopener external">{theater.web_developer.name[lang]}</a> 
+    </div>
   </div>
 </footer>

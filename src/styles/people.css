@@ -19,6 +19,7 @@
 	line-height: 1em;
 	column-gap: 20px;
 	row-gap: clamp(2rem, 4vw, 3.5rem);
+	padding-bottom: clamp(0px, 2vw, 2.5rem);
 }
 
 .person-card {

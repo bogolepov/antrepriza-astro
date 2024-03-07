@@ -19,6 +19,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/people/
       theater.actors.map(actor_id => {
         let person = theater.people.find(actor => actor.id == actor_id);
         let hasPage = person.suffix ? true : false;
+        let strJobName = (person.gender == 'f') ? dictionary.actress[lang] : dictionary.actor[lang];
         return (
           <div class="person-card hover-block">
             <div class="person-photo">
@@ -30,7 +31,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/people/
                 sizes={'(max-width: 320px) 210px, (max-width: 400px) 270px, 320px'}
                 alt={person.name[lang] + ' ' + person.surname[lang]} />
             </div>
-            <div class="person-title opacity1 bold1">{(person.gender == 'f') && dictionary.actress[lang]}{(person.gender == 'm') && dictionary.actor[lang]}</div>
+            <div class="person-title opacity1 bold1">{strJobName}</div>
             <div class="person-name">{person.name[lang]} {person.surname[lang]}</div>
             {
               hasPage &&

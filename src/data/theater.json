@@ -125,7 +125,7 @@
 			"gender": "m",
 			"name": { "ru": "Алексей", "de": "Alex" },
 			"surname": { "ru": "Голубев-Таубе", "de": "Taube" },
-			"jobs": ["job_stage", "actor"]
+			"jobs": ["actor", "job_stage"]
 		},
 		{
 			"id": 104,
@@ -150,7 +150,7 @@
 			"gender": "m",
 			"name": { "ru": "Вадим", "de": "Vadim" },
 			"surname": { "ru": "Романов", "de": "Romanov" },
-			"jobs": ["job_stage", "actor"]
+			"jobs": ["actor", "job_stage"]
 		},
 		{
 			"id": 107,

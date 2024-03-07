@@ -21,7 +21,15 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/people/
         let nJobs = 0;
         let strJobs="";
         for (let job of person.jobs) {
+          // skip job 'actor'/'actress', because it will be add to strJob at the end
+          if (job == "actor" || job == "actress") continue;
           strJobs = strJobs + (nJobs ? ", " : "") + ( (nJobs && lang == "ru" )? dictionary[job][lang].toLowerCase() : dictionary[job][lang]);
+          nJobs++;
+        }
+        // put job 'actor'/'actress' to the end of the string strJobs
+        let strActorJob = person.jobs.find(job => (job == "actor" || job == "actress"));
+        if (strActorJob) {
+          strJobs = strJobs + (nJobs ? ", " : "") + ( (nJobs && lang == "ru" )? dictionary[strActorJob][lang].toLowerCase() : dictionary[strActorJob][lang]);
           nJobs++;
         }
         let hasPage = person.suffix ? true : false;
