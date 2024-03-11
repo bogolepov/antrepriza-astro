@@ -17,6 +17,7 @@ ul {
 
 .person-title {
 	font-size: clamp(1rem, 2.15vw, 1.6rem);
+	letter-spacing: 0.02em;
 	line-height: 1.25em;
 }
 .person-jobs {

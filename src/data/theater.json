@@ -43,7 +43,7 @@
 			"name": { "ru": "Александр", "de": "Alexander" },
 			"surname": { "ru": "Мамонтов", "de": "Mamontov" },
 			"jobs": ["job_regisseur", "job_producer", "actor"],
-			"title": { "ru": "Заслуженный деятель культуры Польши", "de": "Verdienter Kulturarbeiter Polens" }
+			"title": { "ru": "Заслуженный деятель культуры Польши", "de": "Verdienter der polnischen Kultur" }
 		},
 		{
 			"id": 2,
