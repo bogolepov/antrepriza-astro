@@ -13,20 +13,19 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*/*.{jp
 
 const person = theater.people.find(item => item.id == person_id);
 
-const PLAY_NAME = "play";
-const CHARACTER = "character";
-
 let nJobs = 0;
 let strJobs="";
 let strActorJob = (person.gender == 'f') ? dictionary.actress[lang] : dictionary.actor[lang];
 if (person.jobs) {
   for (let job of person.jobs) {
-    strJobs = strJobs + (nJobs ? ", " : "") + ( (nJobs && lang == "ru" )? dictionary[job][lang].toLowerCase() : dictionary[job][lang]);
+    let thisJob = dictionary[job][lang];
+    if (job == 'actor' || job == 'actress') thisJob = strActorJob;
+    strJobs = strJobs + (nJobs ? ", " : "") + ( (nJobs && lang == "ru" )? thisJob.toLowerCase() : thisJob);
     nJobs++;
   }
 }
 else {
-  strJobs = strActorJob;
+  strJobs = (person.gender == 'f') ? dictionary.actress[lang] : dictionary.actor[lang];
 }
 
 let playsRegie = plays.filter(play => {
@@ -65,28 +64,32 @@ let isActor = theater.actors.find(person_id => person_id == person.id);
   }
   <div class="person-jobs opacity1">{strJobs}</div>
   <div class="flex">
-    <div class="person-photo flex-item-photo">
-      <Picture 
-        class:list={'image-wrapper-landscape'} 
-        src={images["/src/assets/people/" + person.photo]()} 
-        formats={['avif', 'webp']} 
-        widths={[320]}
-        sizes={'320px'}
-        alt={person.name[lang] + ' ' + person.surname[lang]} />
+    <div class="flex-item-photo">
+      <div class="person-photo">
+        <Picture 
+          class:list={'image-wrapper-landscape'} 
+          src={images["/src/assets/people/" + person.photo]()} 
+          formats={['avif', 'webp']} 
+          widths={[320]}
+          sizes={'320px'}
+          alt={person.name[lang] + ' ' + person.surname[lang]} />
+      </div>
     </div>
     <div class="works flex-item-works">
       {
         isRegie &&
         <div class="job regie">
-          <h3>{dictionary.job_regisseur[lang]}</h3>
+          <h3>{dictionary.regie_theater[lang]}</h3>
           <ul>
             {
               playsRegie.map(play => {
                 return (
                   <li class="flex-job">
                     <div class="flex-job-left">{play.genre[lang]}</div>
-                    <div class="flex-job-rigth">
-                      <a class="play-link" href={"/"+lang+"/plays/play-"+play.suffix}>{play.title[lang]}</a>
+                    <div class="flex-job-right">
+                      <div>
+                        <a class="play-link" href={"/"+lang+"/plays/play-"+play.suffix}>{play.title[lang]}</a>
+                      </div>
                     </div>
                   </li>
                 )
@@ -103,15 +106,17 @@ let isActor = theater.actors.find(person_id => person_id == person.id);
       {
         isActor &&
         <div class="job actor">
-          <h3>{strActorJob}</h3>
+          <h3>{dictionary.rollen_theater[lang]}</h3>
           <ul>
             {
               playsActor.map(play => {
                 return (
                   <li class="flex-job">
                     <div class="flex-job-left">{play.characters}</div>
-                    <div class="flex-job-rigth">
-                      <a class="play-link" href={"/"+lang+"/plays/play-"+play.play_suffix}>{play.play_name}</a>
+                    <div class="flex-job-right">
+                      <div>
+                        <a class="play-link" href={"/"+lang+"/plays/play-"+play.play_suffix}>{play.play_name}</a>
+                      </div>
                     </div>
                   </li>
                 )

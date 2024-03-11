@@ -1,0 +1,444 @@
+[
+	{
+		"id": 8,
+		"suffix": "miks",
+		"title": { "ru": "Малыш и Карл(CОН)", "de": "Steppke und Karl(SON)" },
+		"alt_title": { "ru": "Малыш\u00A0и Карл(CОН)", "de": "Steppke\u00A0und Karl(SON)" },
+		"author": { "ru": "К.Попов", "de": "K.Popov" },
+		"author_full": { "ru": "Константин Попов", "de": "Konstantin Popov" },
+		"genre": { "ru": "современная история", "de": "moderne Geschichte" },
+		"length": 90,
+		"break": false,
+		"age": "18+",
+		"description": { "ru": "play_miks_ru", "de": "play_miks_de" },
+		"posters": {
+			"landscape": "karl.son.jpg",
+			"landscape_16_9": "karl.son_16_9.jpg",
+			"portrait": "karl.son_poster.jpg",
+			"facebook": "",
+			"minimum": ""
+		},
+		"lang": { "ru": "русский", "de": "Russisch" },
+		"characters": [],
+		"creators": [
+			{ "type": "regie", "people": [1] },
+			{ "type": "light", "people": [4] },
+			{ "type": "sound", "people": [7] },
+			{ "type": "graphic_design", "people": [6] }
+		]
+	},
+	{
+		"id": 7,
+		"suffix": "suk",
+		"title": { "ru": "Малыш и Карлсон", "de": "Steppke und Karlson" },
+		"alt_title": { "ru": "Малыш\u00A0и Карлсон", "de": "Steppke\u00A0und Karlson" },
+		"title_notice": { "ru": "DE", "de": "DE" },
+		"author": { "ru": "А.Линдгрен", "de": "A.Lindgren" },
+		"author_full": { "ru": "Астрид Линдгрен", "de": "Astrid Lindgren" },
+		"genre": { "ru": "детский", "de": "für Kinder" },
+		"length": 60,
+		"break": false,
+		"age": "3+",
+		"description": { "ru": "play_suk_ru", "de": "play_suk_de" },
+		"posters": {
+			"landscape": "steppke_und_karlson.jpg",
+			"landscape_16_9": "steppke_und_karlson_16_9.jpg",
+			"portrait": "steppke_und_karlson_poster.jpg",
+			"facebook": "",
+			"minimum": ""
+		},
+		"lang": { "ru": "немецкий", "de": "Deutsch" },
+		"characters": [
+			{ "id": 1, "name": { "ru": "Малыш", "de": "Steppke" }, "actors": [] },
+			{
+				"id": 2,
+				"name": { "ru": "Карлсон", "de": "Karlsson" },
+				"description": { "ru": "летающий человек", "de": "fliegender Mann" },
+				"actors": []
+			},
+			{
+				"id": 3,
+				"name": { "ru": "Фрау Свантесон", "de": "Frau Swantenson" },
+				"description": { "ru": "мама Малыша", "de": "Steppkes Mutter" },
+				"actors": []
+			},
+			{
+				"id": 4,
+				"name": { "ru": "Фрекен Бок", "de": "Freken Bok" },
+				"description": { "ru": "домработница Свантесонов", "de": "Swantensons Haushälterin" },
+				"actors": []
+			}
+		],
+		"creators": [
+			{ "type": "regie", "people": [1] },
+			{ "type": "light", "people": [4] },
+			{ "type": "sound", "people": [7] },
+			{ "type": "graphic_design", "people": [6] }
+		]
+	},
+	{
+		"id": 6,
+		"suffix": "mik",
+		"title": { "ru": "Малыш и Карлсон", "de": "Steppke und Karlson" },
+		"alt_title": { "ru": "Малыш\u00A0и Карлсон", "de": "Steppke\u00A0und Karlson" },
+		"title_notice": { "ru": "RU", "de": "RU" },
+		"author": { "ru": "А.Линдгрен", "de": "A.Lindgren" },
+		"author_full": { "ru": "Астрид Линдгрен", "de": "Astrid Lindgren" },
+		"genre": { "ru": "детский", "de": "für Kinder" },
+		"length": 60,
+		"break": false,
+		"age": "3+",
+		"description": { "ru": "play_mik_ru", "de": "play_mik_de" },
+		"trailer": "https://www.youtube.com/watch?v=_Paauq1_o4o",
+		"trailer_embed": "https://www.youtube-nocookie.com/embed/_Paauq1_o4o?si=TVh97Y3ddBCcJPle",
+		"posters": {
+			"landscape": "steppke_und_karlson.jpg",
+			"landscape_16_9": "steppke_und_karlson_16_9.jpg",
+			"portrait": "steppke_und_karlson_poster.jpg",
+			"facebook": "",
+			"minimum": ""
+		},
+		"lang": { "ru": "русский", "de": "Russisch" },
+		"characters": [
+			{ "id": 1, "name": { "ru": "Малыш", "de": "Steppke" }, "actors": [110, 118] },
+			{
+				"id": 2,
+				"name": { "ru": "Карлсон", "de": "Karlsson" },
+				"description": { "ru": "летающий человек", "de": "fliegender Mann" },
+				"actors": [103]
+			},
+			{
+				"id": 3,
+				"name": { "ru": "Фрау Свантесон", "de": "Frau Swantenson" },
+				"description": { "ru": "мама Малыша", "de": "Steppkes Mutter" },
+				"actors": [100, 108]
+			},
+			{
+				"id": 4,
+				"name": { "ru": "Фрекен Бок", "de": "Freken Bok" },
+				"description": { "ru": "домработница Свантесонов", "de": "Swantensons Haushälterin" },
+				"actors": [102, 116, 111]
+			}
+		],
+		"creators": [
+			{ "type": "regie", "people": [1] },
+			{ "type": "stage", "people": [103] },
+			{ "type": "light", "people": [4] },
+			{ "type": "sound", "people": [7] },
+			{ "type": "graphic_design", "people": [6] },
+			{ "type": "photographer", "people": [5] }
+		]
+	},
+	{
+		"id": 5,
+		"suffix": "op",
+		"title": { "ru": "Опасный поворот", "de": "Gefährliche Kurve" },
+		"alt_title": { "ru": "Опасный поворот", "de": "Gefährliche Kurve" },
+		"author": { "ru": "Дж.Б.Пристли", "de": "J.B.Priestley" },
+		"author_full": { "ru": "Джон Бойнтон Пристли", "de": "John Boynton Priestley" },
+		"genre": { "ru": "детектив", "de": "Krimi" },
+		"length": 120,
+		"break": true,
+		"age": "18+",
+		"description": { "ru": "play_op_ru", "de": "play_op_de" },
+		"posters": {
+			"landscape": "gefaerliche_kurve.jpg",
+			"landscape_16_9": "gefaerliche_kurve_16_9.jpg",
+			"portrait": "gefaerliche_kurve_poster.jpg",
+			"facebook": "",
+			"minimum": ""
+		},
+		"lang": { "ru": "русский", "de": "Russisch" },
+		"characters": [
+			{ "id": 1, "name": { "ru": "Роберт Кэплен", "de": "Robert Caplan" }, "actors": [103] },
+			{
+				"id": 2,
+				"name": { "ru": "Фреда Кэплен", "de": "Freda Caplan" },
+				"description": { "ru": "жена Роберта", "de": "Roberts Gattin" },
+				"actors": [100]
+			},
+			{
+				"id": 3,
+				"name": { "ru": "Гордон Уайтхауз", "de": "Gordon Whitehouse" },
+				"description": { "ru": "брат Фреды", "de": "Fredas Bruder" },
+				"actors": [112, 106]
+			},
+			{
+				"id": 4,
+				"name": { "ru": "Бетти Уайтхауз", "de": "Betty Whitehouse" },
+				"description": { "ru": "жена Гордона", "de": "Gordons Gattin" },
+				"actors": [111, 117]
+			},
+			{ "id": 5, "name": { "ru": "Олуэн Пиил", "de": "Olwen Peel" }, "actors": [102, 105] },
+			{ "id": 6, "name": { "ru": "Чарлз Стэнтон", "de": "Charles Stanton" }, "actors": [106, 121] },
+			{ "id": 7, "name": { "ru": "Мисс Мокридж", "de": "Miss Mockridge" }, "actors": [108] }
+		],
+		"creators": [
+			{ "type": "regie", "people": [1] },
+			{ "type": "light", "people": [4] },
+			{ "type": "stage", "people": [103, 106] },
+			{ "type": "sound", "people": [7] },
+			{ "type": "graphic_design", "people": [6] },
+			{ "type": "photographer", "people": [5] }
+		]
+	},
+	{
+		"id": 4,
+		"suffix": "dk",
+		"title": { "ru": "Дорогая квартира", "de": "Teure Wohnung" },
+		"alt_title": { "ru": "Дорогая квартира", "de": "Teure Wohnung" },
+		"author": { "ru": "Т.Москвина", "de": "T.Moskvina" },
+		"author_full": { "ru": "Татьяна Москвина", "de": "Tatyana Moskvina" },
+		"genre": { "ru": "трагикомедия", "de": "Tragikomödie" },
+		"length": 120,
+		"break": true,
+		"age": "18+",
+		"description": { "ru": "play_dk_ru", "de": "play_dk_de" },
+		"trailer": "https://www.youtube.com/watch?v=1mspb4pzIHk",
+		"trailer_embed": "https://www.youtube-nocookie.com/embed/1mspb4pzIHk?si=u0t4x3ByniqyrTzO",
+		"posters": {
+			"landscape": "teure_wohnung.jpg",
+			"landscape_16_9": "teure_wohnung_16_9.jpg",
+			"portrait": "teure_wohnung_poster.jpg",
+			"facebook": "",
+			"minimum": ""
+		},
+		"lang": { "ru": "русский", "de": "Russisch" },
+		"characters": [
+			{
+				"id": 1,
+				"name": { "ru": "Магдалина Марковна Филатова", "de": "Magdalina Markowna Filatowa" },
+				"actors": [100]
+			},
+			{
+				"id": 2,
+				"name": { "ru": "Алексей Андреевич", "de": "Alexej Andreewitsch" },
+				"description": { "ru": "её муж", "de": "ihr Gatte" },
+				"actors": [109, 1]
+			},
+			{
+				"id": 3,
+				"name": { "ru": "Алексей Андреевич", "de": "Alexej Andreewitsch" },
+				"description": { "ru": "в молодости", "de": "im jungen Alter" },
+				"actors": [119]
+			},
+			{
+				"id": 4,
+				"name": { "ru": "Наташа", "de": "Natascha" },
+				"description": { "ru": "их дочь", "de": "ihre Tochter" },
+				"actors": [111, 122]
+			},
+			{
+				"id": 5,
+				"name": { "ru": "Матвей (Мотя)", "de": "Matwej (Motja)" },
+				"description": { "ru": "сын Наташи", "de": "Nataschas Sohn" },
+				"actors": [106]
+			},
+			{
+				"id": 6,
+				"name": { "ru": "Гаянэ Гаэтановна", "de": "Gajane Gaetanowna" },
+				"description": { "ru": "риелтор", "de": "Maklerin" },
+				"actors": [102, 105]
+			},
+			{
+				"id": 7,
+				"name": { "ru": "Олег Васильевич", "de": "Oleg Wasiljewitsch" },
+				"description": { "ru": "покупатель", "de": "Käufer" },
+				"actors": [3, 121]
+			},
+			{
+				"id": 8,
+				"name": { "ru": "Сергей Иванович", "de": "Sergej Iwanowitsch" },
+				"description": { "ru": "сосед Филатовых", "de": "Filatows Nachbar" },
+				"actors": [103]
+			}
+		],
+		"creators": [
+			{ "type": "regie", "people": [1] },
+			{ "type": "stage", "people": [103, 106] },
+			{ "type": "light", "people": [4] },
+			{ "type": "sound", "people": [7] },
+			{ "type": "graphic_design", "people": [6] },
+			{ "type": "photographer", "people": [5] }
+		]
+	},
+	{
+		"id": 2,
+		"suffix": "pip",
+		"title": { "ru": "Победа или предательство", "de": "Sieg oder Verrat" },
+		"alt_title": { "ru": "Победа\u00A0или предательство", "de": "Sieg\u00A0oder Verrat" },
+		"author": { "ru": "А.Гончуков, А.Слаповский", "de": "А.Gonchukov, A.Slapovsky" },
+		"author_full": { "ru": "Арсений Гончуков, Алексей Слаповский", "de": "Arseny Gonchukov, Alexey Slapovsky" },
+		"genre": { "ru": "трагикомедия", "de": "Tragikomödie" },
+		"length": 80,
+		"break": false,
+		"age": "16+",
+		"description": { "ru": "play_pip_ru", "de": "play_pip_de" },
+		"posters": {
+			"landscape": "sieg_oder_verrat.jpg",
+			"landscape_16_9": "sieg_oder_verrat_16_9.jpg",
+			"portrait": "sieg_oder_verrat_poster.jpg",
+			"facebook": "",
+			"minimum": ""
+		},
+		"lang": { "ru": "русский", "de": "Russisch" },
+		"characters": [
+			{ "id": 1, "name": { "ru": "Полина", "de": "Polina" }, "actors": [100, 102] },
+			{
+				"id": 2,
+				"name": { "ru": "Следователь СК", "de": "Ermittler" },
+				"description": { "ru": "майор", "de": "Major" },
+				"actors": [107, 103]
+			},
+			{
+				"id": 3,
+				"name": { "ru": "Оперативник ФСБ", "de": "FSB-Fahnder" },
+				"description": { "ru": "капитан", "de": "Hauptmann" },
+				"actors": [103, 121]
+			},
+			{ "id": 4, "name": { "ru": "Первый омоновец", "de": "Erster OMON-Polizist" }, "actors": [107, 103] },
+			{ "id": 5, "name": { "ru": "Второй омоновец", "de": "Zweiter OMON-Polizist" }, "actors": [103, 121] },
+			{
+				"id": 6,
+				"name": { "ru": "Данила", "de": "Danila" },
+				"description": { "ru": "старшеклассник", "de": "Oberstufenschüler" },
+				"actors": [119]
+			},
+			{
+				"id": 7,
+				"name": { "ru": "Марина", "de": "Marina" },
+				"description": { "ru": "подружка Данилы", "de": "Danilas Freundin" },
+				"actors": [111]
+			},
+			{
+				"id": 8,
+				"name": { "ru": "Сергей", "de": "Sergej" },
+				"description": { "ru": "телеведущий", "de": "TV-Moderator" },
+				"actors": [3]
+			},
+			{
+				"id": 9,
+				"name": { "ru": "Зарина", "de": "Sarina" },
+				"description": { "ru": "теленачальница Сергея", "de": "Sergejs TV-Chefin" },
+				"actors": [100, 102]
+			},
+			{
+				"id": 10,
+				"name": { "ru": "Борис", "de": "Boris" },
+				"description": { "ru": "главред", "de": "Chefredakteur" },
+				"actors": [103]
+			},
+			{ "id": 11, "name": { "ru": "Светлана", "de": "Swetlana" }, "actors": [126] },
+			{ "id": 12, "name": { "ru": "Ирина", "de": "Irina" }, "actors": [100] },
+			{
+				"id": 13,
+				"name": { "ru": "Этна", "de": "Etna" },
+				"description": { "ru": "около … лет", "de": "etwa … Jahre alt" },
+				"actors": [102, 100]
+			},
+			{
+				"id": 14,
+				"name": { "ru": "Кантор", "de": "Kantor" },
+				"description": { "ru": "за … лет", "de": "über … Jahre alt" },
+				"actors": [3, 121]
+			},
+			{ "id": 15, "name": { "ru": "ГОЛОС", "de": "STIMME" }, "actors": [103, 121] }
+		],
+		"creators": [
+			{ "type": "regie", "people": [1] },
+			{ "type": "stage", "people": [103] },
+			{ "type": "light", "people": [4] },
+			{ "type": "sound", "people": [7] }
+		]
+	},
+	{
+		"id": 1,
+		"suffix": "ts",
+		"title": { "ru": "Три сестры", "de": "Drei Schwestern" },
+		"alt_title": { "ru": "Три сестры", "de": "Drei Schwestern" },
+		"author": { "ru": "А.Чехов", "de": "A.Tschechow" },
+		"author_full": { "ru": "Антон Чехов", "de": "Anton Tschechow" },
+		"genre": { "ru": "драма", "de": "Drama" },
+		"length": 135,
+		"break": true,
+		"age": "14+",
+		"description": { "ru": "play_ts_ru", "de": "play_ts_de" },
+		"trailer": "https://www.youtube.com/watch?v=8e44BfrkfzE",
+		"trailer_embed": "https://www.youtube-nocookie.com/embed/8e44BfrkfzE?si=ioMQimlAtF5AosQw",
+		"posters": {
+			"landscape": "drei_schwestern.jpg",
+			"landscape_16_9": "drei_schwestern_16_9.jpg",
+			"portrait": "drei_schwestern_poster.jpg",
+			"facebook": "",
+			"minimum": ""
+		},
+		"lang": { "ru": "русский", "de": "Russisch" },
+		"characters": [
+			{ "id": 1, "name": { "ru": "Прозоров Андрей Сергеевич", "de": "Andrej Sergejewitsch Prosorow" }, "actors": [3] },
+			{
+				"id": 2,
+				"name": { "ru": "Наталья Ивановна", "de": "Natascha" },
+				"description": { "ru": "его невеста, потом жена", "de": "Andrejs Braut, später seine Gattin" },
+				"actors": [102]
+			},
+			{
+				"id": 3,
+				"name": { "ru": "Ольга", "de": "Olga" },
+				"description": { "ru": "его сестра, старшая", "de": "seine Schwester, älteste" },
+				"actors": [101]
+			},
+			{
+				"id": 4,
+				"name": { "ru": "Маша", "de": "Mascha" },
+				"description": { "ru": "его сестра, средняя", "de": "seine Schwester, mittlere" },
+				"actors": [100]
+			},
+			{
+				"id": 5,
+				"name": { "ru": "Ирина", "de": "Irina" },
+				"description": { "ru": "его сестра, младшая", "de": "seine Schwester, jüngste" },
+				"actors": [104, 105]
+			},
+			{
+				"id": 6,
+				"name": { "ru": "Вершинин Александр Игнатьевич", "de": "Alexander Ignatjewitsch Werschinin" },
+				"description": { "ru": "подполковник, батарейный командир", "de": "Oberstleutnant und Batteriechef" },
+				"actors": [103]
+			},
+			{
+				"id": 7,
+				"name": { "ru": "Тузенбах Николай Львович", "de": "Baron Tusenbach" },
+				"description": { "ru": "барон, поручик", "de": "Offizier" },
+				"actors": [106, 123]
+			},
+			{
+				"id": 8,
+				"name": { "ru": "Соленый Василий Васильевич", "de": "Soljony" },
+				"description": { "ru": "штабс-капитан", "de": "Offizier" },
+				"actors": [107, 121]
+			},
+			{
+				"id": 9,
+				"name": { "ru": "Чебутыкин Иван Романович", "de": "Iwan Romanowitsch Tschebutykin" },
+				"description": { "ru": "военный доктор", "de": "Militairarzt" },
+				"actors": [1]
+			},
+			{
+				"id": 10,
+				"name": { "ru": "Анфиса", "de": "Anfissa" },
+				"description": { "ru": "нянька", "de": "eine alte Kinderfrau" },
+				"actors": [108, 124]
+			}
+		],
+		"creators": [
+			{ "type": "regie", "people": [1] },
+			{ "type": "music", "people": [2] },
+			{ "type": "stage", "people": [103, 106, 108] },
+			{ "type": "light", "people": [4] },
+			{ "type": "sound", "people": [7] },
+			{ "type": "costumes", "people": [126] },
+			{ "type": "graphic_design", "people": [6] },
+			{ "type": "photographer", "people": [5] }
+		]
+	}
+]
