@@ -49,7 +49,7 @@ ul {
 	text-align: center;
 	font-size: clamp(1.3rem, 2.8vw, 1.9rem);
 	line-height: 1.3em;
-	padding-bottom: 0.3em;
+	padding-bottom: 0.4em;
 }
 
 .flex-job {
@@ -57,7 +57,7 @@ ul {
 	flex-direction: row;
 	width: 100%;
 	font-size: clamp(1rem, 1.8vw, 1.2rem);
-	line-height: 1.5em;
+	line-height: 1.3em;
 	padding-bottom: 0.5em;
 }
 
