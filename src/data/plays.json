@@ -28,60 +28,11 @@
 		]
 	},
 	{
-		"id": 7,
-		"suffix": "suk",
-		"title": { "ru": "Малыш и Карлсон", "de": "Steppke und Karlson" },
-		"alt_title": { "ru": "Малыш\u00A0и Карлсон", "de": "Steppke\u00A0und Karlson" },
-		"title_notice": { "ru": "DE", "de": "DE" },
-		"author": { "ru": "А.Линдгрен", "de": "A.Lindgren" },
-		"author_full": { "ru": "Астрид Линдгрен", "de": "Astrid Lindgren" },
-		"genre": { "ru": "детский", "de": "für Kinder" },
-		"length": 60,
-		"break": false,
-		"age": "3+",
-		"description": { "ru": "play_suk_ru", "de": "play_suk_de" },
-		"posters": {
-			"landscape": "steppke_und_karlson.jpg",
-			"landscape_16_9": "steppke_und_karlson_16_9.jpg",
-			"portrait": "steppke_und_karlson_poster.jpg",
-			"facebook": "",
-			"minimum": ""
-		},
-		"lang": { "ru": "немецкий", "de": "Deutsch" },
-		"characters": [
-			{ "id": 1, "name": { "ru": "Малыш", "de": "Steppke" }, "actors": [] },
-			{
-				"id": 2,
-				"name": { "ru": "Карлсон", "de": "Karlsson" },
-				"description": { "ru": "летающий человек", "de": "fliegender Mann" },
-				"actors": []
-			},
-			{
-				"id": 3,
-				"name": { "ru": "Фрау Свантесон", "de": "Frau Swantenson" },
-				"description": { "ru": "мама Малыша", "de": "Steppkes Mutter" },
-				"actors": []
-			},
-			{
-				"id": 4,
-				"name": { "ru": "Фрекен Бок", "de": "Freken Bok" },
-				"description": { "ru": "домработница Свантесонов", "de": "Swantensons Haushälterin" },
-				"actors": []
-			}
-		],
-		"creators": [
-			{ "type": "regie", "people": [1] },
-			{ "type": "light", "people": [4] },
-			{ "type": "sound", "people": [7] },
-			{ "type": "graphic_design", "people": [6] }
-		]
-	},
-	{
 		"id": 6,
 		"suffix": "mik",
 		"title": { "ru": "Малыш и Карлсон", "de": "Steppke und Karlson" },
 		"alt_title": { "ru": "Малыш\u00A0и Карлсон", "de": "Steppke\u00A0und Karlson" },
-		"title_notice": { "ru": "RU", "de": "RU" },
+		"__title_notice": { "ru": "RU", "de": "RU" },
 		"author": { "ru": "А.Линдгрен", "de": "A.Lindgren" },
 		"author_full": { "ru": "Астрид Линдгрен", "de": "Astrid Lindgren" },
 		"genre": { "ru": "детский", "de": "für Kinder" },

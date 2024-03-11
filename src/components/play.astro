@@ -130,7 +130,7 @@ const { Content } = await entry.render();
                   if (_person.suffix)
                     return (
                       <div>
-                        <a class="person-link" href={"/"+lang+"/theater/team/"+_person.suffix}>
+                        <a class="person-link" href={"/"+lang+"/theater/people/"+_person.suffix}>
                           {_person.name[lang]} {_person.surname[lang]}
                         </a>
                       </div>
@@ -170,7 +170,7 @@ const { Content } = await entry.render();
                 return actor.map(_actor => {
                   return (
                     <div>
-                      <a class="person-link" href={"/"+lang+"/theater/team/"+_actor.suffix}>{_actor.name[lang]} {_actor.surname[lang]}</a>
+                      <a class="person-link" href={"/"+lang+"/theater/people/"+_actor.suffix}>{_actor.name[lang]} {_actor.surname[lang]}</a>
                     </div>
                   )
                 });

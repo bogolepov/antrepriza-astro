@@ -43,9 +43,9 @@ plays.filter(play => {
     return (res != undefined);
   });
   if (characters && characters.length > 0) {
-    let charArray = [];
-    characters.forEach(character => charArray.push(character.name[lang]));
-    playsActor.push({play_name: play.title[lang], characters: charArray});
+    let strCharacters = '';
+    characters.forEach((character, i) => strCharacters = strCharacters + character.name[lang] + (i < (characters.length-1) ? ', ': ''));
+    playsActor.push({play_name: play.title[lang], play_suffix: play.suffix, characters: strCharacters});
   }
   return characters && characters.length > 0;
 });
@@ -75,31 +75,53 @@ let isActor = theater.actors.find(person_id => person_id == person.id);
         alt={person.name[lang] + ' ' + person.surname[lang]} />
     </div>
     <div class="works flex-item-works">
-      <div class:list={{job: isRegie}}>{isRegie && dictionary.job_regisseur[lang]}</div>
       {
-        isRegie && 
-        playsRegie.map(play => {
-          return (
-            <div>{play.title[lang]}</div>
-          )
-        })
-      }
-      {
-        isRegie && <br>
+        isRegie &&
+        <div class="job regie">
+          <h3>{dictionary.job_regisseur[lang]}</h3>
+          <ul>
+            {
+              playsRegie.map(play => {
+                return (
+                  <li class="flex-job">
+                    <div class="flex-job-left">{play.genre[lang]}</div>
+                    <div class="flex-job-rigth">
+                      <a class="play-link" href={"/"+lang+"/plays/play-"+play.suffix}>{play.title[lang]}</a>
+                    </div>
+                  </li>
+                )
+              })
+            }
+          </ul>
+        </div>
       }
 
-      <div class:list={{job: isActor}}>{isActor && strActorJob}</div>
-        {
-          isActor && playsActor.map(play => {
-            console.log(play.play_name);
-            
-            return (
-              <div>{play.play_name}</div>
-            )
-          })
-        }
+      {
+        isRegie && isActor && <br>
+      }
+
+      {
+        isActor &&
+        <div class="job actor">
+          <h3>{strActorJob}</h3>
+          <ul>
+            {
+              playsActor.map(play => {
+                return (
+                  <li class="flex-job">
+                    <div class="flex-job-left">{play.characters}</div>
+                    <div class="flex-job-rigth">
+                      <a class="play-link" href={"/"+lang+"/plays/play-"+play.play_suffix}>{play.play_name}</a>
+                    </div>
+                  </li>
+                )
+              })
+            }
+          </ul>
+        </div>
+      }
+
       </div>
-    </div>
   </div>
 
 </section>
