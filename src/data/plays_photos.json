@@ -4,7 +4,7 @@
 	{ "filename": "IMG__3136.jpg", "is_landscape": true, "suffix": "ts", "author": 5, "actors": [100, 101, 104, 106, 107] },
 	{ "filename": "IMG__3141.jpg", "is_landscape": true, "suffix": "ts", "author": 5, "actors": [1, 104, 107] },
 	{ "filename": "IMG__3143.jpg", "is_landscape": true, "suffix": "ts", "author": 5, "actors": [101, 103, 104, 106, 107] },
-	{ "filename": "IMG__3155.jpg", "is_landscape": true, "folder": "ts", "author": 5, "actors": [101, 102] },
+	{ "filename": "IMG__3155.jpg", "is_landscape": true, "suffix": "ts", "author": 5, "actors": [101, 102] },
 	{ "filename": "IMG__3152.jpg", "is_landscape": true, "suffix": "ts", "author": 5, "actors": [104, 106] },
 	{ "filename": "IMG__3158.jpg", "is_landscape": true, "suffix": "ts", "author": 5, "actors": [3, 102] },
 	{ "filename": "IMG__3166.jpg", "is_landscape": true, "suffix": "ts", "author": 5, "actors": [100, 103] },
