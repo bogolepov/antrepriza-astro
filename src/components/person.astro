@@ -5,6 +5,8 @@ import dictionary from '@data/dictionary.json'
 import theater from '@data/theater.json'
 import plays from '@data/plays.json'
 import plays_photos from '@data/plays_photos.json'
+import person_photos from '@data/person_photos.json'
+import studio_photos from '@data/studio_photos.json'
 
 import "@styles/swiper-bundle.css"
 import '@styles/person.css'
@@ -55,8 +57,13 @@ plays.filter(play => {
 let isRegie = playsRegie && playsRegie.length > 0;
 let isActor = theater.actors.find(person_id => person_id == person.id);
 
-// { "filename": "IMG__3171.jpg", "is_landscape": true, "play_id": 1, "author": 5, "actors": [1, 100, 106] },
-let photos = plays_photos.filter(photo => photo.actors.find(id => person_id == id) && photo.is_landscape );
+// { "filename": "IMG__3171.jpg", "is_landscape": true, "play_id": 1, "author": 5, "people": [1, 100, 106] },
+let photos = [ 
+  plays_photos.filter(photo => photo.people.find(id => person_id == id) && photo.is_landscape ),
+  person_photos.filter(photo => photo.people.find(id => person_id == id) && photo.is_landscape ),
+  studio_photos.filter(photo => photo.people.find(id => person_id == id) && photo.is_landscape ) ];
+
+photos = [].concat(...photos);
 
 ---
 

@@ -253,7 +253,7 @@
 				"id": 6,
 				"name": { "ru": "Данила", "de": "Danila" },
 				"description": { "ru": "старшеклассник", "de": "Oberstufenschüler" },
-				"actors": [119]
+				"actors": [119, 106]
 			},
 			{
 				"id": 7,
