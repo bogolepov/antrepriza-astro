@@ -26,7 +26,10 @@ ul {
 }
 
 .flex {
+	margin-left: auto;
+	margin-right: auto;
 	width: 100%;
+	max-width: 1100px;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
@@ -64,8 +67,10 @@ ul {
 
 .flex-job-left {
 	width: 50%;
+	max-width: 360px;
 	text-align: end;
 	padding-right: 5px;
+	text-wrap: wrap;
 }
 [data-theme='dark'] .flex-job-left {
 	opacity: 0.7;
