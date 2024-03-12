@@ -83,3 +83,35 @@ ul {
 .play-link {
 	text-decoration: underline;
 }
+
+.page-end {
+	margin-bottom: clamp(1.1rem, 2.6vw, 2rem);
+}
+
+/* --------------------------------------------------- */
+/* ---------------------- gallery -------------------- */
+/* --------------------------------------------------- */
+.gallery {
+	padding-top: clamp(3rem, 7vw, 5rem);
+}
+
+.gallery h2 {
+	font-size: clamp(1.4rem, 3vw, 2.2rem);
+	word-wrap: break-word;
+}
+
+.person-gallery {
+	height: min(100vw, 60vh);
+	max-height: 67vw;
+	min-height: 220px;
+	padding-bottom: clamp(0.3rem, max(0.5vh, 2vw), 1rem);
+}
+.person-gallery-position {
+	position: absolute;
+	left: 0;
+	right: 0;
+	height: min(100vw, 60vh);
+	max-height: 67vw;
+	min-height: 220px;
+	padding-bottom: clamp(0.3rem, max(0.5vh, 2vw), 1rem);
+}

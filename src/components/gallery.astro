@@ -17,7 +17,7 @@ import YoutubePlayer from './youtube_player.astro';
 
 {
   plays.map(play => {
-    let playFotos = photos.filter(photo => photo.filename && photo.play_id == play.id && photo.is_landscape);
+    let playFotos = photos.filter(photo => photo.filename && photo.suffix == play.suffix && photo.is_landscape);
     if ( (!playFotos || !playFotos.length) && !play.trailer_embed) return;
     return (
       <div class="gallery-block">
