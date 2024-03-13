@@ -1,0 +1,38 @@
+.section-title {
+	font-size: clamp(1.6rem, 4vw, 3rem);
+	font-weight: var(--font-extra-weight);
+	line-height: 1.25em;
+	padding-top: clamp(1.5rem, 2.6vw, 2rem);
+	padding-bottom: 0.15em;
+	letter-spacing: 0.04em;
+	/* text-transform: uppercase; */
+	word-wrap: break-word;
+}
+
+/* --------------------------------------------------- */
+/* ---------------------- gallery -------------------- */
+/* --------------------------------------------------- */
+.gallery {
+	padding-top: clamp(3rem, 7vw, 5rem);
+}
+
+.gallery h2 {
+	font-size: clamp(1.4rem, 3vw, 2.2rem);
+	word-wrap: break-word;
+}
+
+.studio-gallery {
+	height: min(100vw, 60vh);
+	max-height: 67vw;
+	min-height: 220px;
+	padding-bottom: clamp(0.3rem, max(0.5vh, 2vw), 1rem);
+}
+.studio-gallery-position {
+	position: absolute;
+	left: 0;
+	right: 0;
+	height: min(100vw, 60vh);
+	max-height: 67vw;
+	min-height: 220px;
+	padding-bottom: clamp(0.3rem, max(0.5vh, 2vw), 1rem);
+}
