@@ -722,6 +722,7 @@ html[lang='de'] .burger-item .link-de {
 }
 
 .header-burger:is(.burger-menu-opened) .header-burger-button .line {
+	fill: var(--colorAntreprizaRed);
 	/* transition: y 300ms ease-in, rotate 300ms ease-in 300ms, opacity 0ms 300ms; */
 }
 
