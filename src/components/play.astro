@@ -106,10 +106,12 @@ const { Content } = await entry.render();
       <article class="description-content">
         <Content/>
       </article>
+      <br>
     </div>
   }
   <br>
-  <ul class="list"><h3>{dictionary.play_creators[lang].toUpperCase()}</h3></ul>
+  <h3>{dictionary.play_creators[lang].toUpperCase()}</h3>
+  <ul class="list">
   {
     thisPlay.creators.map(creator => {
       return (
@@ -147,8 +149,23 @@ const { Content } = await entry.render();
       )
     })
   }
+  </ul>
+
+  {
+    thisPlay.posters.afisha &&
+    <Picture 
+      class:list={'image-wrapper-landscape float afisha'} 
+      src={images["/src/assets/" + thisPlay.posters.afisha]()} 
+      formats={['avif', 'webp']} 
+      widths={[280,640,780]}
+      sizes={'(max-width: 320px) 280px, (max-width: 660px) 640px, 780px'}
+      alt={thisPlay.title[lang]} />
+
+  }
+
   <br>
-  <ul class="list"><h3>{dictionary.play_team[lang].toUpperCase()}</h3></ul>
+  <h3>{dictionary.play_team[lang].toUpperCase()}</h3>
+  <ul class="list">
   {
     thisPlay.characters.map(character => {
       return (
@@ -181,10 +198,12 @@ const { Content } = await entry.render();
       )
     })
   }
+  </ul>
+
   {
     gallery.length > 0 &&
     <div class="play-description">
-      <br><br>
+      <br>
       <h2>{dictionary.photos[lang].toUpperCase()}</h2>
       <Gallery play_id={play_id} play_suffix={thisPlay.suffix}/>
     </div>

@@ -46,6 +46,7 @@
 			"landscape": "steppke_und_karlson.jpg",
 			"landscape_16_9": "steppke_und_karlson_16_9.jpg",
 			"portrait": "steppke_und_karlson_poster.jpg",
+			"afisha": "afisha_mik.jpg",
 			"facebook": "",
 			"minimum": ""
 		},
@@ -73,11 +74,11 @@
 		],
 		"creators": [
 			{ "type": "regie", "people": [1] },
-			{ "type": "stage", "people": [103] },
 			{ "type": "light", "people": [4] },
 			{ "type": "sound", "people": [7] },
 			{ "type": "graphic_design", "people": [6] },
-			{ "type": "photographer", "people": [5] }
+			{ "type": "photographer", "people": [5] },
+			{ "type": "stage", "people": [103] }
 		]
 	},
 	{
@@ -96,6 +97,7 @@
 			"landscape": "gefaerliche_kurve.jpg",
 			"landscape_16_9": "gefaerliche_kurve_16_9.jpg",
 			"portrait": "gefaerliche_kurve_poster.jpg",
+			"afisha": "afisha_op.jpg",
 			"facebook": "",
 			"minimum": ""
 		},
@@ -127,10 +129,10 @@
 		"creators": [
 			{ "type": "regie", "people": [1] },
 			{ "type": "light", "people": [4] },
-			{ "type": "stage", "people": [103, 106] },
 			{ "type": "sound", "people": [7] },
 			{ "type": "graphic_design", "people": [6] },
-			{ "type": "photographer", "people": [5] }
+			{ "type": "photographer", "people": [5] },
+			{ "type": "stage", "people": [103, 106] }
 		]
 	},
 	{
@@ -151,6 +153,7 @@
 			"landscape": "teure_wohnung.jpg",
 			"landscape_16_9": "teure_wohnung_16_9.jpg",
 			"portrait": "teure_wohnung_poster.jpg",
+			"afisha": "afisha_dk.jpg",
 			"facebook": "",
 			"minimum": ""
 		},
@@ -206,11 +209,11 @@
 		],
 		"creators": [
 			{ "type": "regie", "people": [1] },
-			{ "type": "stage", "people": [103, 106] },
 			{ "type": "light", "people": [4] },
 			{ "type": "sound", "people": [7] },
 			{ "type": "graphic_design", "people": [6] },
-			{ "type": "photographer", "people": [5] }
+			{ "type": "photographer", "people": [5] },
+			{ "type": "stage", "people": [103, 106] }
 		]
 	},
 	{
@@ -297,9 +300,9 @@
 		],
 		"creators": [
 			{ "type": "regie", "people": [1] },
-			{ "type": "stage", "people": [103] },
 			{ "type": "light", "people": [4] },
-			{ "type": "sound", "people": [7] }
+			{ "type": "sound", "people": [7] },
+			{ "type": "stage", "people": [103] }
 		]
 	},
 	{
@@ -320,6 +323,7 @@
 			"landscape": "drei_schwestern.jpg",
 			"landscape_16_9": "drei_schwestern_16_9.jpg",
 			"portrait": "drei_schwestern_poster.jpg",
+			"afisha": "afisha_ts.jpg",
 			"facebook": "",
 			"minimum": ""
 		},
@@ -384,12 +388,12 @@
 		"creators": [
 			{ "type": "regie", "people": [1] },
 			{ "type": "music", "people": [2] },
-			{ "type": "stage", "people": [103, 106, 108] },
 			{ "type": "light", "people": [4] },
 			{ "type": "sound", "people": [7] },
 			{ "type": "costumes", "people": [126] },
 			{ "type": "graphic_design", "people": [6] },
-			{ "type": "photographer", "people": [5] }
+			{ "type": "photographer", "people": [5] },
+			{ "type": "stage", "people": [103, 106, 108] }
 		]
 	}
 ]
