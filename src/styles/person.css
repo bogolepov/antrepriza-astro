@@ -5,14 +5,7 @@ ul {
 }
 
 .section-title {
-	font-size: clamp(1.6rem, 4vw, 3rem);
-	font-weight: var(--font-extra-weight);
-	line-height: 1.25em;
-	padding-top: clamp(1.5rem, 2.6vw, 2rem);
 	padding-bottom: 0.15em;
-	letter-spacing: 0.04em;
-	/* text-transform: uppercase; */
-	word-wrap: break-word;
 }
 
 .person-title {

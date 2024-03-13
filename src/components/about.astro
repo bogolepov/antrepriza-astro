@@ -8,8 +8,7 @@ import YouTubePlayer from "@components/youtube_player.astro"
 
 ---
 
-<h1>{dictionary.menu_about[lang]}</h1>
-
 <section class="about">
+  <h1 class="section-title">{dictionary.menu_about[lang]}</h1>
   <YouTubePlayer lang={lang} url={theater.promo_video_about} />
 </section>
