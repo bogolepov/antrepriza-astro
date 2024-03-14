@@ -1,23 +1,23 @@
-<i>Beruflicher Werdegang</i>
+<i>Профессиональный опыт</i>
 
-11/2019 — Regie und Schauspieler Theater ANTREPRIZA (Berlin) https://antrepriza.eu
+С 11/2019 – Режиссер и актер Театра АНТРЕПРИЗА (Берлин).
 
-09/2007 – 11/2019 Projektleiter, RUSFILM GbR, Berlin (www.rusfilm.net), Organisation der russischen Filmtage in Deutschland
+2007 – 2019 Руководитель проекта RUSFILM GbR (Берлин). Организатор Дней российского кино в Германии.
 
-2005 – 2007 Dozent für Journalismus und Produktion, Staatliche Universität für Kino und Fernsehen, Sankt Petersburg, Russland
+2005 – 2007 Преподаватель кафедры журналистики и производства, Государственный университет кино и телевидения, Санкт-Петербург, Россия
 
-1992 – 2015 Geschäftsführer, International Film Festival “FESTIVAL of FESTIVALS”, www.filmfest.ru
+1992 – 2015 Руководитель Международного кинофестиваля «ФЕСТИВАЛЬ ФЕСТИВАЛЕЙ».
 
-1980 – 1987 Schauspieler, Staatliches Theater von Liepaja, Lettland
+1980 – 1987 Актер, Лиепайский государственный театр, Латвия.
 
-<i>Berufliche Aus- und Weiterbildung</i>
+<i>Профессиональное образование</i>
 
-2000 – 2004 Institut für Rechtswissenschaft, Sankt Petersburg, Abschluss: Diplom-Jurist und Notar
+2000 – 2004 Юридического института (Санкт-Петербург). Диплом по специальности «Юрист и нотариус».
 
-1976 – 1980 Schauspielschule Nowosibirsk, Abschluss: Diplom Schauspieler/Akteur des dramatischen Theaters
+1976 – 1980 Новосибирский государственный театральный институт. Диплом по специальности «Актер драматического театра».
 
-<i>Mitgliedschaften in Berufsverbänden</i>
+<i>Членство в профессиональных ассоциациях</i>
 
-Seit 2001 Vereinigung russischer Filmschaffender
+С 2001 года в Союзе кинематографистов России.
 
-Seit 1985 Vereinigung russischer Theaterschauspieler
+С 1985 года в Союзе театральных деятелей Российской Федерации.
