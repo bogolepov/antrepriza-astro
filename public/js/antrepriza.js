@@ -105,18 +105,7 @@ function initColorMode() {
 	themeCheckboxes = document.getElementsByClassName('theme-checkbox');
 
 	let mode = getUserMode();
-	if (!mode && window.matchMedia) {
-		mode = window.matchMedia('(prefers-color-scheme: dark)').matches ? MODE_DARK : MODE_LIGHT;
-
-		// listener of the scheme changing on the system
-		// !!! it will work only if user has never changed scheme himself
-		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-			if (!getUserMode()) {
-				document.body.dataset.theme = event.matches ? MODE_DARK : MODE_LIGHT;
-				for (let checkbox of themeCheckboxes) checkbox.checked = event.matches;
-			}
-		});
-	} else mode = mode ? mode : MODE_LIGHT;
+	if (!mode) mode = MODE_DARK;
 
 	document.body.dataset.theme = mode;
 
@@ -183,11 +172,7 @@ function initHoverModeForTouchScreen() {
 	let blocks = document.getElementsByClassName('hover-block');
 	for (let block of blocks) {
 		block.addEventListener('pointerdown', event => {
-			if (
-				event.isPrimary &&
-				(event.pointerType == 'pen' || event.pointerType == 'touch') &&
-				currentHoverBlock != block
-			) {
+			if (event.isPrimary && (event.pointerType == 'pen' || event.pointerType == 'touch') && currentHoverBlock != block) {
 				if (currentHoverBlock) currentHoverBlock.removeAttribute('hover');
 				currentHoverBlock = block;
 				currentHoverBlock.setAttribute('hover', '');
