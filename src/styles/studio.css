@@ -1,3 +1,24 @@
+.studio .description {
+	width: 100%;
+	max-width: 960px;
+	margin: 0 auto;
+	margin-bottom: clamp(1.5rem, 2.6vw, 2rem);
+	font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+	line-height: 1.35em;
+}
+
+.description p {
+	margin-bottom: 0;
+}
+
+.description b {
+	opacity: var(--font-part-opacity);
+}
+
+.description a {
+	text-decoration: underline;
+}
+
 /* --------------------------------------------------- */
 /* ---------------------- gallery -------------------- */
 /* --------------------------------------------------- */
