@@ -4,11 +4,23 @@ const { lang } = Astro.props;
 import dictionary from '@data/dictionary.json'
 import theater from '@data/theater.json'
 
+import '@styles/about.css'
+
 import YouTubePlayer from "@components/youtube_player.astro"
+
+import { getEntry } from 'astro:content';
+
+const description: string = (lang == 'ru') ? 'about_ru' : 'about_de';
+const entry = await getEntry('theater', description);
+const { Content } = await entry.render();
 
 ---
 
 <section class="about">
   <h1 class="section-title">{dictionary.menu_about[lang]}</h1>
+  <div class="description">
+    <Content/>
+  </div>
   <YouTubePlayer lang={lang} url={theater.promo_video_about} />
+  <div class="page-end"></div>
 </section>

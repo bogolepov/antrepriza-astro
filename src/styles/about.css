@@ -1,0 +1,40 @@
+.about .description {
+	width: 100%;
+	max-width: 960px;
+	margin: 0 auto;
+	margin-bottom: clamp(1.5rem, 2.6vw, 2rem);
+	font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+	line-height: 1.35em;
+}
+
+.description p {
+	margin-bottom: 0;
+}
+
+.description b {
+	opacity: var(--font-part-opacity);
+}
+
+.description a {
+	text-decoration: underline;
+}
+
+.description .big-font {
+	font-size: 1.25em;
+}
+
+.description .motto {
+	padding-top: clamp(2rem, 8vw, 4rem);
+	padding-bottom: clamp(1rem, 4vw, 2.5rem);
+	font-size: clamp(1.15rem, 2.8vw, 1.9rem);
+	font-weight: 400;
+	font-style: italic;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	/* text-transform: uppercase; */
+	text-align: center;
+	opacity: var(--font-part-opacity);
+}
+
+.page-end {
+	margin-bottom: clamp(1.7rem, 5vw, 3.5rem);
+}
