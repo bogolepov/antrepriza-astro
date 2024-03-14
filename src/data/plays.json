@@ -78,7 +78,7 @@
 			{ "type": "sound", "people": [7] },
 			{ "type": "graphic_design", "people": [6] },
 			{ "type": "photographer", "people": [5] },
-			{ "type": "stage", "people": [103] }
+			{ "type": "stage_setup", "people": [103] }
 		]
 	},
 	{
@@ -132,7 +132,7 @@
 			{ "type": "sound", "people": [7] },
 			{ "type": "graphic_design", "people": [6] },
 			{ "type": "photographer", "people": [5] },
-			{ "type": "stage", "people": [103, 106] }
+			{ "type": "stage_setup", "people": [103, 106] }
 		]
 	},
 	{
@@ -213,7 +213,7 @@
 			{ "type": "sound", "people": [7] },
 			{ "type": "graphic_design", "people": [6] },
 			{ "type": "photographer", "people": [5] },
-			{ "type": "stage", "people": [103, 106] }
+			{ "type": "stage_setup", "people": [103, 106] }
 		]
 	},
 	{
@@ -302,7 +302,7 @@
 			{ "type": "regie", "people": [1] },
 			{ "type": "light", "people": [4] },
 			{ "type": "sound", "people": [7] },
-			{ "type": "stage", "people": [103] }
+			{ "type": "stage_setup", "people": [103] }
 		]
 	},
 	{
@@ -393,7 +393,7 @@
 			{ "type": "costumes", "people": [126] },
 			{ "type": "graphic_design", "people": [6] },
 			{ "type": "photographer", "people": [5] },
-			{ "type": "stage", "people": [103, 106, 108] }
+			{ "type": "stage_setup", "people": [103, 106, 108] }
 		]
 	}
 ]

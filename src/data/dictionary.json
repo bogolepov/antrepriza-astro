@@ -47,6 +47,7 @@
 	"light": { "ru": "Свет", "de": "Beleuchtung" },
 	"sound": { "ru": "Звук", "de": "Ton" },
 	"costumes": { "ru": "Костюмы", "de": "Kostüme" },
+	"stage_setup": { "ru": "Монтаж сцены", "de": "Bühnenaufbau" },
 	"graphic_design": { "ru": "Графический дизайн", "de": "Grafikdesign" },
 	"photographer": { "ru": "Фотограф", "de": "Fotograf" },
 	"actor": { "ru": "Актер", "de": "Schauspieler" },
