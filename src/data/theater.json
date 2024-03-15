@@ -11,12 +11,15 @@
 		"name": { "ru": "Вадим Боголепов", "de": "Vadim Bogolepov" },
 		"url": "https://www.linkedin.com/in/bogolepov/"
 	},
+	"longTheaterName": { "ru": "Театр Антреприза Берлин", "de": "Theater Antrepriza Berlin" },
+	"shortTheaterName": { "ru": "Театр Антреприза", "de": "Theater Antrepriza" },
 	"stageAddress": {
 		"full_string": "Boxhagener Str. 18, 10245 Berlin",
 		"street": "Boxhagener Str.",
 		"building": "18",
 		"index": "10245",
 		"city": "Berlin",
+		"district": "Friedrichshain",
 		"name": "Neue Bühne Friedrichshain",
 		"name_short": "NBF"
 	},

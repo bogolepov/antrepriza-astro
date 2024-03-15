@@ -1,0 +1,85 @@
+.contact .flex1 {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 3rem;
+	margin-bottom: 3rem;
+}
+
+.flex1-item.left {
+	width: 35%;
+	min-width: 300px;
+	max-width: 700px;
+	flex-grow: 1;
+	margin-left: auto;
+	margin-right: auto;
+}
+.flex1-item.right {
+	flex-grow: 2;
+	margin-left: auto;
+	margin-right: auto;
+	/* width: 50%; */
+}
+
+.contact .flex2 {
+	/* width: 100%; */
+	display: flex;
+	flex-direction: column;
+	/* flex-wrap: wrap; */
+}
+
+.contact h3 {
+	font-size: clamp(1.3rem, 2.4vw, 1.75rem);
+	font-weight: var(--font-bold-weight);
+	margin-bottom: 0.3em;
+	line-height: 1.2em;
+}
+
+.contact address {
+	font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+	opacity: var(--font-part-opacity);
+}
+
+.contact .description {
+	/* width: 100%; */
+	text-wrap: wrap;
+	font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+	line-height: 1.5em;
+}
+
+.contact .description h4 {
+	text-wrap: wrap;
+	font-size: clamp(1.1rem, 2.1vw, 1.5rem);
+	/* text-transform: uppercase; */
+	letter-spacing: 0.035em;
+	line-height: 1.35em;
+	margin-top: 1.4em;
+	margin-bottom: 0.4em;
+}
+
+.contact .description p {
+	margin: 0;
+	text-wrap: wrap;
+}
+
+.contact .description div {
+	margin-bottom: 1em;
+	line-height: 1.5;
+}
+.contact .description div.ext-links {
+	line-height: 2em;
+	margin-bottom: 0;
+}
+
+.contact .description b {
+	opacity: var(--font-part-opacity);
+}
+
+.contact .description a {
+	color: var(--colorAntreprizaRed);
+}
+
+.contact .description a b {
+	opacity: 1;
+}

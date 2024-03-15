@@ -11,7 +11,7 @@ import theater from '@data/theater.json'
 export const getStaticPaths = (() => {  
   return theater.languages.flatMap(lng => {
     return plays.map(play => {
-      let aTitle = dictionary.shortTheaterName[lng] + " - " + play.title[lng];
+      let aTitle = theater.shortTheaterName[lng] + " - " + play.title[lng];
       if (play.title_notice && play.title_notice[lng]) aTitle = aTitle + " [" + play.title_notice[lng] + "]";
       return {
         params: {lang: lng, id_suffix: play.suffix},

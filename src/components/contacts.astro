@@ -2,10 +2,36 @@
 const { lang } = Astro.props;
 
 import dictionary from '@data/dictionary.json'
+import theater from '@data/theater.json'
+
+import '@styles/contacts.css'
+
+import { getEntry } from 'astro:content';
+
+const description: string = (lang == 'ru') ? 'contact_ru' : 'contact_de';
+const entry = await getEntry('theater', description);
+const { Content } = await entry.render();
 
 ---
 
 <section class="contact">
   <h1 class="section-title">{dictionary.menu_contact[lang]}</h1>
-  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2428.140103368497!2d13.452496277010766!3d52.51280353676181!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a84fd5bec47e5d%3A0x65732bc3c69a9a74!2zVGhlYXRlciBBbnRyZXByaXphIC8g0KLQtdCw0YLRgCDQkNC90YLRgNC10L_RgNC40LfQsCDQkdC10YDQu9C40L0!5e0!3m2!1sru!2sde!4v1709339311966!5m2!1sru!2sde" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  <div class="flex1">
+    <iframe class="flex1-item left" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2428.140103368497!2d13.452496277010766!3d52.51280353676181!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a84fd5bec47e5d%3A0x65732bc3c69a9a74!2zVGhlYXRlciBBbnRyZXByaXphIC8g0KLQtdCw0YLRgCDQkNC90YLRgNC10L_RgNC40LfQsCDQkdC10YDQu9C40L0!5e0!3m2!1sru!2sde!4v1709339311966!5m2!1sru!2sde" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <div class="flex1-item right flex2">
+      <h3>
+        {theater.longTheaterName[lang]}&nbsp/
+        <br>
+        {theater.stageName}
+      </h3>
+      <address>
+        {theater.stageAddress.street} {theater.stageAddress.building}
+        <br>
+        {theater.stageAddress.index} {theater.stageAddress.city}-{theater.stageAddress.district}
+      </address>
+      <div class="description">
+        <Content/>
+      </div>
+    </div>
+  </div>
 </section>

@@ -1,6 +1,4 @@
 {
-	"longTheaterName": { "ru": "Театр Антреприза Берлин", "de": "Theater Antrepriza Berlin" },
-	"shortTheaterName": { "ru": "Театр Антреприза", "de": "Theater Antrepriza" },
 	"programm": { "ru": "Афиша", "de": "Spielplan" },
 	"plays": { "ru": "Спектакли", "de": "Repertoire" },
 	"theater": { "ru": "Театр", "de": "Theater" },
