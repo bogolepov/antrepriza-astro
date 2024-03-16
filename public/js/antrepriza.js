@@ -141,6 +141,13 @@ function getUserMode() {
 /* --------------------------------------------------- */
 let currExpandMenu;
 
+function closeAllBurgerItems() {
+	let burgerItems = document.getElementsByClassName('burger-item');
+	for (let item of burgerItems) {
+		item.classList.remove('submenu-opened');
+	}
+}
+
 function initHeaderSubMenuListener() {
 	let mobileHeader = document.getElementById('header-mobile');
 	if (mobileHeader) {
@@ -155,8 +162,29 @@ function initHeaderSubMenuListener() {
 			btn = event.target.closest('.header-burger-button');
 			if (btn) {
 				let item = event.target.closest('.header-burger');
-				item.classList.toggle('burger-menu-opened');
+				if (!item) return;
+
+				if (item.classList.contains('burger-menu-opened')) {
+					// close burger menu
+					closeAllBurgerItems();
+					item.classList.remove('burger-menu-opened');
+				} else {
+					// open burger menu
+					item.classList.add('burger-menu-opened');
+				}
+
 				btn.blur();
+				return;
+			}
+
+			if (event.target.nodeName == 'A') {
+				let burgerHeader = event.target.closest('.header-burger');
+				if (burgerHeader) burgerHeader.classList.remove('burger-menu-opened');
+
+				closeAllBurgerItems();
+
+				btn = event.target.closest('.header-burger-button');
+				if (btn) btn.blur();
 				return;
 			}
 		});

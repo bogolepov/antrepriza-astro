@@ -50,7 +50,7 @@
 
 .contact .description h4 {
 	text-wrap: wrap;
-	font-size: clamp(1.1rem, 2.1vw, 1.5rem);
+	font-size: clamp(1.2rem, 2.2vw, 1.6rem);
 	/* text-transform: uppercase; */
 	letter-spacing: 0.035em;
 	line-height: 1.35em;
@@ -68,7 +68,7 @@
 	line-height: 1.5;
 }
 .contact .description div.ext-links {
-	line-height: 2em;
+	line-height: 1.9em;
 	margin-bottom: 0;
 }
 
