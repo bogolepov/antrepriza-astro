@@ -558,13 +558,6 @@
 	margin-left: 0.6rem;
 }
 
-html[lang='ru'] .burger-item .link-ru {
-	display: none;
-}
-html[lang='de'] .burger-item .link-de {
-	display: none;
-}
-
 .lang-brief {
 	color: var(--colorDisabled);
 	font-weight: var(--font-bold-weight);

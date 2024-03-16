@@ -12,11 +12,11 @@ export const getStaticPaths = (() => {
   let team = theater.people.filter(person => person.suffix);  
   return theater.languages.flatMap(lng => {
     return team.map(person => {
-      let aTitle = theater.shortTheaterName[lng] + " - " + person.name[lng] + " " + person.surname[lng];
+      let aTitle = theater.shortTheaterName[lng.lang_code] + " - " + person.name[lng.lang_code] + " " + person.surname[lng.lang_code];
       // console.log(aTitle);
       let item =  {
-        params: {lang: lng, id_suffix: person.suffix},
-        props: {pageLang: lng, pageTitle: aTitle, personID: person.id.toString()},
+        params: {lang: lng.lang_code, id_suffix: person.suffix},
+        props: {pageLang: lng.lang_code, pageTitle: aTitle, personID: person.id.toString()},
       }
       // console.log(item);
       

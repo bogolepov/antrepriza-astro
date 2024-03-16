@@ -5,8 +5,8 @@ import dictionary from '@data/dictionary.json'
 export function getStaticPaths () {
   return theater.languages.map(lng => {
     return {
-      params: {lang: lng},
-      props: {pageLang: lng, pageTitle: theater.shortTheaterName[lng] + ' - ' + dictionary.gallery[lng] },
+      params: {lang: lng.lang_code},
+      props: {pageLang: lng.lang_code, pageTitle: theater.shortTheaterName[lng.lang_code] + ' - ' + dictionary.gallery[lng.lang_code] },
     };
   });
 }

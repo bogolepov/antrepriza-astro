@@ -1,5 +1,8 @@
 {
-	"languages": ["ru", "de"],
+	"languages": [
+		{ "lang_code": "ru", "lang_name": "Русский" },
+		{ "lang_code": "de", "lang_name": "Deutsch" }
+	],
 	"menu": [
 		{ "dict_word": "menu_about", "url": "about" },
 		{ "dict_word": "menu_actors", "url": "actors" },

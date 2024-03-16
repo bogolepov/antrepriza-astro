@@ -353,16 +353,18 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 				</li>
 
 				<li class="burger-item">
-					<a href="#" class="link-de">
-						<span class="lang-brief">DE</span>
-						<span class="lang-title">Deutsch</span>
-					</a>
-					<!-- </li>
-				<li class="burger-item"> -->
-					<a href="#" class="link-ru">
-						<span class="lang-brief">RU</span>
-						<span class="lang-title">Русский</span>
-					</a>
+					{
+						theater.languages.map(lng => {
+							if (lng.lang_code != lang) {
+								return (
+									<a href={pathname.replace('/'+lang+'/', '/'+lng.lang_code+'/')}>
+										<span class="lang-brief">{lng.lang_code.toUpperCase()}</span>
+										<span class="lang-title">{lng.lang_name}</span>
+									</a>
+								);
+							}
+						})
+					}
 				</li>
 			</ul>
 		</nav>
