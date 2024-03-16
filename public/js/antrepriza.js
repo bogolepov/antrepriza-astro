@@ -41,18 +41,6 @@ function selectRoot() {
 
 function initLangEnv() {
 	currLang = getCurrentPageLang();
-	let linksRu = document.getElementsByClassName('link-ru');
-	let linksDe = document.getElementsByClassName('link-de');
-	let linkRu = replaceLangPath(window.location.href, currLang, LANG_RU);
-	let linkDe = replaceLangPath(window.location.href, currLang, LANG_DE);
-
-	for (let link of linksRu) {
-		link.href = linkRu;
-	}
-
-	for (let link of linksDe) {
-		link.href = linkDe;
-	}
 
 	if (currLang) {
 		localStorage.setItem(CNF_LANG, currLang);
@@ -82,12 +70,6 @@ function getCurrentPageLang() {
 		if (page.includes(`/${lang}`)) {
 			return lang;
 		}
-	}
-}
-
-function replaceLangPath(path, prevLang, newLang) {
-	if (path.includes(`/${prevLang}`)) {
-		return path.replace(`/${prevLang}`, `/${newLang}`);
 	}
 }
 
@@ -177,7 +159,7 @@ function initHeaderSubMenuListener() {
 				return;
 			}
 
-			if (event.target.nodeName == 'A') {
+			if (event.target.nodeName == 'A' || event.target.closest('A')) {
 				let burgerHeader = event.target.closest('.header-burger');
 				if (burgerHeader) burgerHeader.classList.remove('burger-menu-opened');
 

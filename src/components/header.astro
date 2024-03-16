@@ -42,24 +42,18 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 		</div>
 		<div class="dropdown-box">
 			<ul class="dropdown-list">
-				<li class="dropdown-item">
-					<a
-						href="#"
-						class="link-de dropdown-item-link"
-					>
-						<span class="lang-brief">DE</span>
-						<span class="lang-title">Deutsch</span>
-					</a>
-				</li>
-				<li class="dropdown-item">
-					<a
-						href="#"
-						class="link-ru dropdown-item-link"
-					>
-						<span class="lang-brief">RU</span>
-						<span class="lang-title">Русский</span>
-					</a>
-				</li>
+			{
+				theater.languages.map(lng => {
+					return (
+						<li class="dropdown-item">
+							<a href={pathname.replace('/'+lang+'/', '/'+lng.lang_code+'/')} class="dropdown-item-link">
+								<span class="lang-brief">{lng.lang_code.toUpperCase()}</span>
+								<span class="lang-title">{lng.lang_name}</span>
+							</a>
+						</li>
+					);
+				})
+			}
 			</ul>
 		</div>
 	</div>
