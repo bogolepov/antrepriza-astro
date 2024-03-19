@@ -61,5 +61,8 @@
 	"web_developer": { "ru": "Разработчик сайта", "de": "Webentwickler" },
 	"partners": { "ru": "Партнеры", "de": "Partner" },
 	"regie_theater": { "ru": "Режиссерская работа", "de": "Werke als Regisseur" },
-	"rollen_theater": { "ru": "Роли в театре", "de": "Rollen im Theater" }
+	"rollen_theater": { "ru": "Роли в театре", "de": "Rollen im Theater" },
+	"email": { "ru": "Email", "de": "Email" },
+	"telephone_short": { "ru": "Тел.", "de": "Tel." },
+	"telephone": { "ru": "Телефон", "de": "Telefon" }
 }

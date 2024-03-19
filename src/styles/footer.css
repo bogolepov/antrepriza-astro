@@ -82,12 +82,20 @@ footer a:focus-visible {
 	width: max-content;
 }
 
-.info-text {
+footer .address {
+	padding-bottom: 0.4em;
+}
+
+footer .info-text {
 	display: block;
 	font-size: clamp(0.8rem, 1.4vw, 0.95rem);
 	font-weight: var(--font-normal-weight);
-	line-height: 1.3em;
+	line-height: 1.1em;
 	letter-spacing: 0.03em;
+}
+
+footer .phone-number {
+	letter-spacing: 0;
 }
 
 .label {

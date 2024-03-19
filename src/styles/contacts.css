@@ -39,6 +39,15 @@
 .contact address {
 	font-size: clamp(0.85rem, 1.5vw, 1.1rem);
 	opacity: var(--font-part-opacity1);
+	padding-bottom: 1em;
+}
+
+.contact .info-text {
+	letter-spacing: 0.03em;
+}
+
+.contact .phone-number {
+	letter-spacing: 0;
 }
 
 .contact .description {

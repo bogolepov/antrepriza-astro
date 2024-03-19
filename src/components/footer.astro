@@ -23,8 +23,14 @@ const {lang} = Astro.props;
     <div class="address">
       <address class="info-text opacity0">{theater.stageAddress.name}</address>
       <address class="info-text opacity0">{theater.stageAddress.full_string}</address>
-      <a class="info-text opacity0" href={"tel:"+theater.phone}>Tel : <span class="opacity1">{theater.phone}</span></a>
-      <a class="info-text opacity0" href="mailto:info@antrepriza.eu">Email : <span class="opacity1">info@antrepriza.eu</span></a>
+    </div>
+    <div class="contact">
+      <div>
+        <a class="info-text opacity0" href={"tel:"+theater.phone}>{dictionary.telephone_short[lang]}: <span class="opacity1 phone-number">{theater.phone}</span></a>
+      </div>
+      <div>
+        <a class="info-text opacity0" href="mailto:info@antrepriza.eu">{dictionary.email[lang]}: <span class="opacity1">info@antrepriza.eu</span></a>
+      </div>
     </div>
   </div>
   <!-- <div class="flex-item">
