@@ -1,4 +1,4 @@
-<b class="big-font">Das Schauspielstudio des Theaters Antrepriza</b> – ein Studio vom klassischen und modernen Theater – hilft Dir gerne dabei, deine schauspielerischen Fähigkeiten zu entwickeln (oder sogar zu entdecken) und einen Schritt in das Schauspielleben zu wagen.
+<b class="big-font">Das Schauspielerstudio des Theaters Antrepriza</b> – ein Studio vom klassischen und modernen Theater – hilft Dir gerne dabei, deine schauspielerischen Fähigkeiten zu entwickeln (oder sogar zu entdecken) und einen Schritt in das Schauspielleben zu wagen.
 
 Die Unterrichten finden zweimal pro Woche, in der Regel abends, in der <i>Boxhagener Str. 18, 10245 Berlin</i> (<b>Neue Bühne Friedrichshain / Berliner Schule für Schauspieler</b>) statt.
 
