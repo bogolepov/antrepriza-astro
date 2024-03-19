@@ -29,7 +29,7 @@ const {lang} = Astro.props;
         <a class="info-text opacity0" href={"tel:"+theater.phone}>{dictionary.telephone_short[lang]}: <span class="opacity1 phone-number">{theater.phone}</span></a>
       </div>
       <div>
-        <a class="info-text opacity0" href="mailto:info@antrepriza.eu">{dictionary.email[lang]}: <span class="opacity1">info@antrepriza.eu</span></a>
+        <a class="info-text opacity0" href={"mailto:"+theater.email}>{dictionary.email[lang]}: <span class="opacity1">{theater.email}</span></a>
       </div>
     </div>
   </div>
