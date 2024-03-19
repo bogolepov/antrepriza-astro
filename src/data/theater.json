@@ -8,6 +8,7 @@
 		{ "dict_word": "menu_actors", "url": "actors" },
 		{ "dict_word": "menu_team", "url": "team" },
 		{ "dict_word": "menu_studio", "url": "studio" },
+		{ "dict_word": "menu_partnership", "url": "partnership" },
 		{ "dict_word": "menu_contact", "url": "contact" }
 	],
 	"web_developer": {

@@ -1,0 +1,12 @@
+---
+
+const { lang } = Astro.props;
+
+import dictionary from '@data/dictionary.json'
+
+---
+
+<section class="partnership">
+  <h1 class="section-title">{dictionary.menu_partnership[lang]}</h1>
+  <div class="page-end"></div>
+</section>
