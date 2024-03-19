@@ -284,5 +284,34 @@
 			"name": { "ru": "Наталья", "de": "Natalya" },
 			"surname": { "ru": "Лимбах", "de": "Limbakh" }
 		}
+	],
+	"partners": [
+		{
+			"name": { "ru": "Neue Bühne Friedrichshain", "de": "Neue Bühne Friedrichshain" },
+			"logo": "logo_nbf.png",
+			"url": "https://www.neue-buehne-friedrichshain.de/",
+			"description": {
+				"ru": "Многолетний партнер Театра Антреприза. Сцена и репетиционные залы NBF стали домом для нашего Театра.",
+				"de": null
+			}
+		},
+		{
+			"name": { "ru": "Quarteera", "de": "Quarteera" },
+			"logo": "logo_quarteera.png",
+			"url": "https://www.quarteera.de/",
+			"description": {
+				"ru": "Общегерманское объединение русскоязычных ЛГБТК+ мигрантов*ок. В 2023 году в рамках совместного проекта было улучшено техническое оснащение Театра, реализована постановка детского спектакля «Малыш и Карлсон» и начата работа над её немецкой версией.",
+				"de": "Der deutschlandweite Verein russischsprachiger LGBTQ+ Migrant*innen"
+			}
+		},
+		{
+			"name": { "ru": "Министерство иностранных дел Германии", "de": "Auswärtiges Amt" },
+			"logo": "logo_auswaertiges_amt.png",
+			"url": "https://www.auswaertiges-amt.de/",
+			"description": {
+				"ru": "В 2023 году в рамках совместного проекта c ЛГБТК+ объединением «Quarteera» Министерство оказало финансовую поддержку Театру и позволило улучшить техническое оснащение Театра, реализовать постановку детского спектакля «Малыш и Карлсон» и начать работу над её немецкой версией.",
+				"de": null
+			}
+		}
 	]
 }

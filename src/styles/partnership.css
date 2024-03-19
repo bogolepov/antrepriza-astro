@@ -1,0 +1,50 @@
+.flex {
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+	max-width: 800px;
+	display: flex;
+	flex-direction: row;
+	row-gap: 10px;
+	column-gap: 20px;
+	margin-top: clamp(1rem, 2.15vw, 1.6rem);
+}
+.flex-item-logo {
+	text-align: center;
+	margin: 0 auto;
+}
+.flex-item-description {
+	min-height: 120px;
+	width: 80%;
+	max-width: 700px;
+}
+
+.logo {
+	min-width: min(60px, 100%);
+	max-width: 120px;
+}
+
+.partner-name {
+	font-size: clamp(1.2rem, 2.15vw, 1.6rem);
+	line-height: 1.2em;
+}
+
+.flex-item-description p {
+	font-size: clamp(0.85rem, 1.4vw, 1rem);
+	margin-top: 0.5em;
+	margin-bottom: 3em;
+}
+
+.flex-item-description a {
+	/* text-decoration: underline; */
+}
+
+@media screen and (max-width: 400px) {
+	.flex {
+		flex-wrap: wrap;
+		/* flex-direction: column; */
+	}
+	.flex-item-description {
+		width: 100%;
+	}
+}
