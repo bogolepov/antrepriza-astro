@@ -32,7 +32,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
                 </a>
             </div>
           </div>
-          <div class="works flex-item-description">
+          <div class:list={['works', 'flex-item-description', {offer: partner.offer}]}>
             <a href={partner.url} target="_blank" rel="noopener external" class="partner-name">{partner.name[lang]}</a>
             <p>{partner.description[lang]}</p>
           </div>
@@ -40,6 +40,5 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
       )
     })
   }
-
   <div class="page-end"></div>
 </section>
