@@ -38,7 +38,7 @@
 
 .contact address {
 	font-size: clamp(0.85rem, 1.5vw, 1.1rem);
-	opacity: var(--font-part-opacity);
+	opacity: var(--font-part-opacity1);
 }
 
 .contact .description {
@@ -73,7 +73,7 @@
 }
 
 .contact .description b {
-	opacity: var(--font-part-opacity);
+	opacity: var(--font-part-opacity1);
 }
 
 .contact .description a {

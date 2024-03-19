@@ -317,9 +317,9 @@
 .theme-checkbox {
 	width: 1.5rem;
 	height: 1.5rem;
+	position: absolute;
 	-webkit-appearance: none;
 	appearance: none;
-	position: absolute;
 }
 
 .theme-checkbox:not(:checked) ~ .dark-mode-checkbox,

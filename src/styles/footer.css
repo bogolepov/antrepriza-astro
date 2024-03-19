@@ -53,22 +53,6 @@ footer a {
 	stroke-width: 0px;
 }
 
-.address {
-	font-size: 1rem;
-	font-weight: var(--font-bold-weight);
-	line-height: 1.3em;
-}
-
-.address p {
-	margin: 0px 0px;
-}
-
-.tel-number {
-	font-size: 0.9rem;
-	font-weight: var(--font-bold-weight);
-	line-height: 1.3em;
-}
-
 .footer-text-link {
 	font-size: 0.8rem;
 	letter-spacing: 0.3px;
@@ -96,6 +80,14 @@ footer a:focus-visible {
 	line-height: 1.3em;
 	letter-spacing: 0.05em;
 	width: max-content;
+}
+
+.info-text {
+	display: block;
+	font-size: clamp(0.75rem, 1.4vw, 0.9rem);
+	font-weight: var(--font-normal-weight);
+	line-height: 1.3em;
+	letter-spacing: 0.03em;
 }
 
 .label {

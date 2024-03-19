@@ -96,12 +96,12 @@ ul {
 	margin-bottom: 0;
 }
 .person-description i {
-	opacity: var(--font-part-opacity);
+	opacity: var(--font-part-opacity1);
 	font-weight: var(--font-bold-weight);
 }
 .person-description .name {
 	font-size: 1.1em;
-	opacity: var(--font-part-opacity);
+	opacity: var(--font-part-opacity1);
 }
 /* .description-content {
 	width: 100%;

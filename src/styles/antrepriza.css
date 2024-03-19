@@ -33,7 +33,8 @@
 /* --------------------------------------------------- */
 [data-theme='dark'] {
 	color-scheme: dark;
-	--font-part-opacity: 0.47;
+	--font-part-opacity0: 0.7;
+	--font-part-opacity1: 0.47;
 	--minPosterOpacity: 1;
 	--maxPosterOpacity: 1;
 	--colorFont: var(--grey-16);
@@ -53,7 +54,7 @@
 	--colorBoxShadowDropList: rgba(245, 245, 245, 0.25);
 	--colorDisabled: var(--grey-30);
 	--colorFontDate: var(--gray-rose);
-	--colorFontDateOpacity: rgba(var(--gray-rose-dark-digital), var(--font-part-opacity));
+	--colorFontDateOpacity: rgba(var(--gray-rose-dark-digital), var(--font-part-opacity1));
 	--colorAntreprizaRed: #ff3e44;
 	/* --colorFocusAntreprizaRed: #f57a7e; */
 	--colorFocusAntreprizaRed: #e30d15;
@@ -75,7 +76,8 @@
 
 [data-theme='light'] {
 	color-scheme: light;
-	--font-part-opacity: 0.8;
+	--font-part-opacity0: 0.85;
+	--font-part-opacity1: 0.8;
 	--minPosterOpacity: 0.9;
 	--maxPosterOpacity: 1;
 	--colorFont: var(--grey-78);
@@ -95,7 +97,7 @@
 	--colorBoxShadowDropList: rgba(0, 0, 0, 0.12);
 	--colorDisabled: var(--grey-30);
 	--colorFontDate: var(--gray-rose-dark);
-	--colorFontDateOpacity: rgba(var(--gray-rose-digital), var(--font-part-opacity));
+	--colorFontDateOpacity: rgba(var(--gray-rose-digital), var(--font-part-opacity1));
 	--colorAntreprizaRed: #e30d15;
 	/* --colorFocusAntreprizaRed: #f57a7e; */
 	--colorFocusAntreprizaRed: #e30d15;
@@ -184,7 +186,7 @@ h4.notification-label {
 	font-size: clamp(0.95rem, 1.8vw, 1.05rem);
 	font-weight: var(--font-normal-weight);
 	/* font-weight: var(--font-thin-weight); */
-	opacity: var(--font-part-opacity);
+	opacity: var(--font-part-opacity1);
 	text-transform: uppercase;
 	margin-bottom: 0.3rem;
 }
@@ -203,8 +205,12 @@ h4.notification-label {
 	letter-spacing: 0.07rem;
 }
 
+.opacity0 {
+	opacity: var(--font-part-opacity0);
+}
+
 .opacity1 {
-	opacity: var(--font-part-opacity);
+	opacity: var(--font-part-opacity1);
 }
 
 .bold1 {
@@ -219,7 +225,7 @@ h4.notification-label {
 	font-size: clamp(0.95rem, 1.8vw, 1.05rem);
 	font-weight: var(--font-normal-weight);
 	/* font-weight: var(--font-thin-weight); */
-	opacity: var(--font-part-opacity);
+	opacity: var(--font-part-opacity1);
 	text-transform: uppercase;
 }
 

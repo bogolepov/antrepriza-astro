@@ -11,7 +11,7 @@
 }
 
 .description b {
-	opacity: var(--font-part-opacity);
+	opacity: var(--font-part-opacity1);
 }
 
 .description a {
