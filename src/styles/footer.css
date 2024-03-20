@@ -94,6 +94,11 @@ footer .info-text {
 	letter-spacing: 0.03em;
 }
 
+footer .info-text a,
+footer .info-text span {
+	display: inline-block;
+}
+
 footer .phone-number {
 	letter-spacing: 0;
 }
