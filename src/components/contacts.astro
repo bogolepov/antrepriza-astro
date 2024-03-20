@@ -16,9 +16,9 @@ const { Content } = await entry.render();
 
 <section class="contact">
   <h1 class="section-title">{dictionary.menu_contact[lang]}</h1>
-  <div class="flex1">
-    <iframe class="flex1-item left" src={theater.google_map[lang]} width="600" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    <div class="flex1-item right flex2">
+  <div class="contact-flex">
+    <iframe class="flex-item-left" src={theater.google_map[lang]} width="600" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <div class="flex-item-right">
       <h3>
         {theater.longTheaterName[lang]}&nbsp/
         <br>

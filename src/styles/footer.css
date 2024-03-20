@@ -27,8 +27,8 @@ footer {
 footer .footer-flex {
 	display: flex;
 	flex-direction: row;
-	column-gap: 40px;
-	row-gap: 10px;
+	column-gap: 20px;
+	row-gap: 7px;
 	justify-content: space-between;
 	/* align-items: start; */
 	flex-wrap: wrap;

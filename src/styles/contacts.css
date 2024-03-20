@@ -1,5 +1,9 @@
-.contact .flex1 {
+.contact .contact-flex {
+	margin-left: auto;
+	margin-right: auto;
 	width: 100%;
+	max-width: 1100px;
+
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
@@ -7,26 +11,18 @@
 	margin-bottom: 3rem;
 }
 
-.flex1-item.left {
-	width: 35%;
-	min-width: 300px;
-	max-width: 700px;
-	flex-grow: 1;
-	margin-left: auto;
-	margin-right: auto;
-}
-.flex1-item.right {
-	flex-grow: 2;
-	margin-left: auto;
-	margin-right: auto;
-	/* width: 50%; */
-}
+.flex-item-left {
+	text-align: center;
+	margin: 0 auto;
 
-.contact .flex2 {
-	/* width: 100%; */
-	display: flex;
-	flex-direction: column;
-	/* flex-wrap: wrap; */
+	width: 35%;
+	min-width: 260px;
+	max-width: 700px;
+	flex-grow: 2;
+}
+.flex-item-right {
+	flex-grow: 1;
+	margin: 0 auto;
 }
 
 .contact h3 {
