@@ -8,7 +8,7 @@
 		{ "dict_word": "menu_actors", "url": "actors" },
 		{ "dict_word": "menu_team", "url": "team" },
 		{ "dict_word": "menu_studio", "url": "studio" },
-		{ "dict_word": "menu_partnership", "url": "partnership" },
+		{ "dict_word": "menu_partners", "url": "partners" },
 		{ "dict_word": "menu_contact", "url": "contact" }
 	],
 	"web_developer": {
@@ -289,6 +289,7 @@
 			"surname": { "ru": "Лимбах", "de": "Limbakh" }
 		}
 	],
+	"logo_empty": "logo_empty.png",
 	"partners": [
 		{
 			"name": { "ru": "Neue Bühne Friedrichshain", "de": "Neue Bühne Friedrichshain" },
@@ -337,7 +338,7 @@
 		},
 		{
 			"name": { "ru": "Театр Антреприза Берлин", "de": "Theater Antrepriza Berlin" },
-			"logo": "logo_empty.png",
+			"logo": null,
 			"url": null,
 			"description": {
 				"ru": "открыт к взаимовыгодному сотрудничеству, проведению спектаклей на Вашей площадке и гастролям, участию в театральных фестивалях.\u000A\u000AМы также будем рады спонсорской поддержке и предоставлению наших ресурсов для знакомства зрителей с Вашей деятельностью. Способы связи указаны внизу страницы.",
@@ -345,5 +346,9 @@
 			},
 			"offer": true
 		}
-	]
+	],
+	"partner_offer": {
+		"ru": "открыт к взаимовыгодному сотрудничеству, проведению спектаклей на Вашей площадке и гастролям, участию в театральных фестивалях.\u000A\u000AМы также будем рады спонсорской поддержке и предоставлению наших ресурсов для знакомства зрителей с Вашей деятельностью. Способы связи указаны внизу страницы.",
+		"de": ""
+	}
 }

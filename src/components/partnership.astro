@@ -17,6 +17,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
   <h1 class="section-title">{dictionary.menu_partnership[lang]}</h1>
   {
     theater.partners.map(partner => {
+      let logo = partner.logo ? partner.logo : theater.logo_empty;
       return (
         <div class="flex">
           <div class="flex-item-logo">
@@ -24,7 +25,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
               <a href={partner.url} target="_blank"	rel="noopener external">
                 <Picture 
                   class:list={'image-wrapper-landscape'} 
-                  src={images["/src/assets/" + partner.logo]()} 
+                  src={images["/src/assets/" + logo]()} 
                   formats={['avif', 'webp', 'png']} 
                   widths={[120]}
                   sizes={'120px'}
