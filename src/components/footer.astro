@@ -18,90 +18,102 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 
 <footer>
   <div class="footer-flex">
-  <div class="flex1-item">
-    <div class="footer-logo">
-      <svg class="footer-logo-svg">
-        <!-- <use href={Logo + "#logo"}></use> -->
-        <use href={Logo + "#logo-text-" + lang}></use>
-      </svg>
-    </div>    
-    <div class="address">
-      <address class="info-text opacity0">{theater.stageAddress.name}</address>
-      <address class="info-text opacity0">{theater.stageAddress.full_string}</address>
-    </div>
-    <div class="contact">
-      <div class="info-text opacity0">
-        <a href={"tel:"+theater.phone}>{dictionary.telephone_short[lang]}: <span class="opacity1 phone-number">{theater.phone}</span></a>
+    <div class="footer-flex-item">
+      <div class="footer-logo">
+        <svg class="footer-logo-svg">
+          <!-- <use href={Logo + "#logo"}></use> -->
+          <use href={Logo + "#logo-text-" + lang}></use>
+        </svg>
+      </div>    
+      <div class="address">
+        <div class="info-text opacity0">{theater.stageAddress.name}</div>
+        <div class="info-text opacity0">{theater.stageAddress.full_string}</div>
       </div>
-      <div class="info-text opacity0">
-        <a href={"mailto:"+theater.email}>{dictionary.email[lang]}: <span class="opacity1">{theater.email}</span></a>
-      </div>
-    </div>
-  </div>
-  <!-- <div class="flex-item">
-    <a class="footer-text-link" href="#">IMPRESSUM</a>
-    <a class="footer-text-link" href="#">DATENSCHUTZ</a>
-  </div> -->
-  <div class="flex1-item flex2">
-    <div class="footer-partners">
-      <div class="title opacity1">{dictionary.partners[lang].toUpperCase()}</div>
-      <div class="logo-flex">
-        <div class="logo-50 hover-block">
-          <a class="black-white-filter" href="https://svoi.berlin/" target="_blank"	rel="noopener external">
-            <Picture 
-              class:list={'image-wrapper-landscape'} 
-              src={images["/src/assets/logo_svoi.png"]()} 
-              formats={['avif', 'webp', 'png']} 
-              sizes={'50px'}
-              alt="Svoi.Berlin" />
-            </a>
+      <div class="contact">
+        <div class="info-text opacity0">
+          <a href={"tel:"+theater.phone}>{dictionary.telephone_short[lang]}: <span class="opacity1 phone-number">{theater.phone}</span></a>
         </div>
-        <div class="logo-50 hover-block">
-          <a class="black-white-filter" href="https://www.auswaertiges-amt.de/" target="_blank"	rel="noopener external">
-            <Picture 
-              class:list={'image-wrapper-landscape'} 
-              src={images["/src/assets/logo_auswaertiges_amt.png"]()} 
-              formats={['avif', 'webp', 'png']} 
-              sizes={'50px'}
-              alt="Auswärtiges Amt" />
-            </a>
-        </div>
-        <div class="logo-50 hover-block">
-          <a class="black-white-filter" href="https://www.neue-buehne-friedrichshain.de/" target="_blank"	rel="noopener external">
-            <Picture 
-              class:list={'image-wrapper-landscape'} 
-              src={images["/src/assets/logo_nbf.png"]()} 
-              formats={['avif', 'webp', 'png']} 
-              sizes={'50px'}
-              alt="Neue Bühne Friedrichshain" />
-            </a>
-        </div>
-        <div class="logo-75 hover-block">
-          <a class="black-white-filter" href="https://www.kontramarka.de" target="_blank"	rel="noopener external">
-            <Picture 
-              class:list={'image-wrapper-landscape'} 
-              src={images["/src/assets/logo_kontramarka.png"]()} 
-              formats={['avif', 'webp', 'png']} 
-              sizes={'75px'}
-              alt="Kontramarka" />
-            </a>
-        </div>
-        <div class="logo-75 hover-block">
-          <a class="black-white-filter" href="https://www.quarteera.de/" target="_blank"	rel="noopener external">
-            <Picture 
-              class:list={'image-wrapper-landscape'} 
-              src={images["/src/assets/logo_quarteera.png"]()} 
-              formats={['avif', 'webp', 'png']} 
-              sizes={'75px'}
-              alt="Quarteera" />
-            </a>
+        <div class="info-text opacity0">
+          <a href={"mailto:"+theater.email}>{dictionary.email[lang]}: <span class="opacity1">{theater.email}</span></a>
         </div>
       </div>
     </div>
-    <div class="web-developer">
-      <div class="label opacity1">{dictionary.web_developer[lang]}</div>
-      <a class="opacity1 bold1" href={theater.web_developer.url} target="_blank"	rel="noopener external">{theater.web_developer.name[lang]}</a> 
+    <div class="footer-flex-item">
+      <div class="newsletter">
+        <div class="newsletter-label">{dictionary.newsletter_title[lang]}</div>
+        <div class="newsletter-form">
+        <input type="text" class="newsletter__input" name="email" placeholder={dictionary.newsletter_hint[lang]}>
+        <button class="newsletter__button">&#10153;</button>
+        </div>
+      </div>
+      <div class="lh-1-3">
+        <a class="footer-text-link" href={"/" + lang + "/impressum"}>{dictionary.impressum[lang]}</a>
+      </div>
+      <div class="lh-1-3">
+        <a class="footer-text-link" href={"/" + lang + "/privacy-policy"}>{dictionary.privacy_policy[lang]}</a>
+      </div>
+      <div class="copyright-year opacity1">© 2024 {theater.longTheaterName[lang]}</div>
     </div>
-  </div>
+    <div class="footer-flex-item flex2">
+      <div class="footer-partners">
+        <div class="title opacity1">{dictionary.partners[lang].toUpperCase()}</div>
+        <div class="logo-flex">
+          <div class="logo-50 hover-block">
+            <a class="black-white-filter" href="https://svoi.berlin/" target="_blank"	rel="noopener external">
+              <Picture 
+                class:list={'image-wrapper-landscape'} 
+                src={images["/src/assets/logo_svoi.png"]()} 
+                formats={['avif', 'webp', 'png']} 
+                sizes={'50px'}
+                alt="Svoi.Berlin" />
+              </a>
+          </div>
+          <div class="logo-50 hover-block">
+            <a class="black-white-filter" href="https://www.auswaertiges-amt.de/" target="_blank"	rel="noopener external">
+              <Picture 
+                class:list={'image-wrapper-landscape'} 
+                src={images["/src/assets/logo_auswaertiges_amt.png"]()} 
+                formats={['avif', 'webp', 'png']} 
+                sizes={'50px'}
+                alt="Auswärtiges Amt" />
+              </a>
+          </div>
+          <div class="logo-50 hover-block">
+            <a class="black-white-filter" href="https://www.neue-buehne-friedrichshain.de/" target="_blank"	rel="noopener external">
+              <Picture 
+                class:list={'image-wrapper-landscape'} 
+                src={images["/src/assets/logo_nbf.png"]()} 
+                formats={['avif', 'webp', 'png']} 
+                sizes={'50px'}
+                alt="Neue Bühne Friedrichshain" />
+              </a>
+          </div>
+          <div class="logo-75 hover-block">
+            <a class="black-white-filter" href="https://www.kontramarka.de" target="_blank"	rel="noopener external">
+              <Picture 
+                class:list={'image-wrapper-landscape'} 
+                src={images["/src/assets/logo_kontramarka.png"]()} 
+                formats={['avif', 'webp', 'png']} 
+                sizes={'75px'}
+                alt="Kontramarka" />
+              </a>
+          </div>
+          <div class="logo-75 hover-block">
+            <a class="black-white-filter" href="https://www.quarteera.de/" target="_blank"	rel="noopener external">
+              <Picture 
+                class:list={'image-wrapper-landscape'} 
+                src={images["/src/assets/logo_quarteera.png"]()} 
+                formats={['avif', 'webp', 'png']} 
+                sizes={'75px'}
+                alt="Quarteera" />
+              </a>
+          </div>
+        </div>
+      </div>
+      <div class="web-developer">
+        <div class="label opacity1">{dictionary.web_developer[lang]}</div>
+        <a class="opacity1 bold1" href={theater.web_developer.url} target="_blank"	rel="noopener external">{theater.web_developer.name[lang]}</a> 
+      </div>
+    </div>
   </div>
 </footer>

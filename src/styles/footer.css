@@ -28,13 +28,14 @@ footer .footer-flex {
 	display: flex;
 	flex-direction: row;
 	column-gap: 20px;
-	row-gap: 7px;
+	row-gap: 15px;
 	justify-content: space-between;
 	/* align-items: start; */
 	flex-wrap: wrap;
 }
 
-footer .flex1-item {
+footer .footer-flex-item {
+	font-size: clamp(0.8rem, 2vw, 0.95rem);
 	/* align-self: flex-end; */
 }
 
@@ -56,18 +57,18 @@ footer a {
 }
 
 .footer-text-link {
-	font-size: 0.8rem;
+	font-size: clamp(0.7rem, 1.6vw, 0.8rem);
+	line-height: 1.25em;
+	/* font-size: 0.8rem; */
 	letter-spacing: 0.3px;
 	text-transform: uppercase;
 	font-weight: var(--font-normal-weight);
 }
 
 footer .flex2 {
-	margin-left: auto;
-
 	display: flex;
 	flex-direction: column;
-	align-items: flex-end;
+	/* align-items: flex-end; */
 	justify-content: space-between;
 	font-size: clamp(0.75rem, 1.4vw, 0.9rem);
 }
@@ -78,7 +79,7 @@ footer a:focus-visible {
 
 .web-developer {
 	/* justify-content: flex-end; */
-	text-align: right;
+	/* text-align: right; */
 	font-size: clamp(0.75rem, 1.4vw, 0.9rem);
 	line-height: 1.3em;
 	letter-spacing: 0.05em;
@@ -110,8 +111,12 @@ footer .phone-number {
 	border-bottom: 1px solid;
 }
 
+.copyright-year {
+	padding-top: 0.4em;
+}
+
 .footer-partners .title {
-	text-align: end;
+	/* text-align: end; */
 	padding-bottom: 0.3em;
 }
 
@@ -128,9 +133,46 @@ footer .logo-flex {
 
 footer .logo-50 {
 	max-width: 50px;
-	/* margin: 0 auto; */
 }
 footer .logo-75 {
 	max-width: 75px;
-	/* margin: 0 auto; */
+}
+
+.newsletter-label {
+	font-size: clamp(0.8rem, 2vw, 0.95rem);
+	padding-bottom: 0.15em;
+}
+.newsletter-form {
+	position: relative;
+	width: 100%;
+	margin-bottom: 1.2em;
+}
+.newsletter__input {
+	font-size: 0.9rem;
+	line-height: 1.5em;
+	padding-right: calc(0.9rem * 2);
+	border: 1px solid var(--colorFontDate);
+	width: 100%;
+}
+.newsletter__button {
+	font-size: 0.9rem;
+	line-height: 1.5em;
+	position: absolute;
+	right: 1px;
+	top: 1px;
+	bottom: 1px;
+	width: calc(0.9rem * 1.8);
+	background-color: var(--colorFontDate);
+	border: 1px solid var(--colorFontDate);
+	border-radius: 0;
+}
+
+.newsletter__input:focus-visible,
+.newsletter__button:focus-visible {
+	outline: 1px solid var(--colorFocusAntreprizaRed);
+}
+
+footer .logo-flex a:focus-visible img {
+	outline: 1px solid var(--colorFocusAntreprizaRed);
+	outline-offset: 1px;
 }

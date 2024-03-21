@@ -1,0 +1,23 @@
+---
+import theater from '@data/theater.json'
+import dictionary from '@data/dictionary.json'
+
+export function getStaticPaths () {
+  return theater.languages.map(lng => {
+    return {
+      params: {lang: lng.lang_code},
+      props: {pageLang: lng.lang_code, pageTitle: theater.shortTheaterName[lng.lang_code] + ' - ' + dictionary.impressum[lng.lang_code] },
+    };
+  });
+}
+
+const { pageLang, pageTitle } = Astro.props;
+
+import AntreprizaLayout from "@layouts/AntreprizaLayout.astro";
+import Impressum from "@components/impressum.astro";
+---
+
+<AntreprizaLayout title={pageTitle} lang={pageLang}>
+  <Impressum lang={pageLang}/>
+</AntreprizaLayout>
+

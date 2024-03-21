@@ -5,6 +5,8 @@
 	"gallery": { "ru": "Галерея", "de": "Mediathek" },
 	"support": { "ru": "Поддержать", "de": "Unterstützen" },
 	"tickets": { "ru": "Билеты", "de": "Tickets" },
+	"impressum": { "ru": "Impressum", "de": "Impressum" },
+	"privacy_policy": { "ru": "Политика конфиденциальности", "de": "Datenschutz" },
 	"menu_about": { "ru": "О театре", "de": "Über Theater" },
 	"menu_team": { "ru": "Команда", "de": "Team" },
 	"menu_actors": { "ru": "Артисты", "de": "Schauspieler" },
@@ -63,7 +65,11 @@
 	"partners": { "ru": "Партнеры", "de": "Partner" },
 	"regie_theater": { "ru": "Режиссерская работа", "de": "Werke als Regisseur" },
 	"rollen_theater": { "ru": "Роли в театре", "de": "Rollen im Theater" },
-	"email": { "ru": "Email", "de": "Email" },
+	"director": { "ru": "Руководитель Театра", "de": "Geschäftsführer" },
+	"email": { "ru": "Email", "de": "E-Mail" },
 	"telephone_short": { "ru": "Тел.", "de": "Tel." },
-	"telephone": { "ru": "Телефон", "de": "Telefon" }
+	"telephone": { "ru": "Телефон", "de": "Telefon" },
+	"newsletter_title": { "ru": "Подписка на новости", "de": "Newsletter" },
+	"newsletter_hint": { "ru": "Ваш электронный адрес", "de": "Ihre E-Mail Adresse" },
+	"newsletter_subscribed": { "ru": "Вы были успешно подписаны.", "de": "Sie wurden erfolgreich angemeldet." }
 }
