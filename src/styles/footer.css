@@ -198,10 +198,10 @@ footer .logo-flex a:focus-visible img {
 	display: block;
 }
 .question label {
-	/* display: inline-block; */
 	display: block;
 	position: relative;
 	color: var(--colorBkgTicketsBtn);
+	font-weight: 400;
 }
 .question label:hover {
 	cursor: pointer;
