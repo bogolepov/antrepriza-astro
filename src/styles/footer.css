@@ -243,6 +243,13 @@ footer .logo-flex a:focus-visible img {
 	transform: scaleY(1);
 }
 
+/* open question-layer at any focused element inside */
+.question:has(input[value='question']:not(:checked)) .question-layer:has(input:focus, textarea:focus, button:focus) {
+	-webkit-transform: scaleY(1);
+	-ms-transform: scaleY(1);
+	transform: scaleY(1);
+}
+
 .question-layer label {
 	display: inline-block;
 }
@@ -306,6 +313,6 @@ footer .logo-flex a:focus-visible img {
 
 .question-layer .q-input:focus-visible,
 .question-layer button:focus-visible,
-.question-layer label:focus-visible {
+.question:has(#question__checkbox:focus-visible) label {
 	outline: 1px solid var(--colorFocusAntreprizaRed);
 }
