@@ -18,7 +18,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 
 <footer>
   <div class="footer-flex">
-    <div class="footer-flex-item">
+    <div class="footer-flex-item flex2">
       <div class="footer-logo">
         <svg class="footer-logo-svg">
           <!-- <use href={Logo + "#logo"}></use> -->
@@ -38,7 +38,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
         </div>
       </div>
     </div>
-    <div class="footer-flex-item">
+    <div class="footer-flex-item flex2">
       <div class="newsletter">
         <div class="newsletter-label">{dictionary.newsletter_title[lang]}</div>
         <div class="newsletter-form">
@@ -46,11 +46,35 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
         <button class="newsletter__button">&#10153;</button>
         </div>
       </div>
-      <div class="lh-1-3">
-        <a class="footer-text-link" href={"/" + lang + "/impressum"}>{dictionary.impressum[lang]}</a>
+      <div class="question lh-1-3">
+        <input type="checkbox" id="question__checkbox" name="question" value="question"/>
+        <label for="question__checkbox">
+          {dictionary.question_ask[lang]}
+        </label>
+        <div class="question-layer question-flex">
+          <div class="question-form">
+            <div class="question-close" >
+              <label for="question__checkbox">&#10006;</label>
+            </div>
+            <div class="question-form-wrapper">
+              <div class="q-label">Тема вопроса</div>
+              <input class="q-input" type="text" name="theme">
+              <div class="q-label">Имя</div>
+              <input class="q-input" type="text" name="name">
+              <div class="q-label">{dictionary.email[lang]}</div>
+              <input class="q-input" type="text" name="email">
+              <div class="q-label">Сообщение</div>
+              <textarea class="q-input" name="memo" rows="5"></textarea>
+              <div class="question__btn_div">
+                <button class="question__btn_send">{dictionary.question_btn_send[lang]}</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="lh-1-3">
-        <a class="footer-text-link" href={"/" + lang + "/privacy-policy"}>{dictionary.privacy_policy[lang]}</a>
+        <div><a class="footer-text-link" href={"/" + lang + "/impressum"}>{dictionary.impressum[lang]}</a></div>
+        <div><a class="footer-text-link" href={"/" + lang + "/privacy-policy"}>{dictionary.privacy_policy[lang]}</a></div>
       </div>
       <div class="copyright-year opacity1">© 2024 {theater.longTheaterName[lang]}</div>
     </div>

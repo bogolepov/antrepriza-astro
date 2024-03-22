@@ -71,5 +71,7 @@
 	"telephone": { "ru": "Телефон", "de": "Telefon" },
 	"newsletter_title": { "ru": "Подписка на новости", "de": "Newsletter" },
 	"newsletter_hint": { "ru": "Ваш электронный адрес", "de": "Ihre E-Mail Adresse" },
-	"newsletter_subscribed": { "ru": "Вы были успешно подписаны.", "de": "Sie wurden erfolgreich angemeldet." }
+	"newsletter_subscribed": { "ru": "Вы были успешно подписаны.", "de": "Sie wurden erfolgreich angemeldet." },
+	"question_ask": { "ru": "Задать вопрос", "de": "Eine Frage stellen" },
+	"question_btn_send": { "ru": "Отправить", "de": "Absenden" }
 }

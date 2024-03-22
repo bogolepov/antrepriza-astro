@@ -112,7 +112,7 @@ footer .phone-number {
 }
 
 .copyright-year {
-	padding-top: 0.4em;
+	padding-top: 0.2em;
 }
 
 .footer-partners .title {
@@ -138,6 +138,9 @@ footer .logo-75 {
 	max-width: 75px;
 }
 
+/* --------------------------------------------------- */
+/* --------------------- Newsletter ------------------ */
+/* --------------------------------------------------- */
 .newsletter-label {
 	font-size: clamp(0.8rem, 2vw, 0.95rem);
 	padding-bottom: 0.15em;
@@ -145,13 +148,14 @@ footer .logo-75 {
 .newsletter-form {
 	position: relative;
 	width: 100%;
-	margin-bottom: 1.2em;
+	max-width: 300px;
+	margin-bottom: 0.7em;
 }
 .newsletter__input {
 	font-size: 0.9rem;
 	line-height: 1.5em;
 	padding-right: calc(0.9rem * 2);
-	border: 1px solid var(--colorFontDate);
+	border: 1px solid var(--colorBkgTicketsBtn);
 	width: 100%;
 }
 .newsletter__button {
@@ -162,9 +166,13 @@ footer .logo-75 {
 	top: 1px;
 	bottom: 1px;
 	width: calc(0.9rem * 1.8);
-	background-color: var(--colorFontDate);
-	border: 1px solid var(--colorFontDate);
+	background-color: var(--colorBkgTicketsBtn);
+	border: 1px solid var(--colorBkgTicketsBtn);
+	color: var(--colorFontTicketsBtn);
 	border-radius: 0;
+}
+.newsletter__button:hover {
+	cursor: pointer;
 }
 
 .newsletter__input:focus-visible,
@@ -175,4 +183,129 @@ footer .logo-75 {
 footer .logo-flex a:focus-visible img {
 	outline: 1px solid var(--colorFocusAntreprizaRed);
 	outline-offset: 1px;
+}
+
+/* --------------------------------------------------- */
+/* ---------------------- Question ------------------- */
+/* --------------------------------------------------- */
+.question {
+	font-size: clamp(0.8rem, 2vw, 0.95rem);
+	padding-bottom: 0.4em;
+}
+.question input {
+	-webkit-appearance: none;
+	appearance: none;
+	display: block;
+}
+.question label {
+	/* display: inline-block; */
+	display: block;
+	position: relative;
+	color: var(--colorBkgTicketsBtn);
+}
+.question label:hover {
+	cursor: pointer;
+}
+
+.question-layer {
+	position: fixed;
+	z-index: 1200;
+	width: 100vw;
+	height: 100svh;
+	top: 0;
+	left: 0;
+	background-color: var(--colorBkgQuestionLayer);
+	/* -webkit-transform-origin: 0 0;
+	-ms-transform-origin: 0 0;
+	transform-origin: 0 0; */
+}
+
+.question-flex {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.question:has(input[value='question']:not(:checked)) .question-layer {
+	-webkit-transform: scaleY(0);
+	-ms-transform: scaleY(0);
+	transform: scaleY(0);
+}
+
+.question:has(input[value='question']:checked) .question-layer {
+	-webkit-transition: 0.5s ease-in-out;
+	-moz-transition: 0.5s ease-in-out;
+	-o-transition: 0.5s ease-in-out;
+	transition: 0.5s ease-in-out;
+	-webkit-transform: scaleY(1);
+	-ms-transform: scaleY(1);
+	transform: scaleY(1);
+}
+
+.question-layer label {
+	display: inline-block;
+}
+
+.question-form {
+	position: relative;
+	border: 4px solid var(--colorBorderToolbar);
+	border-radius: 2px;
+	box-shadow: 0 2px 10px var(--colorBoxShadowDropList);
+
+	background-color: var(--colorBkgFooter);
+	color: var(--colorFontFooter);
+}
+
+.question-close {
+	width: 100%;
+	text-align: right;
+	font-size: 20px;
+	line-height: 20px;
+	padding-right: 3px;
+	font-weight: var(--font-bold-weight);
+	margin-left: auto;
+	/* position: absolute;
+	left: 0;
+	top: 0; */
+}
+
+.question-form-wrapper {
+	padding: 0 20px 20px 20px;
+}
+
+.question-layer .q-label {
+	font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+	line-height: 1.2em;
+	padding-bottom: 0.3em;
+}
+
+.question-layer .q-input {
+	font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+	line-height: 1.4em;
+	border: 1px solid var(--colorBkgTicketsBtn);
+	margin-bottom: 0.7em;
+	width: min(60vw, 80vh);
+	min-width: 220px;
+	max-width: 360px;
+}
+
+.question-layer .question__btn_div {
+	width: 100%;
+	text-align: right;
+	padding-top: 0.8em;
+}
+
+.question-layer .question__btn_send {
+	text-align: end;
+	padding: 0.2em 0.6em;
+	background-color: var(--colorBkgTicketsBtn);
+	border: 1px solid var(--colorBkgTicketsBtn);
+	color: var(--colorFontTicketsBtn);
+}
+
+.question-layer .q-input:focus-visible,
+.question-layer button:focus-visible,
+.question-layer label:focus-visible {
+	outline: 1px solid var(--colorFocusAntreprizaRed);
 }
