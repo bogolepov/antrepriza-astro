@@ -15,6 +15,7 @@ import dictionary from '@data/dictionary.json'
 import YoutubePlayer from './youtube_player.astro';
 ---
 
+<section class="gallery">
 {
   plays.map(play => {
     let playFotos = photos.filter(photo => photo.filename && photo.suffix == play.suffix && photo.is_landscape);
@@ -75,3 +76,4 @@ import YoutubePlayer from './youtube_player.astro';
     );
   })
 }
+</section>

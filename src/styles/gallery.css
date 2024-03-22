@@ -1,4 +1,4 @@
-.block-title {
+.gallery .block-title {
 	position: relative;
 	width: 100%;
 	margin-top: clamp(1.1rem, 2.6vw, 2rem);
@@ -7,7 +7,7 @@
 	align-self: self-start;
 }
 
-.block-title h1 {
+.gallery .block-title h1 {
 	font-size: clamp(1.6rem, 4vw, 3rem);
 	font-weight: var(--font-extra-weight);
 	line-height: 1.25em;
@@ -72,11 +72,11 @@
 	cursor: pointer;
 }
 
-input {
+.gallery input {
 	-webkit-appearance: none;
 	appearance: none;
 }
-label {
+.gallery label {
 	display: inline-block;
 	padding: 0.4em 1em 0.3em 1em;
 }
