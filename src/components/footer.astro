@@ -42,33 +42,53 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
       <div class="newsletter">
         <div class="newsletter-label">{dictionary.newsletter_title[lang]}</div>
         <div class="newsletter-form">
-        <input type="text" class="newsletter__input" name="email" placeholder={dictionary.newsletter_hint[lang]}>
+        <input type="text" class="newsletter__input" name="email" placeholder={dictionary.email_hint[lang]}>
         <button class="newsletter__button">&#10153;</button>
         </div>
       </div>
       <div class="question lh-1-3">
         <input type="checkbox" id="question__checkbox" name="question" value="question"/>
-        <label for="question__checkbox">
-          {dictionary.question_ask[lang]}
-        </label>
+        <label class="opacoty1" for="question__checkbox">{dictionary.question_form_label[lang]}</label>
         <div class="question-layer question-flex">
-          <div class="question-form">
+          <div class="question-form-wrapper">
             <div class="question-close" >
               <label for="question__checkbox">&#10006;</label>
             </div>
-            <div class="question-form-wrapper">
-              <div class="q-label">Тема вопроса</div>
-              <input class="q-input" type="text" name="theme">
-              <div class="q-label">Имя</div>
-              <input class="q-input" type="text" name="name">
-              <div class="q-label">{dictionary.email[lang]}</div>
-              <input class="q-input" type="text" name="email">
-              <div class="q-label">Сообщение</div>
-              <textarea class="q-input" name="memo" rows="5"></textarea>
-              <div class="question__btn_div">
-                <button class="question__btn_send">{dictionary.question_btn_send[lang]}</button>
+            <form id="question-form" class="question-form" onsubmit="submitQuestionForm(event)">
+              <div class="q-label">
+                <span class="opacity0">{dictionary.question_subject[lang]}</span>
               </div>
-            </div>
+              <div class="select-wrapper">
+                <select class="q-input" name="question-subject" id="question-subject">
+                {
+                  theater.question_subjects.map(subject => {
+                    return (
+                      <option value={subject}>{dictionary[subject][lang]}</option>
+                    )
+                  })
+                }
+                </select>
+              </div>
+              <!-- <input class="q-input" type="text" name="theme"> -->
+              <div class="q-label">
+                <span class="opacity0">{dictionary.name[lang]}</span>
+                <span class="form__error" data-for="name"></span>
+              </div>
+              <input class="q-input" type="text" name="name" placeholder={dictionary.name_hint[lang]}>
+              <div class="q-label">
+                <span class="opacity0">{dictionary.email[lang]}</span>
+                <span class="form__error" data-for="email"></span>
+              </div>
+              <input class="q-input" type="text" name="email" placeholder={dictionary.email_hint[lang]}>
+              <div class="q-label">
+                <span class="opacity0">{dictionary.message[lang]}</span>
+                <span class="form__error" data-for="message"></span>
+              </div>
+              <textarea class="q-input" name="message" rows="5" maxlength="2000" placeholder={dictionary.message_hint[lang]}></textarea>
+              <div class="question__btn_div">
+                <button class="question__btn_send" type="submit">{dictionary.question_btn_send[lang]}</button>
+              </div>
+            </form>
           </div>
         </div>
       </div>

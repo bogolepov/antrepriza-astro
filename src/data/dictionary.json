@@ -69,9 +69,16 @@
 	"email": { "ru": "Email", "de": "E-Mail" },
 	"telephone_short": { "ru": "Тел.", "de": "Tel." },
 	"telephone": { "ru": "Телефон", "de": "Telefon" },
+	"website_problems": { "ru": "Проблемы с сайтом", "de": "Webseitenprobleme" },
+	"other": { "ru": "Иное", "de": "Sonstiges" },
 	"newsletter_title": { "ru": "Подписаться на новости", "de": "Newsletter" },
-	"newsletter_hint": { "ru": "Ваш электронный адрес", "de": "Ihre E-Mail Adresse" },
+	"email_hint": { "ru": "Ваш электронный адрес", "de": "Ihre E-Mail-Adresse" },
 	"newsletter_subscribed": { "ru": "Вы были успешно подписаны.", "de": "Sie wurden erfolgreich angemeldet." },
-	"question_ask": { "ru": "Форма обратной связи", "de": "Kontaktformular" },
+	"question_form_label": { "ru": "Форма обратной связи", "de": "Kontaktformular" },
+	"question_subject": { "ru": "Тема вопроса", "de": "Betreff" },
+	"name": { "ru": "Имя", "de": "Name" },
+	"name_hint": { "ru": "Имя и фамилия", "de": "Vor- und Nachname" },
+	"message": { "ru": "Сообщение", "de": "Nachricht" },
+	"message_hint": { "ru": "Ваше сообщение", "de": "Anmerkungen" },
 	"question_btn_send": { "ru": "Отправить", "de": "Absenden" }
 }

@@ -1,0 +1,8 @@
+{
+	"err__empty_name": { "ru": "Имя не может быть пустым", "de": "" },
+	"err__name_to_short": { "ru": "Слишком короткое имя", "de": "" },
+	"err__empty_email": { "ru": "Укажите email-адрес", "de": "" },
+	"err__email_not_correct": { "ru": "Введите корректный email-адрес", "de": "" },
+	"err__empty_message": { "ru": "Введите текст обращения", "de": "" },
+	"err__message_to_short": { "ru": "Обращение слишком короткое", "de": "" }
+}

@@ -113,6 +113,10 @@
 /* --------------------------------------------------- */
 .active_link {
 	color: var(--colorAntreprizaRed);
+	opacity: 1;
+}
+.active_link * {
+	opacity: 1;
 }
 
 .active_link svg {
@@ -577,6 +581,7 @@
 	.header-mobile a:hover,
 	.burger-item:hover span {
 		color: var(--colorAntreprizaRed);
+		opacity: 1;
 	}
 
 	.header-logo-icon:hover,

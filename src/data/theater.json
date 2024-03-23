@@ -351,5 +351,6 @@
 	"partner_offer": {
 		"ru": "открыт к взаимовыгодному сотрудничеству, проведению спектаклей на Вашей площадке и гастролям, участию в театральных фестивалях.\u000A\u000AМы также будем рады спонсорской поддержке и предоставлению наших ресурсов для знакомства зрителей с Вашей деятельностью. Способы связи указаны внизу страницы.",
 		"de": "ist offen für eine beidseitig vorteilhafte Zusammenarbeit, für Gastspiele und Teilnahmen an Theaterfestivals. Wir freuen uns auch auf ein Sponsoring und stellen gern unsere Ressourcen zur Verfügung, um den Zuschauern Ihr Geschäft vorzustellen. Die Kontaktmöglichkeiten sind unten auf der Seite aufgeführt."
-	}
+	},
+	"question_subjects": ["tickets", "menu_studio", "menu_partnership", "website_problems", "other"]
 }

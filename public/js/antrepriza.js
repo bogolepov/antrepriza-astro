@@ -14,6 +14,8 @@ const MODE_LIST = [MODE_LIGHT, MODE_DARK];
 let currLang;
 let currMode;
 
+let dictionary;
+
 /* --------------------------------------------------- */
 /* ------------------- NoJS flag --------------------- */
 /* ----- remove NoJS flag, because JS isn't out ------ */
@@ -200,6 +202,76 @@ function initHoverModeForTouchScreen() {
 				currentHoverBlock.removeAttribute('hover');
 				currentHoverBlock = null;
 			}
+		});
+	}
+}
+
+/* --------------------------------------------------- */
+/* ------------------- Contact form ------------------ */
+/* --------------------------------------------------- */
+async function submitQuestionForm(event) {
+	event.preventDefault();
+
+	const form = event.target;
+	const btnSubmit = document.querySelector('.question__btn_send');
+
+	const formData = new FormData(form);
+	const formDataObject = {};
+
+	formData.forEach((value, key) => {
+		formDataObject[key] = value.trim().replace(/\s+/g, ' ');
+	});
+
+	const validationErrors = validateForm(formDataObject);
+
+	displayErrors(validationErrors);
+}
+
+function validateForm(formData) {
+	const { name, email, message } = formData;
+
+	const emailRegex = /^[a-zA-Z0–9._-]+@[a-zA-Z0–9.-]+\.[a-zA-Z]{2,4}$/;
+
+	const errors = [];
+
+	if (!name) errors.push({ field: 'name', message: 'err__empty_name' });
+	else if (name.length < 3) errors.push({ field: 'name', message: 'err__name_to_short' });
+
+	if (!email) errors.push({ field: 'email', message: 'err__empty_email' });
+	else if (!emailRegex.test(email) || email.length < 5 || email.length > 64)
+		errors.push({ field: 'email', message: 'err__email_not_correct' });
+
+	if (!message) errors.push({ field: 'message', message: 'err__empty_message' });
+	else if (message.length < 10) errors.push({ field: 'message', message: 'err__message_to_short' });
+
+	return errors;
+}
+
+function displayErrors(errors) {
+	// find all elements showing error messages
+	const errorElements = document.querySelectorAll('.form__error');
+
+	// clean all error messages after last time
+	errorElements.forEach(element => {
+		element.textContent = '';
+	});
+
+	// if no errors
+	if (errors.length < 1) return;
+
+	if (!dictionary) {
+		fetch('../../data/dictionary_client.json')
+			.then(response => response.json())
+			.then(jsonData => {
+				dictionary = jsonData;
+				if (dictionary) displayErrors(errors);
+			});
+	} else {
+		// to show all error messages
+		errors.forEach(error => {
+			const { field, message } = error;
+			const errorElement = document.querySelector(`[data-for="${field}"]`);
+			errorElement.textContent = ' * ' + dictionary[message][currLang];
 		});
 	}
 }
