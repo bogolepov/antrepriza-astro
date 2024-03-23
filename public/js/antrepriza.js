@@ -260,7 +260,7 @@ function displayErrors(errors) {
 	if (errors.length < 1) return;
 
 	if (!dictionary) {
-		fetch('../../data/dictionary_client.json')
+		fetch('/data/dictionary_client.json')
 			.then(response => response.json())
 			.then(jsonData => {
 				dictionary = jsonData;

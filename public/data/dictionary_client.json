@@ -1,8 +1,8 @@
 {
-	"err__empty_name": { "ru": "Имя не может быть пустым", "de": "" },
-	"err__name_to_short": { "ru": "Слишком короткое имя", "de": "" },
-	"err__empty_email": { "ru": "Укажите email-адрес", "de": "" },
-	"err__email_not_correct": { "ru": "Введите корректный email-адрес", "de": "" },
-	"err__empty_message": { "ru": "Введите текст обращения", "de": "" },
-	"err__message_to_short": { "ru": "Обращение слишком короткое", "de": "" }
+	"err__empty_name": { "ru": "Имя не может быть пустым", "de": "Dieses Feld muss zwingend ausgefüllt sein." },
+	"err__name_to_short": { "ru": "Слишком короткое имя", "de": "Der Name ist zu kurz." },
+	"err__empty_email": { "ru": "Укажите email-адрес", "de": "Dieses Feld muss zwingend ausgefüllt sein." },
+	"err__email_not_correct": { "ru": "Введите корректный email-адрес", "de": "Bitte geben Sie eine korrekte E-Mail-Adresse ein." },
+	"err__empty_message": { "ru": "Введите текст обращения", "de": "Dieses Feld muss zwingend ausgefüllt sein." },
+	"err__message_to_short": { "ru": "Обращение слишком короткое", "de": "Die Nachricht ist zu kurz." }
 }
