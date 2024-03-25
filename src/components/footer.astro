@@ -92,8 +92,14 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
                 <button class="question__btn_send" type="submit">{dictionary.question_btn_send[lang]}</button>
               </div>
             </form>
-            <div class="contact-form-loader-wrapper">
+            <div class="layer-on-parent loader">
               <div class="contact-form-loader"></div>
+            </div>
+            <div class="layer-on-parent contact-form-result-wrapper">
+              <div class="contact-form-result">
+                <div class="contact-form-result-message"></div>
+                <button class="contact-form-result-button">OK</button>
+              </div>
             </div>
           </div>
         </div>

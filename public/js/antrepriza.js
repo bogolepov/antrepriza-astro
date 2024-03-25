@@ -209,13 +209,33 @@ function initHoverModeForTouchScreen() {
 /* --------------------------------------------------- */
 /* ------------------- Contact form ------------------ */
 /* --------------------------------------------------- */
+function initContactForm() {
+	const form = document.querySelector('#question-form');
+	const formCheckbox = document.querySelector('#question__checkbox');
+	formCheckbox.addEventListener('change', event => {
+		if (!formCheckbox.checked) {
+			form.reset();
+		}
+	});
+}
+
+function closeQuestionForm() {
+	const formCheckbox = document.querySelector('#question__checkbox');
+	formCheckbox.disabled = false;
+	formCheckbox.checked = false;
+	document.querySelector('#question-form').reset();
+}
+
 async function submitQuestionForm(event) {
 	event.preventDefault();
 
 	const form = event.target;
-	const btnSubmit = document.querySelector('.question__btn_send');
-	const inputElements = document.querySelectorAll('.q-input');
-	const formLoader = document.querySelector('.contact-form-loader');
+	const formLoader = document.querySelector('.layer-on-parent.loader');
+	const formResult = document.querySelector('.layer-on-parent.contact-form-result-wrapper');
+	if (!formResult) alert('error');
+	const formResultMessage = document.querySelector('.contact-form-result-message');
+	const formResultButton = document.querySelector('.contact-form-result-button');
+	const formCheckbox = document.querySelector('#question__checkbox');
 
 	const formData = new FormData(form);
 	const formDataObject = {};
@@ -233,11 +253,39 @@ async function submitQuestionForm(event) {
 	displayErrors(validationErrors);
 	if (validationErrors.length > 0) return;
 
-	// startSendAnimation();
-
 	formLoader.classList.add('show');
-	btnSubmit.disabled = true;
-	inputElements.forEach(input => (input.disabled = true));
+	formCheckbox.disabled = true;
+
+	const onResultClick = () => {
+		formResult.classList.remove('show');
+		formResultButton.removeEventListener('click', onResultClick);
+		formResultMessage.textContent = '';
+		formResultButton.classList.remove('ok');
+		formResultButton.classList.remove('error');
+		formCheckbox.disabled = false;
+		closeQuestionForm();
+	};
+
+	let resMessage;
+
+	if (!dictionary) {
+		fetch('/data/dictionary_client.json')
+			.then(response => response.json())
+			.then(jsonData => {
+				dictionary = jsonData;
+			});
+	}
+
+	// setTimeout(() => {
+	// 	formLoader.classList.remove('show');
+	// 	formResult.classList.add('show');
+	// 	formResultButton.classList.add('ok');
+	// 	if (formResultButton.classList.contains('ok'))
+	// 		resMessage = dictionary ? dictionary['contact_form__result_ok'][currLang] : currLang == 'ru' ? 'Успешно!' : 'Erfolgreich!';
+	// 	else resMessage = dictionary ? dictionary[message][currLang] : currLang == 'ru' ? 'Ошибка...' : 'Unerfolgreich...';
+	// 	formResultMessage.textContent = resMessage;
+	// 	formResultButton.addEventListener('click', onResultClick);
+	// }, 300);
 
 	fetch('/', {
 		method: 'POST',
@@ -245,18 +293,20 @@ async function submitQuestionForm(event) {
 		body: new URLSearchParams(formData).toString(),
 	})
 		.then(() => {
-			form.reset();
-			formLoader.classList.remove('show');
-			alert('Thank you for your submission');
+			formResultButton.classList.add('ok');
+			resMessage = dictionary ? dictionary['contact_form__result_ok'][currLang] : currLang == 'ru' ? 'Успешно!' : 'Erfolgreich!';
 		})
-		.catch(error => alert(error))
+		.catch(error => {
+			formResultButton.classList.add('error');
+			resMessage = dictionary ? dictionary[message][currLang] : currLang == 'ru' ? 'Ошибка...' : 'Unerfolgreich...';
+			console.error(error);
+		})
 		.finally(() => {
-			btnSubmit.disabled = false;
-			inputElements.forEach(input => (input.disabled = false));
+			formResultMessage.textContent = resMessage;
 			formLoader.classList.remove('show');
+			formResult.classList.add('show');
+			formResultButton.addEventListener('click', onResultClick);
 		});
-
-	//sendFormData(form, btnSubmit, formDataObject);
 }
 
 function validateForm(formData) {
@@ -312,36 +362,5 @@ function displayErrors(errors) {
 			};
 			errorInput.addEventListener('input', onInput);
 		});
-	}
-}
-
-async function sendFormData(form, btnSubmit, formDataObject) {
-	const btnSubmitText = btnSubmit.textContent;
-	try {
-		btnSubmit.textContent = 'Loading...';
-		btnSubmit.disabled = true;
-
-		const response = await fetch('http://localhost:5000/send-email', {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify(formDataObject),
-		});
-
-		if (response.ok) {
-			console.log('SEND EMAIL - OK');
-			//
-			form.reset();
-		} else if (response.status == 422) {
-			const errors = await response.json();
-			console.log(errors);
-			throw new Error('Validation error');
-		} else {
-			throw new Error(response.statusText);
-		}
-	} catch (error) {
-		console.error(error.message);
-	} finally {
-		btnSubmit.textContent = btnSubmitText;
-		btnSubmit.disabled = false;
 	}
 }
