@@ -56,6 +56,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
             </div>
             <form method="POST" id="question-form" class="question-form" onsubmit="submitQuestionForm(event)" 
                   data-netlify-recaptcha="true" data-netlify="true">
+              <input type="hidden" name="subject" value={theater.shortTheaterName[lang] + " [" + lang.toUpperCase() + "]: " + "{question-subject} (%{submissionId})"}  />
               <div class="q-label">
                 <span class="opacity0">{dictionary.question_subject[lang]}</span>
               </div>
@@ -64,7 +65,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
                 {
                   theater.question_subjects.map(subject => {
                     return (
-                      <option value={subject}>{dictionary[subject][lang]}</option>
+                      <option>{dictionary[subject][lang]}</option>
                     )
                   })
                 }

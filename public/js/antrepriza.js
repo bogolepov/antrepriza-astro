@@ -220,8 +220,12 @@ async function submitQuestionForm(event) {
 	const formData = new FormData(form);
 	const formDataObject = {};
 
+	let newValue;
 	formData.forEach((value, key) => {
-		formDataObject[key] = value.trim().replace(/\s+/g, ' ');
+		newValue = value.trim().replace(/\s+/g, ' ');
+		if (key == 'subject') newValue = newValue.replace('{question-subject}', formData.get('question-subject'));
+		formData.set(key, newValue);
+		formDataObject[key] = newValue;
 	});
 
 	const validationErrors = validateForm(formDataObject);
@@ -234,12 +238,6 @@ async function submitQuestionForm(event) {
 	formLoader.classList.add('show');
 	btnSubmit.disabled = true;
 	inputElements.forEach(input => (input.disabled = true));
-
-	setTimeout(() => {
-		btnSubmit.disabled = false;
-		inputElements.forEach(input => (input.disabled = false));
-		formLoader.classList.remove('show');
-	}, 3000);
 
 	fetch('/', {
 		method: 'POST',
@@ -306,6 +304,13 @@ function displayErrors(errors) {
 			const { field, message } = error;
 			const errorElement = document.querySelector(`[data-for="${field}"]`);
 			errorElement.textContent = ' * ' + dictionary[message][currLang];
+			const errorInput = document.querySelector(`.q-input[name="${field}"]`);
+
+			const onInput = () => {
+				errorElement.textContent = '';
+				errorInput.removeEventListener('input', onInput);
+			};
+			errorInput.addEventListener('input', onInput);
 		});
 	}
 }
