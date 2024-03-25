@@ -214,6 +214,8 @@ async function submitQuestionForm(event) {
 
 	const form = event.target;
 	const btnSubmit = document.querySelector('.question__btn_send');
+	const inputElements = document.querySelectorAll('.q-input');
+	const formLoader = document.querySelector('.contact-form-loader');
 
 	const formData = new FormData(form);
 	const formDataObject = {};
@@ -225,6 +227,38 @@ async function submitQuestionForm(event) {
 	const validationErrors = validateForm(formDataObject);
 
 	displayErrors(validationErrors);
+	if (validationErrors.length > 0) return;
+
+	// startSendAnimation();
+
+	formLoader.classList.add('show');
+	btnSubmit.disabled = true;
+	inputElements.forEach(input => (input.disabled = true));
+
+	setTimeout(() => {
+		btnSubmit.disabled = false;
+		inputElements.forEach(input => (input.disabled = false));
+		formLoader.classList.remove('show');
+	}, 3000);
+
+	fetch('/', {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+		body: new URLSearchParams(formData).toString(),
+	})
+		.then(() => {
+			form.reset();
+			formLoader.classList.remove('show');
+			alert('Thank you for your submission');
+		})
+		.catch(error => alert(error))
+		.finally(() => {
+			btnSubmit.disabled = false;
+			inputElements.forEach(input => (input.disabled = false));
+			formLoader.classList.remove('show');
+		});
+
+	//sendFormData(form, btnSubmit, formDataObject);
 }
 
 function validateForm(formData) {
@@ -235,7 +269,7 @@ function validateForm(formData) {
 	const errors = [];
 
 	if (!name) errors.push({ field: 'name', message: 'err__empty_name' });
-	else if (name.length < 3) errors.push({ field: 'name', message: 'err__name_to_short' });
+	else if (name.length < 2) errors.push({ field: 'name', message: 'err__name_to_short' });
 
 	if (!email) errors.push({ field: 'email', message: 'err__empty_email' });
 	else if (!emailRegex.test(email) || email.length < 5 || email.length > 64)
@@ -273,5 +307,36 @@ function displayErrors(errors) {
 			const errorElement = document.querySelector(`[data-for="${field}"]`);
 			errorElement.textContent = ' * ' + dictionary[message][currLang];
 		});
+	}
+}
+
+async function sendFormData(form, btnSubmit, formDataObject) {
+	const btnSubmitText = btnSubmit.textContent;
+	try {
+		btnSubmit.textContent = 'Loading...';
+		btnSubmit.disabled = true;
+
+		const response = await fetch('http://localhost:5000/send-email', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(formDataObject),
+		});
+
+		if (response.ok) {
+			console.log('SEND EMAIL - OK');
+			//
+			form.reset();
+		} else if (response.status == 422) {
+			const errors = await response.json();
+			console.log(errors);
+			throw new Error('Validation error');
+		} else {
+			throw new Error(response.statusText);
+		}
+	} catch (error) {
+		console.error(error.message);
+	} finally {
+		btnSubmit.textContent = btnSubmitText;
+		btnSubmit.disabled = false;
 	}
 }

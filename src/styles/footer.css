@@ -47,10 +47,12 @@ footer a {
 	footer a:hover,
 	footer label:hover {
 		color: var(--colorAntreprizaRed);
+		font-weight: 400;
 		opacity: 1;
 	}
 	footer a:hover *,
 	footer .info-text:has(a:hover) {
+		font-weight: 400;
 		opacity: 1;
 	}
 }
@@ -242,25 +244,16 @@ footer .logo-flex a:focus-visible img {
 }
 
 .question:has(input[value='question']:not(:checked)) .question-layer {
-	-webkit-transform: scaleY(0);
-	-ms-transform: scaleY(0);
 	transform: scaleY(0);
 }
 
 .question:has(input[value='question']:checked) .question-layer {
-	-webkit-transition: 0.5s ease-in-out;
-	-moz-transition: 0.5s ease-in-out;
-	-o-transition: 0.5s ease-in-out;
-	transition: 0.5s ease-in-out;
-	-webkit-transform: scaleY(1);
-	-ms-transform: scaleY(1);
+	transition: 0.5s transform ease-in-out;
 	transform: scaleY(1);
 }
 
 /* open question-layer at any focused element inside */
 .question:has(input[value='question']:not(:checked)) .question-layer:has(input:focus, textarea:focus, button:focus, select:focus) {
-	-webkit-transform: scaleY(1);
-	-ms-transform: scaleY(1);
 	transform: scaleY(1);
 }
 
@@ -370,4 +363,38 @@ footer .logo-flex a:focus-visible img {
 	color: var(--colorFocusAntreprizaRed);
 	font-weight: var(--font-bold-weight);
 	font-size: 0.85em;
+}
+
+/* --------------------------------------------------- */
+/* ------------ contact form loader loader ----------- */
+/* --------------------------------------------------- */
+.contact-form-loader-wrapper {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.contact-form-loader {
+	display: none;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	padding: 1px;
+	background: conic-gradient(#0000 10%, var(--colorBkgTicketsBtn)) content-box;
+	-webkit-mask: repeating-conic-gradient(#0000 0deg, #000 1deg 20deg, #0000 21deg 36deg),
+		radial-gradient(farthest-side, #0000 calc(100% - 9px), #000 calc(100% - 8px));
+	mask: repeating-conic-gradient(#0000 0deg, #000 1deg 20deg, #0000 21deg 36deg),
+		radial-gradient(farthest-side, #0000 calc(100% - 9px), #000 calc(100% - 8px));
+	-webkit-mask-composite: destination-in;
+	mask-composite: intersect;
+	animation: s4 1s infinite steps(10);
+}
+.contact-form-loader.show {
+	display: block;
+}
+@keyframes s4 {
+	to {
+		transform: rotate(1turn);
+	}
 }

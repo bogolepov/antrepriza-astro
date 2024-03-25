@@ -4,9 +4,12 @@ const { lang } = Astro.props;
 
 import dictionary from '@data/dictionary.json'
 
+import '@styles/support.css'
+
 ---
 
 <section class="support">
   <h1 class="section-title">{dictionary.support[lang]}</h1>
+  <!-- <div class="test">Support</div> -->
   <div class="page-end"></div>
 </section>
