@@ -243,7 +243,7 @@ async function submitQuestionForm(event) {
 	let newValue;
 	formData.forEach((value, key) => {
 		newValue = value.trim().replace(/\s+/g, ' ');
-		if (key == 'subject') newValue = newValue.replace('{question-subject}', formData.get('question-subject'));
+		if (key == 'subject') newValue = newValue.replace('{topic}', formData.get('topic'));
 		formData.set(key, newValue);
 		formDataObject[key] = newValue;
 	});
@@ -279,10 +279,10 @@ async function submitQuestionForm(event) {
 	// setTimeout(() => {
 	// 	formLoader.classList.remove('show');
 	// 	formResult.classList.add('show');
-	// 	formResultButton.classList.add('ok');
+	// 	formResultButton.classList.add('error');
 	// 	if (formResultButton.classList.contains('ok'))
 	// 		resMessage = dictionary ? dictionary['contact_form__result_ok'][currLang] : currLang == 'ru' ? 'Успешно!' : 'Erfolgreich!';
-	// 	else resMessage = dictionary ? dictionary[message][currLang] : currLang == 'ru' ? 'Ошибка...' : 'Unerfolgreich...';
+	// 	else resMessage = dictionary ? dictionary['contact_form__result_error'][currLang] : currLang == 'ru' ? 'Ошибка...' : 'Unerfolgreich...';
 	// 	formResultMessage.textContent = resMessage;
 	// 	formResultButton.addEventListener('click', onResultClick);
 	// }, 300);
@@ -298,7 +298,7 @@ async function submitQuestionForm(event) {
 		})
 		.catch(error => {
 			formResultButton.classList.add('error');
-			resMessage = dictionary ? dictionary[message][currLang] : currLang == 'ru' ? 'Ошибка...' : 'Unerfolgreich...';
+			resMessage = dictionary ? dictionary['contact_form__result_error'][currLang] : currLang == 'ru' ? 'Ошибка...' : 'Unerfolgreich...';
 			console.error(error);
 		})
 		.finally(() => {
