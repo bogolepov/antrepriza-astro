@@ -210,11 +210,11 @@ function initHoverModeForTouchScreen() {
 /* ------------------- Contact form ------------------ */
 /* --------------------------------------------------- */
 function initContactForm() {
-	const form = document.querySelector('#question-form');
 	const formCheckbox = document.querySelector('#question__checkbox');
 	formCheckbox.addEventListener('change', event => {
 		if (!formCheckbox.checked) {
-			form.reset();
+			resetErrorElements();
+			document.querySelector('#question-form').reset();
 		}
 	});
 }
@@ -224,6 +224,22 @@ function closeQuestionForm() {
 	formCheckbox.disabled = false;
 	formCheckbox.checked = false;
 	document.querySelector('#question-form').reset();
+	resetErrorElements();
+}
+
+function dictionary_prepare() {
+	return new Promise(function (resolve, reject) {
+		if (dictionary) resolve();
+		else {
+			fetch('/data/dictionary_client.json')
+				.then(response => response.json())
+				.then(jsonData => {
+					dictionary = jsonData;
+					resolve();
+				})
+				.catch(error => reject(error));
+		}
+	});
 }
 
 async function submitQuestionForm(event) {
@@ -268,30 +284,28 @@ async function submitQuestionForm(event) {
 
 	let resMessage;
 
-	if (!dictionary) {
-		fetch('/data/dictionary_client.json')
-			.then(response => response.json())
-			.then(jsonData => {
-				dictionary = jsonData;
+	// dictionary_prepare().then(() => {
+	// 	setTimeout(() => {
+	// 		formLoader.classList.remove('show');
+	// 		formResult.classList.add('show');
+	// 		formResultButton.classList.add('error');
+	// 		if (formResultButton.classList.contains('ok'))
+	// 			resMessage = dictionary ? dictionary['contact_form__result_ok'][currLang] : currLang == 'ru' ? 'Успешно!' : 'Erfolgreich!';
+	// 		else
+	// 			resMessage = dictionary ? dictionary['contact_form__result_error'][currLang] : currLang == 'ru' ? 'Ошибка...' : 'Unerfolgreich...';
+	// 		formResultMessage.textContent = resMessage;
+	// 		formResultButton.addEventListener('click', onResultClick);
+	// 	}, 300);
+	// });
+
+	dictionary_prepare()
+		.finally(() => {
+			return fetch('/', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+				body: new URLSearchParams(formData).toString(),
 			});
-	}
-
-	// setTimeout(() => {
-	// 	formLoader.classList.remove('show');
-	// 	formResult.classList.add('show');
-	// 	formResultButton.classList.add('error');
-	// 	if (formResultButton.classList.contains('ok'))
-	// 		resMessage = dictionary ? dictionary['contact_form__result_ok'][currLang] : currLang == 'ru' ? 'Успешно!' : 'Erfolgreich!';
-	// 	else resMessage = dictionary ? dictionary['contact_form__result_error'][currLang] : currLang == 'ru' ? 'Ошибка...' : 'Unerfolgreich...';
-	// 	formResultMessage.textContent = resMessage;
-	// 	formResultButton.addEventListener('click', onResultClick);
-	// }, 300);
-
-	fetch('/', {
-		method: 'POST',
-		headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-		body: new URLSearchParams(formData).toString(),
-	})
+		})
 		.then(() => {
 			formResultButton.classList.add('ok');
 			resMessage = dictionary ? dictionary['contact_form__result_ok'][currLang] : currLang == 'ru' ? 'Успешно!' : 'Erfolgreich!';
@@ -329,7 +343,7 @@ function validateForm(formData) {
 	return errors;
 }
 
-function displayErrors(errors) {
+function resetErrorElements() {
 	// find all elements showing error messages
 	const errorElements = document.querySelectorAll('.form__error');
 
@@ -337,18 +351,15 @@ function displayErrors(errors) {
 	errorElements.forEach(element => {
 		element.textContent = '';
 	});
+}
+
+function displayErrors(errors) {
+	resetErrorElements();
 
 	// if no errors
 	if (errors.length < 1) return;
 
-	if (!dictionary) {
-		fetch('/data/dictionary_client.json')
-			.then(response => response.json())
-			.then(jsonData => {
-				dictionary = jsonData;
-				if (dictionary) displayErrors(errors);
-			});
-	} else {
+	dictionary_prepare().then(() => {
 		// to show all error messages
 		errors.forEach(error => {
 			const { field, message } = error;
@@ -362,5 +373,5 @@ function displayErrors(errors) {
 			};
 			errorInput.addEventListener('input', onInput);
 		});
-	}
+	});
 }
