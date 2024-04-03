@@ -1,3 +1,4 @@
 .test {
-	color: var(--colorAntreprizaRed);
+	/* color: var(--colorAntreprizaRed); */
+	color: var(--red-op1);
 }

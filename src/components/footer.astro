@@ -1,5 +1,5 @@
 ---
-import "../styles/footer.css"
+import "@styles/footer.css"
 
 import theater from '@data/theater.json'
 import dictionary from '@data/dictionary.json'
@@ -49,13 +49,12 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
       <div class="question lh-1-3">
         <input type="checkbox" id="question__checkbox" name="question" value="question"/>
         <label class="opacoty1" for="question__checkbox">{dictionary.question_form_label[lang]}</label>
-        <div class="question-layer question-flex">
+        <div class="question-layer flex-center layer-on-window glass6">
           <div class="question-form-wrapper">
             <div class="question-close" >
               <label for="question__checkbox">&#10006;</label>
             </div>
-            <form method="POST" id="question-form" class="question-form" onsubmit="submitQuestionForm(event)" 
-                  data-netlify-recaptcha="true" data-netlify="true">
+            <form method="POST" id="question-form" class="question-form" onsubmit="submitQuestionForm(event)" data-netlify="true">
               <input type="hidden" name="subject" value={theater.shortTheaterName[lang] + " [" + lang.toUpperCase() + "]: " + "{topic} (#%{submissionId})"}  />
               <div class="q-label">
                 <span class="opacity0">{dictionary.question_subject[lang]}</span>
@@ -87,7 +86,6 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
                 <span class="form__error" data-for="message"></span>
               </div>
               <textarea class="q-input" name="message" rows="5" maxlength="2000" placeholder={dictionary.message_hint[lang]} autocomplete="on"></textarea>
-              <div data-netlify-recaptcha="true"></div>
               <div class="question__btn_div">
                 <button class="question__btn_send" type="submit">{dictionary.question_btn_send[lang]}</button>
               </div>
@@ -95,7 +93,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
             <div class="layer-on-parent loader">
               <div class="contact-form-loader"></div>
             </div>
-            <div class="layer-on-parent contact-form-result-wrapper">
+            <div class="layer-on-parent glass1_5">
               <div class="contact-form-result">
                 <div class="contact-form-result-message"></div>
                 <button class="contact-form-result-button">OK</button>
@@ -119,7 +117,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
               <Picture 
                 class:list={'image-wrapper-landscape'} 
                 src={images["/src/assets/logo_svoi.png"]()} 
-                formats={['avif', 'webp', 'png']} 
+                formats={['webp']} 
                 sizes={'50px'}
                 alt="Svoi.Berlin" />
               </a>
@@ -129,7 +127,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
               <Picture 
                 class:list={'image-wrapper-landscape'} 
                 src={images["/src/assets/logo_auswaertiges_amt.png"]()} 
-                formats={['avif', 'webp', 'png']} 
+                formats={['webp']} 
                 sizes={'50px'}
                 alt="Auswärtiges Amt" />
               </a>
@@ -139,7 +137,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
               <Picture 
                 class:list={'image-wrapper-landscape'} 
                 src={images["/src/assets/logo_nbf.png"]()} 
-                formats={['avif', 'webp', 'png']} 
+                formats={['webp']} 
                 sizes={'50px'}
                 alt="Neue Bühne Friedrichshain" />
               </a>
@@ -149,7 +147,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
               <Picture 
                 class:list={'image-wrapper-landscape'} 
                 src={images["/src/assets/logo_kontramarka.png"]()} 
-                formats={['avif', 'webp', 'png']} 
+                formats={['webp']} 
                 sizes={'75px'}
                 alt="Kontramarka" />
               </a>
@@ -159,7 +157,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
               <Picture 
                 class:list={'image-wrapper-landscape'} 
                 src={images["/src/assets/logo_quarteera.png"]()} 
-                formats={['avif', 'webp', 'png']} 
+                formats={['webp']} 
                 sizes={'75px'}
                 alt="Quarteera" />
               </a>

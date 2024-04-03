@@ -224,23 +224,7 @@ footer .logo-flex a:focus-visible img {
 }
 
 .question-layer {
-	position: fixed;
-	z-index: 1200;
-	width: 100vw;
-	height: 100svh;
-	top: 0;
-	left: 0;
-	background-color: var(--colorBkgQuestionLayer);
-
-	-webkit-backdrop-filter: blur(6px);
-	backdrop-filter: blur(6px);
-}
-
-.question-flex {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
+	background-color: var(--colorBkgLayer);
 }
 
 .question:has(input[value='question']:not(:checked)) .question-layer {
@@ -248,7 +232,9 @@ footer .logo-flex a:focus-visible img {
 }
 
 .question:has(input[value='question']:checked) .question-layer {
-	transition: 0.5s transform ease-in-out;
+	transition:
+		0.5s transform ease-in-out,
+		0.5s backdrop-filter ease-in-out;
 	transform: scaleY(1);
 }
 
@@ -284,6 +270,7 @@ footer .logo-flex a:focus-visible img {
 	padding-right: 5px;
 	font-weight: var(--font-bold-weight);
 	margin-left: auto;
+	user-select: none;
 }
 
 .question-form {
@@ -393,11 +380,6 @@ footer .logo-flex a:focus-visible img {
 /* --------------------------------------------------- */
 /* ------ show result of contact form sending -------- */
 /* --------------------------------------------------- */
-.contact-form-result-wrapper {
-	-webkit-backdrop-filter: blur(6px);
-	backdrop-filter: blur(1.5px);
-}
-
 .contact-form-result {
 	width: 70%;
 	text-align: center;

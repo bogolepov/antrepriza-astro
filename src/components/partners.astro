@@ -26,7 +26,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
                   <Picture 
                     class:list={'image-wrapper-landscape'} 
                     src={images["/src/assets/" + partner.logo]()} 
-                    formats={['avif', 'webp', 'png']} 
+                    formats={['webp']} 
                     widths={[120]}
                     sizes={'120px'}
                     alt={partner.name[lang]} />

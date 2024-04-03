@@ -28,7 +28,21 @@ const pageTitle = title || ( lang === "de" ? "Theater Antrepriza Berlin" : "Те
 		/>
 	<meta name="generator" content={Astro.generator} />
 	</head>
+
 	<body class="no-js">
+
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			removeNoJS();
+			initLangEnv();
+			initColorMode();
+			initHeaderSubMenuListener();
+			initHoverModeForTouchScreen();
+			initContactForm();
+		});
+	</script>
+	<script is:inline src="/js/antrepriza.js" defer></script>
+
 		<div class="wrapper">
 			<Header lang={lang} />
 			<main class="wrapper-main">
@@ -36,16 +50,6 @@ const pageTitle = title || ( lang === "de" ? "Theater Antrepriza Berlin" : "Те
 			</main>
 			<Footer lang={lang} />
 		</div>
-	
-		<script is:inline src="/js/antrepriza.js"></script>
-		<script is:inline>
-			removeNoJS();
-			initLangEnv();
-			initColorMode();
-			initHeaderSubMenuListener();
-			initHoverModeForTouchScreen();
-			initContactForm();
-		</script>
-
 	</body>
+	
 </html>

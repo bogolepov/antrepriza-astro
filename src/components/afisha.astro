@@ -1,7 +1,4 @@
 ---
-import "@styles/font.css"
-import "@styles/init.css"
-import "@styles/antrepriza.css"
 import "@styles/afisha.css"
 
 const {lang} = Astro.props;
@@ -12,113 +9,107 @@ import theater from '@data/theater.json'
 
 import plays from '@data/plays.json'
 
+import TicketBookButton from "@components/ticket_book_button.astro";
+import TicketForm from "@components/ticket_form.astro";
+
+
 import type { ImageMetadata } from 'astro';
 import { Picture } from 'astro:assets';
 
-const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg,jpg,png,gif}');
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg,jpg}');
 // if (!images[url]) throw new Error(`"${url}" does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif}"`);
-
 
 programm.sort((play1, play2) => Date.parse(play1.date+"T"+play1.time) - Date.parse(play2.date+"T"+play2.time));
 
 const ONE_DAY: number = 24*60*60*1000;	
 
 let iMonth: number = -1;
-
-
-
 ---
-<!-- 
-<picture>
-	<source srcset={AntreprizaLogo + "#logo-" + lang} type="image/svg+xml" media="(max-width: 570px)">
-	<source srcset={AntreprizaLogo + "#logo-text-" + lang} type="image/svg+xml">
-	<source srcset="logo_1x.png 1x, logo_2x.png 2x" media="(max-width: 570px)"> 
-	<img class="picture-test" src="/src/assets/logo_text_1x_ru.png" srcset="/src/assets/logo_text_2x_ru.png 2x" alt="">
-</picture>
--->
 
 <section class="programm">
-{
-	programm.map((playInProgramm) => {
-		let playInfo;
-		plays.some((playInRepertoire) => {
-			if (playInProgramm.play_id === playInRepertoire.id) {
-				playInfo = playInRepertoire;
-				return; 
+  <TicketForm lang={lang}/>
+	{
+		programm.map((playInProgramm) => {
+			let playInfo;
+			plays.some((playInRepertoire) => {
+				if (playInProgramm.play_id === playInRepertoire.id) {
+					playInfo = playInRepertoire;
+					return; 
+				}
+			} )
+			if (playInfo) {
+				if (Date.parse(playInProgramm.date) + ONE_DAY < Date.now()) return;
+
+				let showMonth: boolean = false;
+				let monthName: string;
+				let strYear: string;
+				let playDate: Date = new Date(playInProgramm.date);
+				if (iMonth < 0 || iMonth != playDate.getMonth()) {
+					iMonth = playDate.getMonth();
+					showMonth = true;
+					monthName = playDate.toLocaleString(lang, { month: 'long' });
+					strYear = playDate.getFullYear().toString();
+				}
+				return (
+					<div>
+						{showMonth && 
+							<h1 class="section-title programm-month" data-month={iMonth}>{monthName}&ensp;{strYear}</h1>
+						}
+					</div>
+					<div class="programm-play-block hover-block hover-background js-play" data-date={playInProgramm.date} data-month={iMonth}>
+						<div class="programm-play-text">
+							
+							<div class="programm-when" >
+								{playInProgramm.premiere && 
+									<h4 class="play-property-premiere js-premiere">{dictionary.premiere[lang]}</h4>
+								}
+								<time class="programm-date js-date" data-day={playDate.toLocaleDateString(lang, { weekday: 'short' })}>
+									{playDate.getDate().toString().padStart(2, '0')}.{(playDate.getMonth()+1).toString().padStart(2, '0')},
+								</time>
+								<time class="programm-time js-time">
+										{playInProgramm.time}
+								</time>
+							</div>
+
+							<a class="programm-title stretch-link" href={"/"+lang+"/plays/play-"+playInfo.suffix}>
+								<h2 class="play-title js-play-name">{playInfo.alt_title[lang]}</h2>
+							</a>
+
+							<div class="programm-info">
+								<h4 class="play-property label-before js-genre" data-label={dictionary.genre[lang]+": "}>
+									{playInfo.genre[lang]}, {playInfo.age}
+								</h4>
+								<h4 class="play-property label-before js-play-lang" data-label={dictionary.language[lang]+": "}>
+									{playInfo.lang[lang]}
+								</h4>
+								<address class="play-property label-before js-stage" data-label={dictionary.stage[lang]+": "}>
+									{ playInProgramm.address || theater.stageAddress.full_string }
+								</address>
+							</div>
+
+							<div class="programm-tickets">
+								<TicketBookButton lang={lang} button_type='ticket' 
+									play_id={playInfo.id} date={playInProgramm.date} time={playInProgramm.time} 
+									add_classes="tickets-book-button_afisha">
+										{dictionary.tickets[lang]}
+								</TicketBookButton>
+							</div>
+
+						</div>
+						<div class="programm-play-image">
+							<Picture 
+								class:list={'image-wrapper-landscape black-white-filter'} 
+								src={images["/src/assets/" + playInfo.posters.landscape]()} 
+								formats={['webp']} 
+								widths={[280, 400, 640]}
+								sizes={'(max-width: 320px) 280px, (max-width: 660px) 640px, (max-width: 1300px) 400px, 640px'}
+								alt={playInfo.alt_title[lang]} />
+						</div>
+					</div>
+				);
 			}
 		} )
-		if (playInfo) {
-			if (Date.parse(playInProgramm.date) + ONE_DAY < Date.now()) return;
-
-			let showMonth: boolean = false;
-			let monthName: string;
-			let strYear: string;
-			let playDate: Date = new Date(playInProgramm.date);
-			if (iMonth < 0 || iMonth != playDate.getMonth()) {
-				iMonth = playDate.getMonth();
-				showMonth = true;
-				monthName = playDate.toLocaleString(lang, { month: 'long' });
-				strYear = playDate.getFullYear().toString();
-			}
-			return (
-				<div>
-					{showMonth && 
-						<h1 class="section-title programm-month" data-month={iMonth}>{monthName}&ensp;{strYear}</h1>
-					}
-				</div>
-				<div class="programm-play-block hover-block hover-background" data-date={playInProgramm.date} data-month={iMonth}>
-					<div class="programm-play-text">
-						
-						<div class="programm-when" >
-							{playInProgramm.premiere && 
-								<h4 class="play-property-premiere">{dictionary.premiere[lang]}</h4>
-							}
-							<time class="programm-date" data-day={playDate.toLocaleDateString(lang, { weekday: 'short' })}>
-								{playDate.getDate().toString().padStart(2, '0')}.{(playDate.getMonth()+1).toString().padStart(2, '0')},
-							</time>
-							<time class="programm-time">
-									{playInProgramm.time}
-							</time>
-						</div>
-
-						<a class="programm-title stretch-link" href={"/"+lang+"/plays/play-"+playInfo.suffix}>
-							<h2 class="play-title">{playInfo.alt_title[lang]}</h2>
-						</a>
-
-						<div class="programm-info">
-							<h4 class="play-property label-before" data-label={dictionary.genre[lang]+": "}>
-								{playInfo.genre[lang]}, {playInfo.age}
-							</h4>
-							<h4 class="play-property label-before" data-label={dictionary.language[lang]+": "}>
-								{playInfo.lang[lang]}
-							</h4>
-							<address class="play-property label-before" data-label={dictionary.stage[lang]+": "}>
-								{ playInProgramm.address || theater.stageAddress.full_string }
-							</address>
-						</div>
-
-						<div class="programm-tickets">
-							<button class="tickets-book-button tickets-book-button_afisha" type="button" 
-											data-date={playInProgramm.date} data-time={playInProgramm.time}>
-								{dictionary.tickets[lang]}								
-							</button>
-						</div>
-
-					</div>
-					<div class="programm-play-image">
-						<Picture 
-							class:list={'image-wrapper-landscape black-white-filter'} 
-							src={images["/src/assets/" + playInfo.posters.landscape]()} 
-							formats={['avif', 'webp']} 
-							widths={[280, 400, 640]}
-							sizes={'(max-width: 320px) 280px, (max-width: 660px) 640px, (max-width: 1300px) 400px, 640px'}
-							alt={playInfo.alt_title[lang]} />
-					</div>
-				</div>
-			);
-		}
-	} )
-}
+	}
 </section>
 
 <script>
@@ -138,12 +129,4 @@ let iMonth: number = -1;
 		if (!PLAYS_IN_MONTH[iMonth])
 			(month as HTMLElement).hidden = true;
 	}
-
-	let ticketBtns = document.getElementsByClassName('tickets-book-button');
-	for (let btn of ticketBtns) {
-		btn.addEventListener("click", event => {
-			console.log("click: " + btn.getAttribute("data-date") + " " + btn.getAttribute("data-time"));
-		})
-	}
-
 </script>

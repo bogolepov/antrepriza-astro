@@ -16,12 +16,12 @@
 	border-bottom: 1px solid var(--colorFont);
 }
 
-.tickets-play-block[hidden] {
-	display: none;
+.gift-block:not(:has(+ .gift-block)) {
+	border-bottom: none;
 }
 
-.gift-block:last-of-type {
-	border-bottom: unset;
+.tickets-play-block[hidden] {
+	display: none;
 }
 
 .tickets-play-text {

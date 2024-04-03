@@ -28,6 +28,8 @@
 	--red-rose: #ff7660;
 
 	--scrollBarWidth: 10px;
+
+	--red-op1: rgb(from var(--red-rose) r g b / 0.9);
 }
 
 /* --------------------------------------------------- */
@@ -74,7 +76,7 @@
 	--font-extra-weight: 700;
 	--font-logo-weight: 700;
 	--colorBkgMainGallery: var(--grey-140);
-	--colorBkgQuestionLayer: rgba(38, 38, 38, 0.65);
+	--colorBkgLayer: rgba(38, 38, 38, 0.65);
 }
 
 [data-theme='light'] {
@@ -115,7 +117,7 @@
 	--font-extra-weight: 900;
 	--font-logo-weight: 900;
 	--colorBkgMainGallery: #b8b0ae;
-	--colorBkgQuestionLayer: rgba(111, 111, 111, 0.65);
+	--colorBkgLayer: rgba(111, 111, 111, 0.65);
 }
 
 html,
@@ -382,8 +384,17 @@ h4.notification-label {
 }
 
 /* --------------------------------------------------- */
-/* ------------------ layer on parent ---------------- */
+/* ---------------------- layers --------------------- */
 /* --------------------------------------------------- */
+.layer-on-window {
+	position: fixed;
+	z-index: 1200;
+	width: 100vw;
+	height: 100svh;
+	top: 0;
+	left: 0;
+}
+
 .layer-on-parent {
 	display: none;
 	position: absolute;
@@ -395,6 +406,28 @@ h4.notification-label {
 .layer-on-parent.show {
 	display: flex;
 	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+/* --------------------------------------------------- */
+/* ------------------- glass effect ------------------ */
+/* --------------------------------------------------- */
+.glass6 {
+	-webkit-backdrop-filter: blur(6px);
+	backdrop-filter: blur(6px);
+}
+.glass1_5 {
+	-webkit-backdrop-filter: blur(1.5px);
+	backdrop-filter: blur(1.5px);
+}
+
+/* --------------------------------------------------- */
+/* ------------------- flex center ------------------- */
+/* --------------------------------------------------- */
+.flex-center {
+	display: flex;
+	/* flex-direction: row; */
 	justify-content: center;
 	align-items: center;
 }

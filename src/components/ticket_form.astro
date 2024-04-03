@@ -1,0 +1,36 @@
+---
+import '@styles/ticket_form.css'
+
+const { lang } = Astro.props;
+
+---
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    initTicketButtonsOnPage();
+  });
+</script>
+<script is:inline src="/js/ticket-form.js" defer></script>
+
+<div class="ticket-layer layer-on-window glass6 flex-center">
+  <div class="ticket-form-wrapper">
+    <button class="close__button" onclick="resetTicketForm(event)">&#10006;</button>
+    <div class="ticket-form">
+      <div class="ticket-at-antrepriza">
+        <input type="radio" id="antrepriza" name="platform" checked>
+        <label for="antrepriza">Забронировать через сайт Театра</label>
+        <div class="subform">
+
+        </div>
+      </div>
+      <div class="ticket-at-kontramarka">
+        <input type="radio" id="kontramarka" name="platform">
+        <label for="kontramarka">Купить на Контрамарке</label>
+        <div class="subform">
+          <div class="ticket-form-buttons-div">
+            <button class="ticket-form-book-button" onclick="buttonToKontramarka(event)">Перейти на сайт</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
