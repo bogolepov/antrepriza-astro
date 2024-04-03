@@ -101,6 +101,7 @@ let iMonth: number = -1;
 								class:list={'image-wrapper-landscape black-white-filter'} 
 								src={images["/src/assets/" + playInfo.posters.landscape]()} 
 								formats={['webp']} 
+								fallbackFormat='jpg'
 								widths={[280, 400, 640]}
 								sizes={'(max-width: 320px) 280px, (max-width: 660px) 640px, (max-width: 1300px) 400px, 640px'}
 								alt={playInfo.alt_title[lang]} />

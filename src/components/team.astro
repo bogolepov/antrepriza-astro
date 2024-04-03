@@ -41,6 +41,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/people/
                 class:list={'image-wrapper-landscape black-white-filter'} 
                 src={images["/src/assets/people/" + person.photo]()} 
                 formats={['webp']} 
+                fallbackFormat="jpg"
                 widths={[210,270,320]}
                 sizes={'(max-width: 320px) 210px, (max-width: 400px) 270px, 320px'}
                 alt={person.name[lang] + ' ' + person.surname[lang]} />

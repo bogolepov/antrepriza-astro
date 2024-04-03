@@ -106,6 +106,7 @@ for (let price of prices) {
 								class:list={'image-wrapper-landscape black-white-filter'} 
 								src={images["/src/assets/" + playInfo.posters.landscape]()} 
 								formats={['webp']} 
+								fallbackFormat="jpg"
 								widths={[280, 400, 640]}
 								sizes={'(max-width: 320px) 280px, (max-width: 660px) 640px, (max-width: 1300px) 400px, 640px'}
 								alt={playInfo.alt_title[lang]} />
@@ -170,7 +171,7 @@ for (let price of prices) {
 			<Picture 
 				class:list={'image-wrapper-landscape black-white-filter'} 
 				src={images["/src/assets/logo_red_landscape.png"]()} 
-				formats={['avif', 'webp']} 
+				formats={['webp']} 
 				widths={[280, 400, 640]}
 				sizes={'(max-width: 320px) 280px, (max-width: 660px) 640px, (max-width: 1300px) 400px, 640px'}
 				alt={dictionary.giftcard[lang]} />

@@ -57,6 +57,7 @@ let playsWithGrouppedDatesArray = Array.from(playsWithGrouppedDatesMap, ([key, v
                     class:list={'carusel-picture'} 
                     src={images["/src/assets/" + playInfo.posters.portrait]()} 
                     formats={['webp']} 
+                    fallbackFormat='jpg'
                     widths={[280, 400, 640]}
                     sizes={'(max-width: 320px) 280px, (max-width: 660px) 400px, 640px'}
                     quality="90"

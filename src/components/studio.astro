@@ -47,6 +47,7 @@ const { Content } = await entry.render();
                         class:list={'play-picture'} 
                         src={images["/src/assets/" + photo.suffix + "/" + photo.filename]()} 
                         formats={['webp']} 
+                        fallbackFormat='jpg'
                         widths={[290, 380, 520, 720]}
                         sizes={'(max-width: 360px) 290px, (max-width: 480px) 380px, (max-width: 640px) 520px, 720px'}
                         alt=""
