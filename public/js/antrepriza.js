@@ -248,7 +248,7 @@ async function submitQuestionForm(event) {
 	const form = event.target;
 	const formLoader = document.querySelector('.layer-on-parent.loader');
 	const formResult = document.querySelector('.layer-on-parent.contact-form-result-wrapper');
-	if (!formResult) alert('error');
+	if (!formResult) console.error("Can't find contact-form-result");
 	const formResultMessage = document.querySelector('.contact-form-result-message');
 	const formResultButton = document.querySelector('.contact-form-result-button');
 	const formCheckbox = document.querySelector('#question__checkbox');

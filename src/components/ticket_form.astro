@@ -6,7 +6,7 @@ const { lang } = Astro.props;
 ---
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    initTicketButtonsOnPage();
+    initTicketBookForm();
   });
 </script>
 <script is:inline src="/js/ticket-form.js" defer></script>
@@ -15,6 +15,13 @@ const { lang } = Astro.props;
   <div class="ticket-form-wrapper">
     <button class="close__button" onclick="resetTicketForm(event)">&#10006;</button>
     <div class="ticket-form">
+      <div class="ticket-play-info">
+        <h4 class="play-name">ТРИ СЕСТРЫ</h4>
+        <div class="play-date">07.04.2024, 19:30, воскресенье</div>
+        <address class="play-stage">Boxhagener Str. 18, 10245 Berlin (Neue Bühne Friedrichshain)</address>
+        <div class="play-genre">драма, 14+</div>
+        <div class="play-language">русский</div>
+      </div>
       <div class="ticket-at-antrepriza">
         <input type="radio" id="antrepriza" name="platform" checked>
         <label for="antrepriza">Забронировать через сайт Театра</label>

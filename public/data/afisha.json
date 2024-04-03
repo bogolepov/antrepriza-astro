@@ -1,0 +1,70 @@
+[
+	{
+		"date": "2024-05-05",
+		"time": "17:00",
+		"play_id": 6,
+		"free_place": true,
+		"prices": ["kids", "adult", "reduce"]
+	},
+	{
+		"date": "2024-04-14",
+		"time": "17:00",
+		"play_id": 6,
+		"free_place": true,
+		"prices": ["kids", "adult", "reduce"]
+	},
+	{
+		"date": "2024-04-21",
+		"time": "19:30",
+		"play_id": 5,
+		"free_place": true,
+		"prices": ["standart", "reduce"]
+	},
+	{
+		"date": "2024-04-07",
+		"time": "19:30",
+		"play_id": 1,
+		"free_place": true,
+		"prices": ["standart", "reduce"]
+	},
+	{
+		"date": "2024-05-17",
+		"time": "19:30",
+		"play_id": 8,
+		"free_place": true,
+		"prices": ["standart", "reduce"],
+		"premiere": true
+	},
+	{
+		"date": "2024-05-18",
+		"time": "19:30",
+		"play_id": 8,
+		"free_place": true,
+		"prices": ["standart", "reduce"],
+		"premiere": true
+	},
+	{
+		"date": "2024-05-19",
+		"time": "19:30",
+		"play_id": 8,
+		"free_place": true,
+		"prices": ["standart", "reduce"],
+		"premiere": true
+	},
+	{
+		"date": "2024-06-02",
+		"time": "19:30",
+		"play_id": 8,
+		"free_place": true,
+		"prices": ["standart", "reduce"],
+		"premiere": true
+	},
+	{
+		"date": "2024-06-09",
+		"time": "19:30",
+		"play_id": 8,
+		"free_place": true,
+		"prices": ["standart", "reduce"],
+		"premiere": true
+	}
+]

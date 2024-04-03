@@ -1,0 +1,125 @@
+{
+	"longTheaterName": { "ru": "Театр Антреприза Берлин", "de": "Theater Antrepriza Berlin" },
+	"shortTheaterName": { "ru": "Театр Антреприза", "de": "Theater Antrepriza" },
+	"stageAddress": {
+		"full_string": "Boxhagener Str. 18, 10245 Berlin",
+		"street": "Boxhagener Str.",
+		"building": "18",
+		"index": "10245",
+		"city": "Berlin",
+		"district": "Friedrichshain",
+		"name": "Neue Bühne Friedrichshain",
+		"name_short": "NBF"
+	},
+	"stageName": "Neue Bühne Friedrichshain",
+	"main_website": "https://antrepriza.eu/",
+	"email": "info@antrepriza.eu",
+	"phone": "+49 176 49787741",
+	"prices": [
+		{
+			"type": "standart",
+			"value": 19,
+			"text": { "ru": "Обычный билет", "de": "Normalticket" },
+			"text_short": { "ru": "Обычный", "de": "Normal" }
+		},
+		{
+			"type": "reduce",
+			"value": 11,
+			"text": { "ru": "Льготный билет", "de": "Ermäßigtes Ticket" },
+			"text_short": { "ru": "Льготный", "de": "Ermäßigt" }
+		},
+		{
+			"type": "adult",
+			"value": 20,
+			"text": { "ru": "Взрослый билет", "de": "Erwachsenenticket" },
+			"text_short": { "ru": "Взрослый", "de": "Erwachsene" }
+		},
+		{
+			"type": "kids",
+			"value": 25,
+			"text": { "ru": "Детский билет", "de": "Kinderticket" },
+			"text_short": { "ru": "Детский", "de": "Kind" }
+		}
+	],
+	"plays": [
+		{
+			"id": 8,
+			"suffix": "miks",
+			"title": { "ru": "Малыш и Карл(CОН)", "de": "Steppke und Karl(SON)" },
+			"alt_title": { "ru": "Малыш\u00A0и Карл(CОН)", "de": "Steppke\u00A0und Karl(SON)" },
+			"author": { "ru": "К.Попов", "de": "K.Popov" },
+			"author_full": { "ru": "Константин Попов", "de": "Konstantin Popov" },
+			"genre": { "ru": "современная история", "de": "moderne Geschichte" },
+			"length": 90,
+			"break": false,
+			"age": "18+",
+			"lang": { "ru": "русский", "de": "Russisch" }
+		},
+		{
+			"id": 6,
+			"suffix": "mik",
+			"title": { "ru": "Малыш и Карлсон", "de": "Steppke und Karlson" },
+			"alt_title": { "ru": "Малыш\u00A0и Карлсон", "de": "Steppke\u00A0und Karlson" },
+			"__title_notice": { "ru": "RU", "de": "RU" },
+			"author": { "ru": "А.Линдгрен", "de": "A.Lindgren" },
+			"author_full": { "ru": "Астрид Линдгрен", "de": "Astrid Lindgren" },
+			"genre": { "ru": "детский", "de": "für Kinder" },
+			"length": 60,
+			"break": false,
+			"age": "3+",
+			"lang": { "ru": "русский", "de": "Russisch" }
+		},
+		{
+			"id": 5,
+			"suffix": "op",
+			"title": { "ru": "Опасный поворот", "de": "Gefährliche Kurve" },
+			"alt_title": { "ru": "Опасный поворот", "de": "Gefährliche Kurve" },
+			"author": { "ru": "Дж.Б.Пристли", "de": "J.B.Priestley" },
+			"author_full": { "ru": "Джон Бойнтон Пристли", "de": "John Boynton Priestley" },
+			"genre": { "ru": "детектив", "de": "Krimi" },
+			"length": 120,
+			"break": true,
+			"age": "18+",
+			"lang": { "ru": "русский", "de": "Russisch" }
+		},
+		{
+			"id": 4,
+			"suffix": "dk",
+			"title": { "ru": "Дорогая квартира", "de": "Teure Wohnung" },
+			"alt_title": { "ru": "Дорогая квартира", "de": "Teure Wohnung" },
+			"author": { "ru": "Т.Москвина", "de": "T.Moskvina" },
+			"author_full": { "ru": "Татьяна Москвина", "de": "Tatyana Moskvina" },
+			"genre": { "ru": "трагикомедия", "de": "Tragikomödie" },
+			"length": 120,
+			"break": true,
+			"age": "18+",
+			"lang": { "ru": "русский", "de": "Russisch" }
+		},
+		{
+			"id": 2,
+			"suffix": "pip",
+			"title": { "ru": "Победа или предательство", "de": "Sieg oder Verrat" },
+			"alt_title": { "ru": "Победа\u00A0или предательство", "de": "Sieg\u00A0oder Verrat" },
+			"author": { "ru": "А.Гончуков, А.Слаповский", "de": "А.Gonchukov, A.Slapovsky" },
+			"author_full": { "ru": "Арсений Гончуков, Алексей Слаповский", "de": "Arseny Gonchukov, Alexey Slapovsky" },
+			"genre": { "ru": "трагикомедия", "de": "Tragikomödie" },
+			"length": 80,
+			"break": false,
+			"age": "16+",
+			"lang": { "ru": "русский", "de": "Russisch" }
+		},
+		{
+			"id": 1,
+			"suffix": "ts",
+			"title": { "ru": "Три сестры", "de": "Drei Schwestern" },
+			"alt_title": { "ru": "Три сестры", "de": "Drei Schwestern" },
+			"author": { "ru": "А.Чехов", "de": "A.Tschechow" },
+			"author_full": { "ru": "Антон Чехов", "de": "Anton Tschechow" },
+			"genre": { "ru": "драма", "de": "Drama" },
+			"length": 135,
+			"break": true,
+			"age": "14+",
+			"lang": { "ru": "русский", "de": "Russisch" }
+		}
+	]
+}
