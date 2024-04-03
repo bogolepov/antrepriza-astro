@@ -14,10 +14,10 @@ export function getStaticPaths () {
 const { pageLang, pageTitle } = Astro.props;
 
 import AntreprizaLayout from "@layouts/AntreprizaLayout.astro";
-import Impressum from "@components/impressum.astro";
+import ImpressumLayout from "@layouts/impressum.astro";
 ---
 
 <AntreprizaLayout title={pageTitle} lang={pageLang}>
-  <Impressum lang={pageLang}/>
+  <ImpressumLayout lang={pageLang}/>
 </AntreprizaLayout>
 

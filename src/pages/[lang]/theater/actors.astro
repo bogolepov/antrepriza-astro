@@ -12,12 +12,12 @@ export function getStaticPaths () {
 }
 
 import AntreprizaLayout from "@layouts/AntreprizaLayout.astro";
-import Actors from "@components/actors.astro";
+import ActorsLayout from "@layouts/actors.astro";
 
 const { pageLang, pageTitle } = Astro.props;
 
 ---
 
 <AntreprizaLayout title={pageTitle} lang={pageLang}>
-  <Actors lang={pageLang}/>
+  <ActorsLayout lang={pageLang}/>
 </AntreprizaLayout>

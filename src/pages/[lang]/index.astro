@@ -15,7 +15,7 @@ const { pageLang, pageTitle } = Astro.props;
 
 import AntreprizaLayout from "../../layouts/AntreprizaLayout.astro";
 import PlaysCarusel from "@components/carusel_main.astro"
-import Afisha from "@components/afisha.astro";
+import AfishaLayout from "@layouts/afisha.astro";
 ---
 
 <AntreprizaLayout title={pageTitle} lang={pageLang}>
@@ -23,7 +23,7 @@ import Afisha from "@components/afisha.astro";
     <PlaysCarusel lang={pageLang}>
   </div>
   <div class="wrapper2">
-    <Afisha lang={pageLang}/>
+    <AfishaLayout lang={pageLang}/>
   </div>
 </AntreprizaLayout>
 

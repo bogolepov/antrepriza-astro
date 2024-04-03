@@ -2,7 +2,7 @@
 import type { GetStaticPaths } from "astro";
 
 import AntreprizaLayout from "@layouts/AntreprizaLayout.astro";
-import Play from "@components/play.astro";
+import PlayLayout from "@layouts/play.astro";
 
 import plays from '@data/plays.json'
 import dictionary from '@data/dictionary.json'
@@ -26,7 +26,7 @@ const {pageLang, pageTitle, playID} = Astro.props;
 ---
 
 <AntreprizaLayout title={pageTitle} lang={pageLang}>
-  <Play lang={pageLang} play_id={playID}></Play>
+  <PlayLayout lang={pageLang} play_id={playID}></PlayLayout>
 </AntreprizaLayout>
 
 

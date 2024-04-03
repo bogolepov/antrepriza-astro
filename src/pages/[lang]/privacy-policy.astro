@@ -14,10 +14,10 @@ export function getStaticPaths () {
 const { pageLang, pageTitle } = Astro.props;
 
 import AntreprizaLayout from "@layouts/AntreprizaLayout.astro";
-import PrivacyPolicy from "@components/privacy_policy.astro";
+import PrivacyPolicyLayout from "@layouts/privacy_policy.astro";
 ---
 
 <AntreprizaLayout title={pageTitle} lang={pageLang}>
-  <PrivacyPolicy lang={pageLang}/>
+  <PrivacyPolicyLayout lang={pageLang}/>
 </AntreprizaLayout>
 

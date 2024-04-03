@@ -2,7 +2,7 @@
 import type { GetStaticPaths } from "astro";
 
 import AntreprizaLayout from "@layouts/AntreprizaLayout.astro";
-import Person from "@components/person.astro";
+import PersonLayout from "@layouts/person.astro";
 
 // import plays from '@data/plays.json'
 import dictionary from '@data/dictionary.json'
@@ -30,7 +30,7 @@ const {pageLang, pageTitle, personID} = Astro.props;
 ---
 
 <AntreprizaLayout title={pageTitle} lang={pageLang}>
-    <Person lang={pageLang} person_id={personID}></Person>
+    <PersonLayout lang={pageLang} person_id={personID}></PersonLayout>
 </AntreprizaLayout>
 
 
