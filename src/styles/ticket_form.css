@@ -50,6 +50,36 @@
 	padding: 25px;
 }
 
+.ticket-form .play-name {
+	font-size: clamp(1.2rem, 4vw, 1.5rem);
+	font-weight: var(--font-bold-weight);
+	line-height: 1.4em;
+	text-transform: uppercase;
+	/* padding-bottom: 0.1em; */
+}
+
+.date-flex {
+	display: flex;
+	flex-direction: row;
+	column-gap: 0.6em;
+	align-items: center;
+}
+.svg_icon {
+	fill: var(--colorFontFooter);
+	width: 1.6em;
+	height: 1.6em;
+}
+
+.ticket-form .play-date,
+.ticket-form .play-time {
+	color: var(--colorFontDate);
+	font-weight: var(--font-bold-weight);
+	line-height: 1.2em;
+}
+.ticket-form .play-time {
+	padding-bottom: 0.3em;
+}
+
 .ticket-form-buttons-div {
 	text-align: right;
 }

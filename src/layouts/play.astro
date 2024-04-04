@@ -42,7 +42,8 @@ const { Content } = await entry.render();
 
 ---
 <section class="play">
-  <h1 class="play-title js-play-name">{thisPlay.title[lang].toUpperCase()}</h1>
+  <TicketForm lang={lang}/>
+  <h1 class="play-title">{thisPlay.title[lang].toUpperCase()}</h1>
   <div class="play-author">{thisPlay.author_full[lang].toUpperCase()}</div>
   <div class="media_container">
     <div class="media">
@@ -65,8 +66,8 @@ const { Content } = await entry.render();
       } 
     </div>
     <div class="play-info">
-			<h4 class="play-property label-before js-genre" data-label={dictionary.genre[lang]+": "}>{thisPlay.genre[lang]}, {thisPlay.age}</h4>
-      <h4 class="play-property label-before js-play-lang" data-label={dictionary.language[lang]+": "}>{thisPlay.lang[lang]}</h4>
+			<h4 class="play-property label-before" data-label={dictionary.genre[lang]+": "}>{thisPlay.genre[lang]}, {thisPlay.age}</h4>
+      <h4 class="play-property label-before" data-label={dictionary.language[lang]+": "}>{thisPlay.lang[lang]}</h4>
       <h4 class="play-property label-before" data-label={dictionary.duration[lang]+": "}>{strDuration}</h4>
     </div>
   </div>
@@ -82,8 +83,8 @@ const { Content } = await entry.render();
                 let playDate: Date = new Date(fullDate);
                 let address = (play_date["stageAddress"]) ? play_date["stageAddress"] : theater.stageAddress;
                 return (
-                  <TicketBookButton lang={lang} button_type='ticket' play_id={thisPlay.id} 
-                                    date={play_date.date} time={play_date.time} fulldate={fullDate} add_classes="">
+                  <TicketBookButton add_classes='' button_type='ticket' price=''
+                                    date={play_date.date} time={play_date.time} play_id={thisPlay.id} >
                     <div class="button-date">
                     {playDate.getDate().toString().padStart(2, '0')}.{(playDate.getMonth()+1).toString().padStart(2, '0')},
                     {playDate.toLocaleDateString(lang, { weekday: 'short' })} / {play_date.time}
@@ -213,6 +214,5 @@ const { Content } = await entry.render();
       <Gallery play_id={play_id} play_suffix={thisPlay.suffix}/>
     </div>
   }
-  <TicketForm lang={lang}/>
   <div class="play-end"></div>
 </section>

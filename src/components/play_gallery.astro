@@ -13,6 +13,41 @@ import { Picture } from 'astro:assets';
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*/*.{jpeg,jpg}');
 
 ---
+<script is:inline src="/js/swiper-bundle.js" defer></script>
+<script>
+  let swiper;
+	document.addEventListener('DOMContentLoaded', () => {
+    swiper = new Swiper('.swiper', {
+      direction: 'horizontal',
+      loop: true,
+      slidesPerView: 'auto',
+      spaceBetween: 90,
+      watchOverflow: true,
+      // grabCursor: true,
+      speed: 900,
+      centeredSlides: true,
+      lazyPreloadPrevNext: 1,
+    
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+        dynamicBullets: true,
+        dynamicMainBullets: 1,
+      },
+
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      
+      keyboard: {
+        enabled: true,
+        onlyInViewport: true,
+      }
+
+    });
+	});
+</script>
 
 <div class="play-gallery">
   <div class:list={['play-gallery-position', {'hover-block': hover == 'true'}]} >
@@ -44,35 +79,3 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*/*.{jp
     </div>
   </div>
 </div>
-
-<script is:inline src="/js/swiper-bundle.js"></script>
-<script>
-  let swiper = new Swiper('.swiper', {
-    direction: 'horizontal',
-    loop: true,
-    slidesPerView: 'auto',
-    spaceBetween: 90,
-    watchOverflow: true,
-    // grabCursor: true,
-    speed: 900,
-    centeredSlides: true,
-    lazyPreloadPrevNext: 1,
-  
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-      dynamicBullets: true,
-      dynamicMainBullets: 1,
-    },
-
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-    
-    keyboard: {
-      enabled: true,
-      onlyInViewport: true,
-    }
-
-  });

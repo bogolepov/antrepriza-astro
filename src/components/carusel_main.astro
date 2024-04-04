@@ -31,6 +31,44 @@ actualProgramm.forEach(element => {
 let playsWithGrouppedDatesArray = Array.from(playsWithGrouppedDatesMap, ([key, value]) => ({ key, value }));
 
 ---
+<script is:inline src="/js/swiper-bundle.js" defer></script>
+<script>
+  let swiper;
+	document.addEventListener('DOMContentLoaded', () => {
+    swiper = new Swiper('.swiper', {
+      direction: 'horizontal',
+      loop: true,
+      slidesPerView: 'auto',
+      spaceBetween: 200,
+      watchOverflow: true,
+      // grabCursor: true,
+      speed: 900,
+      centeredSlides: true,
+    
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+
+      keyboard: {
+        enabled: true,
+        onlyInViewport: true,
+      },
+
+      autoplay: {
+        delay: 3500,
+        disableOnInteraction: true,
+      },
+    
+    });
+	});
+</script>
+
 <section class="swiper">
   <div class="swiper-wrapper">
     {
@@ -90,70 +128,3 @@ let playsWithGrouppedDatesArray = Array.from(playsWithGrouppedDatesMap, ([key, v
   <div class="swiper-button-prev"></div>
   <div class="swiper-button-next"></div>
 </section>
-
-<script is:inline src="/js/swiper-bundle.js"></script>
-<script>
-  let swiper = new Swiper('.swiper', {
-    direction: 'horizontal',
-    loop: true,
-    slidesPerView: 'auto',
-    spaceBetween: 200,
-    watchOverflow: true,
-    // grabCursor: true,
-    speed: 900,
-    centeredSlides: true,
-  
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-    },
-
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-
-    keyboard: {
-      enabled: true,
-      onlyInViewport: true,
-    },
-
-    autoplay: {
-      delay: 3500,
-      disableOnInteraction: true,
-    },
-  
-  });
-
-  // let cards = document.getElementsByClassName("carusel-play-card");
-  // for (let card of cards) {
-  //   card.addEventListener("pointermove", event => {
-  //     if (event.isPrimary) {
-  //       // console.log('X: ' + event.clientX + ', Y: ' + event.clientY);
-  //       let coords = card.getBoundingClientRect();
-  //       let dx = event.clientX - (coords.left + coords.width/2);
-  //       let dy = event.clientY - (coords.top + coords.height/2);
-  //       // console.log('dX: ' + dx + ', dY: ' + dy);
-
-  //       let xAngle = (dx * 30 / coords.width).toFixed(2);
-  //       let yAngle = (dy * 30 / coords.height).toFixed(2);
-  //       // console.log('x: ' + xAngle + ' deg, y: ' + yAngle + ' deg');
-
-  //       (card as HTMLElement).style.setProperty('--rotate-x', xAngle + 'deg');
-  //       (card as HTMLElement).style.setProperty('--rotate-y', yAngle + 'deg');
-  //     }
-  //   });
-  // }
-
-  // let swiperCards = document.getElementsByClassName("carusel-play-image");
-  // for (let card of swiperCards) {
-  //   card.addEventListener("mouseenter", event => {
-  //       swiper.autoplay.stop();
-  //       swiper.params.autoplay.disableOnInteraction = true;
-  //   });
-  //   card.addEventListener("mouseleave", event => {
-  //     swiper.autoplay.start();
-  //   });
-  // }
-
-</script>

@@ -54,6 +54,8 @@ for (let price of prices) {
 -->
 
 <section class="section-tickets">
+	<TicketForm lang={lang}/>
+
 	{
 		playsWithGrouppedDatesArray.map(item => {
 			// console.log("key: " + item.key);
@@ -71,15 +73,15 @@ for (let price of prices) {
 						<div class="tickets-play-text">
 							<div class="tickets-play-name">
 								{item.value[0].premiere && 
-									<h4 class="play-property-premiere js-premiere">{dictionary.premiere[lang]}</h4>
+									<h4 class="play-property-premiere">{dictionary.premiere[lang]}</h4>
 								}
 								<a class="stretch-link" href={"/"+lang+"/plays/play-"+playInfo.suffix}>
-									<h2 class="play-title js-play-name">{playInfo.alt_title[lang]}</h2>
+									<h2 class="play-title">{playInfo.alt_title[lang]}</h2>
 								</a>
 							</div>
 							<div class="tickets-play-info">
-								<h4 class="play-property label-before js-genre" data-label={dictionary.genre[lang]+": "}>{playInfo.genre[lang]}, {playInfo.age}</h4>
-								<h4 class="play-property label-before js-play-lang" data-label={dictionary.language[lang]+": "}>{playInfo.lang[lang]}</h4>
+								<h4 class="play-property label-before" data-label={dictionary.genre[lang]+": "}>{playInfo.genre[lang]}, {playInfo.age}</h4>
+								<h4 class="play-property label-before" data-label={dictionary.language[lang]+": "}>{playInfo.lang[lang]}</h4>
 							</div>
 							<div class="tickets-play-dates">
 								<h4 class="notification-label">{dictionary.nextDates[lang]}:</h4>
@@ -89,9 +91,8 @@ for (let price of prices) {
 												let fullDate: string = play_date.date+'T'+play_date.time;
 												let playDate: Date = new Date(fullDate);
 												return (
-													<TicketBookButton lang={lang} button_type='ticket' 
-														play_id={playInfo.id} date={play_date.date} time={play_date.time} fulldate={fullDate}
-														add_classes="">
+													<TicketBookButton add_classes='' button_type='ticket' price=''
+																						date={play_date.date} time={play_date.time} play_id={playInfo.id}	>
 															{playDate.getDate().toString().padStart(2, '0')}.{(playDate.getMonth()+1).toString().padStart(2, '0')},
 															{playDate.toLocaleDateString(lang, { weekday: 'short' })} / {play_date.time}
 													</TicketBookButton>
@@ -126,8 +127,7 @@ for (let price of prices) {
 			{
 				prices.map( price => {
 					return (
-						<TicketBookButton lang={lang} button_type='giftticket' price={price.value}
-							play_id="" date="" time="" fulldate=""	add_classes="">
+						<TicketBookButton add_classes='' button_type='giftticket' price={price.value}	date='' time='' play_id=''	>
 								{price.text_short[lang]}&nbsp;{price.value}€
 						</TicketBookButton>
 					);
@@ -157,8 +157,7 @@ for (let price of prices) {
 				{
 					theater.giftcards.map( price => {
 						return (
-							<TicketBookButton lang={lang} button_type='giftcard' price={price}
-								play_id="" date="" time="" fulldate=""	add_classes="">
+							<TicketBookButton add_classes='' button_type='giftcard' price={price}	date='' time='' play_id=''	>
 									{price}€
 							</TicketBookButton>
 						);
@@ -178,8 +177,6 @@ for (let price of prices) {
 		</div>
 	</div>
 
-	<TicketForm lang={lang}/>
-
 </section>
 
 
@@ -188,7 +185,9 @@ for (let price of prices) {
 
 	let ticketBtns = document.getElementsByClassName('tickets-book-button');
 	for (let btn of ticketBtns) {
-		if (Date.parse(btn.getAttribute("data-fulldate")) < Date.now()) {
+		let fullDate = btn.getAttribute("data-date")+'T'+btn.getAttribute("data-time");
+
+		if (Date.parse(fullDate) < Date.now()) {
 			//(btn as HTMLElement).hidden = true;
 			(btn as HTMLElement).disabled = true;
 		}

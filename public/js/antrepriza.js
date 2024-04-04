@@ -246,7 +246,7 @@ async function submitQuestionForm(event) {
 	event.preventDefault();
 
 	const form = event.target;
-	const formLoader = document.querySelector('.layer-on-parent.loader');
+	const formLoader = document.querySelector('.layer-on-parent.contact-form-loader');
 	const formResult = document.querySelector('.layer-on-parent.contact-form-result-wrapper');
 	if (!formResult) console.error("Can't find contact-form-result");
 	const formResultMessage = document.querySelector('.contact-form-result-message');

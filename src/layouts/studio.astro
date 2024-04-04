@@ -24,6 +24,41 @@ const { Content } = await entry.render();
 
 
 ---
+<script is:inline src="/js/swiper-bundle.js" defer></script>
+<script>
+  let swiper;
+	document.addEventListener('DOMContentLoaded', () => {
+    swiper = new Swiper('.swiper', {
+      direction: 'horizontal',
+      loop: true,
+      slidesPerView: 'auto',
+      spaceBetween: 90,
+      watchOverflow: true,
+      speed: 900,
+      centeredSlides: true,
+      lazyPreloadPrevNext: 1,
+    
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+        dynamicBullets: true,
+        dynamicMainBullets: 1,
+      },
+
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      
+      keyboard: {
+        enabled: true,
+        onlyInViewport: true,
+      }
+
+    });
+    
+	});
+</script>
 
 <section class="studio">
   <h1 class="section-title">{dictionary.menu_studio[lang]}</h1>
@@ -70,35 +105,3 @@ const { Content } = await entry.render();
 
   <div class="page-end"></div>
 </section>
-
-
-<script is:inline src="/js/swiper-bundle.js"></script>
-<script>
-  let swiper = new Swiper('.swiper', {
-    direction: 'horizontal',
-    loop: true,
-    slidesPerView: 'auto',
-    spaceBetween: 90,
-    watchOverflow: true,
-    speed: 900,
-    centeredSlides: true,
-    lazyPreloadPrevNext: 1,
-  
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-      dynamicBullets: true,
-      dynamicMainBullets: 1,
-    },
-
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-    
-    keyboard: {
-      enabled: true,
-      onlyInViewport: true,
-    }
-
-  });

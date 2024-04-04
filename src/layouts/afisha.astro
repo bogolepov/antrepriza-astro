@@ -56,41 +56,40 @@ let iMonth: number = -1;
 							<h1 class="section-title programm-month" data-month={iMonth}>{monthName}&ensp;{strYear}</h1>
 						}
 					</div>
-					<div class="programm-play-block hover-block hover-background js-play" data-date={playInProgramm.date} data-month={iMonth}>
+					<div class="programm-play-block hover-block hover-background" data-date={playInProgramm.date} data-month={iMonth}>
 						<div class="programm-play-text">
 							
 							<div class="programm-when" >
 								{playInProgramm.premiere && 
-									<h4 class="play-property-premiere js-premiere">{dictionary.premiere[lang]}</h4>
+									<h4 class="play-property-premiere">{dictionary.premiere[lang]}</h4>
 								}
-								<time class="programm-date js-date" data-day={playDate.toLocaleDateString(lang, { weekday: 'short' })}>
+								<time class="programm-date" data-day={playDate.toLocaleDateString(lang, { weekday: 'short' })}>
 									{playDate.getDate().toString().padStart(2, '0')}.{(playDate.getMonth()+1).toString().padStart(2, '0')},
 								</time>
-								<time class="programm-time js-time">
+								<time class="programm-time">
 										{playInProgramm.time}
 								</time>
 							</div>
 
 							<a class="programm-title stretch-link" href={"/"+lang+"/plays/play-"+playInfo.suffix}>
-								<h2 class="play-title js-play-name">{playInfo.alt_title[lang]}</h2>
+								<h2 class="play-title">{playInfo.alt_title[lang]}</h2>
 							</a>
 
 							<div class="programm-info">
-								<h4 class="play-property label-before js-genre" data-label={dictionary.genre[lang]+": "}>
+								<h4 class="play-property label-before" data-label={dictionary.genre[lang]+": "}>
 									{playInfo.genre[lang]}, {playInfo.age}
 								</h4>
-								<h4 class="play-property label-before js-play-lang" data-label={dictionary.language[lang]+": "}>
+								<h4 class="play-property label-before" data-label={dictionary.language[lang]+": "}>
 									{playInfo.lang[lang]}
 								</h4>
-								<address class="play-property label-before js-stage" data-label={dictionary.stage[lang]+": "}>
+								<address class="play-property label-before" data-label={dictionary.stage[lang]+": "}>
 									{ playInProgramm.address || theater.stageAddress.full_string }
 								</address>
 							</div>
 
 							<div class="programm-tickets">
-								<TicketBookButton lang={lang} button_type='ticket' 
-									play_id={playInfo.id} date={playInProgramm.date} time={playInProgramm.time} 
-									add_classes="tickets-book-button_afisha">
+								<TicketBookButton add_classes="tickets-book-button_afisha" button_type='ticket' price=''
+																	date={playInProgramm.date} time={playInProgramm.time} play_id={playInProgramm.play_id}	>
 										{dictionary.tickets[lang]}
 								</TicketBookButton>
 							</div>

@@ -72,6 +72,40 @@ let photos = [
 photos = [].concat(...photos);
 
 ---
+<script is:inline src="/js/swiper-bundle.js" defer></script>
+<script>
+  let swiper;
+	document.addEventListener('DOMContentLoaded', () => {
+    swiper = new Swiper('.swiper', {
+      direction: 'horizontal',
+      loop: true,
+      slidesPerView: 'auto',
+      spaceBetween: 90,
+      watchOverflow: true,
+      speed: 900,
+      centeredSlides: true,
+      lazyPreloadPrevNext: 1,
+    
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+        dynamicBullets: true,
+        dynamicMainBullets: 1,
+      },
+
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      
+      keyboard: {
+        enabled: true,
+        onlyInViewport: true,
+      }
+
+    });
+	});
+</script>
 
 <section class="person">
   <h1 class="section-title">{person.name[lang]} {person.surname[lang]}</h1>
@@ -193,34 +227,3 @@ photos = [].concat(...photos);
   <div class="page-end"></div>
 </section>
 
-
-<script is:inline src="/js/swiper-bundle.js"></script>
-<script>
-  let swiper = new Swiper('.swiper', {
-    direction: 'horizontal',
-    loop: true,
-    slidesPerView: 'auto',
-    spaceBetween: 90,
-    watchOverflow: true,
-    speed: 900,
-    centeredSlides: true,
-    lazyPreloadPrevNext: 1,
-  
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-      dynamicBullets: true,
-      dynamicMainBullets: 1,
-    },
-
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-    
-    keyboard: {
-      enabled: true,
-      onlyInViewport: true,
-    }
-
-  });

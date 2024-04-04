@@ -1,5 +1,8 @@
 ---
 import '@styles/ticket_form.css'
+import dictionary from '@data/dictionary.json'
+
+import Loader from "@components/loader.astro";
 
 const { lang } = Astro.props;
 
@@ -17,10 +20,21 @@ const { lang } = Astro.props;
     <div class="ticket-form">
       <div class="ticket-play-info">
         <h4 class="play-name">ТРИ СЕСТРЫ</h4>
-        <div class="play-date">07.04.2024, 19:30, воскресенье</div>
+        <div class="date-flex">
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="svg_icon bi-calendar-event" viewBox="0 0 16 16">
+              <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"></path>
+              <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"></path>
+            </svg>
+          </div>
+          <div>
+            <div class="play-date"></div>
+            <div class="play-time"></div>
+          </div>
+        </div>
         <address class="play-stage">Boxhagener Str. 18, 10245 Berlin (Neue Bühne Friedrichshain)</address>
-        <div class="play-genre">драма, 14+</div>
-        <div class="play-language">русский</div>
+        <div class="play-genre label-before" data-label={dictionary.genre[lang]+": "}>драма, 14+</div>
+        <div class="play-language label-before" data-label={dictionary.language[lang]+": "}>русский</div>
       </div>
       <div class="ticket-at-antrepriza">
         <input type="radio" id="antrepriza" name="platform" checked>
@@ -39,5 +53,6 @@ const { lang } = Astro.props;
         </div>
       </div>
     </div>
+    <Loader js_loader_name='ticket-form-loader' background='yes'></Loader>
   </div>
 </div>

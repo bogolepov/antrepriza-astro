@@ -1,10 +1,13 @@
 ---
 import '@styles/ticket_book_button.css'
 
-const { lang, button_type, play_id, date, time, fulldate, price, add_classes } = Astro.props;
+const { button_type, play_id, date, time, price, add_classes } = Astro.props;
+
+// <button class={"tickets-book-button " + add_classes} type="button" data-type={button_type} 
+//         data-date={date} data-time={time} data-fulldate={fulldate} data-play={play_id} data-price={price}>
 ---
 
-<button class={"tickets-book-button " + add_classes} disabled type="button" data-type={button_type} 
-        data-date={date} data-time={time} data-fulldate={fulldate} data-play={play_id} data-price={price}>
+<button class={"tickets-book-button " + add_classes} type="button" data-type={button_type} 
+        data-date={date} data-time={time} data-play={play_id} data-price={price}>
 	<slot/>
 </button>
