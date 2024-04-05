@@ -6,11 +6,10 @@
 
 .section-programm {
 	width: 100%;
-	color: var(--colorFont);
 }
 
 .programm-month {
-	border-bottom: 1px solid var(--colorFont);
+	border-bottom: 1px solid;
 	padding: 0.44em 0px 0.5em 0px;
 	text-align: center;
 	margin-bottom: 0px;
@@ -32,7 +31,7 @@
 }
 
 .programm-play-block:not(:last-of-type) {
-	border-bottom: 1px solid var(--colorFont);
+	border-bottom: 1px solid;
 }
 
 .programm-play-text {
@@ -124,7 +123,7 @@
 }
 
 .section-programm a:focus-visible {
-	outline: 1px solid var(--colorFocusAntreprizaRed);
+	outline: 1px solid var(--colorAntreprizaRed);
 }
 
 @media screen and (max-width: 1030px) {

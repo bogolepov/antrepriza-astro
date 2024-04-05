@@ -44,7 +44,7 @@
 .flex-item-description.offer {
 	/* border-top: 1px solid var(--colorFontDate); */
 	color: var(--colorFontDate);
-	border-top: 1px solid var(--colorBorderToolbar);
+	border-top: 1px solid var(--colorBorderForm);
 	padding-top: 2em;
 }
 .flex-item-description.offer p {

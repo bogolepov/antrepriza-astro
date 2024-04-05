@@ -1,7 +1,15 @@
 .not-found {
 	width: 100%;
-	padding: 0px 50px;
-	color: var(--colorFont);
-	font-family: 'Roboto', Verdana, Arial, Tahoma, sans-serif;
+	padding: 25px clamp(20px, 5vw, 50px);
 	font-weight: var(--font-normal-weight);
+}
+
+.not-found h2 {
+	font-size: clamp(1.5rem, 5vw, 2rem);
+	line-height: 1.2em;
+}
+
+.not-found p {
+	font-size: clamp(0.9rem, 3.2vw, 1.3rem);
+	line-height: 1.25em;
 }

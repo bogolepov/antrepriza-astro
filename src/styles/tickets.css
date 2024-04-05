@@ -1,6 +1,5 @@
 .section-tickets {
 	width: 100%;
-	color: var(--colorFont);
 }
 
 .tickets-play-block,
@@ -13,7 +12,7 @@
 	flex-direction: row;
 	justify-content: space-between;
 	transition: background-color 250ms linear;
-	border-bottom: 1px solid var(--colorFont);
+	border-bottom: 1px solid;
 }
 
 .gift-block:not(:has(+ .gift-block)) {

@@ -28,13 +28,13 @@
 	width: 100%;
 	max-width: 100vw;
 	z-index: 999;
-	color: var(--colorFontToolbar);
-	background-color: var(--colorBkgToolbar);
+	color: var(--colorFontForm);
+	background-color: var(--colorBkgForm);
 	top: 0;
 	grid-template-columns: min-content 1fr min-content;
 	align-items: center;
 	justify-self: center;
-	border-bottom: var(--toolbarBorderWeight) solid var(--colorBorderToolbar);
+	border-bottom: var(--toolbarBorderWeight) solid var(--colorBorderForm);
 	font-family: 'Roboto', Verdana, Arial, Tahoma, sans-serif;
 	font-weight: var(--font-normal-weight);
 	letter-spacing: 1px;
@@ -63,7 +63,7 @@
 	height: var(--toolbarHeight);
 	padding-left: calc(1.5 * var(--toolbarGap));
 	padding-right: calc(1.5 * var(--toolbarGap));
-	border-right: 2px solid var(--colorBorderToolbar);
+	border-right: 2px solid var(--colorBorderForm);
 	align-self: center;
 	justify-self: center;
 	position: relative;
@@ -91,7 +91,7 @@
 	padding-bottom: 14px;
 }
 .dropdown-separate-item {
-	border-top: 1px solid var(--colorBorderToolbar);
+	border-top: 1px solid var(--colorBorderForm);
 	padding-bottom: 6px;
 }
 .dropdown-item:has(+ .dropdown-separate-item) {
@@ -181,13 +181,13 @@
 /* --------------------------------------------------- */
 .toolbar-grid a:focus-visible,
 .theme-checkbox:focus-visible {
-	outline: 1px solid var(--colorFocusAntreprizaRed);
+	outline: 1px solid var(--colorAntreprizaRed);
 	outline-offset: 3px;
 }
 
 .navigator-logo-item a:focus-visible .navigator-icon-logo-text,
 .navigator-logo-item a:focus-visible .navigator-icon-logo {
-	outline: 1px solid var(--colorFocusAntreprizaRed);
+	outline: 1px solid var(--colorAntreprizaRed);
 }
 
 /* --------------------------------------------------- */
@@ -227,15 +227,15 @@
 	min-width: 120px;
 	line-height: 1.5;
 	z-index: 1110;
-	color: var(--colorFontToolbar);
-	background-color: var(--colorBkgToolbar);
-	border: 4px solid var(--colorBorderToolbar);
+	color: var(--colorFontForm);
+	background-color: var(--colorBkgForm);
+	border: 4px solid var(--colorBorderForm);
 	border-radius: 2px;
 	/* font-size: 0.9em; */
 	-webkit-transform-origin: 0 0;
 	-ms-transform-origin: 0 0;
 	transform-origin: 0 0;
-	box-shadow: 0 2px 10px var(--colorBoxShadowDropList);
+	box-shadow: 0 2px 10px var(--colorBoxShadow);
 }
 
 .dropdown-box::before {
@@ -246,8 +246,8 @@
 	left: 25px;
 	width: 12px;
 	height: 12px;
-	background: var(--colorBkgToolbar);
-	border: solid var(--colorBorderToolbar);
+	background: var(--colorBkgForm);
+	border: solid var(--colorBorderForm);
 	border-width: 1px 0 0 1px;
 	-webkit-transform: rotate(45deg);
 	transform: rotate(45deg);
@@ -342,21 +342,21 @@
 .toolbar-icon {
 	width: clamp(var(--toolbarSmallIconSize), 2vw, var(--toolbarNormalIconSize));
 	height: clamp(var(--toolbarSmallIconSize), 2vw, var(--toolbarNormalIconSize));
-	fill: var(--colorFontToolbar);
+	fill: var(--colorFontForm);
 	stroke-width: 0px;
 }
 
 .navigator-icon-logo {
 	width: var(--toolbarLogoWidth);
 	height: var(--toolbarLogoHeight);
-	fill: var(--colorFontToolbar);
+	fill: var(--colorFontForm);
 	stroke-width: 0px;
 }
 
 .navigator-icon-logo-text {
 	width: var(--toolbarLogoTextWidth);
 	height: var(--toolbarLogoHeight);
-	fill: var(--colorFontToolbar);
+	fill: var(--colorFontForm);
 	font-family: 'Roboto';
 	font-weight: var(--font-logo-weight);
 	font-size: 9px;
@@ -366,7 +366,7 @@
 .toolbar-icon-language {
 	height: 18px;
 	width: 18px;
-	fill: var(--colorFontToolbar);
+	fill: var(--colorFontForm);
 	stroke-width: 0px;
 }
 
@@ -374,7 +374,7 @@
 .submenu-symbol {
 	height: 8px;
 	width: 8px;
-	fill: var(--colorFontToolbar);
+	fill: var(--colorFontForm);
 	stroke-width: 0px;
 }
 
@@ -489,9 +489,9 @@
 	width: 100%;
 	max-width: 100vw;
 	z-index: 999;
-	color: var(--colorFontToolbar);
-	background-color: var(--colorBkgToolbar);
-	border-bottom: var(--headerBorderWidth) solid var(--colorBorderToolbar);
+	color: var(--colorFontForm);
+	background-color: var(--colorBkgForm);
+	border-bottom: var(--headerBorderWidth) solid var(--colorBorderForm);
 	font-family: 'Roboto', Verdana, Arial, Tahoma, sans-serif;
 	font-weight: var(--font-normal-weight);
 	font-size: 1rem;
@@ -514,7 +514,7 @@
 
 .burger-icon {
 	width: 25px;
-	fill: var(--colorFontToolbar);
+	fill: var(--colorFontForm);
 }
 
 .header-logo {
@@ -525,14 +525,14 @@
 .header-logo-icon {
 	width: var(--toolbarLogoWidth);
 	height: var(--toolbarLogoHeight);
-	fill: var(--colorFontToolbar);
+	fill: var(--colorFontForm);
 	stroke-width: 0px;
 }
 
 .header-logo-text-icon {
 	width: var(--toolbarLogoTextWidth);
 	height: var(--toolbarLogoHeight);
-	fill: var(--colorFontToolbar);
+	fill: var(--colorFontForm);
 	font-family: 'Roboto';
 	font-weight: var(--font-logo-weight);
 	font-size: 9px;
@@ -543,12 +543,12 @@
 	text-decoration: none;
 	border: 1px solid var(--colorBkgTicketsBtn);
 	background-color: var(--colorBkgTicketsBtn);
-	font-weight: var(--font-bold-weight);
 	color: var(--colorFontTicketsBtn);
-	/* color: var(--colorAntreprizaRed); */
+	font-weight: 400;
+	line-height: 1.1rem;
+	text-transform: uppercase;
 	padding: 0.25em 1.5em 0.25em 1.5em;
 	margin: 0px 10px;
-	line-height: 1.1rem;
 	border-radius: 3px;
 	position: relative;
 	transition: all 0.3s ease;
@@ -573,7 +573,7 @@
 .header-mobile a:focus-visible,
 .header-mobile .header-burger-button:focus-visible,
 .header-mobile .submenu-symbol-button:focus-visible {
-	outline: 1px solid var(--colorFocusAntreprizaRed);
+	outline: 1px solid var(--colorAntreprizaRed);
 }
 
 @media (hover: hover) {
@@ -635,9 +635,9 @@
 	line-height: 1.5;
 	z-index: 1110;
 	padding: 0.75rem 0.8rem 0.65rem 0.8rem;
-	color: var(--colorFontToolbar);
-	background-color: var(--colorBkgToolbar);
-	border: 4px solid var(--colorBorderToolbar);
+	color: var(--colorFontForm);
+	background-color: var(--colorBkgForm);
+	border: 4px solid var(--colorBorderForm);
 	border-radius: 2px;
 	font-size: 1rem;
 	-webkit-transform-origin: 0 0;
@@ -676,7 +676,7 @@
 }
 
 .burger-separate-item {
-	border-top: 1px solid var(--colorBorderToolbar);
+	border-top: 1px solid var(--colorBorderForm);
 	padding-bottom: 0.5rem;
 }
 .burger-item:has(+ .burger-separate-item) {
@@ -748,7 +748,7 @@
 	margin-top: 0.35rem;
 	width: 1.3rem;
 	height: 1.3rem;
-	fill: var(--colorFontToolbar);
+	fill: var(--colorFontForm);
 	line-height: 0px;
 }
 .header-icon:is(.facebook) {

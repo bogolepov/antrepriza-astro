@@ -1,6 +1,5 @@
 .section-plays {
 	width: 100%;
-	color: var(--colorFont);
 }
 
 .play-block {
@@ -16,7 +15,7 @@
 }
 
 .play-block:not(:last-of-type) {
-	border-bottom: 1px solid var(--colorFont);
+	border-bottom: 1px solid;
 }
 
 .play-block-info {
@@ -44,7 +43,7 @@
 }
 
 .section-plays a:focus-visible {
-	outline: 1px solid var(--colorFocusAntreprizaRed);
+	outline: 1px solid var(--colorAntreprizaRed);
 }
 
 @media screen and (max-width: 660px) {

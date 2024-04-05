@@ -1,44 +1,34 @@
 :root {
-	--grey-200: #262626;
-	--grey-140: #2a2a29;
-	--grey-130: #2d2d2d;
-	--grey-120: #313130;
-	--grey-78: #404040;
-	--grey-56: #585756;
-	--grey-46: #716f6e;
-	--grey-30: #908e8d;
-	--grey-24: #a6a4a2;
-	--grey-19: #b3b3b3;
-	--grey-16: #c6c4c2;
-	--grey-13: #d9d6d5;
-	--grey-11: #e9e6e4;
-	--grey-10: #f7f4f3;
-
-	--grey-200-rgb: hsl(0, 0%, 15%);
-	--grey-140-rgb: hsl(60, 1%, 16%);
-	--grey-130-rgb: hsl(0, 0%, 18%);
-	--grey-120-rgb: hsl(60, 1%, 19%);
-	--grey-78-rgb: hsl(0, 0%, 25%);
-	--grey-56-rgb: hsl(30, 1%, 34%);
-	--grey-46-rgb: hsl(20, 1%, 44%);
-	--grey-30-rgb: hsl(20, 1%, 56%);
-	--grey-24-rgb: hsl(30, 2%, 64%);
-	--grey-19-rgb: hsl(0, 0%, 70%);
-	--grey-16-rgb: hsl(30, 3%, 77%);
-	--grey-13-rgb: hsl(15, 5%, 84%);
-	--grey-11-rgb: hsl(24, 10%, 90%);
-	--grey-10-rgb: hsl(15, 20%, 96%);
+	--grey-200: hsl(0, 0%, 15%);
+	--grey-140: hsl(0, 0%, 16%);
+	--grey-130: hsl(0, 0%, 18%);
+	--grey-120: hsl(0, 0%, 19%);
+	--grey-78: hsl(0, 0%, 25%);
+	--grey-56: hsl(0, 0%, 34%);
+	--grey-46: hsl(0, 0%, 44%);
+	--grey-30: hsl(0, 0%, 56%);
+	--grey-24: hsl(0, 0%, 64%);
+	--grey-19: hsl(0, 0%, 70%);
+	--grey-16: hsl(0, 0%, 77%);
+	--grey-14: hsl(0, 0%, 81%);
+	--grey-13: hsl(0, 0%, 84%);
+	--grey-12: hsl(0, 0%, 87%);
+	--grey-11: hsl(0, 0%, 90%);
+	--grey-10: hsl(0, 0%, 96%);
+	--grey-08: hsl(0, 0%, 97%);
+	--grey-05: hsl(0, 0%, 98%);
 
 	--gray-rose-hue: 3;
 	--gray-rose-lit: 45%;
 
-	--red: rgb(227, 13, 21);
-	--red-dark: rgba(227, 13, 20, 0.85);
-	--red-light: rgba(227, 13, 20, 0.47);
+	--red-hue: 358;
+	--red-sat: 89%;
+	--red-lit: 47%;
 
+	--red: rgb(227, 13, 21);
 	--red-hsl: hsl(358 89% 47%);
-	--red-dark-hsl: hsla(358 89% 47% / 0.85);
-	--red-light-hsl: hsla(358 89% 47% / 0.47);
+	--red-hex: #e30d15;
+	--red2: hsl(358, 100%, 62%);
 
 	--red-rose: #ff7660;
 
@@ -59,38 +49,34 @@
 	--gray-rose-sat-dis: 24%;
 	--gray-rose-opac-dis: 0.5;
 
-	--colorFont: var(--grey-16);
-	--colorBkgPage: var(--grey-200);
-	--colorFontPage: var(--grey-13);
-	--colorBkgToolbar: var(--grey-120);
-	--colorBkgFooter: var(--colorBkgToolbar);
-	--colorBkgSubMenu: var(--grey-140);
-	--colorBkgProgrammItem: var(--grey-130);
-	--colorFontToolbar: var(--colorFont);
-	--colorFontFooter: var(--colorFont);
-	--colorBorderToolbar: var(--grey-46);
-	--colorBorderFooter: var(--colorBorderToolbar);
-	--colorFontTicketsBtn: var(--colorFont);
-	--colorBoxShadowDropList: rgba(245, 245, 245, 0.25);
-	--colorDisabled: var(--grey-30);
 	--colorAntreprizaRed: #ff3e44;
-	/* --colorFocusAntreprizaRed: #f57a7e; */
-	--colorFocusAntreprizaRed: #e30d15;
-	--colorBorderDisabledBtn: #999999;
-	--colorBkgDisabledBtn: #555555;
+	--colorBkgMainGallery: var(--grey-140);
+
+	--colorFontForm: var(--grey-16);
+	--colorBkgForm: var(--grey-120);
+	--colorBorderForm: var(--grey-46);
+	--colorFontPage: var(--grey-13);
+	--colorBkgPage: var(--grey-200);
+
+	--colorBkgLayerUnderForm: hsla(0 0% 15% / 0.65);
+
+	--colorBkgHoverBlock: var(--grey-130);
+	--colorFontTicketsBtn: var(--grey-16);
+	--colorBoxShadow: hsl(0 0% 96% / 0.25);
+	--colorDisabled: var(--grey-30);
+	--colorBkgDisabledBtn: var(--grey-56);
 	/* --colorScrollBarBackground: var(--grey-46);
 	--colorScrollBarThumb: var(--grey-78);
 	--colorScrollBarTrack: var(--grey-30); */
 	--colorScrollBarBackground: var(--grey-16);
 	--colorScrollBarThumb: var(--grey-30);
 	--colorScrollBarTrack: var(--grey-24);
+
 	--font-normal-weight: 300;
 	--font-thin-weight: 100;
 	--font-bold-weight: 500;
 	--font-extra-weight: 700;
 	--font-logo-weight: 700;
-	--colorBkgMainGallery: var(--grey-140);
-	--colorBkgLayer: rgba(38, 38, 38, 0.65);
 }
 
 [data-theme='light'] {
@@ -102,35 +88,32 @@
 	--gray-rose-sat-dis: 18%;
 	--gray-rose-opac-dis: 0.7;
 
-	--colorFont: var(--grey-78);
-	--colorBkgPage: white;
-	--colorFontPage: var(--grey-78);
-	--colorBkgToolbar: var(--grey-10);
-	--colorBkgFooter: var(--colorBkgToolbar);
-	--colorBkgSubMenu: var(--grey-19);
-	--colorBkgProgrammItem: var(--grey-10);
-	--colorFontToolbar: var(--colorFont);
-	--colorFontFooter: var(--colorFont);
-	--colorBorderToolbar: var(--grey-13);
-	--colorBorderFooter: var(--colorBorderToolbar);
-	--colorFontTicketsBtn: var(--colorBkgPage);
-	--colorBoxShadowDropList: rgba(0, 0, 0, 0.12);
-	--colorDisabled: var(--grey-30);
 	--colorAntreprizaRed: #e30d15;
-	/* --colorFocusAntreprizaRed: #f57a7e; */
-	--colorFocusAntreprizaRed: #e30d15;
-	--colorBorderDisabledBtn: var(--grey-46);
+	--colorBkgMainGallery: #b8b0ae;
+
+	--colorFontForm: var(--grey-78);
+	--colorBkgForm: var(--grey-12);
+	--colorBorderForm: var(--grey-14);
+	--colorFontPage: var(--grey-78);
+	--colorBkgPage: var(--grey-08);
+
+	--colorBkgLayerUnderForm: hsl(0 0% 44% / 0.65);
+
+	--colorBkgHoverBlock: var(--grey-12);
+	--colorFontTicketsBtn: var(--grey-10);
+	--colorBoxShadow: rgba(0, 0, 0, 0.12);
+	--colorDisabled: var(--grey-30);
+
 	--colorBkgDisabledBtn: var(--grey-30);
 	--colorScrollBarBackground: var(--grey-11);
 	--colorScrollBarThumb: var(--grey-30);
 	--colorScrollBarTrack: var(--grey-24);
+
 	--font-normal-weight: 400;
 	--font-thin-weight: 300;
 	--font-bold-weight: 700;
 	--font-extra-weight: 900;
 	--font-logo-weight: 900;
-	--colorBkgMainGallery: #b8b0ae;
-	--colorBkgLayer: rgba(111, 111, 111, 0.65);
 }
 
 body {
@@ -368,7 +351,7 @@ h4.notification-label {
 /* this hover-effect works only if javascript is out */
 @media (hover: hover) {
 	body.no-js .hover-block.hover-background:hover {
-		background-color: var(--colorBkgProgrammItem);
+		background-color: var(--colorBkgHoverBlock);
 	}
 
 	body.no-js .hover-block:hover .black-white-filter {
@@ -379,7 +362,7 @@ h4.notification-label {
 
 /* this hover-effect works only if javascript is in */
 .hover-block.hover-background[hover] {
-	background-color: var(--colorBkgProgrammItem);
+	background-color: var(--colorBkgHoverBlock);
 }
 .hover-block[hover] .black-white-filter {
 	-webkit-filter: grayscale(0%);
@@ -455,45 +438,4 @@ h4.notification-label {
 	/* flex-direction: row; */
 	justify-content: center;
 	align-items: center;
-}
-
-/* --------------------------------------------------- */
-/* ------------------ screen reader ------------------ */
-/* --------------------------------------------------- */
-.screen-reader-text {
-	border: 0;
-	clip: rect(1px, 1px, 1px, 1px);
-	clip-path: inset(50%);
-	height: 1px;
-	margin: -1px;
-	font-size: 14px;
-	font-weight: 400;
-	overflow: hidden;
-	padding: 0;
-	position: absolute;
-	width: 1px;
-	word-wrap: normal;
-}
-
-.screen-reader-text:focus {
-	background-color: var(--colorBkgToolbar);
-	border-radius: 3px;
-	box-shadow: 0 0 2px 2px var(--colorFocusAntreprizaRed);
-	/* outline-color: var(--colorFocusAntreprizaRed); */
-	outline: none;
-	clip: auto;
-	clip-path: none;
-	color: var(--colorAntreprizaRed);
-	/* display: block; */
-	font-size: 14px;
-	font-size: 0.875rem;
-	font-weight: bold;
-	height: auto;
-	left: 5px;
-	line-height: normal;
-	padding: 15px 23px 14px;
-	text-decoration: none;
-	top: 5px;
-	width: auto;
-	z-index: 10000;
 }
