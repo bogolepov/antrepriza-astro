@@ -32,7 +32,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/people/
                 sizes={'(max-width: 320px) 210px, (max-width: 400px) 270px, 320px'}
                 alt={person.name[lang] + ' ' + person.surname[lang]} />
             </div>
-            <div class="person-title opacity1 bold1">{strJobName}</div>
+            <div class="person-title font-opacity1 bold1">{strJobName}</div>
             <div class="person-name">{person.name[lang]} {person.surname[lang]}</div>
             {
               hasPage &&

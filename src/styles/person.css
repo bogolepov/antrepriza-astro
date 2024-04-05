@@ -64,12 +64,7 @@ ul {
 	text-align: end;
 	padding-right: 5px;
 	text-wrap: wrap;
-}
-[data-theme='dark'] .flex-job-left {
-	opacity: 0.7;
-}
-[data-theme='light'] .flex-job-left {
-	opacity: 0.85;
+	color: var(--colorFont-Op0);
 }
 
 .flex-job-right {
@@ -96,18 +91,9 @@ ul {
 	margin-bottom: 0;
 }
 .person-description i {
-	opacity: var(--font-part-opacity1);
-	font-weight: var(--font-bold-weight);
+	color: var(--colorFont-Op1);
+	font-weight: var(--font-normal-weight);
 }
-.person-description .name {
-	font-size: 1.1em;
-	opacity: var(--font-part-opacity1);
-}
-/* .description-content {
-	width: 100%;
-	max-width: 110vh;
-	margin: auto;
-} */
 
 /* --------------------------------------------------- */
 /* ---------------------- gallery -------------------- */

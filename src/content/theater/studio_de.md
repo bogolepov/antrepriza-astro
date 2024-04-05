@@ -6,12 +6,12 @@ Im Unterrichtsprogramm:
 
 <ul>
 <li>Schauspielausbildung in den Bereichen Bühnensprache, Atmung, Gesang und Bühnenbewegung;
-<li>Kommunikationsfähigkeiten nach dem Stanislavsky-System „Arbeit des Schauspielers an sich selbst“ und „Arbeit des Schauspielers an der Rolle“;
+<li>Kommunikationsfähigkeiten nach dem Stanislavsky-System <b>„Arbeit des Schauspielers an sich selbst“</b> und <b>„Arbeit des Schauspielers an der Rolle“</b>;
 <li>Teilnahme an Proben und Aufführungen unseres Theaters.
 </ul>
 
 Informationen für Russisch-Lernende: Unterrichte beim Schauspielstudio helfen Dir dabei, aktuelles Sprachniveau zu verbessern!
 
-Die Unterrichte werden von <a href="/de/theater/people/alm"><b>Alexander Mamontov</b></a> geleitet – Schauspieler, Verdienter der polnischen Kultur.
+Die Unterrichte werden von <b><a href="/de/theater/people/alm">Alexander Mamontov</a></b> geleitet – Schauspieler, Verdienter der polnischen Kultur.
 
-Bei Fragen wenden Sie sich bitte an <a href="mailto:info@antrepriza.eu"><b>info@antrepriza.eu</b></a>
+Bei Fragen wenden Sie sich bitte an <b><a href="mailto:info@antrepriza.eu">info@antrepriza.eu</a></b>

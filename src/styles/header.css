@@ -28,7 +28,7 @@
 	width: 100%;
 	max-width: 100vw;
 	z-index: 999;
-	color: var(--colorFontForm);
+	color: var(--colorFont);
 	background-color: var(--colorBkgForm);
 	top: 0;
 	grid-template-columns: min-content 1fr min-content;
@@ -113,10 +113,6 @@
 /* --------------------------------------------------- */
 .active_link {
 	color: var(--colorAntreprizaRed);
-	opacity: 1;
-}
-.active_link * {
-	opacity: 1;
 }
 
 .active_link svg {
@@ -227,7 +223,7 @@
 	min-width: 120px;
 	line-height: 1.5;
 	z-index: 1110;
-	color: var(--colorFontForm);
+	color: var(--colorFont);
 	background-color: var(--colorBkgForm);
 	border: 4px solid var(--colorBorderForm);
 	border-radius: 2px;
@@ -342,21 +338,21 @@
 .toolbar-icon {
 	width: clamp(var(--toolbarSmallIconSize), 2vw, var(--toolbarNormalIconSize));
 	height: clamp(var(--toolbarSmallIconSize), 2vw, var(--toolbarNormalIconSize));
-	fill: var(--colorFontForm);
+	fill: var(--colorFont);
 	stroke-width: 0px;
 }
 
 .navigator-icon-logo {
 	width: var(--toolbarLogoWidth);
 	height: var(--toolbarLogoHeight);
-	fill: var(--colorFontForm);
+	fill: var(--colorFont);
 	stroke-width: 0px;
 }
 
 .navigator-icon-logo-text {
 	width: var(--toolbarLogoTextWidth);
 	height: var(--toolbarLogoHeight);
-	fill: var(--colorFontForm);
+	fill: var(--colorFont);
 	font-family: 'Roboto';
 	font-weight: var(--font-logo-weight);
 	font-size: 9px;
@@ -366,7 +362,7 @@
 .toolbar-icon-language {
 	height: 18px;
 	width: 18px;
-	fill: var(--colorFontForm);
+	fill: var(--colorFont);
 	stroke-width: 0px;
 }
 
@@ -374,7 +370,7 @@
 .submenu-symbol {
 	height: 8px;
 	width: 8px;
-	fill: var(--colorFontForm);
+	fill: var(--colorFont);
 	stroke-width: 0px;
 }
 
@@ -489,7 +485,7 @@
 	width: 100%;
 	max-width: 100vw;
 	z-index: 999;
-	color: var(--colorFontForm);
+	color: var(--colorFont);
 	background-color: var(--colorBkgForm);
 	border-bottom: var(--headerBorderWidth) solid var(--colorBorderForm);
 	font-family: 'Roboto', Verdana, Arial, Tahoma, sans-serif;
@@ -514,7 +510,7 @@
 
 .burger-icon {
 	width: 25px;
-	fill: var(--colorFontForm);
+	fill: var(--colorFont);
 }
 
 .header-logo {
@@ -525,14 +521,14 @@
 .header-logo-icon {
 	width: var(--toolbarLogoWidth);
 	height: var(--toolbarLogoHeight);
-	fill: var(--colorFontForm);
+	fill: var(--colorFont);
 	stroke-width: 0px;
 }
 
 .header-logo-text-icon {
 	width: var(--toolbarLogoTextWidth);
 	height: var(--toolbarLogoHeight);
-	fill: var(--colorFontForm);
+	fill: var(--colorFont);
 	font-family: 'Roboto';
 	font-weight: var(--font-logo-weight);
 	font-size: 9px;
@@ -580,7 +576,6 @@
 	.header-mobile a:hover,
 	.burger-item:hover span {
 		color: var(--colorAntreprizaRed);
-		opacity: 1;
 	}
 
 	.header-logo-icon:hover,
@@ -635,7 +630,7 @@
 	line-height: 1.5;
 	z-index: 1110;
 	padding: 0.75rem 0.8rem 0.65rem 0.8rem;
-	color: var(--colorFontForm);
+	color: var(--colorFont);
 	background-color: var(--colorBkgForm);
 	border: 4px solid var(--colorBorderForm);
 	border-radius: 2px;
@@ -748,7 +743,7 @@
 	margin-top: 0.35rem;
 	width: 1.3rem;
 	height: 1.3rem;
-	fill: var(--colorFontForm);
+	fill: var(--colorFont);
 	line-height: 0px;
 }
 .header-icon:is(.facebook) {

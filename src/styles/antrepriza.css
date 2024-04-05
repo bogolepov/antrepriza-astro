@@ -18,6 +18,11 @@
 	--grey-08: hsl(0, 0%, 97%);
 	--grey-05: hsl(0, 0%, 98%);
 
+	--grey-78-lit: 25%;
+	--grey-16-lit: 77%;
+	--grey-13-lit: 84%;
+	--grey-10-lit: 96%;
+
 	--gray-rose-hue: 3;
 	--gray-rose-lit: 45%;
 
@@ -42,32 +47,35 @@
 /* --------------------------------------------------- */
 [data-theme='dark'] {
 	color-scheme: dark;
-	--font-part-opacity0: 0.7;
-	--font-part-opacity1: 0.47;
+	--font-opacity0: 0.7;
+	--font-opacity1: 0.47;
 
 	--gray-rose-sat: 18%;
 	--gray-rose-sat-dis: 24%;
 	--gray-rose-opac-dis: 0.5;
 
-	--colorAntreprizaRed: #ff3e44;
+	--colorAntreprizaRed: hsl(358 100% 62%);
+	--colorAntreprizaRed-Op0: hsl(358 100% 62% / 0.9);
+	--colorAntreprizaRed-Op1: hsl(358 100% 62% / 0.75);
+	--colorAntreprizaRed-Op2: hsl(358 100% 62% / 0.6);
+	--colorAntreprizaRed-Op3: hsl(358 100% 62% / 0.45);
+
 	--colorBkgMainGallery: var(--grey-140);
 
-	--colorFontForm: var(--grey-16);
-	--colorBkgForm: var(--grey-120);
+	--font-lit: var(--grey-13-lit);
+	--font-ticket-btn-lit: var(--grey-16-lit);
+
 	--colorBorderForm: var(--grey-46);
-	--colorFontPage: var(--grey-13);
+	--colorBkgForm: var(--grey-120);
 	--colorBkgPage: var(--grey-200);
 
 	--colorBkgLayerUnderForm: hsla(0 0% 15% / 0.65);
 
 	--colorBkgHoverBlock: var(--grey-130);
-	--colorFontTicketsBtn: var(--grey-16);
 	--colorBoxShadow: hsl(0 0% 96% / 0.25);
 	--colorDisabled: var(--grey-30);
 	--colorBkgDisabledBtn: var(--grey-56);
-	/* --colorScrollBarBackground: var(--grey-46);
-	--colorScrollBarThumb: var(--grey-78);
-	--colorScrollBarTrack: var(--grey-30); */
+
 	--colorScrollBarBackground: var(--grey-16);
 	--colorScrollBarThumb: var(--grey-30);
 	--colorScrollBarTrack: var(--grey-24);
@@ -81,30 +89,35 @@
 
 [data-theme='light'] {
 	color-scheme: light;
-	--font-part-opacity0: 0.85;
-	--font-part-opacity1: 0.8;
+	--font-opacity0: 0.85;
+	--font-opacity1: 0.8;
 
 	--gray-rose-sat: 24%;
 	--gray-rose-sat-dis: 18%;
 	--gray-rose-opac-dis: 0.7;
 
-	--colorAntreprizaRed: #e30d15;
+	--colorAntreprizaRed: hsl(358 89% 47%);
+	--colorAntreprizaRed-Op0: hsl(358 89% 47% / 0.8);
+	--colorAntreprizaRed-Op1: hsl(358 89% 47% / 0.65);
+	--colorAntreprizaRed-Op2: hsl(358 89% 47% / 0.5);
+	--colorAntreprizaRed-Op3: hsl(358 89% 47% / 0.35);
+
 	--colorBkgMainGallery: #b8b0ae;
 
-	--colorFontForm: var(--grey-78);
-	--colorBkgForm: var(--grey-12);
+	--font-lit: var(--grey-78-lit);
+	--font-ticket-btn-lit: var(--grey-10-lit);
+
 	--colorBorderForm: var(--grey-14);
-	--colorFontPage: var(--grey-78);
+	--colorBkgForm: var(--grey-12);
 	--colorBkgPage: var(--grey-08);
 
 	--colorBkgLayerUnderForm: hsl(0 0% 44% / 0.65);
 
 	--colorBkgHoverBlock: var(--grey-12);
-	--colorFontTicketsBtn: var(--grey-10);
 	--colorBoxShadow: rgba(0, 0, 0, 0.12);
 	--colorDisabled: var(--grey-30);
-
 	--colorBkgDisabledBtn: var(--grey-30);
+
 	--colorScrollBarBackground: var(--grey-11);
 	--colorScrollBarThumb: var(--grey-30);
 	--colorScrollBarTrack: var(--grey-24);
@@ -123,6 +136,13 @@ body {
 	--colorFontDate: var(--gray-rose);
 	--colorFontDateDisabled: var(--gray-rose-disabled);
 	--colorBkgTicketsBtn: var(--gray-rose);
+
+	--colorFontTicketsBtn: hsl(0 0% var(--font-ticket-btn-lit));
+	--colorFontTicketsBtn-Op0: hsl(0 0% var(--font-ticket-btn-lit) / 0.7);
+
+	--colorFont: hsl(0 0% var(--font-lit));
+	--colorFont-Op0: hsl(0 0% var(--font-lit) / var(--font-opacity0));
+	--colorFont-Op1: hsl(0 0% var(--font-lit) / var(--font-opacity1));
 }
 
 /* --------------------------------------------------- */
@@ -130,7 +150,7 @@ body {
 /* --------------------------------------------------- */
 html,
 body {
-	color: var(--colorFontPage);
+	color: var(--colorFont);
 	background-color: var(--colorBkgPage);
 	font-family: 'Roboto', Verdana, Arial, Tahoma, sans-serif;
 	font-weight: var(--font-normal-weight);
@@ -199,8 +219,8 @@ h2.play-title {
 h4.notification-label {
 	font-size: clamp(0.95rem, 1.8vw, 1.05rem);
 	font-weight: var(--font-normal-weight);
-	/* font-weight: var(--font-thin-weight); */
-	opacity: var(--font-part-opacity1);
+	color: var(--colorFont-Op1);
+	/* opac: var(--font-part-opac1); */
 	text-transform: uppercase;
 	margin-bottom: 0.3rem;
 }
@@ -219,12 +239,11 @@ h4.notification-label {
 	letter-spacing: 0.07rem;
 }
 
-.opacity0 {
-	opacity: var(--font-part-opacity0);
+.font-opacity0 {
+	color: var(--colorFont-Op0);
 }
-
-.opacity1 {
-	opacity: var(--font-part-opacity1);
+.font-opacity1 {
+	color: var(--colorFont-Op1);
 }
 
 .bold1 {
@@ -252,7 +271,8 @@ h4.notification-label {
 	font-size: clamp(0.95rem, 1.8vw, 1.05rem);
 	font-weight: var(--font-normal-weight);
 	/* font-weight: var(--font-thin-weight); */
-	opacity: var(--font-part-opacity1);
+	/* opac: var(--font-part-opac1); */
+	color: var(--colorFont-Op1);
 	text-transform: uppercase;
 }
 

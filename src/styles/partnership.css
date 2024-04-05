@@ -51,22 +51,6 @@
 	/* font-size: clamp(0.95rem, 1.45vw, 1.1rem); */
 }
 
-/* [data-theme='dark'] .flex-item-description.offer {
-	opacity: 0.7;
-}
-[data-theme='light'] .flex-item-description.offer {
-	opacity: 0.85;
-} */
-
-/* [data-theme='dark'] .flex-item-description.offer p,
-[data-theme='dark'] .flex-item-description.offer .partner-name {
-	opacity: 0.7;
-}
-[data-theme='light'] .flex-item-description.offer p,
-[data-theme='light'] .flex-item-description.offer .partner-name {
-	opacity: 0.85;
-} */
-
 @media screen and (max-width: 400px) {
 	.flex {
 		flex-wrap: wrap;
