@@ -14,16 +14,31 @@
 	--grey-11: #e9e6e4;
 	--grey-10: #f7f4f3;
 
-	--gray-rose-dark-digital: 140, 89, 86;
-	--gray-rose-digital: 135, 96, 94;
-	--gray-rose-light-digital: 251, 204, 199;
-	--gray-rose-dark: rgb(140, 89, 86);
-	--gray-rose: rgb(135, 96, 94);
-	--gray-rose-light: rgb(251, 204, 199);
+	--grey-200-rgb: hsl(0, 0%, 15%);
+	--grey-140-rgb: hsl(60, 1%, 16%);
+	--grey-130-rgb: hsl(0, 0%, 18%);
+	--grey-120-rgb: hsl(60, 1%, 19%);
+	--grey-78-rgb: hsl(0, 0%, 25%);
+	--grey-56-rgb: hsl(30, 1%, 34%);
+	--grey-46-rgb: hsl(20, 1%, 44%);
+	--grey-30-rgb: hsl(20, 1%, 56%);
+	--grey-24-rgb: hsl(30, 2%, 64%);
+	--grey-19-rgb: hsl(0, 0%, 70%);
+	--grey-16-rgb: hsl(30, 3%, 77%);
+	--grey-13-rgb: hsl(15, 5%, 84%);
+	--grey-11-rgb: hsl(24, 10%, 90%);
+	--grey-10-rgb: hsl(15, 20%, 96%);
+
+	--gray-rose-hue: 3;
+	--gray-rose-lit: 45%;
 
 	--red: rgb(227, 13, 21);
 	--red-dark: rgba(227, 13, 20, 0.85);
 	--red-light: rgba(227, 13, 20, 0.47);
+
+	--red-hsl: hsl(358 89% 47%);
+	--red-dark-hsl: hsla(358 89% 47% / 0.85);
+	--red-light-hsl: hsla(358 89% 47% / 0.47);
 
 	--red-rose: #ff7660;
 
@@ -39,8 +54,11 @@
 	color-scheme: dark;
 	--font-part-opacity0: 0.7;
 	--font-part-opacity1: 0.47;
-	--minPosterOpacity: 1;
-	--maxPosterOpacity: 1;
+
+	--gray-rose-sat: 18%;
+	--gray-rose-sat-dis: 24%;
+	--gray-rose-opac-dis: 0.5;
+
 	--colorFont: var(--grey-16);
 	--colorBkgPage: var(--grey-200);
 	--colorFontPage: var(--grey-13);
@@ -52,13 +70,9 @@
 	--colorFontFooter: var(--colorFont);
 	--colorBorderToolbar: var(--grey-46);
 	--colorBorderFooter: var(--colorBorderToolbar);
-	--colorTicketsBtn: var(--gray-rose-dark);
 	--colorFontTicketsBtn: var(--colorFont);
-	--colorBkgTicketsBtn: var(--gray-rose);
 	--colorBoxShadowDropList: rgba(245, 245, 245, 0.25);
 	--colorDisabled: var(--grey-30);
-	--colorFontDate: var(--gray-rose);
-	--colorFontDateOpacity: rgba(var(--gray-rose-dark-digital), var(--font-part-opacity1));
 	--colorAntreprizaRed: #ff3e44;
 	/* --colorFocusAntreprizaRed: #f57a7e; */
 	--colorFocusAntreprizaRed: #e30d15;
@@ -83,8 +97,11 @@
 	color-scheme: light;
 	--font-part-opacity0: 0.85;
 	--font-part-opacity1: 0.8;
-	--minPosterOpacity: 0.9;
-	--maxPosterOpacity: 1;
+
+	--gray-rose-sat: 24%;
+	--gray-rose-sat-dis: 18%;
+	--gray-rose-opac-dis: 0.7;
+
 	--colorFont: var(--grey-78);
 	--colorBkgPage: white;
 	--colorFontPage: var(--grey-78);
@@ -96,13 +113,9 @@
 	--colorFontFooter: var(--colorFont);
 	--colorBorderToolbar: var(--grey-13);
 	--colorBorderFooter: var(--colorBorderToolbar);
-	--colorTicketsBtn: var(--gray-rose-light);
 	--colorFontTicketsBtn: var(--colorBkgPage);
-	--colorBkgTicketsBtn: var(--gray-rose-dark);
 	--colorBoxShadowDropList: rgba(0, 0, 0, 0.12);
 	--colorDisabled: var(--grey-30);
-	--colorFontDate: var(--gray-rose-dark);
-	--colorFontDateOpacity: rgba(var(--gray-rose-digital), var(--font-part-opacity1));
 	--colorAntreprizaRed: #e30d15;
 	/* --colorFocusAntreprizaRed: #f57a7e; */
 	--colorFocusAntreprizaRed: #e30d15;
@@ -120,6 +133,18 @@
 	--colorBkgLayer: rgba(111, 111, 111, 0.65);
 }
 
+body {
+	--gray-rose: hsl(var(--gray-rose-hue) var(--gray-rose-sat) var(--gray-rose-lit));
+	--gray-rose-disabled: hsl(var(--gray-rose-hue) var(--gray-rose-sat-dis) var(--gray-rose-lit) / var(--gray-rose-opac-dis));
+
+	--colorFontDate: var(--gray-rose);
+	--colorFontDateDisabled: var(--gray-rose-disabled);
+	--colorBkgTicketsBtn: var(--gray-rose);
+}
+
+/* --------------------------------------------------- */
+/* --------------------------------------------------- */
+/* --------------------------------------------------- */
 html,
 body {
 	color: var(--colorFontPage);

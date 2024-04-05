@@ -85,16 +85,12 @@
 	max-height: 85%;
 	top: clamp(0%, max(0.5vh, 2vw), 5%);
 
-	opacity: var(--minPosterOpacity);
-	transition: opacity 400ms ease-in;
-
 	-webkit-filter: grayscale(85%);
 	filter: grayscale(85%);
 	transition: filter 600ms ease-in;
 }
 
 .swiper .swiper-slide-active {
-	opacity: var(--maxPosterOpacity);
 	-webkit-filter: grayscale(0);
 	filter: grayscale(0);
 }

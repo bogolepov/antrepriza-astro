@@ -214,7 +214,7 @@ footer .logo-flex a:focus-visible img {
 .question label {
 	display: block;
 	position: relative;
-	color: var(--colorBkgTicketsBtn);
+	color: var(--colorFontDate);
 	letter-spacing: 0.02em;
 	text-transform: uppercase;
 	font-weight: 400;

@@ -545,7 +545,6 @@
 	background-color: var(--colorBkgTicketsBtn);
 	font-weight: var(--font-bold-weight);
 	color: var(--colorFontTicketsBtn);
-	/* color: var(--colorTicketsBtn); */
 	/* color: var(--colorAntreprizaRed); */
 	padding: 0.25em 1.5em 0.25em 1.5em;
 	margin: 0px 10px;

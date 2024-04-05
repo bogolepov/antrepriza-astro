@@ -22,13 +22,13 @@ programm.sort((play1, play2) => Date.parse(play1.date+"T"+play1.time) - Date.par
 
 let actualProgramm = programm.filter(performance => Date.parse(performance.date) >= Date.now());
 
-let playsWithGrouppedDatesMap = new Map();
-actualProgramm.forEach(element => {
-	if (!playsWithGrouppedDatesMap.has(element.play_id)) {
-		playsWithGrouppedDatesMap.set(element.play_id, actualProgramm.filter(performance => performance.play_id === element.play_id));
-	}
-});
-let playsWithGrouppedDatesArray = Array.from(playsWithGrouppedDatesMap, ([key, value]) => ({ key, value }));
+// let playsWithGrouppedDatesMap = new Map();
+// actualProgramm.forEach(element => {
+// 	if (!playsWithGrouppedDatesMap.has(element.play_id)) {
+// 		playsWithGrouppedDatesMap.set(element.play_id, actualProgramm.filter(performance => performance.play_id === element.play_id));
+// 	}
+// });
+// let playsWithGrouppedDatesArray = Array.from(playsWithGrouppedDatesMap, ([key, value]) => ({ key, value }));
 
 ---
 <script is:inline src="/js/swiper-bundle.js" defer></script>
@@ -72,53 +72,45 @@ let playsWithGrouppedDatesArray = Array.from(playsWithGrouppedDatesMap, ([key, v
 <section class="swiper">
   <div class="swiper-wrapper">
     {
-      playsWithGrouppedDatesArray.map(item => {
-        let playInfo;
-        plays.some((piece) => {
-          if (item.key === piece.id) {
-            playInfo = piece;
-            return; 
-          }
-        } )
+      plays.map(play => {
+        if (play.id == 2) return;
 
-        if (playInfo) {
-          let performs = actualProgramm.filter(performance => performance.play_id == playInfo.id);
-          let isPremiere = (performs && performs.length>0 && performs[0].premiere);
+        let perform = actualProgramm.find(performance => performance.play_id == play.id);
+        let isPremiere = (perform && perform.premiere);
 
-          let languageLabel = dictionary.language[lang];
-          if (lang === "ru") languageLabel = languageLabel.toLowerCase();
-          return (
-            <a class="swiper-slide" data-play={playInfo.id} href={"/"+lang+"/plays/play-"+playInfo.suffix} >
-              <div class="carusel-play-card">
-                <div class="carusel-play-image">
-                  <Picture 
-                    class:list={'carusel-picture'} 
-                    src={images["/src/assets/" + playInfo.posters.portrait]()} 
-                    formats={['webp']} 
-                    fallbackFormat='jpg'
-                    widths={[280, 400, 640]}
-                    sizes={'(max-width: 320px) 280px, (max-width: 660px) 400px, 640px'}
-                    quality="90"
-                    alt={playInfo.title[lang]} />
+        let languageLabel = dictionary.language[lang];
+        if (lang === "ru") languageLabel = languageLabel.toLowerCase();
+        return (
+          <a class="swiper-slide" data-play={play.id} href={"/"+lang+"/plays/play-"+play.suffix} >
+            <div class="carusel-play-card">
+              <div class="carusel-play-image">
+                <Picture 
+                  class:list={'carusel-picture'} 
+                  src={images["/src/assets/" + play.posters.portrait]()} 
+                  formats={['webp']} 
+                  fallbackFormat='jpg'
+                  widths={[280, 400, 640]}
+                  sizes={'(max-width: 320px) 280px, (max-width: 660px) 400px, 640px'}
+                  quality="90"
+                  alt={play.title[lang]} />
+              </div>
+              <div class="carusel-play-info">
+                {isPremiere && 
+                  <div class="carusel-play-info-premiere">{dictionary.premiere[lang]}</div>
+                }
+                <div class="carusel-play-title">
+                  {play.alt_title[lang]}
+                  <!-- {pplay.alt_title_notice && <small><sup> ({play.alt_title_notice})</sup></small>}  -->
                 </div>
-                <div class="carusel-play-info">
-                  {isPremiere && 
-                    <div class="carusel-play-info-premiere">{dictionary.premiere[lang]}</div>
-                  }
-                  <div class="carusel-play-title">
-                    {playInfo.alt_title[lang]}
-                    <!-- {playInfo.alt_title_notice && <small><sup> ({playInfo.alt_title_notice})</sup></small>}  -->
-                  </div>
-                  <div class="carusel-play-details">
-                    {playInfo.genre[lang]}, {playInfo.age}
-                    <br>
-                    {languageLabel}:&nbsp;{playInfo.lang[lang]}
-                  </div>
+                <div class="carusel-play-details">
+                  {play.genre[lang]}, {play.age}
+                  <br>
+                  {languageLabel}:&nbsp;{play.lang[lang]}
                 </div>
               </div>
-            </a>
-          );
-        }
+            </div>
+          </a>
+        );
       })
     }
   </div>

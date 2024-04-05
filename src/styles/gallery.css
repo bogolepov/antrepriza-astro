@@ -52,7 +52,7 @@
 .tab-item {
 	border: 1px solid var(--colorFontDate);
 	background-color: transparent;
-	color: var(--colorFontDateOpacity);
+	color: var(--colorFontDateDisabled);
 
 	font-size: clamp(0.85rem, 1.5vw, 1rem);
 	font-weight: var(--font-extra-weight);

@@ -116,16 +116,12 @@
 	object-fit: contain;
 	border-radius: 4px;
 
-	opacity: var(--minPosterOpacity);
-	transition: opacity 400ms ease-in;
-
 	-webkit-filter: grayscale(95%);
 	filter: grayscale(95%);
 	transition: filter 600ms ease-in;
 }
 
 .swiper .swiper-slide-active .carusel-picture {
-	opacity: var(--maxPosterOpacity);
 	-webkit-filter: grayscale(20%);
 	filter: grayscale(20%);
 }
