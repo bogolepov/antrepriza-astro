@@ -148,10 +148,11 @@
 	width: 100%;
 	font-size: 1rem;
 	font-weight: 400;
+	letter-spacing: 0.03em;
 	line-height: 1.5rem;
 
 	background-color: var(--colorBkgTicketsBtn);
-	color: var(--colorFontTicketsBtn);
+	color: var(--grey-10);
 	border: 1px solid var(--colorBkgTicketsBtn);
 	border-radius: 3px;
 }
