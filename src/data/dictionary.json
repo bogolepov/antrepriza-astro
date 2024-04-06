@@ -80,5 +80,10 @@
 	"name_hint": { "ru": "Имя и фамилия", "de": "Vor- und Nachname" },
 	"message": { "ru": "Сообщение", "de": "Nachricht" },
 	"message_hint": { "ru": "Ваше сообщение", "de": "Anmerkungen" },
-	"question_btn_send": { "ru": "Отправить", "de": "Absenden" }
+	"question_btn_send": { "ru": "Отправить", "de": "Absenden" },
+	"radio_book_at_antrepriza": { "ru": "Забронировать на сайте Театра", "de": "Auf unserer Website buchen" },
+	"radio_book_at_kontramarka": { "ru": "Купить на Контрамарке", "de": "Bei Kontramarka kaufen" },
+	"add_to_cart": { "ru": "Добавить в корзину", "de": "In den Warenkorb" },
+	"go_to_website": { "ru": "Перейти на ", "de": "Zur " },
+	"": { "ru": "", "de": "" }
 }

@@ -1,11 +1,14 @@
 ---
 import '@styles/ticket_form.css'
-// import dictionary from '@data/dictionary.json'
+import dictionary from '@data/dictionary.json'
 import prices from '@data/prices.json'
 
 import Loader from "@components/loader.astro";
 
 const { lang } = Astro.props;
+
+import { Picture } from 'astro:assets'
+import imgKontramarka from '/src/assets/logo_kontramarka.png';
 
 ---
 <script>
@@ -58,7 +61,7 @@ const { lang } = Astro.props;
       </div>
       <div class="book-block ticket-at-antrepriza">
         <input type="radio" id="antrepriza" name="platform" checked>
-        <label for="antrepriza">Забронировать на сайте Театра</label>
+        <label for="antrepriza">{dictionary.radio_book_at_antrepriza[lang]}</label>
         <div class="subform book-at-theater">
           {
             prices.map(price => {
@@ -78,16 +81,25 @@ const { lang } = Astro.props;
             })
           }
           <div class="ticket-form-buttons-div">
-            <button class="ticket-form-book-button" onclick="buttonAddToCart(event)">Забронировать</button>
+            <button class="ticket-form-book-button" onclick="buttonAddToCart(event)">{dictionary.add_to_cart[lang]}</button>
           </div>
         </div>
       </div>
       <div class="book-block ticket-at-kontramarka">
         <input type="radio" id="kontramarka" name="platform">
-        <label for="kontramarka">Купить на Контрамарке</label>
+        <label for="kontramarka">{dictionary.radio_book_at_kontramarka[lang]}</label>
         <div class="subform book-at-kontramarka">
           <div class="ticket-form-buttons-div">
-            <button class="ticket-form-book-button" onclick="buttonToKontramarka(event)">Перейти на сайт</button>
+            <button class="ticket-form-book-button flex-center" onclick="buttonToKontramarka(event)">
+              <span class="button-text">{dictionary.go_to_website[lang]}&nbsp;</span>
+              <Picture 
+                class:list={'button-image'} 
+                src={imgKontramarka} 
+                formats={['webp']} 
+                sizes={'115px'}
+                alt="" />
+              </a>
+            </button>
           </div>
         </div>
       </div>
