@@ -48,7 +48,7 @@
 
 .ticket-form {
 	padding: 25px;
-	margin-right: 35px;
+	padding-right: 32px;
 }
 
 .ticket-form .play-name {
@@ -71,6 +71,12 @@
 	align-items: center;
 	padding-bottom: 0.4em;
 }
+.ticket-form .info-flex.border-bottom {
+	/* padding-bottom: 0.7em;
+	border-bottom: 1px solid var(--colorFont-Op1);
+	margin-bottom: 0.4em; */
+}
+
 .ticket-form .icon-item {
 	line-height: 1em;
 	margin: auto 0;
@@ -106,7 +112,7 @@
 }
 
 .subform {
-	padding-left: 1em;
+	padding-left: 2em;
 }
 
 .price-flex {
@@ -133,16 +139,20 @@
 }
 
 .ticket-form input[type='radio']:not(:checked) ~ .subform {
-	/* display: none; */
+	display: none;
 }
 
 .ticket-form-book-button {
 	padding: 0.2em 0.5em;
 	line-height: 1.1em;
+	width: 100%;
 }
 
 .book-block {
-	padding-left: calc(1.6em + 0.7em - 1em);
+	padding-left: calc(1.6em + 0.7em - 2em);
+}
+.book-block label {
+	padding-left: 1em;
 }
 .ticket-at-antrepriza {
 	padding-top: 0.5em;
