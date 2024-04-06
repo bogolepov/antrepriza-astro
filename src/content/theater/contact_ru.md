@@ -6,9 +6,7 @@
 <span class="font-opacity1">Автобус:</span> 240 (Grünberger Str./Warschauer Str.)
 </div>
 <div class="ext-links">
-Театр на <a href="https://maps.app.goo.gl/kYhTMEEmqBcvgLFG6" target="_blank"	rel="noopener external">Google Картах</a>
-<br>
-В Театр на общественном транспорте? <a href="https://www.bvg.de/de/verbindungen/verbindungssuche" target="_blank"	rel="noopener external">Найти маршрут</a>
-<br>
+Театр на <a href="https://maps.app.goo.gl/kYhTMEEmqBcvgLFG6" target="_blank"	rel="noopener external">Google Картах</a> <br>
+В Театр на общественном транспорте? <a href="https://www.bvg.de/de/verbindungen/verbindungssuche" target="_blank"	rel="noopener external">Найти маршрут</a> <br>
 В Театр на велосипеде? <a href="https://www.komoot.com/de-de/plan/" target="_blank"	rel="noopener external">Komoot</a>
 </div>

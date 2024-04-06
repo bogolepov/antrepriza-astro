@@ -16,7 +16,6 @@ const director = theater.people.find(person => person.id == theater.director);
   <div class="impressum-block">
     <h3 class="h3-title theater">{theater.longTheaterName[lang]}</h3>
     <h4 class="stage-name font-opacity1">{lang == "ru" && "в"}{lang == "de" && "in"} {theater.stageAddress.name}</h4>
-    <br>
     <div class="address">
       <address class="info-text">{theater.stageAddress.street} {theater.stageAddress.building}</address>
       <address class="info-text">{theater.stageAddress.index} {theater.stageAddress.city}</address>

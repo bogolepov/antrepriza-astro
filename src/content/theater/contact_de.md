@@ -6,9 +6,7 @@
 <span class="font-opacity1">Bus:</span> Linie 240 (Grünberger Str./Warschauer Str.)
 </div>
 <div class="ext-links">
-Theater bei <a href="https://maps.app.goo.gl/FD1qNMvR4kMw3Wce6" target="_blank"	rel="noopener external">Google Maps</a>
-<br>
-Zum Theater mit den Öffentlichen? <a href="https://www.bvg.de/de/verbindungen/verbindungssuche" target="_blank"	rel="noopener external">Fahrinfo</a>
-<br>
+Theater bei <a href="https://maps.app.goo.gl/FD1qNMvR4kMw3Wce6" target="_blank"	rel="noopener external">Google Maps</a> <br>
+Zum Theater mit den Öffentlichen? <a href="https://www.bvg.de/de/verbindungen/verbindungssuche" target="_blank"	rel="noopener external">Fahrinfo</a> <br>
 Zum Theater mit dem Fahrrad? <a href="https://www.komoot.com/de-de/plan/" target="_blank"	rel="noopener external">Komoot</a>
 </div>

@@ -558,7 +558,7 @@
 }
 
 .lang-brief {
-	color: var(--colorDisabled);
+	color: var(--colorFont-Op1);
 	font-weight: var(--font-bold-weight);
 }
 

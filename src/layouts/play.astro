@@ -73,7 +73,6 @@ const { Content } = await entry.render();
   </div>
   {
     thisPlayDates.length > 0 &&
-      <br>
       <div class="play-dates">
         <h4 class="next-plays-label">{dictionary.nextDates[lang]}:</h4>
         <div class="buttons-block">
@@ -90,10 +89,8 @@ const { Content } = await entry.render();
                     {playDate.toLocaleDateString(lang, { weekday: 'short' })} / {play_date.time}
                     </div>
                     <div class="button-address">
-                      {address.street} {address.building}
-                      <br>
-                      {address.index}, {address.city}
-                      <br>
+                      {address.street} {address.building}<br>
+                      {address.index}, {address.city}<br>
                       {address.name}
                     </div>
                   </TicketBookButton>
@@ -106,16 +103,13 @@ const { Content } = await entry.render();
   {
     thisPlay.description[lang] &&
     <div class="play-description">
-      <br><br>
       <h2>{dictionary.about_play[lang].toUpperCase()}</h2>
       <article class="description-content">
         <Content/>
       </article>
-      <br>
     </div>
   }
-  <br>
-  <h3>{dictionary.play_creators[lang].toUpperCase()}</h3>
+  <h3 class="new-chapter">{dictionary.play_creators[lang].toUpperCase()}</h3>
   <ul class="list">
   {
     thisPlay.creators.map(creator => {
@@ -169,8 +163,7 @@ const { Content } = await entry.render();
 
   }
 
-  <br>
-  <h3>{dictionary.play_team[lang].toUpperCase()}</h3>
+  <h3 class="new-chapter">{dictionary.play_team[lang].toUpperCase()}</h3>
   <ul class="list">
   {
     thisPlay.characters.map(character => {
@@ -208,11 +201,10 @@ const { Content } = await entry.render();
 
   {
     gallery.length > 0 &&
-    <div class="play-description">
-      <br>
+    <div class="play-description new-chapter">
       <h2>{dictionary.photos[lang].toUpperCase()}</h2>
       <Gallery play_id={play_id} play_suffix={thisPlay.suffix}/>
     </div>
   }
-  <div class="play-end"></div>
+  <div class="page-end"></div>
 </section>

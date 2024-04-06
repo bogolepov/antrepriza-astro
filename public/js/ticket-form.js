@@ -1,5 +1,7 @@
 let jsonAfisha;
 let jsonTheater;
+let jsonDictionary;
+const JSONs = [jsonAfisha, jsonTheater, jsonDictionary];
 
 let afishaItem;
 let playItem;
@@ -7,11 +9,12 @@ let playItem;
 let elemLoader;
 
 let elemPlayTitle;
+let elemPlayDescription;
 let elemDate;
 let elemTime;
 let elemAddress;
-let elemGenre;
-let elemPlayLang;
+let elemStageName;
+let elemPlace;
 
 function initTicketBookForm() {
 	let ticketBtns = document.getElementsByClassName('tickets-book-button');
@@ -23,11 +26,12 @@ function initTicketBookForm() {
 	elemLoader = document.querySelector('.layer-on-parent.ticket-form-loader');
 
 	elemPlayTitle = document.querySelector('.play-name');
+	elemPlayDescription = document.querySelector('.play-descr');
 	elemDate = document.querySelector('.play-date');
 	elemTime = document.querySelector('.play-time');
-	elemAddress = document.querySelector('.play-stage');
-	elemGenre = document.querySelector('.play-genre');
-	elemPlayLang = document.querySelector('.play-language');
+	elemAddress = document.querySelector('.play-address');
+	elemStageName = document.querySelector('.play-stage-name');
+	elemPlace = document.querySelector('.play-place');
 }
 
 function openForm(event, button) {
@@ -35,8 +39,9 @@ function openForm(event, button) {
 	form.classList.add('show');
 
 	elemLoader.classList.add('show');
-	afisha_prepare()
-		.then(() => theater_prepare())
+	json_prepare('/data/afisha.json', 0)
+		.then(() => json_prepare('/data/theater.json', 1))
+		.then(() => json_prepare('/data/dictionary_client.json', 2))
 		.then(() => {
 			let aDate = button.getAttribute('data-date');
 			let aTime = button.getAttribute('data-time');
@@ -51,10 +56,13 @@ function openForm(event, button) {
 			}
 			if (afishaItem && playItem) {
 				elemPlayTitle.innerHTML = playItem.title[currLang];
+				elemPlayDescription.innerHTML = getPlayDescription();
 				elemDate.innerHTML = getPlayDate();
 				elemTime.innerHTML = getPlayTime();
-				elemGenre.innerHTML = getGenre();
-				elemPlayLang.innerHTML = playItem.lang[currLang];
+				elemAddress.innerHTML = getAddress();
+				elemStageName.innerHTML = getStageName();
+				elemPlace.innerHTML = getPlaceInfo();
+				updatePrices();
 			}
 		})
 		.finally(() => {
@@ -73,16 +81,24 @@ function resetTicketForm(event) {
 
 function buttonToKontramarka(event) {
 	closeForm();
+	window.open(playItem.url_kontramarka, '_blank');
 }
 
-function afisha_prepare() {
+function buttonAddToCart(event) {
+	closeForm();
+}
+
+function json_prepare(jsonName, jsonIndex) {
 	return new Promise(function (resolve, reject) {
-		if (jsonAfisha) resolve();
+		if (JSONs[jsonIndex]) resolve();
 		else {
-			fetch(`/data/afisha.json`)
+			fetch(jsonName)
 				.then(response => response.json())
 				.then(jsonData => {
-					jsonAfisha = jsonData;
+					JSONs[jsonIndex] = jsonData;
+					if (jsonIndex == 0) jsonAfisha = jsonData;
+					else if (jsonIndex == 1) jsonTheater = jsonData;
+					else if (jsonIndex == 2) jsonDictionary = jsonData;
 					resolve();
 				})
 				.catch(error => reject(error));
@@ -90,19 +106,20 @@ function afisha_prepare() {
 	});
 }
 
-function theater_prepare() {
-	return new Promise(function (resolve, reject) {
-		if (jsonTheater) resolve();
-		else {
-			fetch(`/data/theater.json`)
-				.then(response => response.json())
-				.then(jsonData => {
-					jsonTheater = jsonData;
-					resolve();
-				})
-				.catch(error => reject(error));
-		}
+function updatePrices() {
+	elemPrices = document.querySelectorAll('.price-flex');
+	if (!elemPrices) {
+		console.error('price-flex is not found!!!');
+		return;
+	}
+	elemPrices.forEach(element => {
+		element.style.display = afishaItem.prices.includes(element.dataset['type']) ? 'flex' : 'none';
 	});
+}
+
+function getPlayDescription() {
+	let playLang = playItem.lang['ru'].toLowerCase() === 'немецкий' ? 'de' : 'ru';
+	return playItem.genre[currLang] + ', ' + playItem.age + ', ' + jsonDictionary.play_lang[playLang][currLang];
 }
 
 function getPlayDate() {
@@ -124,10 +141,17 @@ function getAddress() {
 	if (afishaItem.address) {
 		return afishaItem.address;
 	} else {
-		return jsonTheater.stageAddress.full_string + ' (' + jsonTheater.stageAddress.name + ')';
+		return jsonTheater.stageAddress.full_string;
+	}
+}
+function getStageName() {
+	if (afishaItem.address) {
+		return afishaItem.address;
+	} else {
+		return jsonTheater.stageAddress.name;
 	}
 }
 
-function getGenre() {
-	return playItem.genre[currLang] + ', ' + playItem.age;
+function getPlaceInfo() {
+	return jsonDictionary.free_place[currLang];
 }

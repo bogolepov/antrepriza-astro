@@ -53,7 +53,8 @@
 			"length": 90,
 			"break": false,
 			"age": "18+",
-			"lang": { "ru": "русский", "de": "Russisch" }
+			"lang": { "ru": "русский", "de": "Russisch" },
+			"url_kontramarka": "https://www.kontramarka.de/tour/antrepriza-spektakl-malysh-i-karlson/"
 		},
 		{
 			"id": 6,
@@ -67,7 +68,8 @@
 			"length": 60,
 			"break": false,
 			"age": "3+",
-			"lang": { "ru": "русский", "de": "Russisch" }
+			"lang": { "ru": "русский", "de": "Russisch" },
+			"url_kontramarka": "https://www.kontramarka.de/tour/teatr-antrepriza-spektakl-malysh-i-karlson/"
 		},
 		{
 			"id": 5,
@@ -80,7 +82,8 @@
 			"length": 120,
 			"break": true,
 			"age": "18+",
-			"lang": { "ru": "русский", "de": "Russisch" }
+			"lang": { "ru": "русский", "de": "Russisch" },
+			"url_kontramarka": "https://www.kontramarka.de/tour/teatr-antrepriza-spektakl-opasnyy-povorot/"
 		},
 		{
 			"id": 4,
@@ -93,7 +96,8 @@
 			"length": 120,
 			"break": true,
 			"age": "18+",
-			"lang": { "ru": "русский", "de": "Russisch" }
+			"lang": { "ru": "русский", "de": "Russisch" },
+			"url_kontramarka": "https://www.kontramarka.de/tour/teatr-antrepriza-spektakl-dorogaya-kvartira/"
 		},
 		{
 			"id": 2,
@@ -106,7 +110,8 @@
 			"length": 80,
 			"break": false,
 			"age": "16+",
-			"lang": { "ru": "русский", "de": "Russisch" }
+			"lang": { "ru": "русский", "de": "Russisch" },
+			"url_kontramarka": ""
 		},
 		{
 			"id": 1,
@@ -119,7 +124,8 @@
 			"length": 135,
 			"break": true,
 			"age": "14+",
-			"lang": { "ru": "русский", "de": "Russisch" }
+			"lang": { "ru": "русский", "de": "Russisch" },
+			"url_kontramarka": "https://www.kontramarka.de/tour/teatr-antrepriza-spektakl-tri-sestry/"
 		}
 	]
 }

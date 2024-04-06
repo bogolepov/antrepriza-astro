@@ -54,11 +54,9 @@
 	--gray-rose-sat-dis: 24%;
 	--gray-rose-opac-dis: 0.5;
 
-	--colorAntreprizaRed: hsl(358 100% 62%);
+	--colorAntreprizaRed: hsl(358, 100%, 64%);
 	--colorAntreprizaRed-Op0: hsl(358 100% 62% / 0.9);
 	--colorAntreprizaRed-Op1: hsl(358 100% 62% / 0.75);
-	--colorAntreprizaRed-Op2: hsl(358 100% 62% / 0.6);
-	--colorAntreprizaRed-Op3: hsl(358 100% 62% / 0.45);
 
 	--colorBkgMainGallery: var(--grey-140);
 
@@ -73,7 +71,6 @@
 
 	--colorBkgHoverBlock: var(--grey-130);
 	--colorBoxShadow: hsl(0 0% 96% / 0.25);
-	--colorDisabled: var(--grey-30);
 	--colorBkgDisabledBtn: var(--grey-56);
 
 	--colorScrollBarBackground: var(--grey-16);
@@ -99,8 +96,6 @@
 	--colorAntreprizaRed: hsl(358 89% 47%);
 	--colorAntreprizaRed-Op0: hsl(358 89% 47% / 0.8);
 	--colorAntreprizaRed-Op1: hsl(358 89% 47% / 0.65);
-	--colorAntreprizaRed-Op2: hsl(358 89% 47% / 0.5);
-	--colorAntreprizaRed-Op3: hsl(358 89% 47% / 0.35);
 
 	--colorBkgMainGallery: #b8b0ae;
 
@@ -115,7 +110,6 @@
 
 	--colorBkgHoverBlock: var(--grey-12);
 	--colorBoxShadow: rgba(0, 0, 0, 0.12);
-	--colorDisabled: var(--grey-30);
 	--colorBkgDisabledBtn: var(--grey-30);
 
 	--colorScrollBarBackground: var(--grey-11);
@@ -405,6 +399,10 @@ h4.notification-label {
 	letter-spacing: 0.04em;
 	text-transform: uppercase;
 	word-wrap: break-word;
+}
+
+.page-separator {
+	margin-bottom: clamp(1.2rem, 2.2vw, 1.5rem);
 }
 
 .page-end {

@@ -62,6 +62,7 @@ section.play {
 
 .play-dates {
 	align-self: self-start;
+	padding: clamp(1.2rem, 2.2vw, 1.5rem) 0;
 }
 
 .buttons-block {
@@ -89,6 +90,11 @@ section.play {
 .play-description {
 	width: 100%;
 	font-size: clamp(0.85rem, 1.5vw, 1rem);
+	padding: clamp(1.2rem, 2.2vw, 1.5rem) 0;
+}
+
+.new-chapter {
+	padding-top: clamp(1.2rem, 2.2vw, 1.5rem);
 }
 
 .description-content {
@@ -154,10 +160,6 @@ section.play {
 
 .small-description {
 	color: var(--colorFont-Op1);
-}
-
-.play-end {
-	margin-bottom: clamp(1.1rem, 2.6vw, 2rem);
 }
 
 @media screen and (max-width: 600px) {

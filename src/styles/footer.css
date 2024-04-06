@@ -48,11 +48,9 @@ footer a {
 	footer a:hover *,
 	footer label:hover {
 		color: var(--colorAntreprizaRed);
-		/* font-weight: 400; */
 	}
 	footer .info-text:has(a:hover) {
 		color: var(--colorAntreprizaRed);
-		/* font-weight: 400; */
 	}
 }
 
