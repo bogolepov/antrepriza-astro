@@ -61,7 +61,8 @@
 
 .ticket-form .play-descr {
 	color: var(--colorFont-Op1);
-	padding-bottom: 0.3em;
+	padding-top: 0.2em;
+	padding-bottom: 0.9em;
 	line-height: 1em;
 }
 

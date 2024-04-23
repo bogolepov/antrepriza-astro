@@ -7,8 +7,11 @@
 			"@layouts/*": ["src/layouts/*"],
 			"@styles/*": ["src/styles/*"],
 			"@data/*": ["src/data/*"],
+			"@public_data/*": ["public/data/*"],
 			"@svg/*": ["src/svg/*"],
 			"@assets/*": ["src/assets/*"]
-		}
+		},
+		"jsx": "react-jsx",
+		"jsxImportSource": "react"
 	}
 }

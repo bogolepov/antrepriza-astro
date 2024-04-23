@@ -43,6 +43,20 @@
 	],
 	"plays": [
 		{
+			"id": 9,
+			"suffix": "n32",
+			"title": { "ru": "Незнакомка 32", "de": "Die Fremde 32" },
+			"alt_title": { "ru": "Незнакомка\u00A032", "de": "Die\u00A0Fremde\u00A032" },
+			"author": { "ru": "Вл.Зайкин", "de": "V.Zajkin" },
+			"author_full": { "ru": "Владимир Зайкин", "de": "Vladimir Zajkin" },
+			"genre": { "ru": "комедия", "de": "Komödie" },
+			"length": 120,
+			"break": false,
+			"age": "16+",
+			"lang": { "ru": "русский", "de": "Russisch" },
+			"url_kontramarka": ""
+		},
+		{
 			"id": 8,
 			"suffix": "miks",
 			"title": { "ru": "Малыш и Карл(CОН)", "de": "Steppke und Karl(SON)" },
@@ -50,9 +64,9 @@
 			"author": { "ru": "К.Попов", "de": "K.Popov" },
 			"author_full": { "ru": "Константин Попов", "de": "Konstantin Popov" },
 			"genre": { "ru": "современная история", "de": "moderne Geschichte" },
-			"length": 90,
-			"break": false,
-			"age": "18+",
+			"length": 125,
+			"break": true,
+			"age": "16+",
 			"lang": { "ru": "русский", "de": "Russisch" },
 			"url_kontramarka": "https://www.kontramarka.de/tour/antrepriza-spektakl-malysh-i-karlson/"
 		},

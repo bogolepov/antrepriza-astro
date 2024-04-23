@@ -1,5 +1,33 @@
 [
 	{
+		"id": 9,
+		"suffix": "n32",
+		"title": { "ru": "Незнакомка 32", "de": "Die Fremde 32" },
+		"alt_title": { "ru": "Незнакомка\u00A032", "de": "Die\u00A0Fremde\u00A032" },
+		"author": { "ru": "Вл.Зайкин", "de": "V.Zajkin" },
+		"author_full": { "ru": "Владимир Зайкин", "de": "Vladimir Zajkin" },
+		"genre": { "ru": "комедия", "de": "Komödie" },
+		"length": 120,
+		"break": false,
+		"age": "16+",
+		"description": { "ru": "play_miks_ru", "de": "play_miks_de" },
+		"posters": {
+			"landscape": "karl.son.jpg",
+			"landscape_16_9": "karl.son_16_9.jpg",
+			"portrait": "karl.son_poster.jpg",
+			"facebook": "",
+			"minimum": ""
+		},
+		"lang": { "ru": "русский", "de": "Russisch" },
+		"characters": [],
+		"creators": [
+			{ "type": "regie", "people": [1] },
+			{ "type": "light", "people": [4] },
+			{ "type": "sound", "people": [7] },
+			{ "type": "graphic_design", "people": [6] }
+		]
+	},
+	{
 		"id": 8,
 		"suffix": "miks",
 		"title": { "ru": "Малыш и Карл(CОН)", "de": "Steppke und Karl(SON)" },

@@ -1,5 +1,119 @@
 [
 	{
+		"date": "2024-12-22",
+		"time": "17:00",
+		"play_id": 6,
+		"free_place": true,
+		"prices": ["kids", "adult", "reduce"]
+	},
+	{
+		"date": "2024-12-21",
+		"time": "17:00",
+		"play_id": 6,
+		"free_place": true,
+		"prices": ["kids", "adult", "reduce"]
+	},
+	{
+		"date": "2024-12-20",
+		"time": "17:00",
+		"play_id": 6,
+		"free_place": true,
+		"prices": ["kids", "adult", "reduce"]
+	},
+	{
+		"date": "2024-12-19",
+		"time": "17:00",
+		"play_id": 6,
+		"free_place": true,
+		"prices": ["kids", "adult", "reduce"]
+	},
+	{
+		"date": "2024-11-28",
+		"time": "19:30",
+		"play_id": 9,
+		"free_place": true,
+		"prices": ["standart", "reduce"],
+		"premiere": true
+	},
+	{
+		"date": "2024-11-27",
+		"time": "19:30",
+		"play_id": 9,
+		"free_place": true,
+		"prices": ["standart", "reduce"],
+		"premiere": true
+	},
+	{
+		"date": "2024-11-14",
+		"time": "19:30",
+		"play_id": 8,
+		"free_place": true,
+		"prices": ["standart", "reduce"]
+	},
+	{
+		"date": "2024-10-27",
+		"time": "19:30",
+		"play_id": 5,
+		"free_place": true,
+		"prices": ["standart", "reduce"]
+	},
+	{
+		"date": "2024-10-26",
+		"time": "19:30",
+		"play_id": 5,
+		"free_place": true,
+		"prices": ["standart", "reduce"]
+	},
+	{
+		"date": "2024-10-25",
+		"time": "19:30",
+		"play_id": 5,
+		"free_place": true,
+		"prices": ["standart", "reduce"]
+	},
+	{
+		"date": "2024-10-06",
+		"time": "17:00",
+		"play_id": 6,
+		"free_place": true,
+		"prices": ["kids", "adult", "reduce"]
+	},
+	{
+		"date": "2024-09-23",
+		"time": "19:30",
+		"play_id": 1,
+		"free_place": true,
+		"prices": ["standart", "reduce"]
+	},
+	{
+		"date": "2024-09-16",
+		"time": "19:30",
+		"play_id": 5,
+		"free_place": true,
+		"prices": ["standart", "reduce"]
+	},
+	{
+		"date": "2024-09-10",
+		"time": "19:30",
+		"play_id": 4,
+		"free_place": true,
+		"prices": ["standart", "reduce"]
+	},
+	{
+		"date": "2024-09-01",
+		"time": "17:00",
+		"play_id": 6,
+		"free_place": true,
+		"prices": ["kids", "adult", "reduce"]
+	},
+	{
+		"date": "2024-08-25",
+		"time": "19:30",
+		"play_id": 1,
+		"free_place": true,
+		"prices": ["standart", "reduce"]
+	},
+	{
 		"date": "2024-05-05",
 		"time": "17:00",
 		"play_id": 6,

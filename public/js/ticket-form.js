@@ -15,6 +15,8 @@ let elemTime;
 let elemAddress;
 let elemStageName;
 let elemPlace;
+let elemPriceBlocks;
+let elemPriceCounters;
 
 function initTicketBookForm() {
 	let ticketBtns = document.getElementsByClassName('tickets-book-button');
@@ -32,6 +34,8 @@ function initTicketBookForm() {
 	elemAddress = document.querySelector('.play-address');
 	elemStageName = document.querySelector('.play-stage-name');
 	elemPlace = document.querySelector('.play-place');
+	elemPriceBlocks = document.querySelectorAll('.price-flex');
+	elemPriceCounters = document.querySelectorAll('.count-input');
 }
 
 function openForm(event, button) {
@@ -73,6 +77,15 @@ function openForm(event, button) {
 function closeForm() {
 	const form = document.querySelector('.ticket-layer');
 	form.classList.remove('show');
+
+	elemPlayTitle.innerHTML = '';
+	elemPlayDescription.innerHTML = '';
+	elemDate.innerHTML = '';
+	elemTime.innerHTML = '';
+	elemAddress.innerHTML = '';
+	elemStageName.innerHTML = '';
+	elemPlace.innerHTML = '';
+	elemPriceCounters.forEach(element => (element.value = '0'));
 }
 
 function resetTicketForm(event) {
@@ -107,12 +120,7 @@ function json_prepare(jsonName, jsonIndex) {
 }
 
 function updatePrices() {
-	elemPrices = document.querySelectorAll('.price-flex');
-	if (!elemPrices) {
-		console.error('price-flex is not found!!!');
-		return;
-	}
-	elemPrices.forEach(element => {
+	elemPriceBlocks.forEach(element => {
 		element.style.display = afishaItem.prices.includes(element.dataset['type']) ? 'flex' : 'none';
 	});
 }

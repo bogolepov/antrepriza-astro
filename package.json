@@ -10,8 +10,15 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/react": "^3.3.0",
+    "@astrojs/vue": "^4.1.0",
+    "@types/react": "^18.2.79",
+    "@types/react-dom": "^18.2.25",
     "astro": "^4.2.6",
-    "json5": "^2.2.3"
+    "json5": "^2.2.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "vue": "^3.4.24"
   },
   "devDependencies": {
     "prettier": "^3.1.0",

@@ -1,8 +1,9 @@
 ---
-import Header from "../components/header.astro";
-import Footer from "../components/footer.astro";
+import Header from "@components/header.astro";
+import Footer from "@components/footer.astro";
+import Reservation from "@components/reservation/Reservation";
 
-const {title,lang} = Astro.props;
+const {title,lang, reservation} = Astro.props;
 const pageTitle = title || ( lang === "de" ? "Theater Antrepriza Berlin" : "Театр Антреприза Берлин");
 
 ---
@@ -47,9 +48,14 @@ const pageTitle = title || ( lang === "de" ? "Theater Antrepriza Berlin" : "Те
 			<Header lang={lang} />
 			<main class="wrapper-main">
 				<slot/>
+				{
+					(reservation !== 'no') &&
+					<Reservation client:only="react"></Reservation>
+				}
 			</main>
 			<Footer lang={lang} />
 		</div>
+	
 	</body>
 	
 </html>
