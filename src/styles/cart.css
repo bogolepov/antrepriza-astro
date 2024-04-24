@@ -1,5 +1,4 @@
 .ticket-cart {
-	display: none;
 	position: fixed;
 	z-index: 1180;
 	height: 100svh;
@@ -8,14 +7,32 @@
 
 	height: 100%;
 	background-color: var(--colorBkgForm);
-	padding: 10px 15px;
+	/* padding: 10px 15px; */
 	text-align: left;
 	border-left: 2px solid var(--colorBorderForm);
 	box-shadow: 0 0 12px 3px var(--colorBoxShadow);
+	transform-origin: right center;
+	transform: scaleX(0);
+	transition: 0.5s transform ease-in-out;
+}
+
+.ticket-cart.show {
+	transform: scaleX(1);
 }
 
 .ticket-cart .cart-titel {
 	line-height: 1.1em;
+}
+
+.cart-content {
+	display: flex;
+	flex-direction: column;
+	padding: 25px 20px 16px 20px;
+	height: 100%;
+}
+
+.order-list {
+	flex-grow: 1;
 }
 
 .ticket-order {
@@ -26,16 +43,55 @@
 .cart-button {
 	position: fixed;
 	z-index: 1160;
-	top: calc(var(--headerHeight) + 10px);
+	top: max(calc(var(--headerHeight) + 10px), 22vh);
 	right: 0;
 	text-align: center;
-	padding: 10px 15px;
+	padding: 5px 10px;
 
 	background-color: var(--colorBkgTicketsBtn);
 	color: var(--colorFontTicketsBtn);
 	font-weight: 400;
-	line-height: 1.1rem;
+	line-height: 1.1em;
 	text-transform: uppercase;
 	border: 1px solid var(--colorBkgTicketsBtn);
 	border-radius: 3px;
+	cursor: pointer;
+}
+
+.cart-icon {
+	line-height: 1em;
+	margin: auto 0;
+	padding-top: 3px;
+	transform: rotate(-18deg);
+}
+
+.cart-icon .svg_icon {
+	fill: var(--colorFontTicketsBtn);
+	width: 1.6em;
+	height: 1.6em;
+}
+
+.close-cart__button {
+	position: absolute;
+	top: 3px;
+	right: 3px;
+	background-color: transparent;
+	color: var(--colorFontDate);
+	border: 0px;
+	font-size: 20px;
+	line-height: 20px;
+	font-weight: var(--font-bold-weight);
+	padding: 1px 3px;
+	cursor: pointer;
+}
+
+.close-cart__button:focus-visible {
+	outline: 1px solid var(--colorAntreprizaRed);
+}
+.close-cart__button:hover {
+	color: var(--colorAntreprizaRed);
+}
+
+.cart-book-button {
+	width: 100%;
 }

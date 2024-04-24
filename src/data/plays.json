@@ -35,9 +35,9 @@
 		"author": { "ru": "К.Попов", "de": "K.Popov" },
 		"author_full": { "ru": "Константин Попов", "de": "Konstantin Popov" },
 		"genre": { "ru": "современная история", "de": "moderne Geschichte" },
-		"length": 90,
-		"break": false,
-		"age": "18+",
+		"length": 125,
+		"break": true,
+		"age": "16+",
 		"description": { "ru": "play_miks_ru", "de": "play_miks_de" },
 		"posters": {
 			"landscape": "karl.son.jpg",

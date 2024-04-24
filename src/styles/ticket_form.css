@@ -156,6 +156,13 @@
 	color: var(--grey-10);
 	border: 1px solid var(--colorBkgTicketsBtn);
 	border-radius: 3px;
+	cursor: pointer;
+}
+.ticket-form-book-button[disabled] {
+	background-color: var(--colorBkgDisabledBtn);
+	color: var(--colorFontDisabledBtn);
+	border: 1px solid var(--colorBkgDisabledBtn);
+	cursor: auto;
 }
 .book-at-kontramarka .ticket-form-book-button {
 	padding: 0 0.5em;

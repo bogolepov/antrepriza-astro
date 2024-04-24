@@ -1,3 +1,5 @@
+const RESERVATION_KEY = 'reservations';
+
 let jsonAfisha;
 let jsonTheater;
 let jsonDictionary;
@@ -17,6 +19,7 @@ let elemStageName;
 let elemPlace;
 let elemPriceBlocks;
 let elemPriceCounters;
+let elemBookButton;
 
 function initTicketBookForm() {
 	let ticketBtns = document.getElementsByClassName('tickets-book-button');
@@ -27,6 +30,9 @@ function initTicketBookForm() {
 
 	elemLoader = document.querySelector('.layer-on-parent.ticket-form-loader');
 
+	elemBookButton = document.querySelector('.ticket-form-book-button');
+	elemBookButton.disabled = true;
+
 	elemPlayTitle = document.querySelector('.play-name');
 	elemPlayDescription = document.querySelector('.play-descr');
 	elemDate = document.querySelector('.play-date');
@@ -35,7 +41,13 @@ function initTicketBookForm() {
 	elemStageName = document.querySelector('.play-stage-name');
 	elemPlace = document.querySelector('.play-place');
 	elemPriceBlocks = document.querySelectorAll('.price-flex');
+
 	elemPriceCounters = document.querySelectorAll('.count-input');
+	for (let counter of elemPriceCounters) {
+		counter.addEventListener('change', () => {
+			elemBookButton.disabled = getTicketsCount() === 0;
+		});
+	}
 }
 
 function openForm(event, button) {
@@ -86,6 +98,7 @@ function closeForm() {
 	elemStageName.innerHTML = '';
 	elemPlace.innerHTML = '';
 	elemPriceCounters.forEach(element => (element.value = '0'));
+	elemBookButton.disabled = true;
 }
 
 function resetTicketForm(event) {
@@ -98,6 +111,24 @@ function buttonToKontramarka(event) {
 }
 
 function buttonAddToCart(event) {
+	let reservations;
+	let value = window.localStorage.getItem(RESERVATION_KEY);
+	if (value) reservations = JSON.parse(value);
+	else reservations = [];
+
+	let reservation = reservations.find(
+		item => item.date === afishaItem.date && item.time === afishaItem.time && item.play_id === afishaItem.play_id
+	);
+	if (reservation) {
+		reservation.tickets.forEach(price_type => (price_type.count += getTicketCount(price_type.type)));
+	} else {
+		let newTickets = [];
+		jsonTheater.prices.forEach(price => newTickets.push({ type: price.type, count: getTicketCount(price.type) }));
+		let newReservation = { date: afishaItem.date, time: afishaItem.time, play_id: afishaItem.play_id, tickets: newTickets };
+		reservations.push(newReservation);
+	}
+	window.localStorage.setItem(RESERVATION_KEY, JSON.stringify(reservations));
+
 	closeForm();
 }
 
@@ -162,4 +193,18 @@ function getStageName() {
 
 function getPlaceInfo() {
 	return jsonDictionary.free_place[currLang];
+}
+
+function getTicketCount(price_type) {
+	let elCounter = document.querySelector('#count-' + price_type);
+	if (!elCounter) console.log('COUNT-element: NOT FOUND!');
+	return Number(elCounter.value);
+}
+
+function getTicketsCount() {
+	let count = 0;
+	for (let counter of elemPriceCounters) {
+		count += Number(counter.value);
+	}
+	return count;
 }
