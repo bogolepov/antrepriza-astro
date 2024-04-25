@@ -11,9 +11,17 @@
 		<meta name="robots" content="noindex, follow" />
 	</head>
 	<body>
-		<script is:inline src="/js/antrepriza.js"></script>
 		<script is:inline>
-				selectRoot();
+			const CNF_LANG = 'LANG';
+			const LANG_RU = 'ru';
+			const LANG_DE = 'de';
+			let userLang = localStorage.getItem(CNF_LANG) || navigator.language || navigator.userLanguage;
+			if (userLang && (userLang = userLang.toLowerCase()) && userLang.includes(LANG_DE)) {
+				currLang = LANG_DE;
+			} else {
+				currLang = LANG_RU;
+			}
+			window.location.replace(`/${currLang}/`);
 		</script>
 	</body>
 </html>

@@ -1,17 +1,15 @@
 export default function Order({ lang, play, handleAddTicket, handleRemoveTicket }) {
 	console.log(play);
 	return (
-		<div className='ticket-order'>
+		<li className='ticket-order'>
 			{play.date} {play.time}
 			{play.tickets.map(ticket_type => {
-				if (ticket_type.count > 0)
-					return (
-						<div>
-							{ticket_type.type} {ticket_type.count}
-						</div>
-					);
-				else return <></>;
+				return ticket_type.count > 0 ? (
+					<div>
+						{ticket_type.type} {ticket_type.count}
+					</div>
+				) : null;
 			})}
-		</div>
+		</li>
 	);
 }

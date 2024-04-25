@@ -12,10 +12,12 @@ export default function Cart({ lang, tickets, isShow, handleCloseClick, handleAd
 			</button>
 			<div className='cart-content'>
 				<h4 className='cart-titel'>Meine Bestellungen</h4>
-				<div className='order-list'>
-					{tickets.map((play, index) => (
-						<Order key={index} lang={lang} play={play} handleAddTicket={handleAddTicket} handleRemoveTicket={handleRemoveTicket} />
-					))}
+				<div className='order-list-wrapper'>
+					<ul className='order-list'>
+						{tickets.map((play, index) => (
+							<Order key={index} lang={lang} play={play} handleAddTicket={handleAddTicket} handleRemoveTicket={handleRemoveTicket} />
+						))}
+					</ul>
 				</div>
 				<div className='cart-footer'>
 					<button className='cart-book-button'>Забронировать</button>
