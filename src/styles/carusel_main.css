@@ -1,3 +1,16 @@
+.main-gallery {
+	/* position: relative; */
+	height: calc(100vh - var(--headerHeight));
+	max-height: 120vw;
+}
+.main-gallery-position {
+	position: absolute;
+	left: 0;
+	right: 0;
+	height: calc(100vh - var(--headerHeight));
+	max-height: 120vw;
+}
+
 .swiper {
 	--colorSmallFontMainGallery: var(--grey-13);
 	--colorBigFontMainGallery: rgb(125, 81, 79);
@@ -5,15 +18,15 @@
 	/* --colorBkgMainGallery: var(--grey-56); */
 }
 
-.wrapper-main {
+/* .wrapper-main {
 	margin: 0;
-}
+} */
 
 .swiper {
 	display: flex;
 	width: 100%;
-	height: calc(100vh - var(--headerHeight));
-	max-height: 120vw;
+	height: 100%;
+	/* height: calc(100vh - var(--headerHeight)); */
 	margin: 0;
 	position: relative;
 	background-color: var(--colorBkgMainGallery);
