@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { useStore } from '@nanostores/react';
+
 import Cart from '@components/reservation/Cart';
 import CartButton from '@components/reservation/CartButton';
+import { isCartOpen } from './cartStore';
 
 const RESERVATION_KEY = 'reservations';
 
@@ -8,8 +11,11 @@ export default function Reservation({ lang }) {
 	const [reservations, setReservations] = useState([]);
 	const [isCartShow, setIsCartShow] = useState(false);
 
+	const $isCartOpen = useStore(isCartOpen);
+
 	let handleCartButtonClick = () => {
 		setIsCartShow(prev => !prev);
+		isCartOpen.set(!$isCartOpen);
 	};
 
 	let handleAddOneTicket = play => {};

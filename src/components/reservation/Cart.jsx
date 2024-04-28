@@ -1,12 +1,17 @@
+import { useStore } from '@nanostores/react';
+import { isCartOpen } from './cartStore';
+
 import '@styles/antrepriza.css';
 import '@styles/cart.css';
 
 import Order from '@components/reservation/Order';
 
 export default function Cart({ lang, tickets, isShow, handleCloseClick, handleAddTicket, handleRemoveTicket }) {
+	const $isCartOpen = useStore(isCartOpen);
+
 	tickets.sort((play1, play2) => Date.parse(play1.date + 'T' + play1.time) - Date.parse(play2.date + 'T' + play2.time));
 	return (
-		<div className={'ticket-cart' + (isShow ? ' show' : '')}>
+		<div className={'ticket-cart' + ($isCartOpen ? ' show' : '')}>
 			<button className='close-cart__button' onClick={handleCloseClick}>
 				&#10006;
 			</button>
