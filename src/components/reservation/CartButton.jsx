@@ -1,4 +1,10 @@
-export default function CartButton({ count, handleClick }) {
+import { useStore } from '@nanostores/react';
+import { isTicketsAdded } from './cartStore';
+
+export default function CartButton({ handleCount, handleClick }) {
+	const $isTicketsAdded = useStore(isTicketsAdded);
+
+	const count = handleCount();
 	return (
 		<>
 			{count !== 0 && (

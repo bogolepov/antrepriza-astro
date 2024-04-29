@@ -1,7 +1,5 @@
-import { useStore } from '@nanostores/react';
-import { isCartOpen } from './cartStore';
-
-// const $isCartOpen = useStore(isCartOpen);
+import { atom } from 'nanostores';
+import { isCartOpen, isTicketsAdded } from './cartStore';
 
 const RESERVATION_KEY = 'reservations';
 
@@ -15,6 +13,7 @@ let playItem;
 
 let elemLoader;
 
+let elemForm;
 let elemPlayTitle;
 let elemPlayDescription;
 let elemDate;
@@ -32,6 +31,8 @@ export function initTicketBookForm() {
 		btn.disabled = false;
 		btn.addEventListener('click', event => openForm(event, btn));
 	}
+
+	elemForm = document.querySelector('.ticket-layer');
 
 	let btn = document.querySelector('#ticket-form-close-button');
 	if (!btn) console.log('CLOSE BUTTON not found');
@@ -68,8 +69,9 @@ export function initTicketBookForm() {
 }
 
 function openForm(event, button) {
-	const form = document.querySelector('.ticket-layer');
-	form.classList.add('show');
+	isTicketsAdded.set(false);
+
+	elemForm.classList.add('show');
 
 	elemLoader.classList.add('show');
 	json_prepare('/data/afisha.json', 0)
@@ -104,8 +106,7 @@ function openForm(event, button) {
 }
 
 function closeForm() {
-	const form = document.querySelector('.ticket-layer');
-	form.classList.remove('show');
+	elemForm.classList.remove('show');
 
 	elemPlayTitle.innerHTML = '';
 	elemPlayDescription.innerHTML = '';
@@ -147,7 +148,8 @@ function handleAddToCart() {
 	window.localStorage.setItem(RESERVATION_KEY, JSON.stringify(reservations));
 
 	closeForm();
-	// isCartOpen.set(true);
+	isCartOpen.set(true);
+	isTicketsAdded.set(true);
 }
 
 function json_prepare(jsonName, jsonIndex) {

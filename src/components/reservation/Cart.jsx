@@ -6,7 +6,7 @@ import '@styles/cart.css';
 
 import Order from '@components/reservation/Order';
 
-export default function Cart({ lang, tickets, isShow, handleCloseClick, handleAddTicket, handleRemoveTicket }) {
+export default function Cart({ lang, tickets, handleCloseClick, handleAddTicket, handleRemoveTicket }) {
 	const $isCartOpen = useStore(isCartOpen);
 
 	tickets.sort((play1, play2) => Date.parse(play1.date + 'T' + play1.time) - Date.parse(play2.date + 'T' + play2.time));
@@ -24,9 +24,7 @@ export default function Cart({ lang, tickets, isShow, handleCloseClick, handleAd
 						))}
 					</ul>
 				</div>
-				<div className='cart-footer'>
-					<button className='cart-book-button'>Забронировать</button>
-				</div>
+				<div className='cart-footer'>{tickets.length > 0 && <button className='cart-book-button'>Забронировать</button>}</div>
 			</div>
 		</div>
 	);
