@@ -1,12 +1,11 @@
 import { atom } from 'nanostores';
 import { isCartOpen, isTicketsAdded } from './cartStore';
 
+import { loadClientJsons } from '@scripts/loadClientJsons';
+
 const RESERVATION_KEY = 'reservations';
 
-let jsonAfisha;
-let jsonTheater;
-let jsonDictionary;
-const JSONs = [jsonAfisha, jsonTheater, jsonDictionary];
+const clientJsons = { afisha: null, theater: null, dictionary: null };
 
 let afishaItem;
 let playItem;
@@ -74,35 +73,36 @@ function openForm(event, button) {
 	elemForm.classList.add('show');
 
 	elemLoader.classList.add('show');
-	json_prepare('/data/afisha.json', 0)
-		.then(() => json_prepare('/data/theater.json', 1))
-		.then(() => json_prepare('/data/dictionary_client.json', 2))
-		.then(() => {
-			let aDate = button.getAttribute('data-date');
-			let aTime = button.getAttribute('data-time');
 
-			afishaItem = jsonAfisha.find(item => item.date === aDate && item.time === aTime);
-			if (!afishaItem) {
-				alert('Afisha Error!');
-			}
-			playItem = jsonTheater.plays.find(item => afishaItem.play_id == item.id);
-			if (!playItem) {
-				alert('Play Error!');
-			}
-			if (afishaItem && playItem) {
-				elemPlayTitle.innerHTML = playItem.title[currLang];
-				elemPlayDescription.innerHTML = getPlayDescription();
-				elemDate.innerHTML = getPlayDate();
-				elemTime.innerHTML = getPlayTime();
-				elemAddress.innerHTML = getAddress();
-				elemStageName.innerHTML = getStageName();
-				elemPlace.innerHTML = getPlaceInfo();
-				updatePrices();
-			}
-		})
-		.finally(() => {
-			elemLoader.classList.remove('show');
-		});
+	const handleThen = () => {
+		let aDate = button.getAttribute('data-date');
+		let aTime = button.getAttribute('data-time');
+
+		afishaItem = clientJsons.afisha.find(item => item.date === aDate && item.time === aTime);
+		if (!afishaItem) {
+			alert('Afisha Error!');
+		}
+		playItem = clientJsons.theater.plays.find(item => afishaItem.play_id == item.id);
+		if (!playItem) {
+			alert('Play Error!');
+		}
+		if (afishaItem && playItem) {
+			elemPlayTitle.innerHTML = playItem.title[currLang];
+			elemPlayDescription.innerHTML = getPlayDescription();
+			elemDate.innerHTML = getPlayDate();
+			elemTime.innerHTML = getPlayTime();
+			elemAddress.innerHTML = getAddress();
+			elemStageName.innerHTML = getStageName();
+			elemPlace.innerHTML = getPlaceInfo();
+			updatePrices();
+		}
+	};
+
+	const handleFinally = () => {
+		elemLoader.classList.remove('show');
+	};
+
+	loadClientJsons(clientJsons, handleThen, handleFinally);
 }
 
 function closeForm() {
@@ -141,7 +141,7 @@ function handleAddToCart() {
 		reservation.tickets.forEach(price_type => (price_type.count += getTicketCount(price_type.type)));
 	} else {
 		let newTickets = [];
-		jsonTheater.prices.forEach(price => newTickets.push({ type: price.type, count: getTicketCount(price.type) }));
+		clientJsons.theater.prices.forEach(price => newTickets.push({ type: price.type, count: getTicketCount(price.type) }));
 		let newReservation = { date: afishaItem.date, time: afishaItem.time, play_id: afishaItem.play_id, tickets: newTickets };
 		reservations.push(newReservation);
 	}
@@ -152,24 +152,6 @@ function handleAddToCart() {
 	isTicketsAdded.set(true);
 }
 
-function json_prepare(jsonName, jsonIndex) {
-	return new Promise(function (resolve, reject) {
-		if (JSONs[jsonIndex]) resolve();
-		else {
-			fetch(jsonName)
-				.then(response => response.json())
-				.then(jsonData => {
-					JSONs[jsonIndex] = jsonData;
-					if (jsonIndex == 0) jsonAfisha = jsonData;
-					else if (jsonIndex == 1) jsonTheater = jsonData;
-					else if (jsonIndex == 2) jsonDictionary = jsonData;
-					resolve();
-				})
-				.catch(error => reject(error));
-		}
-	});
-}
-
 function updatePrices() {
 	elemPriceBlocks.forEach(element => {
 		element.style.display = afishaItem.prices.includes(element.dataset['type']) ? 'flex' : 'none';
@@ -178,7 +160,7 @@ function updatePrices() {
 
 function getPlayDescription() {
 	let playLang = playItem.lang['ru'].toLowerCase() === 'немецкий' ? 'de' : 'ru';
-	return playItem.genre[currLang] + ', ' + playItem.age + ', ' + jsonDictionary.play_lang[playLang][currLang];
+	return playItem.genre[currLang] + ', ' + playItem.age + ', ' + clientJsons.dictionary.play_lang[playLang][currLang];
 }
 
 function getPlayDate() {
@@ -200,19 +182,19 @@ function getAddress() {
 	if (afishaItem.address) {
 		return afishaItem.address;
 	} else {
-		return jsonTheater.stageAddress.full_string;
+		return clientJsons.theater.stageAddress.full_string;
 	}
 }
 function getStageName() {
 	if (afishaItem.address) {
 		return afishaItem.address;
 	} else {
-		return jsonTheater.stageAddress.name;
+		return clientJsons.theater.stageAddress.name;
 	}
 }
 
 function getPlaceInfo() {
-	return jsonDictionary.free_place[currLang];
+	return clientJsons.dictionary.free_place[currLang];
 }
 
 function getTicketCount(price_type) {

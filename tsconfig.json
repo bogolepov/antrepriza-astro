@@ -9,7 +9,8 @@
 			"@data/*": ["src/data/*"],
 			"@public_data/*": ["public/data/*"],
 			"@svg/*": ["src/svg/*"],
-			"@assets/*": ["src/assets/*"]
+			"@assets/*": ["src/assets/*"],
+			"@scripts/*": ["src/scripts/*"]
 		},
 		"jsx": "react-jsx",
 		"jsxImportSource": "react"
