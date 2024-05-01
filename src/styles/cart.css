@@ -4,6 +4,7 @@
 	top: var(--headerHeight);
 	right: 0;
 	bottom: 0;
+	min-width: min(250px, 100vw);
 
 	background-color: var(--colorBkgForm);
 	text-align: left;
@@ -22,6 +23,12 @@
 	.ticket-cart {
 		top: 0;
 	}
+}
+
+.loader-wrapper {
+	width: 100%;
+	height: 100%;
+	position: relative;
 }
 
 .ticket-cart .cart-titel {

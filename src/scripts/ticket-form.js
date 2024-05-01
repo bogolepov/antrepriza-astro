@@ -1,5 +1,5 @@
 import { atom } from 'nanostores';
-import { isCartOpen, isTicketsAdded } from './cartStore';
+import { isCartOpen, isTicketsAdded } from '@react-components/reservation/cartStore';
 
 import { loadClientJsons } from '@scripts/loadClientJsons';
 

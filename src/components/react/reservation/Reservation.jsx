@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useStore } from '@nanostores/react';
 
-import Cart from '@components/reservation/Cart';
-import CartButton from '@components/reservation/CartButton';
+import Cart from '@components/react/reservation/Cart';
+import CartButton from '@components/react/reservation/CartButton';
 import { isCartOpen, isTicketsAdded } from './cartStore';
 
 const RESERVATION_KEY = 'reservations';
