@@ -41,11 +41,18 @@ export default function Cart({ lang, tickets, handleCloseClick, handleAddTicket,
 				)}
 				{isJsonsLoaded && (
 					<>
-						<h4 className='cart-titel'>{clientJsons.dictionary.my_reservations[lang]}</h4>
+						<h5 className='cart-title'>{clientJsons.dictionary.my_reservations[lang]}</h5>
 						<div className='order-list-wrapper'>
 							<ul className='order-list'>
 								{tickets.map((play, index) => (
-									<Order key={index} lang={lang} play={play} handleAddTicket={handleAddTicket} handleRemoveTicket={handleRemoveTicket} />
+									<Order
+										key={play.date + 'T' + play.time}
+										lang={lang}
+										jsons={clientJsons}
+										play={play}
+										handleAddTicket={handleAddTicket}
+										handleRemoveTicket={handleRemoveTicket}
+									/>
 								))}
 							</ul>
 						</div>

@@ -54,17 +54,13 @@ export default function Reservation({ lang }) {
 					//
 					return {
 						...play_item,
-						tickets:
-							typeCount > 1
-								? play_item.tickets.map(ticket_type => {
-										if (ticket_type.type === ticketType) {
-											return { ...ticket_type, count: ticket_type.count - 1 };
-										} else {
-											return ticket_type;
-										}
-								  })
-								: // remove item with ticketType, because new count of this type tickets is 0
-								  play_item.tickets.filter(ticket_type => ticket_type.type !== ticketType),
+						tickets: play_item.tickets.map(ticket_type => {
+							if (ticket_type.type === ticketType) {
+								return { ...ticket_type, count: typeCount > 1 ? ticket_type.count - 1 : 0 };
+							} else {
+								return ticket_type;
+							}
+						}),
 					};
 				} else {
 					// no changes

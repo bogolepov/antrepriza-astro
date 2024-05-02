@@ -9,7 +9,6 @@ export function loadClientJsons(jsonContainer, handleThen, handleFinally, handle
 		return;
 	}
 
-	console.log('call loadClientJsons');
 	json_prepare('/data/afisha.json', 0)
 		.then(() => json_prepare('/data/theater.json', 1))
 		.then(() => json_prepare('/data/dictionary_client.json', 2))
