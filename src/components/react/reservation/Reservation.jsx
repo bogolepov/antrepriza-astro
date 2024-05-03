@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useStore } from '@nanostores/react';
 
-import Cart from '@components/react/reservation/Cart';
+import { Cart, getPrice } from '@components/react/reservation/Cart';
 import CartButton from '@components/react/reservation/CartButton';
 import { isCartOpen, isTicketsAdded } from './cartStore';
 
@@ -9,11 +9,13 @@ const RESERVATION_KEY = 'reservations';
 
 export default function Reservation({ lang }) {
 	const [reservations, setReservations] = useState([]);
+	const [totalAmount, setTotalAmount] = useState(0);
 
 	const $isCartOpen = useStore(isCartOpen);
 	const $isTicketsAdded = useStore(isTicketsAdded);
 
 	let handleCartButtonClick = () => {
+		if (totalAmount === 0 && $isCartOpen === false) setTotalAmount(calcTotalAmount(reservations));
 		isCartOpen.set(!$isCartOpen);
 	};
 
@@ -37,6 +39,7 @@ export default function Reservation({ lang }) {
 			}
 		});
 		setReservations(updReservations);
+		setTotalAmount(calcTotalAmount(updReservations));
 		window.localStorage.setItem(RESERVATION_KEY, JSON.stringify(updReservations));
 	};
 
@@ -47,6 +50,7 @@ export default function Reservation({ lang }) {
 			);
 			// remove this play from reservations
 			setReservations(updReservations);
+			setTotalAmount(calcTotalAmount(updReservations));
 			window.localStorage.setItem(RESERVATION_KEY, JSON.stringify(updReservations));
 		} else {
 			const updReservations = reservations.map(play_item => {
@@ -68,12 +72,15 @@ export default function Reservation({ lang }) {
 				}
 			});
 			setReservations(updReservations);
+			setTotalAmount(calcTotalAmount(updReservations));
 			window.localStorage.setItem(RESERVATION_KEY, JSON.stringify(updReservations));
 		}
 	};
 
 	useEffect(() => {
-		setReservations(loadReservationsFromStorage());
+		let loadedReservations = loadReservationsFromStorage();
+		setReservations(loadedReservations);
+		setTotalAmount(calcTotalAmount(loadedReservations));
 	}, [$isTicketsAdded]);
 
 	function loadReservationsFromStorage() {
@@ -86,7 +93,9 @@ export default function Reservation({ lang }) {
 		// then counter od CartButton and reservations-state will be updated
 		window.addEventListener('storage', e => {
 			if (e.key === RESERVATION_KEY) {
-				setReservations(JSON.parse(e.newValue));
+				let updReservations = JSON.parse(e.newValue);
+				setReservations(updReservations);
+				setTotalAmount(calcTotalAmount(updReservations));
 			}
 		});
 
@@ -109,11 +118,22 @@ export default function Reservation({ lang }) {
 		return playCount;
 	}
 
+	function calcTotalAmount(myReservations) {
+		let amount = 0;
+		myReservations.map(item => {
+			item.tickets.map(ticket_type => {
+				amount += ticket_type.count * getPrice(ticket_type.type);
+			});
+		});
+		return amount;
+	}
+
 	return (
 		<>
 			<Cart
 				lang={lang}
 				tickets={reservations}
+				totalAmount={totalAmount}
 				handleCloseClick={handleCartButtonClick}
 				handleAddTicket={handleAddOneTicket}
 				handleRemoveTicket={handleRemoveOneTicket}

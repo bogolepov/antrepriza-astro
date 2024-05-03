@@ -12,7 +12,12 @@ import Order from '@components/react/reservation/Order';
 
 const clientJsons = { afisha: null, theater: null, dictionary: null };
 
-export default function Cart({ lang, tickets, handleCloseClick, handleAddTicket, handleRemoveTicket }) {
+export function getPrice(price_type) {
+	if (clientJsons.theater === null) return 0;
+	return clientJsons.theater.prices.find(price => price.type === price_type).value;
+}
+
+export function Cart({ lang, tickets, totalAmount, handleCloseClick, handleAddTicket, handleRemoveTicket }) {
 	const $isCartOpen = useStore(isCartOpen);
 	const [isJsonsLoaded, setIsJsonsLoaded] = useState(false);
 
@@ -57,7 +62,15 @@ export default function Cart({ lang, tickets, handleCloseClick, handleAddTicket,
 							</ul>
 						</div>
 						<div className='cart-footer'>
-							{tickets.length > 0 && <button className='cart-book-button'>{clientJsons.dictionary.btn_reservation[lang]}</button>}
+							{tickets.length > 0 && (
+								<>
+									<div className='order-flex'>
+										<div className='item-name'>{clientJsons.dictionary.total_amount[lang]}</div>
+										<div className='item-amount'>{totalAmount}€</div>
+									</div>
+									<button className='tickets-book-button'>{clientJsons.dictionary.btn_reservation[lang]}</button>
+								</>
+							)}
 						</div>
 					</>
 				)}

@@ -36,6 +36,10 @@
 	font-weight: var(--font-extra-weight);
 	letter-spacing: 0.01em;
 	line-height: 1.1em;
+	border-bottom: 1px solid;
+	border-top: 1px solid;
+	text-align: center;
+	margin-top: 5px;
 	/* padding-bottom: 0.2em; */
 }
 
@@ -115,7 +119,7 @@
 	color: var(--colorAntreprizaRed);
 }
 
-.cart-book-button {
+.ticket-cart .tickets-book-button {
 	width: 100%;
 }
 
@@ -135,6 +139,13 @@
 	width: 100%;
 	column-gap: 15px;
 	margin: 8px 0;
+}
+
+.cart-footer .order-flex {
+	border-top: 1px solid;
+	border-bottom: 1px solid;
+	padding: 5px 0;
+	margin-bottom: 17px;
 }
 
 .order-flex.play {
