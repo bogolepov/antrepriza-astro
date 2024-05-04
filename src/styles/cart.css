@@ -81,8 +81,15 @@
 	line-height: 1.1em;
 	text-transform: uppercase;
 	border: 1px solid var(--colorBkgTicketsBtn);
-	border-radius: 3px;
+	border-right: none;
+	border-radius: 3px 0 0 3px;
 	cursor: pointer;
+}
+@media (hover: hover) {
+	.cart-button:hover {
+		background-color: var(--colorBkgTicketsBtn-Hover);
+		transition: background-color 300ms ease-out;
+	}
 }
 
 .cart-icon {

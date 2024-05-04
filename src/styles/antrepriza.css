@@ -127,11 +127,12 @@
 
 body {
 	--gray-rose: hsl(var(--gray-rose-hue) var(--gray-rose-sat) var(--gray-rose-lit));
-	--gray-rose-disabled: hsl(var(--gray-rose-hue) var(--gray-rose-sat-dis) var(--gray-rose-lit) / var(--gray-rose-opac-dis));
+	--gray-rose-op0: hsl(var(--gray-rose-hue) var(--gray-rose-sat-dis) var(--gray-rose-lit) / var(--gray-rose-opac-dis));
 
 	--colorFontDate: var(--gray-rose);
-	--colorFontDateDisabled: var(--gray-rose-disabled);
+	--colorFontDateDisabled: var(--gray-rose-op0);
 	--colorBkgTicketsBtn: var(--gray-rose);
+	--colorBkgTicketsBtn-Hover: var(--gray-rose-op0);
 
 	--colorFontTicketsBtn: hsl(0 0% var(--font-ticket-btn-lit));
 	--colorFontTicketsBtn-Op0: hsl(0 0% var(--font-ticket-btn-lit) / 0.7);
@@ -311,6 +312,7 @@ h4.notification-label {
 	border-radius: 3px;
 	/* transition: transform 200ms ease; */
 	z-index: 5;
+	cursor: pointer;
 
 	padding: 0.25em 0.6em 0.25em 0.6em;
 }
@@ -319,15 +321,16 @@ h4.notification-label {
 	border: 1px solid var(--colorBkgDisabledBtn);
 	background-color: var(--colorBkgDisabledBtn);
 	text-decoration: line-through;
+	cursor: default;
 }
 
 @media (hover: hover) {
 	.tickets-book-button:hover {
-		cursor: pointer;
-		/* transform: scale(1.1, 1.1); */
+		background-color: var(--colorBkgTicketsBtn-Hover);
+		transition: background-color 300ms ease-out;
 	}
+	/* TODO:  */
 	.tickets-book-button[disabled]:hover {
-		cursor: default;
 		/* transform: scale(1, 1); */
 	}
 }

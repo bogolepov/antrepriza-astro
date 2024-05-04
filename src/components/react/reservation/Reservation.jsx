@@ -38,7 +38,7 @@ export default function Reservation({ lang }) {
 				return play_item;
 			}
 		});
-		setReservations(updReservations);
+		updateReservations(updReservations);
 		setTotalAmount(calcTotalAmount(updReservations));
 		window.localStorage.setItem(RESERVATION_KEY, JSON.stringify(updReservations));
 	};
@@ -49,7 +49,7 @@ export default function Reservation({ lang }) {
 				play_item => play_item.date !== play.date || play_item.time !== play.time || play_item.play_id !== play.play_id
 			);
 			// remove this play from reservations
-			setReservations(updReservations);
+			updateReservations(updReservations);
 			setTotalAmount(calcTotalAmount(updReservations));
 			window.localStorage.setItem(RESERVATION_KEY, JSON.stringify(updReservations));
 		} else {
@@ -71,7 +71,7 @@ export default function Reservation({ lang }) {
 					return play_item;
 				}
 			});
-			setReservations(updReservations);
+			updateReservations(updReservations);
 			setTotalAmount(calcTotalAmount(updReservations));
 			window.localStorage.setItem(RESERVATION_KEY, JSON.stringify(updReservations));
 		}
@@ -79,7 +79,7 @@ export default function Reservation({ lang }) {
 
 	useEffect(() => {
 		let loadedReservations = loadReservationsFromStorage();
-		setReservations(loadedReservations);
+		updateReservations(loadedReservations);
 		setTotalAmount(calcTotalAmount(loadedReservations));
 	}, [$isTicketsAdded]);
 
@@ -94,7 +94,7 @@ export default function Reservation({ lang }) {
 		window.addEventListener('storage', e => {
 			if (e.key === RESERVATION_KEY) {
 				let updReservations = JSON.parse(e.newValue);
-				setReservations(updReservations);
+				updateReservations(updReservations);
 				setTotalAmount(calcTotalAmount(updReservations));
 			}
 		});
@@ -104,6 +104,11 @@ export default function Reservation({ lang }) {
 
 	function saveReservationsToStorage() {
 		window.localStorage.setItem(RESERVATION_KEY, JSON.stringify(reservations));
+	}
+
+	function updateReservations(updReservations) {
+		updReservations.sort((play1, play2) => Date.parse(play1.date + 'T' + play1.time) - Date.parse(play2.date + 'T' + play2.time));
+		setReservations(updReservations);
 	}
 
 	let calcTicketsCount = () => {
