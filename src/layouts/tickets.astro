@@ -183,7 +183,7 @@ for (let price of prices) {
 <script>
 	const PLAYS = new Array(100).fill(0);
 
-	let ticketBtns = document.getElementsByClassName('tickets-book-button');
+	let ticketBtns = document.querySelectorAll('.pink-button.book-ticket');
 	for (let btn of ticketBtns) {
 		let fullDate = btn.getAttribute("data-date")+'T'+btn.getAttribute("data-time");
 

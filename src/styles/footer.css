@@ -178,12 +178,17 @@ footer .logo-75 {
 	bottom: 1px;
 	width: calc(0.9rem * 1.8);
 	background-color: var(--colorBkgTicketsBtn);
-	border: 1px solid var(--colorBkgTicketsBtn);
+	border: none;
+	border-left: 1px solid var(--colorBkgTicketsBtn);
 	color: var(--colorFontTicketsBtn);
 	border-radius: 0;
-}
-.newsletter__button:hover {
 	cursor: pointer;
+}
+@media (hover: hover) {
+	.newsletter__button:hover {
+		background-color: var(--colorBkgTicketsBtn-Hover);
+		transition: background-color 300ms ease-out;
+	}
 }
 
 .newsletter__input:focus-visible,
@@ -329,12 +334,8 @@ footer .logo-flex a:focus-visible img {
 	padding-top: 0.8em;
 }
 
-.question-layer .question__btn_send {
-	text-align: end;
-	padding: 0.2em 0.6em;
-	background-color: var(--colorBkgTicketsBtn);
-	border: 1px solid var(--colorBkgTicketsBtn);
-	color: var(--colorFontTicketsBtn);
+.question-layer .pink-button {
+	text-transform: none;
 }
 
 .question-layer .q-input:focus-visible,

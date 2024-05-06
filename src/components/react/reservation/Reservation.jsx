@@ -5,6 +5,8 @@ import { Cart, getPrice } from '@components/react/reservation/Cart';
 import CartButton from '@components/react/reservation/CartButton';
 import { isCartOpen, isTicketsAdded } from './cartStore';
 
+import { FROZEN_BOOK_TIME } from '@scripts/consts';
+
 const RESERVATION_KEY = 'reservations';
 
 export default function Reservation({ lang }) {
@@ -39,8 +41,6 @@ export default function Reservation({ lang }) {
 			}
 		});
 		updateReservations(updReservations);
-		setTotalAmount(calcTotalAmount(updReservations));
-		window.localStorage.setItem(RESERVATION_KEY, JSON.stringify(updReservations));
 	};
 
 	let handleRemoveOneTicket = (play, ticketType, typeCount) => {
@@ -50,8 +50,6 @@ export default function Reservation({ lang }) {
 			);
 			// remove this play from reservations
 			updateReservations(updReservations);
-			setTotalAmount(calcTotalAmount(updReservations));
-			window.localStorage.setItem(RESERVATION_KEY, JSON.stringify(updReservations));
 		} else {
 			const updReservations = reservations.map(play_item => {
 				if (play_item.date === play.date && play_item.time === play.time && play_item.play_id === play.play_id) {
@@ -72,15 +70,12 @@ export default function Reservation({ lang }) {
 				}
 			});
 			updateReservations(updReservations);
-			setTotalAmount(calcTotalAmount(updReservations));
-			window.localStorage.setItem(RESERVATION_KEY, JSON.stringify(updReservations));
 		}
 	};
 
 	useEffect(() => {
 		let loadedReservations = loadReservationsFromStorage();
 		updateReservations(loadedReservations);
-		setTotalAmount(calcTotalAmount(loadedReservations));
 	}, [$isTicketsAdded]);
 
 	function loadReservationsFromStorage() {
@@ -95,20 +90,25 @@ export default function Reservation({ lang }) {
 			if (e.key === RESERVATION_KEY) {
 				let updReservations = JSON.parse(e.newValue);
 				updateReservations(updReservations);
-				setTotalAmount(calcTotalAmount(updReservations));
 			}
 		});
 
 		return loadedReservations;
 	}
 
-	function saveReservationsToStorage() {
-		window.localStorage.setItem(RESERVATION_KEY, JSON.stringify(reservations));
+	function saveReservationsToStorage(updReservations) {
+		window.localStorage.setItem(RESERVATION_KEY, JSON.stringify(updReservations));
 	}
 
 	function updateReservations(updReservations) {
+		// validate reservations
 		updReservations.sort((play1, play2) => Date.parse(play1.date + 'T' + play1.time) - Date.parse(play2.date + 'T' + play2.time));
+		updReservations = updReservations.filter(play => Date.parse(play.date + 'T' + play.time) - FROZEN_BOOK_TIME > Date.now());
+
+		// update
 		setReservations(updReservations);
+		setTotalAmount(calcTotalAmount(updReservations));
+		saveReservationsToStorage(updReservations);
 	}
 
 	let calcTicketsCount = () => {

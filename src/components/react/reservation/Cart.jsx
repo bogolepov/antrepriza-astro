@@ -75,10 +75,9 @@ export function Cart({ lang, tickets, totalAmount, handleCloseClick, handleAddTi
 											<div className='item-name'>{clientJsons.dictionary.total_amount[lang]}</div>
 											<div className='item-amount'>{totalAmount}€</div>
 										</div>
-										<button className='tickets-book-button' onClick={handleFinalFormOpen}>
+										<button className='pink-button' onClick={handleFinalFormOpen}>
 											{clientJsons.dictionary.btn_reservation[lang]}
 										</button>
-										{/* <button className='tickets-book-button'>{clientJsons.dictionary.btn_reservation[lang]}</button> */}
 									</>
 								)}
 							</div>

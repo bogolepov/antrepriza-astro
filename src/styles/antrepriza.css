@@ -301,7 +301,7 @@ h4.notification-label {
 /* --------------------------------------------------- */
 /* --------------- tickets book button --------------- */
 /* --------------------------------------------------- */
-.tickets-book-button {
+.pink-button {
 	width: max-content;
 	background-color: var(--colorBkgTicketsBtn);
 	color: var(--colorFontTicketsBtn);
@@ -317,7 +317,7 @@ h4.notification-label {
 	padding: 0.25em 0.6em 0.25em 0.6em;
 }
 
-.tickets-book-button[disabled] {
+.pink-button[disabled] {
 	border: 1px solid var(--colorBkgDisabledBtn);
 	background-color: var(--colorBkgDisabledBtn);
 	text-decoration: line-through;
@@ -325,12 +325,12 @@ h4.notification-label {
 }
 
 @media (hover: hover) {
-	.tickets-book-button:hover {
+	.pink-button:hover {
 		background-color: var(--colorBkgTicketsBtn-Hover);
 		transition: background-color 300ms ease-out;
 	}
 	/* TODO:  */
-	.tickets-book-button[disabled]:hover {
+	.pink-button[disabled]:hover {
 		/* transform: scale(1, 1); */
 	}
 }

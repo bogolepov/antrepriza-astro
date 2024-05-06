@@ -89,7 +89,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
               </div>
               <textarea class="q-input" name="message" rows="5" maxlength="2000" placeholder={dictionary.message_hint[lang]} autocomplete="on"></textarea>
               <div class="question__btn_div">
-                <button class="question__btn_send" type="submit">{dictionary.question_btn_send[lang]}</button>
+                <button class="pink-button" type="submit">{dictionary.question_btn_send[lang]}</button>
               </div>
             </form>
             <Loader js_loader_name='contact-form-loader' background='no'></Loader>

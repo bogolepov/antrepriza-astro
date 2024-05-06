@@ -25,7 +25,7 @@ let elemPriceCounters;
 let elemBookButton;
 
 export function initTicketBookForm() {
-	let ticketBtns = document.getElementsByClassName('tickets-book-button');
+	let ticketBtns = document.querySelectorAll('.pink-button.book-ticket');
 	for (let btn of ticketBtns) {
 		btn.disabled = false;
 		btn.addEventListener('click', event => openForm(event, btn));
