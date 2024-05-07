@@ -13,6 +13,11 @@
 	"play_lang": { "ru": { "ru": "на русском", "de": "auf Russisch" }, "de": { "ru": "на немецком", "de": "auf Deutsch" } },
 	"free_place": { "ru": "свободные места", "de": "freie Platzwahl" },
 	"my_reservations": { "ru": "Мои заказы", "de": "Meine Bestellungen" },
+	"btn_cart_book": { "ru": "Оформить", "de": "Ausstellen" },
 	"btn_reservation": { "ru": "Забронировать", "de": "Reservieren" },
-	"total_amount": { "ru": "Итого", "de": "Gesamtbetrag" }
+	"total_amount": { "ru": "Итого", "de": "Gesamtbetrag" },
+	"name": { "ru": "Имя", "de": "Name" },
+	"name_hint": { "ru": "Имя и фамилия", "de": "Vor- und Nachname" },
+	"email": { "ru": "Email", "de": "E-Mail" },
+	"email_hint": { "ru": "Ваш электронный адрес", "de": "Ihre E-Mail-Adresse" }
 }

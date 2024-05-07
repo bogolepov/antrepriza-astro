@@ -134,10 +134,12 @@
 	.navigator-icon-logo-text:hover,
 	.toolbar-icon:hover,
 	.theme-changer:hover svg {
+		transition: fill 350ms ease-out;
 		fill: var(--colorAntreprizaRed);
 		/* stroke-width: 0px; */
 	}
 	.dropdown-item-link:hover .lang-brief {
+		transition: color 350ms ease-out;
 		color: var(--colorAntreprizaRed);
 	}
 
@@ -146,12 +148,18 @@
 		fill: var(--colorAntreprizaRed);
 		font-weight: inherit;
 		cursor: pointer;
+		transition:
+			color 350ms ease-out,
+			fill 350ms ease-out;
 		/* stroke-width: 0px; */
 	}
 	.expand-menu:hover {
 		color: var(--colorAntreprizaRed);
 		font-weight: inherit;
+		transition: color 350ms ease-out;
+
 		.toolbar-icon-language {
+			transition: fill 350ms ease-out;
 			fill: var(--colorAntreprizaRed);
 		}
 	}
@@ -506,6 +514,7 @@
 	border: none;
 	background: transparent;
 	line-height: 3px;
+	cursor: pointer;
 }
 
 .burger-icon {
@@ -575,12 +584,14 @@
 @media (hover: hover) {
 	.header-mobile a:hover,
 	.burger-item:hover span {
+		transition: color 350ms ease-out;
 		color: var(--colorAntreprizaRed);
 	}
 
 	.header-logo-icon:hover,
 	.header-logo-text-icon:hover,
 	.header-icon:hover {
+		transition: fill 350ms ease-out;
 		fill: var(--colorAntreprizaRed);
 	}
 
@@ -588,6 +599,10 @@
 		border-color: var(--colorAntreprizaRed);
 		font-weight: var(--font-bold-weight);
 		background-color: inherit;
+		transition:
+			background-color 350ms ease-out,
+			border-color 350ms ease-out,
+			font-weight 350ms ease-out;
 	}
 }
 
@@ -691,6 +706,7 @@
 	background: transparent;
 	line-height: 1rem;
 	padding: 6px 12px;
+	cursor: pointer;
 }
 
 .burger-item:is(.submenu-opened) .burger-submenu-list {

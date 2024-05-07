@@ -47,9 +47,14 @@ footer a {
 	footer a:hover,
 	footer a:hover *,
 	footer label:hover {
+		transition:
+			color 500ms ease-out,
+			fill 500ms ease-out;
 		color: var(--colorAntreprizaRed);
+		fill: var(--colorAntreprizaRed);
 	}
 	footer .info-text:has(a:hover) {
+		transition: color 500ms ease-out;
 		color: var(--colorAntreprizaRed);
 	}
 }
@@ -220,8 +225,6 @@ footer .logo-flex a:focus-visible img {
 	letter-spacing: 0.02em;
 	text-transform: uppercase;
 	font-weight: 400;
-}
-.question label:hover {
 	cursor: pointer;
 }
 
@@ -375,8 +378,6 @@ footer .logo-flex a:focus-visible img {
 	border: 1px solid var(--colorBkgTicketsBtn);
 	color: var(--colorFontTicketsBtn);
 	border-radius: 0;
-}
-.contact-form-result-button:hover {
 	cursor: pointer;
 }
 .contact-form-result-button:focus-visible {

@@ -34,6 +34,9 @@ export function Cart({ lang, tickets, totalAmount, handleCloseClick, handleAddTi
 	const handleFinalFormClose = () => {
 		setIsFinalFormOpen(false);
 	};
+	const handleFinalFormSubmit = () => {
+		// TODO:
+	};
 
 	if (!isJsonsLoaded) loadClientJsons(clientJsons, handleThen, handleFinally);
 
@@ -76,7 +79,7 @@ export function Cart({ lang, tickets, totalAmount, handleCloseClick, handleAddTi
 											<div className='item-amount'>{totalAmount}€</div>
 										</div>
 										<button className='pink-button' onClick={handleFinalFormOpen}>
-											{clientJsons.dictionary.btn_reservation[lang]}
+											{clientJsons.dictionary.btn_cart_book[lang]}
 										</button>
 									</>
 								)}
@@ -85,7 +88,13 @@ export function Cart({ lang, tickets, totalAmount, handleCloseClick, handleAddTi
 					)}
 				</div>
 			</div>
-			<FinalReservationForm lang={lang} isShow={isFinalFormOpen} handleClose={handleFinalFormClose}></FinalReservationForm>
+			<FinalReservationForm
+				lang={lang}
+				dictionary={clientJsons.dictionary}
+				isShow={isFinalFormOpen}
+				handleClose={handleFinalFormClose}
+				handleSubmit={handleFinalFormSubmit}
+			></FinalReservationForm>
 		</>
 	);
 }

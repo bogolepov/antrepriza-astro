@@ -22,10 +22,12 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
   <div class="footer-flex">
     <div class="footer-flex-item flex2">
       <div class="footer-logo">
-        <svg class="footer-logo-svg">
-          <!-- <use href={Logo + "#logo"}></use> -->
-          <use href={Logo + "#logo-text-" + lang}></use>
-        </svg>
+        <a href={"/" + lang + "/"}>
+          <svg class="footer-logo-svg">
+            <!-- <use href={Logo + "#logo"}></use> -->
+            <use href={Logo + "#logo-text-" + lang}></use>
+          </svg>
+        </a>
       </div>    
       <div class="address">
         <div class="info-text font-opacity0">{theater.stageAddress.name}</div>

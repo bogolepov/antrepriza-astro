@@ -43,7 +43,7 @@ export default function Order({ lang, jsons, play, handleAddTicket, handleRemove
 			</div>
 			{play.tickets.map(ticket_type => {
 				return ticket_type.count > 0 ? (
-					<div className='order-flex' key={ticket_type.type}>
+					<div className='order-flex wrap' key={ticket_type.type}>
 						{/* <div className='item-name'>{`${ticketTypes.get(ticket_type.type).title}, ${ticketTypes.get(ticket_type.type).price}€`}</div> */}
 						<div className='item-name font-opacity0'>{ticketTypes.get(ticket_type.type).title}</div>
 						<div className='item-count-change'>

@@ -31,7 +31,7 @@ export function initTicketBookForm() {
 		btn.addEventListener('click', event => openForm(event, btn));
 	}
 
-	elemForm = document.querySelector('.ticket-layer');
+	elemForm = document.querySelector('.modal-layer-ticket');
 
 	let btn = document.querySelector('#ticket-form-close-button');
 	if (!btn) console.log('CLOSE BUTTON not found');
@@ -47,7 +47,7 @@ export function initTicketBookForm() {
 
 	elemLoader = document.querySelector('.layer-on-parent.ticket-form-loader');
 
-	elemBookButton = document.querySelector('.ticket-form-book-button');
+	elemBookButton = document.querySelector('.pink-button.ticket-book');
 	elemBookButton.disabled = true;
 
 	elemPlayTitle = document.querySelector('.play-name');

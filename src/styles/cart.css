@@ -122,8 +122,11 @@
 .close-cart__button:focus-visible {
 	outline: 1px solid var(--colorAntreprizaRed);
 }
-.close-cart__button:hover {
-	color: var(--colorAntreprizaRed);
+@media (hover: hover) {
+	.close-cart__button:hover {
+		transition: color 300ms ease-out;
+		color: var(--colorAntreprizaRed);
+	}
 }
 
 .ticket-cart .pink-button {
@@ -132,6 +135,8 @@
 
 .ticket-order .play-name {
 	font-size: 1.25rem;
+	line-height: 1.1em;
+	padding-bottom: 0.15em;
 }
 
 .ticket-order .play-date {
@@ -146,6 +151,10 @@
 	width: 100%;
 	column-gap: 15px;
 	margin: 8px 0;
+}
+
+.order-flex.wrap {
+	flex-wrap: wrap;
 }
 
 .cart-footer .order-flex {
@@ -165,9 +174,9 @@
 }
 
 .order-flex .item-name {
-	flex-grow: 1;
-	margin-right: 1em;
-	/* padding-left: 1em; */
+	flex-grow: 2;
+	min-width: 6em;
+	/* margin-right: 1em; */
 }
 
 .order-flex .item-count-change {
@@ -201,6 +210,7 @@
 }
 
 .item-amount {
+	flex-grow: 1;
 	min-width: 3.2em;
 	padding-right: 10px;
 	text-align: right;
@@ -211,4 +221,21 @@
 	height: 36px;
 	width: 36px;
 	fill: var(--colorFont);
+}
+
+.modal-layer-reservation .modal-dialog {
+	width: min(80vw, 130vh);
+	min-width: 220px;
+	max-width: 360px;
+}
+
+.final-reservation-form .pink-button-div {
+	width: 100%;
+	text-align: right;
+	padding-top: 0.8em;
+}
+
+.final-reservation-form .pink-button {
+	text-transform: none;
+	color: var(--grey-10);
 }

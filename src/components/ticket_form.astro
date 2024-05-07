@@ -13,10 +13,10 @@ import imgKontramarka from '/src/assets/logo_kontramarka.png';
 const COUNTS = [0,1,2,3,4,5,6,7,8,9];
 
 ---
-<div class="ticket-layer layer-on-window glass6 flex-center">
-  <div class="ticket-form-wrapper">
+<div class="modal-layer modal-layer-ticket layer-on-window glass6 flex-center">
+  <div class="modal-dialog">
     <button id="ticket-form-close-button" class="close__button">&#10006;</button>
-    <div class="ticket-form">
+    <div class="form ticket-form">
       <div class="ticket-play-info">
         <h4 class="play-name"></h4>
         <div class="play-descr"></div>
@@ -78,7 +78,7 @@ const COUNTS = [0,1,2,3,4,5,6,7,8,9];
             })
           }
           <div class="ticket-form-buttons-div">
-            <button id="ticket-form-book-antrepriza" class="ticket-form-book-button">{dictionary.add_to_cart[lang]}</button>
+            <button id="ticket-form-book-antrepriza" class="pink-button ticket-book">{dictionary.add_to_cart[lang]}</button>
           </div>
         </div>
       </div>
@@ -87,7 +87,7 @@ const COUNTS = [0,1,2,3,4,5,6,7,8,9];
         <label for="kontramarka">{dictionary.radio_book_at_kontramarka[lang]}</label>
         <div class="subform book-at-kontramarka">
           <div class="ticket-form-buttons-div">
-            <button id="ticket-form-book-kontramarka" class="ticket-form-book-button flex-center">
+            <button id="ticket-form-book-kontramarka" class="pink-button ticket-book flex-center">
               <span class="button-text">{dictionary.go_to_website[lang]}&nbsp;</span>
               <Picture 
                 class:list={'button-image'} 
