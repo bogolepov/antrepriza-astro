@@ -1,4 +1,4 @@
-// import '@styles/ticket_form.css';
+import '@styles/antrepriza.css';
 import '@styles/cart.css';
 
 export default function FinalReservationForm({ lang, dictionary, isShow, handleClose, handleSubmit }) {
