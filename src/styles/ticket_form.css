@@ -1,5 +1,9 @@
+.modal-layer-ticket {
+	font-size: clamp(0.9rem, 2.7vw, 1rem);
+}
+
 .ticket-form .play-name {
-	font-size: clamp(1.2rem, 4vw, 1.5rem);
+	font-size: 1.5em;
 	font-weight: var(--font-bold-weight);
 	line-height: 1em;
 	text-transform: uppercase;
@@ -89,9 +93,7 @@
 .pink-button.ticket-book {
 	padding: 0.35em 0.6em;
 	width: 100%;
-	/* font-size: 1rem; */
 	letter-spacing: 0.03em;
-	/* line-height: 1.5rem; */
 
 	text-transform: none;
 	color: var(--grey-10);

@@ -488,8 +488,8 @@ h4.notification-label {
 	background-color: transparent;
 	color: var(--colorFontDate);
 	border: 0px;
-	font-size: 20px;
-	line-height: 20px;
+	font-size: 1.25em;
+	line-height: 1em;
 	font-weight: var(--font-bold-weight);
 	padding: 1px 3px;
 	cursor: pointer;
@@ -521,4 +521,44 @@ h4.notification-label {
 .modal-dialog .form {
 	padding: 25px;
 	padding-right: 32px;
+}
+
+.form-label {
+	/* font-size: clamp(0.95rem, 1.8vw, 1.1rem); */
+	font-size: 1.1em;
+	line-height: 1.2em;
+	padding-bottom: 0.3em;
+}
+.form-label.required::after {
+	content: ' \002A';
+	vertical-align: super;
+	font-size: smaller;
+	color: var(--colorAntreprizaRed);
+	font-weight: var(--font-bold-weight);
+}
+
+.form-input {
+	color: var(--colorFont);
+	font-size: 1.1em;
+	/* font-size: clamp(0.95rem, 1.8vw, 1.1rem); */
+	line-height: 1.4em;
+	border: 1px solid var(--colorBkgTicketsBtn);
+	margin-bottom: 0.7em;
+	width: 100%;
+}
+
+.form-error {
+	color: var(--colorAntreprizaRed);
+	font-weight: var(--font-bold-weight);
+	font-size: 0.9em;
+	padding-bottom: 0.2em;
+}
+
+.form-input:has(+ .form-error) {
+	margin-bottom: 0.1em;
+}
+
+.modal-dialog .form-input:focus-visible,
+.modal-dialog button:focus-visible {
+	outline: 1px solid var(--colorAntreprizaRed);
 }

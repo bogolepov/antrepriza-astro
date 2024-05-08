@@ -5,6 +5,7 @@
 	right: 0;
 	bottom: 0;
 	min-width: min(250px, 100vw);
+	font-size: clamp(0.9rem, 2.7vw, 1rem);
 
 	background-color: var(--colorBkgForm);
 	text-align: left;
@@ -32,7 +33,7 @@
 }
 
 .ticket-cart .cart-title {
-	font-size: 1.5rem;
+	font-size: 1.5em;
 	font-weight: var(--font-extra-weight);
 	letter-spacing: 0.01em;
 	line-height: 1.1em;
@@ -40,7 +41,7 @@
 	border-top: 1px solid;
 	text-align: center;
 	margin-top: 5px;
-	/* padding-bottom: 0.2em; */
+	padding: 0.1em 0;
 }
 
 .cart-content {
@@ -53,7 +54,7 @@
 .order-list-wrapper {
 	flex-grow: 1;
 	overflow-y: auto;
-	margin: 10px 0;
+	margin: 0.6em 0;
 }
 
 .order-list {
@@ -63,7 +64,7 @@
 }
 
 .ticket-order {
-	margin-bottom: 10px;
+	margin-bottom: 0.6em;
 }
 
 /* cart-button */
@@ -112,8 +113,8 @@
 	background-color: transparent;
 	color: var(--colorFontDate);
 	border: 0px;
-	font-size: 20px;
-	line-height: 20px;
+	font-size: 1.25em;
+	line-height: 1em;
 	font-weight: var(--font-bold-weight);
 	padding: 1px 3px;
 	cursor: pointer;
@@ -134,7 +135,7 @@
 }
 
 .ticket-order .play-name {
-	font-size: 1.25rem;
+	font-size: 1.25em;
 	line-height: 1.1em;
 	padding-bottom: 0.15em;
 }
@@ -149,8 +150,8 @@
 	display: flex;
 	flex-direction: row;
 	width: 100%;
-	column-gap: 15px;
-	margin: 8px 0;
+	column-gap: 0.95em;
+	margin: 0.5em 0;
 }
 
 .order-flex.wrap {
@@ -160,13 +161,13 @@
 .cart-footer .order-flex {
 	border-top: 1px solid;
 	border-bottom: 1px solid;
-	padding: 5px 0;
-	margin-bottom: 17px;
+	padding: 0.35em 0;
+	margin-bottom: 1.1em;
 }
 
 .order-flex.play {
-	column-gap: 10px;
-	padding-top: 5px;
+	column-gap: 0.6em;
+	padding-top: 0.35em;
 }
 .order-flex.play .cart-icon {
 	text-align: center;
@@ -176,7 +177,6 @@
 .order-flex .item-name {
 	flex-grow: 2;
 	min-width: 6em;
-	/* margin-right: 1em; */
 }
 
 .order-flex .item-count-change {
@@ -197,11 +197,11 @@
 
 .count-change-button.left {
 	border-right: 1px solid var(--colorBkgTicketsBtn);
-	margin-right: 8px;
+	margin-right: 0.5em;
 }
 .count-change-button.right {
 	border-left: 1px solid var(--colorBkgTicketsBtn);
-	margin-left: 8px;
+	margin-left: 0.5em;
 }
 .count-change-number {
 	display: inline-block;
@@ -223,7 +223,11 @@
 	fill: var(--colorFont);
 }
 
-.modal-layer.modal-layer-reservation .modal-dialog {
+.modal-layer-reservation {
+	font-size: clamp(0.9rem, 2.7vw, 1rem);
+}
+
+.modal-layer-reservation .modal-dialog {
 	width: min(80vw, 130vh);
 	min-width: 220px;
 	max-width: 360px;
@@ -236,6 +240,8 @@
 }
 
 .final-reservation-form .pink-button {
-	text-transform: none;
+	/* text-transform: none; */
+	font-size: 1em;
 	color: var(--grey-10);
+	letter-spacing: 0.05em;
 }
