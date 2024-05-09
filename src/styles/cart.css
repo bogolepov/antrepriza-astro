@@ -228,8 +228,6 @@
 }
 
 .modal-layer-reservation .modal-dialog {
-	width: min(80vw, 130vh);
-	min-width: 220px;
 	max-width: 360px;
 }
 
