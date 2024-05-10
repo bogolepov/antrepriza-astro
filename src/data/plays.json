@@ -47,7 +47,44 @@
 			"minimum": ""
 		},
 		"lang": { "ru": "русский", "de": "Russisch" },
-		"characters": [],
+		"characters": [
+			{
+				"id": 1,
+				"name": { "ru": "Павел Страницин", "de": "Pavel Stranizin" },
+				"description": { "ru": "", "de": "" },
+				"actors": [119, 110]
+			},
+			{
+				"id": 2,
+				"name": { "ru": "Гриша Глушаков", "de": "Grischa Gluschakow" },
+				"description": { "ru": "", "de": "" },
+				"actors": [103]
+			},
+			{
+				"id": 3,
+				"name": { "ru": "Марина Загитова", "de": "Marina Sagitowa" },
+				"description": { "ru": "", "de": "" },
+				"actors": [100, 101]
+			},
+			{
+				"id": 4,
+				"name": { "ru": "Леночка Майер", "de": "Lenotschka Meier" },
+				"description": { "ru": "", "de": "" },
+				"actors": [116, 127, 128]
+			},
+			{
+				"id": 5,
+				"name": { "ru": "Серафима Вернер", "de": "Serafima Werner" },
+				"description": { "ru": "", "de": "" },
+				"actors": [111, 108, 105]
+			},
+			{
+				"id": 6,
+				"name": { "ru": "Эммануил Карлович", "de": "Immanuel Karlowitsch" },
+				"description": { "ru": "", "de": "" },
+				"actors": [1]
+			}
+		],
 		"creators": [
 			{ "type": "regie", "people": [1] },
 			{ "type": "light", "people": [4] },
@@ -151,7 +188,7 @@
 				"actors": [111, 117]
 			},
 			{ "id": 5, "name": { "ru": "Олуэн Пиил", "de": "Olwen Peel" }, "actors": [102, 105] },
-			{ "id": 6, "name": { "ru": "Чарлз Стэнтон", "de": "Charles Stanton" }, "actors": [106, 121] },
+			{ "id": 6, "name": { "ru": "Чарлз Стэнтон", "de": "Charles Stanton" }, "actors": [106] },
 			{ "id": 7, "name": { "ru": "Мисс Мокридж", "de": "Miss Mockridge" }, "actors": [108] }
 		],
 		"creators": [
@@ -226,7 +263,7 @@
 				"id": 7,
 				"name": { "ru": "Олег Васильевич", "de": "Oleg Wasiljewitsch" },
 				"description": { "ru": "покупатель", "de": "Käufer" },
-				"actors": [3, 121]
+				"actors": [3]
 			},
 			{
 				"id": 8,
@@ -276,10 +313,10 @@
 				"id": 3,
 				"name": { "ru": "Оперативник ФСБ", "de": "FSB-Fahnder" },
 				"description": { "ru": "капитан", "de": "Hauptmann" },
-				"actors": [103, 121]
+				"actors": [103]
 			},
 			{ "id": 4, "name": { "ru": "Первый омоновец", "de": "Erster OMON-Polizist" }, "actors": [107, 103] },
-			{ "id": 5, "name": { "ru": "Второй омоновец", "de": "Zweiter OMON-Polizist" }, "actors": [103, 121] },
+			{ "id": 5, "name": { "ru": "Второй омоновец", "de": "Zweiter OMON-Polizist" }, "actors": [103] },
 			{
 				"id": 6,
 				"name": { "ru": "Данила", "de": "Danila" },
@@ -322,9 +359,9 @@
 				"id": 14,
 				"name": { "ru": "Кантор", "de": "Kantor" },
 				"description": { "ru": "за … лет", "de": "über … Jahre alt" },
-				"actors": [3, 121]
+				"actors": [3]
 			},
-			{ "id": 15, "name": { "ru": "ГОЛОС", "de": "STIMME" }, "actors": [103, 121] }
+			{ "id": 15, "name": { "ru": "ГОЛОС", "de": "STIMME" }, "actors": [103] }
 		],
 		"creators": [
 			{ "type": "regie", "people": [1] },
@@ -398,7 +435,7 @@
 				"id": 8,
 				"name": { "ru": "Соленый Василий Васильевич", "de": "Soljony" },
 				"description": { "ru": "штабс-капитан", "de": "Offizier" },
-				"actors": [107, 121]
+				"actors": [107]
 			},
 			{
 				"id": 9,
