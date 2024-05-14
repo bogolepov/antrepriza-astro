@@ -89,8 +89,8 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 									return (
 										<li class="dropdown-item">
 											<a
-												class:list={['dropdown-item-link', 'item-flex', {active_link: currentPath[1] === menuPlays.link && currentPath[2] === ('play-'+play.suffix)}]}												 
-												href={"/"+lang+"/plays/play-"+play.suffix}>
+												class:list={['dropdown-item-link', 'item-flex', {active_link: currentPath[1] === menuPlays.link && currentPath[2] === play.suffix}]}												 
+												href={"/"+lang+"/plays/"+play.suffix}>
 													<div>{play.alt_title[lang]}</div>
 													{
 														play.title_notice &&
@@ -250,8 +250,8 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 							return (
 								<li class="burger-submenu-item">
 									<a
-										class:list={['item-flex', {active_link: currentPath[1] === menuPlays.link && currentPath[2] === ('play-'+play.suffix)}]}												 
-										href={"/"+lang+"/plays/play-"+play.suffix}>
+										class:list={['item-flex', {active_link: currentPath[1] === menuPlays.link && currentPath[2] === play.suffix}]}												 
+										href={"/"+lang+"/plays/"+play.suffix}>
 											<div>{play.alt_title[lang]}</div>
 											{
 												play.title_notice &&

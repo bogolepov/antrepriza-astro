@@ -2,6 +2,10 @@
 	font-size: clamp(0.9rem, 2.7vw, 1rem);
 }
 
+.modal-layer-ticket .modal-dialog {
+	max-width: 360px;
+}
+
 .ticket-form .play-name {
 	font-size: 1.5em;
 	font-weight: var(--font-bold-weight);

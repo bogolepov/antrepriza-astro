@@ -79,13 +79,13 @@ const { Content } = await entry.render();
           {
             thisPlayDates.map((play_date) => {
                 let fullDate: string = play_date.date+'T'+play_date.time;
-                let playDate: Date = new Date(fullDate);
+                let playDate: Date = new Date(fullDate);                
                 let address = (play_date["stageAddress"]) ? play_date["stageAddress"] : theater.stageAddress;
                 return (
                   <TicketBookButton add_classes='' button_type='ticket' price=''
                                     date={play_date.date} time={play_date.time} play_id={thisPlay.id} >
                     <div class="button-date">
-                    {playDate.getDate().toString().padStart(2, '0')}.{(playDate.getMonth()+1).toString().padStart(2, '0')},
+                    {playDate.toLocaleDateString(lang, { year: "numeric",  month: "short",  day: "2-digit" })},
                     {playDate.toLocaleDateString(lang, { weekday: 'short' })} / {play_date.time}
                     </div>
                     <div class="button-address">

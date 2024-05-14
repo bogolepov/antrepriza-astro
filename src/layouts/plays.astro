@@ -54,7 +54,7 @@ let playsWithGrouppedDatesArray = Array.from(playsWithGrouppedDatesMap, ([key, v
 						{isPremiere && 
 							<h4 class="play-property-premiere">{dictionary.premiere[lang]}</h4>
 						}
-						<a class="stretch-link" href={"/"+lang+"/plays/play-"+play.suffix}>
+						<a class="stretch-link" href={"/"+lang+"/plays/"+play.suffix}>
 							<h2 class="play-title">{play.alt_title[lang]}</h2>
 						</a>
 					</div>

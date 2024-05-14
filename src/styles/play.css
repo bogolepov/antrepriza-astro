@@ -77,6 +77,7 @@ section.play {
 .button-date {
 	padding-top: 0.3rem;
 	padding-bottom: 0.25rem;
+	text-transform: initial;
 }
 .button-address {
 	font-size: clamp(0.85rem, 1.5vw, 1rem);
