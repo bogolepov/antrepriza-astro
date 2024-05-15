@@ -10,6 +10,7 @@ import '@styles/loader.css';
 
 import Order from '@components/react/reservation/Order';
 import FinalReservationForm from '@components/react/reservation/FinalReservationForm';
+import { errorMessages } from 'vue/compiler-sfc';
 
 const clientJsons = { afisha: null, theater: null, dictionary: null };
 
@@ -34,8 +35,13 @@ export function Cart({ lang, tickets, totalAmount, handleCloseClick, handleAddTi
 	const handleFinalFormClose = () => {
 		setIsFinalFormOpen(false);
 	};
-	const handleFinalFormSubmit = () => {
+
+	const handleFinalFormSubmit = async () => {
 		// TODO:
+		await fetch('/.netlify/functions/sendMail')
+			.then(response => response.json())
+			.then(data => alert(data.message))
+			.catch(() => console.error('Error!'));
 	};
 
 	if (!isJsonsLoaded) loadClientJsons(clientJsons, handleThen, handleFinally);

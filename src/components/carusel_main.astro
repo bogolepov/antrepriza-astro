@@ -83,7 +83,7 @@ let actualProgramm = programm.filter(performance => Date.parse(performance.date)
             let languageLabel = dictionary.language[lang];
             if (lang === "ru") languageLabel = languageLabel.toLowerCase();
             return (
-              <a class="swiper-slide" data-play={play.id} href={"/"+lang+"/plays/play-"+play.suffix} >
+              <a class="swiper-slide" data-play={play.id} href={"/"+lang+"/plays/"+play.suffix} >
                 <div class="carusel-play-card">
                   <div class="carusel-play-image">
                     <Picture 

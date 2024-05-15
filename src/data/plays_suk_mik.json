@@ -226,7 +226,7 @@
 				"id": 4,
 				"name": { "ru": "Наташа", "de": "Natascha" },
 				"description": { "ru": "их дочь", "de": "ihre Tochter" },
-				"actors": [111, 122]
+				"actors": [111]
 			},
 			{
 				"id": 5,
