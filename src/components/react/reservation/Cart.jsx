@@ -10,7 +10,6 @@ import '@styles/loader.css';
 
 import Order from '@components/react/reservation/Order';
 import FinalReservationForm from '@components/react/reservation/FinalReservationForm';
-import { errorMessages } from 'vue/compiler-sfc';
 
 const clientJsons = { afisha: null, theater: null, dictionary: null };
 
