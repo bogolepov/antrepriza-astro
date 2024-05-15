@@ -35,16 +35,16 @@ export function Cart({ lang, tickets, totalAmount, handleCloseClick, handleAddTi
 		setIsFinalFormOpen(false);
 	};
 
-	const handleFinalFormSubmit = () => {
-		// TODO:
-	};
-	// const handleFinalFormSubmit = async () => {
+	// const handleFinalFormSubmit = () => {
 	// 	// TODO:
-	// 	await fetch('/.netlify/functions/sendMail')
-	// 		.then(response => response.json())
-	// 		.then(data => alert(data.message))
-	// 		.catch(() => console.error('Error!'));
 	// };
+	const handleFinalFormSubmit = async () => {
+		// TODO:
+		await fetch('/.netlify/functions/sendMail')
+			.then(response => response.json())
+			.then(data => alert(data.message))
+			.catch(() => console.error('Error!'));
+	};
 
 	if (!isJsonsLoaded) loadClientJsons(clientJsons, handleThen, handleFinally);
 
