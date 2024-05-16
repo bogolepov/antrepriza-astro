@@ -1,53 +1,7 @@
-// const nodemailer = require('nodemailer');
 import nodemailer from 'nodemailer';
 
-// export const handler = async (event, context) => {
-// 	console.log('Email ENV: address - ' + process.env.ANTREPRIZA_EMAIL + ', pass - ' + process.env.ANTREPRIZA_PASSWORD);
-// 	const messageData = JSON.parse(event.body);
-// 	console.log(messageData);
-
-// 	const { lang, name, email, reservations, amount } = messageData;
-
-// 	const mailOptions = {
-// 		from: process.env.EMAIL_FROM,
-// 		to: email,
-// 		subject: 'Резервирование билетов',
-// 		text: `Hello, ${name}!`,
-// 		html: `
-// 		<h1>Hello, ${name}!</h1>`,
-// 	};
-
-// 	try {
-// 		console.log('call sendMail.......');
-// 		let info = await transporter.sendMail(mailOptions);
-// 		console.log('result:');
-// 		console.log(info);
-
-// 		return {
-// 			statusCode: 200,
-// 			body: JSON.stringify({
-// 				message: 'Email sent successfully',
-// 			}),
-// 		};
-// 	} catch (error) {
-// 		console.log('error:');
-// 		console.log(error);
-// 		return {
-// 			statusCode: 500,
-// 			body: JSON.stringify({
-// 				message: error.message,
-// 			}),
-// 		};
-// 	}
-// };
-
 export const handler = async (event, context) => {
-	console.log('in Netlify function: sendMail');
-
-	const messageData = JSON.parse(event.body);
-	console.log(messageData);
-	// const { lang, name, email, reservations, amount } = messageData;
-
+	console.log('Email ENV: address - ' + process.env.ANTREPRIZA_EMAIL + ', pass - ' + process.env.ANTREPRIZA_PASSWORD);
 	const transporter = nodemailer.createTransport({
 		service: 'gmail',
 		auth: {
@@ -56,19 +10,72 @@ export const handler = async (event, context) => {
 		},
 	});
 
-	// 	const mailOptions = {
-	// 		from: process.env.EMAIL_FROM,
-	// 		to: email,
-	// 		subject: 'Резервирование билетов',
-	// 		text: `Hello, ${name}!`,
-	// 		html: `
-	// 		<h1>Hello, ${name}!</h1>`,
-	// 	};
+	const messageData = JSON.parse(event.body);
+	console.log(messageData);
 
-	return {
-		statusCode: 200,
-		body: JSON.stringify({
-			message: 'Email sent successfully',
-		}),
+	const { lang, name, email, reservations, amount } = messageData;
+
+	const mailOptions = {
+		from: process.env.EMAIL_FROM,
+		to: email,
+		subject: 'Резервирование билетов',
+		text: `Hello, ${name}!`,
+		html: `
+		<h1>Hello, ${name}!</h1>`,
 	};
+
+	try {
+		console.log('call sendMail.......');
+		let info = await transporter.sendMail(mailOptions);
+		console.log('result:');
+		console.log(info);
+
+		return {
+			statusCode: 200,
+			body: JSON.stringify({
+				message: 'Email sent successfully',
+			}),
+		};
+	} catch (error) {
+		console.log('error:');
+		console.log(error);
+		return {
+			statusCode: 500,
+			body: JSON.stringify({
+				message: error.message,
+			}),
+		};
+	}
 };
+
+// export const handler = async (event, context) => {
+// 	console.log('in Netlify function: sendMail');
+
+// 	const messageData = JSON.parse(event.body);
+// 	console.log(messageData);
+// 	// const { lang, name, email, reservations, amount } = messageData;
+
+// 	const transporter = nodemailer.createTransport({
+// 		service: 'gmail',
+// 		auth: {
+// 			user: process.env.ANTREPRIZA_EMAIL,
+// 			pass: process.env.ANTREPRIZA_PASSWORD,
+// 		},
+// 	});
+
+// 	// 	const mailOptions = {
+// 	// 		from: process.env.EMAIL_FROM,
+// 	// 		to: email,
+// 	// 		subject: 'Резервирование билетов',
+// 	// 		text: `Hello, ${name}!`,
+// 	// 		html: `
+// 	// 		<h1>Hello, ${name}!</h1>`,
+// 	// 	};
+
+// 	return {
+// 		statusCode: 200,
+// 		body: JSON.stringify({
+// 			message: 'Email sent successfully',
+// 		}),
+// 	};
+// };
