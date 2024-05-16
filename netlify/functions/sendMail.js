@@ -1,4 +1,4 @@
-// const nodemailer = require('nodemailer');
+const nodemailer = require('nodemailer');
 // const transporter = nodemailer.createTransport({
 // 	service: 'gmail',
 // 	auth: {
@@ -50,9 +50,18 @@
 export const handler = async (event, context) => {
 	console.log('in Netlify function: sendMail');
 
-	console.log('Email ENV: address - ' + process.env.ANTREPRIZA_EMAIL + ', pass - ' + process.env.ANTREPRIZA_PASSWORD);
-	// const messageData = JSON.parse(event.body);
-	// console.log(messageData);
+	const messageData = JSON.parse(event.body);
+	console.log(messageData);
+	// const { lang, name, email, reservations, amount } = messageData;
+
+	// 	const mailOptions = {
+	// 		from: process.env.EMAIL_FROM,
+	// 		to: email,
+	// 		subject: 'Резервирование билетов',
+	// 		text: `Hello, ${name}!`,
+	// 		html: `
+	// 		<h1>Hello, ${name}!</h1>`,
+	// 	};
 
 	return {
 		statusCode: 200,
