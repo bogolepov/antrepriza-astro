@@ -8,7 +8,9 @@ const transporter = nodemailer.createTransport({
 });
 
 export const handler = async (event, context) => {
+	console.log('Email ENV: address - ' + process.env.ANTREPRIZA_EMAIL + ', pass - ' + process.env.ANTREPRIZA_PASSWORD);
 	const messageData = JSON.parse(event.body);
+	console.log(messageData);
 
 	const { lang, name, email, reservations, amount } = messageData;
 
@@ -22,7 +24,10 @@ export const handler = async (event, context) => {
 	};
 
 	try {
+		console.log('call sendMail.......');
 		let info = await transporter.sendMail(mailOptions);
+		console.log('result:');
+		console.log(info);
 
 		return {
 			statusCode: 200,
@@ -31,6 +36,8 @@ export const handler = async (event, context) => {
 			}),
 		};
 	} catch (error) {
+		console.log('error:');
+		console.log(error);
 		return {
 			statusCode: 500,
 			body: JSON.stringify({
