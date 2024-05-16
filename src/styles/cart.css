@@ -229,6 +229,7 @@
 
 .modal-layer-reservation .modal-dialog {
 	max-width: 360px;
+	position: relative;
 }
 
 .final-reservation-form .pink-button-div {
@@ -242,4 +243,19 @@
 	font-size: 1em;
 	color: var(--grey-10);
 	letter-spacing: 0.05em;
+}
+
+.final-reservation-form .message {
+	flex-direction: column;
+	background-color: var(--colorBkgForm);
+	width: 100%;
+	padding: 0.7em 2em;
+	text-align: center;
+}
+
+.message p {
+	margin-top: 0;
+}
+.message button {
+	width: 30%;
 }

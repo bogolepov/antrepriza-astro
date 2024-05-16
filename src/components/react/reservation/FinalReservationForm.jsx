@@ -1,26 +1,56 @@
 import '@styles/antrepriza.css';
 import '@styles/cart.css';
+import '@styles/loader.css';
 
 import { useRef, useState } from 'react';
 
-export default function FinalReservationForm({ lang, dictionary, isShow, handleClose, handleSubmit }) {
+export default function FinalReservationForm({ lang, dictionary, isShow, handleClose, handleSendEmail }) {
 	const userName = useRef(null);
 	const userEmail = useRef(null);
 	const [userNameError, setUserNameError] = useState('');
 	const [userEmailError, setUserEmailError] = useState('');
 
+	const MODE_FORM_EDITING = 0;
+	const MODE_EMAIL_SENDING = 1;
+	const MODE_EMAIL_SENT = 2;
+	const MODE_EMAIL_ERROR = 3;
+
+	const [mode, setMode] = useState(MODE_FORM_EDITING);
+
 	const handleFinalFormSubmit = event => {
 		event.preventDefault();
 
-		if (validateForm()) handleSubmit();
+		const handleResult = isOk => {
+			if (isOk) {
+				resetForm();
+				setMode(MODE_EMAIL_SENT);
+			} else {
+				setMode(MODE_EMAIL_ERROR);
+			}
+		};
+
+		let [name, email] = validateForm();
+		if (name && email) {
+			setMode(MODE_EMAIL_SENDING);
+			handleSendEmail(name, email, handleResult);
+		}
 	};
 
 	const handleFinalFormClose = () => {
-		closeForm();
+		resetForm();
 		handleClose();
 	};
 
-	function closeForm() {
+	const handleMessageButton = () => {
+		if (mode === MODE_EMAIL_SENT) {
+			handleFinalFormClose();
+		} else if (mode === MODE_EMAIL_ERROR) {
+			//
+		}
+		setMode(MODE_FORM_EDITING);
+	};
+
+	function resetForm() {
 		setUserNameError(null);
 		setUserEmailError(null);
 		userName.current.value = '';
@@ -42,7 +72,8 @@ export default function FinalReservationForm({ lang, dictionary, isShow, handleC
 			setUserEmailError(dictionary['err__email_not_correct'][lang]);
 		else errorNumbers--;
 
-		return errorNumbers === 0;
+		if (errorNumbers === 0) return [name, email];
+		else return [null, null];
 	}
 
 	if (!dictionary) return <></>;
@@ -55,6 +86,17 @@ export default function FinalReservationForm({ lang, dictionary, isShow, handleC
 					</button>
 					<div className='form final-reservation-form'>
 						<form method='POST' className='final-reservation-form' onSubmit={handleFinalFormSubmit}>
+							{mode === MODE_EMAIL_SENDING && (
+								<div className='layer-on-parent show not_transparent'>
+									<div className='antrepriza-loader'></div>
+								</div>
+							)}
+							{(mode === MODE_EMAIL_SENT || mode === MODE_EMAIL_ERROR) && (
+								<div className='layer-on-parent show not_transparent message'>
+									<p>{mode === MODE_EMAIL_SENT ? dictionary.msg_email_sent[lang] : dictionary.msg_email_error[lang]}</p>
+									<button onClick={handleMessageButton}>OK</button>
+								</div>
+							)}
 							<div className='form-label required font-opacity0'>{dictionary.name[lang]}</div>
 							<input
 								className='form-input'

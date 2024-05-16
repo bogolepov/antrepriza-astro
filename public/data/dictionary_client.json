@@ -19,5 +19,13 @@
 	"name": { "ru": "Имя", "de": "Name" },
 	"name_hint": { "ru": "Имя и фамилия", "de": "Vor- und Nachname" },
 	"email": { "ru": "Email", "de": "E-Mail" },
-	"email_hint": { "ru": "Ваш электронный адрес", "de": "Ihre E-Mail-Adresse" }
+	"email_hint": { "ru": "Ваш электронный адрес", "de": "Ihre E-Mail-Adresse" },
+	"msg_email_sent": {
+		"ru": "Подтверждение резервирования билетов успешно отправлено на Ваш электронный адрес.",
+		"de": "Die Bestätigung der Ticketreservierung wurde erfolgreich an Ihre E-Mail-Adresse gesendet."
+	},
+	"msg_email_error": {
+		"ru": "К сожалению, не удалось отправить подтверждение на Ваш электронный адрес. Проверьте, что все данные введены правильно, или попробуйте позже.",
+		"de": "Leider konnten wir keine Bestätigung an Ihre E-Mail-Adresse senden. Bitte überprüfen Sie, ob alle Angaben korrekt eingegeben wurden, oder versuchen Sie es später erneut."
+	}
 }

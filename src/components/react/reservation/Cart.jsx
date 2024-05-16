@@ -35,15 +35,26 @@ export function Cart({ lang, tickets, totalAmount, handleCloseClick, handleAddTi
 		setIsFinalFormOpen(false);
 	};
 
-	// const handleFinalFormSubmit = () => {
-	// 	// TODO:
-	// };
-	const handleFinalFormSubmit = async () => {
-		// TODO:
-		await fetch('/.netlify/functions/sendMail')
+	const handleFinalFormSubmit = async (name, email, handleResult) => {
+		// console.log('Name: ' + name + ', email: ' + email);
+
+		const emailData = { lang: lang, name: name, email: email, reservations: tickets, amount: totalAmount };
+
+		const options = {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(emailData),
+		};
+
+		await fetch('/.netlify/functions/sendMail', options)
 			.then(response => response.json())
-			.then(data => alert(data.message))
-			.catch(() => console.error('Error!'));
+			.then(data => {
+				handleResult(true);
+				// TODO: make reservations empty!!!
+			})
+			.catch(() => handleResult(false));
 	};
 
 	if (!isJsonsLoaded) loadClientJsons(clientJsons, handleThen, handleFinally);
@@ -101,7 +112,7 @@ export function Cart({ lang, tickets, totalAmount, handleCloseClick, handleAddTi
 				dictionary={clientJsons.dictionary}
 				isShow={isFinalFormOpen}
 				handleClose={handleFinalFormClose}
-				handleSubmit={handleFinalFormSubmit}
+				handleSendEmail={handleFinalFormSubmit}
 			></FinalReservationForm>
 		</>
 	);
