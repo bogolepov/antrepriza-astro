@@ -1,11 +1,13 @@
-const nodemailer = require('nodemailer');
-// const transporter = nodemailer.createTransport({
-// 	service: 'gmail',
-// 	auth: {
-// 		user: process.env.ANTREPRIZA_EMAIL,
-// 		pass: process.env.ANTREPRIZA_PASSWORD,
-// 	},
-// });
+// const nodemailer = require('nodemailer');
+import { nodemailer } from 'nodemailer';
+
+const transporter = nodemailer.createTransport({
+	service: 'gmail',
+	auth: {
+		user: process.env.ANTREPRIZA_EMAIL,
+		pass: process.env.ANTREPRIZA_PASSWORD,
+	},
+});
 
 // export const handler = async (event, context) => {
 // 	console.log('Email ENV: address - ' + process.env.ANTREPRIZA_EMAIL + ', pass - ' + process.env.ANTREPRIZA_PASSWORD);
