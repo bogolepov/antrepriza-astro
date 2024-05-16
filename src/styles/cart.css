@@ -226,6 +226,9 @@
 .modal-layer-reservation {
 	font-size: clamp(0.9rem, 2.7vw, 1rem);
 }
+.modal-layer-reservation:has(.message) {
+	flex-direction: column;
+}
 
 .modal-layer-reservation .modal-dialog {
 	max-width: 360px;
@@ -245,7 +248,7 @@
 	letter-spacing: 0.05em;
 }
 
-.final-reservation-form .message {
+.final-reservation-form .layer-on-parent.show.message {
 	flex-direction: column;
 	background-color: var(--colorBkgForm);
 	width: 100%;
