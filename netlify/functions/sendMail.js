@@ -49,6 +49,11 @@
 
 export const handler = async (event, context) => {
 	console.log('in Netlify function: sendMail');
+
+	console.log('Email ENV: address - ' + process.env.ANTREPRIZA_EMAIL + ', pass - ' + process.env.ANTREPRIZA_PASSWORD);
+	// const messageData = JSON.parse(event.body);
+	// console.log(messageData);
+
 	return {
 		statusCode: 200,
 		body: JSON.stringify({
