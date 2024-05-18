@@ -14,10 +14,18 @@ let theater;
 
 export const handler = async (event, context) => {
 	try {
-		let data = fs.readFileSync('/data/dictionary_server.json');
+		console.log('Current directory:', __dirname);
+		console.log('Current directory 2:', process.cwd());
+		console.log('Files:');
+		fs.readdirSync('./').forEach(file => {
+			console.log(file);
+		});
+		console.log('...');
+
+		let data = fs.readFileSync('./public/data/dictionary_server.json');
 		dictionaryServer = JSON.parse(data);
 
-		data = fs.readFileSync('/data/theater.json');
+		data = fs.readFileSync('./public/data/theater.json');
 		theater = JSON.parse(data);
 
 		// console.log(dictionaryServer);
