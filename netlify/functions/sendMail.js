@@ -22,6 +22,10 @@ export const handler = async (event, context) => {
 		});
 		console.log('...');
 
+		let data0 = fs.readFileSync('./package.json');
+		packJson = JSON.parse(data0);
+		console.log(packJson);
+
 		let data = fs.readFileSync('./public/data/dictionary_server.json');
 		dictionaryServer = JSON.parse(data);
 
