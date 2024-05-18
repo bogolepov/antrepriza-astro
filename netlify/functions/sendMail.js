@@ -14,7 +14,7 @@ let theater;
 
 export const handler = async (event, context) => {
 	try {
-		let data = fs.readFileSync('./data/dictionary_server.json');
+		let data = fs.readFileSync('/data/dictionary_server.json');
 		dictionaryServer = JSON.parse(data);
 
 		data = fs.readFileSync('/data/theater.json');
