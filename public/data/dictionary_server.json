@@ -1,3 +1,4 @@
 {
-	"email_ticket_subject": { "ru": "Бронирование билетов", "de": "Ticketreservierung" }
+	"email_ticket_subject": { "ru": "Бронирование билетов", "de": "Ticketreservierung" },
+	"total_amount": { "ru": "Итого", "de": "Gesamtbetrag" }
 }

@@ -4,28 +4,8 @@ import fs from 'fs';
 let dictionaryServer;
 let theater;
 
-// import dictionaryServer from './public/data/dictionary_server.json';
-
-// let dictionaryServer;
-// const theater = require('/data/theater.json');
-
-// import dictionaryServer from './data/dictionary_server.json' assert { type: 'json' };
-// import theater from './data/theater.json' assert { type: 'json' };
-
 export const handler = async (event, context) => {
 	try {
-		console.log('Current directory:', __dirname);
-		console.log('Current directory 2:', process.cwd());
-		console.log('Files:');
-		fs.readdirSync('./').forEach(file => {
-			console.log(file);
-		});
-		console.log('...');
-
-		// let data0 = fs.readFileSync('./package.json');
-		// packJson = JSON.parse(data0);
-		// console.log(packJson);
-
 		let data = fs.readFileSync('./public/data/dictionary_server.json');
 		dictionaryServer = JSON.parse(data);
 
@@ -39,8 +19,6 @@ export const handler = async (event, context) => {
 		console.log(error);
 	}
 
-	// const dictionaryServer = require('./data/dictionary_server.json');
-	// console.log('Email ENV: address - ' + process.env.ANTREPRIZA_EMAIL + ', pass - ' + process.env.ANTREPRIZA_PASSWORD);
 	const transporter = nodemailer.createTransport({
 		service: 'gmail',
 		auth: {
@@ -100,24 +78,37 @@ function makeHead(lang) {
 		dictionaryServer.email_ticket_subject[lang] +
 		'</title><style>' +
 		'.email {width:100%;font-size:16px;background-color:#292929;color:#d6d6d6;} ' +
-		'.email-wrapper {padding:2rem;align:center;}' +
+		'.email-wrapper {padding:2rem;margin-left:auto;margin-right:auto;} ' +
+		'.tickets-table {width:90%; max-width:600px;} ' +
+		'.play-titel {font-weight:700; font-size: 1.5rem;line-height:1.1em;padding-top:0.5em;border-top: 1px solid;margin-top:0.3em;} ' +
+		'.play-date {color: #87605e; font-weight: 700; font-size: 1.1rem;padding-bottom:0.1em;line-height:1.2em;} ' +
+		'.play-info {font-size:1.1rem; font-weight:400;line-height:1.2em;padding-bottom:0.25em;}' +
+		'.tickets-info {padding-left:2em;line-height:1.3em;}' +
+		'.total-amount {font-size:1.3rem; line-height:1.2em;padding-top:0.5em;border-top: 1px solid;margin-top:0.3em;}' +
+		'.address {font-size:1.15rem; line-height:1.2em;}' +
 		'</style></head>'
 	);
 }
 
 function makeBody(lang, name, email, reservations, amount) {
 	return (
-		`<body><table class='email'><tbody><tr><td class='email-wrapper'><h1>Hello, ${name}</h1>` +
-		makeReservationsTable(lang, reservations) +
-		`<h5>Your total amount: ${amount}€</h5></td></tr></tbody></table></body>`
+		`<body><table class='email'><tbody><tr><td class='email-wrapper'>` +
+		makeTextAboutReservation(lang, name, email) +
+		makeReservationsTable(lang, reservations, amount) +
+		`</td></tr></tbody></table></body>`
 	);
 }
 
-function makeReservationsTable(lang, reservations) {
+function makeTextAboutReservation(lang, name, email) {
+	return `<h1>Hello, ${name}</h1>`;
+}
+
+function makeReservationsTable(lang, reservations, amount) {
 	console.log(reservations);
-	let table = '<table><tbody>';
+	let table = '<table class="tickets-table"><tbody>';
 	reservations.forEach(element => {
-		let playName = theater.plays.find(item => item.id === element.play_id).title[lang];
+		let thisPlay = theater.plays.find(item => item.id === element.play_id);
+		let playName = thisPlay.title[lang];
 		let playDate = new Date(element.date);
 		let options = {
 			year: 'numeric',
@@ -126,10 +117,28 @@ function makeReservationsTable(lang, reservations) {
 		};
 		let strDate = playDate.toLocaleDateString(lang, options);
 
-		table = table + `<tr><td>${strDate}, ${element.time} : ${playName}</td></tr>`;
+		table =
+			table +
+			`<tr><td><div class='play-titel'>${playName.toUpperCase()}</div>` +
+			`<div class='play-date'>📆 ${strDate}, ${element.time}</div></td></tr>` +
+			`<div class='play-info'>🎭 ${thisPlay.genre[lang]}, ${thisPlay.age}, ${thisPlay.lang[lang]}</div>`;
+
+		element.tickets.forEach(ticket => {
+			if (ticket.count < 1) return;
+
+			let ticketType = theater.prices.find(price => price.type === ticket.type);
+			table =
+				table +
+				`<tr><td class='tickets-info'>${ticketType.text_short[lang]}: ${ticket.count} x ${ticketType.value}€ = ${
+					ticketType.value * ticket.count
+				}€</td></tr>`;
+		});
+
+		table = table + `<tr><td class='address'>📍 ${theater.stageAddress.full_string}</td></tr>`;
+
 		console.log(element);
 	});
-	table = table + '</tbody></table>';
+	table = table + `<tr><td><div class='total-amount'>${dictionaryServer.total_amount[lang]}: ${amount}€</div></td></tr></tbody></table>`;
 	console.log(table);
 	return table;
 }
