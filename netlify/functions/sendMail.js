@@ -79,11 +79,11 @@ function makeHead(lang) {
 		'</title><style>' +
 		'.email {width:100%;font-size:16px;background-color:#292929;color:#d6d6d6;} ' +
 		'.email-wrapper {padding:2rem;margin-left:auto;margin-right:auto;} ' +
-		'.tickets-table {width:90%; max-width:600px;} ' +
-		'.play-titel {font-weight:700; font-size: 1.5rem;line-height:1.1em;padding-top:0.5em;border-top: 1px solid;margin-top:0.3em;} ' +
+		'.tickets-table {width:90%; max-width:600px;border-top: 1px solid; padding-top: 0.3em;} ' +
+		'.play-titel {font-weight:700; font-size: 1.5rem;line-height:1.1em;} ' +
 		'.play-date {color: #87605e; font-weight: 700; font-size: 1.1rem;padding-bottom:0.1em;line-height:1.2em;} ' +
 		'.play-info {font-size:1.1rem; font-weight:400;line-height:1.2em;padding-bottom:0.25em;}' +
-		'.tickets-info {padding-left:2em;line-height:1.3em;}' +
+		'.tickets-info {padding-left:3.5em;line-height:1.3em;}' +
 		'.total-amount {font-size:1.3rem; line-height:1.2em;padding-top:0.5em;border-top: 1px solid;margin-top:0.3em;}' +
 		'.address {font-size:1.15rem; line-height:1.2em;}' +
 		'</style></head>'
@@ -105,23 +105,25 @@ function makeTextAboutReservation(lang, name, email) {
 
 function makeReservationsTable(lang, reservations, amount) {
 	console.log(reservations);
-	let table = '<table class="tickets-table"><tbody>';
+	let table = '<table class="tickets-table" cellpadding="0" cellspacing="15"><tbody>';
 	reservations.forEach(element => {
 		let thisPlay = theater.plays.find(item => item.id === element.play_id);
 		let playName = thisPlay.title[lang];
 		let playDate = new Date(element.date);
 		let options = {
 			year: 'numeric',
-			month: 'long',
+			month: 'short',
 			day: '2-digit',
 		};
 		let strDate = playDate.toLocaleDateString(lang, options);
 
+		// 📆 🎭 📍
+
 		table =
 			table +
-			`<tr><td><div class='play-titel'>${playName.toUpperCase()}</div>` +
-			`<div class='play-date'>📆 ${strDate}, ${element.time}</div></td></tr>` +
-			`<div class='play-info'>🎭 ${thisPlay.genre[lang]}, ${thisPlay.age}, ${thisPlay.lang[lang]}</div>`;
+			`<tr><td><div class='play-date'>${strDate}</div><div class='play-date'>${element.time}</div></td>` +
+			`<td><div class='play-titel'>${playName.toUpperCase()}</div>` +
+			`<div class='play-info'>${thisPlay.genre[lang]}, ${thisPlay.age}, ${thisPlay.lang[lang]}</div></td></tr>`;
 
 		element.tickets.forEach(ticket => {
 			if (ticket.count < 1) return;
@@ -129,16 +131,18 @@ function makeReservationsTable(lang, reservations, amount) {
 			let ticketType = theater.prices.find(price => price.type === ticket.type);
 			table =
 				table +
-				`<tr><td class='tickets-info'>${ticketType.text_short[lang]}: ${ticket.count} x ${ticketType.value}€ = ${
+				`<tr><td></td><td class='tickets-info'>${ticketType.text_short[lang]}: ${ticket.count} x ${ticketType.value}€ = ${
 					ticketType.value * ticket.count
 				}€</td></tr>`;
 		});
 
-		table = table + `<tr><td class='address'>📍 ${theater.stageAddress.full_string}</td></tr>`;
+		table = table + `<tr><td></td><td class='address'>${theater.stageAddress.full_string}</td></tr>`;
 
 		console.log(element);
 	});
-	table = table + `<tr><td><div class='total-amount'>${dictionaryServer.total_amount[lang]}: ${amount}€</div></td></tr></tbody></table>`;
+	table =
+		table +
+		`<tr><td colspan="2"><div class='total-amount'>${dictionaryServer.total_amount[lang]}: ${amount}€</div></td></tr></tbody></table>`;
 	console.log(table);
 	return table;
 }
