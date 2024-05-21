@@ -1,4 +1,5 @@
 {
 	"email_ticket_subject": { "ru": "Бронирование билетов", "de": "Ticketreservierung" },
+	"lang_count": { "ru": "шт", "de": "St" },
 	"total_amount": { "ru": "Итого", "de": "Gesamtbetrag" }
 }
