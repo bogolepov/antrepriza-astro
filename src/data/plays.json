@@ -19,6 +19,7 @@
 			"minimum": ""
 		},
 		"lang": { "ru": "русский", "de": "Russisch" },
+		"lang_id": "ru",
 		"characters": [],
 		"creators": [
 			{ "type": "regie", "people": [1] },
@@ -47,6 +48,7 @@
 			"minimum": ""
 		},
 		"lang": { "ru": "русский", "de": "Russisch" },
+		"lang_id": "ru",
 		"characters": [
 			{
 				"id": 1,
@@ -116,6 +118,7 @@
 			"minimum": ""
 		},
 		"lang": { "ru": "русский", "de": "Russisch" },
+		"lang_id": "ru",
 		"characters": [
 			{ "id": 1, "name": { "ru": "Малыш", "de": "Steppke" }, "actors": [110, 118] },
 			{
@@ -167,6 +170,7 @@
 			"minimum": ""
 		},
 		"lang": { "ru": "русский", "de": "Russisch" },
+		"lang_id": "ru",
 		"characters": [
 			{ "id": 1, "name": { "ru": "Роберт Кэплен", "de": "Robert Caplan" }, "actors": [103] },
 			{
@@ -223,6 +227,7 @@
 			"minimum": ""
 		},
 		"lang": { "ru": "русский", "de": "Russisch" },
+		"lang_id": "ru",
 		"characters": [
 			{
 				"id": 1,
@@ -301,6 +306,7 @@
 			"minimum": ""
 		},
 		"lang": { "ru": "русский", "de": "Russisch" },
+		"lang_id": "ru",
 		"characters": [
 			{ "id": 1, "name": { "ru": "Полина", "de": "Polina" }, "actors": [100, 102] },
 			{
@@ -393,6 +399,7 @@
 			"minimum": ""
 		},
 		"lang": { "ru": "русский", "de": "Russisch" },
+		"lang_id": "ru",
 		"characters": [
 			{ "id": 1, "name": { "ru": "Прозоров Андрей Сергеевич", "de": "Andrej Sergejewitsch Prosorow" }, "actors": [3] },
 			{

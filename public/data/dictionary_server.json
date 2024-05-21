@@ -1,5 +1,10 @@
 {
+	"play_lang": { "ru": { "ru": "на русском", "de": "auf Russisch" }, "de": { "ru": "на немецком", "de": "auf Deutsch" } },
 	"email_ticket_subject": { "ru": "Бронирование билетов", "de": "Ticketreservierung" },
 	"lang_count": { "ru": "шт", "de": "St" },
-	"total_amount": { "ru": "Итого", "de": "Gesamtbetrag" }
+	"total_amount": { "ru": "Итого", "de": "Gesamtbetrag" },
+	"new_reservation_text": { "ru": "У вас новое бронирование билетов", "de": "Sie haben eine neue Ticketreservierung" },
+	"lang_name": { "ru": "Имя", "de": "Name" },
+	"lang_when": { "ru": "Когда", "de": "Wann" },
+	" ": { "ru": "", "de": "" }
 }
