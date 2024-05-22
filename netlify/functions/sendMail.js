@@ -53,11 +53,11 @@ export const handler = async (event, context) => {
 		// email for Antrepriza
 		// the result of sending is NOT important,
 		// because the reservations were added to database
-		transporter.sendMail(makeMailOptions(false), (err, result) => {
-			console.error(err);
-		});
+		// transporter.sendMail(makeMailOptions(false), (err, result) => {
+		// 	console.error(err);
+		// });
 
-		// await transporter.sendMail(makeMailOptions(false));
+		await transporter.sendMail(makeMailOptions(false));
 
 		// console.log('result:');
 		// console.log(info);
