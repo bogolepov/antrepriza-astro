@@ -33,7 +33,6 @@ export const handler = async (event, context) => {
 	let htmlHead, htmlReservationsTable;
 	const htmlEmailToClient = makeHtmlEmail(true, lang, name, email, reservations, amount);
 	const htmlEmailToAntrepriza = makeHtmlEmail(false, lang, name, email, reservations, amount);
-	// console.log(htmlEmailClient);
 
 	const makeMailOptions = isForClient => {
 		return {
@@ -57,6 +56,7 @@ export const handler = async (event, context) => {
 		transporter.sendMail(makeMailOptions(false), (err, result) => {
 			console.error(err);
 		});
+
 		// await transporter.sendMail(makeMailOptions(false));
 
 		// console.log('result:');
@@ -96,10 +96,11 @@ export const handler = async (event, context) => {
 			'</title><style>' +
 			'table {border-spacing:0;} td {vertical-align:top;}' +
 			'.email-body {font-size:16px;background-color:#292929;color:#d6d6d6;}' +
-			'.email-body a {color:#d6d6d6;}' +
+			'.email-body a {color:#d6d6d6;} .email-body .im * {color:#d6d6d6;}' +
 			'.body-table {width:100%;}' +
 			'.email-wrapper {padding:2rem;margin-left:auto;margin-right:auto;} ' +
 			'.reservation-titel {font-size:1.35rem;margin-bottom:15px;line-height:1.2em;}' +
+			'.lh12 {line-height:1.2em;} .b700 {font-weight:700;}' +
 			'.user-table {margin-bottom:15px;}' +
 			'.user-table tr td {min-width:5em;}' +
 			'.play-table {width:100%;border-top:1px solid;border-spacing:0 25px;}' +
@@ -109,7 +110,9 @@ export const handler = async (event, context) => {
 			'.tickets-table {width:100%;border-spacing:12px 0;margin-bottom:10px;margin-top:5px;text-align:right;color:#888888;}' +
 			'.tickets-table * {line-height:1.2em;}' +
 			'.tickets-name {min-width:140px;text-align:left;padding-left:15px;}' +
+			'.left0 {padding-left:0;}' +
 			'.tickets-count {min-width:45px;} .tickets-amount {min-width:55px;}' +
+			'.play-amount-border {border-top:1px solid;margin-left:15px;}' +
 			'.total-amount {font-size:1.3rem;line-height:1.2em;padding-top:0.5em;border-top:1px solid;}' +
 			'.td-right {text-align:right;} .td-right .total-amount {padding-right:15px;}' +
 			'.address {font-size:1.1rem; line-height:1.2em;}' +
@@ -128,10 +131,25 @@ export const handler = async (event, context) => {
 	}
 
 	function makeTextAboutReservation(isForClient, lang, name, email) {
+		let dateOfReservation = new Date(Date.now());
 		if (isForClient) {
-			return `<h1>Hello, ${name}</h1>`;
+			let getHello = hour => {
+				if (hour < 6 && lang === 'ru') return dictionaryServer.hello[lang];
+				else if (hour < 12) return dictionaryServer.good_morning[lang];
+				else if (hour < 18) return dictionaryServer.good_afternoon[lang];
+				else return dictionaryServer.good_evening[lang];
+			};
+			let strHello = getHello(dateOfReservation.getHours()) + (lang === 'ru' ? ', ' : ' ') + name + (lang === 'ru' ? '!' : ',');
+
+			return (
+				`<div class='reservation-titel b700'>${strHello}</div>` +
+				`<p class='lh12'>${dictionaryServer.email_reservation_text[lang]}</p>` +
+				`<p class='lh12'>${dictionaryServer.email_reservation_text2[lang]}</p>` +
+				`<p class='lh12'>${dictionaryServer.email_reservation_text3[lang]}</p>` +
+				`<p><div class='lh12'>${dictionaryServer.email_reservation_text4[lang]}</div>` +
+				`<div class='lh12'>${theater.longTheaterName[lang]}</div></p>`
+			);
 		} else {
-			let dateOfReservation = new Date(Date.now());
 			let options = {
 				year: 'numeric',
 				month: 'long',
@@ -175,6 +193,7 @@ export const handler = async (event, context) => {
 				`<div class='play-info'>${thisPlay.genre[lang]}, ${thisPlay.age}, ${dictionaryServer.play_lang[thisPlay.lang_id][lang]}</div>` +
 				`<table class='tickets-table'>`;
 
+			let playAmount = 0;
 			element.tickets.forEach(ticket => {
 				if (ticket.count < 1) return;
 
@@ -184,9 +203,17 @@ export const handler = async (event, context) => {
 					`<tr><td class='tickets-name'>${ticketType.text[lang]}</td><td>${ticketType.value}€</td>` +
 					`<td>${ticket.count}${dictionaryServer.lang_count[lang]}</td>` +
 					`<td class='tickets-amount'>${ticketType.value * ticket.count}€</td></tr>`;
+				playAmount += ticketType.value * ticket.count;
 			});
 
-			table = table + `</table><div class='address'>${theater.stageAddress.full_string}</div></td></tr>`;
+			table =
+				table +
+				// `<tr><td colspan='3' class='tickets-name'><div class='play-amount-border'>${dictionaryServer.total_amount[lang]}</div></td>` +
+				// `<td class='tickets-amount'><div class='play-amount-border'>${playAmount}€</div></td></tr>` +
+				`<tr><td colspan='4'><div class='play-amount-border'>` +
+				`<table width='100%'><tr><td class='tickets-name left0'>${dictionaryServer.total_amount[lang]}</td>` +
+				`<td class='tickets-amount'>${playAmount}€</td></tr></table>` +
+				`</div></td></tr></table><div class='address'>${theater.stageAddress.full_string}</div></td></tr>`;
 
 			// console.log(element);
 		});

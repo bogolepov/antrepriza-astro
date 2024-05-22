@@ -6,5 +6,25 @@
 	"new_reservation_text": { "ru": "У вас новое бронирование билетов", "de": "Sie haben eine neue Ticketreservierung" },
 	"lang_name": { "ru": "Имя", "de": "Name" },
 	"lang_when": { "ru": "Когда", "de": "Wann" },
+	"good_morning": { "ru": "Доброе утро", "de": "Guten Morgen" },
+	"good_afternoon": { "ru": "Добрый день", "de": "Guten Tag" },
+	"good_evening": { "ru": "Добрый вечер", "de": "Guten Abend" },
+	"hello": { "ru": "Здравствуйте", "de": "Hallo" },
+	"email_reservation_text": {
+		"ru": "Большое спасибо за Ваше бронирование. Ниже Вы найдете информацию по бронированию.",
+		"de": "vielen Dank für Ihre Ticketreservierung. Nachfolgend finden Sie Informationen zur Reservierung."
+	},
+	"email_reservation_text2": {
+		"ru": "Обратите внимание, что оплата зарезервированных билетов производится в наличной форме перед спектаклем на входе. Бар принимает к оплате также только наличность.",
+		"de": "Bitte beachten Sie, dass die Bezahlung der reservierten Karten vor der Vorstellung am Eingang in bar erfolgen muss. Die Bar akzeptiert außerdem nur Bargeld als Zahlungsmittel."
+	},
+	"email_reservation_text3": {
+		"ru": "Театр открывает свои двери за 30 минут до начала спектакля.",
+		"de": "Unser Theater öffnet seine Türen 30 Minuten vor Vorstellungsbeginn."
+	},
+	"email_reservation_text4": {
+		"ru": "Мы будем рады Вашему визиту и с нетерпением ждем Вас!",
+		"de": "Wir freuen uns auf Ihren Besuch!"
+	},
 	" ": { "ru": "", "de": "" }
 }
