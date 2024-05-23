@@ -52,12 +52,13 @@ export const handler = async (event, context) => {
 		await transporter.sendMail(makeMailOptions(true));
 		// email for Antrepriza
 		// the result of sending is NOT important,
-		// because the reservations were added to database
+		// because the reservations SHOULD BE save somewhere (TODO:)
 		// transporter.sendMail(makeMailOptions(false), (err, result) => {
 		// 	console.error(err);
 		// });
-
-		await transporter.sendMail(makeMailOptions(false));
+		try {
+			await transporter.sendMail(makeMailOptions(false));
+		} catch (error) {}
 
 		// console.log('result:');
 		// console.log(info);
@@ -100,10 +101,10 @@ export const handler = async (event, context) => {
 			'.body-table {width:100%;}' +
 			'.email-wrapper {padding:2rem;margin-left:auto;margin-right:auto;} ' +
 			'.reservation-titel {font-size:1.35rem;margin-bottom:15px;line-height:1.2em;}' +
-			'.lh12 {line-height:1.2em;} .b700 {font-weight:700;}' +
+			'.lh12 {line-height:1.2em;} .fcw {color:#d6d6d6;} .b700 {font-weight:700;}' +
 			'.user-table {margin-bottom:15px;}' +
-			'.user-table tr td {min-width:5em;}' +
-			'.play-table {width:100%;border-top:1px solid;border-spacing:0 25px;}' +
+			'.user-table tr td {min-width:5em;color:#d6d6d6;}' +
+			'.play-table {width:100%;border-top:1px solid #d6d6d6;border-spacing:0 25px;}' +
 			'.play-titel {font-weight:700;font-size:1.8rem;line-height:1.1em;}' +
 			'.play-date {color:#87605e;font-weight:700;font-size:1.1rem;padding-bottom:0.1em;line-height:1.2em;margin-right:18px;}' +
 			'.play-info {font-size:1.1rem; font-weight:300;line-height:1.2em;padding-bottom:0.25em;}' +
@@ -113,7 +114,7 @@ export const handler = async (event, context) => {
 			'.left0 {padding-left:0;}' +
 			'.tickets-count {min-width:45px;} .tickets-amount {min-width:55px;}' +
 			'.play-amount-border {border-top:1px solid;margin-left:15px;}' +
-			'.total-amount {font-size:1.3rem;line-height:1.2em;padding-top:0.5em;border-top:1px solid;}' +
+			'.total-amount {font-size:1.3rem;line-height:1.2em;padding-top:0.5em;border-top:1px solid #d6d6d6;}' +
 			'.td-right {text-align:right;} .td-right .total-amount {padding-right:15px;}' +
 			'.address {font-size:1.1rem; line-height:1.2em;}' +
 			'</style></head>';
@@ -142,12 +143,13 @@ export const handler = async (event, context) => {
 			let strHello = getHello(dateOfReservation.getHours()) + (lang === 'ru' ? ', ' : ' ') + name + (lang === 'ru' ? '!' : ',');
 
 			return (
-				`<div class='reservation-titel b700'>${strHello}</div>` +
-				`<p class='lh12'>${dictionaryServer.email_reservation_text[lang]}</p>` +
-				`<p class='lh12'>${dictionaryServer.email_reservation_text2[lang]}</p>` +
-				`<p class='lh12'>${dictionaryServer.email_reservation_text3[lang]}</p>` +
-				`<p><div class='lh12'>${dictionaryServer.email_reservation_text4[lang]}</div>` +
-				`<div class='lh12'>${theater.longTheaterName[lang]}</div></p>`
+				`<div class='reservation-titel b700 fcw'>${strHello}</div>` +
+				`<p class='lh12 fcw'>${dictionaryServer.email_reservation_text[lang]}</p>` +
+				`<p class='lh12 fcw'>${dictionaryServer.email_reservation_text2[lang]}</p>` +
+				`<p class='lh12 fcw'>${dictionaryServer.email_reservation_text3[lang]}</p>` +
+				`<p><div class='lh12 fcw'>${dictionaryServer.email_reservation_text4[lang]}</div>` +
+				// `<div class='lh12 fcw'>${theater.longTheaterName[lang]}</div>` +
+				`<a href='${theater.main_website}${lang}' class='lh12 fcw'>${theater.longTheaterName[lang]}</a></p>`
 			);
 		} else {
 			let options = {
@@ -160,7 +162,7 @@ export const handler = async (event, context) => {
 			let strCurrentDate = dateOfReservation.toLocaleDateString(lang, options);
 
 			return (
-				`<div class='reservation-titel'>${dictionaryServer.new_reservation_text[lang]} :</div>` +
+				`<div class='reservation-titel fcw'>${dictionaryServer.new_reservation_text[lang]} :</div>` +
 				`<table class='user-table'><tr><td>${dictionaryServer.lang_name[lang]} :</td><td>${name}</td></tr>` +
 				`<tr><td>Email :</td><td>${email}</td></tr>` +
 				`<tr><td>${dictionaryServer.lang_when[lang]} :</td><td>${strCurrentDate}</td></tr></table>`
@@ -189,8 +191,8 @@ export const handler = async (event, context) => {
 			table =
 				table +
 				`<tr><td><div class='play-date'>${strDate}</div><div class='play-date'>${element.time}</div></td>` +
-				`<td><div class='play-titel'>${playName.toUpperCase()}</div>` +
-				`<div class='play-info'>${thisPlay.genre[lang]}, ${thisPlay.age}, ${dictionaryServer.play_lang[thisPlay.lang_id][lang]}</div>` +
+				`<td><div class='play-titel fcw'>${playName.toUpperCase()}</div>` +
+				`<div class='play-info fcw'>${thisPlay.genre[lang]}, ${thisPlay.age}, ${dictionaryServer.play_lang[thisPlay.lang_id][lang]}</div>` +
 				`<table class='tickets-table'>`;
 
 			let playAmount = 0;
@@ -213,14 +215,14 @@ export const handler = async (event, context) => {
 				`<tr><td colspan='4'><div class='play-amount-border'>` +
 				`<table width='100%'><tr><td class='tickets-name left0'>${dictionaryServer.total_amount[lang]}</td>` +
 				`<td class='tickets-amount'>${playAmount}€</td></tr></table>` +
-				`</div></td></tr></table><div class='address'>${theater.stageAddress.full_string}</div></td></tr>`;
+				`</div></td></tr></table><div class='address fcw'>${theater.stageAddress.full_string}</div></td></tr>`;
 
 			// console.log(element);
 		});
 		table =
 			table +
-			`<tr><td><div class='total-amount'>${dictionaryServer.total_amount[lang]}</div></td>` +
-			`<td class='td-right'><div class='total-amount'>${amount}€</div></td></tr></tbody></table>`;
+			`<tr><td><div class='total-amount fcw'>${dictionaryServer.total_amount[lang]}</div></td>` +
+			`<td class='td-right'><div class='total-amount fcw'>${amount}€</div></td></tr></tbody></table>`;
 		// console.log(table);
 
 		htmlReservationsTable = table;

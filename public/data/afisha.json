@@ -255,7 +255,8 @@
 		"play_id": 8,
 		"free_place": true,
 		"prices": ["standart", "reduce"],
-		"premiere": true
+		"premiere": true,
+		"sold_out": true
 	},
 	{
 		"date": "2024-06-09",
