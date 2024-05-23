@@ -122,8 +122,9 @@ const { Content } = await entry.render();
             {
               creator.people.map((person_id, i) => {
                 let person = theater.people.filter(person => person.id == person_id);
+                if (!person.length) person = theater.ex_people.filter(person => person.id == person_id);
                 if (!person.length) {
-                  console.log("PLAY: a person with id " + person_id + "isn't found !!!");
+                  console.log("PLAY: a person with id " + person_id + " isn't found !!!");
                   return;
                 }
                 if (person.length > 1) console.log("PLAY: MORE THAN ONE PERSON have THE SAME ID ["  + person_id + "] !!!");
@@ -208,3 +209,36 @@ const { Content } = await entry.render();
   }
   <div class="page-end"></div>
 </section>
+
+<script>
+
+	let playCounter = 0;
+
+  let ticketBtns = document.querySelectorAll('.pink-button.book-ticket.open-book-form');
+	for (let btn of ticketBtns) {
+		let fullDate = btn.getAttribute("data-date")+'T'+btn.getAttribute("data-time");
+
+		if (Date.parse(fullDate) <= Date.now()) {
+			btn.disabled = true;
+
+      let theNextPlayDay = new Date(Date.parse(btn.getAttribute("data-date")+'T00:00:00'));
+      theNextPlayDay.setDate(theNextPlayDay.getDate() + 1);
+      if (Date.now() < theNextPlayDay.valueOf()) {
+        playCounter++;
+      } else {
+        btn.hidden = true;
+      }
+		}
+		else {
+      playCounter++;
+      console.log('counter: ' + playCounter);
+      
+		}
+	}
+
+  if (playCounter === 0) {
+    let elemPlayDates = document.querySelector('.play-dates');
+    elemPlayDates.hidden = true;
+  }
+</script>
+

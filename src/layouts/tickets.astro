@@ -181,24 +181,26 @@ for (let price of prices) {
 
 
 <script>
-	const PLAYS = new Array(100).fill(0);
+	const PLAYS = new Array(40).fill(0);
 
-	let ticketBtns = document.querySelectorAll('.pink-button.book-ticket');
+	let ticketBtns = document.querySelectorAll('.pink-button.book-ticket.open-book-form');
 	for (let btn of ticketBtns) {
 		let fullDate = btn.getAttribute("data-date")+'T'+btn.getAttribute("data-time");
 
-		if (Date.parse(fullDate) < Date.now()) {
+		if (Date.parse(fullDate) <= Date.now()) {
 			//(btn as HTMLElement).hidden = true;
-			(btn as HTMLElement).disabled = true;
+			console.log('button DISABLED: ' +  btn.getAttribute("data-date"));
+			btn.disabled = true;
+			// (btn as HTMLElement).disabled = true;
 		}
 		else {
 			PLAYS[btn.getAttribute("data-play")]++;
 		}
 	}
 
-	let playBolcks = document.getElementsByClassName('tickets-play-block');
+	let playBolcks = document.querySelectorAll('.tickets-play-block');
 	for (let block of playBolcks) {
-		if (!PLAYS[block.getAttribute("data-play")])
+		if (PLAYS[block.getAttribute("data-play")] === 0)
 			(block as HTMLElement).hidden = true;
 	}
 

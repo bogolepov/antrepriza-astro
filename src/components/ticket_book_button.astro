@@ -2,7 +2,7 @@
 const { button_type, play_id, date, time, price, add_classes } = Astro.props;
 ---
 
-<button class={"pink-button book-ticket " + add_classes} type="button" data-type={button_type} 
+<button class={"pink-button book-ticket open-book-form " + add_classes} type="button" data-type={button_type} 
         data-date={date} data-time={time} data-play={play_id} data-price={price}>
 	<slot/>
 </button>

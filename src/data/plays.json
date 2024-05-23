@@ -353,7 +353,7 @@
 				"description": { "ru": "главред", "de": "Chefredakteur" },
 				"actors": [103]
 			},
-			{ "id": 11, "name": { "ru": "Светлана", "de": "Swetlana" }, "actors": [126] },
+			{ "id": 11, "name": { "ru": "Светлана", "de": "Swetlana" }, "actors": [108] },
 			{ "id": 12, "name": { "ru": "Ирина", "de": "Irina" }, "actors": [100] },
 			{
 				"id": 13,

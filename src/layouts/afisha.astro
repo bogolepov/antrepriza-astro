@@ -28,6 +28,7 @@ let iMonth: number = -1;
 
 <section class="programm">
   <TicketForm lang={lang}/>
+	
 	{
 		programm.map((playInProgramm) => {
 			let playInfo;
@@ -114,13 +115,22 @@ let iMonth: number = -1;
 
 <script>
 	const PLAYS_IN_MONTH = new Array(12).fill(0);
-	const ONE_DAY = 24*60*60*1000;	
-	let playCards = document.getElementsByClassName('programm-play-block');
+	let playCards = document.querySelectorAll('.programm-play-block');
 	for (let playCard of playCards) {
-		if (Date.parse(playCard.getAttribute("data-date")) + ONE_DAY  < Date.now())
+		let thePlayDay = new Date(Date.parse(playCard.getAttribute("data-date")+'T00:00:00'));
+		thePlayDay.setDate(thePlayDay.getDate() + 1);
+		if (thePlayDay.valueOf()  <= Date.now()) {
 			(playCard as HTMLElement).hidden = true;
-		else
+		} else {
 			PLAYS_IN_MONTH[playCard.getAttribute("data-month")]++;
+
+			let btn = playCard.querySelector('.pink-button.book-ticket');
+			console.log(btn);
+			let fullDate = btn.getAttribute("data-date")+'T'+btn.getAttribute("data-time");
+			if (Date.parse(fullDate) <= Date.now()) {
+				btn.disabled = true;
+			}
+		}
 	}
 	let monthElems = document.getElementsByClassName('programm-month');
 	let iMonth;

@@ -48,7 +48,7 @@
 [data-theme='dark'] {
 	color-scheme: dark;
 	--font-opacity0: 0.7;
-	--font-opacity1: 0.47;
+	--font-opacity1: 0.44;
 
 	--gray-rose-sat: 18%;
 	--gray-rose-sat-dis: 24%;
@@ -73,6 +73,7 @@
 	--colorBkgHoverBlock: var(--grey-130);
 	--colorBoxShadow: hsl(0 0% 96% / 0.25);
 	--colorBkgDisabledBtn: var(--grey-56);
+	--colorBkgHoverDisabledBtn: var(--grey-78);
 	--colorFontDisabledBtn: var(--grey-24);
 
 	--colorScrollBarBackground: var(--grey-16);
@@ -94,7 +95,7 @@
 	--gray-rose-sat: 24%;
 	--gray-rose-sat-dis: 18%;
 	--gray-rose-opac-dis: 0.7;
-	--gray-rose-opac-hover: 0.8;
+	--gray-rose-opac-hover: 0.85;
 
 	--colorAntreprizaRed: hsl(358 89% 47%);
 	--colorAntreprizaRed-Op0: hsl(358 89% 47% / 0.8);
@@ -114,6 +115,7 @@
 	--colorBkgHoverBlock: var(--grey-12);
 	--colorBoxShadow: rgba(0, 0, 0, 0.12);
 	--colorBkgDisabledBtn: var(--grey-30);
+	--colorBkgHoverDisabledBtn: var(--grey-46);
 	--colorFontDisabledBtn: var(--grey-12);
 
 	--colorScrollBarBackground: var(--grey-11);
@@ -332,9 +334,9 @@ h4.notification-label {
 		background-color: var(--colorBkgTicketsBtn-Hover);
 		transition: background-color 300ms ease-out;
 	}
-	/* TODO:  */
 	.pink-button[disabled]:hover {
-		/* transform: scale(1, 1); */
+		background-color: var(--colorBkgHoverDisabledBtn);
+		transition: background-color 300ms ease-out;
 	}
 }
 

@@ -10,9 +10,11 @@ const clientJsons = { afisha: null, theater: null, dictionary: null };
 let afishaItem;
 let playItem;
 
-let elemLoader;
+let afishaButton;
 
-let elemForm;
+let elemTicketLayer;
+
+let elemLoader;
 let elemPlayTitle;
 let elemPlayDescription;
 let elemDate;
@@ -22,61 +24,78 @@ let elemStageName;
 let elemPlace;
 let elemPriceBlocks;
 let elemPriceCounters;
-let elemBookButton;
+let elemAntreprizaButton;
 
 export function initTicketBookForm() {
-	let ticketBtns = document.querySelectorAll('.pink-button.book-ticket');
+	let ticketBtns = document.querySelectorAll('.pink-button.book-ticket.open-book-form');
 	for (let btn of ticketBtns) {
-		btn.disabled = false;
+		// btn.disabled = false;
 		btn.addEventListener('click', event => openForm(event, btn));
 	}
 
-	elemForm = document.querySelector('.modal-layer-ticket');
+	elemTicketLayer = document.querySelector('.modal-layer-ticket');
 
-	let btn = document.querySelector('#ticket-form-close-button');
+	let btn = elemTicketLayer.querySelector('#ticket-form-close-button');
 	if (!btn) console.log('CLOSE BUTTON not found');
 	else btn.addEventListener('click', () => resetTicketForm());
 
-	btn = document.querySelector('#ticket-form-book-antrepriza');
-	if (!btn) console.log('BOOK ANTREPRIZA not found');
-	else btn.addEventListener('click', () => handleAddToCart());
+	elemAntreprizaButton = elemTicketLayer.querySelector('#ticket-form-book-antrepriza');
+	if (!elemAntreprizaButton) console.error('BOOK ANTREPRIZA not found');
+	else elemAntreprizaButton.addEventListener('click', () => handleAddToCart());
+	elemAntreprizaButton.disabled = true;
 
-	btn = document.querySelector('#ticket-form-book-kontramarka');
+	btn = elemTicketLayer.querySelector('#ticket-form-book-kontramarka');
 	if (!btn) console.log('BOOK KONTRAMARKA not found');
 	else btn.addEventListener('click', () => handleToKontramarka());
 
-	elemLoader = document.querySelector('.layer-on-parent.ticket-form-loader');
+	elemLoader = elemTicketLayer.querySelector('.ticket-form-loader');
 
-	elemBookButton = document.querySelector('.pink-button.ticket-book');
-	elemBookButton.disabled = true;
+	elemPlayTitle = elemTicketLayer.querySelector('.play-name');
+	elemPlayDescription = elemTicketLayer.querySelector('.play-descr');
+	elemDate = elemTicketLayer.querySelector('.play-date');
+	elemTime = elemTicketLayer.querySelector('.play-time');
+	elemAddress = elemTicketLayer.querySelector('.play-address');
+	elemStageName = elemTicketLayer.querySelector('.play-stage-name');
+	elemPlace = elemTicketLayer.querySelector('.play-place');
+	elemPriceBlocks = elemTicketLayer.querySelectorAll('.price-flex');
 
-	elemPlayTitle = document.querySelector('.play-name');
-	elemPlayDescription = document.querySelector('.play-descr');
-	elemDate = document.querySelector('.play-date');
-	elemTime = document.querySelector('.play-time');
-	elemAddress = document.querySelector('.play-address');
-	elemStageName = document.querySelector('.play-stage-name');
-	elemPlace = document.querySelector('.play-place');
-	elemPriceBlocks = document.querySelectorAll('.price-flex');
-
-	elemPriceCounters = document.querySelectorAll('.count-input');
+	elemPriceCounters = elemTicketLayer.querySelectorAll('.count-input');
 	for (let counter of elemPriceCounters) {
 		counter.addEventListener('change', () => {
-			elemBookButton.disabled = getTicketsCount() === 0;
+			elemAntreprizaButton.disabled = getTicketsCount() === 0;
 		});
 	}
 }
 
+function canBook_ValidDate(button) {
+	let playDate = button.getAttribute('data-date');
+	let playTime = button.getAttribute('data-time');
+	if (!playDate || playDate.length === 0 || !playTime || playTime.length === 0) return false;
+
+	if (Date.parse(playDate + 'T' + playTime) <= Date.now()) {
+		//(btn as HTMLElement).hidden = true;
+		button.disabled = true;
+		return false;
+	}
+
+	return true;
+}
+
 function openForm(event, button) {
+	// check, the date
+	if (!canBook_ValidDate(button)) return;
+
+	afishaButton = button;
+
 	isTicketsAdded.set(false);
 
-	elemForm.classList.add('show');
+	elemTicketLayer.classList.add('show');
 
 	elemLoader.classList.add('show');
 
 	const handleThen = () => {
-		let aDate = button.getAttribute('data-date');
-		let aTime = button.getAttribute('data-time');
+		let aDate = afishaButton.getAttribute('data-date');
+		let aTime = afishaButton.getAttribute('data-time');
 
 		afishaItem = clientJsons.afisha.find(item => item.date === aDate && item.time === aTime);
 		if (!afishaItem) {
@@ -106,7 +125,7 @@ function openForm(event, button) {
 }
 
 function closeForm() {
-	elemForm.classList.remove('show');
+	elemTicketLayer.classList.remove('show');
 
 	elemPlayTitle.innerHTML = '';
 	elemPlayDescription.innerHTML = '';
@@ -116,7 +135,10 @@ function closeForm() {
 	elemStageName.innerHTML = '';
 	elemPlace.innerHTML = '';
 	elemPriceCounters.forEach(element => (element.value = '0'));
-	elemBookButton.disabled = true;
+	elemAntreprizaButton.disabled = true;
+
+	canBook_ValidDate(afishaButton);
+	afishaButton = undefined;
 }
 
 function resetTicketForm() {

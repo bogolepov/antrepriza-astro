@@ -278,7 +278,7 @@
 			"surname": { "ru": "Соколова", "de": "Sokolova" }
 		}
 	],
-	"ex-people": [
+	"ex_people": [
 		{
 			"id": 121,
 			"suffix": "sv",
