@@ -13,6 +13,7 @@
 	"play_lang": { "ru": { "ru": "на русском", "de": "auf Russisch" }, "de": { "ru": "на немецком", "de": "auf Deutsch" } },
 	"free_place": { "ru": "свободные места", "de": "freie Platzwahl" },
 	"my_reservations": { "ru": "Мои заказы", "de": "Meine Bestellungen" },
+	"empty_reservation_list": { "ru": "Список заказов пуст.", "de": "Leerer Warenkorb" },
 	"btn_cart_book": { "ru": "Оформить", "de": "Ausstellen" },
 	"btn_reservation": { "ru": "Забронировать", "de": "Reservieren" },
 	"total_amount": { "ru": "Итого", "de": "Gesamtbetrag" },

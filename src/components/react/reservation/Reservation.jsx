@@ -73,6 +73,10 @@ export default function Reservation({ lang }) {
 		}
 	};
 
+	let handleReservationDone = () => {
+		updateReservations([]);
+	};
+
 	useEffect(() => {
 		let loadedReservations = loadReservationsFromStorage();
 		updateReservations(loadedReservations);
@@ -142,6 +146,7 @@ export default function Reservation({ lang }) {
 				handleCloseClick={handleCartButtonClick}
 				handleAddTicket={handleAddOneTicket}
 				handleRemoveTicket={handleRemoveOneTicket}
+				handleReservationDone={handleReservationDone}
 			></Cart>
 			<CartButton handleCount={calcTicketsCount} handleClick={handleCartButtonClick}></CartButton>
 		</>

@@ -82,5 +82,16 @@
 	{ "filename": "IMG__9481.jpg", "is_landscape": true, "suffix": "mik", "author": 5, "people": [110, 116] },
 	{ "filename": "IMG__9517.jpg", "is_landscape": true, "suffix": "mik", "author": 5, "people": [103, 108, 110] },
 
+	{ "filename": "DSC_3885.jpg", "is_landscape": true, "suffix": "miks", "author": 5, "people": [1, 119] },
+	{ "filename": "DSC_3770.jpg", "is_landscape": true, "suffix": "miks", "author": 5, "people": [100, 103, 105] },
+	{ "filename": "DSC_3793.jpg", "is_landscape": true, "suffix": "miks", "author": 5, "people": [100, 119] },
+	{ "filename": "DSC_3743.jpg", "is_landscape": true, "suffix": "miks", "author": 5, "people": [103, 111] },
+	{ "filename": "DSC_3779.jpg", "is_landscape": true, "suffix": "miks", "author": 5, "people": [100, 105, 119] },
+	{ "filename": "DSC_3744.jpg", "is_landscape": true, "suffix": "miks", "author": 5, "people": [100, 103, 111] },
+	{ "filename": "DSC_3871.jpg", "is_landscape": true, "suffix": "miks", "author": 5, "people": [103, 105] },
+	{ "filename": "DSC_3748.jpg", "is_landscape": true, "suffix": "miks", "author": 5, "people": [111] },
+	{ "filename": "DSC_3794.jpg", "is_landscape": true, "suffix": "miks", "author": 5, "people": [119] },
+	{ "filename": "DSC_3766.jpg", "is_landscape": true, "suffix": "miks", "author": 5, "people": [100, 111] },
+
 	{ "filename": null, "is_landscape": true, "suffix": "", "author": 0, "people": [] }
 ]

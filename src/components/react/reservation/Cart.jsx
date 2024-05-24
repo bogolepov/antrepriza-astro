@@ -18,7 +18,7 @@ export function getPrice(price_type) {
 	return clientJsons.theater.prices.find(price => price.type === price_type).value;
 }
 
-export function Cart({ lang, tickets, totalAmount, handleCloseClick, handleAddTicket, handleRemoveTicket }) {
+export function Cart({ lang, tickets, totalAmount, handleCloseClick, handleAddTicket, handleRemoveTicket, handleReservationDone }) {
 	const $isCartOpen = useStore(isCartOpen);
 	const [isJsonsLoaded, setIsJsonsLoaded] = useState(false);
 	const [isFinalFormOpen, setIsFinalFormOpen] = useState(false);
@@ -52,7 +52,8 @@ export function Cart({ lang, tickets, totalAmount, handleCloseClick, handleAddTi
 			.then(response => response.json())
 			.then(data => {
 				handleResult(true);
-				// TODO: make reservations empty!!!
+
+				handleReservationDone();
 			})
 			.catch(() => handleResult(false));
 	};
@@ -77,6 +78,7 @@ export function Cart({ lang, tickets, totalAmount, handleCloseClick, handleAddTi
 						<>
 							<h5 className='cart-title'>{clientJsons.dictionary.my_reservations[lang]}</h5>
 							<div className='order-list-wrapper'>
+								{tickets.length === 0 && <div className='cart-empty'>{clientJsons.dictionary.empty_reservation_list[lang]}</div>}
 								<ul className='order-list'>
 									{tickets.map((play, index) => (
 										<Order

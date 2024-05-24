@@ -41,9 +41,10 @@
 		"age": "16+",
 		"description": { "ru": "play_miks_ru", "de": "play_miks_de" },
 		"posters": {
-			"landscape": "karl.son.jpg",
-			"landscape_16_9": "karl.son_16_9.jpg",
-			"portrait": "karl.son_poster.jpg",
+			"landscape": "steppke_und_karl_son.jpg",
+			"landscape_16_9": "steppke_und_karl_son_16_9.jpg",
+			"portrait": "steppke_und_karl_son_poster.jpg",
+			"afisha": "afisha_miks.jpg",
 			"facebook": "",
 			"minimum": ""
 		},
@@ -53,37 +54,40 @@
 			{
 				"id": 1,
 				"name": { "ru": "Павел Страницин", "de": "Pavel Stranizin" },
-				"description": { "ru": "", "de": "" },
+				"description": {
+					"ru": "релокант, ищущий свое место в жизни",
+					"de": "ein Auswanderer, der auf der Suche nach seinem Platz im Leben ist"
+				},
 				"actors": [119, 110]
 			},
 			{
 				"id": 2,
 				"name": { "ru": "Гриша Глушаков", "de": "Grischa Gluschakow" },
-				"description": { "ru": "", "de": "" },
+				"description": { "ru": "руководитель небольшого театра", "de": "Leiter eines kleinen Theaters" },
 				"actors": [103]
 			},
 			{
 				"id": 3,
 				"name": { "ru": "Марина Загитова", "de": "Marina Sagitowa" },
-				"description": { "ru": "", "de": "" },
-				"actors": [100, 101]
+				"description": { "ru": "бывшая актриса провинциального театра", "de": "ehemalige Schauspielerin des Provinztheater" },
+				"actors": [100]
 			},
 			{
 				"id": 4,
 				"name": { "ru": "Леночка Майер", "de": "Lenotschka Meier" },
-				"description": { "ru": "", "de": "" },
-				"actors": [116, 127, 128]
+				"description": { "ru": "молодая актриса без опыта, модница", "de": "junge Schauspielerin ohne Erfahrung, Modepuppe" },
+				"actors": [111, 116]
 			},
 			{
 				"id": 5,
 				"name": { "ru": "Серафима Вернер", "de": "Serafima Werner" },
-				"description": { "ru": "", "de": "" },
-				"actors": [111, 108, 105]
+				"description": { "ru": "борец за справедливость всех и вся", "de": "Kämpfer_in für Gerechtigkeit für alle und alles" },
+				"actors": [108, 105]
 			},
 			{
 				"id": 6,
 				"name": { "ru": "Эммануил Карлович", "de": "Immanuel Karlowitsch" },
-				"description": { "ru": "", "de": "" },
+				"description": { "ru": "распорядитель судеб", "de": "Meister des Schicksals" },
 				"actors": [1]
 			}
 		],
