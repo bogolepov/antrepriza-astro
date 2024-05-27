@@ -45,32 +45,18 @@ const { Content } = await entry.render();
   <TicketForm lang={lang}/>
   <h1 class="play-title">{thisPlay.title[lang].toUpperCase()}</h1>
   <div class="play-author">{thisPlay.author_full[lang].toUpperCase()}</div>
-  <div class="media_container">
-    <div class="media">
-      { thisPlay.trailer_embed &&
-        <iframe class="trailer float"
-          src={thisPlay.trailer_embed+"&rel=0&controls=2&hl="+lang.toUpperCase()} title="YouTube video player" 
-          frameborder="0" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-          allowfullscreen></iframe>
-      }
-      { !thisPlay.trailer_embed &&
-        <Picture 
-          class:list={'image-wrapper-landscape float'} 
-          src={images["/src/assets/" + thisPlay.posters.landscape_16_9]()} 
-          formats={['webp']} 
-          fallbackFormat='jpg'
-          widths={[280,640,1200]}
-          sizes={'(max-width: 320px) 280px, (max-width: 660px) 640px, 1200px'}
-          alt={thisPlay.alt_title[lang]} />
-      } 
-    </div>
-    <div class="play-info">
-			<h4 class="play-property label-before" data-label={dictionary.genre[lang]+": "}>{thisPlay.genre[lang]}, {thisPlay.age}</h4>
-      <h4 class="play-property label-before" data-label={dictionary.language[lang]+": "}>{thisPlay.lang[lang]}</h4>
-      <h4 class="play-property label-before" data-label={dictionary.duration[lang]+": "}>{strDuration}</h4>
-    </div>
-  </div>
+  {
+    thisPlay.posters.afisha &&
+    <Picture 
+      class:list={'image-wrapper-landscape float afisha'} 
+      src={images["/src/assets/" + thisPlay.posters.afisha]()} 
+      formats={['webp']} 
+      fallbackFormat='jpg'
+      widths={[280,640,780]}
+      sizes={'(max-width: 320px) 280px, (max-width: 660px) 640px, 780px'}
+      alt={thisPlay.title[lang]} />
+
+  }
   {
     thisPlayDates.length > 0 &&
       <div class="play-dates">
@@ -151,18 +137,32 @@ const { Content } = await entry.render();
   }
   </ul>
 
-  {
-    thisPlay.posters.afisha &&
-    <Picture 
-      class:list={'image-wrapper-landscape float afisha'} 
-      src={images["/src/assets/" + thisPlay.posters.afisha]()} 
-      formats={['webp']} 
-      fallbackFormat='jpg'
-      widths={[280,640,780]}
-      sizes={'(max-width: 320px) 280px, (max-width: 660px) 640px, 780px'}
-      alt={thisPlay.title[lang]} />
-
-  }
+  <div class="media_container">
+    <div class="media">
+      { thisPlay.trailer_embed &&
+        <iframe class="trailer float"
+          src={thisPlay.trailer_embed+"&rel=0&controls=2&hl="+lang.toUpperCase()} title="YouTube video player" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          allowfullscreen></iframe>
+      }
+      { !thisPlay.trailer_embed &&
+        <Picture 
+          class:list={'image-wrapper-landscape float'} 
+          src={images["/src/assets/" + thisPlay.posters.landscape_16_9]()} 
+          formats={['webp']} 
+          fallbackFormat='jpg'
+          widths={[280,640,1200]}
+          sizes={'(max-width: 320px) 280px, (max-width: 660px) 640px, 1200px'}
+          alt={thisPlay.alt_title[lang]} />
+      } 
+    </div>
+    <div class="play-info">
+			<h4 class="play-property label-before" data-label={dictionary.genre[lang]+": "}>{thisPlay.genre[lang]}, {thisPlay.age}</h4>
+      <h4 class="play-property label-before" data-label={dictionary.language[lang]+": "}>{thisPlay.lang[lang]}</h4>
+      <h4 class="play-property label-before" data-label={dictionary.duration[lang]+": "}>{strDuration}</h4>
+    </div>
+  </div>
 
   <h3 class="new-chapter">{dictionary.play_team[lang].toUpperCase()}</h3>
   <ul class="list">
