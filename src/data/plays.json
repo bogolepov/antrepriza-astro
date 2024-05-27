@@ -2,8 +2,8 @@
 	{
 		"id": 9,
 		"suffix": "n32",
-		"title": { "ru": "Незнакомка 32", "de": "Die Fremde 32" },
-		"alt_title": { "ru": "Незнакомка\u00A032", "de": "Die\u00A0Fremde\u00A032" },
+		"title": { "ru": "Незнакомка 32", "de": "Die Unbekannte 32" },
+		"alt_title": { "ru": "Незнакомка\u00A032", "de": "Die\u00A0Unbekannte\u00A032" },
 		"author": { "ru": "Вл.Зайкин", "de": "V.Zajkin" },
 		"author_full": { "ru": "Владимир Зайкин", "de": "Vladimir Zajkin" },
 		"genre": { "ru": "комедия", "de": "Komödie" },
@@ -25,7 +25,7 @@
 				"id": 1,
 				"name": { "ru": "Славик", "de": "Slawik" },
 				"description": {
-					"ru": "молодой человек под ипотекой",
+					"ru": "молодой человек под валютной ипотекой",
 					"de": "Mann unter Hypothek"
 				},
 				"actors": [106]
@@ -41,9 +41,9 @@
 			},
 			{
 				"id": 3,
-				"name": { "ru": "Незнакомка", "de": "Die Fremde" },
+				"name": { "ru": "Незнакомка", "de": "Die Unbekannte" },
 				"description": { "ru": "", "de": "" },
-				"actors": [102, 100]
+				"actors": [100, 102]
 			},
 			{
 				"id": 4,

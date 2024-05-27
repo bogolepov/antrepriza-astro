@@ -125,7 +125,6 @@ let iMonth: number = -1;
 			PLAYS_IN_MONTH[playCard.getAttribute("data-month")]++;
 
 			let btn = playCard.querySelector('.pink-button.book-ticket');
-			console.log(btn);
 			let fullDate = btn.getAttribute("data-date")+'T'+btn.getAttribute("data-time");
 			if (Date.parse(fullDate) <= Date.now()) {
 				btn.disabled = true;

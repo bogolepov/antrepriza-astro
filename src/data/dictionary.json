@@ -62,6 +62,7 @@
 	"job_stage": { "ru": "Оформитель сцены", "de": "Bühnenbildner" },
 	"photo": { "ru": "Фото", "de": "Fotos" },
 	"video": { "ru": "Видео", "de": "Videos" },
+	"poster": { "ru": "Плакат", "de": "Poster" },
 	"web_developer": { "ru": "Разработчик сайта", "de": "Webentwickler" },
 	"partners": { "ru": "Партнеры", "de": "Partner" },
 	"regie_theater": { "ru": "Режиссерская работа", "de": "Werke als Regisseur" },

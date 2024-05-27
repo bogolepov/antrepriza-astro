@@ -6,9 +6,9 @@ Das Theaterensemble ist durch den Menschen aus verschiedenen Ländern vertritt: 
 
 Der intime Bühnenraum unseres Theaters in der Neuen Bühne Friedrichshain (Boxhagener Str. 18, 10245 Berlin) schafft eine heimelige Atmosphäre und das Gefühl der unmittelbaren Teilnahme des Zuschauers am Geschehen.
 
-Der intime Bühnenraum unseres Theaters in <a href="https://www.neue-buehne-friedrichshain.de" target="_blank"	rel="noopener external"><b>Neue Bühne Friedrichshain</b></a> (<i>Boxhagener Str. 18, 10245 Berlin</i>) schafft eine heimelige Atmosphäre und das Gefühl der unmittelbaren Teilnahme des Zuschauers am Geschehen.
+Der intime Bühnenraum unseres Theaters in <b><a href="https://www.neue-buehne-friedrichshain.de" target="_blank"	rel="noopener external">Neue Bühne Friedrichshain</a></b> (<i>Boxhagener Str. 18, 10245 Berlin</i>) schafft eine heimelige Atmosphäre und das Gefühl der unmittelbaren Teilnahme des Zuschauers am Geschehen.
 
-Wenn Sie bereits bei unseren Auftritten waren, freuen wir uns über Ihre Bewertungen <a href="https://g.page/r/CXSamsbDK3NlEBI/review" target="_blank"	rel="noopener external"><b>hier</b></a> (Google) und/oder <a href=" https://www.facebook.com/AntreprizaBerlin/reviews" target="_blank"	rel="noopener external"><b>hier</b></a> (Facebook).
+Wenn Sie bereits bei unseren Auftritten waren, freuen wir uns über Ihre Bewertungen <b><a href="https://g.page/r/CXSamsbDK3NlEBI/review" target="_blank"	rel="noopener external">hier</a></b> (Google) und/oder <b><a href=" https://www.facebook.com/AntreprizaBerlin/reviews" target="_blank"	rel="noopener external">hier</a></b> (Facebook).
 
 Folgen Sie dem Spielplan und kommen Sie! Wir freuen uns immer, Sie in unserem Theater zu sehen!
 

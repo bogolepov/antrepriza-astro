@@ -87,12 +87,16 @@
 .gallery-block:has(input[value='video']:checked) .media-video label {
 	color: var(--colorFontDate);
 }
+.gallery-block:has(input[value='poster']:checked) .media-poster label {
+	color: var(--colorFontDate);
+}
 .tab-item:has(input:focus-visible) {
 	outline: 2px solid var(--colorFont);
 }
 
 .photo_container,
-.video_container {
+.video_container,
+.poster_container {
 	display: none;
 }
 
@@ -101,6 +105,16 @@
 }
 .gallery-block:has(input[value='video']:checked) .video_container {
 	display: block;
+}
+.gallery-block:has(input[value='poster']:checked) .poster_container {
+	display: block;
+}
+
+.poster {
+	height: min(100vw, 60vh);
+	max-height: 67vw;
+	min-height: 220px;
+	position: relative;
 }
 
 @media screen and (max-width: 640px) {

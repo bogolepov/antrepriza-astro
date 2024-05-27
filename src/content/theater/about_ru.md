@@ -4,9 +4,9 @@
 
 Коллектив Театра представлен людьми из самых разных стран: Германия, Украина, Россия, Израиль, Беларусь, Армения, Латвия, Болгария. Судя по отзывам зрителей, прекрасные отношения внутри коллектива становятся заметны зрителям и во взаимодействии актеров на сцене.
 
-Камерная сценическая площадка, используемая нашим Театром в <a href="https://www.neue-buehne-friedrichshain.de" target="_blank"	rel="noopener external"><b>Neue Bühne Friedrichshain</b></a> (<i>Boxhagener Str. 18, 10245 Berlin</i>), формирует атмосферу домашнего уюта и ощущение непосредственного участия зрителя в разворачивающихся событиях.
+Камерная сценическая площадка, используемая нашим Театром в <b><a href="https://www.neue-buehne-friedrichshain.de" target="_blank"	rel="noopener external">Neue Bühne Friedrichshain</a></b> (<i>Boxhagener Str. 18, 10245 Berlin</i>), формирует атмосферу домашнего уюта и ощущение непосредственного участия зрителя в разворачивающихся событиях.
 
-Если Вы уже были на наших спектаклях, то будем рады получит Ваши отзывы <a href="https://g.page/r/CXSamsbDK3NlEBI/review" target="_blank"	rel="noopener external"><b>здесь</b></a> (Google) и/или <a href=" https://www.facebook.com/AntreprizaBerlin/reviews" target="_blank"	rel="noopener external"><b>здесь</b></a> (Facebook).
+Если Вы уже были на наших спектаклях, то будем рады получит Ваши отзывы <b><a href="https://g.page/r/CXSamsbDK3NlEBI/review" target="_blank"	rel="noopener external">здесь</a></b> (Google) и/или <b><a href=" https://www.facebook.com/AntreprizaBerlin/reviews" target="_blank"	rel="noopener external">здесь</a></b> (Facebook).
 
 Следите за афишей и приходите! Мы всегда рады видеть Вас в нашем Театре!
 

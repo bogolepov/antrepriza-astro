@@ -3,8 +3,18 @@ const { lang } = Astro.props;
 
 import dictionary from '@data/dictionary.json'
 
+import { getEntry } from 'astro:content';
+
+const description: string = (lang == 'ru') ? 'career_ru' : 'career_de';
+const entry = await getEntry('theater', description);
+const { Content } = await entry.render();
+
 ---
 
 <section class="career">
   <h1 class="section-title">{dictionary.menu_career[lang]}</h1>
+  <div class="description">
+    <Content/>
+  </div>
+  <div class="page-end"></div>
 </section>
