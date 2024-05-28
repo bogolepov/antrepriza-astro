@@ -65,6 +65,7 @@
 	--font-ticket-btn-lit: var(--grey-16-lit);
 
 	--colorBorderForm: var(--grey-46);
+	--colorBkgInput: var(--grey-140);
 	--colorBkgForm: var(--grey-120);
 	--colorBkgPage: var(--grey-200);
 
@@ -107,6 +108,7 @@
 	--font-ticket-btn-lit: var(--grey-10-lit);
 
 	--colorBorderForm: var(--grey-14);
+	--colorBkgInput: var(--grey-10);
 	--colorBkgForm: var(--grey-12);
 	--colorBkgPage: var(--grey-08);
 
@@ -513,7 +515,7 @@ h4.notification-label {
 	}
 }
 
-.modal-layer .modal-dialog {
+.modal-dialog {
 	position: relative;
 	border: 4px solid var(--colorBorderForm);
 	border-radius: 2px;
@@ -548,6 +550,7 @@ h4.notification-label {
 
 .form-input {
 	color: var(--colorFont);
+	background-color: var(--colorBkgInput);
 	font-size: 1.1em;
 	/* font-size: clamp(0.95rem, 1.8vw, 1.1rem); */
 	line-height: 1.4em;

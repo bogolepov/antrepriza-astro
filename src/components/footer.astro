@@ -51,20 +51,18 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
         </div>
       </div>
       <div class="question lh-1-3">
-        <input type="checkbox" id="question__checkbox" name="question" value="question"/>
-        <label class="opacoty1" for="question__checkbox">{dictionary.question_form_label[lang]}</label>
+        <input class="question-layer-switcher" type="checkbox" id="question__checkbox" name="question" value="question"/>
+        <label class="question-switcher-label opacoty1" for="question__checkbox">{dictionary.question_form_label[lang]}</label>
         <div class="question-layer flex-center layer-on-window glass6">
-          <div class="question-form-wrapper">
+          <div class="modal-dialog question-dialog">
             <div class="question-close" >
-              <label for="question__checkbox">&#10006;</label>
+              <label class="question-switcher-label" for="question__checkbox">&#10006;</label>
             </div>
             <form method="POST" id="question-form" class="question-form" onsubmit="submitQuestionForm(event)" data-netlify="true">
               <input type="hidden" name="subject" value={theater.shortTheaterName[lang] + " [" + lang.toUpperCase() + "]: " + "{topic} (#%{submissionId})"}  />
-              <div class="q-label">
-                <span class="font-opacity0">{dictionary.question_subject[lang]}</span>
-              </div>
+              <div class="form-label font-opacity0">{dictionary.question_subject[lang]}</div>
               <div class="select-wrapper">
-                <select class="q-input" name="topic" id="topic">
+                <select class="form-input" name="topic" id="topic">
                 {
                   theater.question_subjects.map(subject => {
                     return (
@@ -75,30 +73,24 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
                 </select>
               </div>
               <!-- <input class="q-input" type="text" name="theme"> -->
-              <div class="q-label">
-                <span class="font-opacity0">{dictionary.name[lang]}</span>
-                <span class="form__error" data-for="name"></span>
-              </div>
-              <input class="q-input" type="text" name="name" placeholder={dictionary.name_hint[lang]} autocomplete="on">
-              <div class="q-label">
-                <span class="font-opacity0">{dictionary.email[lang]}</span>
-                <span class="form__error" data-for="email"></span>
-              </div>
-              <input class="q-input" type="text" name="email" placeholder={dictionary.email_hint[lang]} autocomplete="on">
-              <div class="q-label">
-                <span class="font-opacity0">{dictionary.message[lang]}</span>
-                <span class="form__error" data-for="message"></span>
-              </div>
-              <textarea class="q-input" name="message" rows="5" maxlength="2000" placeholder={dictionary.message_hint[lang]} autocomplete="on"></textarea>
-              <div class="question__btn_div">
+              <div class="form-label required font-opacity0">{dictionary.name[lang]}</div>
+              <input class="form-input" type="text" name="name" placeholder={dictionary.name_hint[lang]} autocomplete="on">
+              <div class="form-error" data-for="name"></div>
+              <div class="form-label required font-opacity0">{dictionary.email[lang]}</div>
+              <input class="form-input" type="text" name="email" placeholder={dictionary.email_hint[lang]} autocomplete="on">
+              <div class="form-error" data-for="email"></div>
+              <div class="form-label required font-opacity0">{dictionary.message[lang]}</div>
+              <textarea class="form-input" name="message" rows="5" maxlength="2000" placeholder={dictionary.message_hint[lang]} autocomplete="on"></textarea>
+              <div class="form-error" data-for="message"></div>
+              <div class="question-btn-wrapper">
                 <button class="pink-button" type="submit">{dictionary.question_btn_send[lang]}</button>
               </div>
             </form>
-            <Loader js_loader_name='contact-form-loader' background='no'></Loader>
-            <div class="layer-on-parent contact-form-result-wrapper glass1_5">
-              <div class="contact-form-result">
-                <div class="contact-form-result-message"></div>
-                <button class="contact-form-result-button">OK</button>
+            <Loader js_loader_name='question-form-loader' background='no'></Loader>
+            <div class="layer-on-parent question-form-result-wrapper glass1_5">
+              <div class="question-form-result">
+                <div class="question-form-result-message"></div>
+                <button class="question-form-result-button">OK</button>
               </div>
             </div>
           </div>

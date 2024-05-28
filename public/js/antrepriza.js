@@ -246,11 +246,11 @@ async function submitQuestionForm(event) {
 	event.preventDefault();
 
 	const form = event.target;
-	const formLoader = document.querySelector('.layer-on-parent.contact-form-loader');
-	const formResult = document.querySelector('.layer-on-parent.contact-form-result-wrapper');
-	if (!formResult) console.error("Can't find contact-form-result");
-	const formResultMessage = document.querySelector('.contact-form-result-message');
-	const formResultButton = document.querySelector('.contact-form-result-button');
+	const formLoader = document.querySelector('.layer-on-parent.question-form-loader');
+	const formResult = document.querySelector('.layer-on-parent.question-form-result-wrapper');
+	if (!formResult) console.error("Can't find question-form-result");
+	const formResultMessage = document.querySelector('.question-form-result-message');
+	const formResultButton = document.querySelector('.question-form-result-button');
 	const formCheckbox = document.querySelector('#question__checkbox');
 
 	const formData = new FormData(form);
@@ -345,7 +345,7 @@ function validateForm(formData) {
 
 function resetErrorElements() {
 	// find all elements showing error messages
-	const errorElements = document.querySelectorAll('.form__error');
+	const errorElements = document.querySelectorAll('.question-layer .form-error');
 
 	// clean all error messages after last time
 	errorElements.forEach(element => {
@@ -364,8 +364,8 @@ function displayErrors(errors) {
 		errors.forEach(error => {
 			const { field, message } = error;
 			const errorElement = document.querySelector(`[data-for="${field}"]`);
-			errorElement.textContent = ' * ' + dictionary[message][currLang];
-			const errorInput = document.querySelector(`.q-input[name="${field}"]`);
+			errorElement.textContent = dictionary[message][currLang];
+			const errorInput = document.querySelector(`.question-layer .form-input[name="${field}"]`);
 
 			const onInput = () => {
 				errorElement.textContent = '';
