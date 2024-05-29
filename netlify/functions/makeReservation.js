@@ -15,7 +15,6 @@ export const handler = async (event, context) => {
 		// console.log(dictionaryServer);
 		// console.log(theater);
 	} catch (error) {
-		console.log('error:');
 		console.error(error);
 	}
 
@@ -38,7 +37,7 @@ export const handler = async (event, context) => {
 		return {
 			from: `${theater.longTheaterName[lang]} <${process.env.ANTREPRIZA_EMAIL}>`,
 			to: isForClient ? email : process.env.ANTREPRIZA_TICKETS_EMAIL,
-			subject: `${dictionaryServer.email_ticket_subject[lang]}`,
+			subject: `${dictionaryServer.email_reservation_subject[lang]}`,
 			// text: `Hello, ${name}!`,
 			html: isForClient ? htmlEmailToClient : htmlEmailToAntrepriza,
 		};
@@ -70,7 +69,6 @@ export const handler = async (event, context) => {
 			}),
 		};
 	} catch (error) {
-		console.log('error:');
 		console.error(error);
 		return {
 			statusCode: 500,
@@ -93,7 +91,7 @@ export const handler = async (event, context) => {
 			'<head><meta charset="UTF-8"><title>' +
 			theater.shortTheaterName[lang] +
 			' - ' +
-			dictionaryServer.email_ticket_subject[lang] +
+			dictionaryServer.email_reservation_subject[lang] +
 			'</title><style>' +
 			'table {border-spacing:0;} td {vertical-align:top;}' +
 			'.email-body {font-size:16px;background-color:#292929;color:#d6d6d6;}' +
@@ -149,7 +147,7 @@ export const handler = async (event, context) => {
 				`<p class='lh12 fcw'>${dictionaryServer.email_reservation_text3[lang]}</p>` +
 				`<p><div class='lh12 fcw'>${dictionaryServer.email_reservation_text4[lang]}</div>` +
 				// `<div class='lh12 fcw'>${theater.longTheaterName[lang]}</div>` +
-				`<a href='${theater.main_website}${lang}' class='lh12 fcw'>${theater.longTheaterName[lang]}</a></p>`
+				`${dictionaryServer.your__theater[lang]} <a href='${theater.main_website}${lang}' class='lh12 fcw'>${theater.longTheaterName[lang]}</a></p>`
 			);
 		} else {
 			let options = {

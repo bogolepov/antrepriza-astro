@@ -45,10 +45,10 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
     <div class="footer-flex-item flex2">
       <div class="newsletter">
         <div class="newsletter-label">{dictionary.newsletter_title[lang]}</div>
-        <div class="newsletter-form">
-        <input type="text" class="newsletter__input" name="email" placeholder={dictionary.email_hint[lang]} autocomplete="on">
-        <button class="newsletter__button">&#10153;</button>
-        </div>
+        <form method="POST" id="newsletter-form" class="newsletter-form" onsubmit="submitNewsletterForm(event)">
+          <input type="text" class="newsletter__input" name="email" placeholder={dictionary.email_hint[lang]} autocomplete="on">
+          <button class="newsletter__button">&#10153;</button>
+        </form>
       </div>
       <div class="question lh-1-3">
         <input class="question-layer-switcher" type="checkbox" id="question__checkbox" name="question" value="question"/>
@@ -72,7 +72,6 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
                 }
                 </select>
               </div>
-              <!-- <input class="q-input" type="text" name="theme"> -->
               <div class="form-label required font-opacity0">{dictionary.name[lang]}</div>
               <input class="form-input" type="text" name="name" placeholder={dictionary.name_hint[lang]} autocomplete="on">
               <div class="form-error" data-for="name"></div>

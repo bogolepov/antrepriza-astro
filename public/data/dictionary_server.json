@@ -1,6 +1,7 @@
 {
 	"play_lang": { "ru": { "ru": "на русском", "de": "auf Russisch" }, "de": { "ru": "на немецком", "de": "auf Deutsch" } },
-	"email_ticket_subject": { "ru": "Бронирование билетов", "de": "Ticketreservierung" },
+	"email_reservation_subject": { "ru": "Бронирование билетов", "de": "Ticketreservierung" },
+	"email_news_subscription_subject": { "ru": "Подтвердите подписку на новости", "de": "Newsletter-Anmeldung bestätigen" },
 	"lang_count": { "ru": "шт", "de": "St" },
 	"total_amount": { "ru": "Итого", "de": "Gesamtbetrag" },
 	"new_reservation_text": { "ru": "У вас новое бронирование билетов", "de": "Sie haben eine neue Ticketreservierung" },
@@ -10,6 +11,8 @@
 	"good_afternoon": { "ru": "Добрый день", "de": "Guten Tag" },
 	"good_evening": { "ru": "Добрый вечер", "de": "Guten Abend" },
 	"hello": { "ru": "Здравствуйте", "de": "Hallo" },
+	"dear_audience": { "ru": "Дорогой зритель", "de": "Liebes Publikum" },
+	"your__theater": { "ru": "Ваш", "de": "Ihr" },
 	"email_reservation_text": {
 		"ru": "Большое спасибо за Ваше бронирование. Ниже Вы найдете информацию по бронированию.",
 		"de": "vielen Dank für Ihre Ticketreservierung. Nachfolgend finden Sie Informationen zur Reservierung."
@@ -26,5 +29,18 @@
 		"ru": "Мы будем рады Вашему визиту и с нетерпением ждем Вас!",
 		"de": "Wir freuen uns auf Ihren Besuch!"
 	},
+	"email_subscription_text": {
+		"ru": "Мы очень рады, что Вы решили подписаться на новости Театра Антреприза Берлин.",
+		"de": "wie schön, dass Sie sich für News des Theaters Antrepriza Berlin entschieden haben!"
+	},
+	"email_subscription_text2": {
+		"ru": "Для завершения регистрации на получение новостей подтвердите, пожалуйста, Ваш адрес электронной почты, нажав на кнопку ниже.",
+		"de": "Um Ihre Anmeldung abzuschließen, müssen Sie nur noch den unten stehenden Button anklicken."
+	},
+	"email_subscription_text3": {
+		"ru": "С наилучшими пожеланиями",
+		"de": "Vergnügt grüßt"
+	},
+	"email_subscription_button_text": { "ru": "Подтвердить адрес электронной почты", "de": "Anmeldung hier bestätigen" },
 	" ": { "ru": "", "de": "" }
 }

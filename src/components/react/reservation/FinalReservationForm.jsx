@@ -4,7 +4,7 @@ import '@styles/loader.css';
 
 import { useRef, useState } from 'react';
 
-export default function FinalReservationForm({ lang, dictionary, isShow, handleClose, handleSendEmail }) {
+export default function FinalReservationForm({ lang, dictionary, isShow, handleClose, handleMakeReservation }) {
 	const userName = useRef(null);
 	const userEmail = useRef(null);
 	const [userNameError, setUserNameError] = useState('');
@@ -32,7 +32,7 @@ export default function FinalReservationForm({ lang, dictionary, isShow, handleC
 		let [name, email] = validateForm();
 		if (name && email) {
 			setMode(MODE_EMAIL_SENDING);
-			handleSendEmail(name, email, handleResult);
+			handleMakeReservation(name, email, handleResult);
 		}
 	};
 

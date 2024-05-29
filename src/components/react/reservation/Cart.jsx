@@ -48,7 +48,7 @@ export function Cart({ lang, tickets, totalAmount, handleCloseClick, handleAddTi
 			body: JSON.stringify(emailData),
 		};
 
-		await fetch('/.netlify/functions/sendMail', options)
+		await fetch('/.netlify/functions/makeReservation', options)
 			.then(response => response.json())
 			.then(data => {
 				handleResult(true);
@@ -114,7 +114,7 @@ export function Cart({ lang, tickets, totalAmount, handleCloseClick, handleAddTi
 				dictionary={clientJsons.dictionary}
 				isShow={isFinalFormOpen}
 				handleClose={handleFinalFormClose}
-				handleSendEmail={handleFinalFormSubmit}
+				handleMakeReservation={handleFinalFormSubmit}
 			></FinalReservationForm>
 		</>
 	);

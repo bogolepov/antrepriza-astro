@@ -207,9 +207,49 @@ function initHoverModeForTouchScreen() {
 }
 
 /* --------------------------------------------------- */
-/* ------------------- Contact form ------------------ */
+/* ---------------- Subscription form ---------------- */
 /* --------------------------------------------------- */
-function initContactForm() {
+async function submitNewsletterForm(event) {
+	event.preventDefault();
+
+	const form = event.target;
+	const emailInput = form.querySelector('.newsletter__input');
+
+	// TODO: check emailInput.value
+
+	const emailData = { lang: currLang, email: emailInput.value };
+	console.log(emailData);
+
+	const options = {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(emailData),
+	};
+
+	const handleResult = isOk => {
+		emailInput.value = '';
+		if (isOk) {
+		} else {
+		}
+	};
+
+	dictionary_prepare().finally(() => {
+		console.log('call netlify function');
+		fetch('/.netlify/functions/newsSubscription', options)
+			.then(response => response.json())
+			.then(data => {
+				handleResult(true);
+			})
+			.catch(() => handleResult(false));
+	});
+}
+
+/* --------------------------------------------------- */
+/* ------------------ Question form ------------------ */
+/* --------------------------------------------------- */
+function initQuestionForm() {
 	const formCheckbox = document.querySelector('#question__checkbox');
 	formCheckbox.addEventListener('change', event => {
 		if (!formCheckbox.checked) {
