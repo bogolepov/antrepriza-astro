@@ -11,6 +11,8 @@ const MODE_LIGHT = 'light';
 const LANG_LIST = [LANG_RU, LANG_DE];
 const MODE_LIST = [MODE_LIGHT, MODE_DARK];
 
+const EMAIL_REGEX = /^[a-zA-Z0–9._-]+@[a-zA-Z0–9.-]+\.[a-zA-Z]{2,4}$/;
+
 let currLang;
 let currMode;
 
@@ -209,17 +211,46 @@ function initHoverModeForTouchScreen() {
 /* --------------------------------------------------- */
 /* ---------------- Subscription form ---------------- */
 /* --------------------------------------------------- */
+function showNewsletterMessage(text, isError) {
+	const elemMessage = document.querySelector('.newsletter-message');
+	if (!elemMessage) return;
+	elemMessage.innerText = text;
+	if (isError) elemMessage.classList.add('is-error');
+	else elemMessage.classList.remove('is-error');
+
+	elemMessage.classList.remove('hidden');
+	elemMessage.classList.add('showed');
+	setTimeout(
+		() => {
+			elemMessage.classList.remove('showed');
+			elemMessage.classList.add('hidden');
+		},
+		isError ? 5000 : 3000
+	);
+}
+
 async function submitNewsletterForm(event) {
 	event.preventDefault();
 
 	const form = event.target;
 	const emailInput = form.querySelector('.newsletter__input');
+	const emailInputLoader = form.querySelector('.newsletter-input-loader');
 
-	// TODO: check emailInput.value
+	let emailAddress = emailInput.value.trim().replace(/\s+/g, ' '); // remove all ' '
 
-	const emailData = { lang: currLang, email: emailInput.value };
-	console.log(emailData);
+	let errorType = 0;
+	if (!emailAddress) errorType = 1;
+	else if (!EMAIL_REGEX.test(emailAddress) || emailAddress.length < 5 || emailAddress.length > 64) errorType = 2;
 
+	if (errorType) {
+		dictionary_prepare().then(() => {
+			if (errorType === 1) showNewsletterMessage(dictionary['err__empty_email'][currLang], true);
+			else if (errorType === 2) showNewsletterMessage(dictionary['err__email_not_correct'][currLang], true);
+		});
+		return;
+	}
+
+	const emailData = { lang: currLang, email: emailAddress };
 	const options = {
 		method: 'POST',
 		headers: {
@@ -230,17 +261,32 @@ async function submitNewsletterForm(event) {
 
 	const handleResult = isOk => {
 		emailInput.value = '';
-		if (isOk) {
-		} else {
+		emailInputLoader.style.display = 'none';
+		emailInputLoader.innerText = '';
+
+		if (dictionary) {
+			if (isOk) {
+				showNewsletterMessage(dictionary.newsletter_subscribed[currLang], false);
+			} else {
+				showNewsletterMessage(dictionary.newsletter__result_error[currLang], true);
+			}
 		}
 	};
 
+	let isOk;
+	emailInputLoader.innerText = emailInput.value;
+	emailInputLoader.style.display = 'block';
 	dictionary_prepare().finally(() => {
 		console.log('call netlify function');
 		fetch('/.netlify/functions/newsSubscription', options)
-			.then(response => response.json())
+			.then(response => {
+				isOk = response.ok;
+				return response.json();
+			})
 			.then(data => {
-				handleResult(true);
+				console.log(data.message);
+				if (isOk) handleResult(true);
+				else throw new Error(data.message);
 			})
 			.catch(() => handleResult(false));
 	});
@@ -366,15 +412,13 @@ async function submitQuestionForm(event) {
 function validateForm(formData) {
 	const { name, email, message } = formData;
 
-	const emailRegex = /^[a-zA-Z0–9._-]+@[a-zA-Z0–9.-]+\.[a-zA-Z]{2,4}$/;
-
 	const errors = [];
 
 	if (!name) errors.push({ field: 'name', message: 'err__empty_name' });
 	else if (name.length < 2) errors.push({ field: 'name', message: 'err__name_to_short' });
 
 	if (!email) errors.push({ field: 'email', message: 'err__empty_email' });
-	else if (!emailRegex.test(email) || email.length < 5 || email.length > 64)
+	else if (!EMAIL_REGEX.test(email) || email.length < 5 || email.length > 64)
 		errors.push({ field: 'email', message: 'err__email_not_correct' });
 
 	if (!message) errors.push({ field: 'message', message: 'err__empty_message' });

@@ -5,6 +5,11 @@
 	"err__email_not_correct": { "ru": "Введите корректный email-адрес", "de": "Bitte geben Sie eine korrekte E-Mail-Adresse ein." },
 	"err__empty_message": { "ru": "Введите текст обращения", "de": "Dieses Feld muss zwingend ausgefüllt sein." },
 	"err__message_to_short": { "ru": "Обращение слишком короткое", "de": "Die Nachricht ist zu kurz." },
+	"newsletter_subscribed": { "ru": "Вы были успешно подписаны.", "de": "Sie wurden erfolgreich angemeldet." },
+	"newsletter__result_error": {
+		"ru": "К сожалению, произошла ошибка. Попробуйте позже.",
+		"de": "Leider ist ein Fehler aufgetreten. Versuchen Sie es bitte später noch einmal."
+	},
 	"contact_form__result_ok": { "ru": "Ваше сообщение успешно отправлено!", "de": "Die Nachricht wurde erfolgreich gesendet!." },
 	"contact_form__result_error": {
 		"ru": "К сожалению, Ваше сообщение не удалось отправить. Попробуйте позже.",

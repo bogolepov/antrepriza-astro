@@ -48,12 +48,17 @@ export function Cart({ lang, tickets, totalAmount, handleCloseClick, handleAddTi
 			body: JSON.stringify(emailData),
 		};
 
+		let isOk;
 		await fetch('/.netlify/functions/makeReservation', options)
-			.then(response => response.json())
+			.then(response => {
+				isOk = response.ok;
+				return response.json();
+			})
 			.then(data => {
-				handleResult(true);
-
-				handleReservationDone();
+				if (isOk) {
+					handleResult(true);
+					handleReservationDone();
+				} else throw new Error(data.message);
 			})
 			.catch(() => handleResult(false));
 	};

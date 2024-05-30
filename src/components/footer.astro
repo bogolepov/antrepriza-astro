@@ -46,8 +46,12 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
       <div class="newsletter">
         <div class="newsletter-label">{dictionary.newsletter_title[lang]}</div>
         <form method="POST" id="newsletter-form" class="newsletter-form" onsubmit="submitNewsletterForm(event)">
-          <input type="text" class="newsletter__input" name="email" placeholder={dictionary.email_hint[lang]} autocomplete="on">
-          <button class="newsletter__button">&#10153;</button>
+          <div class="newsletter-input-container">
+            <input type="text" class="newsletter__input" name="email" placeholder={dictionary.email_hint[lang]} autocomplete="on">
+            <button class="newsletter__button">&#10153;</button>
+            <div class="newsletter-input-loader"></div>
+          </div>
+          <div class="newsletter-message"></div>
         </form>
       </div>
       <div class="question lh-1-3">

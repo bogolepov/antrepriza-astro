@@ -75,7 +75,6 @@
 	"other": { "ru": "Иное", "de": "Sonstiges" },
 	"newsletter_title": { "ru": "Подписаться на новости", "de": "Newsletter" },
 	"email_hint": { "ru": "Ваш электронный адрес", "de": "Ihre E-Mail-Adresse" },
-	"newsletter_subscribed": { "ru": "Вы были успешно подписаны.", "de": "Sie wurden erfolgreich angemeldet." },
 	"question_form_label": { "ru": "Форма обратной связи", "de": "Kontaktformular" },
 	"question_subject": { "ru": "Тема вопроса", "de": "Betreff" },
 	"name": { "ru": "Имя", "de": "Name" },
