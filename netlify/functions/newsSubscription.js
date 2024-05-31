@@ -94,14 +94,15 @@ export const handler = async (event, context) => {
 
 	function makeTextAboutConfirmation(lang) {
 		let strHello = dictionaryServer.dear_audience[lang] + (lang === 'ru' ? '!' : ',');
+		// TODO: change website-address of email-address confirmation
 		// https://antrepriza.netlify.app/ru/
 		return (
 			`<div class='reservation-titel b700 fcw'>${strHello}</div>` +
 			`<p class='lh12 fcw'>${dictionaryServer.email_subscription_text[lang]}</p>` +
 			`<p class='lh12 fcw'>${dictionaryServer.email_subscription_text2[lang]}</p>` +
-			`<p class='m50'><a href='https://antrepriza.netlify.app/${lang}/subscription' class='confirm-button'>${dictionaryServer.email_subscription_button_text[lang]}</a></p>` +
+			`<p class='m50'><a href='https://antrepriza.netlify.app/${lang}/newsletter?sid=135' class='confirm-button'>${dictionaryServer.email_subscription_button_text[lang]}</a></p>` +
 			`<p><div class='lh12 fcw'>${dictionaryServer.email_subscription_text3[lang]}</div>` +
-			`<a href='${theater.main_website}${lang}/subscription' class='lh12 fcw'>${theater.longTheaterName[lang]}</a></p>`
+			`<a href='${theater.main_website}${lang}' class='lh12 fcw'>${theater.longTheaterName[lang]}</a></p>`
 		);
 	}
 };

@@ -1,0 +1,23 @@
+---
+
+const { lang } = Astro.props;
+
+import Loader from '@components/loader.astro';
+
+import dictionary from '@data/dictionary.json'
+import '@styles/newsletter.css'
+
+---
+
+<div class="flex-center newsletter-service">
+  <div class="service-status"></div>
+  <Loader js_loader_name='newsletter-loader' background='no'></Loader>
+  <!-- <h1 class="section-title">{dictionary.newsletter[lang]}</h1>
+  <div class="page-end"></div> -->
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    newsletterService();
+  });
+</script>

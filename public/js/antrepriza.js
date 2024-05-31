@@ -211,6 +211,19 @@ function initHoverModeForTouchScreen() {
 /* --------------------------------------------------- */
 /* ---------------- Subscription form ---------------- */
 /* --------------------------------------------------- */
+let messageTimer = -1;
+function resetMessageTimer() {
+	if (messageTimer === -1) return;
+
+	clearTimeout(messageTimer);
+	messageTimer = -1;
+
+	const elemMessage = document.querySelector('.newsletter-message');
+	if (!elemMessage) return;
+	elemMessage.classList.remove('showed');
+	elemMessage.classList.add('fast-hidden');
+}
+
 function showNewsletterMessage(text, isError) {
 	const elemMessage = document.querySelector('.newsletter-message');
 	if (!elemMessage) return;
@@ -218,12 +231,15 @@ function showNewsletterMessage(text, isError) {
 	if (isError) elemMessage.classList.add('is-error');
 	else elemMessage.classList.remove('is-error');
 
+	elemMessage.classList.remove('fast-hidden');
 	elemMessage.classList.remove('hidden');
 	elemMessage.classList.add('showed');
-	setTimeout(
+	messageTimer = setTimeout(
 		() => {
 			elemMessage.classList.remove('showed');
 			elemMessage.classList.add('hidden');
+			clearTimeout(messageTimer);
+			messageTimer = -1;
 		},
 		isError ? 5000 : 3000
 	);
@@ -231,6 +247,8 @@ function showNewsletterMessage(text, isError) {
 
 async function submitNewsletterForm(event) {
 	event.preventDefault();
+
+	resetMessageTimer();
 
 	const form = event.target;
 	const emailInput = form.querySelector('.newsletter__input');
@@ -277,19 +295,80 @@ async function submitNewsletterForm(event) {
 	emailInputLoader.innerText = emailInput.value;
 	emailInputLoader.style.display = 'block';
 	dictionary_prepare().finally(() => {
-		console.log('call netlify function');
+		// console.log('call netlify function');
 		fetch('/.netlify/functions/newsSubscription', options)
 			.then(response => {
 				isOk = response.ok;
 				return response.json();
 			})
 			.then(data => {
-				console.log(data.message);
+				// console.log(data.message);
 				if (isOk) handleResult(true);
 				else throw new Error(data.message);
 			})
 			.catch(() => handleResult(false));
 	});
+}
+
+async function newsletterService() {
+	let params = new URLSearchParams(document.location.search);
+
+	let sid = Number(params.get('sid'));
+	if (!sid) sid = 0;
+	let usid = Number(params.get('usid'));
+	if (!usid) usid = 0;
+
+	let elemStatus = document.querySelector('.service-status');
+
+	if (!sid && !usid) {
+		elemStatus.innerText = currLang === 'ru' ? 'Некорректные данные' : 'Falsche Daten';
+		return;
+	}
+
+	let elemLoader = document.querySelector('.newsletter-loader');
+	// elemLoader.classList.add('show');
+
+	const newsletterData = { lang: currLang, sid: sid, usid: usid };
+	const options = {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(newsletterData),
+	};
+	console.log(newsletterData);
+
+	// const handleResult = isOk => {
+	// 	emailInput.value = '';
+	// 	emailInputLoader.style.display = 'none';
+	// 	emailInputLoader.innerText = '';
+
+	// 	if (dictionary) {
+	// 		if (isOk) {
+	// 			showNewsletterMessage(dictionary.newsletter_subscribed[currLang], false);
+	// 		} else {
+	// 			showNewsletterMessage(dictionary.newsletter__result_error[currLang], true);
+	// 		}
+	// 	}
+	// };
+
+	// let isOk;
+	// emailInputLoader.innerText = emailInput.value;
+	// emailInputLoader.style.display = 'block';
+	// dictionary_prepare().finally(() => {
+	// 	console.log('call netlify function');
+	// 	fetch('/.netlify/functions/newsSubscription', options)
+	// 		.then(response => {
+	// 			isOk = response.ok;
+	// 			return response.json();
+	// 		})
+	// 		.then(data => {
+	// 			console.log(data.message);
+	// 			if (isOk) handleResult(true);
+	// 			else throw new Error(data.message);
+	// 		})
+	// 		.catch(() => handleResult(false));
+	// });
 }
 
 /* --------------------------------------------------- */
