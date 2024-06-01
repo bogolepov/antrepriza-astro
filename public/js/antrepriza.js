@@ -310,6 +310,17 @@ async function submitNewsletterForm(event) {
 	});
 }
 
+function showNewsletterServiceMessage(message, isOk) {
+	let elemStatus = document.querySelector('.newsletter-service .service-status');
+	if (!elemStatus) return;
+
+	let elemStatusMessage = elemStatus.querySelector('.status-message');
+	if (elemStatusMessage) {
+		elemStatusMessage.innerText = isOk ? message : dictionary.error__lang[currLang] + ': ' + message;
+		elemStatus.style.display = 'block';
+	}
+}
+
 async function newsletterService() {
 	let params = new URLSearchParams(document.location.search);
 
@@ -318,15 +329,15 @@ async function newsletterService() {
 	let usid = Number(params.get('usid'));
 	if (!usid) usid = 0;
 
-	let elemStatus = document.querySelector('.service-status');
-
 	if (!sid && !usid) {
-		elemStatus.innerText = currLang === 'ru' ? 'Некорректные данные' : 'Falsche Daten';
+		dictionary_prepare().then(() => {
+			showNewsletterServiceMessage(dictionary.err__incorrect_data[currLang], false);
+		});
 		return;
 	}
 
 	let elemLoader = document.querySelector('.newsletter-loader');
-	// elemLoader.classList.add('show');
+	elemLoader.classList.add('show');
 
 	const newsletterData = { lang: currLang, sid: sid, usid: usid };
 	const options = {
@@ -338,37 +349,33 @@ async function newsletterService() {
 	};
 	console.log(newsletterData);
 
-	// const handleResult = isOk => {
-	// 	emailInput.value = '';
-	// 	emailInputLoader.style.display = 'none';
-	// 	emailInputLoader.innerText = '';
+	const handleResult = (message, isOk) => {
+		elemLoader.classList.remove('show');
+		if (dictionary) {
+			if (!message) {
+				if (isOk) message = 'OK';
+				else message = 'Sorry...';
+			}
+			showNewsletterServiceMessage(message, isOk);
+		}
+	};
 
-	// 	if (dictionary) {
-	// 		if (isOk) {
-	// 			showNewsletterMessage(dictionary.newsletter_subscribed[currLang], false);
-	// 		} else {
-	// 			showNewsletterMessage(dictionary.newsletter__result_error[currLang], true);
-	// 		}
-	// 	}
-	// };
-
-	// let isOk;
-	// emailInputLoader.innerText = emailInput.value;
-	// emailInputLoader.style.display = 'block';
-	// dictionary_prepare().finally(() => {
-	// 	console.log('call netlify function');
-	// 	fetch('/.netlify/functions/newsSubscription', options)
-	// 		.then(response => {
-	// 			isOk = response.ok;
-	// 			return response.json();
-	// 		})
-	// 		.then(data => {
-	// 			console.log(data.message);
-	// 			if (isOk) handleResult(true);
-	// 			else throw new Error(data.message);
-	// 		})
-	// 		.catch(() => handleResult(false));
-	// });
+	let isOk;
+	let resMessage;
+	dictionary_prepare().finally(() => {
+		fetch('/.netlify/functions/newsSubscription', options)
+			.then(response => {
+				isOk = response.ok;
+				return response.json();
+			})
+			.then(data => {
+				resMessage = data.message;
+				console.log(data.message);
+				if (isOk) handleResult(resMessage, true);
+				else throw new Error();
+			})
+			.catch(() => handleResult(resMessage, false));
+	});
 }
 
 /* --------------------------------------------------- */

@@ -75,6 +75,7 @@
 	"website_problems": { "ru": "Проблемы с сайтом", "de": "Webseitenprobleme" },
 	"other": { "ru": "Иное", "de": "Sonstiges" },
 	"newsletter_title": { "ru": "Подписаться на новости", "de": "Newsletter" },
+	"newsletter_service_title": { "ru": "Сервис подписок на новости", "de": "Newsletter-Abonnementdienst" },
 	"email_hint": { "ru": "Ваш электронный адрес", "de": "Ihre E-Mail-Adresse" },
 	"question_form_label": { "ru": "Форма обратной связи", "de": "Kontaktformular" },
 	"question_subject": { "ru": "Тема вопроса", "de": "Betreff" },

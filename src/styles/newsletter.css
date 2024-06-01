@@ -1,5 +1,24 @@
 .newsletter-service {
-	margin: auto 0;
+	margin: auto auto;
 	flex-direction: column;
 	position: relative;
+	font-size: clamp(0.9rem, 2.7vw, 1rem);
+	line-height: 1.2em;
+	width: 100%;
+	max-width: 360px;
+}
+
+.service-status {
+	display: none;
+	border: 1px solid var(--colorBorderForm);
+	border-radius: 2px;
+	padding: 0.6em 1em;
+}
+
+.status-title {
+	font-size: 1.25em;
+	color: var(--colorFont-Op0);
+	padding-bottom: 0.4em;
+}
+.status-message {
 }

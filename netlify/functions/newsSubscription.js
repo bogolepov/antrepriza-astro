@@ -15,48 +15,54 @@ export const handler = async (event, context) => {
 		console.error(error);
 	}
 
-	const transporter = nodemailer.createTransport({
-		service: 'gmail',
-		auth: {
-			user: process.env.ANTREPRIZA_EMAIL,
-			pass: process.env.ANTREPRIZA_PASSWORD,
-		},
-	});
-
 	const messageData = JSON.parse(event.body);
-	const { lang, email } = messageData;
+	const { lang, email, sid, usid } = messageData;
 
-	const htmlEmail = makeHtmlEmail(lang, email);
+	if (email && email.length > 0) return await emailRegistration(lang, email);
+	else if (sid) return emailConfirmation(lang, sid);
+	else if (usid) return emailRemoving(lang, usid);
 
-	const mailOptions = {
-		from: `${theater.longTheaterName[lang]} <${process.env.ANTREPRIZA_EMAIL}>`,
-		to: email,
-		subject: `${dictionaryServer.email_news_subscription_subject[lang]}`,
-		html: htmlEmail,
-	};
+	async function emailRegistration(lang, email) {
+		const transporter = nodemailer.createTransport({
+			service: 'gmail',
+			auth: {
+				user: process.env.ANTREPRIZA_EMAIL,
+				pass: process.env.ANTREPRIZA_PASSWORD,
+			},
+		});
 
-	try {
-		// console.log('call sendMail.......');
-		// console.log(mailOptions);
+		const htmlEmail = makeHtmlEmail(lang, email);
 
-		await transporter.sendMail(mailOptions);
-		// console.log('result:');
-		// console.log(info);
-
-		return {
-			statusCode: 200,
-			body: JSON.stringify({
-				message: 'Email sent successfully',
-			}),
+		const mailOptions = {
+			from: `${theater.longTheaterName[lang]} <${process.env.ANTREPRIZA_EMAIL}>`,
+			to: email,
+			subject: `${dictionaryServer.email_news_subscription_subject[lang]}`,
+			html: htmlEmail,
 		};
-	} catch (error) {
-		console.error(error);
-		return {
-			statusCode: 500,
-			body: JSON.stringify({
-				message: error.message,
-			}),
-		};
+
+		try {
+			// console.log('call sendMail.......');
+			// console.log(mailOptions);
+
+			await transporter.sendMail(mailOptions);
+			// console.log('result:');
+			// console.log(info);
+
+			return {
+				statusCode: 200,
+				body: JSON.stringify({
+					message: 'Email sent successfully',
+				}),
+			};
+		} catch (error) {
+			console.error(error);
+			return {
+				statusCode: 500,
+				body: JSON.stringify({
+					message: error.message,
+				}),
+			};
+		}
 	}
 
 	function makeHtmlEmail(lang, email) {
@@ -104,5 +110,23 @@ export const handler = async (event, context) => {
 			`<p><div class='lh12 fcw'>${dictionaryServer.email_subscription_text3[lang]}</div>` +
 			`<a href='${theater.main_website}${lang}' class='lh12 fcw'>${theater.longTheaterName[lang]}</a></p>`
 		);
+	}
+
+	async function emailConfirmation(lang, sid) {
+		return {
+			statusCode: 200,
+			body: JSON.stringify({
+				message: dictionaryServer.result_email_confirmed[lang],
+			}),
+		};
+	}
+
+	async function emailRemoving(lang, usid) {
+		return {
+			statusCode: 200,
+			body: JSON.stringify({
+				message: dictionaryServer.result_email_removed[lang],
+			}),
+		};
 	}
 };

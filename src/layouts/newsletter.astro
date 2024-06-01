@@ -9,11 +9,12 @@ import '@styles/newsletter.css'
 
 ---
 
-<div class="flex-center newsletter-service">
-  <div class="service-status"></div>
+<div class="newsletter-service">
+  <div class="service-status">
+    <div class="status-title">{dictionary.newsletter_service_title[lang]}</div>
+    <div class="status-message"></div>
+  </div>
   <Loader js_loader_name='newsletter-loader' background='no'></Loader>
-  <!-- <h1 class="section-title">{dictionary.newsletter[lang]}</h1>
-  <div class="page-end"></div> -->
 </div>
 
 <script>

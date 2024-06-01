@@ -1,4 +1,6 @@
 {
+	"error__lang": { "ru": "Ошибка", "de": "Fehler" },
+	"err__incorrect_data": { "ru": "Некорректные данные", "de": "Falsche Daten" },
 	"err__empty_name": { "ru": "Имя не может быть пустым", "de": "Dieses Feld muss zwingend ausgefüllt sein." },
 	"err__name_to_short": { "ru": "Слишком короткое имя", "de": "Der Name ist zu kurz." },
 	"err__empty_email": { "ru": "Укажите email-адрес", "de": "Dieses Feld muss zwingend ausgefüllt sein." },
