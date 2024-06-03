@@ -47,5 +47,6 @@
 		"ru": "Ваш адрес электронной почты успешно удален из рассылки",
 		"de": "Ihre E-Mail-Adresse wurde erfolgreich aus der Mailingliste entfernt"
 	},
+	"email_service_error": { "ru": "Сбой в работе сервиса", "de": "Dienstausfall" },
 	" ": { "ru": "", "de": "" }
 }

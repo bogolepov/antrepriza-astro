@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer';
 import fs from 'fs';
+import * as dbNewsletters from './lib/newsletters.cjs';
 
 let dictionaryServer;
 let theater;
@@ -23,6 +24,25 @@ export const handler = async (event, context) => {
 	else if (usid) return emailRemoving(lang, usid);
 
 	async function emailRegistration(lang, email) {
+		console.log('emailRegistration 1');
+		dbNewsletters.initDatabase();
+		console.log('emailRegistration 2');
+		let res = dbNewsletters.addNewEmail(lang, email);
+		console.log(res);
+		console.log('emailRegistration 3');
+		dbNewsletters.closeDatabase();
+		console.log('emailRegistration 4');
+		if (res.sid === 0) {
+			console.error(dictionaryServer.email_service_error[lang]);
+			return {
+				statusCode: 500,
+				body: JSON.stringify({
+					message: dictionaryServer.email_service_error[lang],
+				}),
+			};
+		}
+		console.log('emailConfirmation 5');
+
 		const transporter = nodemailer.createTransport({
 			service: 'gmail',
 			auth: {
@@ -31,7 +51,8 @@ export const handler = async (event, context) => {
 			},
 		});
 
-		const htmlEmail = makeHtmlEmail(lang, email);
+		const sid = res.sid;
+		const htmlEmail = makeHtmlEmail(lang, email, sid);
 
 		const mailOptions = {
 			from: `${theater.longTheaterName[lang]} <${process.env.ANTREPRIZA_EMAIL}>`,
@@ -65,8 +86,8 @@ export const handler = async (event, context) => {
 		}
 	}
 
-	function makeHtmlEmail(lang, email) {
-		return `<!DOCTYPE html><html lang="${lang}">` + makeHead(lang) + makeBody(lang, email) + `</html>`;
+	function makeHtmlEmail(lang, email, sid) {
+		return `<!DOCTYPE html><html lang="${lang}">` + makeHead(lang) + makeBody(lang, email, sid) + `</html>`;
 	}
 
 	function makeHead(lang) {
@@ -90,15 +111,15 @@ export const handler = async (event, context) => {
 		return htmlHead;
 	}
 
-	function makeBody(lang, email) {
+	function makeBody(lang, email, sid) {
 		return (
 			`<body class='email-body'><table class='body-table'><tbody><tr><td class='email-wrapper'>` +
-			makeTextAboutConfirmation(lang) +
+			makeTextAboutConfirmation(lang, sid) +
 			`</td></tr></tbody></table></body>`
 		);
 	}
 
-	function makeTextAboutConfirmation(lang) {
+	function makeTextAboutConfirmation(lang, sid) {
 		let strHello = dictionaryServer.dear_audience[lang] + (lang === 'ru' ? '!' : ',');
 		// TODO: change website-address of email-address confirmation
 		// https://antrepriza.netlify.app/ru/
@@ -106,13 +127,33 @@ export const handler = async (event, context) => {
 			`<div class='reservation-titel b700 fcw'>${strHello}</div>` +
 			`<p class='lh12 fcw'>${dictionaryServer.email_subscription_text[lang]}</p>` +
 			`<p class='lh12 fcw'>${dictionaryServer.email_subscription_text2[lang]}</p>` +
-			`<p class='m50'><a href='https://antrepriza.netlify.app/${lang}/newsletter?sid=135' class='confirm-button'>${dictionaryServer.email_subscription_button_text[lang]}</a></p>` +
+			`<p class='m50'><a href='https://antrepriza.netlify.app/${lang}/newsletter?sid=${sid}' class='confirm-button'>${dictionaryServer.email_subscription_button_text[lang]}</a></p>` +
 			`<p><div class='lh12 fcw'>${dictionaryServer.email_subscription_text3[lang]}</div>` +
 			`<a href='${theater.main_website}${lang}' class='lh12 fcw'>${theater.longTheaterName[lang]}</a></p>`
 		);
 	}
 
 	async function emailConfirmation(lang, sid) {
+		console.log('emailConfirmation 1');
+		dbNewsletters.initDatabase();
+		console.log('emailConfirmation 2');
+		console.log('now REALLY confirmation......');
+		let res = dbNewsletters.confirmEmail(sid);
+		console.log('result of confirmation:');
+		console.log(res);
+		console.log('emailConfirmation 4');
+		dbNewsletters.closeDatabase();
+		if (!res) {
+			console.error(dictionaryServer.email_service_error[lang]);
+			return {
+				statusCode: 500,
+				body: JSON.stringify({
+					message: dictionaryServer.email_service_error[lang],
+				}),
+			};
+		}
+		console.log('emailConfirmation 5');
+
 		return {
 			statusCode: 200,
 			body: JSON.stringify({
@@ -122,6 +163,24 @@ export const handler = async (event, context) => {
 	}
 
 	async function emailRemoving(lang, usid) {
+		console.log('emailRemoving 1');
+		dbNewsletters.initDatabase();
+		console.log('emailRemoving 2');
+		let res = dbNewsletters.removeEmail(usid);
+		console.log(res);
+		console.log('emailRemoving 3');
+		dbNewsletters.closeDatabase();
+		console.log('emailRemoving 4');
+		if (!res) {
+			console.error(dictionaryServer.email_service_error[lang]);
+			return {
+				statusCode: 500,
+				body: JSON.stringify({
+					message: dictionaryServer.email_service_error[lang],
+				}),
+			};
+		}
+
 		return {
 			statusCode: 200,
 			body: JSON.stringify({
