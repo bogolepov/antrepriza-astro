@@ -1,10 +1,7 @@
 import Newsletters from './dbNewsletters';
-
-function alwaysTrue() {
-	return true;
-}
+import Reservations from './dbReservations';
 
 module.exports = {
 	NewslettersDB: Newsletters,
-	alwaysTrue: alwaysTrue,
+	ReservationsDB: Reservations,
 };

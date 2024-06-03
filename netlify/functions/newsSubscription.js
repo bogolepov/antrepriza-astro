@@ -24,33 +24,9 @@ export const handler = async (event, context) => {
 	else if (usid) return emailRemoving(lang, usid);
 
 	async function emailRegistration(lang, email) {
-		const testFolder = './';
-		console.log('   ./');
-		fs.readdirSync('./').forEach(file => {
-			console.log(file);
-		});
-		console.log('...scanned');
-		console.log('   ./public/');
-		fs.readdirSync('./public/').forEach(file => {
-			console.log(file);
-		});
-		console.log('...scanned');
-		console.log('   ./public/data/');
-		fs.readdirSync('./public/data/').forEach(file => {
-			console.log(file);
-		});
-		console.log('...scanned');
-
-		console.log('emailRegistration 1');
 		NewslettersDB.openDatabase();
-		// dbNewsletters.initDatabase();
-		console.log('emailRegistration 2');
 		let res = NewslettersDB.addNewEmail(lang, email);
-		// console.log(res);
-		console.log('emailRegistration 3');
 		NewslettersDB.closeDatabase();
-		// dbNewsletters.closeDatabase();
-		console.log('emailRegistration 4');
 		const sid = res.sid;
 		if (sid === 0) {
 			console.error(dictionaryServer.email_service_error[lang]);
@@ -61,7 +37,6 @@ export const handler = async (event, context) => {
 				}),
 			};
 		}
-		console.log('emailConfirmation 5');
 
 		const transporter = nodemailer.createTransport({
 			service: 'gmail',
@@ -81,13 +56,7 @@ export const handler = async (event, context) => {
 		};
 
 		try {
-			// console.log('call sendMail.......');
-			// console.log(mailOptions);
-
 			await transporter.sendMail(mailOptions);
-			// console.log('result:');
-			// console.log(info);
-
 			return {
 				statusCode: 200,
 				body: JSON.stringify({
@@ -153,16 +122,9 @@ export const handler = async (event, context) => {
 	}
 
 	async function emailConfirmation(lang, sid) {
-		let res = true;
-		// console.log('emailConfirmation 1');
-		// dbNewsletters.initDatabase();
-		// console.log('emailConfirmation 2');
-		// console.log('now REALLY confirmation......');
-		// let res = dbNewsletters.confirmEmail(sid);
-		// console.log('result of confirmation:');
-		// console.log(res);
-		// console.log('emailConfirmation 4');
-		// dbNewsletters.closeDatabase();
+		NewslettersDB.openDatabase();
+		let res = NewslettersDB.confirmEmail(sid);
+		NewslettersDB.closeDatabase();
 		if (!res) {
 			console.error(dictionaryServer.email_service_error[lang]);
 			return {
@@ -172,7 +134,6 @@ export const handler = async (event, context) => {
 				}),
 			};
 		}
-		console.log('emailConfirmation 5');
 
 		return {
 			statusCode: 200,
@@ -183,15 +144,9 @@ export const handler = async (event, context) => {
 	}
 
 	async function emailRemoving(lang, usid) {
-		let res = true;
-		// console.log('emailRemoving 1');
-		// dbNewsletters.initDatabase();
-		// console.log('emailRemoving 2');
-		// let res = dbNewsletters.removeEmail(usid);
-		// console.log(res);
-		// console.log('emailRemoving 3');
-		// dbNewsletters.closeDatabase();
-		// console.log('emailRemoving 4');
+		NewslettersDB.initDatabase();
+		let res = NewslettersDB.removeEmail(usid);
+		NewslettersDB.closeDatabase();
 		if (!res) {
 			console.error(dictionaryServer.email_service_error[lang]);
 			return {
