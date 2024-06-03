@@ -45,7 +45,8 @@ class Newsletters {
 	static initDatabase() {
 		if (db) return;
 		console.log('initDatabase 1');
-		db = new Sqlite3(DB_NAME, { verbose: console.log });
+		// db = new Sqlite3(DB_NAME, { verbose: console.log });
+		db = new Sqlite3(DB_NAME);
 		console.log('initDatabase 2');
 
 		const queryCreateTable = `
