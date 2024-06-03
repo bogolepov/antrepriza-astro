@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer';
 import fs from 'fs';
-import * as dbNewsletters from './lib/newsletters.cjs';
+import { NewslettersDB } from './lib/antreprizaDB.cjs';
 
 let dictionaryServer;
 let theater;
@@ -25,14 +25,17 @@ export const handler = async (event, context) => {
 
 	async function emailRegistration(lang, email) {
 		console.log('emailRegistration 1');
-		dbNewsletters.initDatabase();
+		// NewslettersDB.openDatabase();
+		// dbNewsletters.initDatabase();
 		console.log('emailRegistration 2');
-		let res = dbNewsletters.addNewEmail(lang, email);
-		console.log(res);
+		let res = NewslettersDB.addNewEmail(lang, email);
+		// console.log(res);
 		console.log('emailRegistration 3');
-		dbNewsletters.closeDatabase();
+		// NewslettersDB.closeDatabase();
+		// dbNewsletters.closeDatabase();
 		console.log('emailRegistration 4');
-		if (res.sid === 0) {
+		const sid = res.sid;
+		if (sid === 0) {
 			console.error(dictionaryServer.email_service_error[lang]);
 			return {
 				statusCode: 500,
@@ -51,7 +54,6 @@ export const handler = async (event, context) => {
 			},
 		});
 
-		const sid = res.sid;
 		const htmlEmail = makeHtmlEmail(lang, email, sid);
 
 		const mailOptions = {
@@ -134,15 +136,16 @@ export const handler = async (event, context) => {
 	}
 
 	async function emailConfirmation(lang, sid) {
-		console.log('emailConfirmation 1');
-		dbNewsletters.initDatabase();
-		console.log('emailConfirmation 2');
-		console.log('now REALLY confirmation......');
-		let res = dbNewsletters.confirmEmail(sid);
-		console.log('result of confirmation:');
-		console.log(res);
-		console.log('emailConfirmation 4');
-		dbNewsletters.closeDatabase();
+		let res = true;
+		// console.log('emailConfirmation 1');
+		// dbNewsletters.initDatabase();
+		// console.log('emailConfirmation 2');
+		// console.log('now REALLY confirmation......');
+		// let res = dbNewsletters.confirmEmail(sid);
+		// console.log('result of confirmation:');
+		// console.log(res);
+		// console.log('emailConfirmation 4');
+		// dbNewsletters.closeDatabase();
 		if (!res) {
 			console.error(dictionaryServer.email_service_error[lang]);
 			return {
@@ -163,14 +166,15 @@ export const handler = async (event, context) => {
 	}
 
 	async function emailRemoving(lang, usid) {
-		console.log('emailRemoving 1');
-		dbNewsletters.initDatabase();
-		console.log('emailRemoving 2');
-		let res = dbNewsletters.removeEmail(usid);
-		console.log(res);
-		console.log('emailRemoving 3');
-		dbNewsletters.closeDatabase();
-		console.log('emailRemoving 4');
+		let res = true;
+		// console.log('emailRemoving 1');
+		// dbNewsletters.initDatabase();
+		// console.log('emailRemoving 2');
+		// let res = dbNewsletters.removeEmail(usid);
+		// console.log(res);
+		// console.log('emailRemoving 3');
+		// dbNewsletters.closeDatabase();
+		// console.log('emailRemoving 4');
 		if (!res) {
 			console.error(dictionaryServer.email_service_error[lang]);
 			return {

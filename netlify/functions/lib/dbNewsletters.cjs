@@ -9,7 +9,34 @@ const EMAIL_STATUS_ADDED = 0;
 const EMAIL_STATUS_CONFIRMED = 1;
 const EMAIL_STATUS_REMOVED = 2;
 
-let db;
+console.log('openDatabase 1');
+// const db = new Sqlite3(DB_NAME, { verbose: console.log });
+const db = new Sqlite3(DB_NAME);
+console.log('openDatabase 2');
+
+const queryCreateTable = `
+      CREATE TABLE IF NOT EXISTS ${TABLE_NAME} (
+        id INTEGER PRIMARY KEY, 
+        email STRING NOT NULL UNIQUE,
+				lang STRING NOT NULL,
+        id_add INTEGER NOT NULL UNIQUE,
+        id_remove INTEGER NOT NULL UNIQUE,
+        status INTEGER DEFAULT 0,
+				remove_counter INTEGER DEFAULT 0,
+        err_counter INTEGER DEFAULT 0
+      )`;
+console.log('openDatabase 3');
+const stmtCreateTable = db.prepare(queryCreateTable);
+console.log('openDatabase 4');
+const createTable = db.transaction(() => {
+	console.log('openDatabase 6');
+	let res = stmtCreateTable.run();
+	console.log('result of create TABLE');
+	console.log(res);
+});
+console.log('openDatabase 5');
+createTable();
+console.log('openDatabase 7');
 
 function getRandomIntInclusive(min, max) {
 	min = Math.ceil(min);
@@ -42,46 +69,49 @@ function getIdRemove(currDate) {
 }
 
 class Newsletters {
-	static initDatabase() {
-		if (db) return;
-		console.log('initDatabase 1');
-		// db = new Sqlite3(DB_NAME, { verbose: console.log });
-		db = new Sqlite3(DB_NAME);
-		console.log('initDatabase 2');
+	// static openDatabase() {
+	// 	if (db) return;
+	// 	console.log('openDatabase 1');
+	// 	// db = new Sqlite3(DB_NAME, { verbose: console.log });
+	// 	db = new Sqlite3(DB_NAME);
+	// 	console.log('openDatabase 2');
 
-		const queryCreateTable = `
-      CREATE TABLE IF NOT EXISTS ${TABLE_NAME} (
-        id INTEGER PRIMARY KEY, 
-        email STRING NOT NULL UNIQUE,
-				lang STRING NOT NULL,
-        id_add INTEGER NOT NULL UNIQUE,
-        id_remove INTEGER NOT NULL UNIQUE,
-        status INTEGER DEFAULT 0,
-				remove_counter INTEGER DEFAULT 0,
-        err_counter INTEGER DEFAULT 0
-      )`;
-		console.log('initDatabase 3');
-		const stmtCreateTable = db.prepare(queryCreateTable);
-		console.log('initDatabase 4');
-		const createTable = db.transaction(() => {
-			console.log('initDatabase 6');
-			let res = stmtCreateTable.run();
-			console.log('result of create TABLE');
-			console.log(res);
-		});
-		console.log('initDatabase 5');
-		createTable();
-		console.log('initDatabase 7');
-	}
+	// 	const queryCreateTable = `
+	//     CREATE TABLE IF NOT EXISTS ${TABLE_NAME} (
+	//       id INTEGER PRIMARY KEY,
+	//       email STRING NOT NULL UNIQUE,
+	// 			lang STRING NOT NULL,
+	//       id_add INTEGER NOT NULL UNIQUE,
+	//       id_remove INTEGER NOT NULL UNIQUE,
+	//       status INTEGER DEFAULT 0,
+	// 			remove_counter INTEGER DEFAULT 0,
+	//       err_counter INTEGER DEFAULT 0
+	//     )`;
+	// 	console.log('openDatabase 3');
+	// 	const stmtCreateTable = db.prepare(queryCreateTable);
+	// 	console.log('openDatabase 4');
+	// 	const createTable = db.transaction(() => {
+	// 		console.log('openDatabase 6');
+	// 		let res = stmtCreateTable.run();
+	// 		console.log('result of create TABLE');
+	// 		console.log(res);
+	// 	});
+	// 	console.log('openDatabase 5');
+	// 	createTable();
+	// 	console.log('openDatabase 7');
+	// }
 
-	static closeDatabase() {
-		if (db) {
-			db.close();
-			db = undefined;
-		}
-	}
+	// static closeDatabase() {
+	// 	if (db) {
+	// 		db.close();
+	// 		db = undefined;
+	// 	}
+	// }
 
 	static addNewEmail(lang, email) {
+		// TODO:
+		return { existed: false, sid: 1234, confirmed: false, removed: false };
+
 		console.log(email);
 		let sid = 0;
 		if (!db) return { exists: false, sid: 0 };
