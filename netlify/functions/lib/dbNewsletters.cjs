@@ -1,4 +1,5 @@
 import Sqlite3 from 'better-sqlite3';
+import fs from 'fs';
 
 const ID_SHIFTS_ADD = { y: 347, m: 23, d: 56 };
 const ID_SHIFTS_REMOVE = { y: 817, m: 66, d: 54 };
@@ -73,6 +74,13 @@ function getIdRemove(currDate) {
 class Newsletters {
 	static openDatabase() {
 		if (db) return;
+		const testFolder = './';
+		console.log('Newsletters.openDatabase(): scan all files in current directory...');
+		fs.readdirSync(testFolder).forEach(file => {
+			console.log(file);
+		});
+		console.log('...scanned');
+
 		console.log('openDatabase 1');
 		// db = new Sqlite3(DB_NAME, { verbose: console.log });
 		db = new Sqlite3(DB_NAME, { verbose: console.log });

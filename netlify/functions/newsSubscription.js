@@ -24,6 +24,13 @@ export const handler = async (event, context) => {
 	else if (usid) return emailRemoving(lang, usid);
 
 	async function emailRegistration(lang, email) {
+		const testFolder = './';
+		console.log('newsSubscription: scan all files in current directory...');
+		fs.readdirSync(testFolder).forEach(file => {
+			console.log(file);
+		});
+		console.log('...scanned');
+
 		console.log('emailRegistration 1');
 		NewslettersDB.openDatabase();
 		// dbNewsletters.initDatabase();
