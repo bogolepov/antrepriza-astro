@@ -12,6 +12,16 @@ const EMAIL_STATUS_REMOVED = 2;
 
 let db;
 
+console.log('---------------------------------');
+if (fs.existsSync(DB_NAME)) {
+	console.log(DB_NAME + ' exists!!!');
+	let data = fs.readFileSync(DB_NAME);
+	console.log('We read ' + data.length + ' bytes');
+} else {
+	console.log(DB_NAME + ' not found! :((((');
+}
+console.log('---------------------------------');
+
 // console.log('openDatabase 1');
 // // const db = new Sqlite3(DB_NAME, { verbose: console.log });
 // const db = new Sqlite3(DB_NAME);
@@ -74,12 +84,6 @@ function getIdRemove(currDate) {
 class Newsletters {
 	static openDatabase() {
 		if (db) return;
-		const testFolder = './';
-		console.log('Newsletters.openDatabase(): scan all files in current directory...');
-		fs.readdirSync(testFolder).forEach(file => {
-			console.log(file);
-		});
-		console.log('...scanned');
 
 		console.log('openDatabase 1');
 		// db = new Sqlite3(DB_NAME, { verbose: console.log });

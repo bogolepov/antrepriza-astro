@@ -25,8 +25,18 @@ export const handler = async (event, context) => {
 
 	async function emailRegistration(lang, email) {
 		const testFolder = './';
-		console.log('newsSubscription: scan all files in current directory...');
-		fs.readdirSync(testFolder).forEach(file => {
+		console.log('   ./');
+		fs.readdirSync('./').forEach(file => {
+			console.log(file);
+		});
+		console.log('...scanned');
+		console.log('   ./public/');
+		fs.readdirSync('./public/').forEach(file => {
+			console.log(file);
+		});
+		console.log('...scanned');
+		console.log('   ./public/data/');
+		fs.readdirSync('./public/data/').forEach(file => {
 			console.log(file);
 		});
 		console.log('...scanned');
