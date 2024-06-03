@@ -3,7 +3,7 @@ import fs from 'fs';
 
 const ID_SHIFTS_ADD = { y: 347, m: 23, d: 56 };
 const ID_SHIFTS_REMOVE = { y: 817, m: 66, d: 54 };
-const DB_NAME = 'antrepriza.ldb';
+const DB_NAME = './public/data/antrepriza.ldb';
 const TABLE_NAME = 'newsletters';
 
 const EMAIL_STATUS_ADDED = 0;
