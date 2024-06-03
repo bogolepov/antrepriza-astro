@@ -44,7 +44,9 @@ function getIdRemove(currDate) {
 class Newsletters {
 	static initDatabase() {
 		if (db) return;
+		console.log('initDatabase 1');
 		db = new Sqlite3(DB_NAME, { verbose: console.log });
+		console.log('initDatabase 2');
 
 		const queryCreateTable = `
       CREATE TABLE IF NOT EXISTS ${TABLE_NAME} (
@@ -57,13 +59,18 @@ class Newsletters {
 				remove_counter INTEGER DEFAULT 0,
         err_counter INTEGER DEFAULT 0
       )`;
+		console.log('initDatabase 3');
 		const stmtCreateTable = db.prepare(queryCreateTable);
+		console.log('initDatabase 4');
 		const createTable = db.transaction(() => {
+			console.log('initDatabase 6');
 			let res = stmtCreateTable.run();
 			console.log('result of create TABLE');
 			console.log(res);
 		});
+		console.log('initDatabase 5');
 		createTable();
+		console.log('initDatabase 7');
 	}
 
 	static closeDatabase() {
