@@ -110,10 +110,10 @@ class Newsletters {
 
 	static addNewEmail(lang, email) {
 		// TODO:
-		return { existed: false, sid: 1234, confirmed: false, removed: false };
+		// return { existed: false, sid: 1234, confirmed: false, removed: false };
 
 		console.log(email);
-		let sid = 0;
+		// let sid = 0;
 		if (!db) return { exists: false, sid: 0 };
 
 		const existEmail = db.prepare(`SELECT * FROM ${TABLE_NAME} WHERE email = ?`).get(email);
