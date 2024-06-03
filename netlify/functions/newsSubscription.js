@@ -25,13 +25,13 @@ export const handler = async (event, context) => {
 
 	async function emailRegistration(lang, email) {
 		console.log('emailRegistration 1');
-		// NewslettersDB.openDatabase();
+		NewslettersDB.openDatabase();
 		// dbNewsletters.initDatabase();
 		console.log('emailRegistration 2');
 		let res = NewslettersDB.addNewEmail(lang, email);
 		// console.log(res);
 		console.log('emailRegistration 3');
-		// NewslettersDB.closeDatabase();
+		NewslettersDB.closeDatabase();
 		// dbNewsletters.closeDatabase();
 		console.log('emailRegistration 4');
 		const sid = res.sid;
