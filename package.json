@@ -12,12 +12,11 @@
 	"dependencies": {
 		"@astrojs/react": "^3.3.4",
 		"@astrojs/vue": "^4.2.0",
-		"@libsql/client": "^0.6.2",
 		"@nanostores/react": "^0.7.2",
 		"@types/react": "^18.2.79",
 		"@types/react-dom": "^18.2.25",
 		"astro": "^4.8.6",
-		"better-sqlite3": "^11.0.0",
+		"better-sqlite3": "^9.6.0",
 		"json5": "^2.2.3",
 		"nanostores": "^0.10.3",
 		"nodemailer": "^6.9.13",
