@@ -83,6 +83,7 @@
 	text-align: center;
 	padding: 5px 7px;
 
+	transition: background-color 300ms ease-out;
 	background-color: var(--colorBkgTicketsBtn);
 	color: var(--colorFontTicketsBtn);
 	font-weight: 400;

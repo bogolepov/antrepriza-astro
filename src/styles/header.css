@@ -122,7 +122,7 @@
 .header-tickets-button:is(.active_link) {
 	border-color: var(--colorAntreprizaRed);
 	font-weight: var(--font-normal-weight);
-	background-color: inherit;
+	background-color: var(--colorBkgForm);
 	color: var(--colorAntreprizaRed);
 }
 
@@ -535,7 +535,7 @@
 	stroke-width: 0px;
 }
 
-.header-tickets-button {
+a.header-tickets-button {
 	text-decoration: none;
 	border: 1px solid var(--colorBkgTicketsBtn);
 	background-color: var(--colorBkgTicketsBtn);
@@ -547,7 +547,10 @@
 	margin: 0px 10px;
 	border-radius: 3px;
 	position: relative;
-	transition: all 0.3s ease;
+	transition:
+		background-color 350ms ease-out,
+		border-color 350ms ease-out,
+		font-weight 350ms ease-out;
 	/* transition: color 0.3s ease;
 	transition: background-color 0.3s ease; */
 	/* transition: border-color 0.3s ease; */
@@ -586,14 +589,14 @@
 		fill: var(--colorAntreprizaRed);
 	}
 
-	.header-tickets-button:hover {
-		border-color: var(--colorAntreprizaRed);
-		font-weight: var(--font-bold-weight);
-		background-color: inherit;
+	a.header-tickets-button:hover {
 		transition:
 			background-color 350ms ease-out,
 			border-color 350ms ease-out,
 			font-weight 350ms ease-out;
+		border-color: var(--colorAntreprizaRed);
+		font-weight: var(--font-bold-weight);
+		background-color: var(--colorBkgForm);
 	}
 }
 

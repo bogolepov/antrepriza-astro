@@ -1,4 +1,3 @@
-import '@styles/antrepriza.css';
 import '@styles/cart.css';
 import '@styles/loader.css';
 

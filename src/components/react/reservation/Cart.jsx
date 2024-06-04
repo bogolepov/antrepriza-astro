@@ -4,7 +4,6 @@ import { isCartOpen } from './cartStore';
 
 import { loadClientJsons } from '@scripts/loadClientJsons';
 
-import '@styles/antrepriza.css';
 import '@styles/cart.css';
 import '@styles/loader.css';
 

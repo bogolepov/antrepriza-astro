@@ -317,6 +317,7 @@ h4.notification-label {
 	text-transform: uppercase;
 	border: 1px solid var(--colorBkgTicketsBtn);
 	border-radius: 3px;
+	transition: background-color 300ms ease-out;
 	/* transition: transform 200ms ease; */
 	z-index: 5;
 	cursor: pointer;
@@ -326,6 +327,7 @@ h4.notification-label {
 
 .pink-button[disabled] {
 	border: 1px solid var(--colorBkgDisabledBtn);
+	transition: background-color 300ms ease-out;
 	background-color: var(--colorBkgDisabledBtn);
 	text-decoration: line-through;
 	cursor: default;
@@ -374,7 +376,7 @@ h4.notification-label {
 .black-white-filter {
 	-webkit-filter: grayscale(95%);
 	filter: grayscale(95%);
-	transition: filter 250ms ease-in;
+	transition: filter 350ms ease-in;
 }
 
 /* --------------------------------------------------- */
@@ -384,10 +386,12 @@ h4.notification-label {
 /* this hover-effect works only if javascript is out */
 @media (hover: hover) {
 	body.no-js .hover-block.hover-background:hover {
+		transition: background-color 500ms ease-out;
 		background-color: var(--colorBkgHoverBlock);
 	}
 
 	body.no-js .hover-block:hover .black-white-filter {
+		transition: filter 350ms ease-out;
 		-webkit-filter: grayscale(0%);
 		filter: grayscale(0%);
 	}
@@ -395,14 +399,17 @@ h4.notification-label {
 
 /* this hover-effect works only if javascript is in */
 .hover-block.hover-background[hover] {
+	transition: background-color 500ms ease-out;
 	background-color: var(--colorBkgHoverBlock);
 }
 .hover-block[hover] .black-white-filter {
+	transition: filter 350ms ease-out;
 	-webkit-filter: grayscale(0%);
 	filter: grayscale(0%);
 }
 
 .black-white-filter:focus-visible {
+	transition: filter 500ms ease-out;
 	-webkit-filter: grayscale(0%);
 	filter: grayscale(0%);
 }
