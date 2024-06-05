@@ -6,7 +6,7 @@
 
 Камерная сценическая площадка, используемая нашим Театром в <b><a href="https://www.neue-buehne-friedrichshain.de" target="_blank"	rel="noopener external">Neue Bühne Friedrichshain</a></b> (<i>Boxhagener Str. 18, 10245 Berlin</i>), формирует атмосферу домашнего уюта и ощущение непосредственного участия зрителя в разворачивающихся событиях.
 
-Если Вы уже были на наших спектаклях, то будем рады получит Ваши отзывы <b><a href="https://g.page/r/CXSamsbDK3NlEBI/review" target="_blank"	rel="noopener external">здесь</a></b> (Google) и/или <b><a href=" https://www.facebook.com/AntreprizaBerlin/reviews" target="_blank"	rel="noopener external">здесь</a></b> (Facebook).
+Если Вы уже были на наших спектаклях, то будем рады получит Ваши отзывы <b><a href="https://g.page/r/CXSamsbDK3NlEBI/review" target="_blank"	rel="noopener external">здесь</a></b> (Google) и/или <b><a href="https://www.facebook.com/AntreprizaBerlin/reviews" target="_blank"	rel="noopener external">здесь</a></b> (Facebook).
 
 Следите за афишей и приходите! Мы всегда рады видеть Вас в нашем Театре!
 

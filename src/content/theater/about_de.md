@@ -4,8 +4,6 @@ Der Beginn des Theaterlebens fiel mit der Coronavirus-Epidemie und den Lockdowns
 
 Das Theaterensemble ist durch den Menschen aus verschiedenen Ländern vertritt: Deutschland, Ukraine, Russland, Israel, Weißrussland, Armenien, Lettland, Bulgarien. Den Publikumsrezensionen nach zu urteilen, sind die hervorragenden Beziehungen innerhalb des Teams beim Publikum bemerkbar im Zusammenspiel der Schauspieler auf der Bühne.
 
-Der intime Bühnenraum unseres Theaters in der Neuen Bühne Friedrichshain (Boxhagener Str. 18, 10245 Berlin) schafft eine heimelige Atmosphäre und das Gefühl der unmittelbaren Teilnahme des Zuschauers am Geschehen.
-
 Der intime Bühnenraum unseres Theaters in <b><a href="https://www.neue-buehne-friedrichshain.de" target="_blank"	rel="noopener external">Neue Bühne Friedrichshain</a></b> (<i>Boxhagener Str. 18, 10245 Berlin</i>) schafft eine heimelige Atmosphäre und das Gefühl der unmittelbaren Teilnahme des Zuschauers am Geschehen.
 
 Wenn Sie bereits bei unseren Auftritten waren, freuen wir uns über Ihre Bewertungen <b><a href="https://g.page/r/CXSamsbDK3NlEBI/review" target="_blank"	rel="noopener external">hier</a></b> (Google) und/oder <b><a href=" https://www.facebook.com/AntreprizaBerlin/reviews" target="_blank"	rel="noopener external">hier</a></b> (Facebook).

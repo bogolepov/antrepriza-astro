@@ -57,7 +57,7 @@ export default function FinalReservationForm({ lang, dictionary, isShow, handleC
 	}
 
 	function validateForm() {
-		const emailRegex = /^[a-zA-Z0–9._-]+@[a-zA-Z0–9.-]+\.[a-zA-Z]{2,4}$/;
+		const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 		let errorNumbers = 2;
 
 		let name = userName.current.value.trim().replace(/\s+/g, ' ');
@@ -67,7 +67,7 @@ export default function FinalReservationForm({ lang, dictionary, isShow, handleC
 
 		let email = userEmail.current.value.trim().replace(/\s+/g, ' ');
 		if (!email) setUserEmailError(dictionary['err__empty_email'][lang]);
-		else if (!emailRegex.test(email) || email.length < 5 || email.length > 64)
+		else if (!EMAIL_REGEX.test(email) || email.length < 5 || email.length > 64)
 			setUserEmailError(dictionary['err__email_not_correct'][lang]);
 		else errorNumbers--;
 

@@ -11,7 +11,7 @@ const MODE_LIGHT = 'light';
 const LANG_LIST = [LANG_RU, LANG_DE];
 const MODE_LIST = [MODE_LIGHT, MODE_DARK];
 
-const EMAIL_REGEX = /^[a-zA-Z0–9._-]+@[a-zA-Z0–9.-]+\.[a-zA-Z]{2,4}$/;
+const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 let currLang;
 let currMode;
@@ -249,6 +249,38 @@ async function submitNewsletterForm(event) {
 	event.preventDefault();
 
 	resetMessageTimer();
+
+	// let emails = [
+	// 	'bogolep7@mail.ru',
+	// 	'bogolep7@mail.r',
+	// 	'bogolep7@mail.rur',
+	// 	'bogolep7@gmail.ru',
+	// 	'bogolep7@gmx.ru',
+	// 	'bogolep7@gmx.de',
+	// 	'bogolep@mail.ru',
+	// 	'bogolep_7@mail.ru',
+	// 	'bogolep7d@mail.ru',
+	// 	'bogolepov@gmail.com',
+	// 	'bogolepov7@gmail.com',
+	// 	'bogolepov@gmail7.com',
+	// 	'bogolep7@gmail.com',
+	// 	'bogolep7@g.com',
+	// 	'bogolep7@gmail.c',
+	// 	'bogolep7@gmail.co.',
+	// 	'bogolep7@gmail.com.com',
+	// 	'b@g.r',
+	// 	'b.@g.r',
+	// 	'.@g.r',
+	// 	'b@.r',
+	// 	'b@.g.r',
+	// ];
+	// for (let email of emails) {
+	// 	if (!EMAIL_REGEX.test(email)) {
+	// 		console.log(email + ': not valid format');
+	// 	} else {
+	// 		console.log(email + ': is VALID format');
+	// 	}
+	// }
 
 	const form = event.target;
 	const emailInput = form.querySelector('.newsletter__input');

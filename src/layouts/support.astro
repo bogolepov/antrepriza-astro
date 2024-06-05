@@ -6,10 +6,18 @@ import dictionary from '@data/dictionary.json'
 
 import '@styles/support.css'
 
+import { getEntry } from 'astro:content';
+
+const description: string = (lang == 'ru') ? 'support_ru' : 'support_de';
+const entry = await getEntry('theater', description);
+const { Content } = await entry.render();
+
 ---
 
 <section class="support">
   <h1 class="section-title">{dictionary.support[lang]}</h1>
-  <!-- <div class="test">Support</div> -->
+    <div class="description">
+      <Content/>
+    </div>
   <div class="page-end"></div>
 </section>
