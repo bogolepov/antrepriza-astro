@@ -1,20 +1,26 @@
 ---
 const { lang } = Astro.props;
 
+import '@styles/theater.css'
 import dictionary from '@data/dictionary.json'
+import theater from '@data/theater.json'
 
-import { getEntry } from 'astro:content';
+import ContentRu from '@layouts/content/theater/career_ru.astro'
+import ContentDe from '@layouts/content/theater/career_de.astro'
 
-const description: string = (lang == 'ru') ? 'career_ru' : 'career_de';
-const entry = await getEntry('theater', description);
-const { Content } = await entry.render();
+let Content;
+if (lang === 'de') Content = ContentDe;
+else Content = ContentRu;
+
 
 ---
 
 <section class="career">
   <h1 class="section-title">{dictionary.menu_career[lang]}</h1>
   <div class="description">
-    <Content/>
+    <Content>
+      <a slot='email' href={"mailto:"+theater.email} class="font-opacity1">{theater.email}</a>
+    </Content>
   </div>
   <div class="page-end"></div>
 </section>
