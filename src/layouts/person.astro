@@ -26,23 +26,23 @@ const { Content } = await entry.render();
 
 let nJobs = 0;
 let strJobs="";
-let strActorJob = (person.gender == 'f') ? dictionary.actress[lang] : dictionary.actor[lang];
+let strActorJob = (person.gender === 'f') ? dictionary.actress[lang] : dictionary.actor[lang];
 if (person.jobs) {
   for (let job of person.jobs) {
     let thisJob = dictionary[job][lang];
-    if (job == 'actor' || job == 'actress') thisJob = strActorJob;
-    strJobs = strJobs + (nJobs ? ", " : "") + ( (nJobs && lang == "ru" )? thisJob.toLowerCase() : thisJob);
+    if (job === 'actor' || job === 'actress') thisJob = strActorJob;
+    strJobs = strJobs + (nJobs ? ", " : "") + ( (nJobs && lang === "ru" )? thisJob.toLowerCase() : thisJob);
     nJobs++;
   }
 }
 else {
-  strJobs = (person.gender == 'f') ? dictionary.actress[lang] : dictionary.actor[lang];
+  strJobs = (person.gender === 'f') ? dictionary.actress[lang] : dictionary.actor[lang];
 }
 
 let playsRegie = plays.filter(play => {
   return play.creators.find(action => {
     let res = action.people.find(person_id => person_id == person.id);
-    return (action.type == "regie" && res != undefined);
+    return (action.type === "regie" && res != undefined);
   })
 });
 

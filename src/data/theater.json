@@ -29,6 +29,7 @@
 		"name_short": "NBF"
 	},
 	"stageName": "Neue Bühne Friedrichshain",
+	"schoolName": "Berliner Schule für Schauspieler",
 	"main_website": "https://antrepriza.eu/",
 	"social_pages": [
 		{ "name": "Facebook", "url": "https://www.facebook.com/AntreprizaBerlin", "svg": "#facebook-outline" },
@@ -41,6 +42,11 @@
 		"ru": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2428.140103368497!2d13.452496277010766!3d52.51280353676181!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a84fd5bec47e5d%3A0x65732bc3c69a9a74!2zVGhlYXRlciBBbnRyZXByaXphIC8g0KLQtdCw0YLRgCDQkNC90YLRgNC10L_RgNC40LfQsCDQkdC10YDQu9C40L0!5e0!3m2!1sru!2sde!4v1709339311966!5m2!1sru!2sde",
 		"de": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2428.1402822157715!2d13.455071199999997!3d52.512800299999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a84fd5bec47e5d%3A0x65732bc3c69a9a74!2zVGhlYXRlciBBbnRyZXByaXphIC8g0KLQtdCw0YLRgCDQkNC90YLRgNC10L_RgNC40LfQsCDQkdC10YDQu9C40L0!5e0!3m2!1sde!2sde!4v1710883843700!5m2!1sde!2sde"
 	},
+	"review_links": [
+		{ "name": "Google", "link": "https://g.page/r/CXSamsbDK3NlEBI/review", "logo": "google-logo.svg" },
+		{ "name": "Facebook", "link": "https://www.facebook.com/AntreprizaBerlin/reviews", "logo": "facebook-logo.svg" }
+	],
+	"paypal": { "name": "PayPal", "link": "https://paypal.me/antreprizaBuehne", "logo": "paypal-logo.svg" },
 	"promo_video_about": "https://www.youtube-nocookie.com/embed/XovPtvv__T4?si=bdYcG3LEt4MmAMGP",
 	"director": 1,
 	"team": [1, 3, 2, 4, 7, 6, 5],

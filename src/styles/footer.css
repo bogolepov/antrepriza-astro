@@ -39,8 +39,18 @@ footer .footer-flex-item {
 	/* align-self: flex-end; */
 }
 
-footer a {
+footer a,
+footer a * {
 	text-decoration: none;
+	transition:
+		color 400ms ease-out,
+		fill 400ms ease-out;
+}
+
+footer label {
+	transition:
+		color 400ms ease-out,
+		fill 400ms ease-out;
 }
 
 @media (hover: hover) {
@@ -48,13 +58,13 @@ footer a {
 	footer a:hover *,
 	footer label:hover {
 		transition:
-			color 500ms ease-out,
-			fill 500ms ease-out;
+			color 400ms ease-out,
+			fill 400ms ease-out;
 		color: var(--colorAntreprizaRed);
 		fill: var(--colorAntreprizaRed);
 	}
 	footer .info-text:has(a:hover) {
-		transition: color 500ms ease-out;
+		transition: color 400ms ease-out;
 		color: var(--colorAntreprizaRed);
 	}
 }
@@ -217,6 +227,7 @@ footer .logo-75 {
 	color: var(--colorFontTicketsBtn);
 	border-radius: 0;
 	cursor: pointer;
+	transition: background-color 300ms ease-out;
 }
 @media (hover: hover) {
 	.newsletter__button:hover {

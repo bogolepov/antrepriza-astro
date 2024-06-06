@@ -3,21 +3,33 @@
 const { lang } = Astro.props;
 
 import dictionary from '@data/dictionary.json'
+import theater from '@data/theater.json'
 
 import '@styles/support.css'
 
-import { getEntry } from 'astro:content';
+import ContentRu from '@layouts/content/theater/support_ru.astro'
+import ContentDe from '@layouts/content/theater/support_de.astro'
 
-const description: string = (lang == 'ru') ? 'support_ru' : 'support_de';
-const entry = await getEntry('theater', description);
-const { Content } = await entry.render();
+let Content;
+if (lang === 'de') Content = ContentDe;
+else Content = ContentRu;
 
 ---
 
 <section class="support">
   <h1 class="section-title">{dictionary.support[lang]}</h1>
     <div class="description">
-      <Content/>
+      <Content>
+        <div slot='reviews' class='flex-center flex-support'>
+          <div><a href="https://g.page/r/CXSamsbDK3NlEBI/review" target="_blank"	rel="noopener external"><img src = "/google-logo.svg" alt="Google Reviews Antrepriza" class="google-svg"/></a></div>
+          <div><a href="https://www.facebook.com/AntreprizaBerlin/reviews" target="_blank"	rel="noopener external"><img src = "/facebook-logo.svg" alt="Facebook Reviews Antrepriza" class="facebook-svg"/></a></div>
+        </div>
+        <div slot='donate' class='flex-center'>
+          <a href="https://paypal.me/antreprizaBuehne" target="_blank"	rel="noopener external"><img src = "/paypal-color.svg" alt="PayPal Antrepriza" class="paypal-svg"/></a>
+        </div>
+        <a slot='phone' href={"tel:"+theater.phone} class="font-opacity1">{theater.phone}</a>
+        <a slot='email' href={"mailto:"+theater.email} class="font-opacity1">{theater.email}</a>
+      </Content>
     </div>
   <div class="page-end"></div>
 </section>
