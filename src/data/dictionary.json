@@ -88,5 +88,7 @@
 	"radio_book_at_kontramarka": { "ru": "Купить на Контрамарке", "de": "Bei Kontramarka kaufen" },
 	"add_to_cart": { "ru": "Добавить в корзину", "de": "In den Warenkorb" },
 	"go_to_website": { "ru": "Перейти на ", "de": "Zur " },
+	"opening_quote": { "ru": "«", "de": "„" },
+	"closing_quote": { "ru": "»", "de": "“" },
 	"": { "ru": "", "de": "" }
 }

@@ -52,7 +52,7 @@
 			{ "id": 1, "name": { "ru": "Малыш", "de": "Steppke" }, "actors": [] },
 			{
 				"id": 2,
-				"name": { "ru": "Карлсон", "de": "Karlsson" },
+				"name": { "ru": "Карлсон", "de": "Karlson" },
 				"description": { "ru": "летающий человек", "de": "fliegender Mann" },
 				"actors": []
 			},
@@ -103,7 +103,7 @@
 			{ "id": 1, "name": { "ru": "Малыш", "de": "Steppke" }, "actors": [110, 118] },
 			{
 				"id": 2,
-				"name": { "ru": "Карлсон", "de": "Karlsson" },
+				"name": { "ru": "Карлсон", "de": "Karlson" },
 				"description": { "ru": "летающий человек", "de": "fliegender Mann" },
 				"actors": [103]
 			},

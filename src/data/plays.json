@@ -103,7 +103,7 @@
 			{
 				"id": 3,
 				"name": { "ru": "Марина Загитова", "de": "Marina Sagitowa" },
-				"description": { "ru": "бывшая актриса провинциального театра", "de": "ehemalige Schauspielerin des Provinztheater" },
+				"description": { "ru": "бывшая актриса провинциального театра", "de": "ehemalige Schauspielerin eines Provinztheaters" },
 				"actors": [100]
 			},
 			{
@@ -161,7 +161,7 @@
 			{ "id": 1, "name": { "ru": "Малыш", "de": "Steppke" }, "actors": [110, 118] },
 			{
 				"id": 2,
-				"name": { "ru": "Карлсон", "de": "Karlsson" },
+				"name": { "ru": "Карлсон", "de": "Karlson" },
 				"description": { "ru": "летающий человек", "de": "fliegender Mann" },
 				"actors": [103]
 			},
@@ -449,19 +449,19 @@
 			{
 				"id": 3,
 				"name": { "ru": "Ольга", "de": "Olga" },
-				"description": { "ru": "его сестра, старшая", "de": "seine Schwester, älteste" },
+				"description": { "ru": "его сестра, старшая", "de": "seine älteste Schwester" },
 				"actors": [101]
 			},
 			{
 				"id": 4,
 				"name": { "ru": "Маша", "de": "Mascha" },
-				"description": { "ru": "его сестра, средняя", "de": "seine Schwester, mittlere" },
+				"description": { "ru": "его сестра, средняя", "de": "seine mittlere Schwester" },
 				"actors": [100]
 			},
 			{
 				"id": 5,
 				"name": { "ru": "Ирина", "de": "Irina" },
-				"description": { "ru": "его сестра, младшая", "de": "seine Schwester, jüngste" },
+				"description": { "ru": "его сестра, младшая", "de": "seine jüngste Schwester" },
 				"actors": [104, 105]
 			},
 			{
@@ -485,7 +485,7 @@
 			{
 				"id": 9,
 				"name": { "ru": "Чебутыкин Иван Романович", "de": "Iwan Romanowitsch Tschebutykin" },
-				"description": { "ru": "военный доктор", "de": "Militairarzt" },
+				"description": { "ru": "военный доктор", "de": "Militärarzt" },
 				"actors": [1]
 			},
 			{

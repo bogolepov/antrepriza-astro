@@ -1,0 +1,12 @@
+---
+const { play_suffix, lang, has_quotes, classes } = Astro.props;
+
+import dictionary from '@data/dictionary.json'
+import plays from '@data/plays.json'
+
+let play = plays.find(play => play.suffix === play_suffix);
+let opening_quote = (has_quotes && has_quotes === 'true') ? dictionary.opening_quote[lang] : '';
+let closing_quote = (has_quotes && has_quotes === 'true') ? dictionary.closing_quote[lang] : '';
+
+---
+<a class={classes} href={"/"+lang+"/plays/"+play.suffix}>{opening_quote + play.alt_title[lang] + closing_quote}</a>

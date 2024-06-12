@@ -5,7 +5,7 @@ const { lang } = Astro.props;
 import dictionary from '@data/dictionary.json'
 import theater from '@data/theater.json'
 
-import '@styles/support.css'
+import '@styles/theater.css'
 
 import ContentRu from '@layouts/content/theater/support_ru.astro'
 import ContentDe from '@layouts/content/theater/support_de.astro'
@@ -20,7 +20,7 @@ else Content = ContentRu;
   <h1 class="section-title">{dictionary.support[lang]}</h1>
     <div class="description">
       <Content>
-        <div slot='reviews' class='flex-center flex-support'>
+        <div slot='reviews' class='flex-center flex-review'>
           <div><a href="https://g.page/r/CXSamsbDK3NlEBI/review" target="_blank"	rel="noopener external"><img src = "/google-logo.svg" alt="Google Reviews Antrepriza" class="google-svg"/></a></div>
           <div><a href="https://www.facebook.com/AntreprizaBerlin/reviews" target="_blank"	rel="noopener external"><img src = "/facebook-logo.svg" alt="Facebook Reviews Antrepriza" class="facebook-svg"/></a></div>
         </div>

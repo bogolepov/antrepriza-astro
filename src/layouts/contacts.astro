@@ -6,11 +6,12 @@ import theater from '@data/theater.json'
 
 import '@styles/contacts.css'
 
-import { getEntry } from 'astro:content';
+import ContentRu from '@layouts/content/theater/contact_ru.astro'
+import ContentDe from '@layouts/content/theater/contact_de.astro'
 
-const description: string = (lang == 'ru') ? 'contact_ru' : 'contact_de';
-const entry = await getEntry('theater', description);
-const { Content } = await entry.render();
+let Content;
+if (lang === 'de') Content = ContentDe;
+else Content = ContentRu;
 
 ---
 

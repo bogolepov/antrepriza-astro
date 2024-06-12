@@ -12,14 +12,23 @@
 
 .description p {
 	margin-bottom: 0;
+	line-height: 1.3em;
 }
 
 .description b {
 	color: var(--colorFont-Op1);
 }
 
-.description a {
+.description a:not(.a-no-u) {
 	text-decoration: underline;
+}
+
+.description .header {
+	font-size: 1.35em;
+	font-weight: var(--font-bold-weight);
+	letter-spacing: 0.02em;
+	line-height: 1.2em;
+	color: var(--colorFont-Op0);
 }
 
 .description .big-font {
@@ -40,6 +49,36 @@
 
 .about .page-end {
 	margin-bottom: clamp(1.7rem, 5vw, 3.5rem);
+}
+
+/* --------------------------------------------------- */
+/* ------------------- review block ------------------ */
+/* --------------------------------------------------- */
+.description a:has(img) {
+	line-height: 1px;
+	font-size: 1px;
+}
+
+.description .flex-review {
+	flex-wrap: wrap;
+	column-gap: 40px;
+}
+
+.description .google-svg {
+	padding: 8.8px 10px;
+	width: auto;
+	height: 56px;
+}
+.description .facebook-svg {
+	padding: 10px;
+	padding-top: 0;
+	width: auto;
+	height: 38px;
+}
+.description .paypal-svg {
+	padding: 10px;
+	width: auto;
+	height: 64px;
 }
 
 /* --------------------------------------------------- */

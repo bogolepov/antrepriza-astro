@@ -7,20 +7,42 @@ import theater from '@data/theater.json'
 import '@styles/theater.css'
 
 import YouTubePlayer from "@components/youtube_player.astro"
+import PlayNameLink from "@components/play_name_link.astro"
 
-import { getEntry } from 'astro:content';
+import ContentRu from '@layouts/content/theater/about_ru.astro'
+import ContentDe from '@layouts/content/theater/about_de.astro'
 
-const description: string = (lang == 'ru') ? 'about_ru' : 'about_de';
-const entry = await getEntry('theater', description);
-const { Content } = await entry.render();
+let Content;
+if (lang === 'de') Content = ContentDe;
+else Content = ContentRu;
 
 ---
 
 <section class="about">
   <h1 class="section-title">{dictionary.menu_about[lang]}</h1>
   <div class="description">
-    <Content/>
+    <Content>
+      <b slot='theater-name' class="big-font"><a class="a-no-u" href={"/" + lang + "/"}>{theater.longTheaterName[lang]}</a></b>
+      <Fragment slot='play-name-link-ts'><PlayNameLink play_suffix="ts" lang={lang} has_quotes="true" classes="font-opacity1 bold1 a-no-u"/></Fragment>
+      <Fragment slot='play-name-link-dk'><PlayNameLink play_suffix="dk" lang={lang} has_quotes="true" classes="font-opacity1 bold1 a-no-u"/></Fragment>
+      <Fragment slot='play-name-link-op'><PlayNameLink play_suffix="op" lang={lang} has_quotes="true" classes="font-opacity1 bold1 a-no-u"/></Fragment>
+      <Fragment slot='play-name-link-mik'><PlayNameLink play_suffix="mik" lang={lang} has_quotes="true" classes="font-opacity1 bold1 a-no-u"/></Fragment>
+      <Fragment slot='play-name-link-miks'><PlayNameLink play_suffix="miks" lang={lang} has_quotes="true" classes="font-opacity1 bold1 a-no-u"/></Fragment>
+      <Fragment slot='play-name-link-n32'><PlayNameLink play_suffix="n32" lang={lang} has_quotes="true" classes="font-opacity1 bold1 a-no-u"/></Fragment>
+      <Fragment slot='play-name-link-pip'><PlayNameLink play_suffix="pip" lang={lang} has_quotes="true" classes="font-opacity1 bold1 a-no-u"/></Fragment>
+      <b slot='theater-stage'><a class="a-no-u" href={theater.stageWebsite} target="_blank"	rel="noopener external">{theater.stageName}</a></b>
+      <i slot='theater-address'>{theater.stageAddress.full_string}</i>
+      <div slot='reviews' class='flex-center flex-review'>
+        <div><a href="https://g.page/r/CXSamsbDK3NlEBI/review" target="_blank"	rel="noopener external"><img src = "/google-logo.svg" alt="Google Reviews Antrepriza" class="google-svg"/></a></div>
+        <div><a href="https://www.facebook.com/AntreprizaBerlin/reviews" target="_blank"	rel="noopener external"><img src = "/facebook-logo.svg" alt="Facebook Reviews Antrepriza" class="facebook-svg"/></a></div>
+      </div>
+      <b slot="afisha"><a class="a-no-u" href={"/" + lang + "/programm"}>
+        { lang === 'ru' && 'афишей'}
+        { lang !== 'ru' && dictionary.programm[lang]}
+      </a></b>
+    </Content>
   </div>
   <YouTubePlayer lang={lang} url={theater.promo_video_about} />
   <div class="page-end"></div>
 </section>
+ 
