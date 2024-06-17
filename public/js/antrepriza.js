@@ -138,7 +138,7 @@ function initHeaderSubMenuListener() {
 	let mobileHeader = document.getElementById('header-mobile');
 	if (mobileHeader) {
 		mobileHeader.addEventListener('click', function (event) {
-			let btn = event.target.closest('.submenu-symbol-button');
+			let btn = event.target.closest('.burger-submenu-title');
 			if (btn) {
 				let item = event.target.closest('.burger-item');
 				if (item) item.classList.toggle('submenu-opened');

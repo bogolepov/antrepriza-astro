@@ -141,9 +141,6 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 		</div>
 		<a class="header-tickets-button" href={"/" + lang + "/" + menuTickets.link} class:list={{active_link: currentPath[1] === menuTickets.link}}>{menuTickets.text}</a>
 
-		<!-- <div class="navigator-tickets-item">
-			<a href="tickets.html" class="tickets-btn">Билеты</a>
-		</div> -->
 		<ul class="navigator-social-pages">
 		{
 			theater.social_pages.map((socialPage) => {

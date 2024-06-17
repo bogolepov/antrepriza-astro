@@ -21,6 +21,13 @@
 	--toolbarLogoTextWidth: 112.4px;
 }
 
+header a,
+header a * {
+	text-decoration: none;
+	transition:
+		color 400ms ease-out,
+		fill 400ms ease-out;
+}
 /* --------------------------------------------------- */
 .toolbar-grid {
 	display: grid;
@@ -130,54 +137,37 @@
 /* ---------------------- :hover --------------------- */
 /* --------------------------------------------------- */
 @media (hover: hover) {
-	.navigator-icon-logo:hover,
-	.navigator-icon-logo-text:hover,
-	.toolbar-icon:hover,
-	.theme-changer:hover svg {
-		transition: fill 350ms ease-out;
-		fill: var(--colorAntreprizaRed);
-		/* stroke-width: 0px; */
-	}
-	.dropdown-item-link:hover .lang-brief {
-		transition: color 350ms ease-out;
-		color: var(--colorAntreprizaRed);
-	}
-
-	.toolbar-grid a:hover {
-		color: var(--colorAntreprizaRed);
-		fill: var(--colorAntreprizaRed);
-		font-weight: inherit;
+	header a:hover,
+	header a:hover *,
+	.theme-changer:hover * {
 		cursor: pointer;
 		transition:
-			color 350ms ease-out,
-			fill 350ms ease-out;
-		/* stroke-width: 0px; */
+			color 400ms ease-out,
+			fill 400ms ease-out;
+		color: var(--colorAntreprizaRed);
+		fill: var(--colorAntreprizaRed);
 	}
+
 	.expand-menu:hover {
 		color: var(--colorAntreprizaRed);
 		font-weight: inherit;
-		transition: color 350ms ease-out;
+		transition: color 400ms ease-out;
 
 		.toolbar-icon-language {
-			transition: fill 350ms ease-out;
+			transition: fill 400ms ease-out;
 			fill: var(--colorAntreprizaRed);
 		}
 	}
 
-	/* .menu-drop-down-symbol {
-		fill: var(--colorAntreprizaRed);
-		stroke-width: 0px;
+	header a.header-tickets-button:hover {
+		transition:
+			background-color 400ms ease-out,
+			border-color 400ms ease-out,
+			font-weight 400ms ease-out;
+		border-color: var(--colorAntreprizaRed);
+		font-weight: var(--font-bold-weight);
+		background-color: var(--colorBkgForm);
 	}
-
-	.submenu-title-text:hover:has(.submenu-title-text a) {
-		color: var(--colorAntreprizaRed);
-		cursor: pointer;
-	}
-
-	.submenu-symbol-wrap:hover .submenu-symbol {
-		fill: var(--colorAntreprizaRed);
-		stroke-width: 0px;
-	} */
 }
 
 /* --------------------------------------------------- */
@@ -220,6 +210,10 @@
 /* --------------------------------------------------- */
 .expand-menu {
 	position: relative;
+	transition: color 400ms ease-out;
+	.toolbar-icon-language {
+		transition: fill 400ms ease-out;
+	}
 }
 
 .dropdown-box {
@@ -311,8 +305,16 @@
 }
 
 .theme-changer {
+	display: inline-block;
 	cursor: pointer;
+	width: fit-content;
 }
+.theme-changer * {
+	transition:
+		color 400ms ease-out,
+		fill 400ms ease-out;
+}
+
 .theme-checkbox {
 	width: 1.5rem;
 	height: 1.5rem;
@@ -548,12 +550,9 @@ a.header-tickets-button {
 	border-radius: 3px;
 	position: relative;
 	transition:
-		background-color 350ms ease-out,
-		border-color 350ms ease-out,
-		font-weight 350ms ease-out;
-	/* transition: color 0.3s ease;
-	transition: background-color 0.3s ease; */
-	/* transition: border-color 0.3s ease; */
+		background-color 400ms ease-out,
+		border-color 400ms ease-out,
+		font-weight 400ms ease-out;
 }
 
 .theme-changer-text {
@@ -573,31 +572,6 @@ a.header-tickets-button {
 .header-mobile .header-burger-button:focus-visible,
 .header-mobile .submenu-symbol-button:focus-visible {
 	outline: 1px solid var(--colorAntreprizaRed);
-}
-
-@media (hover: hover) {
-	.header-mobile a:hover,
-	.burger-item:hover span {
-		transition: color 350ms ease-out;
-		color: var(--colorAntreprizaRed);
-	}
-
-	.header-logo-icon:hover,
-	.header-logo-text-icon:hover,
-	.header-icon:hover {
-		transition: fill 350ms ease-out;
-		fill: var(--colorAntreprizaRed);
-	}
-
-	a.header-tickets-button:hover {
-		transition:
-			background-color 350ms ease-out,
-			border-color 350ms ease-out,
-			font-weight 350ms ease-out;
-		border-color: var(--colorAntreprizaRed);
-		font-weight: var(--font-bold-weight);
-		background-color: var(--colorBkgForm);
-	}
 }
 
 @media screen and (max-width: 910px) {
@@ -693,6 +667,7 @@ a.header-tickets-button {
 	grid-template-columns: 1fr min-content;
 	align-items: center;
 	justify-self: start;
+	cursor: pointer;
 }
 
 .burger-submenu-title .submenu-symbol-button {
