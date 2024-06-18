@@ -52,11 +52,22 @@ export const handler = async (event, context) => {
 			from: `${theater.longTheaterName[lang]} <${process.env.ANTREPRIZA_EMAIL}>`,
 			to: email,
 			subject: `${dictionaryServer.email_news_subscription_subject[lang]}`,
-			html: htmlEmail,
+			html: makeHtmlEmail(lang, email, sid, false),
+		};
+		const mailOptionsAntrepriza = {
+			from: `${theater.longTheaterName[lang]} <${process.env.ANTREPRIZA_EMAIL}>`,
+			to: process.env.ANTREPRIZA_NEWS_EMAIL,
+			subject: `${dictionaryServer.email_news_subscription_subject_antrepriza[lang]}`,
+			html: makeHtmlEmail(lang, email, sid, true),
 		};
 
 		try {
 			await transporter.sendMail(mailOptions);
+
+			try {
+				await transporter.sendMail(mailOptionsAntrepriza);
+			} catch (error) {}
+
 			return {
 				statusCode: 200,
 				body: JSON.stringify({
@@ -74,8 +85,8 @@ export const handler = async (event, context) => {
 		}
 	}
 
-	function makeHtmlEmail(lang, email, sid) {
-		return `<!DOCTYPE html><html lang="${lang}">` + makeHead(lang) + makeBody(lang, email, sid) + `</html>`;
+	function makeHtmlEmail(lang, email, sid, forAntrepriza = false) {
+		return `<!DOCTYPE html><html lang="${lang}">` + makeHead(lang) + makeBody(lang, email, sid, forAntrepriza) + `</html>`;
 	}
 
 	function makeHead(lang) {
@@ -90,35 +101,47 @@ export const handler = async (event, context) => {
 			'.email-body a {color:#d6d6d6;text-decoration:none;} .email-body .im * {color:#d6d6d6;}' +
 			'.body-table {width:100%;}' +
 			'.email-wrapper {padding:2rem;margin-left:auto;margin-right:auto;} ' +
-			'.reservation-titel {font-size:1.35rem;margin-bottom:15px;line-height:1.2em;}' +
+			'.subscription-titel {font-size:1.35rem;margin-bottom:15px;line-height:1.2em;}' +
 			'.lh12 {line-height:1.2em;} .fcw {color:#d6d6d6;} .b700 {font-weight:700;} .m50 {margin:50px 0;}' +
 			'.confirm-button {border:1px solid #87605e;padding:10px 20px;text-decoration:none;line-height:1.2em;}' +
 			'.email-body a.confirm-button{color:#87605e;}' +
+			'.user-table {margin-bottom:15px;}' +
+			'.user-table tr td {min-width:5em;color:#d6d6d6;}' +
 			'</style></head>';
 
 		return htmlHead;
 	}
 
-	function makeBody(lang, email, sid) {
+	function makeBody(lang, email, sid, forAntrepriza) {
 		return (
 			`<body class='email-body'><table class='body-table'><tbody><tr><td class='email-wrapper'>` +
-			makeTextAboutConfirmation(lang, sid) +
+			makeTextAboutConfirmation(lang, email, sid, forAntrepriza) +
 			`</td></tr></tbody></table></body>`
 		);
 	}
 
-	function makeTextAboutConfirmation(lang, sid) {
-		let strHello = dictionaryServer.dear_audience[lang] + (lang === 'ru' ? '!' : ',');
-		// TODO: change website-address of email-address confirmation
-		// https://antrepriza.netlify.app/ru/
-		return (
-			`<div class='reservation-titel b700 fcw'>${strHello}</div>` +
-			`<p class='lh12 fcw'>${dictionaryServer.email_subscription_text[lang]}</p>` +
-			`<p class='lh12 fcw'>${dictionaryServer.email_subscription_text2[lang]}</p>` +
-			`<p class='m50'><a href='https://antrepriza.netlify.app/${lang}/newsletter?sid=${sid}' class='confirm-button'>${dictionaryServer.email_subscription_button_text[lang]}</a></p>` +
-			`<p><div class='lh12 fcw'>${dictionaryServer.email_subscription_text3[lang]}</div>` +
-			`<a href='${theater.main_website}${lang}' class='lh12 fcw'>${theater.longTheaterName[lang]}</a></p>`
-		);
+	function makeTextAboutConfirmation(lang, email, sid, forAntrepriza) {
+		if (forAntrepriza) {
+			return (
+				`<div class='subscription-titel fcw'>${dictionaryServer.new_subscription_text[lang]} :</div>` +
+				`<table class='user-table'>` +
+				`<tr><td>Email :</td><td>${email}</td></tr>` +
+				`<tr><td>SID :</td><td>${sid}</td></tr>` +
+				`</table>`
+			);
+		} else {
+			let strHello = dictionaryServer.dear_audience[lang] + (lang === 'ru' ? '!' : ',');
+			// TODO: change website-address of email-address confirmation
+			// https://antrepriza.netlify.app/ru/
+			return (
+				`<div class='subscription-titel b700 fcw'>${strHello}</div>` +
+				`<p class='lh12 fcw'>${dictionaryServer.email_subscription_text[lang]}</p>` +
+				`<p class='lh12 fcw'>${dictionaryServer.email_subscription_text2[lang]}</p>` +
+				`<p class='m50'><a href='https://antrepriza.netlify.app/${lang}/newsletter?sid=${sid}' class='confirm-button'>${dictionaryServer.email_subscription_button_text[lang]}</a></p>` +
+				`<p><div class='lh12 fcw'>${dictionaryServer.email_subscription_text3[lang]}</div>` +
+				`<a href='${theater.main_website}${lang}' class='lh12 fcw'>${theater.longTheaterName[lang]}</a></p>`
+			);
+		}
 	}
 
 	async function emailConfirmation(lang, sid) {
