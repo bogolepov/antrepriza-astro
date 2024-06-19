@@ -44,6 +44,13 @@
 		"premiere": true
 	},
 	{
+		"date": "2024-11-10",
+		"time": "19:30",
+		"play_id": 8,
+		"free_place": true,
+		"prices": ["standart", "reduce"]
+	},
+	{
 		"date": "2024-10-27",
 		"time": "19:30",
 		"play_id": 5,
@@ -58,23 +65,9 @@
 		"prices": ["standart", "reduce"]
 	},
 	{
-		"date": "2024-10-25",
-		"time": "19:30",
-		"play_id": 8,
-		"free_place": true,
-		"prices": ["standart", "reduce"]
-	},
-	{
 		"date": "2024-10-06",
 		"time": "19:30",
 		"play_id": 4,
-		"free_place": true,
-		"prices": ["standart", "reduce"]
-	},
-	{
-		"date": "2024-09-01",
-		"time": "19:30",
-		"play_id": 8,
 		"free_place": true,
 		"prices": ["standart", "reduce"]
 	},
