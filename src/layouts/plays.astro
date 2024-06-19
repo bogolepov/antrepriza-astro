@@ -13,11 +13,12 @@ import { Picture } from 'astro:assets';
 
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg,jpg}');
 
-plays.sort((play1, play2) => play1.alt_title[lang].toLowerCase().localeCompare(play2.alt_title[lang].toLowerCase(), lang));
+const PLAYS_ORDER = [9, 1 , 4, 8, 5, 2, 6];
+
+// plays.sort((play1, play2) => play1.alt_title[lang].toLowerCase().localeCompare(play2.alt_title[lang].toLowerCase(), lang));
 programm.sort((play1, play2) => Date.parse(play1.date+"T"+play1.time) - Date.parse(play2.date+"T"+play2.time));
 
 let actualProgramm = programm.filter(performance => Date.parse(performance.date) >= Date.now());
-// let actualProgramm = programm;
 
 let playsWithGrouppedDatesMap = new Map();
 actualProgramm.forEach(element => {
@@ -31,7 +32,8 @@ let playsWithGrouppedDatesArray = Array.from(playsWithGrouppedDatesMap, ([key, v
 
 <section class="section-plays">
 {
-	plays.map (play => {
+	PLAYS_ORDER.map (play_id => {
+		let play = plays.find(item => item.id === play_id);
 		let performs = actualProgramm.filter(performance => performance.play_id == play.id);
 		let isPremiere = (performs && performs.length>0 && performs[0].premiere);
 		return (
