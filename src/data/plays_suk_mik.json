@@ -167,7 +167,7 @@
 				"id": 4,
 				"name": { "ru": "Бетти Уайтхауз", "de": "Betty Whitehouse" },
 				"description": { "ru": "жена Гордона", "de": "Gordons Gattin" },
-				"actors": [111, 117]
+				"actors": [111]
 			},
 			{ "id": 5, "name": { "ru": "Олуэн Пиил", "de": "Olwen Peel" }, "actors": [102, 105] },
 			{ "id": 6, "name": { "ru": "Чарлз Стэнтон", "de": "Charles Stanton" }, "actors": [106, 121] },

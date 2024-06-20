@@ -58,7 +58,7 @@
 		"creators": [
 			{ "type": "regie", "people": [1] },
 			{ "type": "light", "people": [4] },
-			{ "type": "sound", "people": [7] },
+			{ "type": "sound", "people": [4] },
 			{ "type": "graphic_design", "people": [6] }
 		]
 	},
@@ -128,7 +128,7 @@
 		"creators": [
 			{ "type": "regie", "people": [1] },
 			{ "type": "light", "people": [4] },
-			{ "type": "sound", "people": [7] },
+			{ "type": "sound", "people": [4] },
 			{ "type": "graphic_design", "people": [6] }
 		]
 	},
@@ -181,7 +181,7 @@
 		"creators": [
 			{ "type": "regie", "people": [1] },
 			{ "type": "light", "people": [4] },
-			{ "type": "sound", "people": [7] },
+			{ "type": "sound", "people": [4] },
 			{ "type": "graphic_design", "people": [6] },
 			{ "type": "photographer", "people": [5] },
 			{ "type": "stage_setup", "people": [103] }
@@ -227,7 +227,7 @@
 				"id": 4,
 				"name": { "ru": "Бетти Уайтхауз", "de": "Betty Whitehouse" },
 				"description": { "ru": "жена Гордона", "de": "Gordons Gattin" },
-				"actors": [111, 117]
+				"actors": [111]
 			},
 			{ "id": 5, "name": { "ru": "Олуэн Пиил", "de": "Olwen Peel" }, "actors": [102, 105] },
 			{ "id": 6, "name": { "ru": "Чарлз Стэнтон", "de": "Charles Stanton" }, "actors": [106] },
@@ -236,7 +236,7 @@
 		"creators": [
 			{ "type": "regie", "people": [1] },
 			{ "type": "light", "people": [4] },
-			{ "type": "sound", "people": [7] },
+			{ "type": "sound", "people": [4] },
 			{ "type": "graphic_design", "people": [6] },
 			{ "type": "photographer", "people": [5] },
 			{ "type": "stage_setup", "people": [103, 106] }
@@ -318,7 +318,7 @@
 		"creators": [
 			{ "type": "regie", "people": [1] },
 			{ "type": "light", "people": [4] },
-			{ "type": "sound", "people": [7] },
+			{ "type": "sound", "people": [4] },
 			{ "type": "graphic_design", "people": [6] },
 			{ "type": "photographer", "people": [5] },
 			{ "type": "stage_setup", "people": [103, 106] }
@@ -410,7 +410,7 @@
 		"creators": [
 			{ "type": "regie", "people": [1] },
 			{ "type": "light", "people": [4] },
-			{ "type": "sound", "people": [7] },
+			{ "type": "sound", "people": [4] },
 			{ "type": "stage_setup", "people": [103] }
 		]
 	},
@@ -499,7 +499,7 @@
 			{ "type": "regie", "people": [1] },
 			{ "type": "music", "people": [2] },
 			{ "type": "light", "people": [4] },
-			{ "type": "sound", "people": [7] },
+			{ "type": "sound", "people": [4] },
 			{ "type": "costumes", "people": [126] },
 			{ "type": "graphic_design", "people": [6] },
 			{ "type": "photographer", "people": [5] },

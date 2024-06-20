@@ -60,6 +60,7 @@
 	"job_producer": { "ru": "Продюсер", "de": "Produzent" },
 	"job_light": { "ru": "Художник по свету", "de": "Lichttechniker" },
 	"job_sound": { "ru": "Звукорежиссер", "de": "Tonregisseur" },
+	"job_administrator": { "ru": "Администратор", "de": "Verwalter" },
 	"job_stage": { "ru": "Оформитель сцены", "de": "Bühnenbildner" },
 	"photo": { "ru": "Фото", "de": "Fotos" },
 	"video": { "ru": "Видео", "de": "Videos" },
