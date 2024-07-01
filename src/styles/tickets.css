@@ -2,8 +2,7 @@
 	width: 100%;
 }
 
-.tickets-play-block,
-.gift-block {
+.item-block {
 	position: relative;
 	font-family: 'Roboto', Verdana, Arial, Tahoma, sans-serif;
 	font-weight: var(--font-normal-weight);
@@ -15,7 +14,7 @@
 	border-bottom: 1px solid;
 }
 
-.gift-block:not(:has(+ .gift-block)) {
+.item-block:not(:has(+ .item-block)) {
 	border-bottom: none;
 }
 
@@ -102,8 +101,7 @@
 /* -------------------- @media ----------------------- */
 /* --------------------------------------------------- */
 @media screen and (max-width: 660px) {
-	.tickets-play-block,
-	.gift-block {
+	.item-block {
 		flex-direction: column-reverse;
 	}
 	.tickets-play-text,

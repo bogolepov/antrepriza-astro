@@ -111,7 +111,7 @@
 			"photo": "no-photo.jpg",
 			"gender": "m",
 			"name": { "ru": "Владимир", "de": "Vladimir" },
-			"surname": { "ru": "", "de": "" },
+			"surname": { "ru": "Григ", "de": "Grig" },
 			"jobs": ["job_administrator"]
 		},
 		{

@@ -66,7 +66,7 @@ for (let price of prices) {
 
 			if (playInfo) {
 				return (
-					<div id={playInfo.suffix} class="tickets-play-block hover-block hover-background" data-play={playInfo.id}>
+					<div id={playInfo.suffix} class="item-block tickets-play-block hover-block hover-background" data-play={playInfo.id}>
 						<div class="tickets-play-text">
 							<div class="tickets-play-name">
 								{item.value[0].premiere && 
@@ -115,7 +115,8 @@ for (let price of prices) {
 		})
 	}
 
-	<div class="gift-block hover-block hover-background">
+	<!-- 
+	<div class="item-block hover-block hover-background">
 		<div class="gift-text">
 			<h2 class="giftticket play-title">{dictionary.giftticket[lang]}</h2>
 			<p class="gift-info">{giftTicketInfo}</p>
@@ -143,7 +144,7 @@ for (let price of prices) {
 		</div>
 	</div>
 
-	<div class="gift-block hover-block hover-background">
+	<div class="item-block hover-block hover-background">
 		<div class="gift-text">
 			<h2 class="giftcard play-title">{dictionary.giftcard[lang]}</h2>
 			<p class="gift-info">{dictionary.giftcard_info[lang]}</p>
@@ -172,7 +173,8 @@ for (let price of prices) {
 				sizes={'(max-width: 320px) 280px, (max-width: 660px) 640px, (max-width: 1300px) 400px, 640px'}
 				alt={dictionary.giftcard[lang]} />
 		</div>
-	</div>
+	</div> 
+	-->
 
 </section>
 
