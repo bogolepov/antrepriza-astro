@@ -147,7 +147,7 @@ export const handler = async (event, context) => {
 				`<p class='lh12 fcw'>${dictionaryServer.email_reservation_text3[lang]}</p>` +
 				`<p><div class='lh12 fcw'>${dictionaryServer.email_reservation_text4[lang]}</div>` +
 				// `<div class='lh12 fcw'>${theater.longTheaterName[lang]}</div>` +
-				`${dictionaryServer.your__theater[lang]} <a href='${theater.main_website}${lang}' class='lh12 fcw'>${theater.longTheaterName[lang]}</a></p>`
+				`${dictionaryServer.your__theater[lang]} <a href='${theater.main_website}/${lang}' class='lh12 fcw'>${theater.longTheaterName[lang]}</a></p>`
 			);
 		} else {
 			let options = {

@@ -3,34 +3,52 @@ import "@styles/font.css"
 import "@styles/init.css"
 import "@styles/antrepriza.css"
 
+import theater from '@data/theater.json'
+
 import Header from "@components/header.astro";
 import Footer from "@components/footer.astro";
 import Reservation from "@react-components/reservation/Reservation";
 
-const { title, lang, reservation } = Astro.props;
+const { title, description, lang, reservation, robots } = Astro.props;
+
+const pathname: string = new URL(Astro.request.url).pathname;
 
 ---
 
 <html lang={lang}>
 	<head>
 		<meta charset="UTF-8" />
+		{
+			robots &&
+			<meta name="robots" content={robots} />
+		}
+		{
+			!robots &&
+			<meta name="robots" content="index, follow" />
+		}
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>{title}</title>
+		{
+			description && description.length > 0 && 
+			<meta name="description" content={description} />
+		}		
 		<!-- <link rel="icon" href="/images/icon-192.png" type="image/png" /> -->
 		<link rel="icon" href="/favicon.ico" sizes="any" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<!-- <link rel="apple-touch-icon" href="/apple-touch-icon-180.png" /> -->
 		<!-- <link rel="manifest" href="/manifest.webmanifest" /> -->
 		<!-- SEO -->
-		<meta name="description" content="Театр Антреприза Берлин" />
-		<meta
-			name="keyword"
-			content="Театр Антреприза Берлин, русский театр, русскоязычный, классика, 
-			драма, детектив, комедия, детский спектакль, Чехов, Станиславский, Мамонтов,
-			актер, досуг, культура, искусство, билеты, спектакли, сцена"
-		/>
-	<meta name="generator" content={Astro.generator} />
+		{
+			theater.languages.map(lng => {
+				return (
+					<link rel="alternate" href={theater.main_website + pathname.replace('/'+lang+'/', '/'+lng.lang_code+'/')} hreflang={lng.lang_code} />
+				);
+			})
+		}
+		<link rel="alternate" href={theater.main_website + pathname.replace('/'+lang+'/', '/ru/')} hreflang="x-default" />
+		<!-- SEO -->
+		<meta name="generator" content={Astro.generator} />
 	</head>
 
 	<body class="no-js">

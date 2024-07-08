@@ -11,8 +11,10 @@ import theater from '@data/theater.json'
 export const getStaticPaths = (() => {  
   return theater.languages.flatMap(lng => {
     return plays.map(play => {
-      let aTitle = theater.shortTheaterName[lng.lang_code] + " - " + play.title[lng.lang_code];
+      let aTitle = dictionary.play_lang[lng.lang_code] + " " + 
+        dictionary.opening_quote[lng.lang_code] + play.title[lng.lang_code] + dictionary.closing_quote[lng.lang_code];
       if (play.title_notice && play.title_notice[lng.lang_code]) aTitle = aTitle + " [" + play.title_notice[lng.lang_code] + "]";
+      aTitle = aTitle + " — " + theater.shortTheaterName[lng.lang_code];
       return {
         params: {lang: lng.lang_code, id_suffix: play.suffix},
         props: {pageLang: lng.lang_code, pageTitle: aTitle, playID: play.id.toString()},

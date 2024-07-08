@@ -6,7 +6,7 @@ export function getStaticPaths () {
   return theater.languages.map(lng => {
     return {
       params: {lang: lng.lang_code},
-      props: {pageLang: lng.lang_code, pageTitle: theater.shortTheaterName[lng.lang_code] + " - " + dictionary.plays[lng.lang_code] },
+      props: {pageLang: lng.lang_code, pageTitle: dictionary.plays[lng.lang_code] + " — " + theater.shortTheaterName[lng.lang_code] },
     };
   });
 }

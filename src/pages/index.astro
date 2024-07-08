@@ -2,10 +2,11 @@
 // import AntreprizaLayout from "../layouts/AntreprizaLayout.astro";
 // const pageTitle = "Театр Антреприза Берлин";
 // const pageLang = "ru";
+import theater from '@data/theater.json'
+
 ---
 <style>
 	body{background-color: rgb(41, 41, 41);font-size: 2px;}
-	.logo{fill: hsl(358 89% 47%);height: 40px;width:40px;}
 </style>
 
 <html>
@@ -16,21 +17,25 @@
 		<meta name="description" content="Театр Антреприза Берлин" />
 		<link rel="icon" href="/favicon.ico" sizes="any" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		{
+			theater.languages.map(lng => {
+				return (
+					<link rel="alternate" href={theater.main_website + "/" + lng.lang_code + "/"} hreflang={lng.lang_code} />
+				);
+			})
+		}
+		<link rel="alternate" href={theater.main_website + "/ru/"} hreflang="x-default" />
 	</head>
 	<body>
-		<a href="/ru/">RU</a> <a href="/de/">DE</a>
-		<svg class="logo" viewBox="0 0 34.2 40.2">
-			<g>
-				<path d="M22.6,17.9V17H23v-1c-0.9-0.3-1.6-1.1-1.6-2.2c0-0.9,0.5-1.7,1.3-2V8.2h0.5V6.9h0.2l0.1-4.3l-5.6,1.3l0.4,23.8
-					l4.5-1.1L23,18L22.6,17.9L22.6,17.9z"/>
-				<path d="M34.2,0L24,2.4v4.5h0.2v1.3h0.5v3.6c0.8,0.4,1.3,1.1,1.3,2c0,1-0.7,1.9-1.6,2.2v1h0.4v0.9h-0.4l0.2,8.1
-					l2.8-2.3l2.2-3.2l-0.8,6.2l-10.5,8l1.3,2.1l3.1-2.6l2.1-1.8l7.1-4.8L34.2,0z"/>
-				<path d="M10.3,6.9v1.3h0.5v3.6c0.8,0.4,1.3,1.1,1.3,2c0,1-0.7,1.9-1.6,2.2v1h0.4v0.9h-0.4l0.2,10.8l4.3-3.5L14.5,5.6
-					l-4.4-1v2.3C10.1,6.9,10.3,6.9,10.3,6.9z"/>
-				<path d="M15.7,29.6l-5.2,1.7l-4.4,5.5l0.8-3.2l1.9-3.3l0.3-12.4H8.7V17h0.4v-1c-0.9-0.3-1.6-1.1-1.6-2.2
-					c0-0.9,0.5-1.7,1.3-2V8.2h0.5V6.9h0.2V4.4l-4-0.9L0,40.2l8.6-2l2.3-0.5l3.4-0.8L15.7,29.6z"/>
-			</g>		
-		</svg>
+		{
+			theater.languages.map(lng => {
+				return (
+					<div>
+						<a href={theater.main_website + "/" + lng.lang_code + "/"}>{lng.lang_code.toUpperCase()}</a>
+					</div>
+				);
+			})
+		}
 		<script is:inline>
 			let currLang = 'ru';
 			let userLang = localStorage.getItem('LANG') || navigator.language || navigator.userLanguage;

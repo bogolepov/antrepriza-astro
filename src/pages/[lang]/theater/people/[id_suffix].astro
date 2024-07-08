@@ -12,7 +12,7 @@ export const getStaticPaths = (() => {
   let team = theater.people.filter(person => person.suffix);  
   return theater.languages.flatMap(lng => {
     return team.map(person => {
-      let aTitle = theater.shortTheaterName[lng.lang_code] + " - " + person.name[lng.lang_code] + " " + person.surname[lng.lang_code];
+      let aTitle = person.name[lng.lang_code] + " " + person.surname[lng.lang_code] + " — " + theater.shortTheaterName[lng.lang_code];
       // console.log(aTitle);
       let item =  {
         params: {lang: lng.lang_code, id_suffix: person.suffix},

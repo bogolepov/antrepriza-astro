@@ -139,7 +139,7 @@ export const handler = async (event, context) => {
 				`<p class='lh12 fcw'>${dictionaryServer.email_subscription_text2[lang]}</p>` +
 				`<p class='m50'><a href='https://antrepriza.netlify.app/${lang}/newsletter?sid=${sid}' class='confirm-button'>${dictionaryServer.email_subscription_button_text[lang]}</a></p>` +
 				`<p><div class='lh12 fcw'>${dictionaryServer.email_subscription_text3[lang]}</div>` +
-				`<a href='${theater.main_website}${lang}' class='lh12 fcw'>${theater.longTheaterName[lang]}</a></p>`
+				`<a href='${theater.main_website}/${lang}' class='lh12 fcw'>${theater.longTheaterName[lang]}</a></p>`
 			);
 		}
 	}
