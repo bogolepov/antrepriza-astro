@@ -11,7 +11,6 @@ export default defineConfig({
 		'/programm/': '/ru/programm/',
 		'/tickets/': '/ru/tickets/',
 		'/support/': '/ru/support/',
-		'/programm/': '/ru/programm/',
 		'/impressum/': '/ru/impressum/',
 		'/gallery/': '/ru/gallery/',
 	},

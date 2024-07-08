@@ -12,9 +12,10 @@
 		"age": "16+",
 		"description": { "ru": "play_n32_ru", "de": "play_n32_de" },
 		"posters": {
-			"landscape": "karl.son.jpg",
-			"landscape_16_9": "karl.son_16_9.jpg",
-			"portrait": "karl.son_poster.jpg",
+			"landscape": "soon.jpg",
+			"landscape_16_9": "soon_16_9.jpg",
+			"portrait": "soon_poster.jpg",
+			"afisha": "afisha_n32_soon.jpg",
 			"facebook": "",
 			"minimum": ""
 		},
@@ -339,8 +340,8 @@
 		"description": { "ru": "play_pip_ru", "de": "play_pip_de" },
 		"posters": {
 			"landscape": "sieg_oder_verrat.jpg",
-			"landscape_16_9": "sieg_oder_verrat_16_9.jpg",
 			"portrait": "sieg_oder_verrat_poster.jpg",
+			"afisha": "afisha_pip.jpg",
 			"facebook": "",
 			"minimum": ""
 		},
