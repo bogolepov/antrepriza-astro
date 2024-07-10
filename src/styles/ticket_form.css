@@ -52,14 +52,9 @@
 }
 
 .ticket-form .play-stage-name {
-	padding-top: 0.01em;
-	padding-bottom: 0.01em;
+	padding-top: 0;
+	padding-bottom: 0;
 }
-/* .ticket-form .play-stage,
-.ticket-form .play-address,
-.ticket-form .play-place-name {
-	line-height: 1.1em;
-} */
 
 .play-seating {
 	color: var(--colorFont-Op1);

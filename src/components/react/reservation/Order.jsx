@@ -42,11 +42,7 @@ export default function Order({ lang, jsons, play, handleAddTicket, handleRemove
 				</div>
 				<div>
 					<h6 className='play-name'>{playName}</h6>
-					{playStageName && (
-						<div className='lh-1-15 play-stage'>
-							{jsons.dictionary.stage[lang]} <span className='lh-1-15 stage-name'>{playStageName}</span>
-						</div>
-					)}
+					{playStageName && <div className='lh-1-15 play-stage'>{jsons.dictionary.stage[lang] + ' - ' + playStageName.toUpperCase()}</div>}
 					<div className='play-date'>
 						{playDate}, {play.time}
 					</div>

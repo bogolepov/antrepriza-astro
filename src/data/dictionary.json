@@ -74,6 +74,7 @@
 	"email": { "ru": "Email", "de": "E-Mail" },
 	"telephone_short": { "ru": "Тел.", "de": "Tel." },
 	"telephone": { "ru": "Телефон", "de": "Telefon" },
+	"address": { "ru": "Адрес", "de": "Adresse" },
 	"website_problems": { "ru": "Проблемы с сайтом", "de": "Webseitenprobleme" },
 	"other": { "ru": "Иное", "de": "Sonstiges" },
 	"newsletter_title": { "ru": "Подписаться на новости", "de": "Newsletter" },

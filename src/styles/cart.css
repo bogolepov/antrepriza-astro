@@ -148,9 +148,9 @@
 	padding-bottom: 0.15em;
 }
 
-.ticket-order .stage-name {
-	padding-top: 0.01em;
-	padding-bottom: 0.01em;
+.ticket-order .play-stage {
+	color: var(--colorFont-Op1);
+	font-weight: var(--font-bold-weight);
 }
 
 .ticket-order .play-date {

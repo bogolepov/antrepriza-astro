@@ -87,9 +87,15 @@ let iMonth: number = -1;
 								<h4 class="play-property label-before" data-label={dictionary.language[lang]+": "}>
 									{playInfo.lang[lang]}
 								</h4>
-								<address class="play-property label-before" data-label={dictionary.stage[lang]+": "}>
-									<span class="stage-name">{ stage.name[lang].toUpperCase() }</span> { stage.address.full_string }
-								</address>
+								<div class="info-address">
+									<address class="play-property label-before" data-label={dictionary.address[lang]+": "}></address>
+									
+									<address class="play-property">
+										<span class="address-stage-name">{ dictionary.stage[lang] + " - " + stage.name[lang].toUpperCase() }</span>
+										<br>
+										{ stage.address.full_string }
+									</address>
+									</div>
 							</div>
 
 							<div class="programm-tickets">

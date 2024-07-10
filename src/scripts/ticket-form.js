@@ -28,6 +28,8 @@ let elemPriceBlocks;
 let elemPriceCounters;
 let elemAntreprizaButton;
 
+let initStageName;
+
 export function initTicketBookForm() {
 	let ticketBtns = document.querySelectorAll('.pink-button.book-ticket.open-book-form');
 	for (let btn of ticketBtns) {
@@ -57,6 +59,7 @@ export function initTicketBookForm() {
 	elemDate = elemTicketLayer.querySelector('.play-date');
 	elemTime = elemTicketLayer.querySelector('.play-time');
 	elemStageName = elemTicketLayer.querySelector('.play-stage-name');
+	initStageName = elemStageName.innerHTML;
 	elemAddress = elemTicketLayer.querySelector('.play-address');
 	elemPlaceName = elemTicketLayer.querySelector('.play-place-name');
 	elemSeating = elemTicketLayer.querySelector('.play-seating');
@@ -118,7 +121,7 @@ function openForm(event, button) {
 			elemPlayDescription.innerHTML = getPlayDescription();
 			elemDate.innerHTML = getPlayDate();
 			elemTime.innerHTML = getPlayTime();
-			elemStageName.innerHTML = stage.name[currLang].toUpperCase();
+			elemStageName.innerHTML = initStageName + stage.name[currLang].toUpperCase();
 			elemAddress.innerHTML = getAddress();
 			let placeName = getPlaceName();
 			if (placeName) {

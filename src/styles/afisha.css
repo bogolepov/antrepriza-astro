@@ -68,6 +68,22 @@
 	align-self: start;
 }
 
+.info-address {
+	display: flex;
+	flex-direction: row;
+	column-gap: 0.25em;
+	line-height: 1.25;
+}
+
+.address-stage-name {
+	background-color: var(--colorBkgPageInvers);
+	/* background: linear-gradient(0deg, var(--colorGradInversSides) 0%, var(--colorGradInversCenter) 52%, var(--colorGradInversSides) 100%); */
+	color: var(--colorFontInvers);
+	font-weight: var(--font-invers-weight);
+	padding: 0 0.2em;
+	line-height: 1.1;
+}
+
 .programm-tickets {
 	grid-area: tickets;
 	align-self: end;
