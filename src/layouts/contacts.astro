@@ -22,11 +22,11 @@ else Content = ContentRu;
     <div class="flex-item-right">
       <h3>
         {theater.longTheaterName[lang]}&nbsp/<br>
-        {theater.stageName}
+        {theater.stages[0].place_name}
       </h3>
       <address>
-        {theater.stageAddress.street} {theater.stageAddress.building} <br>
-        {theater.stageAddress.index} {theater.stageAddress.city}-{theater.stageAddress.district}
+        {theater.stages[0].address.street} {theater.stages[0].address.building} <br>
+        {theater.stages[0].address.index} {theater.stages[0].address.city}-{theater.stages[0].address.district}
       </address>
       <div>
         <a class="info-text" href={"tel:"+theater.phone}>

@@ -33,7 +33,7 @@ actualProgramm.forEach(element => {
 });
 let playsWithGrouppedDatesArray = Array.from(playsWithGrouppedDatesMap, ([key, value]) => ({ key, value }));
 
-let giftTicketInfo = dictionary.giftticket_info[lang].replaceAll("{address}", theater.stageAddress.full_string.toUpperCase());
+let giftTicketInfo = dictionary.giftticket_info[lang].replaceAll("{address}", theater.stages[0].address.full_string.toUpperCase());
 for (let price of prices) {
 	giftTicketInfo = giftTicketInfo.replaceAll("{" + price.type + "}", price.text_short[lang].toUpperCase());
 }

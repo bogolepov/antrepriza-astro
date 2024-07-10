@@ -8,6 +8,7 @@ const RESERVATION_KEY = 'reservations';
 const clientJsons = { afisha: null, theater: null, dictionary: null };
 
 let afishaItem;
+let stage;
 let playItem;
 
 let afishaButton;
@@ -19,9 +20,10 @@ let elemPlayTitle;
 let elemPlayDescription;
 let elemDate;
 let elemTime;
-let elemAddress;
 let elemStageName;
-let elemPlace;
+let elemAddress;
+let elemPlaceName;
+let elemSeating;
 let elemPriceBlocks;
 let elemPriceCounters;
 let elemAntreprizaButton;
@@ -54,9 +56,10 @@ export function initTicketBookForm() {
 	elemPlayDescription = elemTicketLayer.querySelector('.play-descr');
 	elemDate = elemTicketLayer.querySelector('.play-date');
 	elemTime = elemTicketLayer.querySelector('.play-time');
-	elemAddress = elemTicketLayer.querySelector('.play-address');
 	elemStageName = elemTicketLayer.querySelector('.play-stage-name');
-	elemPlace = elemTicketLayer.querySelector('.play-place');
+	elemAddress = elemTicketLayer.querySelector('.play-address');
+	elemPlaceName = elemTicketLayer.querySelector('.play-place-name');
+	elemSeating = elemTicketLayer.querySelector('.play-seating');
 	elemPriceBlocks = elemTicketLayer.querySelectorAll('.price-flex');
 
 	elemPriceCounters = elemTicketLayer.querySelectorAll('.count-input');
@@ -105,14 +108,26 @@ function openForm(event, button) {
 		if (!playItem) {
 			alert('Play Error!');
 		}
+		stage = clientJsons.theater.stages.find(stg => stg.sid === afishaItem.stage_sid);
+		if (!stage) stage = afishaItem.stage;
+		if (!stage) {
+			console.error('No STAGE information!');
+		}
 		if (afishaItem && playItem) {
 			elemPlayTitle.innerHTML = playItem.title[currLang];
 			elemPlayDescription.innerHTML = getPlayDescription();
 			elemDate.innerHTML = getPlayDate();
 			elemTime.innerHTML = getPlayTime();
+			elemStageName.innerHTML = stage.name[currLang].toUpperCase();
 			elemAddress.innerHTML = getAddress();
-			elemStageName.innerHTML = getStageName();
-			elemPlace.innerHTML = getPlaceInfo();
+			let placeName = getPlaceName();
+			if (placeName) {
+				elemPlaceName.innerHTML = placeName;
+				elemPlaceName.hidden = false;
+			} else {
+				elemPlaceName.hidden = true;
+			}
+			elemSeating.innerHTML = getSeatingInfo();
 			updatePrices();
 		}
 	};
@@ -132,8 +147,8 @@ function closeForm() {
 	elemDate.innerHTML = '';
 	elemTime.innerHTML = '';
 	elemAddress.innerHTML = '';
-	elemStageName.innerHTML = '';
-	elemPlace.innerHTML = '';
+	elemPlaceName.innerHTML = '';
+	elemSeating.innerHTML = '';
 	elemPriceCounters.forEach(element => (element.value = '0'));
 	elemAntreprizaButton.disabled = true;
 
@@ -164,7 +179,14 @@ function handleAddToCart() {
 	} else {
 		let newTickets = [];
 		clientJsons.theater.prices.forEach(price => newTickets.push({ type: price.type, count: getTicketCount(price.type) }));
-		let newReservation = { date: afishaItem.date, time: afishaItem.time, play_id: afishaItem.play_id, tickets: newTickets };
+		// TODO:
+		let newReservation = {
+			date: afishaItem.date,
+			time: afishaItem.time,
+			play_id: afishaItem.play_id,
+			stage_sid: stage.sid,
+			tickets: newTickets,
+		};
 		reservations.push(newReservation);
 	}
 	window.localStorage.setItem(RESERVATION_KEY, JSON.stringify(reservations));
@@ -201,21 +223,15 @@ function getPlayTime() {
 }
 
 function getAddress() {
-	if (afishaItem.address) {
-		return afishaItem.address;
-	} else {
-		return clientJsons.theater.stageAddress.full_string;
-	}
+	if (stage && stage.address) return stage.address.full_string;
+	else return '';
 }
-function getStageName() {
-	if (afishaItem.address) {
-		return afishaItem.address;
-	} else {
-		return clientJsons.theater.stageAddress.name;
-	}
+function getPlaceName() {
+	if (stage && stage.show_place_name) return stage.place_name;
+	else return null;
 }
 
-function getPlaceInfo() {
+function getSeatingInfo() {
 	return clientJsons.dictionary.free_place[currLang];
 }
 

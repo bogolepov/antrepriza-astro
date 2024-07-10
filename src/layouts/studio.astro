@@ -88,8 +88,8 @@ let photos = studio_photos.filter(photo => photo.filename && photo.is_landscape 
   <div class="description">
     <Content>
       <a slot="email" href="mailto:info@antrepriza.eu">info@antrepriza.eu</a>
-      <span slot="address">{theater.stageAddress.full_string}</span>
-      <span slot="place-name">{theater.stageName} / {theater.schoolName}</span>
+      <span slot="address">{theater.stages[0].address.full_string}</span>
+      <span slot="place-name">{theater.stages[0].place_name} / {theater.stages[0].school_name}</span>
       <a slot="teacher" href={"/" + lang + "/theater/people/alm"}>{teacher.name[lang]} {teacher.surname[lang]}</a>
       <span slot="teacher-status">{strJobs}</span>
     </Content>

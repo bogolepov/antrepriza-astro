@@ -24,6 +24,7 @@
 	"btn_cart_book": { "ru": "Оформить", "de": "Ausstellen" },
 	"btn_reservation": { "ru": "Забронировать", "de": "Reservieren" },
 	"total_amount": { "ru": "Итого", "de": "Gesamtbetrag" },
+	"stage": { "ru": "Сцена", "de": "Bühne" },
 	"name": { "ru": "Имя", "de": "Name" },
 	"name_hint": { "ru": "Имя и фамилия", "de": "Vor- und Nachname" },
 	"email": { "ru": "Email", "de": "E-Mail" },

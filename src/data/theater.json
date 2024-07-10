@@ -18,19 +18,43 @@
 	},
 	"longTheaterName": { "ru": "Театр Антреприза Берлин", "de": "Theater Antrepriza Berlin" },
 	"shortTheaterName": { "ru": "Театр Антреприза", "de": "Theater Antrepriza" },
-	"stageAddress": {
-		"full_string": "Boxhagener Str. 18, 10245 Berlin",
-		"street": "Boxhagener Str.",
-		"building": "18",
-		"index": "10245",
-		"city": "Berlin",
-		"district": "Friedrichshain",
-		"name": "Neue Bühne Friedrichshain",
-		"name_short": "NBF"
-	},
-	"stageName": "Neue Bühne Friedrichshain",
-	"stageWebsite": "https://www.neue-buehne-friedrichshain.de",
-	"schoolName": "Berliner Schule für Schauspieler",
+	"stages": [
+		{
+			"id": 1,
+			"sid": "ost",
+			"name": { "ru": "Восток", "de": "Ost" },
+			"address": {
+				"full_string": "Boxhagener Str. 18, 10245 Berlin",
+				"street": "Boxhagener Str.",
+				"building": "18",
+				"index": "10245",
+				"city": "Berlin",
+				"district": "Friedrichshain"
+			},
+			"place_name": "Neue Bühne Friedrichshain",
+			"place_name_short": "NBF",
+			"show_place_name": true,
+			"place_website": "https://www.neue-buehne-friedrichshain.de",
+			"school_name": "Berliner Schule für Schauspieler"
+		},
+		{
+			"id": 2,
+			"sid": "west",
+			"name": { "ru": "Запад", "de": "West" },
+			"address": {
+				"full_string": "Carmerstr. 12, 10623 Berlin",
+				"street": "Carmerstr.",
+				"building": "12",
+				"index": "10623",
+				"city": "Berlin",
+				"district": "Charlottenburg"
+			},
+			"place_name": "Akademischer Verein Hütte",
+			"place_name_short": "HÜTTE",
+			"show_place_name": false,
+			"place_website": "https://www.av-huette.de"
+		}
+	],
 	"main_website": "https://antrepriza.eu",
 	"social_pages": [
 		{ "name": "Facebook", "url": "https://www.facebook.com/AntreprizaBerlin", "svg": "#facebook-outline" },

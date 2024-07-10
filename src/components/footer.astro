@@ -26,12 +26,13 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
           <svg class="footer-logo-svg">
             <!-- <use href={Logo + "#logo"}></use> -->
             <use href={Logo + "#logo-text-" + lang}></use>
+            <title>{dictionary.logo[lang]}</title>
           </svg>
         </a>
       </div>    
       <div class="address">
-        <div class="info-text font-opacity0">{theater.stageAddress.name}</div>
-        <div class="info-text font-opacity0">{theater.stageAddress.full_string}</div>
+        <div class="info-text font-opacity0">{theater.stages[0].place_name}</div>
+        <div class="info-text font-opacity0">{theater.stages[0].address.full_string}</div>
       </div>
       <div class="contact">
         <div class="info-text font-opacity0">

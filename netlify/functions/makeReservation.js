@@ -213,7 +213,7 @@ export const handler = async (event, context) => {
 				`<tr><td colspan='4'><div class='play-amount-border'>` +
 				`<table width='100%'><tr><td class='tickets-name left0'>${dictionaryServer.total_amount[lang]}</td>` +
 				`<td class='tickets-amount'>${playAmount}€</td></tr></table>` +
-				`</div></td></tr></table><div class='address fcw'>${theater.stageAddress.full_string}</div></td></tr>`;
+				`</div></td></tr></table><div class='address fcw'>${theater.stages[0].address.full_string}</div></td></tr>`;
 
 			// console.log(element);
 		});

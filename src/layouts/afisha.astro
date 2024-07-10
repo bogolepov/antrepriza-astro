@@ -51,6 +51,10 @@ let iMonth: number = -1;
 					monthName = playDate.toLocaleString(lang, { month: 'long' });
 					strYear = playDate.getFullYear().toString();
 				}
+
+				let stage = theater.stages.find(stg => stg.sid === playInProgramm.stage_sid);
+				if (!stage) console.error("Stage isn't found: " + playInProgramm.stage_sid);
+				
 				return (
 					<div>
 						{showMonth && 
@@ -84,7 +88,7 @@ let iMonth: number = -1;
 									{playInfo.lang[lang]}
 								</h4>
 								<address class="play-property label-before" data-label={dictionary.stage[lang]+": "}>
-									{ playInProgramm.address || theater.stageAddress.full_string }
+									<span class="stage-name">{ stage.name[lang].toUpperCase() }</span> { stage.address.full_string }
 								</address>
 							</div>
 

@@ -59,9 +59,11 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 			<a href={"/" + lang + "/"} class:list={{active_link: currentPath[1] === undefined}}>
 				<svg class="navigator-icon-logo-text">
 					<use href={AntreprizaLogo + '#logo-text-' + lang}></use>
+					<title>{dictionary.logo[lang]}</title>
 				</svg>
 				<svg class="navigator-icon-logo">
 					<use href={AntreprizaLogo + '#logo'}></use>
+					<title>{dictionary.logo[lang]}</title>
 				</svg>
 			</a>
 		</div>
@@ -149,6 +151,7 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 						<a href={socialPage.url} target="_blank"	rel="noopener external">
 							<svg class:list={['social-icon', 'toolbar-icon', socialPage.name.toLowerCase()]}>
 								<use href={SocialIcons + socialPage.svg}></use>
+								<title>{dictionary.logo[lang]} {socialPage.name}</title>
 							</svg>
 						</a>
 					</li>
@@ -159,23 +162,18 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 	</nav>
 	<div class="toolbar-tools-grid">
 		<div class="tools-item">
-			<label
-				class="theme-changer"
-				for="theme__checkbox"
-			>
-				<input
-					class="theme-checkbox"
-					type="checkbox"
-					id="theme__checkbox"
-				/>
+			<label class="theme-changer" for="theme__checkbox">
+				<input class="theme-checkbox"	type="checkbox"	id="theme__checkbox"/>
 				<span class="dark-mode-checkbox">
 					<svg class="toolbar-icon">
 						<use href={Symbols + "#dark-mode"}></use>
+						<title>{dictionary.themeTextDark[lang]}</title>
 					</svg>
 				</span>
 				<span class="light-mode-checkbox">
 					<svg class="toolbar-icon">
 						<use href={Symbols + "#light-mode"}></use>
+						<title>{dictionary.themeTextLight[lang]}</title>
 					</svg>
 				</span>
 			</label>
@@ -307,6 +305,7 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 									<a href={socialPage.url} target="_blank"	rel="noopener external">
 										<svg class:list={['header-icon', socialPage.name.toLowerCase()]}>
 											<use href={SocialIcons + socialPage.svg}></use>
+											<title>{dictionary.logo[lang]} {socialPage.name}</title>
 										</svg>
 									</a>
 								</li>
@@ -316,15 +315,8 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 					</ul>
 				</li>
 				<li class="burger-item">
-					<label
-						class="theme-changer"
-						for="burger-theme__checkbox"
-					>
-						<input
-							class="theme-checkbox"
-							type="checkbox"
-							id="burger-theme__checkbox"
-						/>
+					<label class="theme-changer" for="burger-theme__checkbox">
+						<input class="theme-checkbox" type="checkbox" id="burger-theme__checkbox"/>
 						<div class="dark-mode-checkbox">
 							<svg class="header-icon theme">
 								<use href={Symbols + "#dark-mode"}></use>

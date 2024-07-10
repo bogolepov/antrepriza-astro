@@ -92,5 +92,6 @@
 	"go_to_website": { "ru": "Перейти на ", "de": "Zur " },
 	"opening_quote": { "ru": "«", "de": "„" },
 	"closing_quote": { "ru": "»", "de": "“" },
+	"logo": { "ru": "Логотип", "de": "Logo" },
 	"": { "ru": "", "de": "" }
 }

@@ -13,9 +13,15 @@ export default function Order({ lang, jsons, play, handleAddTicket, handleRemove
 		};
 		return playDate.toLocaleDateString(lang, options);
 	};
+	const getStageName = () => {
+		let stage = jsons.theater.stages.find(item => item.sid === play.stage_sid);
+		if (stage) return stage.name[lang];
+		return null;
+	};
 
 	const playName = useMemo(getPlayName, []);
 	const playDate = useMemo(getPlayDate, []);
+	const playStageName = useMemo(getStageName, []);
 	const ticketTypes = useMemo(() => {
 		let mapTypes = new Map();
 		play.tickets.map(item => {
@@ -36,6 +42,11 @@ export default function Order({ lang, jsons, play, handleAddTicket, handleRemove
 				</div>
 				<div>
 					<h6 className='play-name'>{playName}</h6>
+					{playStageName && (
+						<div className='lh-1-15 play-stage'>
+							{jsons.dictionary.stage[lang]} <span className='lh-1-15 stage-name'>{playStageName}</span>
+						</div>
+					)}
 					<div className='play-date'>
 						{playDate}, {play.time}
 					</div>

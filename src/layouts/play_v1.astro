@@ -71,7 +71,7 @@ const { Content } = await entry.render();
             thisPlayDates.map((play_date) => {
                 let fullDate: string = play_date.date+'T'+play_date.time;
                 let playDate: Date = new Date(fullDate);                
-                let address = (play_date["stageAddress"]) ? play_date["stageAddress"] : theater.stageAddress;
+                let address = (play_date["stageAddress"]) ? play_date["stageAddress"] : theater.stages[0].address;
                 return (
                   <TicketBookButton add_classes='' button_type='ticket' price=''
                                     date={play_date.date} time={play_date.time} play_id={thisPlay.id} >
@@ -82,7 +82,7 @@ const { Content } = await entry.render();
                     <div class="button-address">
                       {address.street} {address.building}<br>
                       {address.index}, {address.city}<br>
-                      {address.name}
+                      {theater.stages[0].place_name}
                     </div>
                   </TicketBookButton>
                 )

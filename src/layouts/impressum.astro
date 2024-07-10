@@ -15,10 +15,10 @@ const director = theater.people.find(person => person.id == theater.director);
   <h1 class="section-title">{dictionary.impressum[lang]}</h1>
   <div class="impressum-block">
     <h3 class="h3-title theater">{theater.longTheaterName[lang]}</h3>
-    <h4 class="stage-name font-opacity1">{lang == "ru" && "в"}{lang == "de" && "in"} {theater.stageAddress.name}</h4>
+    <h4 class="stage-name font-opacity1">{lang == "ru" && "в"}{lang == "de" && "in"} {theater.stages[0].place_name}</h4>
     <div class="address">
-      <address class="info-text">{theater.stageAddress.street} {theater.stageAddress.building}</address>
-      <address class="info-text">{theater.stageAddress.index} {theater.stageAddress.city}</address>
+      <address class="info-text">{theater.stages[0].address.street} {theater.stages[0].address.building}</address>
+      <address class="info-text">{theater.stages[0].address.index} {theater.stages[0].address.city}</address>
     </div>
     <div class="contact">
       <div class="info-text">

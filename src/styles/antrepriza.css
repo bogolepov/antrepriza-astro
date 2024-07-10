@@ -273,6 +273,9 @@ h4.notification-label {
 .lh-1-15 {
 	line-height: 1.15;
 }
+.lh-1-1 {
+	line-height: 1.1;
+}
 
 .a-no-u {
 	text-decoration: none;
@@ -353,6 +356,17 @@ h4.notification-label {
 		background-color: var(--colorBkgHoverDisabledBtn);
 		transition: background-color 300ms ease-out;
 	}
+}
+
+/* --------------------------------------------------- */
+/* ------------------- stage name -------------------- */
+/* --------------------------------------------------- */
+.stage-name {
+	padding: 0.1em 0.25em;
+	/* border: 1px solid var(--colorFontDate); */
+	border: 1px solid var(--colorFont-Op1);
+	color: var(--colorFont-Op0);
+	/* color: var(--colorFontDate); */
 }
 
 /* --------------------------------------------------- */
