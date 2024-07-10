@@ -89,6 +89,10 @@ section.play {
 	text-transform: initial;
 	color: var(--colorFontTicketsBtn-Op0);
 }
+.button-address .stage-name {
+	color: var(--colorFontTicketsBtn);
+	font-weight: 500;
+}
 
 .play-description {
 	width: 100%;

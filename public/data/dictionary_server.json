@@ -7,6 +7,7 @@
 	"total_amount": { "ru": "Итого", "de": "Gesamtbetrag" },
 	"new_reservation_text": { "ru": "У вас новое бронирование билетов", "de": "Sie haben eine neue Ticketreservierung" },
 	"new_subscription_text": { "ru": "У вас новая подписка на новости", "de": "Sie haben eine neue Newsletter-Anmeldung" },
+	"stage": { "ru": "Сцена", "de": "Bühne" },
 	"lang_name": { "ru": "Имя", "de": "Name" },
 	"lang_when": { "ru": "Когда", "de": "Wann" },
 	"good_morning": { "ru": "Доброе утро", "de": "Guten Morgen" },

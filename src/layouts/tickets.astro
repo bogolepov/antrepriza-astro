@@ -37,6 +37,7 @@ let giftTicketInfo = dictionary.giftticket_info[lang].replaceAll("{address}", th
 for (let price of prices) {
 	giftTicketInfo = giftTicketInfo.replaceAll("{" + price.type + "}", price.text_short[lang].toUpperCase());
 }
+
 // giftTicketInfo = giftTicketInfo.replaceAll("{br}", "\u000A");
 
 ---
@@ -82,21 +83,31 @@ for (let price of prices) {
 							</div>
 							<div class="tickets-play-dates">
 								<h4 class="notification-label">{dictionary.nextDates[lang]}:</h4>
-								<div class="buttons-block">
-									{
-										item.value.map((play_date) => {
-												let fullDate: string = play_date.date+'T'+play_date.time;
-												let playDate: Date = new Date(fullDate);
-												return (
-													<TicketBookButton add_classes='' button_type='ticket' price=''
-																						date={play_date.date} time={play_date.time} play_id={playInfo.id}	>
-															{playDate.getDate().toString().padStart(2, '0')}.{(playDate.getMonth()+1).toString().padStart(2, '0')},
-															{playDate.toLocaleDateString(lang, { weekday: 'short' })} / {play_date.time}
-													</TicketBookButton>
-												)
-										} )
-									}
-								</div>
+								{
+									theater.stages.map(stg => {
+										let playsOnThisStage = item.value.filter(item => item.stage_sid === stg.sid);
+										if (playsOnThisStage && playsOnThisStage.length > 0) return (
+											<div class="this-stage-plays">
+												<div class="stage-name play-property">{dictionary.stage[lang] + " - " + stg.name[lang].toUpperCase()}</div>
+												<div class="buttons-block">
+													{
+														playsOnThisStage.map((play_date) => {
+																let fullDate: string = play_date.date+'T'+play_date.time;
+																let playDate: Date = new Date(fullDate);
+																return (
+																	<TicketBookButton add_classes='' button_type='ticket' price=''
+																										date={play_date.date} time={play_date.time} play_id={playInfo.id}	>
+																			{playDate.getDate().toString().padStart(2, '0')}.{(playDate.getMonth()+1).toString().padStart(2, '0')},
+																			{playDate.toLocaleDateString(lang, { weekday: 'short' })} / {play_date.time}
+																	</TicketBookButton>
+																)
+														} )
+													}
+												</div>
+											</div>
+										);										
+									})
+								}
 							</div>
 						</div>
 						<div class="tickets-play-image">

@@ -55,6 +55,7 @@
 			"place_website": "https://www.av-huette.de"
 		}
 	],
+	"fix_stages": ["ost", "west"],
 	"main_website": "https://antrepriza.eu",
 	"social_pages": [
 		{ "name": "Facebook", "url": "https://www.facebook.com/AntreprizaBerlin", "svg": "#facebook-outline" },

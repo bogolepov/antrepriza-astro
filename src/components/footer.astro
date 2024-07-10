@@ -5,8 +5,8 @@ import theater from '@data/theater.json'
 import dictionary from '@data/dictionary.json'
 
 import Logo from '../svg/logo.svg?url'
+import SocialIcons from '../svg/social.svg?url'
 // import Symbols from '../svg/symbols.svg?url'
-// import SocialIcons from '../svg/social.svg?url'
 
 const {lang} = Astro.props;
 
@@ -29,11 +29,19 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
             <title>{dictionary.logo[lang]}</title>
           </svg>
         </a>
-      </div>    
-      <div class="address">
-        <div class="info-text font-opacity0">{theater.stages[0].place_name}</div>
-        <div class="info-text font-opacity0">{theater.stages[0].address.full_string}</div>
       </div>
+      {
+        theater.fix_stages.map(fstg => {
+          let stage = theater.stages.find(stg => fstg === stg.sid);
+          if (stage) 
+            return (
+              <div class="address">
+                <div class="info-text font-opacity0 bold">{dictionary.stage[lang] + " - " + stage.name[lang].toUpperCase()}</div>
+                <div class="info-text font-opacity0">{stage.address.full_string}</div>
+              </div>
+          );
+        })
+      }    
       <div class="contact">
         <div class="info-text font-opacity0">
           <a href={"tel:"+theater.phone}>{dictionary.telephone_short[lang]}: <span class="font-opacity1 phone-number">{theater.phone}</span></a>
@@ -55,6 +63,22 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
           <div class="newsletter-message"></div>
         </form>
       </div>
+      <ul class="footer-social-pages">
+      {
+        theater.social_pages.map((socialPage) => {
+          return (
+            <li class="social-item">
+              <a href={socialPage.url} target="_blank"	rel="noopener external">
+                <svg class:list={['social-icon', 'toolbar-icon', socialPage.name.toLowerCase()]}>
+                  <use href={SocialIcons + socialPage.svg}></use>
+                  <title>{dictionary.logo[lang]} {socialPage.name}</title>
+                </svg>
+              </a>
+            </li>
+          );
+        } )
+      }
+      </ul>
       <div class="question lh-1-3">
         <input class="question-layer-switcher" type="checkbox" id="question__checkbox" name="question" value="question"/>
         <label class="question-switcher-label opacoty1" for="question__checkbox">{dictionary.question_form_label[lang]}</label>

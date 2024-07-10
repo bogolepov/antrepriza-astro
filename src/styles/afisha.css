@@ -40,7 +40,8 @@
 	min-height: 100%;
 
 	display: grid;
-	grid-template-columns: clamp(1.7fr, 3vw, 2fr) 4fr;
+	/* grid-template-columns: clamp(1.7fr, 3vw, 2fr) 4fr; */
+	grid-template-columns: 1.7fr 4fr;
 	grid-template-rows: auto auto 1fr;
 	grid-template-areas:
 		'when title'

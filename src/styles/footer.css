@@ -99,6 +99,15 @@ footer .flex2 {
 	font-size: clamp(0.75rem, 1.4vw, 0.9rem);
 }
 
+.footer-social-pages {
+	list-style: none;
+	margin: 0;
+	display: flex;
+	gap: clamp(0.5rem, 2vw, 0.8rem);
+	padding: 0;
+	padding-bottom: 0.4em;
+}
+
 footer a:focus-visible {
 	outline: 1px solid var(--colorAntreprizaRed);
 }
@@ -122,6 +131,9 @@ footer .info-text {
 	line-height: 1.1em;
 	height: 1.1em;
 	letter-spacing: 0.03em;
+}
+footer .info-text.bold {
+	font-weight: var(--font-bold-weight);
 }
 
 footer .info-text a,

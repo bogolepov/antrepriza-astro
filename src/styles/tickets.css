@@ -54,6 +54,9 @@
 	grid-area: dates;
 	align-self: end;
 }
+.tickets-play-dates .notification-label {
+	margin-bottom: 0.15em;
+}
 
 .tickets-play-dates-label {
 	display: inline-block;
@@ -61,6 +64,13 @@
 	font-weight: var(--font-thin-weight);
 	text-transform: uppercase;
 	margin-bottom: 0.3rem;
+}
+
+.this-stage-plays {
+	padding-bottom: 0.5em;
+}
+.this-stage-plays .stage-name {
+	padding-bottom: 0.1em;
 }
 
 .buttons-block {

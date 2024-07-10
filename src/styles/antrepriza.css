@@ -245,7 +245,7 @@ h4.notification-label {
 	color: var(--colorFont-Op1);
 	/* opac: var(--font-part-opac1); */
 	text-transform: uppercase;
-	margin-bottom: 0.3rem;
+	margin-bottom: 0.3em;
 }
 
 .play-property {
@@ -272,7 +272,9 @@ h4.notification-label {
 .bold1 {
 	font-weight: var(--font-bold-weight);
 }
-
+.bold2 {
+	font-weight: var(--font-extra-weight);
+}
 .lh-1-4 {
 	line-height: 1.4;
 }

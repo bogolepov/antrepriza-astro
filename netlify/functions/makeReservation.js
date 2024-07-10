@@ -29,6 +29,9 @@ export const handler = async (event, context) => {
 	const messageData = JSON.parse(event.body);
 	const { lang, name, email, reservations, amount } = messageData;
 
+	console.log('*** reservations');
+	console.log(reservations);
+
 	let htmlHead, htmlReservationsTable;
 	const htmlEmailToClient = makeHtmlEmail(true, lang, name, email, reservations, amount);
 	const htmlEmailToAntrepriza = makeHtmlEmail(false, lang, name, email, reservations, amount);
@@ -99,7 +102,7 @@ export const handler = async (event, context) => {
 			'.body-table {width:100%;}' +
 			'.email-wrapper {padding:2rem;margin-left:auto;margin-right:auto;} ' +
 			'.reservation-titel {font-size:1.35rem;margin-bottom:15px;line-height:1.2em;}' +
-			'.lh12 {line-height:1.2em;} .fcw {color:#d6d6d6;} .b700 {font-weight:700;}' +
+			'.lh12 {line-height:1.2em;} .fcw {color:#d6d6d6;} .fcg {color:#888888;} .b700 {font-weight:700;}' +
 			'.user-table {margin-bottom:15px;}' +
 			'.user-table tr td {min-width:5em;color:#d6d6d6;}' +
 			'.play-table {width:100%;border-top:1px solid #d6d6d6;border-spacing:0 25px;}' +
@@ -147,7 +150,8 @@ export const handler = async (event, context) => {
 				`<p class='lh12 fcw'>${dictionaryServer.email_reservation_text3[lang]}</p>` +
 				`<p><div class='lh12 fcw'>${dictionaryServer.email_reservation_text4[lang]}</div>` +
 				// `<div class='lh12 fcw'>${theater.longTheaterName[lang]}</div>` +
-				`${dictionaryServer.your__theater[lang]} <a href='${theater.main_website}/${lang}' class='lh12 fcw'>${theater.longTheaterName[lang]}</a></p>`
+				`<div class='lh12 fcw'>${dictionaryServer.your__theater[lang]} ` +
+				`<a href='${theater.main_website}/${lang}' class='lh12 fcw'>${theater.longTheaterName[lang]}</a></div></p>`
 			);
 		} else {
 			let options = {
@@ -184,6 +188,8 @@ export const handler = async (event, context) => {
 			};
 			let strDate = playDate.toLocaleDateString(lang, options);
 
+			let stage = theater.stages.find(stg => stg.sid === element.stage_sid);
+
 			// 📆 🎭 📍
 
 			table =
@@ -213,7 +219,8 @@ export const handler = async (event, context) => {
 				`<tr><td colspan='4'><div class='play-amount-border'>` +
 				`<table width='100%'><tr><td class='tickets-name left0'>${dictionaryServer.total_amount[lang]}</td>` +
 				`<td class='tickets-amount'>${playAmount}€</td></tr></table>` +
-				`</div></td></tr></table><div class='address fcw'>${theater.stages[0].address.full_string}</div></td></tr>`;
+				`</div></td></tr></table><div class='address fcw b700'>${dictionaryServer.stage[lang]} - ${stage.name[lang].toUpperCase()}</div>` +
+				`<div class='address fcg'>${stage.address.full_string}</div></td></tr>`;
 
 			// console.log(element);
 		});
