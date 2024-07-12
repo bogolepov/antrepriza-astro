@@ -1,7 +1,7 @@
 ---
 import "@styles/afisha.css"
 
-const {lang} = Astro.props;
+const {lang, hide_section_title} = Astro.props;
 
 import programm from '@public_data/afisha.json'
 import dictionary from '@data/dictionary.json'
@@ -28,6 +28,10 @@ let iMonth: number = -1;
 
 <section class="programm">
   <TicketForm lang={lang}/>
+	{
+		!hide_section_title &&
+		<h1 class="section-title">{dictionary.programm[lang]}</h1>
+	}
 	
 	{
 		programm.map((playInProgramm) => {
@@ -58,7 +62,7 @@ let iMonth: number = -1;
 				return (
 					<div>
 						{showMonth && 
-							<h1 class="section-title programm-month" data-month={iMonth}>{monthName}&ensp;{strYear}</h1>
+							<h2 class="programm-month" data-month={iMonth}>{monthName}&ensp;{strYear}</h2>
 						}
 					</div>
 					<div class="programm-play-block hover-block hover-background" data-date={playInProgramm.date} data-month={iMonth}>
@@ -77,7 +81,7 @@ let iMonth: number = -1;
 							</div>
 
 							<a class="programm-title stretch-link" href={"/"+lang+"/plays/"+playInfo.suffix}>
-								<h2 class="play-title">{playInfo.alt_title[lang]}</h2>
+								<h3 class="play-title">{playInfo.alt_title[lang]}</h3>
 							</a>
 
 							<div class="programm-info">

@@ -1,14 +1,13 @@
 .gallery .block-title {
 	position: relative;
 	width: 100%;
-	margin-top: clamp(1.1rem, 2.6vw, 2rem);
-	padding: clamp(0.5rem, 2.6vw, 1rem) 0;
+	padding-bottom: clamp(0.5rem, 2.6vw, 1rem);
 	border-bottom: 1px solid var(--colorFontDate);
 	align-self: self-start;
 }
 
-.gallery .block-title h1 {
-	font-size: clamp(1.6rem, 4vw, 3rem);
+.gallery .block-title h2 {
+	font-size: clamp(1.35rem, 3.6vw, 2.4rem);
 	font-weight: var(--font-extra-weight);
 	line-height: 1.25em;
 	letter-spacing: 0.04em;

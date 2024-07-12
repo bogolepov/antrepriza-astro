@@ -53,7 +53,7 @@ for (let price of prices) {
 
 <section class="section-tickets">
 	<TicketForm lang={lang}/>
-
+  <h1 class="section-title">{dictionary.tickets[lang]}</h1>
 	{
 		playsWithGrouppedDatesArray.map(item => {
 			// console.log("key: " + item.key);
@@ -74,7 +74,7 @@ for (let price of prices) {
 									<h4 class="play-property-premiere">{dictionary.premiere[lang]}</h4>
 								}
 								<a class="stretch-link" href={"/"+lang+"/plays/"+playInfo.suffix}>
-									<h2 class="play-title">{playInfo.alt_title[lang]}</h2>
+									<h3 class="play-title">{playInfo.alt_title[lang]}</h3>
 								</a>
 							</div>
 							<div class="tickets-play-info">
@@ -129,7 +129,7 @@ for (let price of prices) {
 	<!-- 
 	<div class="item-block hover-block hover-background">
 		<div class="gift-text">
-			<h2 class="giftticket play-title">{dictionary.giftticket[lang]}</h2>
+			<h3 class="giftticket play-title">{dictionary.giftticket[lang]}</h3>
 			<p class="gift-info">{giftTicketInfo}</p>
 			<div class="flex-spreader"></div>
 			<div class="giftticket buttons-block">
@@ -157,7 +157,7 @@ for (let price of prices) {
 
 	<div class="item-block hover-block hover-background">
 		<div class="gift-text">
-			<h2 class="giftcard play-title">{dictionary.giftcard[lang]}</h2>
+			<h3 class="giftcard play-title">{dictionary.giftcard[lang]}</h3>
 			<p class="gift-info">{dictionary.giftcard_info[lang]}</p>
 			<div class="flex-spreader"></div>
 			<div>

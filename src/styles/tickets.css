@@ -11,11 +11,7 @@
 	flex-direction: row;
 	justify-content: space-between;
 	transition: background-color 250ms linear;
-	border-bottom: 1px solid;
-}
-
-.item-block:not(:has(+ .item-block)) {
-	border-bottom: none;
+	border-top: 1px solid;
 }
 
 .tickets-play-block[hidden] {

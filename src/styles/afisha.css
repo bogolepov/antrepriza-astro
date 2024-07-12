@@ -1,18 +1,23 @@
-/* .picture-test {
-	width: 300px;
-	height: auto;
-	max-width: 30%;
-} */
-
 .section-programm {
 	width: 100%;
 }
 
 .programm-month {
-	border-bottom: 1px solid;
+	font-size: clamp(1.55rem, 3.7vw, 2.7rem);
+	font-weight: var(--font-extra-weight);
+	color: var(--colorFont-Op1);
+	line-height: 1.25em;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	word-wrap: break-word;
+
+	border-bottom: 1px solid var(--colorFont);
 	padding: 0.44em 0px 0.5em 0px;
 	text-align: center;
 	margin-bottom: 0px;
+}
+h1.section-title + div .programm-month {
+	border-top: 1px solid var(--colorFont);
 }
 
 .programm-play-block {
