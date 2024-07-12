@@ -1,0 +1,138 @@
+.contact {
+	--column-gap: 3em;
+}
+
+.contact .contact-flex {
+	margin: 1em auto 2em auto;
+	width: 100%;
+	max-width: 1100px;
+
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	column-gap: var(--column-gap);
+	row-gap: 0.8em;
+}
+
+.contact .contact-flex-column {
+	/* margin: 1em auto 2em auto; */
+	width: 100%;
+	/* max-width: 1100px; */
+
+	display: flex;
+	flex-direction: row-reverse;
+	flex-wrap: wrap;
+	column-gap: var(--column-gap);
+	row-gap: 2em;
+	padding-bottom: 3em;
+}
+
+.flex-column-item {
+	width: calc((100% - var(--column-gap)) / 2);
+	min-width: 260px;
+	flex-grow: 1;
+}
+
+.contact-flex .stage-name {
+	width: 100%;
+	margin-bottom: 0;
+	font-size: clamp(1.45rem, 2.8vw, 2.5rem);
+}
+
+.contact-map {
+	min-width: 260px;
+}
+
+.flex-item-left {
+	text-align: center;
+	margin: 0 auto;
+
+	width: 35%;
+	min-width: 260px;
+	max-width: 700px;
+	flex-grow: 2;
+}
+.flex-item-right {
+	width: calc(60% - 3em);
+	flex-grow: 1;
+}
+
+.contact h3 {
+	font-size: clamp(1.3rem, 2.4vw, 1.75rem);
+	font-weight: var(--font-bold-weight);
+	margin-bottom: 0.3em;
+	line-height: 1.2em;
+}
+
+.contact address {
+	font-size: clamp(0.9rem, 1.7vw, 1.2rem);
+	letter-spacing: 0.035em;
+	line-height: 1.35em;
+	padding-bottom: 0.25em;
+}
+
+.contact .place-name {
+	color: var(--colorFont-Op1);
+	font-size: clamp(0.9rem, 1.7vw, 1.2rem);
+	letter-spacing: 0.035em;
+	line-height: 1.35em;
+	font-weight: var(--font-normal-weight);
+	/* padding-top: 0.3em; */
+	padding-bottom: 1.2em;
+}
+
+.contact .info-text {
+	letter-spacing: 0.03em;
+}
+
+.contact .phone-number {
+	letter-spacing: 0;
+}
+
+.contact .description {
+	text-wrap: wrap;
+	font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+	line-height: 1.5em;
+}
+
+.contact .description h4 {
+	text-wrap: wrap;
+	font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+	letter-spacing: 0.035em;
+	line-height: 1.35em;
+	margin-top: 0.8em;
+	margin-bottom: 0.4em;
+}
+
+.contact .description p {
+	margin: 0;
+	text-wrap: wrap;
+}
+
+.contact .description div {
+	margin-bottom: 1em;
+	line-height: 1.5;
+}
+.contact .description div.ext-links {
+	line-height: 1.9em;
+	margin-bottom: 0;
+}
+
+.contact .description a {
+	color: var(--colorAntreprizaRed-Op0);
+	font-weight: var(--font-bold-weight);
+}
+
+.contact .contact-details {
+	font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+	line-height: 1.4em;
+	padding-top: 0.5em;
+	padding-bottom: 2em;
+}
+
+.transport-flex {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	flex-wrap: wrap;
+}

@@ -1,0 +1,55 @@
+---
+const { lang } = Astro.props;
+
+import dictionary from '@data/dictionary.json'
+import theater from '@data/theater.json'
+
+import '@styles/contacts_column.css'
+
+const components = await Astro.glob('@layouts/content/theater/contact*.astro');
+
+---
+
+<section class="contact">
+  <h1 class="section-title">{dictionary.menu_contact[lang]}</h1>
+  <h3>{theater.longTheaterName[lang]}</h3>
+  <div class="contact-details">
+    <div class="info-text">
+      <a href={"tel:"+theater.phone}>{dictionary.telephone[lang]}: <span class="font-opacity1 phone-number">{theater.phone}</span></a>
+    </div>
+    <div class="info-text">
+      <a href={"mailto:"+theater.email}>{dictionary.email[lang]}: <span class="font-opacity1">{theater.email}</span></a>
+    </div>
+  </div>
+  <div class="contact-flex-column">
+  {
+    theater.fix_stages.map(stg_sid => {
+      let stage = theater.stages.find(stg => stg.sid === stg_sid);
+      if (stage) {
+        return (
+          <div class="flex-column-item">
+            <h3 class="stage-name">{dictionary.stage[lang] + " - " + stage.name[lang].toUpperCase()}</h3>
+            <address>
+              {stage.address.street} {stage.address.building} <br>
+              {stage.address.index} {stage.address.city}-{stage.address.district}
+            </address>
+            <h4 class="place-name">{stage.place_name}</h4>
+            <iframe src={stage.google_map[lang]} width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div class="description">
+              {
+                components.map(component => {
+                  if (component.file.replace(/^.*[\\/]/, '') === stage.contact_file[lang]) {
+                    return (
+                      <component.default stage_name={stage.name[lang]}/>
+                    );
+                  }
+                })
+              }
+            </div>
+          </div>
+      );
+      }
+    })
+  }
+  </div>
+</section>
