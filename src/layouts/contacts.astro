@@ -6,43 +6,50 @@ import theater from '@data/theater.json'
 
 import '@styles/contacts.css'
 
-import ContentRu from '@layouts/content/theater/contact_ru.astro'
-import ContentDe from '@layouts/content/theater/contact_de.astro'
-
-let Content;
-if (lang === 'de') Content = ContentDe;
-else Content = ContentRu;
+const components = await Astro.glob('@layouts/content/theater/contact*.astro');
 
 ---
 
 <section class="contact">
   <h1 class="section-title">{dictionary.menu_contact[lang]}</h1>
-  <div class="contact-flex">
-    <iframe class="flex-item-left" src={theater.google_map[lang]} width="600" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    <div class="flex-item-right">
-      <h3>
-        {theater.longTheaterName[lang]}&nbsp/<br>
-        {theater.stages[0].place_name}
-      </h3>
-      <address>
-        {theater.stages[0].address.street} {theater.stages[0].address.building} <br>
-        {theater.stages[0].address.index} {theater.stages[0].address.city}-{theater.stages[0].address.district}
-      </address>
-      <div>
-        <a class="info-text" href={"tel:"+theater.phone}>
-          <span class="font-opacity0">{dictionary.telephone[lang]}: </span>
-          <span class="font-opacity1 phone-number">{theater.phone}</span>
-        </a>
-      </div>
-      <div>
-        <a class="info-text" href={"mailto:"+theater.email}>
-          <span class="font-opacity0">{dictionary.email[lang]}: </span>
-          <span class="font-opacity1">{theater.email}</span>
-        </a>
-      </div>
-      <div class="description">
-        <Content/>
-      </div>
+  <h3>{theater.longTheaterName[lang]}</h3>
+  <div class="contact-details">
+    <div class="info-text">
+      <a href={"tel:"+theater.phone}>{dictionary.telephone[lang]}: <span class="font-opacity1 phone-number">{theater.phone}</span></a>
+    </div>
+    <div class="info-text">
+      <a href={"mailto:"+theater.email}>{dictionary.email[lang]}: <span class="font-opacity1">{theater.email}</span></a>
     </div>
   </div>
+  {
+    theater.fix_stages.map(stg_sid => {
+      let stage = theater.stages.find(stg => stg.sid === stg_sid);
+      if (stage) {
+        return (
+          <div class="contact-flex">
+            <h3 class="stage-name">{dictionary.stage[lang] + " - " + stage.name[lang].toUpperCase()}</h3>
+            <iframe class="flex-item-left" src={stage.google_map[lang]} width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div class="flex-item-right">
+              <h4 class="place-name">{stage.place_name}</h4>
+              <address>
+                {stage.address.street} {stage.address.building} <br>
+                {stage.address.index} {stage.address.city}-{stage.address.district}
+              </address>
+              <div class="description">
+                {
+                  components.map(component => {
+                    if (component.file.replace(/^.*[\\/]/, '') === stage.contact_file[lang]) {
+                      return (
+                        <component.default stage_name={stage.name[lang]}/>
+                      );
+                    }
+                  })
+                }
+              </div>
+            </div>
+          </div>
+      );
+      }
+    })
+  }
 </section>

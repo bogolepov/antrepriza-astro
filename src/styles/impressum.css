@@ -12,17 +12,11 @@
 	line-height: 1.2em;
 }
 .impressum .h3-title.theater {
-	padding-bottom: 0.2em;
+	padding-bottom: 0.8em;
 }
 .impressum .h3-title.person {
 	padding-top: 1.2em;
 	padding-bottom: 0.4em;
-}
-
-.impressum .place-name {
-	font-size: clamp(1.05rem, 2.1vw, 1.35rem);
-	line-height: 1.2em;
-	padding-bottom: 1.1em;
 }
 
 .impressum .person-name {

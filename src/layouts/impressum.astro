@@ -15,17 +15,18 @@ const director = theater.people.find(person => person.id == theater.director);
   <h1 class="section-title">{dictionary.impressum[lang]}</h1>
   <div class="impressum-block">
     <h3 class="h3-title theater">{theater.longTheaterName[lang]}</h3>
-    <h4 class="place-name font-opacity1">{lang == "ru" && "в"}{lang == "de" && "in"} {theater.stages[0].place_name}</h4>
     <div class="address">
-      <address class="info-text">{theater.stages[0].address.street} {theater.stages[0].address.building}</address>
-      <address class="info-text">{theater.stages[0].address.index} {theater.stages[0].address.city}</address>
+      <address class="info-text font-opacity1">{dictionary.address[lang]}:</address>
+      <address class="info-text">RUSFILM GbR c/o Theater Antrepriza</address>
+      <address class="info-text">Budapester Str. 7-9</address>
+      <address class="info-text">10787 Berlin</address>
     </div>
     <div class="contact">
       <div class="info-text">
-        <a href={"tel:"+theater.phone}>{dictionary.telephone[lang]}: <span class="font-opacity1 phone-number">{theater.phone}</span></a>
+        <a href={"tel:"+theater.phone}><span class="font-opacity1">{dictionary.telephone[lang]}:</span> {theater.phone}</a>
       </div>
       <div class="info-text">
-        <a href={"mailto:"+theater.email}>{dictionary.email[lang]}: <span class="font-opacity1">{theater.email}</span></a>
+        <a href={"mailto:"+theater.email}><span class="font-opacity1">{dictionary.email[lang]}:</span> {theater.email}</a>
       </div>
     </div>
     <h3 class="h3-title person">{lang == "ru" && "Ответственное лицо"}{lang == "de" && "Verantwortung"}</h3>
@@ -34,3 +35,6 @@ const director = theater.people.find(person => person.id == theater.director);
   </div>
   <div class="page-end"></div>
 </section>
+<!-- 
+RUSFILM GbR, Budapester Straße 7-9, 10787 Berlin
+-->
