@@ -13,6 +13,8 @@ const { title, description, lang, reservation, robots } = Astro.props;
 
 const pathname: string = new URL(Astro.request.url).pathname;
 
+let now = new Date();
+
 ---
 
 <html lang={lang}>
@@ -28,6 +30,7 @@ const pathname: string = new URL(Astro.request.url).pathname;
 		}
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="Last-Modified" content={now.toUTCString()}>
 		<title>{title}</title>
 		{
 			description && description.length > 0 && 

@@ -1,6 +1,6 @@
-.section-programm {
+/* section.programm {
 	width: 100%;
-}
+} */
 
 .programm-month {
 	font-size: clamp(1.55rem, 3.7vw, 2.7rem);
@@ -144,9 +144,9 @@ h1.section-title + div .programm-month {
 	transition: filter 250ms ease-in;
 }
 
-.section-programm a:focus-visible {
+/* section.programm a:focus-visible {
 	outline: 1px solid var(--colorAntreprizaRed);
-}
+} */
 
 @media screen and (max-width: 1030px) {
 	.programm-play-text {
