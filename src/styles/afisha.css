@@ -46,7 +46,7 @@ h1.section-title + div .programm-month {
 
 	display: grid;
 	/* grid-template-columns: clamp(1.7fr, 3vw, 2fr) 4fr; */
-	grid-template-columns: 1.7fr 4fr;
+	grid-template-columns: 1.5fr 4fr;
 	grid-template-rows: auto auto 1fr;
 	grid-template-areas:
 		'when title'
@@ -86,6 +86,20 @@ h1.section-title + div .programm-month {
 	/* background: linear-gradient(0deg, var(--colorGradInversSides) 0%, var(--colorGradInversCenter) 52%, var(--colorGradInversSides) 100%); */
 	color: var(--colorFontInvers);
 	font-weight: var(--font-invers-weight);
+	padding: 0 0.2em;
+	line-height: 1.1;
+}
+/* .address-stage-name.festival {
+	background-color: var(--colorAntreprizaRed);
+	color: var(--colorFont);
+	font-weight: var(--font-bold-weight);
+	padding: 0 0.2em;
+	line-height: 1.1;
+} */
+.address-stage-name.festival {
+	background-color: var(--grey-15);
+	color: var(--colorAntreprizaRed);
+	font-weight: 500;
 	padding: 0 0.2em;
 	line-height: 1.1;
 }
@@ -148,7 +162,7 @@ h1.section-title + div .programm-month {
 	outline: 1px solid var(--colorAntreprizaRed);
 } */
 
-@media screen and (max-width: 1030px) {
+@media screen and (max-width: 1040px) {
 	.programm-play-text {
 		/* min-width: 50vw; */
 		grid-template-columns: auto;

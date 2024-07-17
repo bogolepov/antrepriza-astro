@@ -78,9 +78,6 @@ let iMonth: number = -1;
 						{showMonth && 
 							<h2 class="programm-month" data-month={iMonth}>{monthName}&ensp;{strYear}</h2>
 						}
-						{playInProgramm.event_type && playInProgramm.event_type.is_festival && 
-							<h2 class="programm-month" data-month={13}>{stageNameText}</h2>							
-						}
 					</div>
 					<div class="programm-play-block hover-block hover-background" data-date={playInProgramm.date} data-month={iMonth}>
 						<div class="programm-play-text">
@@ -115,7 +112,8 @@ let iMonth: number = -1;
 									<address class="play-property label-before" data-label={dictionary.address[lang]+": "}></address>
 									
 									<address class="play-property">
-										<span class="address-stage-name">{ stageNameText }</span>
+										{/* <span class="address-stage-name">{ stageNameText }</span> */}
+										<span class:list={['address-stage-name', {festival: playInProgramm.event_type && playInProgramm.event_type.is_festival}]}>{ stageNameText }</span>
 										<br>
 										{ stage.address.full_string }
 									</address>
@@ -161,9 +159,11 @@ let iMonth: number = -1;
 			PLAYS_IN_MONTH[playCard.getAttribute("data-month")]++;
 
 			let btn = playCard.querySelector('.pink-button.book-ticket');
-			let fullDate = btn.getAttribute("data-date")+'T'+btn.getAttribute("data-time");
-			if (Date.parse(fullDate) <= Date.now()) {
-				btn.disabled = true;
+			if (btn) {
+				let fullDate = btn.getAttribute("data-date")+'T'+btn.getAttribute("data-time");
+				if (Date.parse(fullDate) <= Date.now()) {
+					btn.disabled = true;
+				}
 			}
 		}
 	}
