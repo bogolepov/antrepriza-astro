@@ -7,6 +7,7 @@ export default defineConfig({
 	redirects: {
 		'/afisha/': '/ru/program/',
 		'/bilet/': '/ru/tickets/',
+		'/contacts/': '/ru/contact/',
 
 		'/program/': '/ru/program/',
 		'/tickets/': '/ru/tickets/',
