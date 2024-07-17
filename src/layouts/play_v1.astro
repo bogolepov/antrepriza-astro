@@ -82,7 +82,7 @@ const { Content } = await entry.render();
                 }
                 return (
                   <TicketBookButton add_classes='' button_type='ticket' price=''
-                                    date={play_date.date} time={play_date.time} play_id={thisPlay.id} >
+                                    date={play_date.date} time={play_date.time} play_id={thisPlay.id} no_sell={play_date.no_tickets} >
                     <div class="button-date">
                     {playDate.toLocaleDateString(lang, { year: "numeric",  month: "short",  day: "2-digit" })},
                     {playDate.toLocaleDateString(lang, { weekday: 'short' })} / {play_date.time}

@@ -111,8 +111,9 @@
 		"play_id": 8,
 		"stage_sid": "rlv1",
 		"free_place": true,
-		"event_type": "festival",
+		"event_type": { "is_festival": true },
 		"event_name": { "ru": "Māra Fest Open Lab", "de": "Māra Fest Open Lab" },
+		"no_tickets": true,
 		"prices": [],
 		"distributor": { "label": { "ru": "Информация о билетах", "de": "Ticketinformation" }, "link": "https://antrepriza.eu" }
 	},

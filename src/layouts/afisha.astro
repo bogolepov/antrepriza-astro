@@ -65,10 +65,12 @@ let iMonth: number = -1;
 					stageNameText = dictionary.stage[lang] + " - " + stage.name[lang].toUpperCase();
 				}
 				else {
-					if (playInProgramm.event_type === "festival")
-						stageNameText = dictionary.festival[lang] + " " + dictionary.opening_quote[lang] + 
-														playInProgramm.event_name[lang].toUpperCase() + dictionary.closing_quote[lang];
-					else stageNameText = playInProgramm.event_name[lang].toUpperCase();
+					if (playInProgramm.event_type) {
+						if (playInProgramm.event_type.is_festival)
+							stageNameText = dictionary.festival[lang] + " " + dictionary.opening_quote[lang] + 
+															playInProgramm.event_name[lang].toUpperCase() + dictionary.closing_quote[lang];
+						else stageNameText = playInProgramm.event_name[lang].toUpperCase();
+					}
 				}
 				
 				return (
@@ -82,7 +84,10 @@ let iMonth: number = -1;
 							
 							<div class="programm-when" >
 								{playInProgramm.premiere && 
-									<h4 class="play-property-premiere">{dictionary.premiere[lang]}</h4>
+									<h4 class="play-property-hot-notice">{dictionary.premiere[lang]}</h4>
+								}
+								{playInProgramm.event_type && playInProgramm.event_type.is_festival && 
+									<h4 class="play-property-hot-notice">{dictionary.festival[lang]}</h4>
 								}
 								<time class="programm-date" data-day={playDate.toLocaleDateString(lang, { weekday: 'short' })}>
 									{playDate.getDate().toString().padStart(2, '0')}.{(playDate.getMonth()+1).toString().padStart(2, '0')},
@@ -114,12 +119,14 @@ let iMonth: number = -1;
 									</div>
 							</div>
 
-							<div class="programm-tickets">
-								<TicketBookButton add_classes="afisha" button_type='ticket' price=''
-																	date={playInProgramm.date} time={playInProgramm.time} play_id={playInProgramm.play_id}	>
-										{dictionary.tickets[lang]}
-								</TicketBookButton>
-							</div>
+							{ !playInProgramm.no_tickets && 
+								<div class="programm-tickets">
+									<TicketBookButton add_classes="afisha" button_type='ticket' price=''
+																		date={playInProgramm.date} time={playInProgramm.time} play_id={playInProgramm.play_id}	>
+											{dictionary.tickets[lang]}
+									</TicketBookButton>
+								</div>
+							}
 
 						</div>
 						<div class="programm-play-image">

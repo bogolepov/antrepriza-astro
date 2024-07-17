@@ -253,7 +253,7 @@ h4.notification-label {
 	font-weight: 400;
 }
 
-.play-property-premiere {
+.play-property-hot-notice {
 	display: block;
 	font-size: 0.9rem;
 	font-weight: var(--font-bold-weight);
@@ -361,6 +361,9 @@ h4.notification-label {
 	background-color: var(--colorBkgDisabledBtn);
 	text-decoration: line-through;
 	cursor: default;
+}
+.pink-button.no-sell {
+	text-decoration: none;
 }
 
 @media (hover: hover) {

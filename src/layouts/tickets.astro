@@ -22,7 +22,7 @@ programm.sort((play1, play2) => Date.parse(play1.date+"T"+play1.time) - Date.par
 
 const ONE_DAY: number = 24*60*60*1000;	
 
-let actualProgramm = programm.filter(performance => Date.parse(performance.date) + ONE_DAY >= Date.now());
+let actualProgramm = programm.filter(performance => (Date.parse(performance.date) + ONE_DAY >= Date.now() && !performance.no_tickets));
 // let actualProgramm = programm;
 
 let playsWithGrouppedDatesMap = new Map();
@@ -71,7 +71,7 @@ for (let price of prices) {
 						<div class="tickets-play-text">
 							<div class="tickets-play-name">
 								{item.value[0].premiere && 
-									<h4 class="play-property-premiere">{dictionary.premiere[lang]}</h4>
+									<h4 class="play-property-hot-notice">{dictionary.premiere[lang]}</h4>
 								}
 								<a class="stretch-link" href={"/"+lang+"/plays/"+playInfo.suffix}>
 									<h3 class="play-title">{playInfo.alt_title[lang]}</h3>

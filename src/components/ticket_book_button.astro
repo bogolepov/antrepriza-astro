@@ -1,8 +1,12 @@
 ---
-const { button_type, play_id, date, time, price, add_classes } = Astro.props;
+const { button_type, play_id, date, time, price, no_sell, add_classes } = Astro.props;
+
+let noSellClass = no_sell ? "no-sell " : "";
+let noSellStatus = no_sell ? true : false;
+
 ---
 
-<button class={"pink-button book-ticket open-book-form " + add_classes} type="button" data-type={button_type} 
-        data-date={date} data-time={time} data-play={play_id} data-price={price}>
+<button class={"pink-button book-ticket open-book-form " + noSellClass + add_classes} type="button" disabled={noSellStatus} 
+        data-type={button_type} data-date={date} data-time={time} data-play={play_id} data-price={price} >
 	<slot/>
 </button>
