@@ -5,10 +5,10 @@ import react from '@astrojs/react';
 export default defineConfig({
 	integrations: [react()],
 	redirects: {
-		'/afisha/': '/ru/programm/',
+		'/afisha/': '/ru/program/',
 		'/bilet/': '/ru/tickets/',
 
-		'/programm/': '/ru/programm/',
+		'/program/': '/ru/program/',
 		'/tickets/': '/ru/tickets/',
 		'/support/': '/ru/support/',
 		'/impressum/': '/ru/impressum/',

@@ -18,6 +18,6 @@ const { pageLang, pageTitle } = Astro.props;
 
 ---
 
-<AntreprizaLayout title={pageTitle} lang={pageLang}>
+<AntreprizaLayout title={pageTitle} lang={pageLang} description={dictionary.description_about[pageLang]}>
   <AboutTheaterLayout lang={pageLang}/>
 </AntreprizaLayout>

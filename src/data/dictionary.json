@@ -1,5 +1,5 @@
 {
-	"programm": { "ru": "Афиша", "de": "Spielplan" },
+	"program": { "ru": "Афиша", "de": "Spielplan" },
 	"plays": { "ru": "Спектакли", "de": "Repertoire" },
 	"theater": { "ru": "Театр", "de": "Theater" },
 	"gallery": { "ru": "Галерея", "de": "Mediathek" },
@@ -95,5 +95,51 @@
 	"opening_quote": { "ru": "«", "de": "„" },
 	"closing_quote": { "ru": "»", "de": "“" },
 	"logo": { "ru": "Логотип", "de": "Logo" },
+
+	"description_index": {
+		"ru": "Театр Антреприза Берлин существует с 2019 года и предлагает постановки различных жанровых направлений для взрослой и детской аудитории.",
+		"de": "Theater Antrepriza Berlin entstand Ende 2019 und bietet Inszenierungen unterschiedlicher Genres für Erwachsene und Kinder."
+	},
+	"description_about": {
+		"ru": "Об истории Театра, репертуаре, коллективе и многом другом.",
+		"de": "Über die Geschichte des Theaters, Repertoire, Ensemble und vieles mehr."
+	},
+	"description_actors": {
+		"ru": "Актеры. Видимая часть нашего большого коллектива.",
+		"de": "Schauspieler. Sichtbarer Teil unseres großen Teams."
+	},
+	"description_team": {
+		"ru": "Невидимая, но важная часть нашего коллектива.",
+		"de": "Unsichtbarer, aber wichtiger Teil unseres Teams."
+	},
+	"description_career": {
+		"ru": "Место для творческих людей. Мы можем создавать вместе!",
+		"de": "Ort für kreative Menschen. Wir können gemeinsam erzeugen!"
+	},
+	"description_contact": {
+		"ru": "Как связаться, где нас найти, как проехать.",
+		"de": "Wie uns zu erreichen, wo uns zu finden."
+	},
+	"description_gallery": {
+		"ru": "Фото, видео, постеры спектаклей Театра.",
+		"de": "Fotos, Videos, Plakate von Theateraufführungen."
+	},
+	"description_plays": {
+		"ru": "Все постановки Театра Антреприза.",
+		"de": "Alle Produktionen von Theater Antrepriza."
+	},
+	"description_program": {
+		"ru": "Когда, где и какие спектакли Театра можно посмотреть.",
+		"de": "Wann, wo und welche Theateraufführungen Sie sehen können."
+	},
+	"description_support": {
+		"ru": "Несколько способов как поддержать Театр.",
+		"de": "Mehrere Möglichkeiten, das Theater zu unterstützen."
+	},
+	"description_tickets": {
+		"ru": "Бронирование, приобретение билетов на спектакли Театра Антреприза.",
+		"de": "Reservierung, Kauf von Karten für Aufführungen des Theaters Antrepriza."
+	},
+
 	"": { "ru": "", "de": "" }
 }

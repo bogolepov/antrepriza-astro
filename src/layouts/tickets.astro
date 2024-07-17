@@ -4,7 +4,7 @@ import "@styles/tickets.css"
 const {lang} = Astro.props;
 
 import prices from '@data/prices.json'
-import programm from '@public_data/afisha.json'
+import program from '@public_data/afisha.json'
 import dictionary from '@data/dictionary.json'
 import theater from '@data/theater.json'
 
@@ -18,17 +18,17 @@ import { Picture } from 'astro:assets';
 
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg,jpg,png}');
 
-programm.sort((play1, play2) => Date.parse(play1.date+"T"+play1.time) - Date.parse(play2.date+"T"+play2.time));
+program.sort((play1, play2) => Date.parse(play1.date+"T"+play1.time) - Date.parse(play2.date+"T"+play2.time));
 
 const ONE_DAY: number = 24*60*60*1000;	
 
-let actualProgramm = programm.filter(performance => (Date.parse(performance.date) + ONE_DAY >= Date.now() && !performance.no_tickets));
-// let actualProgramm = programm;
+let actualProgram = program.filter(performance => (Date.parse(performance.date) + ONE_DAY >= Date.now() && !performance.no_tickets));
+// let actualProgram = program;
 
 let playsWithGrouppedDatesMap = new Map();
-actualProgramm.forEach(element => {
+actualProgram.forEach(element => {
 	if (!playsWithGrouppedDatesMap.has(element.play_id)) {
-		playsWithGrouppedDatesMap.set(element.play_id, actualProgramm.filter(performance => performance.play_id === element.play_id));
+		playsWithGrouppedDatesMap.set(element.play_id, actualProgram.filter(performance => performance.play_id === element.play_id));
 	}
 });
 let playsWithGrouppedDatesArray = Array.from(playsWithGrouppedDatesMap, ([key, value]) => ({ key, value }));

@@ -14,7 +14,7 @@ import plays from '@data/plays.json'
 
 plays.sort((play1, play2) => play1.alt_title[lang].toLowerCase().localeCompare(play2.alt_title[lang].toLowerCase(), lang));
 
-const menuProgramm = { link: "programm", text: dictionary.programm[lang] };
+const menuProgram = { link: "program", text: dictionary.program[lang] };
 const menuPlays = { link: "plays", text: dictionary.plays[lang] };
 const menuTheater = { link: "theater", text: dictionary.theater[lang] };
 const menuMediathek = { link: "gallery", text: dictionary.gallery[lang] };
@@ -69,7 +69,7 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 		</div>
 		<div>
 			<div class="navigator-menu-grid">
-				<div><a href={"/" + lang + "/" + menuProgramm.link} class:list={{active_link: currentPath[1] === menuProgramm.link}}>{menuProgramm.text}</a></div>
+				<div><a href={"/" + lang + "/" + menuProgram.link} class:list={{active_link: currentPath[1] === menuProgram.link}}>{menuProgram.text}</a></div>
 				<div class="expand-menu">
 					<div class="toolbar-dropbtn">
 						<a href={"/" + lang + "/" + menuPlays.link} class:list={{active_link: currentPath[1] === menuPlays.link}}>
@@ -219,8 +219,8 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 		<nav class="burger-menu">
 			<ul class="burger-list">
 				<li class="burger-item">
-					<a href={"/" + lang + "/" + menuProgramm.link} class:list={{active_link: currentPath[1] === menuProgramm.link}}>
-						{menuProgramm.text}
+					<a href={"/" + lang + "/" + menuProgram.link} class:list={{active_link: currentPath[1] === menuProgram.link}}>
+						{menuProgram.text}
 					</a>
 				</li>
 				<li class="burger-item expanded">

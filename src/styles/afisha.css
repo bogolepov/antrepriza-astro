@@ -1,8 +1,8 @@
-/* section.programm {
+/* section.program {
 	width: 100%;
 } */
 
-.programm-month {
+.program-month {
 	font-size: clamp(1.55rem, 3.7vw, 2.7rem);
 	font-weight: var(--font-extra-weight);
 	color: var(--colorFont-Op1);
@@ -16,11 +16,11 @@
 	text-align: center;
 	margin-bottom: 0px;
 }
-h1.section-title + div .programm-month {
+h1.section-title + div .program-month {
 	border-top: 1px solid var(--colorFont);
 }
 
-.programm-play-block {
+.program-play-block {
 	position: relative;
 	font-family: 'Roboto', Verdana, Arial, Tahoma, sans-serif;
 	font-weight: var(--font-normal-weight);
@@ -31,15 +31,15 @@ h1.section-title + div .programm-month {
 	transition: background-color 250ms linear;
 }
 
-.programm-play-block[hidden] {
+.program-play-block[hidden] {
 	display: none;
 }
 
-.programm-play-block:not(:last-of-type) {
+.program-play-block:not(:last-of-type) {
 	border-bottom: 1px solid;
 }
 
-.programm-play-text {
+.program-play-text {
 	flex-grow: 2;
 	min-width: clamp(50vw, 3vw, 60vw);
 	min-height: 100%;
@@ -58,18 +58,18 @@ h1.section-title + div .programm-month {
 	column-gap: 5px;
 }
 
-.programm-when {
+.program-when {
 	grid-area: when;
 	align-self: start;
 	line-height: clamp(1.2rem, 2.5vw, 1.5rem);
 }
 
-.programm-title {
+.program-title {
 	grid-area: title;
 	align-self: start;
 }
 
-.programm-info {
+.program-info {
 	grid-area: info;
 	align-self: start;
 }
@@ -104,7 +104,7 @@ h1.section-title + div .programm-month {
 	line-height: 1.1;
 }
 
-.programm-tickets {
+.program-tickets {
 	grid-area: tickets;
 	align-self: end;
 }
@@ -116,33 +116,33 @@ h1.section-title + div .programm-month {
 	padding: 0.25em 1.5em 0.25em 1.5em;
 }
 
-.programm-date {
+.program-date {
 	font-size: clamp(1.5rem, 3vw, 1.8rem);
 	line-height: calc(1.1 * clamp(1.5rem, 3vw, 1.8rem));
 	font-weight: var(--font-extra-weight);
 	text-transform: uppercase;
 }
 
-.programm-date::after {
+.program-date::after {
 	content: attr(data-day);
 	font-size: clamp(1.3rem, 3vw, 1.5rem);
 	font-weight: var(--font-extra-weight);
 	text-transform: uppercase;
 }
 
-.programm-time {
+.program-time {
 	font-size: clamp(1.4rem, 2.5vw, 1.6rem);
 	line-height: calc(1.1 * clamp(1.4rem, 2.5vw, 1.6rem));
 	font-weight: var(--font-bold-weight);
 }
 
-.programm-date,
-.programm-time {
+.program-date,
+.program-time {
 	display: block;
 	color: var(--colorFontDate);
 }
 
-.programm-play-image picture {
+.program-play-image picture {
 	/* display: block; */
 }
 
@@ -158,12 +158,12 @@ h1.section-title + div .programm-month {
 	transition: filter 250ms ease-in;
 }
 
-/* section.programm a:focus-visible {
+/* section.program a:focus-visible {
 	outline: 1px solid var(--colorAntreprizaRed);
 } */
 
 @media screen and (max-width: 1040px) {
-	.programm-play-text {
+	.program-play-text {
 		/* min-width: 50vw; */
 		grid-template-columns: auto;
 		grid-template-areas:
@@ -176,15 +176,15 @@ h1.section-title + div .programm-month {
 }
 
 @media screen and (max-width: 750px) {
-	.programm-play-block {
+	.program-play-block {
 		flex-direction: column-reverse;
 	}
-	.programm-play-text {
+	.program-play-text {
 		min-width: 100%;
 		padding-right: 0;
 	}
 
-	.programm-play-image {
+	.program-play-image {
 		padding-bottom: 15px;
 	}
 }

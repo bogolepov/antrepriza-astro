@@ -17,7 +17,7 @@ import AntreprizaLayout from "@layouts/AntreprizaLayout.astro";
 import SupportLayout from "@layouts/support.astro";
 ---
 
-<AntreprizaLayout title={pageTitle} lang={pageLang}>
+<AntreprizaLayout title={pageTitle} lang={pageLang} description={dictionary.description_support[pageLang]}>
   <SupportLayout lang={pageLang}/>
 </AntreprizaLayout>
 

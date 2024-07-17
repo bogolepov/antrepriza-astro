@@ -3,7 +3,9 @@
 // const pageTitle = "Театр Антреприза Берлин";
 // const pageLang = "ru";
 import theater from '@data/theater.json'
+import dictionary from '@data/dictionary.json'
 
+let now = new Date();
 ---
 <style>
 	body{background-color: rgb(41, 41, 41);font-size: 2px;}
@@ -12,9 +14,10 @@ import theater from '@data/theater.json'
 <html>
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="robots" content="noindex, follow" />
+		<meta name="robots" content="index, follow" />
+		<meta http-equiv="Last-Modified" content={now.toUTCString()}>
 		<title>Theater Antrepriza Berlin</title>
-		<meta name="description" content="Театр Антреприза Берлин" />
+		<meta name="description" content={dictionary.description_index.ru}/>
 		<!-- TODO: -->
 		<link rel="icon" href="/favicon.ico" sizes="any" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />

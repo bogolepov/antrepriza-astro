@@ -3,7 +3,7 @@ import "@styles/afisha.css"
 
 const {lang, hide_section_title} = Astro.props;
 
-import programm from '@public_data/afisha.json'
+import program from '@public_data/afisha.json'
 import dictionary from '@data/dictionary.json'
 import theater from '@data/theater.json'
 
@@ -19,36 +19,36 @@ import { Picture } from 'astro:assets';
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg,jpg}');
 // if (!images[url]) throw new Error(`"${url}" does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif}"`);
 
-programm.sort((play1, play2) => Date.parse(play1.date+"T"+play1.time) - Date.parse(play2.date+"T"+play2.time));
+program.sort((play1, play2) => Date.parse(play1.date+"T"+play1.time) - Date.parse(play2.date+"T"+play2.time));
 
 const ONE_DAY: number = 24*60*60*1000;	
 
 let iMonth: number = -1;
 ---
 
-<section class="programm">
+<section class="program">
   <TicketForm lang={lang}/>
 	{
 		!hide_section_title &&
-		<h1 class="section-title">{dictionary.programm[lang]}</h1>
+		<h1 class="section-title">{dictionary.program[lang]}</h1>
 	}
 	
 	{
-		programm.map((playInProgramm) => {
+		program.map((playInProgram) => {
 			let playInfo;
 			plays.some((playInRepertoire) => {
-				if (playInProgramm.play_id === playInRepertoire.id) {
+				if (playInProgram.play_id === playInRepertoire.id) {
 					playInfo = playInRepertoire;
 					return; 
 				}
 			} )
 			if (playInfo) {
-				if (Date.parse(playInProgramm.date) + ONE_DAY < Date.now()) return;
+				if (Date.parse(playInProgram.date) + ONE_DAY < Date.now()) return;
 
 				let showMonth: boolean = false;
 				let monthName: string;
 				let strYear: string;
-				let playDate: Date = new Date(playInProgramm.date);
+				let playDate: Date = new Date(playInProgram.date);
 				if (iMonth < 0 || iMonth != playDate.getMonth()) {
 					iMonth = playDate.getMonth();
 					showMonth = true;
@@ -57,51 +57,51 @@ let iMonth: number = -1;
 				}
 
 
-				let stage = theater.stages.find(stg => stg.sid === playInProgramm.stage_sid);
-				if (!stage) console.error("Stage isn't found: " + playInProgramm.stage_sid);
+				let stage = theater.stages.find(stg => stg.sid === playInProgram.stage_sid);
+				if (!stage) console.error("Stage isn't found: " + playInProgram.stage_sid);
 
 				let stageNameText;
 				if (stage.fix_stage) {
 					stageNameText = dictionary.stage[lang] + " - " + stage.name[lang].toUpperCase();
 				}
 				else {
-					if (playInProgramm.event_type) {
-						if (playInProgramm.event_type.is_festival)
+					if (playInProgram.event_type) {
+						if (playInProgram.event_type.is_festival)
 							stageNameText = dictionary.festival[lang] + " " + dictionary.opening_quote[lang] + 
-															playInProgramm.event_name[lang].toUpperCase() + dictionary.closing_quote[lang];
-						else stageNameText = playInProgramm.event_name[lang].toUpperCase();
+															playInProgram.event_name[lang].toUpperCase() + dictionary.closing_quote[lang];
+						else stageNameText = playInProgram.event_name[lang].toUpperCase();
 					}
 				}
 				
 				return (
 					<div>
 						{showMonth && 
-							<h2 class="programm-month" data-month={iMonth}>{monthName}&ensp;{strYear}</h2>
+							<h2 class="program-month" data-month={iMonth}>{monthName}&ensp;{strYear}</h2>
 						}
 					</div>
-					<div class="programm-play-block hover-block hover-background" data-date={playInProgramm.date} data-month={iMonth}>
-						<div class="programm-play-text">
+					<div class="program-play-block hover-block hover-background" data-date={playInProgram.date} data-month={iMonth}>
+						<div class="program-play-text">
 							
-							<div class="programm-when" >
-								{playInProgramm.premiere && 
+							<div class="program-when" >
+								{playInProgram.premiere && 
 									<h4 class="play-property-hot-notice">{dictionary.premiere[lang]}</h4>
 								}
-								{playInProgramm.event_type && playInProgramm.event_type.is_festival && 
+								{playInProgram.event_type && playInProgram.event_type.is_festival && 
 									<h4 class="play-property-hot-notice">{dictionary.festival[lang]}</h4>
 								}
-								<time class="programm-date" data-day={playDate.toLocaleDateString(lang, { weekday: 'short' })}>
+								<time class="program-date" data-day={playDate.toLocaleDateString(lang, { weekday: 'short' })}>
 									{playDate.getDate().toString().padStart(2, '0')}.{(playDate.getMonth()+1).toString().padStart(2, '0')},
 								</time>
-								<time class="programm-time">
-										{playInProgramm.time}
+								<time class="program-time">
+										{playInProgram.time}
 								</time>
 							</div>
 
-							<a class="programm-title stretch-link" href={"/"+lang+"/plays/"+playInfo.suffix}>
+							<a class="program-title stretch-link" href={"/"+lang+"/plays/"+playInfo.suffix}>
 								<h3 class="play-title">{playInfo.alt_title[lang]}</h3>
 							</a>
 
-							<div class="programm-info">
+							<div class="program-info">
 								<h4 class="play-property label-before" data-label={dictionary.genre[lang]+": "}>
 									{playInfo.genre[lang]}, {playInfo.age}
 								</h4>
@@ -113,24 +113,24 @@ let iMonth: number = -1;
 									
 									<address class="play-property">
 										{/* <span class="address-stage-name">{ stageNameText }</span> */}
-										<span class:list={['address-stage-name', {festival: playInProgramm.event_type && playInProgramm.event_type.is_festival}]}>{ stageNameText }</span>
+										<span class:list={['address-stage-name', {festival: playInProgram.event_type && playInProgram.event_type.is_festival}]}>{ stageNameText }</span>
 										<br>
 										{ stage.address.full_string }
 									</address>
 									</div>
 							</div>
 
-							{ !playInProgramm.no_tickets && 
-								<div class="programm-tickets">
+							{ !playInProgram.no_tickets && 
+								<div class="program-tickets">
 									<TicketBookButton add_classes="afisha" button_type='ticket' price=''
-																		date={playInProgramm.date} time={playInProgramm.time} play_id={playInProgramm.play_id}	>
+																		date={playInProgram.date} time={playInProgram.time} play_id={playInProgram.play_id}	>
 											{dictionary.tickets[lang]}
 									</TicketBookButton>
 								</div>
 							}
 
 						</div>
-						<div class="programm-play-image">
+						<div class="program-play-image">
 							<Picture 
 								class:list={'image-wrapper-landscape black-white-filter'} 
 								src={images["/src/assets/" + playInfo.posters.landscape]()} 
@@ -149,7 +149,7 @@ let iMonth: number = -1;
 
 <script>
 	const PLAYS_IN_MONTH = new Array(12).fill(0);
-	let playCards = document.querySelectorAll('.programm-play-block');
+	let playCards = document.querySelectorAll('.program-play-block');
 	for (let playCard of playCards) {
 		let thePlayDay = new Date(Date.parse(playCard.getAttribute("data-date")+'T00:00:00'));
 		thePlayDay.setDate(thePlayDay.getDate() + 1);
@@ -167,7 +167,7 @@ let iMonth: number = -1;
 			}
 		}
 	}
-	let monthElems = document.getElementsByClassName('programm-month');
+	let monthElems = document.getElementsByClassName('program-month');
 	let iMonth;
 	for (let month of monthElems) {
 		iMonth = month.getAttribute("data-month");
