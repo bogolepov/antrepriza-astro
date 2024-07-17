@@ -56,8 +56,20 @@ let iMonth: number = -1;
 					strYear = playDate.getFullYear().toString();
 				}
 
+
 				let stage = theater.stages.find(stg => stg.sid === playInProgramm.stage_sid);
 				if (!stage) console.error("Stage isn't found: " + playInProgramm.stage_sid);
+
+				let stageNameText;
+				if (stage.fix_stage) {
+					stageNameText = dictionary.stage[lang] + " - " + stage.name[lang].toUpperCase();
+				}
+				else {
+					if (playInProgramm.event_type === "festival")
+						stageNameText = dictionary.festival[lang] + " " + dictionary.opening_quote[lang] + 
+														playInProgramm.event_name[lang].toUpperCase() + dictionary.closing_quote[lang];
+					else stageNameText = playInProgramm.event_name[lang].toUpperCase();
+				}
 				
 				return (
 					<div>
@@ -95,7 +107,7 @@ let iMonth: number = -1;
 									<address class="play-property label-before" data-label={dictionary.address[lang]+": "}></address>
 									
 									<address class="play-property">
-										<span class="address-stage-name">{ dictionary.stage[lang] + " - " + stage.name[lang].toUpperCase() }</span>
+										<span class="address-stage-name">{ stageNameText }</span>
 										<br>
 										{ stage.address.full_string }
 									</address>

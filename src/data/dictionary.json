@@ -22,6 +22,7 @@
 	"play_lang": { "ru": "Спектакль", "de": "Die Aufführung" },
 	"genre": { "ru": "Жанр", "de": "Genre" },
 	"language": { "ru": "Язык", "de": "Sprache" },
+	"festival": { "ru": "Фестиваль", "de": "Festival" },
 	"stage": { "ru": "Сцена", "de": "Bühne" },
 	"premiere": { "ru": "Премьера", "de": "Premiere" },
 	"nextDates": { "ru": "Ближайшие даты", "de": "Kommende Vorstellungen" },

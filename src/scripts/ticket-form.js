@@ -27,8 +27,14 @@ let elemSeating;
 let elemPriceBlocks;
 let elemPriceCounters;
 let elemAntreprizaButton;
+let elemRadioAntrepriza;
+let elemRadioDistributor;
+let elemDistributorLabel;
+let elemButtonDistributor;
 
 let initStageName;
+let defaultDistributorLabel;
+let defaultDistribButtonText;
 
 export function initTicketBookForm() {
 	let ticketBtns = document.querySelectorAll('.pink-button.book-ticket.open-book-form');
@@ -48,9 +54,9 @@ export function initTicketBookForm() {
 	else elemAntreprizaButton.addEventListener('click', () => handleAddToCart());
 	elemAntreprizaButton.disabled = true;
 
-	btn = elemTicketLayer.querySelector('#ticket-form-book-kontramarka');
-	if (!btn) console.log('BOOK KONTRAMARKA not found');
-	else btn.addEventListener('click', () => handleToKontramarka());
+	elemButtonDistributor = elemTicketLayer.querySelector('#ticket-form-book-distributor');
+	if (!elemButtonDistributor) console.log('BOOK DISTRIBUTOR not found');
+	else elemButtonDistributor.addEventListener('click', () => handleToDistributor());
 
 	elemLoader = elemTicketLayer.querySelector('.ticket-form-loader');
 
@@ -64,6 +70,12 @@ export function initTicketBookForm() {
 	elemPlaceName = elemTicketLayer.querySelector('.play-place-name');
 	elemSeating = elemTicketLayer.querySelector('.play-seating');
 	elemPriceBlocks = elemTicketLayer.querySelectorAll('.price-flex');
+
+	elemRadioAntrepriza = elemTicketLayer.querySelector('#antrepriza');
+	elemRadioDistributor = elemTicketLayer.querySelector('#distributor');
+	elemDistributorLabel = elemTicketLayer.querySelector('.distributor-label');
+	defaultDistributorLabel = elemDistributorLabel.innerHTML;
+	defaultDistribButtonText = elemButtonDistributor.querySelector('.button-text').innerHTML;
 
 	elemPriceCounters = elemTicketLayer.querySelectorAll('.count-input');
 	for (let counter of elemPriceCounters) {
@@ -121,7 +133,8 @@ function openForm(event, button) {
 			elemPlayDescription.innerHTML = getPlayDescription();
 			elemDate.innerHTML = getPlayDate();
 			elemTime.innerHTML = getPlayTime();
-			elemStageName.innerHTML = initStageName + stage.name[currLang].toUpperCase();
+			if (stage.fix_stage) elemStageName.innerHTML = initStageName + stage.name[currLang].toUpperCase();
+			else elemStageName.innerHTML = stage.name[currLang].toUpperCase();
 			elemAddress.innerHTML = getAddress();
 			let placeName = getPlaceName();
 			if (placeName) {
@@ -132,6 +145,20 @@ function openForm(event, button) {
 			}
 			elemSeating.innerHTML = getSeatingInfo();
 			updatePrices();
+
+			if (afishaItem.distributor) {
+				elemDistributorLabel.innerHTML = afishaItem.distributor.label[currLang];
+				elemButtonDistributor.querySelector('.button-text').innerHTML = afishaItem.event_name[currLang];
+				elemButtonDistributor.querySelector('picture').style.display = 'none';
+				elemButtonDistributor.classList.remove('kontramarka');
+				elemButtonDistributor.classList.remove('flex-center');
+			} else {
+				elemDistributorLabel.innerHTML = defaultDistributorLabel;
+				elemButtonDistributor.querySelector('.button-text').innerHTML = defaultDistribButtonText;
+				elemButtonDistributor.querySelector('picture').style.display = 'block';
+				elemButtonDistributor.classList.add('kontramarka');
+				elemButtonDistributor.classList.add('flex-center');
+			}
 		}
 	};
 
@@ -163,9 +190,10 @@ function resetTicketForm() {
 	closeForm();
 }
 
-function handleToKontramarka() {
+function handleToDistributor() {
 	closeForm();
-	window.open(playItem.url_kontramarka, '_blank');
+	if (afishaItem.distributor) window.open(afishaItem.distributor.link, '_blank');
+	else window.open(playItem.url_kontramarka, '_blank');
 }
 
 function handleAddToCart() {
@@ -200,9 +228,20 @@ function handleAddToCart() {
 }
 
 function updatePrices() {
+	let nPrices = 0;
 	elemPriceBlocks.forEach(element => {
-		element.style.display = afishaItem.prices.includes(element.dataset['type']) ? 'flex' : 'none';
+		if (afishaItem.prices.includes(element.dataset['type'])) {
+			element.style.display = 'flex';
+			nPrices++;
+		} else {
+			element.style.display = 'none';
+		}
 	});
+	if (nPrices) {
+		elemRadioAntrepriza.checked = true;
+	} else {
+		elemRadioDistributor.checked = true;
+	}
 }
 
 function getPlayDescription() {

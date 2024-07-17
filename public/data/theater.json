@@ -5,6 +5,7 @@
 		{
 			"id": 1,
 			"sid": "ost",
+			"fix_stage": true,
 			"name": { "ru": "Восток", "de": "Ost" },
 			"address": {
 				"full_string": "Boxhagener Str. 18, 10245 Berlin",
@@ -23,6 +24,7 @@
 		{
 			"id": 2,
 			"sid": "west",
+			"fix_stage": true,
 			"name": { "ru": "Запад", "de": "West" },
 			"address": {
 				"full_string": "Carmerstr. 12, 10623 Berlin",
@@ -36,6 +38,24 @@
 			"place_name_short": "HÜTTE",
 			"show_place_name": false,
 			"place_website": "https://www.av-huette.de"
+		},
+		{
+			"id": 100,
+			"sid": "rlv1",
+			"fix_stage": false,
+			"name": { "ru": "Māra Fest Open Lab", "de": "Māra Fest Open Lab" },
+			"address": {
+				"full_string": "Kaniera iela 15, Riga, LV-1063, Latvia",
+				"street": "Kaniera iela",
+				"building": "15",
+				"index": "LV-1063",
+				"city": "Riga",
+				"district": "",
+				"country": "Latvia"
+			},
+			"place_name": "Māra Fest Open Lab",
+			"show_place_name": false,
+			"place_website": ""
 		}
 	],
 	"main_website": "https://antrepriza.eu",

@@ -85,6 +85,13 @@ const { Content } = await entry.render();
                 let playDate: Date = new Date(fullDate);  
                 let stage = theater.stages.find(stg => stg.sid === play_date.stage_sid);              
                 let address = (stage) ? stage.address : play_date["stageAddress"] ;
+                let stageNameText;
+                if (stage.fix_stage) {
+                  stageNameText = dictionary.stage[lang] + " - " + stage.name[lang].toUpperCase();
+                }
+                else {
+                  stageNameText = stage.place_name.toUpperCase();
+                }
                 return (
                   <TicketBookButton add_classes='' button_type='ticket' price=''
                                     date={play_date.date} time={play_date.time} play_id={thisPlay.id} >
@@ -93,7 +100,7 @@ const { Content } = await entry.render();
                     {playDate.toLocaleDateString(lang, { weekday: 'short' })} / {play_date.time}
                     </div>
                     <div class="button-address">
-                      <div class="stage-name">{dictionary.stage[lang] + " - " + stage.name[lang].toUpperCase()}</div>
+                      <div class="stage-name">{stageNameText}</div>
                       <div>{address.street} {address.building}</div>
                       <div>{address.index}, {address.city}</div>
                     </div>

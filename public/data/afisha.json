@@ -106,6 +106,17 @@
 		"prices": ["standart", "reduce"]
 	},
 	{
+		"date": "2024-09-13",
+		"time": "17:00",
+		"play_id": 8,
+		"stage_sid": "rlv1",
+		"free_place": true,
+		"event_type": "festival",
+		"event_name": { "ru": "Māra Fest Open Lab", "de": "Māra Fest Open Lab" },
+		"prices": [],
+		"distributor": { "label": { "ru": "Информация о билетах", "de": "Ticketinformation" }, "link": "https://antrepriza.eu" }
+	},
+	{
 		"date": "2024-09-01",
 		"time": "16:00",
 		"play_id": 6,

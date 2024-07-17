@@ -107,11 +107,11 @@
 	text-decoration: none;
 	cursor: default;
 }
-.book-at-kontramarka .pink-button.ticket-book {
+.pink-button.ticket-book.kontramarka {
 	padding: 0 0.5em;
 	line-height: 0.8em;
 }
-.book-at-kontramarka .flex-center {
+.book-at-distributor .flex-center {
 	flex-direction: row;
 	flex-wrap: wrap;
 }
@@ -125,15 +125,15 @@
 .ticket-at-antrepriza {
 	padding-top: 0.5em;
 }
-.ticket-at-kontramarka {
+.ticket-at-distributor {
 	padding-top: 0.8em;
 }
 
-.book-at-kontramarka .button-text {
+.book-at-distributor .button-text {
 	display: inline;
 	padding-top: 0.23em;
 }
-.book-at-kontramarka .button-image {
+.book-at-distributor .button-image {
 	padding: 0;
 	width: 115px;
 	height: auto;

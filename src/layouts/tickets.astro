@@ -85,10 +85,17 @@ for (let price of prices) {
 								<h4 class="notification-label">{dictionary.nextDates[lang]}:</h4>
 								{
 									theater.stages.map(stg => {
-										let playsOnThisStage = item.value.filter(item => item.stage_sid === stg.sid);
+										let playsOnThisStage = item.value.filter(stg_item => stg_item.stage_sid === stg.sid);
+										let stageNameText;
+										if (stg.fix_stage) {
+											stageNameText = dictionary.stage[lang] + " - " + stg.name[lang].toUpperCase();
+										}
+										else {
+											stageNameText = stg.place_name.toUpperCase();
+										}
 										if (playsOnThisStage && playsOnThisStage.length > 0) return (
 											<div class="this-stage-plays">
-												<div class="stage-name play-property">{dictionary.stage[lang] + " - " + stg.name[lang].toUpperCase()}</div>
+												<div class="stage-name play-property">{stageNameText}</div>
 												<div class="buttons-block">
 													{
 														playsOnThisStage.map((play_date) => {
