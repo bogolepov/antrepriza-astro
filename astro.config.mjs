@@ -65,12 +65,12 @@ export default defineConfig({
 			serialize(item) {
 				if (isVerySpecialPage(item.url)) {
 					item.changefreq = 'weekly';
-					// item.lastmod = now;
+					item.lastmod = now;
 					item.priority = 0.9;
 				}
 				if (isSpecialPage(item.url)) {
 					item.changefreq = 'monthly';
-					// item.lastmod = now;
+					item.lastmod = now;
 					item.priority = 0.7;
 				}
 				return item;
