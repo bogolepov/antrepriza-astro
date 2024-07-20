@@ -18,28 +18,44 @@ export const handler = async (event, context) => {
 		console.error(error);
 	}
 
+	// const transporter = nodemailer.createTransport({
+	// 	service: 'gmail',
+	// 	auth: {
+	// 		user: process.env.ANTREPRIZA_TRANSPORT_EMAIL,
+	// 		pass: process.env.ANTREPRIZA_TRANSPORT_PASSWORD,
+	// 	},
+	// });
+
 	const transporter = nodemailer.createTransport({
-		service: 'gmail',
+		pool: true,
+		host: process.env.ANTREPRIZA_SMTP_HOST,
+		port: 465,
+		secure: true, // use TLS
 		auth: {
-			user: process.env.ANTREPRIZA_EMAIL,
-			pass: process.env.ANTREPRIZA_PASSWORD,
+			user: process.env.ANTREPRIZA_EMAIL_TICKETS,
+			pass: process.env.ANTREPRIZA_SMTP_PASSWORD,
 		},
 	});
 
 	const messageData = JSON.parse(event.body);
 	const { lang, name, email, reservations, amount } = messageData;
 
-	console.log('*** reservations');
-	console.log(reservations);
-
 	let htmlHead, htmlReservationsTable;
 	const htmlEmailToClient = makeHtmlEmail(true, lang, name, email, reservations, amount);
 	const htmlEmailToAntrepriza = makeHtmlEmail(false, lang, name, email, reservations, amount);
 
 	const makeMailOptions = isForClient => {
+		let mailTo = email;
+		if (!isForClient) {
+			if (process.env.MODE === process.env.MODE_PRODUCTION) {
+				mailTo = process.env.ANTREPRIZA_EMAIL_TICKETS + ', ' + process.env.ANTREPRIZA_EMAIL_MAMONTOV;
+			} else {
+				mailTo = process.env.ANTREPRIZA_EMAIL_TICKETS + ', ' + process.env.ANTREPRIZA_EMAIL_BOGOLEPOV;
+			}
+		}
 		return {
-			from: `${theater.longTheaterName[lang]} <${process.env.ANTREPRIZA_EMAIL}>`,
-			to: isForClient ? email : process.env.ANTREPRIZA_TICKETS_EMAIL,
+			from: `${theater.longTheaterName[lang]} <${process.env.ANTREPRIZA_EMAIL_TICKETS}>`,
+			to: mailTo,
 			subject: `${dictionaryServer.email_reservation_subject[lang]}`,
 			// text: `Hello, ${name}!`,
 			html: isForClient ? htmlEmailToClient : htmlEmailToAntrepriza,
@@ -125,10 +141,10 @@ export const handler = async (event, context) => {
 
 	function makeBody(isForClient, lang, name, email, reservations, amount) {
 		return (
-			`<body class='email-body'><table class='body-table'><tbody><tr><td class='email-wrapper'>` +
+			`<body><div class='email-body'><table class='body-table'><tbody><tr><td class='email-wrapper'>` +
 			makeTextAboutReservation(isForClient, lang, name, email) +
 			makeReservationsTable(lang, reservations, amount) +
-			`</td></tr></tbody></table></body>`
+			`</td></tr></tbody></table></div></body>`
 		);
 	}
 

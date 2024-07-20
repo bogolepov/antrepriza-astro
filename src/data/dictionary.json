@@ -1,4 +1,5 @@
 {
+	"website_lang_version": { "ru": "Русскоязычная версия сайта", "de": "Deutsche Version der Website" },
 	"program": { "ru": "Афиша", "de": "Spielplan" },
 	"plays": { "ru": "Спектакли", "de": "Repertoire" },
 	"theater": { "ru": "Театр", "de": "Theater" },

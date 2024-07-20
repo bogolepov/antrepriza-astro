@@ -250,38 +250,6 @@ async function submitNewsletterForm(event) {
 
 	resetMessageTimer();
 
-	// let emails = [
-	// 	'bogolep7@mail.ru',
-	// 	'bogolep7@mail.r',
-	// 	'bogolep7@mail.rur',
-	// 	'bogolep7@gmail.ru',
-	// 	'bogolep7@gmx.ru',
-	// 	'bogolep7@gmx.de',
-	// 	'bogolep@mail.ru',
-	// 	'bogolep_7@mail.ru',
-	// 	'bogolep7d@mail.ru',
-	// 	'bogolepov@gmail.com',
-	// 	'bogolepov7@gmail.com',
-	// 	'bogolepov@gmail7.com',
-	// 	'bogolep7@gmail.com',
-	// 	'bogolep7@g.com',
-	// 	'bogolep7@gmail.c',
-	// 	'bogolep7@gmail.co.',
-	// 	'bogolep7@gmail.com.com',
-	// 	'b@g.r',
-	// 	'b.@g.r',
-	// 	'.@g.r',
-	// 	'b@.r',
-	// 	'b@.g.r',
-	// ];
-	// for (let email of emails) {
-	// 	if (!EMAIL_REGEX.test(email)) {
-	// 		console.log(email + ': not valid format');
-	// 	} else {
-	// 		console.log(email + ': is VALID format');
-	// 	}
-	// }
-
 	const form = event.target;
 	const emailInput = form.querySelector('.newsletter__input');
 	const emailInputLoader = form.querySelector('.newsletter-input-loader');
