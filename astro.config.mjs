@@ -4,6 +4,11 @@ import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import plays from './src/data/plays.json';
 
+let now = new Date();
+const offset = now.getTimezoneOffset();
+now = new Date(now.getTime() - offset * 60 * 1000);
+// let strToday = now.toISOString().split('T')[0];
+
 function isVerySpecialPage(url) {
 	switch (url) {
 		case 'https://antrepriza.eu/de/program/':
@@ -60,12 +65,12 @@ export default defineConfig({
 			serialize(item) {
 				if (isVerySpecialPage(item.url)) {
 					item.changefreq = 'weekly';
-					item.lastmod = new Date();
+					// item.lastmod = now;
 					item.priority = 0.9;
 				}
 				if (isSpecialPage(item.url)) {
 					item.changefreq = 'monthly';
-					item.lastmod = new Date();
+					// item.lastmod = now;
 					item.priority = 0.7;
 				}
 				return item;
