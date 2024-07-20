@@ -6,3 +6,5 @@ Disallow: /*/404/index.html$
 Disallow: /*/newsletter.html$
 Disallow: /*/newsletter/index.html$
 Disallow: /data/*.json$
+
+Sitemap: https://antrepriza.eu/sitemap-index.xml
