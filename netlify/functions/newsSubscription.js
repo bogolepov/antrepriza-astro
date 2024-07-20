@@ -38,26 +38,42 @@ export const handler = async (event, context) => {
 			};
 		}
 
+		// const transporter = nodemailer.createTransport({
+		// 	service: 'gmail',
+		// 	auth: {
+		// 		user: process.env.ANTREPRIZA_TRANSPORT_EMAIL,
+		// 		pass: process.env.ANTREPRIZA_TRANSPORT_PASSWORD,
+		// 	},
+		// });
+
 		const transporter = nodemailer.createTransport({
-			service: 'gmail',
+			pool: true,
+			host: process.env.ANTREPRIZA_SMTP_HOST,
+			port: 465,
+			secure: true, // use TLS
 			auth: {
-				user: process.env.ANTREPRIZA_EMAIL,
-				pass: process.env.ANTREPRIZA_PASSWORD,
+				user: process.env.ANTREPRIZA_EMAIL_SUBSCRIPTION,
+				pass: process.env.ANTREPRIZA_SMTP_PASSWORD,
 			},
 		});
 
-		const htmlEmail = makeHtmlEmail(lang, email, sid);
-
 		const mailOptions = {
-			from: `${theater.longTheaterName[lang]} <${process.env.ANTREPRIZA_EMAIL}>`,
+			from: `${theater.longTheaterName[lang]} <${process.env.ANTREPRIZA_EMAIL_SUBSCRIPTION}>`,
 			to: email,
-			subject: `${dictionaryServer.email_news_subscription_subject[lang]}`,
+			subject: `${dictionaryServer.email_news_subscription_reg_subject[lang]}`,
 			html: makeHtmlEmail(lang, email, sid, false),
 		};
+
+		let mailTo;
+		if (process.env.MODE === process.env.MODE_PRODUCTION) {
+			mailTo = process.env.ANTREPRIZA_EMAIL_SUBSCRIPTION + ', ' + process.env.ANTREPRIZA_EMAIL_MAMONTOV;
+		} else {
+			mailTo = process.env.ANTREPRIZA_EMAIL_SUBSCRIPTION + ', ' + process.env.ANTREPRIZA_EMAIL_BOGOLEPOV;
+		}
 		const mailOptionsAntrepriza = {
-			from: `${theater.longTheaterName[lang]} <${process.env.ANTREPRIZA_EMAIL}>`,
-			to: process.env.ANTREPRIZA_NEWS_EMAIL,
-			subject: `${dictionaryServer.email_news_subscription_subject_antrepriza[lang]}`,
+			from: `${theater.longTheaterName[lang]} <${process.env.ANTREPRIZA_EMAIL_SUBSCRIPTION}>`,
+			to: mailTo,
+			subject: `${dictionaryServer.email_news_subscription_reg_subject_antrepriza[lang]}`,
 			html: makeHtmlEmail(lang, email, sid, true),
 		};
 
@@ -94,7 +110,7 @@ export const handler = async (event, context) => {
 			'<head><meta charset="UTF-8"><title>' +
 			theater.shortTheaterName[lang] +
 			' - ' +
-			dictionaryServer.email_news_subscription_subject[lang] +
+			dictionaryServer.email_news_subscription_reg_subject[lang] +
 			'</title><style>' +
 			'table {border-spacing:0;} td {vertical-align:top;}' +
 			'.email-body {font-size:16px;background-color:#292929;color:#d6d6d6;}' +
@@ -114,9 +130,9 @@ export const handler = async (event, context) => {
 
 	function makeBody(lang, email, sid, forAntrepriza) {
 		return (
-			`<body class='email-body'><table class='body-table'><tbody><tr><td class='email-wrapper'>` +
+			`<body><div class='email-body'><table class='body-table'><tbody><tr><td class='email-wrapper'>` +
 			makeTextAboutConfirmation(lang, email, sid, forAntrepriza) +
-			`</td></tr></tbody></table></body>`
+			`</td></tr></tbody></table></div></body>`
 		);
 	}
 
@@ -158,12 +174,59 @@ export const handler = async (event, context) => {
 			};
 		}
 
+		const transporter = nodemailer.createTransport({
+			pool: true,
+			host: process.env.ANTREPRIZA_SMTP_HOST,
+			port: 465,
+			secure: true, // use TLS
+			auth: {
+				user: process.env.ANTREPRIZA_EMAIL_SUBSCRIPTION,
+				pass: process.env.ANTREPRIZA_SMTP_PASSWORD,
+			},
+		});
+		const mailOptions = {
+			from: `${theater.longTheaterName[lang]} <${process.env.ANTREPRIZA_EMAIL_SUBSCRIPTION}>`,
+			to: process.env.ANTREPRIZA_EMAIL_SUBSCRIPTION,
+			subject: `${dictionaryServer.email_news_subscription_confirmed_subject[lang]}`,
+			html: makeHtmlConfirmedEmail(lang, sid, false),
+		};
+		try {
+			await transporter.sendMail(mailOptions);
+		} catch (error) {
+			console.error(error);
+		}
+
 		return {
 			statusCode: 200,
 			body: JSON.stringify({
 				message: dictionaryServer.result_email_confirmed[lang],
 			}),
 		};
+	}
+
+	function makeHtmlConfirmedEmail(lang, sid) {
+		return (
+			`<!DOCTYPE html><html lang="${lang}">` +
+			'<head><meta charset="UTF-8"><title>' +
+			theater.shortTheaterName[lang] +
+			' - ' +
+			dictionaryServer.email_news_subscription_confirmed_subject[lang] +
+			'</title><style>' +
+			'table {border-spacing:0;} td {vertical-align:top;}' +
+			'.email-body {font-size:16px;background-color:#292929;color:#d6d6d6;}' +
+			'.email-body .im * {color:#d6d6d6;}' +
+			'.body-table {width:100%;}' +
+			'.email-wrapper {padding:2rem;margin-left:auto;margin-right:auto;} ' +
+			'.user-table {margin-bottom:15px;}' +
+			'.user-table tr td {min-width:5em;color:#d6d6d6;}' +
+			'</style></head>' +
+			`<body><div class='email-body'><table class='body-table'><tbody><tr><td class='email-wrapper'>` +
+			`<table class='user-table'>` +
+			`<tr><td>SID :</td><td>${sid}</td></tr>` +
+			`</table>` +
+			`</td></tr></tbody></table></div></body>` +
+			`</html>`
+		);
 	}
 
 	async function emailRemoving(lang, usid) {
