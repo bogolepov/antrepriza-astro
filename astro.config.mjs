@@ -55,26 +55,26 @@ export default defineConfig({
 				page !== 'https://antrepriza.eu/de/404/' &&
 				page !== 'https://antrepriza.eu/ru/newsletter/' &&
 				page !== 'https://antrepriza.eu/de/newsletter/',
-			i18n: {
-				defaultLocale: 'ru',
-				locales: {
-					ru: 'ru-RU',
-					de: 'de-DE',
-				},
-			},
-			// serialize(item) {
-			// 	if (isVerySpecialPage(item.url)) {
-			// 		item.changefreq = 'weekly';
-			// 		// item.lastmod = now;
-			// 		item.priority = 0.9;
-			// 	}
-			// 	if (isSpecialPage(item.url)) {
-			// 		item.changefreq = 'monthly';
-			// 		// item.lastmod = now;
-			// 		item.priority = 0.7;
-			// 	}
-			// 	return item;
+			// i18n: {
+			// 	defaultLocale: 'ru',
+			// 	locales: {
+			// 		ru: 'ru-RU',
+			// 		de: 'de-DE',
+			// 	},
 			// },
+			serialize(item) {
+				if (isVerySpecialPage(item.url)) {
+					item.changefreq = 'weekly';
+					// item.lastmod = now;
+					item.priority = 0.9;
+				}
+				if (isSpecialPage(item.url)) {
+					item.changefreq = 'monthly';
+					// item.lastmod = now;
+					item.priority = 0.7;
+				}
+				return item;
+			},
 		}),
 	],
 	redirects: {
