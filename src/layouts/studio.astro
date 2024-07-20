@@ -5,7 +5,7 @@ import dictionary from '@data/dictionary.json'
 import studio_photos from '@data/studio_photos.json'
 import theater from '@data/theater.json'
 
-import "@styles/swiper-bundle.css"
+import "@styles/swiper-bundle.min.css"
 import '@styles/theater.css'
 import '@styles/play_gallery.css'
 
@@ -48,7 +48,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*/*.{jp
 let photos = studio_photos.filter(photo => photo.filename && photo.is_landscape );
 
 ---
-<script is:inline src="/js/swiper-bundle.js" defer></script>
+<script is:inline src="/js/swiper-bundle.min.js" defer></script>
 <script>
   let swiper;
 	document.addEventListener('DOMContentLoaded', () => {

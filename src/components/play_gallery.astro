@@ -1,5 +1,5 @@
 ---
-import "@styles/swiper-bundle.css"
+import "@styles/swiper-bundle.min.css"
 import "@styles/play_gallery.css"
 
 const { play_id, play_suffix, hover } = Astro.props;
@@ -13,7 +13,7 @@ import { Picture } from 'astro:assets';
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*/*.{jpeg,jpg}');
 
 ---
-<script is:inline src="/js/swiper-bundle.js" defer></script>
+<script is:inline src="/js/swiper-bundle.min.js" defer></script>
 <script>
   let swiper;
 	document.addEventListener('DOMContentLoaded', () => {
@@ -79,3 +79,4 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*/*.{jp
     </div>
   </div>
 </div>
+
