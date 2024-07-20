@@ -150,6 +150,9 @@ export const handler = async (event, context) => {
 
 	function makeTextAboutReservation(isForClient, lang, name, email) {
 		let dateOfReservation = new Date(Date.now());
+		const offset = dateOfReservation.getTimezoneOffset();
+		dateOfReservation = new Date(dateOfReservation.getTime() - offset * 60 * 1000);
+
 		if (isForClient) {
 			let getHello = hour => {
 				if (hour < 6 && lang === 'ru') return dictionaryServer.hello[lang];
