@@ -12,8 +12,17 @@ import Reservation from "@react-components/reservation/Reservation";
 const { title, description, lang, reservation, robots = "index, follow" } = Astro.props;
 
 const pathname: string = new URL(Astro.request.url).pathname;
+const currentPath: string[] = pathname.split("/").filter(Boolean);
+
+let langRoot = false;
+if (currentPath[currentPath.length-1] === lang) langRoot = true;
 
 let now = new Date();
+let pageTitle =  theater.longTheaterName[lang];
+if (title && title.length > 1) {
+	if (langRoot) pageTitle = pageTitle +  ' — ' + title;
+	else pageTitle = title +  ' — ' + pageTitle;
+}
 
 ---
 
@@ -24,7 +33,7 @@ let now = new Date();
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta http-equiv="Last-Modified" content={now.toUTCString()}>
-		<title>{title}</title>
+		<title>{pageTitle}</title>
 		{
 			description && description.length > 0 && 
 			<meta name="description" content={description} />
