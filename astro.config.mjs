@@ -13,7 +13,8 @@ export default defineConfig({
 				page !== 'https://antrepriza.eu/404/' &&
 				page !== 'https://antrepriza.eu/ru/404/' &&
 				page !== 'https://antrepriza.eu/de/404/' &&
-				page !== 'https://antrepriza.eu/newsletter/',
+				page !== 'https://antrepriza.eu/ru/newsletter/' &&
+				page !== 'https://antrepriza.eu/de/newsletter/',
 		}),
 	],
 	redirects: {
