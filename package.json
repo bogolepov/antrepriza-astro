@@ -25,6 +25,7 @@
 		"vue": "^3.4.24"
 	},
 	"devDependencies": {
+		"@netlify/plugin-sitemap": "^0.8.1",
 		"prettier": "^3.1.0",
 		"prettier-plugin-astro": "^0.12.2"
 	}

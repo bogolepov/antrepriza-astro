@@ -62,19 +62,19 @@ export default defineConfig({
 					de: 'de-DE',
 				},
 			},
-			serialize(item) {
-				if (isVerySpecialPage(item.url)) {
-					item.changefreq = 'weekly';
-					// item.lastmod = now;
-					item.priority = 0.9;
-				}
-				if (isSpecialPage(item.url)) {
-					item.changefreq = 'monthly';
-					// item.lastmod = now;
-					item.priority = 0.7;
-				}
-				return item;
-			},
+			// serialize(item) {
+			// 	if (isVerySpecialPage(item.url)) {
+			// 		item.changefreq = 'weekly';
+			// 		// item.lastmod = now;
+			// 		item.priority = 0.9;
+			// 	}
+			// 	if (isSpecialPage(item.url)) {
+			// 		item.changefreq = 'monthly';
+			// 		// item.lastmod = now;
+			// 		item.priority = 0.7;
+			// 	}
+			// 	return item;
+			// },
 		}),
 	],
 	redirects: {
