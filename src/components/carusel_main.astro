@@ -1,5 +1,5 @@
 ---
-import "@styles/swiper-bundle.css"
+import "@styles/swiper-bundle.min.css"
 import "@styles/carusel_main.css"
 
 const {lang} = Astro.props;
@@ -27,8 +27,9 @@ let actualProgram = program.filter(performance => Date.parse(performance.date) >
 // });
 // let playsWithGrouppedDatesArray = Array.from(playsWithGrouppedDatesMap, ([key, value]) => ({ key, value }));
 
+
 ---
-<script is:inline src="/js/swiper-bundle.js" defer></script>
+<script is:inline src="/js/swiper-bundle.min.js" defer></script>
 <script>
   let swiper;
 	document.addEventListener('DOMContentLoaded', () => {

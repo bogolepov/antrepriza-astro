@@ -8,7 +8,7 @@ import plays_photos from '@data/plays_photos.json'
 import person_photos from '@data/person_photos.json'
 import studio_photos from '@data/studio_photos.json'
 
-import "@styles/swiper-bundle.css"
+import "@styles/swiper-bundle.min.css"
 import '@styles/person.css'
 import '@styles/play_gallery.css'
 
@@ -72,7 +72,7 @@ let photos = [
 photos = [].concat(...photos);
 
 ---
-<script is:inline src="/js/swiper-bundle.js" defer></script>
+<script is:inline src="/js/swiper-bundle.min.js" defer></script>
 <script>
   let swiper;
 	document.addEventListener('DOMContentLoaded', () => {
