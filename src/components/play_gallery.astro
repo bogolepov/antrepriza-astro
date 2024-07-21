@@ -62,10 +62,10 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*/*.{jp
                   src={images["/src/assets/" + play_suffix + "/" + photo.filename]()} 
                   formats={['webp']} 
                   fallbackFormat='jpg'
-                  widths={[290, 380, 520, 720]}
-                  sizes={'(max-width: 360px) 290px, (max-width: 480px) 380px, (max-width: 640px) 520px, 720px'}
+                  widths={[300, 420, 540, 640]}
+                  sizes={'(max-width: 380px) 300px, (max-width: 530px) 420px, (max-width: 680px) 540px, 640px'}
                   alt=""
-                  quality="85"
+                  // quality="85"
                   loading="lazy" />
                 <div class="swiper-lazy-preloader"></div>
               </div>

@@ -76,8 +76,8 @@ const posterImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*
                     src={posterImages["/src/assets/" + play.posters.afisha]()} 
                     formats={['webp']} 
                     fallbackFormat='jpg'
-                    widths={[280,640,780]}
-                    sizes={'(max-width: 320px) 280px, (max-width: 660px) 640px, 780px'}
+                    widths={[300, 420, 540, 640]}
+                    sizes={'(max-width: 380px) 300px, (max-width: 530px) 420px, (max-width: 680px) 540px, 640px'}
                     alt={play.title[lang]} />
                 </div>
               </div>
