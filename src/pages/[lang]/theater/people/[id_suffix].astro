@@ -24,10 +24,11 @@ export const getStaticPaths = (() => {
 }) satisfies GetStaticPaths;
 
 const {pageLang, pageTitle, personID} = Astro.props;
-
+let robotsRule = "noindex, follow";
+if (personID === "1") robotsRule = "index, follow";
 ---
 
-<AntreprizaLayout title={pageTitle} lang={pageLang}>
+<AntreprizaLayout title={pageTitle} lang={pageLang} robots={robotsRule}>
     <PersonLayout lang={pageLang} person_id={personID}></PersonLayout>
 </AntreprizaLayout>
 

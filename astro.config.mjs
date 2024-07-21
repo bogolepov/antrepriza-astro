@@ -9,6 +9,17 @@ const offset = now.getTimezoneOffset();
 now = new Date(now.getTime() - offset * 60 * 1000);
 // let strToday = now.toISOString().split('T')[0];
 
+function isNoIndex(url) {
+	let lowUrl = url.toLowerCase();
+	if (lowUrl.includes('https://antrepriza.eu/ru/theater/people/') || lowUrl.includes('https://antrepriza.eu/de/theater/people/')) {
+		let urlArr = lowUrl.split('/');
+		let i = urlArr.indexOf('people');
+		if (i !== -1 && i < urlArr.length - 1 && urlArr[i + 1] === 'alm') return false;
+		else return true;
+	}
+	return false;
+}
+
 function isVerySpecialPage(url) {
 	switch (url) {
 		case 'https://antrepriza.eu/de/program/':
@@ -63,6 +74,8 @@ export default defineConfig({
 			// 	},
 			// },
 			serialize(item) {
+				if (isNoIndex(item.url)) return undefined;
+
 				if (isVerySpecialPage(item.url)) {
 					item.changefreq = 'weekly';
 					item.lastmod = now;

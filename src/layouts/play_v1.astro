@@ -52,8 +52,8 @@ const { Content } = await entry.render();
       src={images["/src/assets/" + thisPlay.posters.afisha]()} 
       formats={['webp']} 
       fallbackFormat='jpg'
-      widths={[280,640,780]}
-      sizes={'(max-width: 320px) 280px, (max-width: 660px) 640px, 780px'}
+      widths={[300,480,640,810,940]}
+      sizes={'(max-width: 360px) 300px, (max-width: 560px) 480px, (max-width: 750px) 640px, (max-width: 940px) 810px, 940px'}
       alt={thisPlay.title[lang]} />
 
   }
@@ -166,8 +166,8 @@ const { Content } = await entry.render();
             src={images["/src/assets/" + thisPlay.posters.landscape_16_9]()} 
             formats={['webp']} 
             fallbackFormat='jpg'
-            widths={[280,640,1200]}
-            sizes={'(max-width: 320px) 280px, (max-width: 660px) 640px, 1200px'}
+            widths={[300, 420, 540, 640]}
+            sizes={'(max-width: 380px) 300px, (max-width: 530px) 420px, (max-width: 680px) 540px, 640px'}
             alt={thisPlay.alt_title[lang]} />
         } 
       </div>

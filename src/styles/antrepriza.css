@@ -22,6 +22,7 @@
 	--grey-78-lit: 25%;
 	--grey-16-lit: 77%;
 	--grey-13-lit: 84%;
+	--grey-11-lit: 90%;
 	--grey-10-lit: 96%;
 
 	--gray-rose-hue: 3;
@@ -63,7 +64,7 @@
 	--colorBkgMainGallery: var(--grey-140);
 
 	--font-lit: var(--grey-13-lit);
-	--font-ticket-btn-lit: var(--grey-16-lit);
+	--font-ticket-btn-lit: var(--grey-11-lit);
 
 	--colorBorderForm: var(--grey-46);
 	--colorBkgInput: var(--grey-140);
