@@ -89,9 +89,9 @@ let actualProgram = program.filter(performance => Date.parse(performance.date) >
                       src={images["/src/assets/" + play.posters.portrait]()} 
                       formats={['webp']} 
                       fallbackFormat='jpg'
-                      widths={[280, 400, 640]}
-                      sizes={'(max-width: 320px) 280px, (max-width: 660px) 400px, 640px'}
-                      quality="90"
+                      widths={[290, 350, 450, 580]}
+                      sizes={'(max-width: 360px) 290px, (max-width: 480px) 350px, (max-width: 560px) 450px, 580px'}
+                      // quality="90"
                       alt={play.title[lang]} />
                   </div>
                   <div class="carusel-play-info">
