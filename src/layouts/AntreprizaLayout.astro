@@ -24,6 +24,21 @@ if (title && title.length > 1) {
 	else pageTitle = title +  ' — ' + pageTitle;
 }
 
+		
+	// <link rel="preload" href="/fonts/roboto/Roboto-Thin.ttf" as="font" type="font/woff2" crossorigin/>
+	// <link rel="preload" href="/fonts/roboto/Roboto-Thin.ttf" as="font" type="font/woff2" crossorigin/>
+	// <link rel="preload" href="/fonts/roboto/Roboto-Light.ttf" as="font" type="font/woff2" crossorigin/>
+	// <link rel="preload" href="/fonts/roboto/Roboto-LightItalic.ttf" as="font" type="font/woff2" crossorigin/>
+	// <link rel="preload" href="/fonts/roboto/Roboto-Regular.ttf" as="font" type="font/woff2" crossorigin/>
+	// <link rel="preload" href="/fonts/roboto/Roboto-Italic.ttf" as="font" type="font/woff2" crossorigin/>
+	// <link rel="preload" href="/fonts/roboto/Roboto-Medium.ttf" as="font" type="font/woff2" crossorigin/>
+	// <link rel="preload" href="/fonts/roboto/Roboto-MediumItalic.ttf" as="font" type="font/woff2" crossorigin/>
+	// <link rel="preload" href="/fonts/roboto/Roboto-Bold.ttf" as="font" type="font/woff2" crossorigin/>
+	// <link rel="preload" href="/fonts/roboto/Roboto-Black.ttf" as="font" type="font/woff2" crossorigin/>
+
+	// <link rel="preload" href="/fonts/roboto/Roboto-BoldItalic.ttf" as="font" type="font/woff2" crossorigin/>
+	// <link rel="preload" href="/fonts/roboto/Roboto-BlackItalic.ttf" as="font" type="font/woff2" crossorigin/>
+
 ---
 
 <html lang={lang}>
@@ -38,16 +53,12 @@ if (title && title.length > 1) {
 			description && description.length > 0 && 
 			<meta name="description" content={description} />
 		}		
-		<!-- <link rel="icon" href="/images/icon-192.png" type="image/png" /> -->
-		<!-- TODO: -->
 		<link rel="icon" href="/favicon32.ico" sizes="32x32" />
 		<link rel="icon" href="/favicon.ico" sizes="48x48" />
 		<link rel="icon" type="image/png" href="/favicon.png" sizes="32x32" />
 		<link rel="icon" type="image/png" href="/favicon.png" sizes="48x48" />
 		<link rel="icon" type="image/png" href="/favicon96.png" sizes="96x96" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<!-- <link rel="apple-touch-icon" href="/apple-touch-icon-180.png" /> -->
-		<!-- <link rel="manifest" href="/manifest.webmanifest" /> -->
 		<!-- SEO -->
 		{
 			theater.languages.map(lng => {
