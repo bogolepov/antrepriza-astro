@@ -52,6 +52,7 @@ const { Content } = await entry.render();
       src={images["/src/assets/" + thisPlay.posters.afisha]()} 
       formats={['webp']} 
       fallbackFormat='jpg'
+      loading="eager"
       widths={[300,480,640,810,940]}
       sizes={'(max-width: 360px) 300px, (max-width: 560px) 480px, (max-width: 750px) 640px, (max-width: 940px) 810px, 940px'}
       alt={thisPlay.title[lang]} />

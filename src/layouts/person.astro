@@ -122,6 +122,7 @@ photos = [].concat(...photos);
           src={images["/src/assets/people/" + person.photo]()} 
           formats={['webp']} 
           fallbackFormat='jpg'
+          loading="eager"
           widths={[320]}
           sizes={'320px'}
           alt={person.name[lang] + ' ' + person.surname[lang]} />
