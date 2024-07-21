@@ -24,6 +24,8 @@ if (title && title.length > 1) {
 	else pageTitle = title +  ' — ' + pageTitle;
 }
 
+let isCanonicalIndex = (pathname === '/ru/');
+
 		
 	// <link rel="preload" href="/fonts/roboto/Roboto-Thin.ttf" as="font" type="font/woff2" crossorigin/>
 	// <link rel="preload" href="/fonts/roboto/Roboto-Thin.ttf" as="font" type="font/woff2" crossorigin/>
@@ -48,6 +50,10 @@ if (title && title.length > 1) {
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta http-equiv="Last-Modified" content={now.toUTCString()}>
+		{
+			isCanonicalIndex &&
+			<link rel="canonical" href={theater.main_website + pathname}/>
+		}
 		<title>{pageTitle}</title>
 		{
 			description && description.length > 0 && 

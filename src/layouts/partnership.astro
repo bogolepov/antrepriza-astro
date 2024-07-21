@@ -30,7 +30,8 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
                   fallbackFormat='jpg'
                   widths={[120]}
                   sizes={'120px'}
-                  alt={partner.name[lang]} />
+                  alt={partner.name[lang]}
+                  loading="eager" />
                 </a>
             </div>
           </div>

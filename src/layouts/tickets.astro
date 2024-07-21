@@ -123,6 +123,7 @@ for (let price of prices) {
 								src={images["/src/assets/" + playInfo.posters.landscape]()} 
 								formats={['webp']} 
 								fallbackFormat="jpg"
+								loading="eager"
 								widths={[300, 420, 540, 640]}
 								sizes={'(max-width: 360px) 300px, (max-width: 500px) 420px, (max-width: 640px) 540px, 640px'}
 								alt={playInfo.alt_title[lang]} />
@@ -156,6 +157,7 @@ for (let price of prices) {
 				class:list={'image-wrapper-landscape black-white-filter'} 
 				src={images["/src/assets/logo_red_landscape.png"]()} 
 				formats={['webp']} 
+				loading="eager"
 				widths={[300, 420, 540, 640]}
 				sizes={'(max-width: 360px) 300px, (max-width: 500px) 420px, (max-width: 640px) 540px, 640px'}
 				alt={dictionary.giftcard[lang]} />
@@ -186,7 +188,8 @@ for (let price of prices) {
 			<Picture 
 				class:list={'image-wrapper-landscape black-white-filter'} 
 				src={images["/src/assets/logo_red_landscape.png"]()} 
-				formats={['webp']} 
+				formats={['webp']}
+				loading="eager" 
 				widths={[300, 420, 540, 640]}
 				sizes={'(max-width: 360px) 300px, (max-width: 500px) 420px, (max-width: 640px) 540px, 640px'}
 				alt={dictionary.giftcard[lang]} />
