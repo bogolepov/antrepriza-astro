@@ -142,6 +142,14 @@
 		"ru": "Бронирование, приобретение билетов на спектакли Театра Антреприза.",
 		"de": "Reservierung, Kauf von Karten für Aufführungen des Theaters Antrepriza."
 	},
+	"description_studio": {
+		"ru": "Обучение актерскому мастерству в театральной студии Театра.",
+		"de": "Erwerb schauspielerischer Fähigkeiten im Theaterstudio des Theaters."
+	},
+	"description_partners": {
+		"ru": "Сотрудничество, спонсорство. Мы всегда рады новым проектам и идеям.",
+		"de": "Zusammenarbeit, Sponsoring. Wir freuen uns immer über neue Projekte und Ideen."
+	},
 
 	"": { "ru": "", "de": "" }
 }
