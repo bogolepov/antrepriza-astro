@@ -142,10 +142,6 @@ h1.section-title + div .program-month {
 	color: var(--colorFontDate);
 }
 
-.program-play-image picture {
-	/* display: block; */
-}
-
 .play-image {
 	display: block;
 	border-radius: 4px;

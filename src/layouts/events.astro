@@ -1,0 +1,51 @@
+---
+
+const { lang } = Astro.props;
+
+import plays from '@data/plays.json'
+import dictionary from '@data/dictionary.json'
+import theater from '@data/theater.json'
+import program from '@public_data/afisha.json'
+
+const ONE_DAY: number = 24*60*60*1000;	
+program.sort((play1, play2) => Date.parse(play1.date+"T"+play1.time) - Date.parse(play2.date+"T"+play2.time));
+let events = program.filter(performance => (Date.parse(performance.date) + ONE_DAY >= Date.now() && theater.fix_stages.includes(performance.stage_sid) ));
+
+---
+<style>
+  .event-flex {
+    display: flex;
+    flex-direction: row;
+    column-gap: 1.5em;
+    font-size: clamp(0.9rem, 1.8vw, 1.3rem);
+    width: fit-content;
+  }
+
+</style>
+
+<section class="event">
+  <h1 class="section-title">{dictionary.events[lang].toUpperCase()}</h1>
+  {
+    events.map(event => {
+      let play = plays.find(item => item.id === event.play_id);
+      let aTitle = dictionary.play_lang[lang] + " " + 
+        dictionary.opening_quote[lang] + play.title[lang] + 
+        dictionary.closing_quote[lang] + " " + event.date;
+      let eventDate = event.date.replaceAll("-","_");
+      let eventTime = event.time.replaceAll(":","_");
+      let pageName = `${play.suffix}_${eventDate}_${eventTime}`;
+
+      let fullDate = event.date+'T'+event.time;
+      let playDate = new Date(fullDate); 
+
+      return (
+        <h4><a class="event-flex" href={`/${lang}/events/${pageName}`}>
+          <div>{playDate.toLocaleDateString(lang)}</div>
+          <div class="font-opacity1">{event.time}</div>
+          <div>{play.title[lang]}</div>          
+        </a></h4>
+      );
+    })
+  }
+  <div class="page-end"></div>
+</section>

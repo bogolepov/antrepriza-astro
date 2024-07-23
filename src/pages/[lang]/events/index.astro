@@ -1,0 +1,25 @@
+---
+import AntreprizaLayout from "@layouts/AntreprizaLayout.astro";
+import Events from "@layouts/events.astro";
+
+import dictionary from '@data/dictionary.json'
+import theater from '@data/theater.json'
+
+export function getStaticPaths () {
+  return theater.languages.map(lng => {
+    return {
+      params: {lang: lng.lang_code},
+      props: {pageLang: lng.lang_code, pageTitle: dictionary.events[lng.lang_code] },
+    };
+  });
+}
+
+
+const { pageLang, pageTitle } = Astro.props;
+
+---
+
+<AntreprizaLayout title={pageTitle} lang={pageLang} description={dictionary.description_plays[pageLang]}>
+  <Events lang={pageLang}/>
+</AntreprizaLayout>
+

@@ -7,6 +7,7 @@
 	"gallery": { "ru": "Галерея", "de": "Mediathek" },
 	"support": { "ru": "Поддержать", "de": "Unterstützen" },
 	"tickets": { "ru": "Билеты", "de": "Tickets" },
+	"events": { "ru": "Мероприятия", "de": "Veranstaltungen" },
 	"impressum": { "ru": "Impressum", "de": "Impressum" },
 	"privacy_policy": { "ru": "Политика конфиденциальности", "de": "Datenschutz" },
 	"newsletter": { "ru": "Подписка на новости", "de": "Newsletter" },
@@ -97,6 +98,7 @@
 	"opening_quote": { "ru": "«", "de": "„" },
 	"closing_quote": { "ru": "»", "de": "“" },
 	"logo": { "ru": "Логотип", "de": "Logo" },
+	"more_about_play": { "ru": "Подробнее о спектакле", "de": "Mehr zur Theaterproduktion" },
 
 	"description_index": {
 		"ru": "Театр Антреприза Берлин существует с 2019 года и предлагает постановки различных жанровых направлений для взрослой и детской аудитории.",

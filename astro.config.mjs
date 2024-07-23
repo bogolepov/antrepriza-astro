@@ -7,10 +7,12 @@ import plays from './src/data/plays.json';
 let now = new Date();
 const offset = now.getTimezoneOffset();
 now = new Date(now.getTime() - offset * 60 * 1000);
-// let strToday = now.toISOString().split('T')[0];
 
 function isNoIndex(url) {
 	let lowUrl = url.toLowerCase();
+	if (lowUrl.includes('https://antrepriza.eu/ru/events/') || lowUrl.includes('https://antrepriza.eu/de/events/')) {
+		return true;
+	}
 	if (lowUrl.includes('https://antrepriza.eu/ru/theater/people/') || lowUrl.includes('https://antrepriza.eu/de/theater/people/')) {
 		let urlArr = lowUrl.split('/');
 		let i = urlArr.indexOf('people');
@@ -90,15 +92,4 @@ export default defineConfig({
 			},
 		}),
 	],
-	redirects: {
-		'/afisha/': '/ru/program/',
-		'/bilet/': '/ru/tickets/',
-		'/contacts/': '/ru/contact/',
-
-		'/program/': '/ru/program/',
-		'/tickets/': '/ru/tickets/',
-		'/support/': '/ru/support/',
-		'/impressum/': '/ru/impressum/',
-		'/gallery/': '/ru/gallery/',
-	},
 });
