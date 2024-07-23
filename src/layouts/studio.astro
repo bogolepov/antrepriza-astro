@@ -47,6 +47,9 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*/*.{jp
 
 let photos = studio_photos.filter(photo => photo.filename && photo.is_landscape );
 
+let firstSlide = true;
+let strLoading;
+
 ---
 <script is:inline src="/js/swiper-bundle.min.js" defer></script>
 <script>
@@ -106,6 +109,11 @@ let photos = studio_photos.filter(photo => photo.filename && photo.is_landscape 
             <div class="swiper-wrapper">
               {
                 photos.map(photo => {
+                  if (firstSlide) {
+                    strLoading = "eager";
+                    firstSlide = false;
+                  }
+                  else strLoading = "lazy";
                   return (
                     <div class="swiper-slide" >
                       <Picture 
@@ -116,9 +124,10 @@ let photos = studio_photos.filter(photo => photo.filename && photo.is_landscape 
                         widths={[300, 420, 540, 640]}
                         sizes={'(max-width: 380px) 300px, (max-width: 530px) 420px, (max-width: 680px) 540px, 640px'}
                         alt=""
+                        loading={strLoading}
                         // quality="85" 
                         />
-                      <div class="swiper-lazy-preloader"></div>
+                      {/* <div class="swiper-lazy-preloader"></div> */}
                     </div>
                   )
                 })
