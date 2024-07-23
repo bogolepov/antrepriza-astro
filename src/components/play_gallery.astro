@@ -12,8 +12,9 @@ import { Picture } from 'astro:assets';
 
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*/*.{jpeg,jpg}');
 
+let strLoading;
+
 ---
-<script is:inline src="/js/swiper-bundle.min.js" defer></script>
 <script>
   let swiper;
 	document.addEventListener('DOMContentLoaded', () => {
@@ -26,7 +27,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*/*.{jp
       // grabCursor: true,
       speed: 900,
       centeredSlides: true,
-      lazyPreloadPrevNext: 1,
+      lazyPreloadPrevNext: 2,
     
       pagination: {
         el: '.swiper-pagination',
@@ -54,7 +55,9 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*/*.{jp
     <div class="swiper">
       <div class="swiper-wrapper">
         {
-          gallery.map(photo => {
+          gallery.map((photo, index) => {
+            if (index === 0) strLoading = "eager";
+            else strLoading = "lazy";
             return (
               <div class="swiper-slide" >
                 <Picture 
@@ -65,9 +68,8 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*/*.{jp
                   widths={[300, 420, 540, 640]}
                   sizes={'(max-width: 380px) 300px, (max-width: 530px) 420px, (max-width: 680px) 540px, 640px'}
                   alt=""
-                  // quality="85"
-                  loading="lazy" />
-                <div class="swiper-lazy-preloader"></div>
+                  loading={strLoading} />
+                {/* <div class="swiper-lazy-preloader"></div> */}
               </div>
             )
           })

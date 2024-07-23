@@ -26,7 +26,8 @@ let actualProgram = program.filter(performance => Date.parse(performance.date) >
 // 	}
 // });
 // let playsWithGrouppedDatesArray = Array.from(playsWithGrouppedDatesMap, ([key, value]) => ({ key, value }));
-
+let firstSlide = true;
+let strLoading;
 
 ---
 <script is:inline src="/js/swiper-bundle.min.js" defer></script>
@@ -75,6 +76,12 @@ let actualProgram = program.filter(performance => Date.parse(performance.date) >
           plays.map(play => {
             if (play.id == 2) return;
 
+            if (firstSlide) {
+              strLoading = "eager";
+              firstSlide = false;
+            }
+            else strLoading = "lazy";
+
             let perform = actualProgram.find(performance => performance.play_id == play.id);
             let isPremiere = (perform && perform.premiere);
 
@@ -89,9 +96,10 @@ let actualProgram = program.filter(performance => Date.parse(performance.date) >
                       src={images["/src/assets/" + play.posters.portrait]()} 
                       formats={['webp']} 
                       fallbackFormat='jpg'
-                      loading="eager"
+                      // loading="eager"
                       widths={[290, 350, 450, 580]}
                       sizes={'(max-width: 360px) 290px, (max-width: 480px) 350px, (max-width: 560px) 450px, 580px'}
+                      loading={strLoading}
                       // quality="90"
                       alt={play.title[lang]} />
                   </div>

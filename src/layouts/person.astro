@@ -71,6 +71,9 @@ let photos = [
 
 photos = [].concat(...photos);
 
+let firstSlide = true;
+let strLoading;
+
 ---
 <script is:inline src="/js/swiper-bundle.min.js" defer></script>
 <script>
@@ -84,7 +87,7 @@ photos = [].concat(...photos);
       watchOverflow: true,
       speed: 900,
       centeredSlides: true,
-      lazyPreloadPrevNext: 1,
+      lazyPreloadPrevNext: 2,
     
       pagination: {
         el: '.swiper-pagination',
@@ -199,6 +202,11 @@ photos = [].concat(...photos);
             <div class="swiper-wrapper">
               {
                 photos.map(photo => {
+                  if (firstSlide) {
+                    strLoading = "eager";
+                    firstSlide = false;
+                  }
+                  else strLoading = "lazy";
                   return (
                     <div class="swiper-slide" >
                       <Picture 
@@ -209,9 +217,9 @@ photos = [].concat(...photos);
                         widths={[300, 420, 540, 640]}
                         sizes={'(max-width: 380px) 300px, (max-width: 530px) 420px, (max-width: 680px) 540px, 640px'}
                         alt=""
-                        // quality="85"
-                        />
-                      <div class="swiper-lazy-preloader"></div>
+                        loading={strLoading}
+                      />
+                      {/* <div class="swiper-lazy-preloader"></div> */}
                     </div>
                   )
                 })
