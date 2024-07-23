@@ -1,0 +1,41 @@
+---
+import type { GetStaticPaths } from "astro";
+
+import AntreprizaLayout from "@layouts/AntreprizaLayout.astro";
+import Event from "@layouts/event.astro";
+
+import plays from '@data/plays.json'
+import dictionary from '@data/dictionary.json'
+import theater from '@data/theater.json'
+import program from '@public_data/afisha.json'
+
+export const getStaticPaths = (() => { 
+  const ONE_DAY: number = 24*60*60*1000;	
+  program.sort((play1, play2) => Date.parse(play1.date+"T"+play1.time) - Date.parse(play2.date+"T"+play2.time));
+  let events = program.filter(performance => (Date.parse(performance.date) + ONE_DAY >= Date.now() && theater.fix_stages.includes(performance.stage_sid) ));
+  return theater.languages.flatMap(lng => {
+    return events.map(event => {
+      let play = plays.find(item => item.id === event.play_id);
+      let aTitle = dictionary.play_lang[lng.lang_code] + " " + 
+        dictionary.opening_quote[lng.lang_code] + play.title[lng.lang_code] + 
+        dictionary.closing_quote[lng.lang_code] + " " + event.date;
+      let eventDate = event.date.replaceAll("-","_");
+      let eventTime = event.time.replaceAll(":","_");
+      let pageName = `${play.suffix}_${eventDate}_${eventTime}`;
+      return {
+        params: {lang: lng.lang_code, event_page: pageName},
+        props: {pageLang: lng.lang_code, pageTitle: aTitle, playID: play.id.toString(), playDate: event.date, playTime: event.time},
+      }
+    })
+  });
+}) satisfies GetStaticPaths;
+
+const {pageLang, pageTitle, playID, playDate, playTime} = Astro.props;
+
+---
+
+<AntreprizaLayout title={pageTitle} lang={pageLang}>
+  <Event lang={pageLang} play_id={playID} date={playDate} time={playTime}></Event>
+</AntreprizaLayout>
+
+

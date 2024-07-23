@@ -9,8 +9,10 @@ import "@styles/youtube_player.css"
   <div class="media">
       <iframe class="trailer float"
         src={url+"&rel=0&controls=2&hl="+lang.toUpperCase()} title="YouTube video player" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-        allowfullscreen></iframe>
+        loading="lazy"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
   </div>
 </div>

@@ -53,8 +53,8 @@ const { Content } = await entry.render();
       formats={['webp']} 
       fallbackFormat='jpg'
       loading="eager"
-      widths={[300,480,640,810,940]}
-      sizes={'(max-width: 360px) 300px, (max-width: 560px) 480px, (max-width: 750px) 640px, (max-width: 940px) 810px, 940px'}
+      widths={[300, 420, 540, 640]}
+      sizes={'(max-width: 380px) 300px, (max-width: 530px) 420px, (max-width: 680px) 540px, 640px'}
       alt={thisPlay.title[lang]} />
 
   }
@@ -157,8 +157,9 @@ const { Content } = await entry.render();
         { thisPlay.trailer_embed &&
           <iframe class="trailer float"
             src={thisPlay.trailer_embed+"&rel=0&controls=2&hl="+lang.toUpperCase()} title="YouTube video player" 
-            frameborder="0" 
+            frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            loading="lazy"
             allowfullscreen></iframe>
         }
         { !thisPlay.trailer_embed &&
@@ -167,8 +168,8 @@ const { Content } = await entry.render();
             src={images["/src/assets/" + thisPlay.posters.landscape_16_9]()} 
             formats={['webp']} 
             fallbackFormat='jpg'
-            widths={[300, 420, 540, 640]}
-            sizes={'(max-width: 380px) 300px, (max-width: 530px) 420px, (max-width: 680px) 540px, 640px'}
+            widths={[300,480,640,810,940]}
+            sizes={'(max-width: 360px) 300px, (max-width: 560px) 480px, (max-width: 750px) 640px, (max-width: 940px) 810px, 940px'}
             alt={thisPlay.alt_title[lang]} />
         } 
       </div>
@@ -243,7 +244,7 @@ const { Content } = await entry.render();
 		}
 		else {
       playCounter++;
- 		}
+    }
 	}
 
   if (playCounter === 0) {
