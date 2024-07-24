@@ -1,0 +1,84 @@
+.section-title {
+	font-size: clamp(1.65rem, 5vw, 3rem);
+}
+
+.event-flex {
+	display: flex;
+	flex-direction: row;
+	column-gap: 1.5em;
+	font-size: clamp(0.9rem, 2.3vw, 1.3rem);
+	width: fit-content;
+}
+
+.event input {
+	position: absolute;
+	-webkit-appearance: none;
+	appearance: none;
+	line-height: 1px;
+}
+
+ul {
+	padding-left: 0;
+}
+
+.flex-tabs {
+	display: flex;
+}
+
+.tab-item {
+	border: 1px solid var(--colorFontDate);
+	background-color: transparent;
+	color: var(--colorFontDate);
+
+	font-size: clamp(0.85rem, 2vw, 1.1rem);
+	font-weight: 400;
+	line-height: 1.2em;
+	letter-spacing: 0.07em;
+	padding: 0.3em 0.8em;
+	border-top-left-radius: 0.5em;
+	border-top-right-radius: 0.5em;
+	margin: 0 0.5px;
+}
+.tab-item-last {
+	flex-grow: 1;
+	border-bottom: 1px solid var(--colorFontDate);
+}
+
+.list-container {
+	position: relative;
+}
+
+.list-ost,
+.list-west,
+.list-festival,
+.list-tour {
+	position: absolute;
+	visibility: hidden;
+}
+
+.event:has(input[id='tab-ost']:checked) .list-ost,
+.event:has(input[id='tab-west']:checked) .list-west,
+.event:has(input[id='tab-festival']:checked) .list-festival,
+.event:has(input[id='tab-tour']:checked) .list-tour {
+	visibility: visible;
+	position: static;
+}
+
+.event:has(input[id='tab-ost']:checked) .tab-ost,
+.event:has(input[id='tab-west']:checked) .tab-west,
+.event:has(input[id='tab-festival']:checked) .tab-festival,
+.event:has(input[id='tab-tour']:checked) .tab-tour {
+	color: var(--colorFontTicketsBtn-Op0);
+	background-color: var(--colorBkgTicketsBtn);
+}
+
+@media (hover: hover) {
+	.tab-item:hover {
+		background-color: var(--colorBkgTicketsBtn);
+		color: var(--colorFontTicketsBtn-Op0);
+		transition:
+			background-color 300ms ease-out,
+			color 300ms ease-out;
+		cursor: pointer;
+	}
+}

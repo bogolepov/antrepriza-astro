@@ -2,6 +2,8 @@
 
 const { lang, play_id, date, time } = Astro.props;
 
+import '@styles/event.css'
+
 import plays from '@data/plays.json'
 import dictionary from '@data/dictionary.json'
 import theater from '@data/theater.json'
@@ -13,6 +15,9 @@ let event = program.find(item => (item.play_id.toString() === play_id && item.da
 
 let stage = theater.stages.find(stg => stg.sid === event.stage_sid);
 let stageNameText  = dictionary.stage[lang] + " " + stage.name[lang].toUpperCase();
+
+let performer = theater.longTheaterName[lang];
+if (theater.fix_stages.includes(stage.sid)) performer = performer + " - " + stage.name[lang].toUpperCase();
 
 let ticketsName = "";
 let ticketsPrice = "";
@@ -52,67 +57,6 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 */
 
 ---
-<style>
-  .event {
-    width: 100%;
-    max-width: 720px;
-    margin: 0 auto;
-    padding-top: 3em;
-    font-size: clamp(.85rem,1.5vw,1.1rem);
-    line-height: 1.35em;
-  }
-  .event-flex {
-    display: flex;
-    flex-direction: row;
-    gap: 2em;
-    flex-wrap: wrap;
-    margin: 0 auto;
-    width: 100%;
-    max-width: 720px;
-  }
-  .flex-item-poster {
-    text-align: center;
-    margin: 0 auto;
-  }
-  .flex-item-description {
-    margin: 0 auto;
-  }
-  .poster {
-    width: 100%;
-    max-width: 280px;
-    margin: 0 auto;
-  }
-  .ev-name {
-    font-size: clamp(1.4rem, 2.5vw, 1.8rem);
-  }
-  .ev-performer {
-    font-size: clamp(0.9rem, 1.6vw, 1.15rem);
-    padding-top: 0.4em;
-    color: var(--colorFont-Op1);
-  }
-  .ev-when {
-    padding: 1em 0;
-    line-height: 1.5em;
-    color: var(--colorFontDate);
-  }
-  .ev-when h4 {
-    font-size: clamp(1.1rem, 2vw, 1.25rem);
-  }
-  .info-flex {
-    display: flex;
-    flex-direction: row;
-    column-gap: 0.25em;
-    padding-top: 1em;
-  }
-  .info-flex.tickets {
-    padding-bottom: 1.5em; 
-  }
-  .link-more {   
-    font-size: clamp(1rem, 1.8vw, 1.2rem);
-    font-weight: var(--font-normal-weight);   
-    text-decoration: underline;
-  }
-</style>
 
 <section class="event">
   <div class="event-flex">
@@ -125,14 +69,14 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
           formats={['webp']} 
           fallbackFormat='jpg'
           loading="eager"
-          widths={[640]}
-          sizes={'640px'}
+          widths={[320]}
+          sizes={'320px'}
           alt={play.title[lang]} />
       </div>
     }
     <div class="flex-item-description">
       <h2 class="ev-name">{dictionary.play_lang[lang]} {play.title[lang].toUpperCase()}</h2>
-      <h5 class="ev-performer">{theater.longTheaterName[lang]} - {stage.name[lang].toUpperCase()}</h5>
+      <h5 class="ev-performer">{performer}</h5>
       <div class="ev-when">
         <h4 class="ev-date">{date}</h4>
         <h4 class="ev-time">{time}</h4>
@@ -143,20 +87,29 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
       <h4 class="play-property label-before" data-label={dictionary.language[lang]+": "}>
         {play.lang[lang]}
       </h4>
-      <div class="info-flex address">
+      {
+        event.event_type && event.event_type.is_festival &&
+        <h4 class="play-property label-before festival" data-label={dictionary.festival[lang]+": "}>
+          { event.event_name[lang] }
+        </h4>
+      }
+      <div class="info-flex">
         <address class="play-property label-before" data-label={dictionary.address[lang]+": "}></address>
         <address class="play-property">
-          { stage.place_name }<br>
+          { stage.fix_stage && stage.place_name} { stage.fix_stage && <br>}
           { stage.address.full_string }
         </address>
-      </div>      
-      <div class="info-flex tickets">
-        <h4 class="play-property label-before" data-label={dictionary.tickets[lang]+": "}></h4>
-        <h4 class="play-property">
-          { ticketsName }<br>
-          { ticketsPrice }
-        </h4>
-      </div>
+      </div> 
+      {
+        event.prices.length > 0 &&
+        <div class="info-flex">
+          <h4 class="play-property label-before" data-label={dictionary.tickets[lang]+": "}></h4>
+          <h4 class="play-property">
+            { ticketsName }<br>
+            { ticketsPrice }
+          </h4>
+        </div>
+      }     
       <h4><a href={`/${lang}/plays/${play.suffix}/`} class="link-more">{dictionary.more_about_play[lang]}</a></h4>  
     </div>
   </div>

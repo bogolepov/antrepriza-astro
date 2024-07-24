@@ -1,0 +1,77 @@
+.event {
+	width: 100%;
+	max-width: 900px;
+	margin: 0 auto;
+	padding-top: 3em;
+	font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+	line-height: 1.35em;
+}
+
+.event-flex {
+	display: flex;
+	flex-direction: row-reverse;
+	gap: 2em;
+	flex-wrap: wrap;
+	margin: 0 auto;
+	width: 100%;
+	max-width: 900px;
+}
+
+.flex-item-poster {
+	text-align: center;
+	margin: 0 auto;
+}
+
+.flex-item-description {
+	margin: 0 auto;
+}
+
+.poster {
+	width: 100%;
+	max-width: 280px;
+	margin: 0 auto;
+}
+
+.ev-name {
+	font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+	line-height: 1.15em;
+	width: 100%;
+}
+
+.ev-performer {
+	font-size: clamp(0.9rem, 1.6vw, 1.15rem);
+	padding-top: 0.4em;
+	color: var(--colorFont-Op1);
+	line-height: 1.3em;
+}
+
+.ev-when {
+	padding: 1em 0;
+	line-height: 1.5em;
+	color: var(--colorFontDate);
+}
+
+.ev-when h4 {
+	font-size: clamp(1.1rem, 2vw, 1.25rem);
+}
+
+.play-property.festival {
+	padding-top: 1em;
+}
+
+.info-flex {
+	display: flex;
+	flex-direction: row;
+	column-gap: 0.25em;
+	padding-top: 1em;
+}
+
+.link-more {
+	font-size: clamp(1rem, 1.8vw, 1.2rem);
+	font-weight: var(--font-normal-weight);
+	text-decoration: underline;
+}
+
+.event h4:has(a) {
+	padding: 1.5em 0;
+}

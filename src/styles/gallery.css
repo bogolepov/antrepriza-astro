@@ -51,12 +51,13 @@
 .tab-item {
 	border: 1px solid var(--colorFontDate);
 	background-color: transparent;
-	color: var(--colorFontDateDisabled);
+	color: var(--colorFontDate);
 
 	font-size: clamp(0.85rem, 1.5vw, 1rem);
-	font-weight: var(--font-extra-weight);
+	font-weight: 400;
 	letter-spacing: 0.07em;
 	text-transform: uppercase;
+	margin: 0 0.5px;
 }
 .media-flex-top .tab-item {
 	border-top-left-radius: 0.5em;
@@ -65,10 +66,6 @@
 .media-flex-bottom .tab-item {
 	border-bottom-left-radius: 0.5em;
 	border-bottom-right-radius: 0.5em;
-}
-
-.tab-item label:hover {
-	cursor: pointer;
 }
 
 .gallery input {
@@ -80,17 +77,17 @@
 	padding: 0.4em 1em 0.3em 1em;
 }
 
-.gallery-block:has(input[value='photo']:checked) .media-photo label {
-	color: var(--colorFontDate);
+.gallery-block:has(input[value='photo']:checked) .media-photo,
+.gallery-block:has(input[value='video']:checked) .media-video,
+.gallery-block:has(input[value='poster']:checked) .media-poster {
+	color: var(--colorFontTicketsBtn-Op0);
+	background-color: var(--colorBkgTicketsBtn);
 }
-.gallery-block:has(input[value='video']:checked) .media-video label {
-	color: var(--colorFontDate);
-}
-.gallery-block:has(input[value='poster']:checked) .media-poster label {
-	color: var(--colorFontDate);
-}
-.tab-item:has(input:focus-visible) {
-	outline: 2px solid var(--colorFont);
+.gallery-block:has(input[value='photo']:checked:focus-visible) .media-photo,
+.gallery-block:has(input[value='video']:checked:focus-visible) .media-video,
+.gallery-block:has(input[value='poster']:checked:focus-visible) .media-poster {
+	/* .tab-item:has(input:focus-visible) { */
+	outline: 1px solid var(--colorFont);
 }
 
 .photo_container,
@@ -99,12 +96,8 @@
 	display: none;
 }
 
-.gallery-block:has(input[value='photo']:checked) .photo_container {
-	display: block;
-}
-.gallery-block:has(input[value='video']:checked) .video_container {
-	display: block;
-}
+.gallery-block:has(input[value='photo']:checked) .photo_container,
+.gallery-block:has(input[value='video']:checked) .video_container,
 .gallery-block:has(input[value='poster']:checked) .poster_container {
 	display: block;
 }
@@ -122,5 +115,16 @@
 	}
 	.media-flex-bottom {
 		display: flex;
+	}
+}
+
+@media (hover: hover) {
+	.tab-item:hover {
+		background-color: var(--colorBkgTicketsBtn);
+		color: var(--colorFontTicketsBtn-Op0);
+		transition:
+			background-color 300ms ease-out,
+			color 300ms ease-out;
+		cursor: pointer;
 	}
 }

@@ -36,7 +36,7 @@ let playsWithGrouppedDatesArray = Array.from(playsWithGrouppedDatesMap, ([key, v
 		PLAYS_ORDER.map (play_id => {
 			let play = plays.find(item => item.id === play_id);
 			let performs = actualProgram.filter(performance => performance.play_id == play.id);
-			let isPremiere = (performs && performs.length>0 && performs[0].premiere);
+			let isPremiere = (performs && performs.length>0 && performs.find(item => item.premiere));
 			return (
 				<div class="play-block hover-block hover-background">
 					<div class="play-block-image">
