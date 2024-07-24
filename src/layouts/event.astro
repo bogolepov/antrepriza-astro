@@ -10,6 +10,9 @@ import theater from '@data/theater.json'
 import program from '@public_data/afisha.json'
 import prices from '@data/prices.json'
 
+import TicketBookButton from "@components/ticket_book_button.astro";
+import TicketForm from "@components/ticket_form.astro";
+
 let play = plays.find(item => (item.id.toString() === play_id));
 let event = program.find(item => (item.play_id.toString() === play_id && item.date === date && item.time === time));
 
@@ -59,12 +62,16 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 ---
 
 <section class="event">
-  <div class="event-flex">
+  { !event.no_tickets && 
+    <TicketForm lang={lang}/>
+  }
+
+  <div class="ev-event-flex">
     {
       play && event && play.posters.afisha &&
-      <div class="flex-item-poster">
+      <div class="ev-flex-item-poster">
         <Picture 
-          class:list={'image-wrapper-landscape float poster'} 
+          class:list={'image-wrapper-landscape float ev-poster'} 
           src={images["/src/assets/" + play.posters.afisha]()} 
           formats={['webp']} 
           fallbackFormat='jpg'
@@ -74,7 +81,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
           alt={play.title[lang]} />
       </div>
     }
-    <div class="flex-item-description">
+    <div class="ev-flex-item-description">
       <h2 class="ev-name">{dictionary.play_lang[lang]} {play.title[lang].toUpperCase()}</h2>
       <h5 class="ev-performer">{performer}</h5>
       <div class="ev-when">
@@ -89,11 +96,11 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
       </h4>
       {
         event.event_type && event.event_type.is_festival &&
-        <h4 class="play-property label-before festival" data-label={dictionary.festival[lang]+": "}>
+        <h4 class="play-property label-before ev-festival" data-label={dictionary.festival[lang]+": "}>
           { event.event_name[lang] }
         </h4>
       }
-      <div class="info-flex">
+      <div class="ev-info-flex">
         <address class="play-property label-before" data-label={dictionary.address[lang]+": "}></address>
         <address class="play-property">
           { stage.fix_stage && stage.place_name} { stage.fix_stage && <br>}
@@ -102,7 +109,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
       </div> 
       {
         event.prices.length > 0 &&
-        <div class="info-flex">
+        <div class="ev-info-flex">
           <h4 class="play-property label-before" data-label={dictionary.tickets[lang]+": "}></h4>
           <h4 class="play-property">
             { ticketsName }<br>
@@ -110,7 +117,14 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
           </h4>
         </div>
       }     
-      <h4><a href={`/${lang}/plays/${play.suffix}/`} class="link-more">{dictionary.more_about_play[lang]}</a></h4>  
+      <h4><a href={`/${lang}/plays/${play.suffix}/`} class="ev-link-more">{dictionary.more_about_play[lang]}</a></h4>  
+
+      { !event.no_tickets && 
+        <TicketBookButton add_classes="ev-button" button_type='ticket' price=''
+                          date={event.date} time={event.time} play_id={event.play_id}	>
+            {dictionary.tickets[lang]}
+        </TicketBookButton>
+      }
     </div>
   </div>
   <div class="page-end"></div>

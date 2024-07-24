@@ -1,31 +1,27 @@
-.section-title {
+.events .section-title {
 	font-size: clamp(1.65rem, 5vw, 3rem);
 }
 
-.event-flex {
-	display: flex;
-	flex-direction: row;
-	column-gap: 1.5em;
-	font-size: clamp(0.9rem, 2.3vw, 1.3rem);
-	width: fit-content;
-}
-
-.event input {
+.events input {
 	position: absolute;
 	-webkit-appearance: none;
 	appearance: none;
 	line-height: 1px;
 }
 
-ul {
+.events ul {
 	padding-left: 0;
+	list-style: none;
+}
+.events li {
+	font-weight: var(--font-normal-weight);
 }
 
-.flex-tabs {
+.evs-flex-tabs {
 	display: flex;
 }
 
-.tab-item {
+.evs-tab-item {
 	border: 1px solid var(--colorFontDate);
 	background-color: transparent;
 	color: var(--colorFontDate);
@@ -39,41 +35,45 @@ ul {
 	border-top-right-radius: 0.5em;
 	margin: 0 0.5px;
 }
-.tab-item-last {
+.evs-tab-item-last {
 	flex-grow: 1;
 	border-bottom: 1px solid var(--colorFontDate);
 }
 
-.list-container {
-	position: relative;
+.evs-event-flex {
+	display: flex;
+	flex-direction: row;
+	column-gap: 1.5em;
+	font-size: clamp(0.9rem, 2.3vw, 1.3rem);
+	width: fit-content;
 }
 
-.list-ost,
-.list-west,
-.list-festival,
-.list-tour {
+.evs-list-ost,
+.evs-list-west,
+.evs-list-festival,
+.evs-list-tour {
 	position: absolute;
 	visibility: hidden;
 }
 
-.event:has(input[id='tab-ost']:checked) .list-ost,
-.event:has(input[id='tab-west']:checked) .list-west,
-.event:has(input[id='tab-festival']:checked) .list-festival,
-.event:has(input[id='tab-tour']:checked) .list-tour {
+.events:has(input[id='evs-tab-ost']:checked) .evs-list-ost,
+.events:has(input[id='evs-tab-west']:checked) .evs-list-west,
+.events:has(input[id='evs-tab-festival']:checked) .evs-list-festival,
+.events:has(input[id='evs-tab-tour']:checked) .evs-list-tour {
 	visibility: visible;
 	position: static;
 }
 
-.event:has(input[id='tab-ost']:checked) .tab-ost,
-.event:has(input[id='tab-west']:checked) .tab-west,
-.event:has(input[id='tab-festival']:checked) .tab-festival,
-.event:has(input[id='tab-tour']:checked) .tab-tour {
+.events:has(input[id='evs-tab-ost']:checked) .evs-tab-ost,
+.events:has(input[id='evs-tab-west']:checked) .evs-tab-west,
+.events:has(input[id='evs-tab-festival']:checked) .evs-tab-festival,
+.events:has(input[id='evs-tab-tour']:checked) .evs-tab-tour {
 	color: var(--colorFontTicketsBtn-Op0);
 	background-color: var(--colorBkgTicketsBtn);
 }
 
 @media (hover: hover) {
-	.tab-item:hover {
+	.evs-tab-item:hover {
 		background-color: var(--colorBkgTicketsBtn);
 		color: var(--colorFontTicketsBtn-Op0);
 		transition:
