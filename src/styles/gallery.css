@@ -57,6 +57,7 @@
 	font-weight: 400;
 	letter-spacing: 0.07em;
 	text-transform: uppercase;
+	margin: 0 0.5px;
 }
 .media-flex-top .tab-item {
 	border-top-left-radius: 0.5em;

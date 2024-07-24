@@ -37,6 +37,7 @@ ul {
 	padding: 0.3em 0.8em;
 	border-top-left-radius: 0.5em;
 	border-top-right-radius: 0.5em;
+	margin: 0 0.5px;
 }
 .tab-item-last {
 	flex-grow: 1;
@@ -69,4 +70,15 @@ ul {
 .event:has(input[id='tab-tour']:checked) .tab-tour {
 	color: var(--colorFontTicketsBtn-Op0);
 	background-color: var(--colorBkgTicketsBtn);
+}
+
+@media (hover: hover) {
+	.tab-item:hover {
+		background-color: var(--colorBkgTicketsBtn);
+		color: var(--colorFontTicketsBtn-Op0);
+		transition:
+			background-color 300ms ease-out,
+			color 300ms ease-out;
+		cursor: pointer;
+	}
 }
