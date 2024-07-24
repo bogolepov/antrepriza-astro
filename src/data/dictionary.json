@@ -26,6 +26,8 @@
 	"genre": { "ru": "Жанр", "de": "Genre" },
 	"language": { "ru": "Язык", "de": "Sprache" },
 	"festival": { "ru": "Фестиваль", "de": "Festival" },
+	"festivals": { "ru": "Фестивали", "de": "Festivals" },
+	"tours": { "ru": "Гастроли", "de": "Gastspiele" },
 	"stage": { "ru": "Сцена", "de": "Bühne" },
 	"premiere": { "ru": "Премьера", "de": "Premiere" },
 	"nextDates": { "ru": "Ближайшие даты", "de": "Kommende Vorstellungen" },

@@ -5,6 +5,7 @@
 	],
 	"menu": [
 		{ "dict_word": "menu_about", "url": "about" },
+		{ "dict_word": "events", "url": "events" },
 		{ "dict_word": "menu_actors", "url": "actors" },
 		{ "dict_word": "menu_team", "url": "team" },
 		{ "dict_word": "menu_studio", "url": "studio" },

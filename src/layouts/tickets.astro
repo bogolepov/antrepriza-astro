@@ -70,7 +70,7 @@ for (let price of prices) {
 					<div id={playInfo.suffix} class="item-block tickets-play-block hover-block hover-background" data-play={playInfo.id}>
 						<div class="tickets-play-text">
 							<div class="tickets-play-name">
-								{item.value[0].premiere && 
+								{item.value.find(item => item.premiere) && 
 									<h4 class="play-property-hot-notice">{dictionary.premiere[lang]}</h4>
 								}
 								<a class="stretch-link" href={"/"+lang+"/plays/"+playInfo.suffix}>

@@ -1,5 +1,13 @@
 [
 	{
+		"date": "2024-12-28",
+		"time": "19:30",
+		"play_id": 2,
+		"stage_sid": "ost",
+		"free_place": true,
+		"prices": ["standart", "reduce"]
+	},
+	{
 		"date": "2024-12-22",
 		"time": "16:00",
 		"play_id": 6,
@@ -63,6 +71,7 @@
 		"play_id": 8,
 		"stage_sid": "ost",
 		"free_place": true,
+		"premiere": true,
 		"prices": ["standart", "reduce"]
 	},
 	{

@@ -54,7 +54,8 @@
 
 	--gray-rose-sat: 18%;
 	--gray-rose-sat-dis: 24%;
-	--gray-rose-opac-dis: 0.5;
+	--gray-rose-opac-dis0: 0.7;
+	--gray-rose-opac-dis1: 0.5;
 	--gray-rose-opac-hover: 0.6;
 
 	--colorAntreprizaRed: hsl(358, 100%, 64%);
@@ -103,7 +104,8 @@
 
 	--gray-rose-sat: 24%;
 	--gray-rose-sat-dis: 18%;
-	--gray-rose-opac-dis: 0.7;
+	--gray-rose-opac-dis0: 0.9;
+	--gray-rose-opac-dis1: 0.7;
 	--gray-rose-opac-hover: 0.85;
 
 	--colorAntreprizaRed: hsl(358 89% 47%);
@@ -147,16 +149,18 @@
 
 body {
 	--gray-rose: hsl(var(--gray-rose-hue) var(--gray-rose-sat) var(--gray-rose-lit));
-	--gray-rose-op0: hsl(var(--gray-rose-hue) var(--gray-rose-sat-dis) var(--gray-rose-lit) / var(--gray-rose-opac-dis));
+	--gray-rose-op0: hsl(var(--gray-rose-hue) var(--gray-rose-sat-dis) var(--gray-rose-lit) / var(--gray-rose-opac-dis0));
+	--gray-rose-op1: hsl(var(--gray-rose-hue) var(--gray-rose-sat-dis) var(--gray-rose-lit) / var(--gray-rose-opac-dis1));
 	--gray-rose-hover: hsl(var(--gray-rose-hue) var(--gray-rose-sat) var(--gray-rose-lit) / var(--gray-rose-opac-hover));
 
 	--colorFontDate: var(--gray-rose);
-	--colorFontDateDisabled: var(--gray-rose-op0);
+	--colorFontDateDisabled: var(--gray-rose-op1);
 	--colorBkgTicketsBtn: var(--gray-rose);
 	--colorBkgTicketsBtn-Hover: var(--gray-rose-hover);
 
 	--colorFontTicketsBtn: hsl(0 0% var(--font-ticket-btn-lit));
-	--colorFontTicketsBtn-Op0: hsl(0 0% var(--font-ticket-btn-lit) / 0.7);
+	--colorFontTicketsBtn-Op0: hsl(0 0% var(--font-ticket-btn-lit) / 0.85);
+	--colorFontTicketsBtn-Op1: hsl(0 0% var(--font-ticket-btn-lit) / 0.7);
 
 	--colorFont: hsl(0 0% var(--font-lit));
 	--colorFont-Op0: hsl(0 0% var(--font-lit) / var(--font-opacity0));

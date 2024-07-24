@@ -19,9 +19,9 @@ function isNoIndex(url) {
 	return false;
 }
 
-function isNotVeryImportant(url) {
+function isEvents(url) {
 	let lowUrl = url.toLowerCase();
-	if (lowUrl.includes('https://antrepriza.eu/ru/events/') || lowUrl.includes('https://antrepriza.eu/de/events/')) {
+	if (lowUrl.includes('https://antrepriza.eu/ru/theater/events/') || lowUrl.includes('https://antrepriza.eu/de/theater/events/')) {
 		return true;
 	}
 	return false;
@@ -83,10 +83,10 @@ export default defineConfig({
 			serialize(item) {
 				if (isNoIndex(item.url)) return undefined;
 
-				if (isNotVeryImportant(item.url)) {
+				if (isEvents(item.url)) {
 					item.changefreq = 'weekly';
 					item.lastmod = now;
-					item.priority = 0.4;
+					item.priority = 0.5;
 				}
 				if (isVerySpecialPage(item.url)) {
 					item.changefreq = 'weekly';

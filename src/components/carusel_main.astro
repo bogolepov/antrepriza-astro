@@ -83,7 +83,7 @@ let strLoading;
             else strLoading = "lazy";
 
             let perform = actualProgram.find(performance => performance.play_id == play.id);
-            let isPremiere = (perform && perform.premiere);
+            let isPremiere = (perform && actualProgram.find(performance => performance.play_id == play.id && performance.premiere));
 
             let languageLabel = dictionary.language[lang];
             if (lang === "ru") languageLabel = languageLabel.toLowerCase();

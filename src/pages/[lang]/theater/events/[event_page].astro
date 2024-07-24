@@ -11,17 +11,25 @@ import program from '@public_data/afisha.json'
 
 export const getStaticPaths = (() => { 
   const ONE_DAY: number = 24*60*60*1000;	
+  const SID_FESTIVAL = "festival";
+  const SID_TOUR = "tour";
+
   program.sort((play1, play2) => Date.parse(play1.date+"T"+play1.time) - Date.parse(play2.date+"T"+play2.time));
-  let events = program.filter(performance => (Date.parse(performance.date) + ONE_DAY >= Date.now() && theater.fix_stages.includes(performance.stage_sid) ));
+  let events = program.filter(performance => (Date.parse(performance.date) + ONE_DAY >= Date.now() ));
   return theater.languages.flatMap(lng => {
     return events.map(event => {
+      let event_sid;
+      if (theater.fix_stages.includes(event.stage_sid)) event_sid = event.stage_sid;
+      else if (event.event_type && event.event_type.is_festival) event_sid = SID_FESTIVAL;
+      else if (event.event_type && event.event_type.is_tour) event_sid = SID_TOUR;
+
       let play = plays.find(item => item.id === event.play_id);
       let aTitle = dictionary.play_lang[lng.lang_code] + " " + 
         dictionary.opening_quote[lng.lang_code] + play.title[lng.lang_code] + 
         dictionary.closing_quote[lng.lang_code] + " " + event.date;
-      let eventDate = event.date.replaceAll("-","_");
-      let eventTime = event.time.replaceAll(":","_");
-      let pageName = `${play.suffix}_${eventDate}_${eventTime}`;
+      let eventDate = event.date.replaceAll("-","");
+      let eventTime = event.time.replaceAll(":","");
+      let pageName = `${event_sid}_${eventDate}_${eventTime}`;
       return {
         params: {lang: lng.lang_code, event_page: pageName},
         props: {pageLang: lng.lang_code, pageTitle: aTitle, playID: play.id.toString(), playDate: event.date, playTime: event.time},
