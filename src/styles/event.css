@@ -7,7 +7,7 @@
 	line-height: 1.35em;
 }
 
-.event-flex {
+.ev-event-flex {
 	display: flex;
 	flex-direction: row-reverse;
 	gap: 2em;
@@ -17,16 +17,16 @@
 	max-width: 900px;
 }
 
-.flex-item-poster {
+.ev-flex-item-poster {
 	text-align: center;
 	margin: 0 auto;
 }
 
-.flex-item-description {
+.ev-flex-item-description {
 	margin: 0 auto;
 }
 
-.poster {
+.ev-poster {
 	width: 100%;
 	max-width: 280px;
 	margin: 0 auto;
@@ -55,23 +55,33 @@
 	font-size: clamp(1.1rem, 2vw, 1.25rem);
 }
 
-.play-property.festival {
+.play-property.ev-festival {
 	padding-top: 1em;
 }
 
-.info-flex {
+.ev-info-flex {
 	display: flex;
 	flex-direction: row;
 	column-gap: 0.25em;
 	padding-top: 1em;
 }
 
-.link-more {
+.ev-link-more {
 	font-size: clamp(1rem, 1.8vw, 1.2rem);
 	font-weight: var(--font-normal-weight);
 	text-decoration: underline;
 }
 
 .event h4:has(a) {
-	padding: 1.5em 0;
+	padding: 0.8em 0 1.8em 0;
+}
+
+.event:not(:has(.ev-button)) h4:has(a) {
+	padding-top: 1.5em;
+}
+
+.pink-button.ev-button {
+	font-size: 1rem;
+	letter-spacing: 1px;
+	padding: 0.25em 1.5em 0.25em 1.5em;
 }

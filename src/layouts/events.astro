@@ -47,34 +47,33 @@ let isFirstTab = true;
 
 ---
 
-<section class="event">
+<section class="events">
   <h1 class="section-title">{dictionary.events[lang].toUpperCase()}</h1>
   <form>
     {
       events.map(evGroup => {
         let isChecked = isFirstTab;
         isFirstTab = false;
-        if (isChecked) return <input type="radio" id={'tab-'+evGroup.sid} name="events" value={'tab-'+evGroup.sid} checked /> ;
-        else return <input type="radio" id={'tab-'+evGroup.sid} name="events" value={'tab-'+evGroup.sid} /> ;
+        if (isChecked) return <input type="radio" id={'evs-tab-'+evGroup.sid} name="events" value={'evs-tab-'+evGroup.sid} checked /> ;
+        else return <input type="radio" id={'evs-tab-'+evGroup.sid} name="events" value={'evs-tab-'+evGroup.sid} /> ;
       })
     }
 
-    <div class="flex-tabs">
+    <div class="evs-flex-tabs">
       {
         events.map(evGroup => {
           return (
-            <label class={'tab-' + evGroup.sid + " tab-item"} for={'tab-'+evGroup.sid}>{evGroup.tabLabel}</label>
+            <label class={'evs-tab-' + evGroup.sid + " evs-tab-item"} for={'evs-tab-'+evGroup.sid}>{evGroup.tabLabel}</label>
           );
         })
       }
-      <div class="tab-item-last"></div>
+      <div class="evs-tab-item-last"></div>
     </div>
 
-    <div class="list-container">
     {
       events.flatMap(evGroup => {
         return (
-          <ul class={"list-" + evGroup.sid}>
+          <ul class={"evs-list-" + evGroup.sid}>
             {
               evGroup.list.map(event => {
                 let play = plays.find(item => item.id === event.play_id);
@@ -86,11 +85,11 @@ let isFirstTab = true;
                 let playDate = new Date(fullDate); 
 
                 return (
-                  <h4><a class="event-flex" href={`/${lang}/theater/events/${pageName}`}>                    
+                  <li><a class="evs-event-flex" href={`/${lang}/theater/events/${pageName}`}>                    
                     <div>{playDate.getDate().toString().padStart(2, '0')}.{(playDate.getMonth()+1).toString().padStart(2, '0')}.{playDate.getFullYear().toString().padStart(4, '0')}</div>
                     <div class="font-opacity1">{event.time}</div>
                     <div>{play.title[lang]}</div>          
-                  </a></h4>
+                  </a></li>
                 );
               })
             }
@@ -99,7 +98,6 @@ let isFirstTab = true;
         );
       })
     }
-    </div>
 
   </form>
   <div class="page-end"></div>
