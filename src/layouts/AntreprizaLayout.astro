@@ -19,7 +19,7 @@ if (currentPath[currentPath.length-1] === lang) langRoot = true;
 
 let now = new Date();
 let pageTitle =  theater.longTheaterName[lang];
-if (title && title.length > 1) {
+if (title && title.length > 0) {
 	if (langRoot) pageTitle = pageTitle +  ' — ' + title;
 	else pageTitle = title +  ' — ' + pageTitle;
 }
@@ -78,13 +78,35 @@ let isCanonicalIndex = (pathname === '/ru/');
 		<meta name="generator" content={Astro.generator} />
 	</head>
 
-	<body class="no-js">
+	<body class="no-js" data-theme="dark">
 
 	<script>
+		function removeNoJS() {
+			let elements = document.getElementsByClassName('no-js');
+			for (let element of elements) {
+				element.classList.remove('no-js');
+			}
+		}
+
+		const CNF_LANG = 'LANG';
+		const LANG_RU = 'ru';
+		const LANG_DE = 'de';
+		const LANG_LIST = [LANG_RU, LANG_DE];
+
+		function saveLangOfPage() {
+			let path = window.location.pathname.toLowerCase();
+			for (let lang of LANG_LIST) {
+				if (path.includes(`/${lang}/`)) {
+					localStorage.setItem(CNF_LANG, lang);
+					return;
+				}
+			}
+		}
+
 		document.addEventListener('DOMContentLoaded', () => {
 			removeNoJS();
-			initLangEnv();
-			initColorMode();
+			saveLangOfPage();
+
 			initHeaderSubMenuListener();
 			initHoverModeForTouchScreen();
 			initQuestionForm();

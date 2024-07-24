@@ -5,11 +5,8 @@ const CNF_MODE = 'MODE';
 
 const LANG_RU = 'ru';
 const LANG_DE = 'de';
-const MODE_DARK = 'dark';
-const MODE_LIGHT = 'light';
 
 const LANG_LIST = [LANG_RU, LANG_DE];
-const MODE_LIST = [MODE_LIGHT, MODE_DARK];
 
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
@@ -17,17 +14,6 @@ let currLang;
 let currMode;
 
 let dictionary;
-
-/* --------------------------------------------------- */
-/* ------------------- NoJS flag --------------------- */
-/* ----- remove NoJS flag, because JS isn't out ------ */
-/* --------------------------------------------------- */
-function removeNoJS() {
-	let elements = document.getElementsByClassName('no-js');
-	for (let element of elements) {
-		element.classList.remove('no-js');
-	}
-}
 
 /* --------------------------------------------------- */
 /* -------------------- LANGUAGE --------------------- */
@@ -41,14 +27,6 @@ function selectRoot() {
 		currLang = LANG_RU;
 	}
 	window.location.replace(`/${currLang}/`);
-}
-
-function initLangEnv() {
-	currLang = getCurrentPageLang();
-
-	if (currLang) {
-		localStorage.setItem(CNF_LANG, currLang);
-	}
 }
 
 function changeLangToRussian() {
@@ -68,58 +46,9 @@ function getSystemValidLang() {
 	}
 }
 
-function getCurrentPageLang() {
-	let page = window.location.pathname;
-	for (let lang of LANG_LIST) {
-		if (page.includes(`/${lang}`)) {
-			return lang;
-		}
-	}
-}
-
 function isLangValid(lang) {
 	if (lang == LANG_DE || lang == LANG_RU) return true;
 	else return false;
-}
-
-/* --------------------------------------------------- */
-/* ------------------- COLOR MODE -------------------- */
-/* --------------------------------------------------- */
-let themeCheckboxes;
-
-function initColorMode() {
-	themeCheckboxes = document.getElementsByClassName('theme-checkbox');
-
-	let mode = getUserMode();
-	if (!mode) mode = MODE_DARK;
-
-	document.body.dataset.theme = mode;
-
-	// set correct state to button of mode changing
-	// and add a listener for click-event
-	for (let checkbox of themeCheckboxes) {
-		checkbox.checked = mode === MODE_DARK;
-		checkbox.addEventListener('click', () => {
-			for (let tmpCheckbox of themeCheckboxes) {
-				if (tmpCheckbox != checkbox) tmpCheckbox.checked = checkbox.checked;
-			}
-
-			let newMode = checkbox.checked ? MODE_DARK : MODE_LIGHT;
-			document.body.dataset.theme = newMode;
-			localStorage.setItem(CNF_MODE, newMode);
-		});
-	}
-}
-
-function getUserMode() {
-	let userMode = localStorage.getItem(CNF_MODE);
-	if (userMode) {
-		for (let mode of MODE_LIST) {
-			if (userMode.includes(mode)) {
-				return mode;
-			}
-		}
-	}
 }
 
 /* --------------------------------------------------- */
@@ -545,3 +474,57 @@ function displayErrors(errors) {
 		});
 	});
 }
+
+/* --------------------------------------------------- */
+/* ------------------- NoJS flag --------------------- */
+/* ----- remove NoJS flag, because JS isn't out ------ */
+/* --------------------------------------------------- */
+// function removeNoJS() {
+// 	let elements = document.getElementsByClassName('no-js');
+// 	for (let element of elements) {
+// 		element.classList.remove('no-js');
+// 	}
+// }
+
+/* --------------------------------------------------- */
+/* ------------------- THEME MODE -------------------- */
+/* --------------------------------------------------- */
+// const THEME_DARK = 'dark';
+// const THEME_LIGHT = 'light';
+// const THEME_LIST = [THEME_LIGHT, THEME_DARK];
+// let themeCheckboxes;
+
+// function initThemeMode() {
+// 	let mode = localStorage.getItem(CNF_MODE);
+// 	if (!mode || !THEME_LIST.includes(mode)) mode = THEME_DARK;
+
+// 	document.body.dataset.theme = mode;
+
+// 	themeCheckboxes = document.querySelectorAll('.theme-checkbox');
+// 	themeCheckboxes.forEach(elem => {
+// 		elem.checked = mode === THEME_DARK;
+
+// 		elem.addEventListener('click', event => {
+// 			themeCheckboxes.forEach(item => {
+// 				if (item != event.target) item.checked = event.target.checked;
+// 			});
+
+// 			let newMode = event.target.checked ? THEME_DARK : THEME_LIGHT;
+// 			document.body.dataset.theme = newMode;
+// 			localStorage.setItem(CNF_MODE, newMode);
+// 		});
+// 	});
+// }
+
+/* --------------------------------------------------- */
+/* ------------------ LANG OF PAGE ------------------- */
+/* --------------------------------------------------- */
+// function saveLangOfPage() {
+// 	let path = window.location.pathname;
+// 	for (let lang of LANG_LIST) {
+// 		if (path.includes(`/${lang}/`)) {
+// 			localStorage.setItem(CNF_LANG, lang);
+// 			return;
+// 		}
+// 	}
+// }

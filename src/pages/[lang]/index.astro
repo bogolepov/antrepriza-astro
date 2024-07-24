@@ -6,7 +6,7 @@ export function getStaticPaths () {
   return theater.languages.map(lng => {
     return {
       params: {lang: lng.lang_code},
-      props: {pageLang: lng.lang_code, pageTitle: dictionary.main_page[lng.lang_code]},
+      props: {pageLang: lng.lang_code, pageTitle: ""},
     };
   });
 }
