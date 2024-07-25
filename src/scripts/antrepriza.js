@@ -184,7 +184,7 @@ function dictionary_prepare() {
 export async function submitQuestionForm(event) {
 	event.preventDefault();
 
-	const form = event.target;
+	const form = document.querySelector('#question-form');
 	const formLoader = document.querySelector('.layer-on-parent.question-form-loader');
 	const formResult = document.querySelector('.layer-on-parent.question-form-result-wrapper');
 	if (!formResult) console.error("Can't find question-form-result");
@@ -271,7 +271,7 @@ function validateForm(formData) {
 	else if (name.length < 2) errors.push({ field: 'name', message: 'err__name_to_short' });
 
 	if (!email) errors.push({ field: 'email', message: 'err__empty_email' });
-	else if (!EMAIL_REGEX.test(email) || email.length < 5 || email.length > 64)
+	else if (!consts.EMAIL_REGEX.test(email) || email.length < 5 || email.length > 64)
 		errors.push({ field: 'email', message: 'err__email_not_correct' });
 
 	if (!message) errors.push({ field: 'message', message: 'err__empty_message' });
@@ -355,7 +355,7 @@ export async function submitNewsletterForm(event) {
 
 	resetMessageTimer();
 
-	const form = event.target;
+	const form = document.querySelector('#newsletter-form');
 	const emailInput = form.querySelector('.newsletter__input');
 	const emailInputLoader = form.querySelector('.newsletter-input-loader');
 
@@ -363,7 +363,7 @@ export async function submitNewsletterForm(event) {
 
 	let errorType = 0;
 	if (!emailAddress) errorType = 1;
-	else if (!EMAIL_REGEX.test(emailAddress) || emailAddress.length < 5 || emailAddress.length > 64) errorType = 2;
+	else if (!consts.EMAIL_REGEX.test(emailAddress) || emailAddress.length < 5 || emailAddress.length > 64) errorType = 2;
 
 	if (errorType) {
 		dictionary_prepare().then(() => {
