@@ -232,7 +232,6 @@ async function newsletterService() {
 		},
 		body: JSON.stringify(newsletterData),
 	};
-	console.log(newsletterData);
 
 	const handleResult = (message, isOk) => {
 		elemLoader.classList.remove('show');
@@ -255,7 +254,7 @@ async function newsletterService() {
 			})
 			.then(data => {
 				resMessage = data.message;
-				console.log(data.message);
+				// console.log(data.message);
 				if (isOk) handleResult(resMessage, true);
 				else throw new Error();
 			})
@@ -301,6 +300,9 @@ function dictionary_prepare() {
 
 async function submitQuestionForm(event) {
 	event.preventDefault();
+
+	alert('public');
+	return;
 
 	const form = event.target;
 	const formLoader = document.querySelector('.layer-on-parent.question-form-loader');

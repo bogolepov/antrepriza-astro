@@ -18,6 +18,16 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 
 ---
 
+<script>
+  import { initQuestionForm, submitNewsletterForm } from "@scripts/antrepriza.js"
+  document.addEventListener('DOMContentLoaded', () => {
+    initQuestionForm();
+
+    let newsButton = document.querySelector('#newsletter-button');
+    if (newsButton) newsButton.addEventListener('click', submitNewsletterForm);
+  });
+</script>
+
 <footer>
   <div class="footer-flex">
     <div class="footer-flex-item flex2">
@@ -54,10 +64,10 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
     <div class="footer-flex-item flex2">
       <div class="newsletter">
         <div class="newsletter-label">{dictionary.newsletter_title[lang]}</div>
-        <form method="POST" id="newsletter-form" class="newsletter-form" onsubmit="submitNewsletterForm(event)">
+        <form method="POST" id="newsletter-form" class="newsletter-form">
           <div class="newsletter-input-container">
             <input type="text" class="newsletter__input" name="email" placeholder={dictionary.email_hint[lang]} autocomplete="on">
-            <button class="newsletter__button">&#10153;</button>
+            <button id="newsletter-button" class="newsletter__button">&#10153;</button>
             <div class="newsletter-input-loader"></div>
           </div>
           <div class="newsletter-message"></div>
@@ -87,7 +97,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
             <div class="question-close" >
               <label class="question-switcher-label" for="question__checkbox">&#10006;</label>
             </div>
-            <form method="POST" id="question-form" class="question-form" onsubmit="submitQuestionForm(event)" data-netlify="true">
+            <form method="POST" id="question-form" class="question-form" data-netlify="true">
               <input type="hidden" name="subject" value={theater.shortTheaterName[lang] + " [" + lang.toUpperCase() + "]: " + "{topic} (#%{submissionId})"}  />
               <div class="form-label font-opacity0">{dictionary.question_subject[lang]}</div>
               <div class="select-wrapper">
@@ -111,7 +121,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
               <textarea class="form-input" name="message" rows="5" maxlength="2000" placeholder={dictionary.message_hint[lang]} autocomplete="on"></textarea>
               <div class="form-error" data-for="message"></div>
               <div class="question-btn-wrapper">
-                <button class="pink-button" type="submit">{dictionary.question_btn_send[lang]}</button>
+                <button id="qf-submit-button" class="pink-button" type="submit">{dictionary.question_btn_send[lang]}</button>
               </div>
             </form>
             <Loader js_loader_name='question-form-loader' background='no'></Loader>

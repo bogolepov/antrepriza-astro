@@ -26,9 +26,11 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 
 ---
 <script>
-  import { initThemeMode } from "@scripts/antrepriza.js"
+  import { initThemeMode, initHeaderSubMenuListener, initHoverModeForTouchScreen } from "@scripts/antrepriza.js"
 	document.addEventListener('DOMContentLoaded', () => {
 		initThemeMode();
+		initHeaderSubMenuListener();
+		initHoverModeForTouchScreen()
 	});
 </script>
 

@@ -46,7 +46,7 @@ export function initTicketBookForm() {
 	elemTicketLayer = document.querySelector('.modal-layer-ticket');
 
 	let btn = elemTicketLayer.querySelector('#ticket-form-close-button');
-	if (!btn) console.log('CLOSE BUTTON not found');
+	if (!btn) console.error('CLOSE BUTTON not found');
 	else btn.addEventListener('click', () => resetTicketForm());
 
 	elemAntreprizaButton = elemTicketLayer.querySelector('#ticket-form-book-antrepriza');
@@ -279,7 +279,7 @@ function getSeatingInfo() {
 
 function getTicketCount(price_type) {
 	let elCounter = document.querySelector('#count-' + price_type);
-	if (!elCounter) console.log('COUNT-element: NOT FOUND!');
+	if (!elCounter) console.error('COUNT-element: NOT FOUND!');
 	return Number(elCounter.value);
 }
 
