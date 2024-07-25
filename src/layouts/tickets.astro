@@ -7,8 +7,9 @@ import prices from '@data/prices.json'
 import program from '@public_data/afisha.json'
 import dictionary from '@data/dictionary.json'
 import theater from '@data/theater.json'
-
 import plays from '@data/plays.json'
+
+import { ONE_DAY } from '@scripts/consts';
 
 import TicketBookButton from "@components/ticket_book_button.astro";
 import TicketForm from "@components/ticket_form.astro";
@@ -19,8 +20,6 @@ import { Picture } from 'astro:assets';
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg,jpg,png}');
 
 program.sort((play1, play2) => Date.parse(play1.date+"T"+play1.time) - Date.parse(play2.date+"T"+play2.time));
-
-const ONE_DAY: number = 24*60*60*1000;	
 
 let actualProgram = program.filter(performance => (Date.parse(performance.date) + ONE_DAY >= Date.now() && !performance.no_tickets));
 // let actualProgram = program;

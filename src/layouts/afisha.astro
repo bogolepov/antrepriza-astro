@@ -6,8 +6,9 @@ const {lang, hide_section_title} = Astro.props;
 import program from '@public_data/afisha.json'
 import dictionary from '@data/dictionary.json'
 import theater from '@data/theater.json'
-
 import plays from '@data/plays.json'
+
+import { ONE_DAY } from '@scripts/consts';
 
 import TicketBookButton from "@components/ticket_book_button.astro";
 import TicketForm from "@components/ticket_form.astro";
@@ -20,8 +21,6 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 // if (!images[url]) throw new Error(`"${url}" does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif}"`);
 
 program.sort((play1, play2) => Date.parse(play1.date+"T"+play1.time) - Date.parse(play2.date+"T"+play2.time));
-
-const ONE_DAY: number = 24*60*60*1000;	
 
 let iMonth: number = -1;
 ---

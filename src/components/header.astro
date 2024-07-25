@@ -25,35 +25,8 @@ const pathname: string = new URL(Astro.request.url).pathname;
 const currentPath: string[] = pathname.split("/").filter(Boolean);
 
 ---
-
 <script>
-	const THEME_DARK = 'dark';
-	const THEME_LIGHT = 'light';
-	const THEME_LIST = [THEME_LIGHT, THEME_DARK];
-	let themeCheckboxes;
-
-	function initThemeMode() {
-		let mode = localStorage.getItem(CNF_MODE);
-		if (!mode || !THEME_LIST.includes(mode)) mode = THEME_DARK;
-
-		document.body.dataset.theme = mode;
-
-		themeCheckboxes = document.querySelectorAll('.theme-checkbox');
-		themeCheckboxes.forEach(elem => {
-			elem.checked = mode === THEME_DARK;
-
-			elem.addEventListener('click', event => {
-				themeCheckboxes.forEach(item => {
-					if (item != event.target) item.checked = event.target.checked;
-				});
-
-				let newMode = event.target.checked ? THEME_DARK : THEME_LIGHT;
-				document.body.dataset.theme = newMode;
-				localStorage.setItem(CNF_MODE, newMode);
-			});
-		});
-	}
-
+  import { initThemeMode } from "@scripts/antrepriza.js"
 	document.addEventListener('DOMContentLoaded', () => {
 		initThemeMode();
 	});

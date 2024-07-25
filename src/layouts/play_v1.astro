@@ -11,6 +11,8 @@ import plays from '@data/plays.json'
 import program from '@public_data/afisha.json'
 import photos from '@data/plays_photos.json'
 
+import { ONE_DAY } from '@scripts/consts';
+
 import TicketBookButton from "@components/ticket_book_button.astro";
 import TicketForm from "@components/ticket_form.astro";
 import Gallery from "@components/play_gallery.astro";
@@ -20,7 +22,6 @@ import { getEntry } from 'astro:content';
 
 let thisPlay = plays.filter(play => play.id == play_id)[0];
 
-const ONE_DAY: number = 24*60*60*1000;	
 let thisPlayDates = program.filter(performance => performance.play_id == play_id);
 thisPlayDates = thisPlayDates.filter(performance => Date.parse(performance.date) + ONE_DAY >= Date.now());
 thisPlayDates.sort((perform1, perform2) => Date.parse(perform1.date+"T"+perform1.time) - Date.parse(perform2.date+"T"+perform2.time));

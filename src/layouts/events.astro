@@ -9,7 +9,8 @@ import dictionary from '@data/dictionary.json'
 import theater from '@data/theater.json'
 import program from '@public_data/afisha.json'
 
-const ONE_DAY: number = 24*60*60*1000;	
+import { ONE_DAY } from '@scripts/consts';
+
 program.sort((play1, play2) => Date.parse(play1.date+"T"+play1.time) - Date.parse(play2.date+"T"+play2.time));
 let actualProgram = program.filter(performance => Date.parse(performance.date) + ONE_DAY >= Date.now() );
 let events = [];

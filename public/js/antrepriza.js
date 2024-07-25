@@ -1,55 +1,11 @@
 'use strict';
 
-const CNF_LANG = 'LANG';
-const CNF_MODE = 'MODE';
-
-const LANG_RU = 'ru';
-const LANG_DE = 'de';
-
-const LANG_LIST = [LANG_RU, LANG_DE];
-
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 let currLang;
 let currMode;
 
 let dictionary;
-
-/* --------------------------------------------------- */
-/* -------------------- LANGUAGE --------------------- */
-/* --------------------------------------------------- */
-
-function selectRoot() {
-	let userLang = localStorage.getItem(CNF_LANG) || navigator.language || navigator.userLanguage;
-	if (userLang && (userLang = userLang.toLowerCase()) && userLang.includes(LANG_DE)) {
-		currLang = LANG_DE;
-	} else {
-		currLang = LANG_RU;
-	}
-	window.location.replace(`/${currLang}/`);
-}
-
-function changeLangToRussian() {
-	localStorage.setItem(CNF_LANG, LANG_RU);
-}
-function changeLangToGerman() {
-	localStorage.setItem(CNF_LANG, LANG_DE);
-}
-
-function getSystemValidLang() {
-	let sysLang = navigator.language || navigator.userLanguage;
-	if (!sysLang) return;
-
-	sysLang = sysLang.toLowerCase();
-	for (let lang of LANG_LIST) {
-		if (sysLang.includes(lang)) return lang;
-	}
-}
-
-function isLangValid(lang) {
-	if (lang == LANG_DE || lang == LANG_RU) return true;
-	else return false;
-}
 
 /* --------------------------------------------------- */
 /* ------------- Header Submenu Listener ------------- */
@@ -519,6 +475,11 @@ function displayErrors(errors) {
 /* --------------------------------------------------- */
 /* ------------------ LANG OF PAGE ------------------- */
 /* --------------------------------------------------- */
+// const CNF_LANG = 'LANG';
+// const LANG_RU = 'ru';
+// const LANG_DE = 'de';
+// const LANG_LIST = [LANG_RU, LANG_DE];
+
 // function saveLangOfPage() {
 // 	let path = window.location.pathname;
 // 	for (let lang of LANG_LIST) {
