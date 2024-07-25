@@ -75,6 +75,7 @@ let isCanonicalIndex = (pathname === '/ru/');
 		}
 		<link rel="alternate" href={theater.main_website + pathname.replace('/'+lang+'/', '/ru/')} hreflang="x-default" />
 		<!-- SEO -->
+		<meta http-equiv="Permissions-Policy" content="unload=()">
 		<meta name="generator" content={Astro.generator} />
 	</head>
 

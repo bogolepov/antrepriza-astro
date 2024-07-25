@@ -1,6 +1,8 @@
 // import { CNF_MODE, THEME_LIST, THEME_DARK, THEME_LIGHT } from '@scripts/consts';
 import * as consts from '@scripts/consts';
 
+let dictionary;
+
 /* --------------------------------------------------- */
 /* ------------------- NoJS flag --------------------- */
 /* ----- remove NoJS flag, because JS isn't out ------ */
@@ -15,10 +17,12 @@ export function removeNoJS() {
 /* --------------------------------------------------- */
 /* ------------------ LANG OF PAGE ------------------- */
 /* --------------------------------------------------- */
+let currLang;
 export function saveLangOfPage() {
 	let path = window.location.pathname.toLowerCase();
 	for (let lang of consts.LANG_LIST) {
 		if (path.includes(`/${lang}/`)) {
+			currLang = lang;
 			localStorage.setItem(consts.CNF_LANG, lang);
 			return;
 		}
