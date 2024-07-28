@@ -364,6 +364,10 @@ footer .logo-flex a:focus-visible img {
 	padding: 0 20px 20px 20px;
 }
 
+/* this class is important! html-js-css spm protection */
+.question-layer .xxx {
+	display: none;
+}
 .question-layer select.form-input::-ms-expand {
 	display: none;
 }

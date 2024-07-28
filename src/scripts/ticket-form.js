@@ -1,3 +1,5 @@
+import * as consts from '@scripts/consts';
+
 import { atom } from 'nanostores';
 import { isCartOpen, isTicketsAdded } from '@react-components/reservation/cartStore';
 
@@ -10,6 +12,8 @@ const clientJsons = { afisha: null, theater: null, dictionary: null };
 let afishaItem;
 let stage;
 let playItem;
+
+let currLang;
 
 let afishaButton;
 
@@ -37,6 +41,7 @@ let defaultDistributorLabel;
 let defaultDistribButtonText;
 
 export function initTicketBookForm() {
+	currLang = localStorage.getItem(consts.CNF_LANG);
 	let ticketBtns = document.querySelectorAll('.pink-button.book-ticket.open-book-form');
 	for (let btn of ticketBtns) {
 		// btn.disabled = false;

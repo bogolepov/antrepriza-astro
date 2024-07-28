@@ -143,7 +143,7 @@ const { Content } = await entry.render();
                   console.log("PLAY: a person with id " + person_id + " isn't found !!!");
                   return;
                 }
-                if (person.length > 1) console.log("PLAY: MORE THAN ONE PERSON have THE SAME ID ["  + person_id + "] !!!");
+                // if (person.length > 1) console.log("PLAY: MORE THAN ONE PERSON have THE SAME ID ["  + person_id + "] !!!");
                 return person.map(_person => {
                   if (_person.suffix)
                     return (
@@ -196,10 +196,10 @@ const { Content } = await entry.render();
               character.actors.map((actor_id, i) => {
                 let actor = theater.people.filter(person => person.id == actor_id);
                 if (!actor.length) {
-                  console.log("PLAY: an actor with id " + actor_id + "isn't found !!!");
+                  // console.log("PLAY: an actor with id " + actor_id + "isn't found !!!");
                   return;
                 }
-                if (actor.length > 1) console.log("PLAY: MORE THAN ONE PERSON have THE SAME ID ["  + actor_id + "] !!!");
+                // if (actor.length > 1) console.log("PLAY: MORE THAN ONE PERSON have THE SAME ID ["  + actor_id + "] !!!");
                 return actor.map(_actor => {
                   return (
                     <div>

@@ -23,6 +23,17 @@
 	"hello": { "ru": "Здравствуйте", "de": "Hallo" },
 	"dear_audience": { "ru": "Дорогой зритель", "de": "Liebes Publikum" },
 	"your__theater": { "ru": "Ваш", "de": "Ihr" },
+	"question_subject": { "ru": "Тема вопроса", "de": "Betreff" },
+	"lang_message": { "ru": "Сообщение", "de": "Nachricht" },
+	"lang_email": { "ru": "Email", "de": "E-Mail" },
+	"email_feedback_form_text": {
+		"ru": "Ваш запрос успешно отправлен. В случае необходимости мы свяжемся с Вами в ближайшее время.",
+		"de": "Ihre Anfrage wurde erfolgreich gesendet. Bei Bedarf werden wir uns schnellstmöglich mit Ihnen in Verbindung setzen."
+	},
+	"email_feedback_form_text_antrepriza": {
+		"ru": "Новый запрос на сайте через Форму обратной связи.",
+		"de": "Sie haben eine neue Rückfrage auf der Webseite."
+	},
 	"email_reservation_text": {
 		"ru": "Большое спасибо за Ваше бронирование. Ниже Вы найдете информацию по бронированию.",
 		"de": "vielen Dank für Ihre Ticketreservierung. Nachfolgend finden Sie Informationen zur Reservierung."

@@ -145,6 +145,7 @@ export function initHoverModeForTouchScreen() {
 /* --------------------------------------------------- */
 /* ------------------ Question form ------------------ */
 /* --------------------------------------------------- */
+const X_DATE = Date.now;
 export function initQuestionForm() {
 	const formCheckbox = document.querySelector('#question__checkbox');
 	formCheckbox.addEventListener('change', event => {
@@ -156,14 +157,23 @@ export function initQuestionForm() {
 
 	let btnSubmit = document.querySelector('#qf-submit-button');
 	if (btnSubmit) btnSubmit.addEventListener('click', submitQuestionForm);
+
+	let elemPhone = document.querySelector('.x-phone');
+	if (elemPhone) {
+		elemPhone.classList.remove('x-phone');
+		elemPhone.classList.add('xxx');
+	}
+	let elemX = document.querySelector('.xxx');
+	if (elemX) elemX.value = X_DATE.toString();
 }
 
 function closeQuestionForm() {
+	console.log('close question form!');
 	const formCheckbox = document.querySelector('#question__checkbox');
 	formCheckbox.disabled = false;
 	formCheckbox.checked = false;
-	document.querySelector('#question-form').reset();
 	resetErrorElements();
+	document.querySelector('#question-form').reset();
 }
 
 function dictionary_prepare() {
@@ -198,12 +208,17 @@ export async function submitQuestionForm(event) {
 	let newValue;
 	formData.forEach((value, key) => {
 		newValue = value.trim().replace(/\s+/g, ' ');
-		if (key == 'subject') newValue = newValue.replace('{topic}', formData.get('topic'));
+		if (key === 'subject') newValue = newValue.replace('{topic}', formData.get('topic'));
+		// if (key === 'phone') newValue = '12345';
 		formData.set(key, newValue);
 		formDataObject[key] = newValue;
 	});
 
 	const validationErrors = validateForm(formDataObject);
+	if (validationErrors.length === 1 && validationErrors[0].message === 'spam') {
+		closeQuestionForm();
+		return;
+	}
 
 	displayErrors(validationErrors);
 	if (validationErrors.length > 0) return;
@@ -221,7 +236,7 @@ export async function submitQuestionForm(event) {
 		closeQuestionForm();
 	};
 
-	let resMessage;
+	// let resMessage;
 
 	// dictionary_prepare().then(() => {
 	// 	setTimeout(() => {
@@ -237,35 +252,96 @@ export async function submitQuestionForm(event) {
 	// 	}, 300);
 	// });
 
-	dictionary_prepare()
-		.finally(() => {
-			return fetch('/', {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-				body: new URLSearchParams(formData).toString(),
-			});
-		})
-		.then(() => {
+	const handleResult = isOk => {
+		let resMessage;
+		if (isOk) {
 			formResultButton.classList.add('ok');
-			resMessage = dictionary ? dictionary['contact_form__result_ok'][currLang] : currLang == 'ru' ? 'Успешно!' : 'Erfolgreich!';
-		})
-		.catch(error => {
+			resMessage = dictionary ? dictionary['contact_form__result_ok'][currLang] : currLang == 'ru' ? 'Отправлено!' : 'Gesendet!';
+		} else {
 			formResultButton.classList.add('error');
 			resMessage = dictionary ? dictionary['contact_form__result_error'][currLang] : currLang == 'ru' ? 'Ошибка...' : 'Unerfolgreich...';
 			console.error(error);
-		})
-		.finally(() => {
-			formResultMessage.textContent = resMessage;
-			formLoader.classList.remove('show');
-			formResult.classList.add('show');
-			formResultButton.addEventListener('click', onResultClick);
-		});
+		}
+
+		formResultMessage.textContent = resMessage;
+		formLoader.classList.remove('show');
+		formResult.classList.add('show');
+		formResultButton.addEventListener('click', onResultClick);
+	};
+
+	let now = new Date();
+
+	const questionData = {
+		lang: currLang,
+		subject: formDataObject.subject,
+		phone: formDataObject.topic + formDataObject.name,
+		topic: formDataObject.topic,
+		name: formDataObject.name,
+		email: formDataObject.email,
+		message: formDataObject.message,
+		now: now.getTime(),
+	};
+	const options = {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(questionData),
+	};
+
+	let isOk;
+	dictionary_prepare().finally(() => {
+		fetch('/.netlify/functions/feedbackForm', options)
+			.then(response => {
+				isOk = response.ok;
+				return response.json();
+			})
+			.then(data => {
+				// console.log(data.message);
+				if (isOk) handleResult(true);
+				else throw new Error(data.message);
+			})
+			.catch(() => handleResult(false));
+	});
+
+	// dictionary_prepare()
+	// 	.finally(() => {
+	// 		return fetch('/', {
+	// 			method: 'POST',
+	// 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+	// 			body: new URLSearchParams(formData).toString(),
+	// 		});
+	// 	})
+	// 	.then(() => {
+	// 		formResultButton.classList.add('ok');
+	// 		resMessage = dictionary ? dictionary['contact_form__result_ok'][currLang] : currLang == 'ru' ? 'Успешно!' : 'Erfolgreich!';
+	// 	})
+	// 	.catch(error => {
+	// 		formResultButton.classList.add('error');
+	// 		resMessage = dictionary ? dictionary['contact_form__result_error'][currLang] : currLang == 'ru' ? 'Ошибка...' : 'Unerfolgreich...';
+	// 		console.error(error);
+	// 	})
+	// 	.finally(() => {
+	// 		formResultMessage.textContent = resMessage;
+	// 		formLoader.classList.remove('show');
+	// 		formResult.classList.add('show');
+	// 		formResultButton.addEventListener('click', onResultClick);
+	// 	});
 }
 
 function validateForm(formData) {
-	const { name, email, message } = formData;
+	const { subject, phone, name, email, message } = formData;
 
 	const errors = [];
+
+	if (!subject || !subject.includes(' - ')) {
+		errors.push({ field: 'subject', message: 'spam' });
+		return errors;
+	}
+	if (!phone || phone !== X_DATE.toString()) {
+		errors.push({ field: 'phone', message: 'spam' });
+		return errors;
+	}
 
 	if (!name) errors.push({ field: 'name', message: 'err__empty_name' });
 	else if (name.length < 2) errors.push({ field: 'name', message: 'err__name_to_short' });

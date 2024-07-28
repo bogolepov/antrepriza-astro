@@ -37,7 +37,8 @@ export function Cart({ lang, tickets, totalAmount, handleCloseClick, handleAddTi
 	const handleFinalFormSubmit = async (name, email, handleResult) => {
 		// console.log('Name: ' + name + ', email: ' + email);
 
-		const emailData = { lang: lang, name: name, email: email, reservations: tickets, amount: totalAmount };
+		const now = new Date();
+		const emailData = { lang: lang, name: name, email: email, reservations: tickets, amount: totalAmount, now: now.getTime() };
 
 		const options = {
 			method: 'POST',

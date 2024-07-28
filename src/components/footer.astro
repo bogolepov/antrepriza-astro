@@ -97,8 +97,9 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
             <div class="question-close" >
               <label class="question-switcher-label" for="question__checkbox">&#10006;</label>
             </div>
-            <form method="POST" id="question-form" class="question-form" data-netlify="true">
-              <input type="hidden" name="subject" value={theater.shortTheaterName[lang] + " [" + lang.toUpperCase() + "]: " + "{topic} (#%{submissionId})"}  />
+            <form method="POST" id="question-form" class="question-form">
+              <input type="hidden" name="subject" value={dictionary.question_form_label[lang] + " - {topic}"}  />
+              <input class="form-input x-phone" type="tel" name="phone" />
               <div class="form-label font-opacity0">{dictionary.question_subject[lang]}</div>
               <div class="select-wrapper">
                 <select class="form-input" name="topic" id="topic">
