@@ -33,28 +33,28 @@ export const handler = async (event, context) => {
 
 	const { lang, subject, topic, name, email, message, now } = messageData;
 
-	const transporter = nodemailer.createTransport({
-		service: 'gmail',
-		auth: {
-			user: process.env.ANTREPRIZA_TRANSPORT_EMAIL,
-			pass: process.env.ANTREPRIZA_TRANSPORT_PASSWORD,
-		},
-	});
-
 	// const transporter = nodemailer.createTransport({
-	// 	pool: true,
-	// 	host: process.env.ANTREPRIZA_SMTP_HOST,
-	// 	port: 465,
-	// 	secure: true, // use TLS
+	// 	service: 'gmail',
 	// 	auth: {
-	// 		user: process.env.ANTREPRIZA_EMAIL_INFO,
-	// 		pass: process.env.ANTREPRIZA_SMTP_PASSWORD,
+	// 		user: process.env.ANTREPRIZA_TRANSPORT_EMAIL,
+	// 		pass: process.env.ANTREPRIZA_TRANSPORT_PASSWORD,
 	// 	},
 	// });
 
+	const transporter = nodemailer.createTransport({
+		pool: true,
+		host: process.env.ANTREPRIZA_SMTP_HOST,
+		port: 465,
+		secure: true, // use TLS
+		auth: {
+			user: process.env.ANTREPRIZA_EMAIL_INFO,
+			pass: process.env.ANTREPRIZA_SMTP_PASSWORD,
+		},
+	});
+
 	const mailOptions = {
-		from: `${theater.longTheaterName[lang]} <${process.env.ANTREPRIZA_TRANSPORT_EMAIL}>`,
-		// from: `${theater.longTheaterName[lang]} <${process.env.ANTREPRIZA_EMAIL_INFO}>`,
+		// from: `${theater.longTheaterName[lang]} <${process.env.ANTREPRIZA_TRANSPORT_EMAIL}>`,
+		from: `${theater.longTheaterName[lang]} <${process.env.ANTREPRIZA_EMAIL_INFO}>`,
 		to: email,
 		subject: subject,
 		html: makeHtmlEmail(lang, topic, name, email, message, false),
@@ -67,8 +67,8 @@ export const handler = async (event, context) => {
 		mailTo = process.env.ANTREPRIZA_EMAIL_BOGOLEPOV;
 	}
 	const mailOptionsAntrepriza = {
-		from: `${theater.longTheaterName[lang]} <${process.env.ANTREPRIZA_TRANSPORT_EMAIL}>`,
-		// from: `${theater.longTheaterName[lang]} <${process.env.ANTREPRIZA_EMAIL_SUBSCRIPTION}>`,
+		// from: `${theater.longTheaterName[lang]} <${process.env.ANTREPRIZA_TRANSPORT_EMAIL}>`,
+		from: `${theater.longTheaterName[lang]} <${process.env.ANTREPRIZA_EMAIL_SUBSCRIPTION}>`,
 		to: mailTo,
 		subject: subject,
 		html: makeHtmlEmail(lang, topic, name, email, message, now, true),
