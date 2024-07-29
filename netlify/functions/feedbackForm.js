@@ -151,7 +151,7 @@ function makeHead(lang) {
 		'</title><meta name="viewport" content="width=device-width, initial-scale=1.0"><style>' +
 		'table {border-spacing:0;} td {vertical-align:top;}' +
 		'.email-body {font-size:16px;background-color:#292929;color:#d6d6d6;}' +
-		'.email-body a {color:#d6d6d6;text-decoration:none;} .email-body .im * {color:#d6d6d6;}' +
+		'.email-body a {color:#d6d6d6;} .email-body .im * {color:#d6d6d6;}' +
 		'.body-table {width:100%;}' +
 		'.email-wrapper {padding:2rem;margin-left:auto;margin-right:auto;} ' +
 		'.lh12 {line-height:1.2em;} .fcw {color:#d6d6d6;} .fcg{color:#888888;} .b700 {font-weight:700;} .m50 {margin:50px 0;}' +
@@ -202,8 +202,7 @@ function makeTextForRecipient(lang, name, now, forAntrepriza) {
 		return (
 			`<div class='hello-titel b700'>${strHello}</div>` +
 			`<p class='lh12 fcw'>${dictionaryServer.email_feedback_form_text[lang]}</p>` +
-			`<p class='lh12 fcw'>${dictionaryServer.your__theater[lang]} ` +
-			`<a href='${theater.main_website}/${lang}' class='lh12 fcw'>${theater.longTheaterName[lang]}</a></p>`
+			`<p class='lh12 fcw'><a href='${theater.main_website}/${lang}' class='lh12 fcw'>${theater.longTheaterName[lang]}</a></p>`
 		);
 	}
 }

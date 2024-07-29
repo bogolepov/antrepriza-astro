@@ -47,7 +47,8 @@ footer a * {
 		fill 400ms ease-out;
 }
 
-footer label {
+footer label,
+footer button {
 	transition:
 		color 400ms ease-out,
 		fill 400ms ease-out;
@@ -56,7 +57,8 @@ footer label {
 @media (hover: hover) {
 	footer a:hover,
 	footer a:hover *,
-	footer label:hover {
+	footer label:hover,
+	footer button:hover {
 		transition:
 			color 400ms ease-out,
 			fill 400ms ease-out;
@@ -298,10 +300,25 @@ footer .logo-flex a:focus-visible img {
 	outline-offset: 1px;
 }
 
+footer .feedback-button {
+	display: inline-block;
+	position: relative;
+	color: var(--colorFontDate);
+	letter-spacing: 0.02em;
+	text-transform: uppercase;
+	font-weight: 400;
+	cursor: pointer;
+	border: none;
+	background-color: transparent;
+	padding: 0;
+}
+footer .feedback-button:focus-visible {
+	outline: 1px solid var(--colorAntreprizaRed);
+}
 /* --------------------------------------------------- */
 /* ---------------------- Question ------------------- */
 /* --------------------------------------------------- */
-.question {
+/* .question {
 	font-size: clamp(0.8rem, 2vw, 0.95rem);
 	padding-bottom: 0.4em;
 }
@@ -335,7 +352,7 @@ footer .logo-flex a:focus-visible img {
 	transform: scaleY(1);
 }
 
-/* open question-layer at any focused element inside */
+// open question-layer at any focused element inside 
 .question:has(.question-layer-switcher:not(:checked)) .question-layer:has(input:focus, textarea:focus, button:focus, select:focus) {
 	transform: scaleY(1);
 }
@@ -362,10 +379,10 @@ footer .logo-flex a:focus-visible img {
 
 .question-form {
 	padding: 0 20px 20px 20px;
-}
+} */
 
 /* this class is important! html-js-css spm protection */
-.question-layer .xxx {
+/* .question-layer .xxx {
 	display: none;
 }
 .question-layer select.form-input::-ms-expand {
@@ -415,12 +432,12 @@ footer .logo-flex a:focus-visible img {
 
 .question:has(.question-layer-switcher:focus-visible) .question-switcher-label {
 	outline: 1px solid var(--colorAntreprizaRed);
-}
+} */
 
 /* --------------------------------------------------- */
 /* ------ show result of contact form sending -------- */
 /* --------------------------------------------------- */
-.question-form-result {
+/* .question-form-result {
 	width: 70%;
 	text-align: center;
 	padding: 1.6em;
@@ -446,4 +463,4 @@ footer .logo-flex a:focus-visible img {
 }
 .question-form-result-button:focus-visible {
 	outline: 1px solid var(--colorAntreprizaRed);
-}
+} */

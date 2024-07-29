@@ -1,0 +1,61 @@
+---
+import '@styles/feedback_form.css'
+import dictionary from '@data/dictionary.json'
+import theater from '@data/theater.json'
+
+// import Loader from "@components/loader.astro";
+import Dialog from "@components/dialog.astro";
+
+const { lang } = Astro.props;
+
+---
+
+  <!-- <input class="question-layer-switcher" type="checkbox" id="question__checkbox" name="question" value="question"/>
+  <label class="question-switcher-label opacoty1" for="question__checkbox">{dictionary.question_form_label[lang]}</label> -->
+  
+  <!-- <div class="question-layer flex-center layer-on-window glass6">
+    <div class="modal-dialog question-dialog">
+      <div class="question-close" >
+        <label class="question-switcher-label" for="question__checkbox">&#10006;</label>
+      </div> -->
+    <Dialog uniq_class='d-feedback' loader_bkg='no'>
+      <form method="POST" class="form feedback-form">
+        <input type="hidden" name="subject" value={dictionary.question_form_label[lang] + " - {topic}"}  />
+        <input class="form-input x-phone" type="tel" name="phone" />
+        <div class="form-label font-opacity0">{dictionary.question_subject[lang]}</div>
+        <div class="select-wrapper">
+          <select class="form-input" name="topic" id="topic">
+          {
+            theater.question_subjects.map(subject => {
+              return (
+                <option>{dictionary[subject][lang]}</option>
+              )
+            })
+          }
+          </select>
+        </div>
+        <div class="form-label required font-opacity0">{dictionary.name[lang]}</div>
+        <input class="form-input qff" type="text" name="name" placeholder={dictionary.name_hint[lang]} autocomplete="on">
+        <div class="form-error" data-for="name"></div>
+        <div class="form-label required font-opacity0">{dictionary.email[lang]}</div>
+        <input class="form-input qff" type="text" name="email" placeholder={dictionary.email_hint[lang]} autocomplete="on">
+        <div class="form-error" data-for="email"></div>
+        <div class="form-label required font-opacity0">{dictionary.message[lang]}</div>
+        <textarea class="form-input qff" name="message" rows="5" maxlength="2000" placeholder={dictionary.message_hint[lang]} autocomplete="on"></textarea>
+        <div class="form-error" data-for="message"></div>
+        <div class="question-btn-wrapper">
+          <button id="feedback-submit-button" class="pink-button" type="submit">{dictionary.question_btn_send[lang]}</button>
+        </div>
+      </form>
+      <div class="layer-on-parent question-form-result-wrapper glass1_5">
+        <div class="question-form-result">
+          <div class="question-form-result-message"></div>
+          <button class="question-form-result-button">OK</button>
+        </div>
+      </div>
+    </Dialog>
+      <!-- <Loader uniq_name='question-form-loader' background='no'></Loader>
+    </div>
+  </div> -->
+
+

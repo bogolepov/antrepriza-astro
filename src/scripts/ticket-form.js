@@ -48,11 +48,11 @@ export function initTicketBookForm() {
 		btn.addEventListener('click', event => openForm(event, btn));
 	}
 
-	elemTicketLayer = document.querySelector('.modal-layer-ticket');
+	elemTicketLayer = document.querySelector('.modal-layer.d-ticket');
 
-	let btn = elemTicketLayer.querySelector('#ticket-form-close-button');
+	let btn = elemTicketLayer.querySelector('.close__button');
 	if (!btn) console.error('CLOSE BUTTON not found');
-	else btn.addEventListener('click', () => resetTicketForm());
+	else btn.addEventListener('click', () => closeForm());
 
 	elemAntreprizaButton = elemTicketLayer.querySelector('#ticket-form-book-antrepriza');
 	if (!elemAntreprizaButton) console.error('BOOK ANTREPRIZA not found');
@@ -63,7 +63,7 @@ export function initTicketBookForm() {
 	if (!elemButtonDistributor) console.log('BOOK DISTRIBUTOR not found');
 	else elemButtonDistributor.addEventListener('click', () => handleToDistributor());
 
-	elemLoader = elemTicketLayer.querySelector('.ticket-form-loader');
+	elemLoader = elemTicketLayer.querySelector('.loader.d-ticket');
 
 	elemPlayTitle = elemTicketLayer.querySelector('.play-name');
 	elemPlayDescription = elemTicketLayer.querySelector('.play-descr');
@@ -189,10 +189,6 @@ function closeForm() {
 
 	canBook_ValidDate(afishaButton);
 	afishaButton = undefined;
-}
-
-function resetTicketForm() {
-	closeForm();
 }
 
 function handleToDistributor() {

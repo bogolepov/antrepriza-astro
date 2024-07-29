@@ -68,7 +68,7 @@ export const handler = async (event, context) => {
 		if (process.env.MODE === process.env.MODE_PRODUCTION) {
 			mailTo = process.env.ANTREPRIZA_EMAIL_SUBSCRIPTION + ', ' + process.env.ANTREPRIZA_EMAIL_MAMONTOV;
 		} else {
-			mailTo = process.env.ANTREPRIZA_EMAIL_SUBSCRIPTION + ', ' + process.env.ANTREPRIZA_EMAIL_BOGOLEPOV;
+			mailTo = process.env.ANTREPRIZA_EMAIL_BOGOLEPOV;
 		}
 		const mailOptionsAntrepriza = {
 			from: `${theater.longTheaterName[lang]} <${process.env.ANTREPRIZA_EMAIL_SUBSCRIPTION}>`,
@@ -114,7 +114,7 @@ export const handler = async (event, context) => {
 			'</title><style>' +
 			'table {border-spacing:0;} td {vertical-align:top;}' +
 			'.email-body {font-size:16px;background-color:#292929;color:#d6d6d6;}' +
-			'.email-body a {color:#d6d6d6;text-decoration:none;} .email-body .im * {color:#d6d6d6;}' +
+			'.email-body a {color:#d6d6d6;} .email-body .im * {color:#d6d6d6;}' +
 			'.body-table {width:100%;}' +
 			'.email-wrapper {padding:2rem;margin-left:auto;margin-right:auto;} ' +
 			'.subscription-titel {font-size:1.35rem;margin-bottom:15px;line-height:1.2em;}' +
@@ -182,9 +182,16 @@ export const handler = async (event, context) => {
 				pass: process.env.ANTREPRIZA_SMTP_PASSWORD,
 			},
 		});
+
+		let mailTo;
+		if (process.env.MODE === process.env.MODE_PRODUCTION) {
+			mailTo = process.env.ANTREPRIZA_EMAIL_SUBSCRIPTION;
+		} else {
+			mailTo = process.env.ANTREPRIZA_EMAIL_BOGOLEPOV;
+		}
 		const mailOptions = {
 			from: `${theater.longTheaterName[lang]} <${process.env.ANTREPRIZA_EMAIL_SUBSCRIPTION}>`,
-			to: process.env.ANTREPRIZA_EMAIL_SUBSCRIPTION,
+			to: mailTo,
 			subject: `${dictionaryServer.email_news_subscription_confirmed_subject[lang]}`,
 			html: makeHtmlConfirmedEmail(lang, sid, false),
 		};

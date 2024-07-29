@@ -598,7 +598,6 @@ h4.notification-label {
 	color: var(--colorFont);
 	background-color: var(--colorBkgInput);
 	font-size: 1.1em;
-	/* font-size: clamp(0.95rem, 1.8vw, 1.1rem); */
 	line-height: 1.4em;
 	border: 1px solid var(--colorBkgTicketsBtn);
 	margin-bottom: 0.7em;

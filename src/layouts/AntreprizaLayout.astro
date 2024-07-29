@@ -9,6 +9,8 @@ import Header from "@components/header.astro";
 import Footer from "@components/footer.astro";
 import Reservation from "@react-components/reservation/Reservation";
 
+import FeedbackForm from "@components/feedback_form.astro"
+
 const { title, description, lang, reservation, robots = "index, follow" } = Astro.props;
 
 const pathname: string = new URL(Astro.request.url).pathname;
@@ -26,7 +28,6 @@ if (title && title.length > 0) {
 
 let isCanonicalIndex = (pathname === '/ru/');
 
-		
 	// <link rel="preload" href="/fonts/roboto/Roboto-Thin.ttf" as="font" type="font/woff2" crossorigin/>
 	// <link rel="preload" href="/fonts/roboto/Roboto-Thin.ttf" as="font" type="font/woff2" crossorigin/>
 	// <link rel="preload" href="/fonts/roboto/Roboto-Light.ttf" as="font" type="font/woff2" crossorigin/>
@@ -81,20 +82,14 @@ let isCanonicalIndex = (pathname === '/ru/');
 
 	<body class="no-js" data-theme="dark">
 
-	<script>
-		import { removeNoJS, saveLangOfPage } from "@scripts/antrepriza.js"
-		document.addEventListener('DOMContentLoaded', () => {
-			removeNoJS();
-			saveLangOfPage();
-		});
-	</script>
-
-	<!-- <script>
-		document.addEventListener('DOMContentLoaded', () => {
-			initQuestionForm();
-		});
-	</script>
-	<script is:inline src="/js/antrepriza.js" defer></script> -->
+		<script>
+		import { removeNoJS, saveLangOfPage, initFeedbackDialog } from "@scripts/antrepriza.js"
+			document.addEventListener('DOMContentLoaded', () => {
+				removeNoJS();
+				saveLangOfPage();
+				initFeedbackDialog();
+			});
+		</script>
 
 		<div class="wrapper">
 			<Header lang={lang} />
@@ -108,6 +103,7 @@ let isCanonicalIndex = (pathname === '/ru/');
 			<Footer lang={lang} />
 		</div>
 	
+    <FeedbackForm lang={lang}/>
 	</body>
 	
 </html>

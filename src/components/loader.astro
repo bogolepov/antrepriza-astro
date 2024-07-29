@@ -1,8 +1,8 @@
 ---
 import '@styles/loader.css'
-const {js_loader_name, background} = Astro.props;
+const {uniq_name, background='no'} = Astro.props;
 ---
 
-<div class:list={['layer-on-parent', js_loader_name, { not_transparent: background && background !== 'no'}]} >
+<div class:list={['layer-on-parent loader', uniq_name, { not_transparent: background !== 'no'}]} >
   <div class="antrepriza-loader"></div>
 </div>

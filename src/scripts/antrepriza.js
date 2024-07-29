@@ -143,37 +143,28 @@ export function initHoverModeForTouchScreen() {
 }
 
 /* --------------------------------------------------- */
-/* ------------------ Question form ------------------ */
+/* ------------------ Feedback form ------------------ */
 /* --------------------------------------------------- */
 const X_DATE = Date.now;
-export function initQuestionForm() {
-	const formCheckbox = document.querySelector('#question__checkbox');
-	formCheckbox.addEventListener('change', event => {
-		if (!formCheckbox.checked) {
-			resetErrorElements();
-			document.querySelector('#question-form').reset();
-		}
-	});
+let dialogFeedback;
 
-	let btnSubmit = document.querySelector('#qf-submit-button');
-	if (btnSubmit) btnSubmit.addEventListener('click', submitQuestionForm);
+export function initFeedbackDialog() {
+	dialogFeedback = document.querySelector('.modal-layer.d-feedback');
 
-	let elemPhone = document.querySelector('.x-phone');
+	dialogFeedback.querySelector('.close__button')?.addEventListener('click', () => closeFeedbackDialog());
+	dialogFeedback.querySelector('#feedback-submit-button')?.addEventListener('click', submitFeedbackForm);
+
+	let elemPhone = dialogFeedback.querySelector('.x-phone');
 	if (elemPhone) {
 		elemPhone.classList.remove('x-phone');
 		elemPhone.classList.add('xxx');
 	}
-	let elemX = document.querySelector('.xxx');
+	let elemX = dialogFeedback.querySelector('.xxx');
 	if (elemX) elemX.value = X_DATE.toString();
 }
 
-function closeQuestionForm() {
-	console.log('close question form!');
-	const formCheckbox = document.querySelector('#question__checkbox');
-	formCheckbox.disabled = false;
-	formCheckbox.checked = false;
-	resetErrorElements();
-	document.querySelector('#question-form').reset();
+export function openFeedbackForm() {
+	dialogFeedback?.classList.add('show');
 }
 
 function dictionary_prepare() {
@@ -191,16 +182,16 @@ function dictionary_prepare() {
 	});
 }
 
-export async function submitQuestionForm(event) {
+export async function submitFeedbackForm(event) {
 	event.preventDefault();
 
-	const form = document.querySelector('#question-form');
-	const formLoader = document.querySelector('.layer-on-parent.question-form-loader');
-	const formResult = document.querySelector('.layer-on-parent.question-form-result-wrapper');
+	const form = dialogFeedback.querySelector('.feedback-form');
+	const formLoader = dialogFeedback.querySelector('.loader.d-feedback');
+	const formResult = dialogFeedback.querySelector('.layer-on-parent.question-form-result-wrapper');
 	if (!formResult) console.error("Can't find question-form-result");
-	const formResultMessage = document.querySelector('.question-form-result-message');
-	const formResultButton = document.querySelector('.question-form-result-button');
-	const formCheckbox = document.querySelector('#question__checkbox');
+	const formResultMessage = dialogFeedback.querySelector('.question-form-result-message');
+	const formResultButton = dialogFeedback.querySelector('.question-form-result-button');
+	const closeButton = dialogFeedback.querySelector('.close__button');
 
 	const formData = new FormData(form);
 	const formDataObject = {};
@@ -216,7 +207,7 @@ export async function submitQuestionForm(event) {
 
 	const validationErrors = validateForm(formDataObject);
 	if (validationErrors.length === 1 && validationErrors[0].message === 'spam') {
-		closeQuestionForm();
+		closeFeedbackDialog();
 		return;
 	}
 
@@ -224,7 +215,7 @@ export async function submitQuestionForm(event) {
 	if (validationErrors.length > 0) return;
 
 	formLoader.classList.add('show');
-	formCheckbox.disabled = true;
+	closeButton.disabled = true;
 
 	const onResultClick = () => {
 		formResult.classList.remove('show');
@@ -232,25 +223,9 @@ export async function submitQuestionForm(event) {
 		formResultMessage.textContent = '';
 		formResultButton.classList.remove('ok');
 		formResultButton.classList.remove('error');
-		formCheckbox.disabled = false;
-		closeQuestionForm();
+		closeButton.disabled = false;
+		closeFeedbackDialog();
 	};
-
-	// let resMessage;
-
-	// dictionary_prepare().then(() => {
-	// 	setTimeout(() => {
-	// 		formLoader.classList.remove('show');
-	// 		formResult.classList.add('show');
-	// 		formResultButton.classList.add('error');
-	// 		if (formResultButton.classList.contains('ok'))
-	// 			resMessage = dictionary ? dictionary['contact_form__result_ok'][currLang] : currLang == 'ru' ? 'Успешно!' : 'Erfolgreich!';
-	// 		else
-	// 			resMessage = dictionary ? dictionary['contact_form__result_error'][currLang] : currLang == 'ru' ? 'Ошибка...' : 'Unerfolgreich...';
-	// 		formResultMessage.textContent = resMessage;
-	// 		formResultButton.addEventListener('click', onResultClick);
-	// 	}, 300);
-	// });
 
 	const handleResult = isOk => {
 		let resMessage;
@@ -303,30 +278,6 @@ export async function submitQuestionForm(event) {
 			})
 			.catch(() => handleResult(false));
 	});
-
-	// dictionary_prepare()
-	// 	.finally(() => {
-	// 		return fetch('/', {
-	// 			method: 'POST',
-	// 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-	// 			body: new URLSearchParams(formData).toString(),
-	// 		});
-	// 	})
-	// 	.then(() => {
-	// 		formResultButton.classList.add('ok');
-	// 		resMessage = dictionary ? dictionary['contact_form__result_ok'][currLang] : currLang == 'ru' ? 'Успешно!' : 'Erfolgreich!';
-	// 	})
-	// 	.catch(error => {
-	// 		formResultButton.classList.add('error');
-	// 		resMessage = dictionary ? dictionary['contact_form__result_error'][currLang] : currLang == 'ru' ? 'Ошибка...' : 'Unerfolgreich...';
-	// 		console.error(error);
-	// 	})
-	// 	.finally(() => {
-	// 		formResultMessage.textContent = resMessage;
-	// 		formLoader.classList.remove('show');
-	// 		formResult.classList.add('show');
-	// 		formResultButton.addEventListener('click', onResultClick);
-	// 	});
 }
 
 function validateForm(formData) {
@@ -356,12 +307,24 @@ function validateForm(formData) {
 	return errors;
 }
 
+function closeFeedbackDialog() {
+	dialogFeedback.classList.remove('show');
+
+	resetErrorElements();
+	const elemTopics = dialogFeedback.querySelector('#topic');
+	if (elemTopics) elemTopics.value = elemTopics.item(0).text;
+	const elemInputs = dialogFeedback.querySelectorAll('.form-input.qff');
+	elemInputs?.forEach(element => {
+		element.value = '';
+	});
+}
+
 function resetErrorElements() {
 	// find all elements showing error messages
-	const errorElements = document.querySelectorAll('.question-layer .form-error');
+	const errorElements = dialogFeedback.querySelectorAll('.form-error');
 
 	// clean all error messages after last time
-	errorElements.forEach(element => {
+	errorElements?.forEach(element => {
 		element.textContent = '';
 	});
 }
@@ -376,9 +339,9 @@ function displayErrors(errors) {
 		// to show all error messages
 		errors.forEach(error => {
 			const { field, message } = error;
-			const errorElement = document.querySelector(`[data-for="${field}"]`);
+			const errorElement = dialogFeedback.querySelector(`[data-for="${field}"]`);
 			errorElement.textContent = dictionary[message][currLang];
-			const errorInput = document.querySelector(`.question-layer .form-input[name="${field}"]`);
+			const errorInput = dialogFeedback.querySelector(`.form-input[name="${field}"]`);
 
 			const onInput = () => {
 				errorElement.textContent = '';

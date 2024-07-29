@@ -64,7 +64,7 @@ export const handler = async (event, context) => {
 			if (process.env.MODE === process.env.MODE_PRODUCTION) {
 				mailTo = process.env.ANTREPRIZA_EMAIL_TICKETS + ', ' + process.env.ANTREPRIZA_EMAIL_MAMONTOV;
 			} else {
-				mailTo = process.env.ANTREPRIZA_EMAIL_TICKETS + ', ' + process.env.ANTREPRIZA_EMAIL_BOGOLEPOV;
+				mailTo = process.env.ANTREPRIZA_EMAIL_BOGOLEPOV;
 			}
 		}
 		return {
