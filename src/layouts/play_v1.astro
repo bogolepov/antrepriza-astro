@@ -14,9 +14,8 @@ import photos from '@data/plays_photos.json'
 import { ONE_DAY } from '@scripts/consts';
 
 import TicketBookButton from "@components/ticket_book_button.astro";
-import TicketForm from "@components/ticket_form.astro";
 import Gallery from "@components/play_gallery.astro";
-
+import YoutubePlayerCore from "@components/youtube_player_core.astro"
 
 import { getEntry } from 'astro:content';
 
@@ -45,7 +44,6 @@ const { Content } = await entry.render();
 <script is:inline src="/js/swiper-bundle.min.js" defer></script>
 
 <section class="play">
-  <TicketForm lang={lang}/>
   <h1 class="play-title">{thisPlay.title[lang].toUpperCase()}</h1>
   <div class="play-author">{thisPlay.author_full[lang].toUpperCase()}</div>
   {
@@ -158,12 +156,7 @@ const { Content } = await entry.render();
     <div class="media_container">
       <div class="media">
         { thisPlay.trailer_embed &&
-          <iframe class="trailer float"
-            src={thisPlay.trailer_embed+"&rel=0&controls=2&hl="+lang.toUpperCase()} title="YouTube video player" 
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-            loading="lazy"
-            allowfullscreen></iframe>
+          <YoutubePlayerCore url={thisPlay.trailer_embed} lang={lang}/>
         }
         { !thisPlay.trailer_embed &&
           <Picture 

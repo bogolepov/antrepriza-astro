@@ -153,11 +153,11 @@ function makeHead(lang) {
 		'.email-body {font-size:16px;background-color:#292929;color:#d6d6d6;}' +
 		'.email-body a {color:#d6d6d6;} .email-body .im * {color:#d6d6d6;}' +
 		'.body-table {width:100%;}' +
-		'.email-wrapper {padding:2rem;margin-left:auto;margin-right:auto;} ' +
+		'.email-wrapper {padding:2rem;margin-left:auto;margin-right:auto;} .pr15{padding-right:15px;}' +
 		'.lh12 {line-height:1.2em;} .fcw {color:#d6d6d6;} .fcg{color:#888888;} .b700 {font-weight:700;} .m50 {margin:50px 0;}' +
 		// sdv
 		'.hello-titel {font-size:1.35rem;margin-bottom:15px;line-height:1.2em;}' +
-		'.user-table {margin-bottom:15px;border-top:1px solid #d6d6d6;padding-top:12px;}' +
+		'.user-table {margin-bottom:15px;border-top:1px solid #d6d6d6;padding-top:12px;width:100%;}' +
 		'.user-table tr td {min-width:5em;color:#d6d6d6;}' +
 		'</style></head>';
 
@@ -200,9 +200,10 @@ function makeTextForRecipient(lang, name, now, forAntrepriza) {
 	} else {
 		let strHello = getHello(date.getHours()) + (lang === 'ru' ? ', ' : ' ') + fromHtmlToPlainText(name) + (lang === 'ru' ? '!' : ',');
 		return (
-			`<div class='hello-titel b700'>${strHello}</div>` +
+			`<div class='hello-titel b700 fcw'>${strHello}</div>` +
 			`<p class='lh12 fcw'>${dictionaryServer.email_feedback_form_text[lang]}</p>` +
-			`<p class='lh12 fcw'><a href='${theater.main_website}/${lang}' class='lh12 fcw'>${theater.longTheaterName[lang]}</a></p>`
+			`<p><div class='lh12 fcw'>${theater.longTheaterName[lang]}</div>` +
+			`<a href='${theater.our_website_link}/${lang}' class='lh12 fcw'>${theater.our_website_text}</a></p>`
 		);
 	}
 }
@@ -210,10 +211,12 @@ function makeTextForRecipient(lang, name, now, forAntrepriza) {
 function makeQuestionBlock(lang, topic, name, email, message) {
 	return (
 		`<table class='user-table'>` +
-		`<tr><td><span class='fcg'>${dictionaryServer.question_subject[lang] + ' :'}</span></td><td>${fromHtmlToPlainText(topic)}</td></tr>` +
-		`<tr><td><span class='fcg'>${dictionaryServer.lang_name[lang] + ' :'}</span</td><td>${fromHtmlToPlainText(name)}</td></tr>` +
-		`<tr><td><span class='fcg'>${dictionaryServer.lang_email[lang] + ' :'}</span</td><td>${fromHtmlToPlainText(email)}</td></tr>` +
-		`<tr><td><span class='fcg'>${dictionaryServer.lang_message[lang] + ' :'}</span</td><td>${fromHtmlToPlainText(message)}</td></tr>` +
+		`<tr><td><span class='fcg pr15'>${dictionaryServer.question_subject[lang] + ' :'}</span></td><td>${fromHtmlToPlainText(
+			topic
+		)}</td></tr>` +
+		`<tr><td><span class='fcg pr15'>${dictionaryServer.lang_name[lang] + ' :'}</span</td><td>${fromHtmlToPlainText(name)}</td></tr>` +
+		`<tr><td><span class='fcg pr15'>${dictionaryServer.lang_email[lang] + ' :'}</span</td><td>${fromHtmlToPlainText(email)}</td></tr>` +
+		`<tr><td><span class='fcg pr15'>${dictionaryServer.lang_message[lang] + ' :'}</span</td><td>${fromHtmlToPlainText(message)}</td></tr>` +
 		`</table>`
 	);
 

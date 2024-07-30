@@ -403,6 +403,16 @@ export async function submitNewsletterForm(event) {
 	let errorType = 0;
 	if (!emailAddress) errorType = 1;
 	else if (!consts.EMAIL_REGEX.test(emailAddress) || emailAddress.length < 5 || emailAddress.length > 64) errorType = 2;
+	else {
+		let nlph = document.querySelector('#newsletter-phone');
+		if (nlph) {
+			let date = Number(nlph.innerText);
+			if (Number(nlph.value) !== date + 9 || Math.trunc(date / 10).toString() != nlph.innerText.slice(0, -1)) {
+				emailInput.value = '';
+				return;
+			}
+		}
+	}
 
 	if (errorType) {
 		dictionary_prepare().then(() => {

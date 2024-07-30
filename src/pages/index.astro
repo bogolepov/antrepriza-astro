@@ -26,11 +26,11 @@ let now = new Date();
 		{
 			theater.languages.map(lng => {
 				return (
-					<link rel="alternate" href={theater.main_website + "/" + lng.lang_code + "/"} hreflang={lng.lang_code} />
+					<link rel="alternate" href={theater.our_website_link + "/" + lng.lang_code + "/"} hreflang={lng.lang_code} />
 				);
 			})
 		}
-		<link rel="alternate" href={theater.main_website + "/ru/"} hreflang="x-default" />
+		<link rel="alternate" href={theater.our_website_link + "/ru/"} hreflang="x-default" />
 	</head>
 	<body>
 		<style>
@@ -41,7 +41,7 @@ let now = new Date();
 			theater.languages.map(lng => {
 				return (
 					<div>
-						<a href={theater.main_website + "/" + lng.lang_code + "/"}>{lng.lang_code.toUpperCase()}</a>
+						<a href={theater.our_website_link + "/" + lng.lang_code + "/"}>{lng.lang_code.toUpperCase()}</a>
 					</div>
 				);
 			})

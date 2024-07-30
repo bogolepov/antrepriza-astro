@@ -134,6 +134,10 @@
 		"ru": "Все постановки Театра Антреприза.",
 		"de": "Alle Produktionen von Theater Antrepriza."
 	},
+	"description_events": {
+		"ru": "Ближайшие мероприятия Театра Антреприза.",
+		"de": "Kommende Veranstaltungen des Theaters Antrepriza."
+	},
 	"description_program": {
 		"ru": "Когда, где и какие спектакли Театра можно посмотреть.",
 		"de": "Wann, wo und welche Theateraufführungen Sie sehen können."

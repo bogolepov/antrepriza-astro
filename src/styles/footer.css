@@ -117,7 +117,7 @@ footer a:focus-visible {
 .web-developer {
 	/* justify-content: flex-end; */
 	/* text-align: right; */
-	font-size: clamp(0.75rem, 1.4vw, 0.9rem);
+	font-size: clamp(0.75rem, 1.8vw, 0.9rem);
 	line-height: 1.3em;
 	letter-spacing: 0.05em;
 	width: max-content;
@@ -152,12 +152,14 @@ footer .phone-number {
 }
 
 .copyright-year {
+	font-size: clamp(0.75rem, 1.8vw, 0.9rem);
 	padding-top: 0.2em;
 }
 
 .footer-partners .title {
 	/* text-align: end; */
 	padding-bottom: 0.3em;
+	font-size: clamp(0.75rem, 1.8vw, 0.9rem);
 }
 
 footer .logo-flex {

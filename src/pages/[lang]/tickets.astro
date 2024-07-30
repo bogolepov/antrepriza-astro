@@ -17,7 +17,7 @@ import AntreprizaLayout from "@layouts/AntreprizaLayout.astro";
 import TicketsLayout from "@layouts/tickets.astro";
 ---
 
-<AntreprizaLayout title={pageTitle} lang={pageLang} description={dictionary.description_tickets[pageLang]}>
+<AntreprizaLayout title={pageTitle} lang={pageLang} description={dictionary.description_tickets[pageLang]} ticket_form = "yes">
   <TicketsLayout lang={pageLang}/>
 </AntreprizaLayout>
 

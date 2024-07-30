@@ -10,8 +10,9 @@ import Footer from "@components/footer.astro";
 import Reservation from "@react-components/reservation/Reservation";
 
 import FeedbackForm from "@components/feedback_form.astro"
+import TicketForm from "@components/ticket_form.astro";
 
-const { title, description, lang, reservation, robots = "index, follow" } = Astro.props;
+const { title, description, lang, reservation, robots = "index, follow", ticket_form = "no" } = Astro.props;
 
 const pathname: string = new URL(Astro.request.url).pathname;
 const currentPath: string[] = pathname.split("/").filter(Boolean);
@@ -26,6 +27,7 @@ if (title && title.length > 0) {
 	else pageTitle = title +  ' — ' + pageTitle;
 }
 
+let pageNeedTicketForm = (ticket_form === "yes");
 let isCanonicalIndex = (pathname === '/ru/');
 
 	// <link rel="preload" href="/fonts/roboto/Roboto-Thin.ttf" as="font" type="font/woff2" crossorigin/>
@@ -53,7 +55,7 @@ let isCanonicalIndex = (pathname === '/ru/');
 		<meta http-equiv="Last-Modified" content={now.toUTCString()}>
 		{
 			isCanonicalIndex &&
-			<link rel="canonical" href={theater.main_website + pathname}/>
+			<link rel="canonical" href={theater.our_website_link + pathname}/>
 		}
 		<title>{pageTitle}</title>
 		{
@@ -70,11 +72,11 @@ let isCanonicalIndex = (pathname === '/ru/');
 		{
 			theater.languages.map(lng => {
 				return (
-					<link rel="alternate" href={theater.main_website + pathname.replace('/'+lang+'/', '/'+lng.lang_code+'/')} hreflang={lng.lang_code} />
+					<link rel="alternate" href={theater.our_website_link + pathname.replace('/'+lang+'/', '/'+lng.lang_code+'/')} hreflang={lng.lang_code} />
 				);
 			})
 		}
-		<link rel="alternate" href={theater.main_website + pathname.replace('/'+lang+'/', '/ru/')} hreflang="x-default" />
+		<link rel="alternate" href={theater.our_website_link + pathname.replace('/'+lang+'/', '/ru/')} hreflang="x-default" />
 		<!-- SEO -->
 		<!-- <meta http-equiv="Permissions-Policy" content="unload=()"> -->
 		<meta name="generator" content={Astro.generator} />
@@ -83,11 +85,10 @@ let isCanonicalIndex = (pathname === '/ru/');
 	<body class="no-js" data-theme="dark">
 
 		<script>
-		import { removeNoJS, saveLangOfPage, initFeedbackDialog } from "@scripts/antrepriza.js"
+		import { removeNoJS, saveLangOfPage } from "@scripts/antrepriza.js"
 			document.addEventListener('DOMContentLoaded', () => {
 				removeNoJS();
 				saveLangOfPage();
-				initFeedbackDialog();
 			});
 		</script>
 
@@ -104,6 +105,10 @@ let isCanonicalIndex = (pathname === '/ru/');
 		</div>
 	
     <FeedbackForm lang={lang}/>
+		{
+			pageNeedTicketForm &&
+			<TicketForm lang={lang}/>
+		}
 	</body>
 	
 </html>

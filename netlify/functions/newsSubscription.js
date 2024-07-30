@@ -107,11 +107,11 @@ export const handler = async (event, context) => {
 
 	function makeHead(lang) {
 		let htmlHead =
-			'<head><meta charset="UTF-8"><title>' +
+			'<head><meta charset="UTF-8"><meta http-equiv="content-type" content="text/html"><title>' +
 			theater.shortTheaterName[lang] +
 			' - ' +
 			dictionaryServer.email_news_subscription_reg_subject[lang] +
-			'</title><style>' +
+			'</title><meta name="viewport" content="width=device-width, initial-scale=1.0"><style>' +
 			'table {border-spacing:0;} td {vertical-align:top;}' +
 			'.email-body {font-size:16px;background-color:#292929;color:#d6d6d6;}' +
 			'.email-body a {color:#d6d6d6;} .email-body .im * {color:#d6d6d6;}' +
@@ -153,7 +153,8 @@ export const handler = async (event, context) => {
 				`<p class='lh12 fcw'>${dictionaryServer.email_subscription_text2[lang]}</p>` +
 				`<p class='m50'><a href='https://antrepriza.eu/${lang}/newsletter?sid=${sid}' class='confirm-button'>${dictionaryServer.email_subscription_button_text[lang]}</a></p>` +
 				`<p><div class='lh12 fcw'>${dictionaryServer.email_subscription_text3[lang]}</div>` +
-				`<a href='${theater.main_website}/${lang}' class='lh12 fcw'>${theater.longTheaterName[lang]}</a></p>`
+				`<div class='lh12 fcw'>${theater.longTheaterName[lang]}</div>` +
+				`<a href='${theater.our_website_link}/${lang}' class='lh12 fcw'>${theater.our_website_text}</a></p>`
 			);
 		}
 	}
@@ -212,11 +213,11 @@ export const handler = async (event, context) => {
 	function makeHtmlConfirmedEmail(lang, sid) {
 		return (
 			`<!DOCTYPE html><html lang="${lang}">` +
-			'<head><meta charset="UTF-8"><title>' +
+			'<head><meta charset="UTF-8"><meta http-equiv="content-type" content="text/html"><title>' +
 			theater.shortTheaterName[lang] +
 			' - ' +
 			dictionaryServer.email_news_subscription_confirmed_subject[lang] +
-			'</title><style>' +
+			'</title><meta name="viewport" content="width=device-width, initial-scale=1.0"><style>' +
 			'table {border-spacing:0;} td {vertical-align:top;}' +
 			'.email-body {font-size:16px;background-color:#292929;color:#d6d6d6;}' +
 			'.email-body .im * {color:#d6d6d6;}' +

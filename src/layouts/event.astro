@@ -11,7 +11,6 @@ import program from '@public_data/afisha.json'
 import prices from '@data/prices.json'
 
 import TicketBookButton from "@components/ticket_book_button.astro";
-import TicketForm from "@components/ticket_form.astro";
 
 let play = plays.find(item => (item.id.toString() === play_id));
 let event = program.find(item => (item.play_id.toString() === play_id && item.date === date && item.time === time));
@@ -62,10 +61,6 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 ---
 
 <section class="event">
-  { !event.no_tickets && 
-    <TicketForm lang={lang}/>
-  }
-
   <div class="ev-event-flex">
     {
       play && event && play.posters.afisha &&

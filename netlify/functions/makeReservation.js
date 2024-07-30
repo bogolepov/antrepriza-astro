@@ -164,11 +164,11 @@ export const handler = async (event, context) => {
 		if (!!htmlHead) return htmlHead;
 
 		htmlHead =
-			'<head><meta charset="UTF-8"><title>' +
+			'<head><meta charset="UTF-8"><meta http-equiv="content-type" content="text/html"><title>' +
 			theater.shortTheaterName[lang] +
 			' - ' +
 			dictionaryServer.email_reservation_subject[lang] +
-			'</title><style>' +
+			'</title><meta name="viewport" content="width=device-width, initial-scale=1.0"><style>' +
 			'table {border-spacing:0;} td {vertical-align:top;}' +
 			'.email-body {font-size:16px;background-color:#292929;color:#d6d6d6;}' +
 			'.email-body a {color:#d6d6d6;} .email-body .im * {color:#d6d6d6;}' +
@@ -223,12 +223,11 @@ export const handler = async (event, context) => {
 			return (
 				`<div class='reservation-titel b700 fcw'>${strHello}</div>` +
 				`<p class='lh12 fcw'>${dictionaryServer.email_reservation_text[lang]}</p>` +
-				`<p class='lh12 fcw'>${dictionaryServer.email_reservation_text2[lang]}</p>` +
-				`<p class='lh12 fcw'>${dictionaryServer.email_reservation_text3[lang]}</p>` +
-				`<p><div class='lh12 fcw'>${dictionaryServer.email_reservation_text4[lang]}</div>` +
-				// `<div class='lh12 fcw'>${theater.longTheaterName[lang]}</div>` +
-				`<div class='lh12 fcw'>${dictionaryServer.your__theater[lang]} ` +
-				`<a href='${theater.main_website}/${lang}' class='lh12 fcw'>${theater.longTheaterName[lang]}</a></div></p>`
+				`<p><div class='lh12 fcw'>${dictionaryServer.email_reservation_text2[lang]}</div>` +
+				`<div class='lh12 fcw'>${dictionaryServer.email_reservation_text3[lang]}</div></p>` +
+				`<p class='lh12 fcw'>${dictionaryServer.email_reservation_text4[lang]}</p>` +
+				`<p><div class='lh12 fcw'>${theater.longTheaterName[lang]}</div>` +
+				`<a href='${theater.our_website_link}/${lang}' class='lh12 fcw'>${theater.our_website_text}</a></p>`
 			);
 		} else {
 			let options = {
