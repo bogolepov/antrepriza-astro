@@ -145,6 +145,7 @@
 .ticket-order .play-stage {
 	color: var(--colorFont-Op1);
 	font-weight: var(--font-bold-weight);
+	line-height: 1.15;
 }
 
 .ticket-order .play-date {

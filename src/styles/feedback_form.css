@@ -1,35 +1,14 @@
 /* --------------------------------------------------- */
 /* ---------------------- Question ------------------- */
 /* --------------------------------------------------- */
-.question {
-	font-size: clamp(0.8rem, 2vw, 0.95rem);
-	padding-bottom: 0.4em;
-}
-
 .modal-layer.d-feedback .modal-dialog {
 	max-width: 440px;
 }
-
-/* .question-layer {
-	background-color: var(--colorBkgLayerUnderForm);
-} */
 
 /* open question-layer at any focused element inside */
 .question:has(.question-layer-switcher:not(:checked)) .question-layer:has(input:focus, textarea:focus, button:focus, select:focus) {
 	transform: scaleY(1);
 }
-
-/* .question-close {
-	width: 100%;
-	text-align: right;
-	font-size: 20px;
-	line-height: 20px;
-	padding-top: 2px;
-	padding-right: 5px;
-	font-weight: var(--font-bold-weight);
-	margin-left: auto;
-	user-select: none;
-} */
 
 .feedback-form {
 	padding: 0 20px 20px 20px;
