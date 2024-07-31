@@ -185,9 +185,20 @@ a {
 }
 
 ul {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+ul.classic {
+	/* margin-block-start: 1em;
+	margin-block-end: 1em;
+	padding-inline-start: 40px; */
+	list-style: disc;
+	margin: 1em 0;
 	padding-inline-start: 2em;
 }
-li {
+ul.classic li {
 	padding-left: 0.15em;
 }
 

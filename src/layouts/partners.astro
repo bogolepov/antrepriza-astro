@@ -16,12 +16,12 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 <section class="partners">
   <h1 class="section-title">{dictionary.menu_partners[lang]}</h1>
   <div class="partners-block">
-    <div class="logo-flex">
+    <ul class="logo-flex">
     {
       theater.partners.map(partner => {
         if (partner.logo)
           return (
-              <div class="logo">
+              <li class="logo">
                 <a href={partner.url} target="_blank"	rel="noopener external">
                   <Picture 
                     class:list={'image-wrapper-landscape'} 
@@ -32,11 +32,11 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
                     alt={partner.name[lang]}
                     loading="eager" />
                   </a>
-              </div>
+              </li>
           )
       })
     }
-    </div>
+    </ul>
     <div class="offer">
       <div class="theater-name">{theater.longTheaterName[lang]}</div>
       <p>{theater.partner_offer[lang]}</p>

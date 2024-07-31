@@ -14,7 +14,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/people/
 
 <section class="team">
   <h1 class="section-title">{dictionary.menu_team[lang]}</h1>
-  <div class="people-table">
+  <ul class="people-table">
     {
       theater.team.map(actor_id => {
         let person = theater.people.find(actor => actor.id == actor_id);
@@ -35,7 +35,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/people/
         let hasPage = person.suffix ? true : false;
 
         return (
-          <div class="person-card hover-block">
+          <li class="person-card hover-block">
             <div class="person-photo">
               <Picture 
                 class:list={'image-wrapper-landscape black-white-filter'} 
@@ -53,12 +53,12 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/people/
               hasPage &&
               <a class="stretch-link" href={"/"+lang+"/theater/people/"+person.suffix}></a>
             }
-          </div>
+          </li>
         )
       })
     }
-    <div class="person-card"></div>
-    <div class="person-card"></div>
-    <div class="person-card"></div>
-  </div>
+    <li class="person-card"></li>
+    <li class="person-card"></li>
+    <li class="person-card"></li>
+  </ul>
 </section>

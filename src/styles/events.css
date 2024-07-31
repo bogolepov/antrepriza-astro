@@ -10,8 +10,7 @@
 }
 
 .events ul {
-	padding-left: 0;
-	list-style: none;
+	margin: 1em 0;
 }
 .events li {
 	font-weight: var(--font-normal-weight);

@@ -45,7 +45,7 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 			</div>
 		</div>
 		<div class="dropdown-box">
-			<ul class="dropdown-list">
+			<ul>
 			{
 				theater.languages.map(lng => {
 					return (
@@ -89,7 +89,7 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 						&nbsp;
 					</div>
 					<div class="dropdown-box">
-						<ul class="dropdown-list">
+						<ul>
 							{
 								plays.map((play) => {
 									return (
@@ -119,7 +119,7 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 						&nbsp;
 					</div>
 					<div class="dropdown-box">
-						<ul class="dropdown-list">
+						<ul>
 							{
 								theater.menu.map((info) => {
 									return (
@@ -224,7 +224,7 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 			</svg>
 		</button>
 		<nav class="burger-menu">
-			<ul class="burger-list">
+			<ul>
 				<li class="burger-item">
 					<a href={"/" + lang + "/" + menuProgram.link} class:list={{active_link: currentPath[1] === menuProgram.link}}>
 						{menuProgram.text}

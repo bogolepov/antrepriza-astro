@@ -102,11 +102,8 @@ footer .flex2 {
 }
 
 .footer-social-pages {
-	list-style: none;
-	margin: 0;
 	display: flex;
 	gap: clamp(0.5rem, 2vw, 0.8rem);
-	padding: 0;
 	padding-bottom: 0.4em;
 }
 

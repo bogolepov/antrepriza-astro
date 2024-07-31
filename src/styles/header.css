@@ -83,11 +83,6 @@ header a * {
 	letter-spacing: 2px;
 }
 
-.dropdown-list {
-	padding: 0px 0px;
-	margin: 0px;
-	list-style: none;
-}
 .dropdown-item {
 	padding: 6px 12px;
 }
@@ -279,7 +274,6 @@ header a * {
 }
 
 .navigator-social-pages {
-	list-style: none;
 	display: flex;
 	gap: clamp(0.5rem, 2vw, 0.8rem);
 	padding-left: clamp(var(--toolbarGap), 1.3vw, 2 * var(--toolbarGap));
@@ -626,19 +620,9 @@ a.header-tickets-button {
 	transform: scaleY(0);
 }
 
-.burger-list,
-.burger-submenu-list,
-.social-pages {
-	padding: 0px 0px;
-	margin: 0px;
-	list-style: none;
-}
-.burger-submenu-list {
-	font-size: 0.85rem;
-}
-
 .burger-submenu-list {
 	display: none;
+	font-size: 0.85rem;
 }
 
 .burger-item {
