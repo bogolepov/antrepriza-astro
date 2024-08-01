@@ -3,14 +3,16 @@ import "@styles/header.css"
 
 import Symbols from '@svg/symbols.svg?url'
 import AntreprizaLogo from '@svg/logo.svg?url'
-import SocialIcons from '@svg/social.svg?url'
 
 const {lang} = Astro.props;
 
 import dictionary from '@data/dictionary.json'
 import theater from '@data/theater.json'
-
 import plays from '@data/plays.json'
+
+import SocialPages from '@components/social_pages.astro'
+import Toolbar from '@components/toolbar.astro'
+
 
 plays.sort((play1, play2) => play1.alt_title[lang].toLowerCase().localeCompare(play2.alt_title[lang].toLowerCase(), lang));
 
@@ -149,47 +151,12 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 			</div>
 		</div>
 		<a class="header-tickets-button" href={"/" + lang + "/" + menuTickets.link} class:list={{active_link: currentPath[1] === menuTickets.link}}>{menuTickets.text}</a>
-
-		<ul class="navigator-social-pages">
-		{
-			theater.social_pages.map((socialPage) => {
-				return (
-					<li class="social-item">
-						<a href={socialPage.url} target="_blank"	rel="noopener external">
-							<svg class:list={['social-icon', 'toolbar-icon', socialPage.name.toLowerCase()]}>
-								<use href={SocialIcons + socialPage.svg}></use>
-								<title>{dictionary.logo[lang]} {socialPage.name}</title>
-							</svg>
-						</a>
-					</li>
-				);
-			} )
-		}
-		</ul>
-	</nav>
-	<div class="toolbar-tools-grid">
-		<div class="tools-item">
-			<label class="theme-changer" for="theme__checkbox">
-				<input class="theme-checkbox"	type="checkbox"	id="theme__checkbox"/>
-				<span class="dark-mode-checkbox">
-					<svg class="toolbar-icon">
-						<use href={Symbols + "#dark-mode"}></use>
-						<title>{dictionary.themeTextDark[lang]}</title>
-					</svg>
-				</span>
-				<span class="light-mode-checkbox">
-					<svg class="toolbar-icon">
-						<use href={Symbols + "#light-mode"}></use>
-						<title>{dictionary.themeTextLight[lang]}</title>
-					</svg>
-				</span>
-			</label>
+    <div class="social-block">
+			<SocialPages lang={lang} />
 		</div>
-		<!-- <div class="tools-item">
-			<svg class="toolbar-icon">
-				<use href={Symbols + "#search"}></use>
-			</svg>
-		</div> -->
+	</nav>
+	<div class="toolbar-block">
+		<Toolbar lang={lang}/>
 	</div>
 </header>
 
@@ -304,39 +271,10 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 				</li>
 				<li class="burger-separate-item"></li>
 				<li class="burger-item">
-					<ul class="social-pages">
-					{
-						theater.social_pages.map((socialPage) => {
-							return (
-								<li>
-									<a href={socialPage.url} target="_blank"	rel="noopener external">
-										<svg class:list={['header-icon', socialPage.name.toLowerCase()]}>
-											<use href={SocialIcons + socialPage.svg}></use>
-											<title>{dictionary.logo[lang]} {socialPage.name}</title>
-										</svg>
-									</a>
-								</li>
-							);
-						} )
-					}
-					</ul>
+					<SocialPages lang={lang} add_classes="mobile" />
 				</li>
 				<li class="burger-item">
-					<label class="theme-changer" for="burger-theme__checkbox">
-						<input class="theme-checkbox" type="checkbox" id="burger-theme__checkbox"/>
-						<div class="dark-mode-checkbox">
-							<svg class="header-icon theme">
-								<use href={Symbols + "#dark-mode"}></use>
-							</svg>
-							<span class="theme-changer-text">{dictionary.themeTextDark[lang]}</span>
-						</div>
-						<div class="light-mode-checkbox">
-							<svg class="header-icon theme">
-								<use href={Symbols + "#light-mode"}></use>
-							</svg>
-							<span class="theme-changer-text">{dictionary.themeTextLight[lang]}</span>
-						</div>
-					</label>
+					<Toolbar lang={lang} add_classes="mobile"/>
 				</li>
 
 				<li class="burger-item">

@@ -33,6 +33,7 @@ export function saveLangOfPage() {
 /* ------------------- THEME MODE -------------------- */
 /* --------------------------------------------------- */
 let themeCheckboxes;
+let themeSwitcher;
 
 export function initThemeMode() {
 	let mode = localStorage.getItem(consts.CNF_MODE);
@@ -40,18 +41,24 @@ export function initThemeMode() {
 
 	document.body.dataset.theme = mode;
 
-	themeCheckboxes = document.querySelectorAll('.theme-checkbox');
-	themeCheckboxes.forEach(elem => {
-		elem.checked = mode === consts.THEME_DARK;
+	themeSwitcher = document.querySelector('#theme-switcher');
 
-		elem.addEventListener('click', event => {
-			themeCheckboxes.forEach(item => {
-				if (item != event.target) item.checked = event.target.checked;
-			});
+	themeSwitcher.addEventListener('change', () => {
+		let newMode = themeSwitcher.checked ? consts.THEME_DARK : consts.THEME_LIGHT;
+		document.body.dataset.theme = newMode;
+		localStorage.setItem(consts.CNF_MODE, newMode);
+	});
 
-			let newMode = event.target.checked ? consts.THEME_DARK : consts.THEME_LIGHT;
-			document.body.dataset.theme = newMode;
-			localStorage.setItem(consts.CNF_MODE, newMode);
+	themeSwitcher.checked = mode === consts.THEME_DARK;
+	themeSwitcher.dispatchEvent(new Event('change'));
+
+	let themeSwitcherItems = document.querySelectorAll('.theme-switcher-item');
+	themeSwitcherItems.forEach(item => {
+		item.addEventListener('keydown', event => {
+			if (event.code === 'Enter' || event.code === 'Space') {
+				themeSwitcher.checked = !themeSwitcher.checked;
+				themeSwitcher.dispatchEvent(new Event('change'));
+			}
 		});
 	});
 }

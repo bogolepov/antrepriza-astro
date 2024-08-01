@@ -8,6 +8,8 @@ import Logo from '../svg/logo.svg?url'
 import SocialIcons from '../svg/social.svg?url'
 // import Symbols from '../svg/symbols.svg?url'
 
+import SocialPages from '@components/social_pages.astro'
+
 const {lang} = Astro.props;
 
 import type { ImageMetadata } from 'astro'
@@ -73,22 +75,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
           <div class="newsletter-message"></div>
         </form>
       </div>
-      <ul class="footer-social-pages">
-      {
-        theater.social_pages.map((socialPage) => {
-          return (
-            <li class="social-item">
-              <a href={socialPage.url} target="_blank"	rel="noopener external">
-                <svg class:list={['social-icon', 'toolbar-icon', socialPage.name.toLowerCase()]}>
-                  <use href={SocialIcons + socialPage.svg}></use>
-                  <title>{dictionary.logo[lang]} {socialPage.name}</title>
-                </svg>
-              </a>
-            </li>
-          );
-        } )
-      }
-      </ul>
+      <SocialPages lang={lang} />
       <div>
         <button class="feedback-button">{dictionary.question_form_label[lang]}</button>
       </div>

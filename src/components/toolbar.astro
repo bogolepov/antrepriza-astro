@@ -1,0 +1,29 @@
+---
+import Symbols from '@svg/symbols.svg?url'
+
+import "@styles/toolbar.css"
+
+const {lang, add_classes} = Astro.props;
+
+import dictionary from '@data/dictionary.json'
+
+---
+
+<ul class:list={["toolbar-list", add_classes]}>
+  <li>
+    <label class="theme-switcher-item" for="theme-switcher" tabindex="0">
+      <div class="theme-block theme-block-light">
+        <svg class="tool-icon">
+          <use href={Symbols + "#light-mode"}></use>
+        </svg>
+        <span class="theme-text">{dictionary.themeTextLight[lang]}</span>
+      </div>
+      <div class="theme-block theme-block-dark">
+        <svg class="tool-icon">
+          <use href={Symbols + "#dark-mode"}></use>
+        </svg>
+        <span class="theme-text">{dictionary.themeTextDark[lang]}</span>
+      </div>
+    </label>
+  </li>
+</ul>

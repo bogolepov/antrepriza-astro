@@ -101,12 +101,6 @@ footer .flex2 {
 	font-size: clamp(0.75rem, 1.4vw, 0.9rem);
 }
 
-.footer-social-pages {
-	display: flex;
-	gap: clamp(0.5rem, 2vw, 0.8rem);
-	padding-bottom: 0.4em;
-}
-
 footer a:focus-visible {
 	outline: 1px solid var(--colorAntreprizaRed);
 }
@@ -188,7 +182,7 @@ footer .logo-75 {
 	position: relative;
 	width: 100%;
 	max-width: 300px;
-	margin-bottom: 0.7em;
+	margin-bottom: 0.3em;
 }
 
 .newsletter-input-container {
@@ -311,7 +305,7 @@ footer .feedback-button {
 	background-color: transparent;
 	font-size: clamp(0.8rem, 2vw, 0.95rem);
 	padding: 0;
-	padding-bottom: 0.4em;
+	margin-bottom: 0.4em;
 }
 footer .feedback-button:focus-visible {
 	outline: 1px solid var(--colorAntreprizaRed);

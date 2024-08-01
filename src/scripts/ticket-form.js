@@ -41,14 +41,15 @@ let defaultDistributorLabel;
 let defaultDistribButtonText;
 
 export function initTicketBookForm() {
+	elemTicketLayer = document.querySelector('.modal-layer.d-ticket');
+	if (!elemTicketLayer) return;
+
 	currLang = localStorage.getItem(consts.CNF_LANG);
 	let ticketBtns = document.querySelectorAll('.pink-button.book-ticket.open-book-form');
 	for (let btn of ticketBtns) {
 		// btn.disabled = false;
 		btn.addEventListener('click', event => openForm(event, btn));
 	}
-
-	elemTicketLayer = document.querySelector('.modal-layer.d-ticket');
 
 	let btn = elemTicketLayer.querySelector('.close__button');
 	if (!btn) console.error('CLOSE BUTTON not found');

@@ -134,7 +134,7 @@ header a * {
 @media (hover: hover) {
 	header a:hover,
 	header a:hover *,
-	.theme-changer:hover * {
+	.toolbar-list li:hover * {
 		cursor: pointer;
 		transition:
 			color 400ms ease-out,
@@ -168,8 +168,7 @@ header a * {
 /* --------------------------------------------------- */
 /* ---------------------- :focus --------------------- */
 /* --------------------------------------------------- */
-.toolbar-grid a:focus-visible,
-.theme-checkbox:focus-visible {
+.toolbar-grid a:focus-visible {
 	outline: 1px solid var(--colorAntreprizaRed);
 	outline-offset: 3px;
 }
@@ -273,68 +272,8 @@ header a * {
 	align-self: center;
 }
 
-.navigator-social-pages {
-	display: flex;
-	gap: clamp(0.5rem, 2vw, 0.8rem);
-	padding-left: clamp(var(--toolbarGap), 1.3vw, 2 * var(--toolbarGap));
-	padding-right: clamp(var(--toolbarGap), 1.3vw, 2 * var(--toolbarGap));
-}
-
-.social-item,
-.tools-item {
-	align-self: center;
-	line-height: 1px;
-	font-size: 1px;
-}
-
-.toolbar-tools-grid {
-	display: grid;
-	grid-template-columns: repeat(2, max-content);
-	column-gap: var(--toolbarGap);
-	align-items: center;
-	justify-self: center;
-	align-self: center;
-	padding-left: var(--toolbarGap);
-	padding-right: var(--toolbarGap);
-}
-
-.theme-changer {
-	display: inline-block;
-	cursor: pointer;
-	width: fit-content;
-}
-.theme-changer * {
-	transition:
-		color 400ms ease-out,
-		fill 400ms ease-out;
-}
-
-.theme-checkbox {
-	width: 1.5rem;
-	height: 1.5rem;
-	position: absolute;
-	-webkit-appearance: none;
-	appearance: none;
-}
-
-.theme-checkbox:not(:checked) ~ .dark-mode-checkbox,
-.theme-checkbox:checked ~ .light-mode-checkbox {
-	display: flex;
-}
-.theme-checkbox:checked ~ .dark-mode-checkbox,
-.theme-checkbox:not(checked) ~ .light-mode-checkbox {
-	display: none;
-}
-
 .main-padding-top {
 	height: 0px;
-}
-
-.toolbar-icon {
-	width: clamp(var(--toolbarSmallIconSize), 2vw, var(--toolbarNormalIconSize));
-	height: clamp(var(--toolbarSmallIconSize), 2vw, var(--toolbarNormalIconSize));
-	fill: var(--colorFont);
-	stroke-width: 0px;
 }
 
 .navigator-icon-logo {
@@ -375,11 +314,6 @@ header a * {
 	transform: rotate(180deg) translate(0px, 2px);
 }
 
-.facebook:where(.toolbar-icon) {
-	width: 15px;
-	stroke-width: 0px;
-}
-
 /* --------------------------------------------------- */
 /* ----------------- screen adaptation --------------- */
 /* --------------------------------------------------- */
@@ -407,17 +341,6 @@ header a * {
 	}
 	.navigator-icon-logo-text {
 		display: none;
-	}
-
-	/* .theme-checkbox, */
-	.toolbar-icon {
-		/* width: clamp(var(--toolbarSmallIconSize), 2vw, var(--toolbarNormalIconSize));
-	height: clamp(var(--toolbarSmallIconSize), 2vw, var(--toolbarNormalIconSize)); */
-		/* width: var(--toolbarSmallIconSize);
-		height: var(--toolbarSmallIconSize); */
-	}
-	.facebook:where(.toolbar-icon) {
-		width: 12px;
 	}
 }
 
@@ -547,10 +470,6 @@ a.header-tickets-button {
 		background-color 400ms ease-out,
 		border-color 400ms ease-out,
 		font-weight 400ms ease-out;
-}
-
-.theme-changer-text {
-	margin-left: 0.6rem;
 }
 
 .lang-brief {
@@ -703,21 +622,14 @@ a.header-tickets-button {
 	rotate: -45deg;
 }
 
-.social-pages {
-	display: flex;
-	gap: 1rem;
+.social-block {
+	height: 100%;
+	padding-left: clamp(var(--toolbarGap), 1.3vw, 2 * var(--toolbarGap));
+	padding-right: clamp(var(--toolbarGap), 1.3vw, 2 * var(--toolbarGap));
 }
 
-.header-icon {
-	margin-top: 0.35rem;
-	width: 1.3rem;
-	height: 1.3rem;
-	fill: var(--colorFont);
-	line-height: 0px;
+.toolbar-block {
+	height: 100%;
+	padding-left: calc(0.6 * var(--toolbarGap));
+	padding-right: calc(1.6 * var(--toolbarGap));
 }
-.header-icon:is(.facebook) {
-	width: 1rem;
-}
-/* .header-icon:is(.theme) {
-	margin-top: 4rem;
-} */

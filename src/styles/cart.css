@@ -107,6 +107,9 @@
 	width: 1.6em;
 	height: 1.6em;
 }
+.cart-icon-order .svg_icon {
+	fill: var(--colorFont);
+}
 
 .close-cart__button {
 	position: absolute;
@@ -123,7 +126,7 @@
 }
 
 .close-cart__button:focus-visible {
-	outline: 1px solid var(--colorAntreprizaRed);
+	outline: 1px solid var(--colorFont);
 }
 @media (hover: hover) {
 	.close-cart__button:hover {

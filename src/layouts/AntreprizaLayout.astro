@@ -96,19 +96,20 @@ let isCanonicalIndex = (pathname === '/ru/');
 			<Header lang={lang} />
 			<main class="wrapper-main">
 				<slot/>
-				{
-					(reservation !== 'no') &&
-					<Reservation client:only="react" lang={lang}></Reservation>
-				}
 			</main>
 			<Footer lang={lang} />
 		</div>
 	
+		{
+			(reservation !== 'no') &&
+			<Reservation client:only="react" lang={lang}></Reservation>
+		}
     <FeedbackForm lang={lang}/>
 		{
 			pageNeedTicketForm &&
 			<TicketForm lang={lang}/>
 		}
+    <input type="checkbox" id="theme-switcher" tabindex="-1" checked/>
 	</body>
 	
 </html>
