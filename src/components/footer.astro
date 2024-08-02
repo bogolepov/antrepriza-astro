@@ -5,10 +5,8 @@ import theater from '@data/theater.json'
 import dictionary from '@data/dictionary.json'
 
 import Logo from '../svg/logo.svg?url'
-import SocialIcons from '../svg/social.svg?url'
-// import Symbols from '../svg/symbols.svg?url'
 
-import SocialPages from '@components/social_pages.astro'
+import SocialPages from '@components/social_pages/social_pages.astro'
 
 const {lang} = Astro.props;
 
@@ -24,8 +22,8 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
     document.querySelector('#newsletter-button')?.addEventListener('click', submitNewsletterForm);
 
     let now = Date.now();
-    let nlph = document.querySelector('#newsletter-phone');
-    if(nlph) { nlph.value = (now+9).toString(); nlph.innerText = now.toString(); }
+    let nlPh = document.querySelector('#newsletter-phone');
+    if(nlPh) { nlPh.value = (now+9).toString(); nlPh.innerText = now.toString(); }
   });
 </script>
 

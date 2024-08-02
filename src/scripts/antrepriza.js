@@ -32,20 +32,19 @@ export function saveLangOfPage() {
 /* --------------------------------------------------- */
 /* ------------------- THEME MODE -------------------- */
 /* --------------------------------------------------- */
-let themeCheckboxes;
 let themeSwitcher;
 
 export function initThemeMode() {
 	let mode = localStorage.getItem(consts.CNF_MODE);
 	if (!mode || !consts.THEME_LIST.includes(mode)) mode = consts.THEME_DARK;
 
-	document.body.dataset.theme = mode;
+	// document.body.dataset.theme = mode;
 
 	themeSwitcher = document.querySelector('#theme-switcher');
 
 	themeSwitcher.addEventListener('change', () => {
 		let newMode = themeSwitcher.checked ? consts.THEME_DARK : consts.THEME_LIGHT;
-		document.body.dataset.theme = newMode;
+		// document.body.dataset.theme = newMode;
 		localStorage.setItem(consts.CNF_MODE, newMode);
 	});
 
@@ -69,24 +68,38 @@ export function initThemeMode() {
 let currExpandMenu;
 
 function closeAllBurgerItems() {
-	let burgerItems = document.getElementsByClassName('burger-item');
-	for (let item of burgerItems) {
-		item.classList.remove('submenu-opened');
-	}
+	let allOpenedSubmenus = document.querySelectorAll('.main-menu-item[data-state="opened"]');
+	allOpenedSubmenus?.forEach(item => (item.dataset.state = ''));
 }
 
 export function initHeaderSubMenuListener() {
+	let mobileMainMenu = document.querySelector('.main-menu.mobile');
+	let handleClickMenuItem = function (event) {
+		let elem = event.target.closest('.main-menu-item');
+		if (elem) {
+			if (elem.dataset.state === 'opened') elem.dataset.state = '';
+			else elem.dataset.state = 'opened';
+		}
+	};
+	if (mobileMainMenu) {
+		let expandingMenuItems = mobileMainMenu.querySelectorAll('.menu-item-label:has(.submenu-icon)');
+		expandingMenuItems?.forEach(item => item.addEventListener('click', handleClickMenuItem));
+
+		let submenuButtons = mobileMainMenu.querySelectorAll('.submenu-icon');
+		submenuButtons?.forEach(button => {
+			button.tabIndex = 0;
+			button.addEventListener('keydown', event => {
+				if (event.code === 'Enter' || event.code === 'Space') {
+					handleClickMenuItem(event);
+				}
+			});
+		});
+	}
+
 	let mobileHeader = document.getElementById('header-mobile');
 	if (mobileHeader) {
 		mobileHeader.addEventListener('click', function (event) {
-			let btn = event.target.closest('.burger-submenu-title');
-			if (btn) {
-				let item = event.target.closest('.burger-item');
-				if (item) item.classList.toggle('submenu-opened');
-				return;
-			}
-
-			btn = event.target.closest('.header-burger-button');
+			let btn = event.target.closest('.header-burger-button');
 			if (btn) {
 				let item = event.target.closest('.header-burger');
 				if (!item) return;
@@ -104,6 +117,7 @@ export function initHeaderSubMenuListener() {
 				return;
 			}
 
+			// after click on a link (<a>) we close burger menu, all opened submenus and cancel focus
 			if (event.target.nodeName == 'A' || event.target.closest('A')) {
 				let burgerHeader = event.target.closest('.header-burger');
 				if (burgerHeader) burgerHeader.classList.remove('burger-menu-opened');

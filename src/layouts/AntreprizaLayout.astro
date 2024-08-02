@@ -68,7 +68,6 @@ let isCanonicalIndex = (pathname === '/ru/');
 		<link rel="icon" type="image/png" href="/favicon.png" sizes="48x48" />
 		<link rel="icon" type="image/png" href="/favicon96.png" sizes="96x96" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<!-- SEO -->
 		{
 			theater.languages.map(lng => {
 				return (
@@ -77,12 +76,11 @@ let isCanonicalIndex = (pathname === '/ru/');
 			})
 		}
 		<link rel="alternate" href={theater.our_website_link + pathname.replace('/'+lang+'/', '/ru/')} hreflang="x-default" />
-		<!-- SEO -->
 		<!-- <meta http-equiv="Permissions-Policy" content="unload=()"> -->
 		<meta name="generator" content={Astro.generator} />
 	</head>
 
-	<body class="no-js" data-theme="dark">
+	<body class="no-js">
 
 		<script>
 		import { removeNoJS, saveLangOfPage } from "@scripts/antrepriza.js"

@@ -1,0 +1,129 @@
+.main-menu {
+	display: flex;
+	flex-direction: inherit;
+	column-gap: 25px;
+}
+.main-menu:where(.mobile) {
+	flex-direction: column;
+	row-gap: 8px;
+	padding-bottom: 0.6rem;
+	border-bottom: 1px solid var(--colorBorderForm);
+	margin-bottom: 0.5rem;
+}
+
+.main-menu-item {
+	position: relative;
+}
+
+.menu-item-label {
+	display: flex;
+	flex-direction: row;
+	column-gap: 0.9em;
+	cursor: pointer;
+}
+
+.main-menu:where(.mobile) .menu-item-label {
+	position: static;
+	justify-content: space-between;
+}
+.menu-item-label > * {
+	align-self: center;
+}
+
+.menu-drop-down-symbol,
+.submenu-icon {
+	padding-top: 0.25em;
+	height: 0.65em;
+	width: 0.65em;
+	fill: var(--colorFont);
+	stroke-width: 0px;
+}
+
+.main-menu:where(.mobile) .submenu-icon {
+	width: 2.15em;
+	height: 1.65em;
+	padding-left: 0.75em;
+	padding-right: 0.75em;
+	padding-top: 0.75em;
+	padding-bottom: 0.5em;
+}
+
+/* dropdown-box */
+.main-menu:not(:where(.mobile)) .submenu-box {
+	position: absolute;
+	top: 100%;
+	/* top: 5px; */
+	left: 0;
+	width: max-content;
+	min-width: 120px;
+	line-height: 1.5;
+	z-index: 1110;
+	color: var(--colorFont);
+	background-color: var(--colorBkgForm);
+	border: 4px solid var(--colorBorderForm);
+	border-radius: 2px;
+	/* font-size: 0.9em; */
+	transform-origin: 0 0;
+	box-shadow: 0 2px 10px var(--colorBoxShadow);
+	transform: scaleY(0);
+}
+.main-menu:not(:where(.mobile)) .submenu-box::before {
+	content: '';
+	position: absolute;
+	margin-left: -5px;
+	top: -7px;
+	left: 25px;
+	width: 12px;
+	height: 12px;
+	background: var(--colorBkgForm);
+	border: solid var(--colorBorderForm);
+	border-width: 1px 0 0 1px;
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+.submenu-list {
+	display: flex;
+	flex-direction: column;
+	padding: 0.85em 0.8em;
+	row-gap: 0.5em;
+}
+.main-menu:where(.mobile) .submenu-list {
+	font-size: 0.93em;
+	padding: 0.5em 0 0.2em 1em;
+}
+
+.active_link {
+	color: var(--colorAntreprizaRed);
+}
+.active_link svg {
+	fill: var(--colorAntreprizaRed);
+}
+.active_link svg.submenu-icon {
+	fill: var(--colorFont);
+}
+
+.menu-item-label:hover + .submenu-box,
+.submenu-box:hover,
+.submenu-box:has(a:focus) {
+	transition: transform 0.5s ease-in-out;
+	transform: scaleY(1);
+}
+
+.main-menu:where(.mobile) .submenu-box {
+	display: none;
+}
+.main-menu:where(.mobile) .main-menu-item[data-state='opened'] .submenu-box {
+	display: block;
+}
+.main-menu:where(.mobile) .main-menu-item[data-state='opened'] .submenu-icon use {
+	transform-origin: center center;
+	transform: rotate(180deg) translate(0px, 2px);
+}
+
+.submenu-icon:focus {
+	outline: 0;
+}
+.submenu-icon:focus-visible {
+	outline: 1px solid var(--colorAntreprizaRed);
+}

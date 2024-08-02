@@ -1,0 +1,81 @@
+---
+import "@components/menu/menu.css"
+
+import Symbols from '@svg/symbols.svg?url'
+
+import dictionary from '@data/dictionary.json'
+import theater from '@data/theater.json'
+import plays from '@data/plays.json'
+
+const {lang, add_classes } = Astro.props;
+
+const pathname: string = new URL(Astro.request.url).pathname;
+const currentPath: string[] = pathname.split("/").filter(Boolean);
+
+---
+
+<ul class:list={["main-menu", add_classes]}>
+  {
+    theater.menu_main.map(main_menu_item => {
+      let isLink = (main_menu_item.url && main_menu_item.url.length > 0);
+      let hasSubmenu = main_menu_item.submenu;
+      let submenu_list;
+      if (hasSubmenu) {
+        if (main_menu_item.submenu_folder === 'plays') submenu_list = plays;
+        else if (main_menu_item.submenu_folder === 'theater') submenu_list = theater.menu_theater;
+      }
+
+      return (
+        <li class="main-menu-item" data-state="">
+          <div class:list={["menu-item-label", {active_link: (currentPath[1] === main_menu_item.url || currentPath[1] === main_menu_item.submenu_folder)}]}>
+            {
+              isLink &&
+              <a href={"/" + lang + "/" + main_menu_item.url}>{dictionary[main_menu_item.dict_word][lang]}</a>
+            }
+            {
+              !isLink &&
+              dictionary[main_menu_item.dict_word][lang]
+            }
+            {
+              hasSubmenu &&
+              <svg class="submenu-icon">
+                <use href={Symbols + "#drop-down"}></use>
+              </svg>
+            }
+          </div>
+          {
+            hasSubmenu &&
+            <div class="submenu-box">
+              <ul class="submenu-list">
+                {
+                  submenu_list.map((submenu_item) => {
+                    let submenuItemLink;
+                    let submenuItemLabel;
+                    if (main_menu_item.submenu_folder === 'plays') { 
+                      submenuItemLink = submenu_item.suffix; 
+                      submenuItemLabel = submenu_item.alt_title[lang];
+                    }
+                    else if (main_menu_item.submenu_folder === 'theater') {
+                      submenuItemLink = submenu_item.url; 
+                      submenuItemLabel = dictionary[submenu_item.dict_word][lang];
+                    }
+
+                    return (
+                      <li>
+                        <a
+                          class:list={[{active_link: currentPath[1] === main_menu_item.submenu_folder && currentPath[2] === submenuItemLink}]}												 
+                          href={"/"+lang+"/" + main_menu_item.submenu_folder + "/"+submenuItemLink}>
+                            {submenuItemLabel}
+                        </a>
+                      </li>
+                    );
+                  } )
+                }
+              </ul>
+            </div>
+          }
+        </li>
+      );
+    })
+  }
+</ul>

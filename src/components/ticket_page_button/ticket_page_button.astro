@@ -1,0 +1,18 @@
+---
+import "@components/ticket_page_button/ticket_page_button.css"
+
+import dictionary from '@data/dictionary.json'
+
+const {lang } = Astro.props;
+
+const pathname: string = new URL(Astro.request.url).pathname;
+const currentPath: string[] = pathname.split("/").filter(Boolean);
+
+const pageUrl = 'tickets';
+
+---
+
+<a 
+  class="tickets-page-button" 
+  href={"/" + lang + "/" + pageUrl} class:list={{active_link: currentPath[1] === pageUrl}}>{dictionary.tickets[lang]}
+</a>

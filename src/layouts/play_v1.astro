@@ -1,7 +1,6 @@
 ---
 
 import "@styles/play.css"
-import "@styles/youtube_player.css"
 
 const {lang, play_id} = Astro.props;
 
@@ -15,7 +14,7 @@ import { ONE_DAY } from '@scripts/consts';
 
 import TicketBookButton from "@components/ticket_book_button.astro";
 import Gallery from "@components/play_gallery.astro";
-import YoutubePlayerCore from "@components/youtube_player_core.astro"
+import YoutubePlayerCore from "@components/youtube_player/youtube_player_core.astro"
 
 import { getEntry } from 'astro:content';
 

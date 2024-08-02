@@ -47,7 +47,9 @@
 /* --------------------------------------------------- */
 /* ---------------- dark/light theme ----------------- */
 /* --------------------------------------------------- */
-[data-theme='dark'] {
+
+/* [data-theme='dark'] { */
+body:has(#theme-switcher:checked) {
 	color-scheme: dark;
 	--font-opacity0: 0.7;
 	--font-opacity1: 0.44;
@@ -97,7 +99,8 @@
 	--font-invers-weight: 900;
 }
 
-[data-theme='light'] {
+/* [data-theme='light'] { */
+body:has(#theme-switcher:not(:checked)) {
 	color-scheme: light;
 	--font-opacity0: 0.85;
 	--font-opacity1: 0.8;

@@ -10,18 +10,13 @@ import dictionary from '@data/dictionary.json'
 import theater from '@data/theater.json'
 import plays from '@data/plays.json'
 
-import SocialPages from '@components/social_pages.astro'
-import Toolbar from '@components/toolbar.astro'
+import Menu from '@components/menu/menu.astro'
+import TicketPageButton from '@components/ticket_page_button/ticket_page_button.astro'
+import SocialPages from '@components/social_pages/social_pages.astro'
+import Toolbar from '@components/toolbar/toolbar.astro'
 
 
 plays.sort((play1, play2) => play1.alt_title[lang].toLowerCase().localeCompare(play2.alt_title[lang].toLowerCase(), lang));
-
-const menuProgram = { link: "program", text: dictionary.program[lang] };
-const menuPlays = { link: "plays", text: dictionary.plays[lang] };
-const menuTheater = { link: "theater", text: dictionary.theater[lang] };
-const menuMediathek = { link: "gallery", text: dictionary.gallery[lang] };
-const menuSupport = { link: "support", text: dictionary.support[lang] };
-const menuTickets = { link: "tickets", text: dictionary.tickets[lang] };
 
 const pathname: string = new URL(Astro.request.url).pathname;
 const currentPath: string[] = pathname.split("/").filter(Boolean);
@@ -76,81 +71,8 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 				</svg>
 			</a>
 		</div>
-		<div>
-			<div class="navigator-menu-grid">
-				<div><a href={"/" + lang + "/" + menuProgram.link} class:list={{active_link: currentPath[1] === menuProgram.link}}>{menuProgram.text}</a></div>
-				<div class="expand-menu">
-					<div class="toolbar-dropbtn">
-						<a href={"/" + lang + "/" + menuPlays.link} class:list={{active_link: currentPath[1] === menuPlays.link}}>
-							{menuPlays.text}
-						</a>
-						&nbsp;
-						<svg class="menu-drop-down-symbol">
-							<use href={Symbols + "#drop-down"}></use>
-						</svg>
-						&nbsp;
-					</div>
-					<div class="dropdown-box">
-						<ul>
-							{
-								plays.map((play) => {
-									return (
-										<li class="dropdown-item">
-											<a
-												class:list={['dropdown-item-link', 'item-flex', {active_link: currentPath[1] === menuPlays.link && currentPath[2] === play.suffix}]}												 
-												href={"/"+lang+"/plays/"+play.suffix}>
-													<div>{play.alt_title[lang]}</div>
-													{
-														play.title_notice &&
-														<div class="font-opacity1 bold1">{play.title_notice[lang]}</div>
-													}													
-											</a>
-										</li>
-									);
-								} )
-							}
-						</ul>
-					</div>
-				</div>
-				<div class="expand-menu">
-					<div class="toolbar-dropbtn">
-						<span class:list={[{active_link: currentPath[1] === menuTheater.link}]}>{menuTheater.text}&nbsp;</span>
-						<svg class="menu-drop-down-symbol">
-							<use href={Symbols + "#drop-down"}></use>
-						</svg>
-						&nbsp;
-					</div>
-					<div class="dropdown-box">
-						<ul>
-							{
-								theater.menu.map((info) => {
-									return (
-										<li class="dropdown-item">
-											<a
-												class:list={['dropdown-item-link', 'item-flex', {active_link: currentPath[1] === menuTheater.link && currentPath[2] === info.url}]}												 
-												href={"/"+lang+"/theater/"+info.url}>
-													<div>{dictionary[info.dict_word][lang]}</div>
-											</a>
-										</li>
-									);
-								} )
-							}
-						</ul>
-					</div>
-				</div>
-				<div>
-					<a href={"/" + lang + "/" + menuMediathek.link} class:list={{active_link: currentPath[1] === menuMediathek.link}}>
-						{menuMediathek.text}
-					</a>
-				</div>
-				<div>
-					<a href={"/" + lang + "/" + menuSupport.link} class:list={{active_link: currentPath[1] === menuSupport.link}}>
-						{menuSupport.text}
-					</a>
-				</div>
-			</div>
-		</div>
-		<a class="header-tickets-button" href={"/" + lang + "/" + menuTickets.link} class:list={{active_link: currentPath[1] === menuTickets.link}}>{menuTickets.text}</a>
+    <Menu lang={lang} />
+		<TicketPageButton lang={lang} />
     <div class="social-block">
 			<SocialPages lang={lang} />
 		</div>
@@ -192,90 +114,9 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 		</button>
 		<nav class="burger-menu">
 			<ul>
-				<li class="burger-item">
-					<a href={"/" + lang + "/" + menuProgram.link} class:list={{active_link: currentPath[1] === menuProgram.link}}>
-						{menuProgram.text}
-					</a>
-				</li>
-				<li class="burger-item expanded">
-					<div class="burger-submenu-title">
-						<div class="submenu-title-text">
-							<a href={"/" + lang + "/" + menuPlays.link} class:list={{active_link: currentPath[1] === menuPlays.link}}>
-								{menuPlays.text}
-							</a>
-						</div>
-						<button class="submenu-symbol-button">
-							<svg class="submenu-symbol">
-								<use href={Symbols + "#drop-down"}></use>
-							</svg>
-						</button>
-					</div>
-					<ul class="burger-submenu-list">
-					{
-						plays.map((play) => {
-							return (
-								<li class="burger-submenu-item">
-									<a
-										class:list={['item-flex', {active_link: currentPath[1] === menuPlays.link && currentPath[2] === play.suffix}]}												 
-										href={"/"+lang+"/plays/"+play.suffix}>
-											<div>{play.alt_title[lang]}</div>
-											{
-												play.title_notice &&
-												<div class="font-opacity1 bold1">{play.title_notice[lang]}</div>
-											}													
-									</a>
-								</li>
-							);
-						} )
-					}
-					</ul>
-				</li>
-				<li class="burger-item expanded">
-					<div class="burger-submenu-title">
-						<div class:list={["submenu-title-text", {active_link: currentPath[1] === menuTheater.link}]}>
-							{menuTheater.text}
-						</div>
-						<button class="submenu-symbol-button">
-							<svg class="submenu-symbol">
-								<use href={Symbols + "#drop-down"}></use>
-							</svg>
-						</button>
-					</div>
-					<div class="burger-submenu">
-						<ul class="burger-submenu-list">
-							{
-								theater.menu.map((info) => {
-									return (
-										<li class="burger-submenu-item">
-											<a
-												class:list={['item-flex', {active_link: currentPath[1] === menuTheater.link && currentPath[2] === info.url}]}												 
-												href={"/"+lang+"/theater/"+info.url}>
-													<div>{dictionary[info.dict_word][lang]}</div>
-											</a>
-										</li>
-									);
-								} )
-							}
-						</ul>
-					</div>
-				</li>
-				<li class="burger-item">
-					<a href={"/" + lang + "/" + menuMediathek.link} class:list={{active_link: currentPath[1] === menuMediathek.link}}>
-						{menuMediathek.text}
-					</a>
-				</li>
-				<li class="burger-item">
-					<a href={"/" + lang + "/" + menuSupport.link} class:list={{active_link: currentPath[1] === menuSupport.link}}>
-						{menuSupport.text}
-					</a>
-				</li>
-				<li class="burger-separate-item"></li>
-				<li class="burger-item">
-					<SocialPages lang={lang} add_classes="mobile" />
-				</li>
-				<li class="burger-item">
-					<Toolbar lang={lang} add_classes="mobile"/>
-				</li>
+				<Menu lang={lang} add_classes="mobile"/>
+				<SocialPages lang={lang} add_classes="mobile" />
+				<Toolbar lang={lang} add_classes="mobile"/>
 
 				<li class="burger-item">
 					{
@@ -295,13 +136,6 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 		</nav>
 	</div>
 	<a class="header-logo" href={"/" + lang + "/"} class:list={{active_link: currentPath[1] === undefined}}>
-		<!-- <svg class="navigator-icon-logo-text"> -->
-		<!-- <picture class="header-logo-text-icon">
-			<source srcset={AntreprizaLogo + "#logo-" + lang} type="image/svg+xml" media="(max-width: 570px)">
-			<source srcset={AntreprizaLogo + "#logo-text-" + lang} type="image/svg+xml">
-			<source srcset="logo_1x.png 1x, logo_2x.png 2x" media="(max-width: 570px)">
-			<img src={"logo_text_1x_" + lang + ".png"} srcset={"logo_text_2x_" + lang + ".png 2x"} alt="">
-		</picture> -->
 		<svg class="header-logo-text-icon">
 			<use href={AntreprizaLogo + "#logo-text-" + lang}></use>
 		</svg>
@@ -310,6 +144,6 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 		</svg>
 	</a>
 	<div></div>
-	<a class="header-tickets-button" href={"/" + lang + "/" + menuTickets.link} class:list={{active_link: currentPath[1] === menuTickets.link}}>{menuTickets.text}</a>
+	<TicketPageButton lang={lang} />
 </header>
 <div class="main-padding-top"></div>

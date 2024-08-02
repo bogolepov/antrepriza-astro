@@ -47,7 +47,7 @@ header a * {
 	letter-spacing: 1px;
 	user-select: none;
 	/* font-size: 1rem; */
-	font-size: clamp(0.85rem, 1.2vw, 1rem);
+	font-size: clamp(0.85rem, 1.5vw, 1.05rem);
 	/* letter-spacing: 1px; */
 }
 
@@ -318,7 +318,7 @@ header a * {
 /* ----------------- screen adaptation --------------- */
 /* --------------------------------------------------- */
 
-@media screen and (min-width: 1175px) {
+@media screen and (min-width: 1050px) {
 	.navigator-icon-logo {
 		display: none;
 	}
@@ -326,7 +326,7 @@ header a * {
 		display: block;
 	}
 }
-@media screen and (max-width: 1175px) {
+@media screen and (max-width: 1050px) {
 	.navigator-menu-grid {
 		/* font-size: clamp(0.75rem, 1.2vw, 0.9rem); */
 		column-gap: calc(2 * var(--toolbarGap));
