@@ -1,0 +1,76 @@
+.toolbar-list {
+	display: flex;
+	gap: clamp(0.5rem, 2vw, 0.8rem);
+	height: 100%;
+	min-height: 37px;
+}
+.toolbar-list:where(.mobile) {
+	gap: 1rem;
+}
+
+.toolbar-list svg {
+	display: block;
+}
+
+.toolbar-list li {
+	align-self: center;
+}
+.toolbar-list li * {
+	transition:
+		color 400ms ease-out,
+		fill 400ms ease-out;
+}
+
+.tool-icon {
+	fill: var(--colorFont);
+	width: clamp(var(--toolbarSmallIconSize), 2vw, var(--toolbarNormalIconSize));
+	height: clamp(var(--toolbarSmallIconSize), 2vw, var(--toolbarNormalIconSize));
+}
+.tool-icon:where(.mobile) {
+	width: 1.3rem;
+	height: 1.3rem;
+}
+
+.theme-text {
+	display: none;
+}
+.toolbar-list:where(.mobile) .theme-text {
+	display: block;
+}
+
+#theme-switcher {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	right: 50%;
+	bottom: 50%;
+	-webkit-appearance: none;
+	appearance: none;
+}
+
+.theme-block {
+	display: none;
+	flex-direction: row;
+	gap: 0.5rem;
+	cursor: pointer;
+	min-width: clamp(var(--toolbarSmallIconSize), 2vw, var(--toolbarNormalIconSize));
+}
+.theme-block > * {
+	align-self: center;
+}
+
+body:has(#theme-switcher:checked) .theme-block-dark,
+body:has(#theme-switcher:not(:checked)) .theme-block-light {
+	display: none;
+}
+body:has(#theme-switcher:checked) .theme-block-light,
+body:has(#theme-switcher:not(:checked)) .theme-block-dark {
+	display: flex;
+}
+
+.theme-switcher-item:focus-visible .theme-block {
+	outline: 1px solid var(--colorAntreprizaRed);
+}
+.theme-switcher-item:focus-visible {
+	outline: 0;
+}

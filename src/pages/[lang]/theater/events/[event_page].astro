@@ -40,9 +40,12 @@ export const getStaticPaths = (() => {
 
 const {pageLang, pageTitle, playID, playDate, playTime} = Astro.props;
 
+let event = program.find(item => (item.play_id.toString() === playID && item.date === playDate && item.time === playTime));
+let needTicketForm = event.no_tickets ? "no" : "yes";
+
 ---
 
-<AntreprizaLayout title={pageTitle} lang={pageLang}>
+<AntreprizaLayout title={pageTitle} lang={pageLang} ticket_form = {needTicketForm}>
   <Event lang={pageLang} play_id={playID} date={playDate} time={playTime}></Event>
 </AntreprizaLayout>
 

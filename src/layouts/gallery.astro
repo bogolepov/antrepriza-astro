@@ -9,7 +9,7 @@ import '@styles/gallery.css'
 import photos from '@data/plays_photos.json'
 
 import PlayGallery from "@components/play_gallery.astro";
-import YoutubePlayer from "@components/youtube_player.astro";
+import YoutubePlayer from "@components/youtube_player/youtube_player.astro";
 
 import dictionary from '@data/dictionary.json'
 
@@ -21,84 +21,96 @@ const posterImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*
 <script is:inline src="/js/swiper-bundle.min.js" defer></script>
 
 <section class="gallery">
-  <h1 class="section-title">{dictionary.gallery[lang]}</h1>
-  {
-    plays.map(play => {
-      let playFotos = photos.filter(photo => photo.filename && photo.suffix == play.suffix && photo.is_landscape);
-      if ( (!playFotos || playFotos.length === 0) && !play.trailer_embed) return;
-      return (
-        <div class="gallery-block">
-          <form>
-            <input type="radio" id={"poster-"+play.id} name={"media-"+play.id} value="poster" {!playFotos && (playFotos.length === 0) && !play.trailer_embed && checked} />
-            <input type="radio" id={"video-"+play.id} name={"media-"+play.id} value="video" {!playFotos && (playFotos.length === 0) && checked} />
-            <input type="radio" id={"photo-"+play.id} name={"media-"+play.id} value="photo" checked/>
+  <ul>
+    <h1 class="section-title">{dictionary.gallery[lang]}</h1>
+    {
+      plays.map(play => {
+        let playFotos = photos.filter(photo => photo.filename && photo.suffix == play.suffix && photo.is_landscape);
+        if ( (!playFotos || playFotos.length === 0) && !play.trailer_embed) return;
+        return (
+          <li class="gallery-block">
+            <form>
+              <div class="block-title">
+                <h2><a href={"/"+lang+"/plays/"+play.suffix}>{play.title[lang].toUpperCase()}</a>
+                </h2>
 
-            <div class="block-title">
-              <h2>{play.title[lang].toUpperCase()}</h2>
-              <div class="media-flex-top tabs">
-                {
-                  playFotos && (playFotos.length > 0) &&
-                  <label class="media-photo tab-item" for={"photo-"+play.id}>{dictionary.photo[lang]}</label>
-                }
-                {
-                  play.trailer_embed &&
-                  <label class="media-video tab-item" for={"video-"+play.id}>{dictionary.video[lang]}</label>
-                }
-                {
-                  play.posters.afisha && (play.posters.afisha.length > 0) &&
-                  <label class="media-poster tab-item" for={"poster-"+play.id}>{dictionary.poster[lang]}</label>
-                }
+                <div class="media-flex-top tabs">
+                  {
+                    playFotos && (playFotos.length > 0) &&
+                    <label class="media-photo tab-item" for={"photo-"+play.id}>{dictionary.photo[lang]}</label>
+                  }
+                  {
+                    play.trailer_embed &&
+                    <label class="media-video tab-item" for={"video-"+play.id}>{dictionary.video[lang]}</label>
+                  }
+                  {
+                    play.posters.afisha && (play.posters.afisha.length > 0) &&
+                    <label class="media-poster tab-item" for={"poster-"+play.id}>{dictionary.poster[lang]}</label>
+                  }
+                  {
+                    play.posters.afisha && (play.posters.afisha.length > 0) &&
+                    <input type="radio" id={"poster-"+play.id} name={"media-"+play.id} value="poster" {!playFotos && (playFotos.length === 0) && !play.trailer_embed && checked} />
+                  }
+                  {
+                    play.trailer_embed &&
+                    <input type="radio" id={"video-"+play.id} name={"media-"+play.id} value="video" {!playFotos && (playFotos.length === 0) && checked} />
+                  }
+                  {
+                    playFotos && (playFotos.length > 0) &&
+                    <input type="radio" id={"photo-"+play.id} name={"media-"+play.id} value="photo" checked/>
+                  }
+                </div>
               </div>
-            </div>
-            <div>
-              {
-                playFotos && playFotos.length > 0 &&
-                <div class="photo_container">
-                  <PlayGallery play_id={play.id} play_suffix={play.suffix} hover="false"/>
-                </div>
-              }
-              {
-                play.trailer_embed &&
-                <div class="video_container">
-                  <YoutubePlayer lang={lang} url={play.trailer_embed} />
-                </div>
-              }
-              {
-                play.posters.afisha && play.posters.afisha.length > 0 &&
-                <div class="poster_container">
-                  <div class="flex-center poster ">
-                    <Picture 
-                      class:list={'image-wrapper-portrait'} 
-                      src={posterImages["/src/assets/" + play.posters.afisha]()} 
-                      formats={['webp']} 
-                      fallbackFormat='jpg'
-                      loading="eager"
-                      widths={[300, 420, 540, 640]}
-                      sizes={'(max-width: 380px) 300px, (max-width: 530px) 420px, (max-width: 680px) 540px, 640px'}
-                      alt={play.title[lang]} />
+              <div>
+                {
+                  playFotos && playFotos.length > 0 &&
+                  <div class="photo_container">
+                    <PlayGallery play_id={play.id} play_suffix={play.suffix} hover="false"/>
                   </div>
-                </div>
-              }
-            </div>
-            <div class="after-gallery">
-              <div class="media-flex-bottom tabs">
-                {
-                  playFotos && playFotos.length &&
-                  <label class="media-photo tab-item" for={"photo-"+play.id}>{dictionary.photo[lang]}</label>
                 }
                 {
                   play.trailer_embed &&
-                  <label class="media-video tab-item" for={"video-"+play.id}>{dictionary.video[lang]}</label>
+                  <div class="video_container">
+                    <YoutubePlayer lang={lang} url={play.trailer_embed} />
+                  </div>
                 }
                 {
-                  play.posters.afisha && (play.posters.afisha.length > 0) &&
-                  <label class="media-poster tab-item" for={"poster-"+play.id}>{dictionary.poster[lang]}</label>
+                  play.posters.afisha && play.posters.afisha.length > 0 &&
+                  <div class="poster_container">
+                    <div class="flex-center poster ">
+                      <Picture 
+                        class:list={'image-wrapper-portrait'} 
+                        src={posterImages["/src/assets/" + play.posters.afisha]()} 
+                        formats={['webp']} 
+                        fallbackFormat='jpg'
+                        loading="eager"
+                        widths={[300, 420, 540, 640]}
+                        sizes={'(max-width: 380px) 300px, (max-width: 530px) 420px, (max-width: 680px) 540px, 640px'}
+                        alt={play.title[lang]} />
+                    </div>
+                  </div>
                 }
               </div>
-            </div>
-          </form>
-        </div>
-      );
-    })
-  }
+              <div class="after-gallery">
+                <div class="media-flex-bottom tabs">
+                  {
+                    playFotos && playFotos.length &&
+                    <label class="media-photo tab-item" for={"photo-"+play.id}>{dictionary.photo[lang]}</label>
+                  }
+                  {
+                    play.trailer_embed &&
+                    <label class="media-video tab-item" for={"video-"+play.id}>{dictionary.video[lang]}</label>
+                  }
+                  {
+                    play.posters.afisha && (play.posters.afisha.length > 0) &&
+                    <label class="media-poster tab-item" for={"poster-"+play.id}>{dictionary.poster[lang]}</label>
+                  }
+                </div>
+              </div>
+            </form>
+          </li>
+        );
+      })
+    }
+  </ul>
 </section>

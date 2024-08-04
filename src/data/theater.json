@@ -3,7 +3,14 @@
 		{ "lang_code": "ru", "lang_name": "Русский" },
 		{ "lang_code": "de", "lang_name": "Deutsch" }
 	],
-	"menu": [
+	"menu_main": [
+		{ "dict_word": "program", "url": "program" },
+		{ "dict_word": "plays", "url": "plays", "submenu": true, "submenu_folder": "plays" },
+		{ "dict_word": "theater", "url": "", "submenu": true, "submenu_folder": "theater" },
+		{ "dict_word": "gallery", "url": "gallery" },
+		{ "dict_word": "support", "url": "support" }
+	],
+	"menu_theater": [
 		{ "dict_word": "menu_about", "url": "about" },
 		{ "dict_word": "events", "url": "events" },
 		{ "dict_word": "menu_actors", "url": "actors" },
@@ -95,7 +102,8 @@
 		}
 	],
 	"fix_stages": ["ost", "west"],
-	"main_website": "https://antrepriza.eu",
+	"our_website_link": "https://antrepriza.eu",
+	"our_website_text": "antrepriza.eu",
 	"social_pages": [
 		{ "name": "Facebook", "url": "https://www.facebook.com/AntreprizaBerlin", "svg": "#facebook-outline" },
 		{ "name": "Instagram", "url": "https://www.instagram.com/AntreprizaBerlin", "svg": "#instagram-outline2" },

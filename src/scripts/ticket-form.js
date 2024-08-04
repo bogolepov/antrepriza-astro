@@ -1,3 +1,5 @@
+import * as consts from '@scripts/consts';
+
 import { atom } from 'nanostores';
 import { isCartOpen, isTicketsAdded } from '@react-components/reservation/cartStore';
 
@@ -10,6 +12,8 @@ const clientJsons = { afisha: null, theater: null, dictionary: null };
 let afishaItem;
 let stage;
 let playItem;
+
+let currLang;
 
 let afishaButton;
 
@@ -37,17 +41,19 @@ let defaultDistributorLabel;
 let defaultDistribButtonText;
 
 export function initTicketBookForm() {
+	elemTicketLayer = document.querySelector('.modal-layer.d-ticket');
+	if (!elemTicketLayer) return;
+
+	currLang = localStorage.getItem(consts.CNF_LANG);
 	let ticketBtns = document.querySelectorAll('.pink-button.book-ticket.open-book-form');
 	for (let btn of ticketBtns) {
 		// btn.disabled = false;
 		btn.addEventListener('click', event => openForm(event, btn));
 	}
 
-	elemTicketLayer = document.querySelector('.modal-layer-ticket');
-
-	let btn = elemTicketLayer.querySelector('#ticket-form-close-button');
-	if (!btn) console.log('CLOSE BUTTON not found');
-	else btn.addEventListener('click', () => resetTicketForm());
+	let btn = elemTicketLayer.querySelector('.close__button');
+	if (!btn) console.error('CLOSE BUTTON not found');
+	else btn.addEventListener('click', () => closeForm());
 
 	elemAntreprizaButton = elemTicketLayer.querySelector('#ticket-form-book-antrepriza');
 	if (!elemAntreprizaButton) console.error('BOOK ANTREPRIZA not found');
@@ -58,7 +64,7 @@ export function initTicketBookForm() {
 	if (!elemButtonDistributor) console.log('BOOK DISTRIBUTOR not found');
 	else elemButtonDistributor.addEventListener('click', () => handleToDistributor());
 
-	elemLoader = elemTicketLayer.querySelector('.ticket-form-loader');
+	elemLoader = elemTicketLayer.querySelector('.loader.d-ticket');
 
 	elemPlayTitle = elemTicketLayer.querySelector('.play-name');
 	elemPlayDescription = elemTicketLayer.querySelector('.play-descr');
@@ -186,10 +192,6 @@ function closeForm() {
 	afishaButton = undefined;
 }
 
-function resetTicketForm() {
-	closeForm();
-}
-
 function handleToDistributor() {
 	closeForm();
 	if (afishaItem.distributor) window.open(afishaItem.distributor.link, '_blank');
@@ -279,7 +281,7 @@ function getSeatingInfo() {
 
 function getTicketCount(price_type) {
 	let elCounter = document.querySelector('#count-' + price_type);
-	if (!elCounter) console.log('COUNT-element: NOT FOUND!');
+	if (!elCounter) console.error('COUNT-element: NOT FOUND!');
 	return Number(elCounter.value);
 }
 

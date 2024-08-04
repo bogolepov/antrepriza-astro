@@ -10,8 +10,7 @@
 }
 
 .events ul {
-	padding-left: 0;
-	list-style: none;
+	margin: 1em 0;
 }
 .events li {
 	font-weight: var(--font-normal-weight);
@@ -34,6 +33,7 @@
 	border-top-left-radius: 0.5em;
 	border-top-right-radius: 0.5em;
 	margin: 0 0.5px;
+	cursor: pointer;
 }
 .evs-tab-item-last {
 	flex-grow: 1;
@@ -72,6 +72,13 @@
 	background-color: var(--colorBkgTicketsBtn);
 }
 
+.events:has(input[id='evs-tab-ost']:focus-visible) .evs-tab-ost,
+.events:has(input[id='evs-tab-west']:focus-visible) .evs-tab-west,
+.events:has(input[id='evs-tab-festival']:focus-visible) .evs-tab-festival,
+.events:has(input[id='evs-tab-tour']:focus-visible) .evs-tab-tour {
+	outline: 1px solid var(--colorFont);
+}
+
 @media (hover: hover) {
 	.evs-tab-item:hover {
 		background-color: var(--colorBkgTicketsBtn);
@@ -79,6 +86,5 @@
 		transition:
 			background-color 300ms ease-out,
 			color 300ms ease-out;
-		cursor: pointer;
 	}
 }

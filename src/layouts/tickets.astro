@@ -7,11 +7,11 @@ import prices from '@data/prices.json'
 import program from '@public_data/afisha.json'
 import dictionary from '@data/dictionary.json'
 import theater from '@data/theater.json'
-
 import plays from '@data/plays.json'
 
+import { ONE_DAY } from '@scripts/consts';
+
 import TicketBookButton from "@components/ticket_book_button.astro";
-import TicketForm from "@components/ticket_form.astro";
 
 import type { ImageMetadata } from 'astro';
 import { Picture } from 'astro:assets';
@@ -19,8 +19,6 @@ import { Picture } from 'astro:assets';
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg,jpg,png}');
 
 program.sort((play1, play2) => Date.parse(play1.date+"T"+play1.time) - Date.parse(play2.date+"T"+play2.time));
-
-const ONE_DAY: number = 24*60*60*1000;	
 
 let actualProgram = program.filter(performance => (Date.parse(performance.date) + ONE_DAY >= Date.now() && !performance.no_tickets));
 // let actualProgram = program;
@@ -40,163 +38,160 @@ for (let price of prices) {
 
 // giftTicketInfo = giftTicketInfo.replaceAll("{br}", "\u000A");
 
+// <picture>
+// 	<source srcset={AntreprizaLogo + "#logo-" + lang} type="image/svg+xml" media="(max-width: 570px)">
+// 	<source srcset={AntreprizaLogo + "#logo-text-" + lang} type="image/svg+xml">
+// 	<source srcset="logo_1x.png 1x, logo_2x.png 2x" media="(max-width: 570px)"> 
+// 	<img class="picture-test" src="/src/assets/logo_text_1x_ru.png" srcset="/src/assets/logo_text_2x_ru.png 2x" alt="">
+// </picture>
+
+ 
+// <div class="item-block hover-block hover-background">
+// 	<div class="gift-text">
+// 		<h3 class="giftticket play-title">{dictionary.giftticket[lang]}</h3>
+// 		<p class="gift-info">{giftTicketInfo}</p>
+// 		<div class="flex-spreader"></div>
+// 		<div class="giftticket buttons-block">
+// 		{
+// 			prices.map( price => {
+// 				return (
+// 					<TicketBookButton add_classes='' button_type='giftticket' price={price.value}	date='' time='' play_id=''	>
+// 							{price.text_short[lang]}&nbsp;{price.value}€
+// 					</TicketBookButton>
+// 				);
+// 			})
+// 		}
+// 		</div>
+// 	</div>
+// 	<div class="gift-image">
+// 		<Picture 
+// 			class:list={'image-wrapper-landscape black-white-filter'} 
+// 			src={images["/src/assets/logo_red_landscape.png"]()} 
+// 			formats={['webp']} 
+// 			loading="eager"
+// 			widths={[300, 420, 540, 640]}
+// 			sizes={'(max-width: 360px) 300px, (max-width: 500px) 420px, (max-width: 640px) 540px, 640px'}
+// 			alt={dictionary.giftcard[lang]} />
+// 	</div>
+// </div>
+
+// <div class="item-block hover-block hover-background">
+// 	<div class="gift-text">
+// 		<h3 class="giftcard play-title">{dictionary.giftcard[lang]}</h3>
+// 		<p class="gift-info">{dictionary.giftcard_info[lang]}</p>
+// 		<div class="flex-spreader"></div>
+// 		<div>
+// 			<h4 class="notification-label">{dictionary.giftcard_prices[lang]}:</h4>
+// 			<div class="giftcard buttons-block">
+// 			{
+// 				theater.giftcards.map( price => {
+// 					return (
+// 						<TicketBookButton add_classes='' button_type='giftcard' price={price}	date='' time='' play_id=''	>
+// 								{price}€
+// 						</TicketBookButton>
+// 					);
+// 				})
+// 			}
+// 			</div>
+// 		</div>
+// 	</div>
+// 	<div class="gift-image">
+// 		<Picture 
+// 			class:list={'image-wrapper-landscape black-white-filter'} 
+// 			src={images["/src/assets/logo_red_landscape.png"]()} 
+// 			formats={['webp']}
+// 			loading="eager" 
+// 			widths={[300, 420, 540, 640]}
+// 			sizes={'(max-width: 360px) 300px, (max-width: 500px) 420px, (max-width: 640px) 540px, 640px'}
+// 			alt={dictionary.giftcard[lang]} />
+// 	</div>
+// </div> 
+
 ---
 
-<!-- 
-<picture>
-	<source srcset={AntreprizaLogo + "#logo-" + lang} type="image/svg+xml" media="(max-width: 570px)">
-	<source srcset={AntreprizaLogo + "#logo-text-" + lang} type="image/svg+xml">
-	<source srcset="logo_1x.png 1x, logo_2x.png 2x" media="(max-width: 570px)"> 
-	<img class="picture-test" src="/src/assets/logo_text_1x_ru.png" srcset="/src/assets/logo_text_2x_ru.png 2x" alt="">
-</picture>
--->
-
 <section class="section-tickets">
-	<TicketForm lang={lang}/>
-  <h1 class="section-title">{dictionary.tickets[lang]}</h1>
-	{
-		playsWithGrouppedDatesArray.map(item => {
-			// console.log("key: " + item.key);
-			let playInfo;
-			plays.some((piece) => {
-				if (item.key === piece.id) {
-					playInfo = piece;
-					return; 
-				}
-			} )
+	<ul>
+		<h1 class="section-title">{dictionary.tickets[lang]}</h1>
+		{
+			playsWithGrouppedDatesArray.map(item => {
+				// console.log("key: " + item.key);
+				let playInfo;
+				plays.some((piece) => {
+					if (item.key === piece.id) {
+						playInfo = piece;
+						return; 
+					}
+				} )
 
-			if (playInfo) {
-				return (
-					<div id={playInfo.suffix} class="item-block tickets-play-block hover-block hover-background" data-play={playInfo.id}>
-						<div class="tickets-play-text">
-							<div class="tickets-play-name">
-								{item.value.find(item => item.premiere) && 
-									<h4 class="play-property-hot-notice">{dictionary.premiere[lang]}</h4>
-								}
-								<a class="stretch-link" href={"/"+lang+"/plays/"+playInfo.suffix}>
-									<h3 class="play-title">{playInfo.alt_title[lang]}</h3>
-								</a>
-							</div>
-							<div class="tickets-play-info">
-								<h4 class="play-property label-before" data-label={dictionary.genre[lang]+": "}>{playInfo.genre[lang]}, {playInfo.age}</h4>
-								<h4 class="play-property label-before" data-label={dictionary.language[lang]+": "}>{playInfo.lang[lang]}</h4>
-							</div>
-							<div class="tickets-play-dates">
-								<h4 class="notification-label">{dictionary.nextDates[lang]}:</h4>
-								{
-									theater.stages.map(stg => {
-										let playsOnThisStage = item.value.filter(stg_item => stg_item.stage_sid === stg.sid);
-										let stageNameText;
-										if (stg.fix_stage) {
-											stageNameText = dictionary.stage[lang] + " - " + stg.name[lang].toUpperCase();
-										}
-										else {
-											stageNameText = stg.place_name.toUpperCase();
-										}
-										if (playsOnThisStage && playsOnThisStage.length > 0) return (
-											<div class="this-stage-plays">
-												<div class="stage-name play-property">{stageNameText}</div>
-												<div class="buttons-block">
-													{
-														playsOnThisStage.map((play_date) => {
-																let fullDate: string = play_date.date+'T'+play_date.time;
-																let playDate: Date = new Date(fullDate);
-																return (
-																	<TicketBookButton add_classes='' button_type='ticket' price=''
-																										date={play_date.date} time={play_date.time} play_id={playInfo.id}	>
-																			{playDate.getDate().toString().padStart(2, '0')}.{(playDate.getMonth()+1).toString().padStart(2, '0')},
-																			{playDate.toLocaleDateString(lang, { weekday: 'short' })} / {play_date.time}
-																	</TicketBookButton>
-																)
-														} )
-													}
-												</div>
-											</div>
-										);										
-									})
-								}
-							</div>
-						</div>
-						<div class="tickets-play-image">
-							<Picture 
-								class:list={'image-wrapper-landscape black-white-filter'} 
-								src={images["/src/assets/" + playInfo.posters.landscape]()} 
-								formats={['webp']} 
-								fallbackFormat="jpg"
-								loading="eager"
-								widths={[300, 420, 540, 640]}
-								sizes={'(max-width: 360px) 300px, (max-width: 500px) 420px, (max-width: 640px) 540px, 640px'}
-								alt={playInfo.alt_title[lang]} />
-						</div>
-					</div>
-				);
-			}
-		})
-	}
-
-	<!-- 
-	<div class="item-block hover-block hover-background">
-		<div class="gift-text">
-			<h3 class="giftticket play-title">{dictionary.giftticket[lang]}</h3>
-			<p class="gift-info">{giftTicketInfo}</p>
-			<div class="flex-spreader"></div>
-			<div class="giftticket buttons-block">
-			{
-				prices.map( price => {
+				if (playInfo) {
 					return (
-						<TicketBookButton add_classes='' button_type='giftticket' price={price.value}	date='' time='' play_id=''	>
-								{price.text_short[lang]}&nbsp;{price.value}€
-						</TicketBookButton>
+						<li id={playInfo.suffix} class="item-block tickets-play-block hover-block hover-background" data-play={playInfo.id}>
+							<div class="tickets-play-text">
+								<div class="tickets-play-name">
+									{item.value.find(item => item.premiere) && 
+										<h4 class="play-property-hot-notice">{dictionary.premiere[lang]}</h4>
+									}
+									<a class="stretch-link" href={"/"+lang+"/plays/"+playInfo.suffix}>
+										<h3 class="play-title">{playInfo.alt_title[lang]}</h3>
+									</a>
+								</div>
+								<div class="tickets-play-info">
+									<h4 class="play-property label-before" data-label={dictionary.genre[lang]+": "}>{playInfo.genre[lang]}, {playInfo.age}</h4>
+									<h4 class="play-property label-before" data-label={dictionary.language[lang]+": "}>{playInfo.lang[lang]}</h4>
+								</div>
+								<div class="tickets-play-dates">
+									<h4 class="notification-label">{dictionary.nextDates[lang]}:</h4>
+									{
+										theater.stages.map(stg => {
+											let playsOnThisStage = item.value.filter(stg_item => stg_item.stage_sid === stg.sid);
+											let stageNameText;
+											if (stg.fix_stage) {
+												stageNameText = dictionary.stage[lang] + " - " + stg.name[lang].toUpperCase();
+											}
+											else {
+												stageNameText = stg.place_name.toUpperCase();
+											}
+											if (playsOnThisStage && playsOnThisStage.length > 0) return (
+												<div class="this-stage-plays">
+													<div class="stage-name play-property">{stageNameText}</div>
+													<div class="buttons-block">
+														{
+															playsOnThisStage.map((play_date) => {
+																	let fullDate: string = play_date.date+'T'+play_date.time;
+																	let playDate: Date = new Date(fullDate);
+																	return (
+																		<TicketBookButton add_classes='' button_type='ticket' price=''
+																											date={play_date.date} time={play_date.time} play_id={playInfo.id}	>
+																				{playDate.getDate().toString().padStart(2, '0')}.{(playDate.getMonth()+1).toString().padStart(2, '0')},
+																				{playDate.toLocaleDateString(lang, { weekday: 'short' })} / {play_date.time}
+																		</TicketBookButton>
+																	)
+															} )
+														}
+													</div>
+												</div>
+											);										
+										})
+									}
+								</div>
+							</div>
+							<div class="tickets-play-image">
+								<Picture 
+									class:list={'image-wrapper-landscape black-white-filter'} 
+									src={images["/src/assets/" + playInfo.posters.landscape]()} 
+									formats={['webp']} 
+									fallbackFormat="jpg"
+									loading="eager"
+									widths={[300, 420, 540, 640]}
+									sizes={'(max-width: 360px) 300px, (max-width: 500px) 420px, (max-width: 640px) 540px, 640px'}
+									alt={playInfo.alt_title[lang]} />
+							</div>
+						</li>
 					);
-				})
-			}
-			</div>
-		</div>
-		<div class="gift-image">
-			<Picture 
-				class:list={'image-wrapper-landscape black-white-filter'} 
-				src={images["/src/assets/logo_red_landscape.png"]()} 
-				formats={['webp']} 
-				loading="eager"
-				widths={[300, 420, 540, 640]}
-				sizes={'(max-width: 360px) 300px, (max-width: 500px) 420px, (max-width: 640px) 540px, 640px'}
-				alt={dictionary.giftcard[lang]} />
-		</div>
-	</div>
-
-	<div class="item-block hover-block hover-background">
-		<div class="gift-text">
-			<h3 class="giftcard play-title">{dictionary.giftcard[lang]}</h3>
-			<p class="gift-info">{dictionary.giftcard_info[lang]}</p>
-			<div class="flex-spreader"></div>
-			<div>
-				<h4 class="notification-label">{dictionary.giftcard_prices[lang]}:</h4>
-				<div class="giftcard buttons-block">
-				{
-					theater.giftcards.map( price => {
-						return (
-							<TicketBookButton add_classes='' button_type='giftcard' price={price}	date='' time='' play_id=''	>
-									{price}€
-							</TicketBookButton>
-						);
-					})
 				}
-				</div>
-			</div>
-		</div>
-		<div class="gift-image">
-			<Picture 
-				class:list={'image-wrapper-landscape black-white-filter'} 
-				src={images["/src/assets/logo_red_landscape.png"]()} 
-				formats={['webp']}
-				loading="eager" 
-				widths={[300, 420, 540, 640]}
-				sizes={'(max-width: 360px) 300px, (max-width: 500px) 420px, (max-width: 640px) 540px, 640px'}
-				alt={dictionary.giftcard[lang]} />
-		</div>
-	</div> 
-	-->
-
+			})
+		}
+	</ul>
 </section>
 
 
@@ -209,7 +204,6 @@ for (let price of prices) {
 
 		if (Date.parse(fullDate) <= Date.now()) {
 			//(btn as HTMLElement).hidden = true;
-			console.log('button DISABLED: ' +  btn.getAttribute("data-date"));
 			btn.disabled = true;
 			// (btn as HTMLElement).disabled = true;
 		}

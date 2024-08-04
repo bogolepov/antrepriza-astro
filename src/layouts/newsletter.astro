@@ -9,16 +9,17 @@ import '@styles/newsletter.css'
 
 ---
 
+<script>
+  import { newsletterService } from "@scripts/antrepriza.js"
+	document.addEventListener('DOMContentLoaded', () => {
+		newsletterService();
+	});
+</script>
+
 <div class="newsletter-service">
   <div class="service-status">
     <div class="status-title">{dictionary.newsletter_service_title[lang]}</div>
     <div class="status-message"></div>
   </div>
-  <Loader js_loader_name='newsletter-loader' background='no'></Loader>
+  <Loader uniq_name='newsletter-loader' background='no'></Loader>
 </div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    newsletterService();
-  });
-</script>

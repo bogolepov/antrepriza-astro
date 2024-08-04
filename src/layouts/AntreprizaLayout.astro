@@ -9,7 +9,10 @@ import Header from "@components/header.astro";
 import Footer from "@components/footer.astro";
 import Reservation from "@react-components/reservation/Reservation";
 
-const { title, description, lang, reservation, robots = "index, follow" } = Astro.props;
+import FeedbackForm from "@components/feedback_form.astro"
+import TicketForm from "@components/ticket_form.astro";
+
+const { title, description, lang, reservation, robots = "index, follow", ticket_form = "no" } = Astro.props;
 
 const pathname: string = new URL(Astro.request.url).pathname;
 const currentPath: string[] = pathname.split("/").filter(Boolean);
@@ -19,14 +22,14 @@ if (currentPath[currentPath.length-1] === lang) langRoot = true;
 
 let now = new Date();
 let pageTitle =  theater.longTheaterName[lang];
-if (title && title.length > 1) {
+if (title && title.length > 0) {
 	if (langRoot) pageTitle = pageTitle +  ' — ' + title;
 	else pageTitle = title +  ' — ' + pageTitle;
 }
 
+let pageNeedTicketForm = (ticket_form === "yes");
 let isCanonicalIndex = (pathname === '/ru/');
 
-		
 	// <link rel="preload" href="/fonts/roboto/Roboto-Thin.ttf" as="font" type="font/woff2" crossorigin/>
 	// <link rel="preload" href="/fonts/roboto/Roboto-Thin.ttf" as="font" type="font/woff2" crossorigin/>
 	// <link rel="preload" href="/fonts/roboto/Roboto-Light.ttf" as="font" type="font/woff2" crossorigin/>
@@ -52,7 +55,7 @@ let isCanonicalIndex = (pathname === '/ru/');
 		<meta http-equiv="Last-Modified" content={now.toUTCString()}>
 		{
 			isCanonicalIndex &&
-			<link rel="canonical" href={theater.main_website + pathname}/>
+			<link rel="canonical" href={theater.our_website_link + pathname}/>
 		}
 		<title>{pageTitle}</title>
 		{
@@ -65,45 +68,44 @@ let isCanonicalIndex = (pathname === '/ru/');
 		<link rel="icon" type="image/png" href="/favicon.png" sizes="48x48" />
 		<link rel="icon" type="image/png" href="/favicon96.png" sizes="96x96" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<!-- SEO -->
 		{
 			theater.languages.map(lng => {
 				return (
-					<link rel="alternate" href={theater.main_website + pathname.replace('/'+lang+'/', '/'+lng.lang_code+'/')} hreflang={lng.lang_code} />
+					<link rel="alternate" href={theater.our_website_link + pathname.replace('/'+lang+'/', '/'+lng.lang_code+'/')} hreflang={lng.lang_code} />
 				);
 			})
 		}
-		<link rel="alternate" href={theater.main_website + pathname.replace('/'+lang+'/', '/ru/')} hreflang="x-default" />
-		<!-- SEO -->
+		<link rel="alternate" href={theater.our_website_link + pathname.replace('/'+lang+'/', '/ru/')} hreflang="x-default" />
 		<meta name="generator" content={Astro.generator} />
 	</head>
 
 	<body class="no-js">
 
-	<script>
-		document.addEventListener('DOMContentLoaded', () => {
-			removeNoJS();
-			initLangEnv();
-			initColorMode();
-			initHeaderSubMenuListener();
-			initHoverModeForTouchScreen();
-			initQuestionForm();
-		});
-	</script>
-	<script is:inline src="/js/antrepriza.js" defer></script>
+		<script>
+		import { initPage } from "@scripts/antrepriza.js"
+			document.addEventListener('DOMContentLoaded', () => {
+				initPage();
+			});
+		</script>
 
 		<div class="wrapper">
 			<Header lang={lang} />
 			<main class="wrapper-main">
 				<slot/>
-				{
-					(reservation !== 'no') &&
-					<Reservation client:only="react" lang={lang}></Reservation>
-				}
 			</main>
 			<Footer lang={lang} />
 		</div>
 	
+		{
+			(reservation !== 'no') &&
+			<Reservation client:only="react" lang={lang}></Reservation>
+		}
+    <FeedbackForm lang={lang}/>
+		{
+			pageNeedTicketForm &&
+			<TicketForm lang={lang}/>
+		}
+    <input type="checkbox" id="theme-switcher" tabindex="-1" checked/>
 	</body>
 	
 </html>

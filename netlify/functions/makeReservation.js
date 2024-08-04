@@ -1,5 +1,7 @@
 import nodemailer from 'nodemailer';
 import fs from 'fs';
+import { LANG_LIST, EMAIL_REGEX } from './lib/consts.cjs';
+import { fromHtmlToPlainText } from './lib/utils.cjs';
 
 let dictionaryServer;
 let theater;
@@ -38,11 +40,23 @@ export const handler = async (event, context) => {
 	});
 
 	const messageData = JSON.parse(event.body);
-	const { lang, name, email, reservations, amount } = messageData;
+
+	// spam checking
+	if (!validateMessage(messageData)) {
+		// fake OK-result
+		return {
+			statusCode: 200,
+			body: JSON.stringify({
+				message: 'Email sent successfully',
+			}),
+		};
+	}
+
+	const { lang, name, email, reservations, amount, now } = messageData;
 
 	let htmlHead, htmlReservationsTable;
-	const htmlEmailToClient = makeHtmlEmail(true, lang, name, email, reservations, amount);
-	const htmlEmailToAntrepriza = makeHtmlEmail(false, lang, name, email, reservations, amount);
+	const htmlEmailToClient = makeHtmlEmail(true, lang, name, email, reservations, amount, now);
+	const htmlEmailToAntrepriza = makeHtmlEmail(false, lang, name, email, reservations, amount, now);
 
 	const makeMailOptions = isForClient => {
 		let mailTo = email;
@@ -50,7 +64,7 @@ export const handler = async (event, context) => {
 			if (process.env.MODE === process.env.MODE_PRODUCTION) {
 				mailTo = process.env.ANTREPRIZA_EMAIL_TICKETS + ', ' + process.env.ANTREPRIZA_EMAIL_MAMONTOV;
 			} else {
-				mailTo = process.env.ANTREPRIZA_EMAIL_TICKETS + ', ' + process.env.ANTREPRIZA_EMAIL_BOGOLEPOV;
+				mailTo = process.env.ANTREPRIZA_EMAIL_BOGOLEPOV;
 			}
 		}
 		return {
@@ -97,9 +111,52 @@ export const handler = async (event, context) => {
 		};
 	}
 
-	function makeHtmlEmail(isForClient, lang, name, email, reservations, amount) {
+	function validateMessage(messageData) {
+		if (!messageData || !messageData.lang || !LANG_LIST.includes(messageData.lang)) return false;
+		if (!messageData.name || messageData.name.length < 2) return false;
+		if (!messageData.email || !EMAIL_REGEX.test(messageData.email) || messageData.email.length < 5 || messageData.email.length > 64)
+			return false;
+		if (messageData.amount <= 0 || messageData.now <= 0) return false;
+		if (!messageData.reservations || messageData.reservations.length === 0) return false;
+
+		let valid = true;
+		messageData.reservations.forEach(element => {
+			if (!valid) return;
+
+			if (!element.date || !element.time) {
+				valid = false;
+				return;
+			}
+
+			let play = theater.plays.find(item => item.id === element.play_id);
+			let playDate = new Date(element.date);
+			let stage = theater.stages.find(stg => stg.sid === element.stage_sid);
+			if (!play || !playDate || !stage || !element.tickets || element.tickets.length === 0) {
+				valid = false;
+				return;
+			}
+
+			element.tickets.forEach(ticket => {
+				if (!valid) return;
+				if (ticket.count < 1) return;
+
+				let ticketType = theater.prices.find(price => price.type === ticket.type);
+				if (!ticketType) {
+					valid = false;
+					return;
+				}
+			});
+		});
+
+		return valid;
+	}
+
+	function makeHtmlEmail(isForClient, lang, name, email, reservations, amount, now) {
 		return (
-			`<!DOCTYPE html><html lang="${lang}">` + makeHead(lang) + makeBody(isForClient, lang, name, email, reservations, amount) + `</html>`
+			`<!DOCTYPE html><html lang="${lang}">` +
+			makeHead(lang) +
+			makeBody(isForClient, lang, name, email, reservations, amount, now) +
+			`</html>`
 		);
 	}
 
@@ -107,11 +164,11 @@ export const handler = async (event, context) => {
 		if (!!htmlHead) return htmlHead;
 
 		htmlHead =
-			'<head><meta charset="UTF-8"><title>' +
+			'<head><meta charset="UTF-8"><meta http-equiv="content-type" content="text/html"><title>' +
 			theater.shortTheaterName[lang] +
 			' - ' +
 			dictionaryServer.email_reservation_subject[lang] +
-			'</title><style>' +
+			'</title><meta name="viewport" content="width=device-width, initial-scale=1.0"><style>' +
 			'table {border-spacing:0;} td {vertical-align:top;}' +
 			'.email-body {font-size:16px;background-color:#292929;color:#d6d6d6;}' +
 			'.email-body a {color:#d6d6d6;} .email-body .im * {color:#d6d6d6;}' +
@@ -139,19 +196,19 @@ export const handler = async (event, context) => {
 		return htmlHead;
 	}
 
-	function makeBody(isForClient, lang, name, email, reservations, amount) {
+	function makeBody(isForClient, lang, name, email, reservations, amount, now) {
 		return (
 			`<body><div class='email-body'><table class='body-table'><tbody><tr><td class='email-wrapper'>` +
-			makeTextAboutReservation(isForClient, lang, name, email) +
+			makeTextAboutReservation(isForClient, lang, name, email, now) +
 			makeReservationsTable(lang, reservations, amount) +
 			`</td></tr></tbody></table></div></body>`
 		);
 	}
 
-	function makeTextAboutReservation(isForClient, lang, name, email) {
-		let dateOfReservation = new Date(Date.now());
-		const offset = dateOfReservation.getTimezoneOffset();
-		dateOfReservation = new Date(dateOfReservation.getTime() - offset * 60 * 1000);
+	function makeTextAboutReservation(isForClient, lang, name, email, now) {
+		let dateOfReservation = new Date(now);
+		// const offset = dateOfReservation.getTimezoneOffset();
+		// dateOfReservation = new Date(dateOfReservation.getTime() - offset * 60 * 1000);
 
 		if (isForClient) {
 			let getHello = hour => {
@@ -160,17 +217,17 @@ export const handler = async (event, context) => {
 				else if (hour < 18) return dictionaryServer.good_afternoon[lang];
 				else return dictionaryServer.good_evening[lang];
 			};
-			let strHello = getHello(dateOfReservation.getHours()) + (lang === 'ru' ? ', ' : ' ') + name + (lang === 'ru' ? '!' : ',');
+			let strHello =
+				getHello(dateOfReservation.getHours()) + (lang === 'ru' ? ', ' : ' ') + fromHtmlToPlainText(name) + (lang === 'ru' ? '!' : ',');
 
 			return (
 				`<div class='reservation-titel b700 fcw'>${strHello}</div>` +
 				`<p class='lh12 fcw'>${dictionaryServer.email_reservation_text[lang]}</p>` +
-				`<p class='lh12 fcw'>${dictionaryServer.email_reservation_text2[lang]}</p>` +
-				`<p class='lh12 fcw'>${dictionaryServer.email_reservation_text3[lang]}</p>` +
-				`<p><div class='lh12 fcw'>${dictionaryServer.email_reservation_text4[lang]}</div>` +
-				// `<div class='lh12 fcw'>${theater.longTheaterName[lang]}</div>` +
-				`<div class='lh12 fcw'>${dictionaryServer.your__theater[lang]} ` +
-				`<a href='${theater.main_website}/${lang}' class='lh12 fcw'>${theater.longTheaterName[lang]}</a></div></p>`
+				`<p><div class='lh12 fcw'>${dictionaryServer.email_reservation_text2[lang]}</div>` +
+				`<div class='lh12 fcw'>${dictionaryServer.email_reservation_text3[lang]}</div></p>` +
+				`<p class='lh12 fcw'>${dictionaryServer.email_reservation_text4[lang]}</p>` +
+				`<p><div class='lh12 fcw'>${theater.longTheaterName[lang]}</div>` +
+				`<a href='${theater.our_website_link}/${lang}' class='lh12 fcw'>${theater.our_website_text}</a></p>`
 			);
 		} else {
 			let options = {
@@ -184,7 +241,7 @@ export const handler = async (event, context) => {
 
 			return (
 				`<div class='reservation-titel fcw'>${dictionaryServer.new_reservation_text[lang]} :</div>` +
-				`<table class='user-table'><tr><td>${dictionaryServer.lang_name[lang]} :</td><td>${name}</td></tr>` +
+				`<table class='user-table'><tr><td>${dictionaryServer.lang_name[lang]} :</td><td>${fromHtmlToPlainText(name)}</td></tr>` +
 				`<tr><td>Email :</td><td>${email}</td></tr>` +
 				`<tr><td>${dictionaryServer.lang_when[lang]} :</td><td>${strCurrentDate}</td></tr></table>`
 			);

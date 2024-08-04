@@ -21,13 +21,13 @@ const components = await Astro.glob('@layouts/content/theater/contact*.astro');
       <a href={"mailto:"+theater.email}>{dictionary.email[lang]}: <span class="font-opacity1">{theater.email}</span></a>
     </div>
   </div>
-  <div class="contact-flex-column">
+  <ul class="contact-flex-column">
   {
     theater.fix_stages.map(stg_sid => {
       let stage = theater.stages.find(stg => stg.sid === stg_sid);
       if (stage) {
         return (
-          <div class="flex-column-item">
+          <li class="flex-column-item">
             <h3 class="stage-name">{dictionary.stage[lang] + " - " + stage.name[lang].toUpperCase()}</h3>
             <address>
               {stage.address.street} {stage.address.building} <br>
@@ -46,10 +46,10 @@ const components = await Astro.glob('@layouts/content/theater/contact*.astro');
                 })
               }
             </div>
-          </div>
+          </li>
       );
       }
     })
   }
-  </div>
+  </ul>
 </section>

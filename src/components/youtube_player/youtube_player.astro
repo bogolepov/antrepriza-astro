@@ -1,0 +1,14 @@
+---
+
+const {url, lang} = Astro.props;
+
+import "@components/youtube_player/youtube_player.css"
+import YoutubePlayerCore from "@components/youtube_player/youtube_player_core.astro"
+
+---
+
+<div class="media_container">
+  <div class="media">
+    <YoutubePlayerCore url={url} lang={lang}/>
+  </div>
+</div>

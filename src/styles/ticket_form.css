@@ -1,8 +1,8 @@
-.modal-layer-ticket {
+.modal-layer.d-ticket {
 	font-size: clamp(0.9rem, 2.7vw, 1rem);
 }
 
-.modal-layer-ticket .modal-dialog {
+.modal-layer.d-ticket .modal-dialog {
 	max-width: 360px;
 }
 

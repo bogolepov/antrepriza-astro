@@ -1,0 +1,12 @@
+---
+const {url, lang} = Astro.props;
+---
+
+<iframe class="trailer float"
+  src={url+"&rel=0&controls=2&hl="+lang.toUpperCase()} title="YouTube video player" 
+  loading="lazy"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen>
+</iframe>
+

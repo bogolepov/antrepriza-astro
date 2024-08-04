@@ -5,18 +5,27 @@ import theater from '@data/theater.json'
 import dictionary from '@data/dictionary.json'
 
 import Logo from '../svg/logo.svg?url'
-import SocialIcons from '../svg/social.svg?url'
-// import Symbols from '../svg/symbols.svg?url'
+
+import SocialPages from '@components/social_pages/social_pages.astro'
 
 const {lang} = Astro.props;
-
-import Loader from "@components/loader.astro";
 
 import type { ImageMetadata } from 'astro'
 import { Picture } from 'astro:assets'
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg,jpg,png,gif}');
 
 ---
+<script>
+  import { openFeedbackForm, submitNewsletterForm } from "@scripts/antrepriza.js"
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelector('.feedback-button')?.addEventListener('click', openFeedbackForm);
+    document.querySelector('#newsletter-button')?.addEventListener('click', submitNewsletterForm);
+
+    let now = Date.now();
+    let nlPh = document.querySelector('#newsletter-phone');
+    if(nlPh) { nlPh.value = (now+9).toString(); nlPh.innerText = now.toString(); }
+  });
+</script>
 
 <footer>
   <div class="footer-flex">
@@ -44,91 +53,35 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
       }    
       <div class="contact">
         <div class="info-text font-opacity0">
-          <a href={"tel:"+theater.phone}>{dictionary.telephone_short[lang]}: <span class="font-opacity1 phone-number">{theater.phone}</span></a>
+          <a href={"tel:"+theater.phone}><span class="font-opacity1 phone-number">{dictionary.telephone_short[lang]}:</span> {theater.phone}</a>
         </div>
         <div class="info-text font-opacity0">
-          <a href={"mailto:"+theater.email}>{dictionary.email[lang]}: <span class="font-opacity1">{theater.email}</span></a>
+          <a href={"mailto:"+theater.email}><span class="font-opacity1">{dictionary.email[lang]}:</span> {theater.email}</a>
         </div>
       </div>
     </div>
     <div class="footer-flex-item flex2">
       <div class="newsletter">
         <div class="newsletter-label">{dictionary.newsletter_title[lang]}</div>
-        <form method="POST" id="newsletter-form" class="newsletter-form" onsubmit="submitNewsletterForm(event)">
+        <form method="POST" id="newsletter-form" class="newsletter-form">
           <div class="newsletter-input-container">
+            <input id="newsletter-phone" type="hidden" name="phone" value=""/>
             <input type="text" class="newsletter__input" name="email" placeholder={dictionary.email_hint[lang]} autocomplete="on">
-            <button class="newsletter__button">&#10153;</button>
+            <button id="newsletter-button" class="newsletter__button">&#10153;</button>
             <div class="newsletter-input-loader"></div>
           </div>
           <div class="newsletter-message"></div>
         </form>
       </div>
-      <ul class="footer-social-pages">
-      {
-        theater.social_pages.map((socialPage) => {
-          return (
-            <li class="social-item">
-              <a href={socialPage.url} target="_blank"	rel="noopener external">
-                <svg class:list={['social-icon', 'toolbar-icon', socialPage.name.toLowerCase()]}>
-                  <use href={SocialIcons + socialPage.svg}></use>
-                  <title>{dictionary.logo[lang]} {socialPage.name}</title>
-                </svg>
-              </a>
-            </li>
-          );
-        } )
-      }
-      </ul>
-      <div class="question lh-1-3">
-        <input class="question-layer-switcher" type="checkbox" id="question__checkbox" name="question" value="question"/>
-        <label class="question-switcher-label opacoty1" for="question__checkbox">{dictionary.question_form_label[lang]}</label>
-        <div class="question-layer flex-center layer-on-window glass6">
-          <div class="modal-dialog question-dialog">
-            <div class="question-close" >
-              <label class="question-switcher-label" for="question__checkbox">&#10006;</label>
-            </div>
-            <form method="POST" id="question-form" class="question-form" onsubmit="submitQuestionForm(event)" data-netlify="true">
-              <input type="hidden" name="subject" value={theater.shortTheaterName[lang] + " [" + lang.toUpperCase() + "]: " + "{topic} (#%{submissionId})"}  />
-              <div class="form-label font-opacity0">{dictionary.question_subject[lang]}</div>
-              <div class="select-wrapper">
-                <select class="form-input" name="topic" id="topic">
-                {
-                  theater.question_subjects.map(subject => {
-                    return (
-                      <option>{dictionary[subject][lang]}</option>
-                    )
-                  })
-                }
-                </select>
-              </div>
-              <div class="form-label required font-opacity0">{dictionary.name[lang]}</div>
-              <input class="form-input" type="text" name="name" placeholder={dictionary.name_hint[lang]} autocomplete="on">
-              <div class="form-error" data-for="name"></div>
-              <div class="form-label required font-opacity0">{dictionary.email[lang]}</div>
-              <input class="form-input" type="text" name="email" placeholder={dictionary.email_hint[lang]} autocomplete="on">
-              <div class="form-error" data-for="email"></div>
-              <div class="form-label required font-opacity0">{dictionary.message[lang]}</div>
-              <textarea class="form-input" name="message" rows="5" maxlength="2000" placeholder={dictionary.message_hint[lang]} autocomplete="on"></textarea>
-              <div class="form-error" data-for="message"></div>
-              <div class="question-btn-wrapper">
-                <button class="pink-button" type="submit">{dictionary.question_btn_send[lang]}</button>
-              </div>
-            </form>
-            <Loader js_loader_name='question-form-loader' background='no'></Loader>
-            <div class="layer-on-parent question-form-result-wrapper glass1_5">
-              <div class="question-form-result">
-                <div class="question-form-result-message"></div>
-                <button class="question-form-result-button">OK</button>
-              </div>
-            </div>
-          </div>
-        </div>
+      <SocialPages lang={lang} />
+      <div>
+        <button class="feedback-button">{dictionary.question_form_label[lang]}</button>
       </div>
       <div class="lh-1-3">
         <div><a class="footer-text-link" href={"/" + lang + "/impressum"}>{dictionary.impressum[lang]}</a></div>
         <div><a class="footer-text-link" href={"/" + lang + "/privacy-policy"}>{dictionary.privacy_policy[lang]}</a></div>
       </div>
-      <div class="copyright-year font-opacity1">© 2024 {theater.longTheaterName[lang]}</div>
+      <div class="copyright-year font-opacity1 lh-1-1">© 2024 {theater.longTheaterName[lang]}</div>
     </div>
     <div class="footer-flex-item flex2">
       <div class="footer-partners">

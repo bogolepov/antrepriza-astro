@@ -1,0 +1,2 @@
+<p>Eine leichte Komödie, die die alltägliche Unfreiheit scheinbar freier Menschen offenbart.  Manche stürzen sich fanatisch in die Arbeit und zerstören gleichzeitig ihre Familie, andere werden unter dem Joch von Krediten zu Taten gezwungen, die zu Gefängnisstrafen führen können.</p>
+<p>Und eines Tages...in diesem hoffnungslosen Alltag taucht eine Unbekannte 32 auf.  Edel, frei, voller Liebe für andere.  Und hier beginnt der Kampf.  Wird es der Liebe der Unbekannte 32 gelingen, die Figuren des Stücks aus der Dunkelheit der Nacht zu befreien?</p>

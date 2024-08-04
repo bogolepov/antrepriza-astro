@@ -1,0 +1,35 @@
+.social-list {
+	display: flex;
+	gap: clamp(0.5rem, 2vw, 0.8rem);
+	height: 100%;
+	min-height: 37px;
+}
+.social-list:where(.mobile) {
+	gap: 1rem;
+}
+
+.social-list svg {
+	display: block;
+}
+
+.social-list li {
+	align-self: center;
+}
+.social-list li:has(a:focus-visible) {
+	outline-offset: 1px;
+	outline: 1px solid var(--colorAntreprizaRed);
+}
+
+.social-icon {
+	fill: var(--colorFont);
+	width: clamp(var(--toolbarSmallIconSize), 2vw, var(--toolbarNormalIconSize));
+	height: clamp(var(--toolbarSmallIconSize), 2vw, var(--toolbarNormalIconSize));
+}
+.social-icon:where(.mobile) {
+	width: 1.3rem;
+	height: 1.3rem;
+}
+
+.social-icon:where(.facebook) {
+	width: 15px;
+}

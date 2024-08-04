@@ -47,7 +47,8 @@ footer a * {
 		fill 400ms ease-out;
 }
 
-footer label {
+footer label,
+footer button {
 	transition:
 		color 400ms ease-out,
 		fill 400ms ease-out;
@@ -56,7 +57,8 @@ footer label {
 @media (hover: hover) {
 	footer a:hover,
 	footer a:hover *,
-	footer label:hover {
+	footer label:hover,
+	footer button:hover {
 		transition:
 			color 400ms ease-out,
 			fill 400ms ease-out;
@@ -99,15 +101,6 @@ footer .flex2 {
 	font-size: clamp(0.75rem, 1.4vw, 0.9rem);
 }
 
-.footer-social-pages {
-	list-style: none;
-	margin: 0;
-	display: flex;
-	gap: clamp(0.5rem, 2vw, 0.8rem);
-	padding: 0;
-	padding-bottom: 0.4em;
-}
-
 footer a:focus-visible {
 	outline: 1px solid var(--colorAntreprizaRed);
 }
@@ -115,7 +108,7 @@ footer a:focus-visible {
 .web-developer {
 	/* justify-content: flex-end; */
 	/* text-align: right; */
-	font-size: clamp(0.75rem, 1.4vw, 0.9rem);
+	font-size: clamp(0.75rem, 1.8vw, 0.9rem);
 	line-height: 1.3em;
 	letter-spacing: 0.05em;
 	width: max-content;
@@ -150,12 +143,14 @@ footer .phone-number {
 }
 
 .copyright-year {
+	font-size: clamp(0.75rem, 1.8vw, 0.9rem);
 	padding-top: 0.2em;
 }
 
 .footer-partners .title {
 	/* text-align: end; */
 	padding-bottom: 0.3em;
+	font-size: clamp(0.75rem, 1.8vw, 0.9rem);
 }
 
 footer .logo-flex {
@@ -187,7 +182,7 @@ footer .logo-75 {
 	position: relative;
 	width: 100%;
 	max-width: 300px;
-	margin-bottom: 0.7em;
+	margin-bottom: 0.3em;
 }
 
 .newsletter-input-container {
@@ -298,148 +293,20 @@ footer .logo-flex a:focus-visible img {
 	outline-offset: 1px;
 }
 
-/* --------------------------------------------------- */
-/* ---------------------- Question ------------------- */
-/* --------------------------------------------------- */
-.question {
-	font-size: clamp(0.8rem, 2vw, 0.95rem);
-	padding-bottom: 0.4em;
-}
-.question .question-layer-switcher {
-	-webkit-appearance: none;
-	appearance: none;
-	display: block;
-}
-.question .question-switcher-label {
-	display: block;
+footer .feedback-button {
+	display: inline-block;
 	position: relative;
 	color: var(--colorFontDate);
 	letter-spacing: 0.02em;
 	text-transform: uppercase;
 	font-weight: 400;
 	cursor: pointer;
+	border: none;
+	background-color: transparent;
+	font-size: clamp(0.8rem, 2vw, 0.95rem);
+	padding: 0;
+	margin-bottom: 0.4em;
 }
-
-.question-layer {
-	background-color: var(--colorBkgLayerUnderForm);
-}
-
-.question:has(.question-layer-switcher:not(:checked)) .question-layer {
-	transform: scaleY(0);
-}
-
-.question:has(.question-layer-switcher:checked) .question-layer {
-	transition:
-		0.5s transform ease-in-out,
-		0.5s backdrop-filter ease-in-out;
-	transform: scaleY(1);
-}
-
-/* open question-layer at any focused element inside */
-.question:has(.question-layer-switcher:not(:checked)) .question-layer:has(input:focus, textarea:focus, button:focus, select:focus) {
-	transform: scaleY(1);
-}
-
-.question-layer .question-switcher-label {
-	display: inline-block;
-}
-
-.question-dialog {
-	max-width: 440px;
-}
-
-.question-close {
-	width: 100%;
-	text-align: right;
-	font-size: 20px;
-	line-height: 20px;
-	padding-top: 2px;
-	padding-right: 5px;
-	font-weight: var(--font-bold-weight);
-	margin-left: auto;
-	user-select: none;
-}
-
-.question-form {
-	padding: 0 20px 20px 20px;
-}
-
-.question-layer select.form-input::-ms-expand {
-	display: none;
-}
-.question-layer select.form-input {
-	cursor: pointer;
-	-webkit-appearance: none;
-	appearance: none;
-
-	padding: 2px 33px 2px 2px;
-	margin-bottom: 0;
-}
-.question-layer .select-wrapper {
-	position: relative;
-	margin-bottom: 0.7em;
-}
-.question-layer .select-wrapper::after {
-	content: '';
-	position: absolute;
-	top: 50%;
-	right: 10px;
-	transform: translateY(-50%);
-	pointer-events: none;
-
-	width: 0px;
-	height: 0px;
-	border-style: solid;
-	border-width: 8px 7.5px 0 7.5px;
-	border-color: var(--colorBkgTicketsBtn) transparent transparent transparent;
-}
-
-.question-layer textarea {
-	resize: none;
-	display: block;
-}
-
-.question-layer .question-btn-wrapper {
-	width: 100%;
-	text-align: right;
-	padding-top: 0.8em;
-}
-
-.question-layer .pink-button {
-	text-transform: none;
-}
-
-.question:has(.question-layer-switcher:focus-visible) .question-switcher-label {
-	outline: 1px solid var(--colorAntreprizaRed);
-}
-
-/* --------------------------------------------------- */
-/* ------ show result of contact form sending -------- */
-/* --------------------------------------------------- */
-.question-form-result {
-	width: 70%;
-	text-align: center;
-	padding: 1.6em;
-
-	border: 4px solid var(--colorBorderForm);
-	border-radius: 6px;
-	box-shadow: 0 2px 10px var(--colorBoxShadow);
-
-	background-color: var(--colorBkgForm);
-	color: var(--colorFont);
-}
-
-.question-form-result-message {
-	padding-bottom: 1.3em;
-}
-.question-form-result-button {
-	padding: 0.2em 0.6em;
-	background-color: var(--colorBkgTicketsBtn);
-	border: 1px solid var(--colorBkgTicketsBtn);
-	color: var(--colorFontTicketsBtn);
-	border-radius: 0;
-	cursor: pointer;
-}
-.question-form-result-button:focus-visible {
+footer .feedback-button:focus-visible {
 	outline: 1px solid var(--colorAntreprizaRed);
 }

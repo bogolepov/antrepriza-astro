@@ -5,8 +5,8 @@ import sitemap from '@astrojs/sitemap';
 import plays from './src/data/plays.json';
 
 let now = new Date();
-const offset = now.getTimezoneOffset();
-now = new Date(now.getTime() - offset * 60 * 1000);
+// const offset = now.getTimezoneOffset();
+// now = new Date(now.getTime() - offset * 60 * 1000);
 
 function isNoIndex(url) {
 	let lowUrl = url.toLowerCase();

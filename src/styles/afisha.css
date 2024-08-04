@@ -1,6 +1,6 @@
-/* section.program {
-	width: 100%;
-} */
+.month-list[data-counter='0'] {
+	display: none;
+}
 
 .program-month {
 	font-size: clamp(1.55rem, 3.7vw, 2.7rem);
@@ -11,7 +11,7 @@
 	text-transform: uppercase;
 	word-wrap: break-word;
 
-	border-bottom: 1px solid var(--colorFont);
+	border-top: 1px solid var(--colorFont);
 	padding: 0.44em 0px 0.5em 0px;
 	text-align: center;
 	margin-bottom: 0px;
@@ -29,14 +29,11 @@ h1.section-title + div .program-month {
 	flex-direction: row;
 	justify-content: space-between;
 	transition: background-color 250ms linear;
+	border-top: 1px solid;
 }
 
 .program-play-block[hidden] {
 	display: none;
-}
-
-.program-play-block:not(:last-of-type) {
-	border-bottom: 1px solid;
 }
 
 .program-play-text {
@@ -154,9 +151,12 @@ h1.section-title + div .program-month {
 	transition: filter 250ms ease-in;
 }
 
-/* section.program a:focus-visible {
-	outline: 1px solid var(--colorAntreprizaRed);
-} */
+.program-play-block a:focus-visible {
+	outline: none;
+}
+.program-play-block:has(a:focus-visible) {
+	outline: 2px solid;
+}
 
 @media screen and (max-width: 1040px) {
 	.program-play-text {

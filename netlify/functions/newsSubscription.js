@@ -68,7 +68,7 @@ export const handler = async (event, context) => {
 		if (process.env.MODE === process.env.MODE_PRODUCTION) {
 			mailTo = process.env.ANTREPRIZA_EMAIL_SUBSCRIPTION + ', ' + process.env.ANTREPRIZA_EMAIL_MAMONTOV;
 		} else {
-			mailTo = process.env.ANTREPRIZA_EMAIL_SUBSCRIPTION + ', ' + process.env.ANTREPRIZA_EMAIL_BOGOLEPOV;
+			mailTo = process.env.ANTREPRIZA_EMAIL_BOGOLEPOV;
 		}
 		const mailOptionsAntrepriza = {
 			from: `${theater.longTheaterName[lang]} <${process.env.ANTREPRIZA_EMAIL_SUBSCRIPTION}>`,
@@ -107,14 +107,14 @@ export const handler = async (event, context) => {
 
 	function makeHead(lang) {
 		let htmlHead =
-			'<head><meta charset="UTF-8"><title>' +
+			'<head><meta charset="UTF-8"><meta http-equiv="content-type" content="text/html"><title>' +
 			theater.shortTheaterName[lang] +
 			' - ' +
 			dictionaryServer.email_news_subscription_reg_subject[lang] +
-			'</title><style>' +
+			'</title><meta name="viewport" content="width=device-width, initial-scale=1.0"><style>' +
 			'table {border-spacing:0;} td {vertical-align:top;}' +
 			'.email-body {font-size:16px;background-color:#292929;color:#d6d6d6;}' +
-			'.email-body a {color:#d6d6d6;text-decoration:none;} .email-body .im * {color:#d6d6d6;}' +
+			'.email-body a {color:#d6d6d6;} .email-body .im * {color:#d6d6d6;}' +
 			'.body-table {width:100%;}' +
 			'.email-wrapper {padding:2rem;margin-left:auto;margin-right:auto;} ' +
 			'.subscription-titel {font-size:1.35rem;margin-bottom:15px;line-height:1.2em;}' +
@@ -147,15 +147,14 @@ export const handler = async (event, context) => {
 			);
 		} else {
 			let strHello = dictionaryServer.dear_audience[lang] + (lang === 'ru' ? '!' : ',');
-			// TODO: change website-address of email-address confirmation
-			// https://antrepriza.netlify.app/ru/
 			return (
 				`<div class='subscription-titel b700 fcw'>${strHello}</div>` +
 				`<p class='lh12 fcw'>${dictionaryServer.email_subscription_text[lang]}</p>` +
 				`<p class='lh12 fcw'>${dictionaryServer.email_subscription_text2[lang]}</p>` +
-				`<p class='m50'><a href='https://antrepriza.netlify.app/${lang}/newsletter?sid=${sid}' class='confirm-button'>${dictionaryServer.email_subscription_button_text[lang]}</a></p>` +
+				`<p class='m50'><a href='https://antrepriza.eu/${lang}/newsletter?sid=${sid}' class='confirm-button'>${dictionaryServer.email_subscription_button_text[lang]}</a></p>` +
 				`<p><div class='lh12 fcw'>${dictionaryServer.email_subscription_text3[lang]}</div>` +
-				`<a href='${theater.main_website}/${lang}' class='lh12 fcw'>${theater.longTheaterName[lang]}</a></p>`
+				`<div class='lh12 fcw'>${theater.longTheaterName[lang]}</div>` +
+				`<a href='${theater.our_website_link}/${lang}' class='lh12 fcw'>${theater.our_website_text}</a></p>`
 			);
 		}
 	}
@@ -184,9 +183,16 @@ export const handler = async (event, context) => {
 				pass: process.env.ANTREPRIZA_SMTP_PASSWORD,
 			},
 		});
+
+		let mailTo;
+		if (process.env.MODE === process.env.MODE_PRODUCTION) {
+			mailTo = process.env.ANTREPRIZA_EMAIL_SUBSCRIPTION;
+		} else {
+			mailTo = process.env.ANTREPRIZA_EMAIL_BOGOLEPOV;
+		}
 		const mailOptions = {
 			from: `${theater.longTheaterName[lang]} <${process.env.ANTREPRIZA_EMAIL_SUBSCRIPTION}>`,
-			to: process.env.ANTREPRIZA_EMAIL_SUBSCRIPTION,
+			to: mailTo,
 			subject: `${dictionaryServer.email_news_subscription_confirmed_subject[lang]}`,
 			html: makeHtmlConfirmedEmail(lang, sid, false),
 		};
@@ -207,11 +213,11 @@ export const handler = async (event, context) => {
 	function makeHtmlConfirmedEmail(lang, sid) {
 		return (
 			`<!DOCTYPE html><html lang="${lang}">` +
-			'<head><meta charset="UTF-8"><title>' +
+			'<head><meta charset="UTF-8"><meta http-equiv="content-type" content="text/html"><title>' +
 			theater.shortTheaterName[lang] +
 			' - ' +
 			dictionaryServer.email_news_subscription_confirmed_subject[lang] +
-			'</title><style>' +
+			'</title><meta name="viewport" content="width=device-width, initial-scale=1.0"><style>' +
 			'table {border-spacing:0;} td {vertical-align:top;}' +
 			'.email-body {font-size:16px;background-color:#292929;color:#d6d6d6;}' +
 			'.email-body .im * {color:#d6d6d6;}' +

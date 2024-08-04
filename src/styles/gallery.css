@@ -1,15 +1,23 @@
+.section-title {
+	font-size: clamp(1.65rem, 5vw, 3rem);
+	padding-bottom: clamp(0.8rem, 2.6vw, 2rem);
+}
+
 .gallery .block-title {
 	position: relative;
 	width: 100%;
+	padding-top: calc(1.5 * clamp(0.5rem, 2.6vw, 1rem));
 	padding-bottom: clamp(0.5rem, 2.6vw, 1rem);
 	border-bottom: 1px solid var(--colorFontDate);
 	align-self: self-start;
 }
-
 .gallery .block-title h2 {
+	line-height: 1.15em;
+}
+.gallery .block-title h2 a {
 	font-size: clamp(1.35rem, 3.6vw, 2.4rem);
 	font-weight: var(--font-extra-weight);
-	line-height: 1.25em;
+	line-height: 1.15em;
 	letter-spacing: 0.04em;
 	text-transform: uppercase;
 }
@@ -58,6 +66,7 @@
 	letter-spacing: 0.07em;
 	text-transform: uppercase;
 	margin: 0 0.5px;
+	cursor: pointer;
 }
 .media-flex-top .tab-item {
 	border-top-left-radius: 0.5em;
@@ -69,8 +78,13 @@
 }
 
 .gallery input {
+	width: 1px;
+	height: 1px;
+	font-size: 1px;
+	line-height: 1px;
 	-webkit-appearance: none;
 	appearance: none;
+	outline: none;
 }
 .gallery label {
 	display: inline-block;
@@ -125,6 +139,5 @@
 		transition:
 			background-color 300ms ease-out,
 			color 300ms ease-out;
-		cursor: pointer;
 	}
 }
