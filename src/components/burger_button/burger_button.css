@@ -1,0 +1,60 @@
+.burger-button {
+	position: relative;
+	display: block;
+	width: 45px;
+	height: 45px;
+	margin: auto;
+	cursor: pointer;
+}
+
+.burger-button * {
+	line-height: 1px;
+}
+
+.burger-button input,
+.burger-icon-wrapper {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.burger-button input {
+	-webkit-appearance: none;
+	appearance: none;
+}
+
+.burger-icon {
+	display: block;
+	background: transparent;
+	width: 25px;
+	fill: var(--colorFont);
+	line-height: 3px;
+}
+
+.burger-button .line {
+	/* transition: y 300ms ease-in 300ms, rotate 300ms ease-in, opacity 0ms 300ms; */
+	transition: 0.5s;
+	transform-origin: center;
+}
+
+.burger-button:has(.burger-switcher:checked) .line {
+	fill: var(--colorAntreprizaRed);
+	/* transition: y 300ms ease-in, rotate 300ms ease-in 300ms, opacity 0ms 300ms; */
+}
+
+.burger-button:has(.burger-switcher:checked) :is(.top, .bottom) {
+	y: 45;
+}
+
+.burger-button:has(.burger-switcher:checked) .top {
+	rotate: 45deg;
+}
+
+.burger-button:has(.burger-switcher:checked) .middle {
+	opacity: 0;
+}
+
+.burger-button:has(.burger-switcher:checked) .bottom {
+	rotate: -45deg;
+}

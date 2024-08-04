@@ -58,6 +58,7 @@
 	letter-spacing: 0.07em;
 	text-transform: uppercase;
 	margin: 0 0.5px;
+	cursor: pointer;
 }
 .media-flex-top .tab-item {
 	border-top-left-radius: 0.5em;
@@ -125,6 +126,5 @@
 		transition:
 			background-color 300ms ease-out,
 			color 300ms ease-out;
-		cursor: pointer;
 	}
 }

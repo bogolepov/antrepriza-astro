@@ -1,0 +1,39 @@
+---
+
+import '@components/burger_button/burger_button.css'
+
+const {id} = Astro.props;
+
+---
+
+<label class="burger-button" for={id}>
+  <input type="checkbox" id={id} class="burger-switcher"/>
+  <div class="burger-icon-wrapper">
+    <svg class="burger-icon" viewBox="0 0 100 100">
+      <rect
+        class="line top"
+        width="80"
+        height="8"
+        x="10"
+        y="25"
+        rx="5"
+      ></rect>
+      <rect
+        class="line middle"
+        width="55"
+        height="8"
+        x="10"
+        y="46"
+        rx="5"
+      ></rect>
+      <rect
+        class="line bottom"
+        width="80"
+        height="8"
+        x="10"
+        y="67"
+        rx="5"
+      ></rect>
+    </svg>
+  </div>
+</label>

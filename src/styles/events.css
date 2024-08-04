@@ -33,6 +33,7 @@
 	border-top-left-radius: 0.5em;
 	border-top-right-radius: 0.5em;
 	margin: 0 0.5px;
+	cursor: pointer;
 }
 .evs-tab-item-last {
 	flex-grow: 1;
@@ -78,6 +79,5 @@
 		transition:
 			background-color 300ms ease-out,
 			color 300ms ease-out;
-		cursor: pointer;
 	}
 }

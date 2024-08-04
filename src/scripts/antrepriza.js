@@ -55,6 +55,7 @@ export function initThemeMode() {
 	themeSwitcherItems.forEach(item => {
 		item.addEventListener('keydown', event => {
 			if (event.code === 'Enter' || event.code === 'Space') {
+				event.preventDefault();
 				themeSwitcher.checked = !themeSwitcher.checked;
 				themeSwitcher.dispatchEvent(new Event('change'));
 			}
@@ -90,46 +91,24 @@ export function initHeaderSubMenuListener() {
 			button.tabIndex = 0;
 			button.addEventListener('keydown', event => {
 				if (event.code === 'Enter' || event.code === 'Space') {
+					event.preventDefault();
 					handleClickMenuItem(event);
 				}
 			});
 		});
 	}
 
-	let mobileHeader = document.getElementById('header-mobile');
-	if (mobileHeader) {
-		mobileHeader.addEventListener('click', function (event) {
-			let btn = event.target.closest('.header-burger-button');
-			if (btn) {
-				let item = event.target.closest('.header-burger');
-				if (!item) return;
+	let burgerSwitcher = document.querySelector('#burger-button');
+	burgerSwitcher.addEventListener('change', () => {
+		if (burgerSwitcher.checked === false) {
+			closeAllBurgerItems();
+		}
+	});
 
-				if (item.classList.contains('burger-menu-opened')) {
-					// close burger menu
-					closeAllBurgerItems();
-					item.classList.remove('burger-menu-opened');
-				} else {
-					// open burger menu
-					item.classList.add('burger-menu-opened');
-				}
-
-				btn.blur();
-				return;
-			}
-
-			// after click on a link (<a>) we close burger menu, all opened submenus and cancel focus
-			if (event.target.nodeName == 'A' || event.target.closest('A')) {
-				let burgerHeader = event.target.closest('.header-burger');
-				if (burgerHeader) burgerHeader.classList.remove('burger-menu-opened');
-
-				closeAllBurgerItems();
-
-				btn = event.target.closest('.header-burger-button');
-				if (btn) btn.blur();
-				return;
-			}
-		});
-	}
+	window.addEventListener('unload', () => {
+		burgerSwitcher.checked = false;
+		closeAllBurgerItems();
+	});
 }
 
 /* --------------------------------------------------- */

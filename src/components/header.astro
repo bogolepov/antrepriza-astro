@@ -14,6 +14,7 @@ import Menu from '@components/menu/menu.astro'
 import TicketPageButton from '@components/ticket_page_button/ticket_page_button.astro'
 import SocialPages from '@components/social_pages/social_pages.astro'
 import Toolbar from '@components/toolbar/toolbar.astro'
+import BurgerButton from "./burger_button/burger_button.astro";
 
 
 plays.sort((play1, play2) => play1.alt_title[lang].toLowerCase().localeCompare(play2.alt_title[lang].toLowerCase(), lang));
@@ -31,34 +32,32 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 	});
 </script>
 
-<header class="toolbar-grid" id="header" lang={lang}>
-	<div class="toolbar-lang-item expand-menu">
-		<div class="toolbar-dropbtn" tabindex="-1">
-			<div>
-				<svg class="toolbar-icon-language">
-					<use href={Symbols + '#language'}></use>
-				</svg>
-				<span id="language-text">{lang}</span>
+<header class="header" lang={lang}>
+	<nav class="nav-flex">
+		<div class="language-menu">
+			<div class="lang-button" tabindex="-1">
+					<svg class="lang-icon">
+						<use href={Symbols + '#language'}></use>
+					</svg>
+					<div class="lang-text">{lang}</div>
+			</div>
+			<div class="dropdown-box">
+				<ul class="submenu-list">
+				{
+					theater.languages.map(lng => {
+						return (
+							<li>
+								<a href={theater.our_website_link + pathname.replace('/'+lang+'/', '/'+lng.lang_code+'/')} >
+									<span class="lang-brief">{lng.lang_code.toUpperCase()}</span>
+									<span class="lang-title">{lng.lang_name}</span>
+								</a>
+							</li>
+						);
+					})
+				}
+				</ul>
 			</div>
 		</div>
-		<div class="dropdown-box">
-			<ul>
-			{
-				theater.languages.map(lng => {
-					return (
-						<li class="dropdown-item">
-							<a href={theater.our_website_link + pathname.replace('/'+lang+'/', '/'+lng.lang_code+'/')} class="dropdown-item-link">
-								<span class="lang-brief">{lng.lang_code.toUpperCase()}</span>
-								<span class="lang-title">{lng.lang_name}</span>
-							</a>
-						</li>
-					);
-				})
-			}
-			</ul>
-		</div>
-	</div>
-	<nav class="navigator-grid">
 		<div class="navigator-logo-item">
 			<a href={"/" + lang + "/"} class:list={{active_link: currentPath[1] === undefined}}>
 				<svg class="navigator-icon-logo-text">
@@ -72,6 +71,7 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 			</a>
 		</div>
     <Menu lang={lang} />
+		<div class="flex-spreader"></div>
 		<TicketPageButton lang={lang} />
     <div class="social-block">
 			<SocialPages lang={lang} />
@@ -82,56 +82,31 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 	</div>
 </header>
 
-<header class="header-mobile" id="header-mobile" lang={lang}>
+<header class="header-mobile"lang={lang}>
 	<div class="header-burger">
-		<button class="header-burger-button">
-			<svg class="burger-icon" viewBox="0 0 100 100">
-				<rect
-					class="line top"
-					width="80"
-					height="8"
-					x="10"
-					y="25"
-					rx="5"
-				></rect>
-				<rect
-					class="line middle"
-					width="55"
-					height="8"
-					x="10"
-					y="46"
-					rx="5"
-				></rect>
-				<rect
-					class="line bottom"
-					width="80"
-					height="8"
-					x="10"
-					y="67"
-					rx="5"
-				></rect>
-			</svg>
-		</button>
+		<div class="burger-button-wrapper">
+			<BurgerButton id="burger-button"/>
+		</div>
 		<nav class="burger-menu">
-			<ul>
-				<Menu lang={lang} add_classes="mobile"/>
-				<SocialPages lang={lang} add_classes="mobile" />
-				<Toolbar lang={lang} add_classes="mobile"/>
+			<Menu lang={lang} add_classes="mobile"/>
+			<SocialPages lang={lang} add_classes="mobile" />
+			<Toolbar lang={lang} add_classes="mobile"/>
 
-				<li class="burger-item">
-					{
-						theater.languages.map(lng => {
-							if (lng.lang_code != lang) {
-								return (
+			<ul class="language-list">
+				{
+					theater.languages.map(lng => {
+						if (lng.lang_code != lang) {
+							return (
+								<li>
 									<a href={pathname.replace('/'+lang+'/', '/'+lng.lang_code+'/')}>
 										<span class="lang-brief">{lng.lang_code.toUpperCase()}</span>
 										<span class="lang-title">{lng.lang_name}</span>
 									</a>
-								);
-							}
-						})
-					}
-				</li>
+								</li>
+							);
+						}
+					})
+				}
 			</ul>
 		</nav>
 	</div>
