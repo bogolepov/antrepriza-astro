@@ -217,6 +217,8 @@ ul.classic li {
 
 	display: flex;
 	flex-direction: column;
+	outline-color: currentColor;
+	outline-width: 2px;
 }
 
 /* --------------------------------------------------- */
@@ -473,7 +475,7 @@ h4.notification-label {
 	line-height: 1.25em;
 	padding-top: clamp(1.5rem, 2.6vw, 2rem);
 	/* padding-bottom: 0.15em; */
-	padding-bottom: clamp(1.5rem, 2.6vw, 2rem);
+	padding-bottom: clamp(1.2rem, 2.6vw, 2rem);
 	letter-spacing: 0.04em;
 	text-transform: uppercase;
 	word-wrap: break-word;

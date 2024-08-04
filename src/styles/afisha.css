@@ -151,9 +151,12 @@ h1.section-title + div .program-month {
 	transition: filter 250ms ease-in;
 }
 
-/* section.program a:focus-visible {
-	outline: 1px solid var(--colorAntreprizaRed);
-} */
+.program-play-block a:focus-visible {
+	outline: none;
+}
+.program-play-block:has(a:focus-visible) {
+	outline: 2px solid;
+}
 
 @media screen and (max-width: 1040px) {
 	.program-play-text {
