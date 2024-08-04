@@ -105,7 +105,7 @@ export function initHeaderSubMenuListener() {
 		}
 	});
 
-	window.addEventListener('unload', () => {
+	window.addEventListener('pagehide', () => {
 		burgerSwitcher.checked = false;
 		closeAllBurgerItems();
 	});
