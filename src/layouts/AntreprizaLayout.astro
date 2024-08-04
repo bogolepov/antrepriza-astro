@@ -76,17 +76,15 @@ let isCanonicalIndex = (pathname === '/ru/');
 			})
 		}
 		<link rel="alternate" href={theater.our_website_link + pathname.replace('/'+lang+'/', '/ru/')} hreflang="x-default" />
-		<!-- <meta http-equiv="Permissions-Policy" content="unload=()"> -->
 		<meta name="generator" content={Astro.generator} />
 	</head>
 
 	<body class="no-js">
 
 		<script>
-		import { removeNoJS, saveLangOfPage } from "@scripts/antrepriza.js"
+		import { initPage } from "@scripts/antrepriza.js"
 			document.addEventListener('DOMContentLoaded', () => {
-				removeNoJS();
-				saveLangOfPage();
+				initPage();
 			});
 		</script>
 

@@ -4,21 +4,22 @@ import * as consts from '@scripts/consts';
 let dictionary;
 
 /* --------------------------------------------------- */
-/* ------------------- NoJS flag --------------------- */
-/* ----- remove NoJS flag, because JS isn't out ------ */
+/* ------------------- INIT PAGE  -------------------- */
 /* --------------------------------------------------- */
-export function removeNoJS() {
+let currLang;
+let lostVisibilityMoment;
+
+//  NoJS flag
+// remove NoJS flag, because JS isn't out
+function removeNoJS() {
 	let elements = document.getElementsByClassName('no-js');
 	for (let element of elements) {
 		element.classList.remove('no-js');
 	}
 }
 
-/* --------------------------------------------------- */
-/* ------------------ LANG OF PAGE ------------------- */
-/* --------------------------------------------------- */
-let currLang;
-export function saveLangOfPage() {
+// LANG OF PAGE
+function saveLangOfPage() {
 	let path = window.location.pathname.toLowerCase();
 	for (let lang of consts.LANG_LIST) {
 		if (path.includes(`/${lang}/`)) {
@@ -27,6 +28,35 @@ export function saveLangOfPage() {
 			return;
 		}
 	}
+}
+
+// safe page state: email in the subscription field, feedback form dates, etc
+function savePageState() {}
+
+// load page state: email in the subscription field, feedback form dates, etc
+function loadPageState() {}
+
+// PAGE LIFECYCLE CONTROLLER
+function initPageController() {
+	lostVisibilityMoment = Date.now();
+	window.addEventListener('visibilitychange', () => {
+		if (document.visibilityState === 'hidden') {
+			lostVisibilityMoment = Date.now();
+			// savePageState();
+		}
+		if (document.visibilityState === 'visible') {
+			if (Date.now() - lostVisibilityMoment > consts.MINUTES_30) {
+				location.reload(true);
+			}
+		}
+	});
+}
+
+export function initPage() {
+	removeNoJS();
+	saveLangOfPage();
+	initPageController();
+	// loadPageState();
 }
 
 /* --------------------------------------------------- */
@@ -105,7 +135,7 @@ export function initHeaderSubMenuListener() {
 		}
 	});
 
-	window.addEventListener('pagehide', () => {
+	window.addEventListener('blur', () => {
 		burgerSwitcher.checked = false;
 		closeAllBurgerItems();
 	});
