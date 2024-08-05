@@ -16,18 +16,14 @@ let langRoot = false;
 if (currentPath[currentPath.length-1] === lang) langRoot = true;
 
 let isCanonicalIndex = (pathname === '/ru/');
+console.log(title);
 
-let ogTitle = '';
-let pageTitle =  theater.longTheaterName[lang];
+let ogTitle = theater.longTheaterName[lang];
+let pageTitle = theater.longTheaterName[lang];
 if (title && title.length > 0) {
-	if (langRoot) {
-    ogTitle = dictionary.main_page[lang];
-    pageTitle = pageTitle +  ' — ' + title;
-  }
-	else {
-    ogTitle = title;
-    pageTitle = title +  ' — ' + pageTitle;
-  }
+	if (langRoot) pageTitle = pageTitle +  ' — ' + title;
+	else pageTitle = title +  ' — ' + pageTitle;
+  ogTitle = title;
 }
 
 let pageDescription = description;
