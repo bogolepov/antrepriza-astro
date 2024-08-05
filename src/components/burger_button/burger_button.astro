@@ -1,13 +1,14 @@
 ---
-
 import '@components/burger_button/burger_button.css'
 
-const {id} = Astro.props;
+import dictionary from '@data/dictionary.json'
+
+const {lang, id} = Astro.props;
 
 ---
 
 <label class="burger-button" for={id}>
-  <input type="checkbox" id={id} class="burger-switcher"/>
+  <input type="checkbox" id={id} class="burger-switcher" aria-label={dictionary.menu[lang]}/>
   <div class="burger-icon-wrapper">
     <svg class="burger-icon" viewBox="0 0 100 100">
       <rect

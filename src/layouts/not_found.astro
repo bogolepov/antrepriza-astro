@@ -8,20 +8,25 @@ const errorMsg = {
   "ru": "Страницу не удалось найти.", 
   "de": "Diese Seite konnte nicht gefunden werden."
 };
-const errorReason = {
+const errorReason1 = {
+  "ru": "Это новая версия сайта.", 
+  "de": "Dies ist eine neue Version der Webseite."
+};
+const errorReason2 = {
   "ru": "Возможно, Вы получили доступ к неправильному или устаревшему URL-адресу, либо мы могли переименовать или удалить страницу.", 
   "de": "Möglicherweise haben Sie eine falsche oder veraltete URL aufgerufen, oder wir haben die Seite umbenannt oder gelöscht."
 };
 const errorOffer = {
-  "ru": "Может быть, Вы сможете найти нужную информацию с помощью нашей навигации?", 
-  "de": "Vielleicht können Sie den gewünschten Inhalt über unsere Navigation finden?"
+  "ru": "Может быть, Вы сможете найти нужную информацию с помощью нашей навигации вверху?", 
+  "de": "Vielleicht können Sie den gewünschten Inhalt über unsere Navigation oben finden?"
 };
 
 ---
 
 <div class='not-found'>
   <h2>{errorMsg[lang]}</h2>
-  <p>{errorReason[lang]}</p>
+  <p>{errorReason1[lang]}</p>
+  <p>{errorReason2[lang]}</p>
   <p>{errorOffer[lang]}</p> 
 </div>
 

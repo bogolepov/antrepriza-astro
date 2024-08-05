@@ -56,103 +56,105 @@ let iMonth: number = -1;
 			let monthName = date.toLocaleString(lang, { month: 'long' });
 			let strYear = date.getFullYear().toString();
 			return (
-				<ul class="month-list" data-counter={monthProgram.events.length.toString()}>
-					<h2 class="program-month">{monthName}&ensp;{strYear}</h2>
-					{
-						monthProgram.events.map(event => {
-							let play = plays.find(item => item.id === event.play_id);
-							if (!play) {
-								console.error("Play isn't found");
-								return;				
-							}
-
-							let playDate: Date = new Date(event.date);
-
-							let stage = theater.stages.find(stg => stg.sid === event.stage_sid);
-							if (!stage) console.error("Stage isn't found: " + event.stage_sid);
-
-							let stageNameText;
-							if (stage.fix_stage) {
-								stageNameText = dictionary.stage[lang] + " - " + stage.name[lang].toUpperCase();
-							}
-							else {
-								if (event.event_type) {
-									if (event.event_type.is_festival)
-										stageNameText = dictionary.festival[lang] + " " + dictionary.opening_quote[lang] + 
-																		event.event_name[lang].toUpperCase() + dictionary.closing_quote[lang];
-									else stageNameText = event.event_name[lang].toUpperCase();
+				<div class="month-program">
+					<h2 class="month-title">{monthName}&ensp;{strYear}</h2>
+					<ul class="month-list" data-counter={monthProgram.events.length.toString()}>
+						{
+							monthProgram.events.map(event => {
+								let play = plays.find(item => item.id === event.play_id);
+								if (!play) {
+									console.error("Play isn't found");
+									return;				
 								}
-							}
 
-							return (
-								<li class="program-play-block hover-block hover-background" data-date={event.date}>
-									<div class="program-play-text">
-										
-										<div class="program-when" >
-											{event.premiere && 
-												<h4 class="play-property-hot-notice">{dictionary.premiere[lang]}</h4>
-											}
-											{event.event_type && event.event_type.is_festival && 
-												<h4 class="play-property-hot-notice">{dictionary.festival[lang]}</h4>
-											}
-											<time class="program-date" data-day={playDate.toLocaleDateString(lang, { weekday: 'short' })}>
-												{playDate.getDate().toString().padStart(2, '0')}.{(playDate.getMonth()+1).toString().padStart(2, '0')},
-											</time>
-											<time class="program-time">
-													{event.time}
-											</time>
-										</div>
+								let playDate: Date = new Date(event.date);
 
-										<a class="program-title stretch-link" href={"/"+lang+"/plays/"+play.suffix}>
-											<h3 class="play-title">{play.alt_title[lang]}</h3>
-										</a>
+								let stage = theater.stages.find(stg => stg.sid === event.stage_sid);
+								if (!stage) console.error("Stage isn't found: " + event.stage_sid);
 
-										<div class="program-info">
-											<h4 class="play-property label-before" data-label={dictionary.genre[lang]+": "}>
-												{play.genre[lang]}, {play.age}
-											</h4>
-											<h4 class="play-property label-before" data-label={dictionary.language[lang]+": "}>
-												{play.lang[lang]}
-											</h4>
-											<div class="info-address">
-												<address class="play-property label-before" data-label={dictionary.address[lang]+": "}></address>
-												
-												<address class="play-property">
-													{/* <span class="address-stage-name">{ stageNameText }</span> */}
-													<span class:list={['address-stage-name', {festival: event.event_type && event.event_type.is_festival}]}>{ stageNameText }</span>
-													<br>
-													{ stage.address.full_string }
-												</address>
+								let stageNameText;
+								if (stage.fix_stage) {
+									stageNameText = dictionary.stage[lang] + " - " + stage.name[lang].toUpperCase();
+								}
+								else {
+									if (event.event_type) {
+										if (event.event_type.is_festival)
+											stageNameText = dictionary.festival[lang] + " " + dictionary.opening_quote[lang] + 
+																			event.event_name[lang].toUpperCase() + dictionary.closing_quote[lang];
+										else stageNameText = event.event_name[lang].toUpperCase();
+									}
+								}
+
+								return (
+									<li class="program-play-block hover-block hover-background" data-date={event.date}>
+										<div class="program-play-text">
+											
+											<div class="program-when" >
+												{event.premiere && 
+													<h4 class="play-property-hot-notice">{dictionary.premiere[lang]}</h4>
+												}
+												{event.event_type && event.event_type.is_festival && 
+													<h4 class="play-property-hot-notice">{dictionary.festival[lang]}</h4>
+												}
+												<time class="program-date" data-day={playDate.toLocaleDateString(lang, { weekday: 'short' })}>
+													{playDate.getDate().toString().padStart(2, '0')}.{(playDate.getMonth()+1).toString().padStart(2, '0')},
+												</time>
+												<time class="program-time">
+														{event.time}
+												</time>
 											</div>
-										</div>
 
-										{ !event.no_tickets && 
-											<div class="program-tickets">
-												<TicketBookButton add_classes="afisha" button_type='ticket' price=''
-																					date={event.date} time={event.time} play_id={event.play_id}	>
-														{dictionary.tickets[lang]}
-												</TicketBookButton>
+											<a class="program-title stretch-link" href={"/"+lang+"/plays/"+play.suffix}>
+												<h3 class="play-title">{play.alt_title[lang]}</h3>
+											</a>
+
+											<div class="program-info">
+												<h4 class="play-property label-before" data-label={dictionary.genre[lang]+": "}>
+													{play.genre[lang]}, {play.age}
+												</h4>
+												<h4 class="play-property label-before" data-label={dictionary.language[lang]+": "}>
+													{play.lang[lang]}
+												</h4>
+												<div class="info-address">
+													<address class="play-property label-before" data-label={dictionary.address[lang]+": "}></address>
+													
+													<address class="play-property">
+														{/* <span class="address-stage-name">{ stageNameText }</span> */}
+														<span class:list={['address-stage-name', {festival: event.event_type && event.event_type.is_festival}]}>{ stageNameText }</span>
+														<br>
+														{ stage.address.full_string }
+													</address>
+												</div>
 											</div>
-										}
 
-									</div>
-									<div class="program-play-image">
-										<Picture 
-											class:list={'image-wrapper-landscape black-white-filter'} 
-											src={images["/src/assets/" + play.posters.landscape]()} 
-											formats={['webp']} 
-											fallbackFormat='jpg'
-											loading="eager"
-											widths={[300, 420, 540, 640]}
-											sizes={'(max-width: 360px) 300px, (max-width: 500px) 420px, (max-width: 640px) 540px, 640px'}
-											alt={play.alt_title[lang]} />
-									</div>
-								</li>
+											{ !event.no_tickets && 
+												<div class="program-tickets">
+													<TicketBookButton add_classes="afisha" button_type='ticket' price=''
+																						date={event.date} time={event.time} play_id={event.play_id}	>
+															{dictionary.tickets[lang]}
+													</TicketBookButton>
+												</div>
+											}
 
-							);
-						})
-					}
+										</div>
+										<div class="program-play-image">
+											<Picture 
+												class:list={'image-wrapper-landscape black-white-filter'} 
+												src={images["/src/assets/" + play.posters.landscape]()} 
+												formats={['webp']} 
+												fallbackFormat='jpg'
+												loading="eager"
+												widths={[300, 420, 540, 640]}
+												sizes={'(max-width: 360px) 300px, (max-width: 500px) 420px, (max-width: 640px) 540px, 640px'}
+												alt={play.alt_title[lang]} />
+										</div>
+									</li>
+
+								);
+							})
+						}
 				</ul>
+				</div>
 			);			
 		})
 	}

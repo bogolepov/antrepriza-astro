@@ -597,6 +597,7 @@ h4.notification-label {
 
 .form-label {
 	/* font-size: clamp(0.95rem, 1.8vw, 1.1rem); */
+	display: block;
 	font-size: 1.1em;
 	line-height: 1.2em;
 	padding-bottom: 0.3em;
