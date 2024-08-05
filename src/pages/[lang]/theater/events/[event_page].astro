@@ -23,10 +23,11 @@ export const getStaticPaths = (() => {
       else if (event.event_type && event.event_type.is_festival) event_sid = SID_FESTIVAL;
       else if (event.event_type && event.event_type.is_tour) event_sid = SID_TOUR;
 
+      let strEventDate = (new Date(event.date))?.toLocaleDateString(lng.lang_code, { year: "numeric",  month: "long",  day: "2-digit" });
       let play = plays.find(item => item.id === event.play_id);
       let aTitle = dictionary.play_lang[lng.lang_code] + " " + 
         dictionary.opening_quote[lng.lang_code] + play.title[lng.lang_code] + 
-        dictionary.closing_quote[lng.lang_code] + " " + event.date;
+        dictionary.closing_quote[lng.lang_code] + " [" + strEventDate + "]";
       let eventDate = event.date.replaceAll("-","");
       let eventTime = event.time.replaceAll(":","");
       let pageName = `${event_sid}_${eventDate}_${eventTime}`;
@@ -45,7 +46,7 @@ let needTicketForm = event.no_tickets ? "no" : "yes";
 
 ---
 
-<AntreprizaLayout title={pageTitle} lang={pageLang} ticket_form = {needTicketForm}>
+<AntreprizaLayout title={pageTitle} lang={pageLang} play_id={playID} ticket_form = {needTicketForm}>
   <Event lang={pageLang} play_id={playID} date={playDate} time={playTime}></Event>
 </AntreprizaLayout>
 

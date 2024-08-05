@@ -75,7 +75,7 @@ const { Content } = await entry.render();
   {
     thisPlayDates.length > 0 &&
       <div class="play-dates">
-        <h4 class="next-plays-label">{dictionary.nextDates[lang]}:</h4>
+        <div class="next-plays-label">{dictionary.nextDates[lang]}:</div>
         <div class="buttons-block">
           {
             thisPlayDates.map((play_date) => {

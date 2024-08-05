@@ -4,7 +4,7 @@
 		"suffix": "n32",
 		"title": { "ru": "Незнакомка 32", "de": "Die Unbekannte 32" },
 		"alt_title": { "ru": "Незнакомка\u00A032", "de": "Die\u00A0Unbekannte\u00A032" },
-		"author": { "ru": "Вл.Зайкин", "de": "V.Zajkin" },
+		"author": { "ru": "В.Зайкин", "de": "V.Zajkin" },
 		"author_full": { "ru": "Владимир Зайкин", "de": "Vladimir Zajkin" },
 		"genre": { "ru": "комедия", "de": "Komödie" },
 		"length": 120,
@@ -61,7 +61,15 @@
 			{ "type": "light", "people": [4] },
 			{ "type": "sound", "people": [4] },
 			{ "type": "graphic_design", "people": [6] }
-		]
+		],
+		"seo": {
+			"open_graph": {
+				"description": {
+					"ru": "Постановка по пьесе Вл.Зайкина. Комедия, 16+. Спектакль на русском языке.",
+					"de": "Inszenierung nach dem Stück von V.Zajkin. Komödie, 16+. Die Aufführung ist auf Russisch."
+				}
+			}
+		}
 	},
 	{
 		"id": 8,
@@ -132,7 +140,17 @@
 			{ "type": "sound", "people": [4] },
 			{ "type": "graphic_design", "people": [6] },
 			{ "type": "photographer", "people": [5] }
-		]
+		],
+		"seo": {
+			"open_graph": {
+				"image_url": "miks_1200.jpg",
+				"image_type": "image/jpeg",
+				"description": {
+					"ru": "Постановка по пьесе К.Попова. Современная история, 16+. Спектакль на русском языке.",
+					"de": "Inszenierung nach dem Stück von K.Popov. Moderne Geschichte, 16+. Die Aufführung ist auf Russisch."
+				}
+			}
+		}
 	},
 	{
 		"id": 6,
@@ -187,7 +205,17 @@
 			{ "type": "graphic_design", "people": [6] },
 			{ "type": "photographer", "people": [5] },
 			{ "type": "stage_setup", "people": [103] }
-		]
+		],
+		"seo": {
+			"open_graph": {
+				"image_url": "mik_1200.jpg",
+				"image_type": "image/jpeg",
+				"description": {
+					"ru": "Постановка для ДЕТЕЙ по мотивам повести А.Линдгрен. Приключения, 3+. Спектакль на русском языке.",
+					"de": "Produktion für KINDER nach der Geschichte von A.Lindgren. Abenteuer, 3+. Die Aufführung ist auf Russisch."
+				}
+			}
+		}
 	},
 	{
 		"id": 5,
@@ -242,7 +270,17 @@
 			{ "type": "graphic_design", "people": [6] },
 			{ "type": "photographer", "people": [5] },
 			{ "type": "stage_setup", "people": [103, 106] }
-		]
+		],
+		"seo": {
+			"open_graph": {
+				"image_url": "op_1200.jpg",
+				"image_type": "image/jpeg",
+				"description": {
+					"ru": "Постановка по пьесе Дж.Б.Пристли. Детектив, 18+. Спектакль на русском языке.",
+					"de": "Inszenierung nach dem Stück von J.B.Priestley. Krimi, 16+. Die Aufführung ist auf Russisch."
+				}
+			}
+		}
 	},
 	{
 		"id": 4,
@@ -324,7 +362,17 @@
 			{ "type": "graphic_design", "people": [6] },
 			{ "type": "photographer", "people": [5] },
 			{ "type": "stage_setup", "people": [103, 106] }
-		]
+		],
+		"seo": {
+			"open_graph": {
+				"image_url": "dk_1200.jpg",
+				"image_type": "image/jpeg",
+				"description": {
+					"ru": "Постановка по пьесе Т.Москвиной. Трагикомедия, 18+. Спектакль на русском языке.",
+					"de": "Inszenierung nach dem Stück von Т.Moskvina. Tragikomödie, 18+. Die Aufführung ist auf Russisch."
+				}
+			}
+		}
 	},
 	{
 		"id": 2,
@@ -506,6 +554,16 @@
 			{ "type": "graphic_design", "people": [6] },
 			{ "type": "photographer", "people": [5] },
 			{ "type": "stage_setup", "people": [103, 106, 108] }
-		]
+		],
+		"seo": {
+			"open_graph": {
+				"image_url": "ts_1200.jpg",
+				"image_type": "image/jpeg",
+				"description": {
+					"ru": "Постановка по пьесе А.Чехова. Драма, 14+. Спектакль на русском языке.",
+					"de": "Inszenierung nach dem Stück von A.Tschechow. Drama, 14+. Die Aufführung ist auf Russisch."
+				}
+			}
+		}
 	}
 ]

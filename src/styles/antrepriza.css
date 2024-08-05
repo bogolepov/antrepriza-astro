@@ -87,8 +87,8 @@ body:has(#theme-switcher:checked) {
 	--colorBkgHoverDisabledBtn: var(--grey-78);
 	--colorFontDisabledBtn: var(--grey-24);
 
-	--colorScrollBarBackground: var(--grey-16);
 	--colorScrollBarThumb: var(--grey-30);
+	--colorScrollBarThumbBorder: var(--grey-78);
 	--colorScrollBarTrack: var(--grey-24);
 
 	--font-normal-weight: 300;
@@ -138,9 +138,9 @@ body:has(#theme-switcher:not(:checked)) {
 	--colorBkgHoverDisabledBtn: var(--grey-46);
 	--colorFontDisabledBtn: var(--grey-12);
 
-	--colorScrollBarBackground: var(--grey-11);
-	--colorScrollBarThumb: var(--grey-30);
-	--colorScrollBarTrack: var(--grey-24);
+	--colorScrollBarThumb: var(--grey-56);
+	--colorScrollBarThumbBorder: var(--grey-24);
+	--colorScrollBarTrack: var(--grey-46);
 
 	--font-normal-weight: 400;
 	--font-thin-weight: 300;
@@ -226,7 +226,8 @@ ul.classic li {
 /* --------------------------------------------------- */
 ::-webkit-scrollbar {
 	width: var(--scrollBarWidth);
-	background: var(--colorScrollBarBackground);
+	/* background: var(--colorScrollBarBackground); */
+	background: transparent;
 }
 
 ::-webkit-scrollbar-track {
@@ -236,6 +237,7 @@ ul.classic li {
 
 ::-webkit-scrollbar-thumb {
 	background: var(--colorScrollBarThumb);
+	border: 2px solid var(--colorScrollBarThumbBorder);
 	border-radius: 5px;
 }
 

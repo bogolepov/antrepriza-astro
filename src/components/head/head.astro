@@ -1,0 +1,93 @@
+---
+import theater from '@data/theater.json'
+import dictionary from '@data/dictionary.json'
+import plays from '@data/plays.json'
+
+import SocialMediaHead from '@components/head/social_media.astro';
+
+const { lang, title, description, robots, play_id } = Astro.props;
+
+let now = new Date();
+
+const pathname: string = new URL(Astro.request.url).pathname;
+const currentPath: string[] = pathname.split("/").filter(Boolean);
+
+let langRoot = false;
+if (currentPath[currentPath.length-1] === lang) langRoot = true;
+
+let isCanonicalIndex = (pathname === '/ru/');
+
+let ogTitle = '';
+let pageTitle =  theater.longTheaterName[lang];
+if (title && title.length > 0) {
+	if (langRoot) {
+    ogTitle = dictionary.main_page[lang];
+    pageTitle = pageTitle +  ' — ' + title;
+  }
+	else {
+    ogTitle = title;
+    pageTitle = title +  ' — ' + pageTitle;
+  }
+}
+
+let pageDescription = description;
+if ((!pageDescription || pageDescription.length === 0) && play_id) {
+  let play = plays.find(item => item.id.toString() === play_id);
+  let playDescription = play?.seo?.open_graph?.description;
+  if (playDescription) pageDescription = playDescription[lang];
+}
+
+{
+  /*
+	<link rel="preload" href="/fonts/roboto/Roboto-Thin.ttf" as="font" type="font/woff2" crossorigin/>
+	<link rel="preload" href="/fonts/roboto/Roboto-Thin.ttf" as="font" type="font/woff2" crossorigin/>
+	<link rel="preload" href="/fonts/roboto/Roboto-Light.ttf" as="font" type="font/woff2" crossorigin/>
+	<link rel="preload" href="/fonts/roboto/Roboto-LightItalic.ttf" as="font" type="font/woff2" crossorigin/>
+	<link rel="preload" href="/fonts/roboto/Roboto-Regular.ttf" as="font" type="font/woff2" crossorigin/>
+	<link rel="preload" href="/fonts/roboto/Roboto-Italic.ttf" as="font" type="font/woff2" crossorigin/>
+	<link rel="preload" href="/fonts/roboto/Roboto-Medium.ttf" as="font" type="font/woff2" crossorigin/>
+	<link rel="preload" href="/fonts/roboto/Roboto-MediumItalic.ttf" as="font" type="font/woff2" crossorigin/>
+	<link rel="preload" href="/fonts/roboto/Roboto-Bold.ttf" as="font" type="font/woff2" crossorigin/>
+	<link rel="preload" href="/fonts/roboto/Roboto-Black.ttf" as="font" type="font/woff2" crossorigin/>
+
+	<link rel="preload" href="/fonts/roboto/Roboto-BoldItalic.ttf" as="font" type="font/woff2" crossorigin/>
+	<link rel="preload" href="/fonts/roboto/Roboto-BlackItalic.ttf" as="font" type="font/woff2" crossorigin/>
+  */
+}
+
+---
+<head>
+  <meta charset="UTF-8" />
+  <meta name="robots" content={robots} />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{pageTitle}</title>
+  {
+    pageDescription && pageDescription.length > 0 && 
+    <meta name="description" content={pageDescription} />
+  }		
+  <meta http-equiv="Last-Modified" content={now.toUTCString()}>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="true" />
+  <meta name="MobileOptimized" content="width" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  {
+    isCanonicalIndex &&
+    <link rel="canonical" href={theater.our_website_link + pathname}/>
+  }
+  <link rel="icon" href="/favicon32.ico" sizes="32x32" />
+  <link rel="icon" href="/favicon.ico" sizes="48x48" />
+  <link rel="icon" type="image/png" href="/favicon.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="/favicon.png" sizes="48x48" />
+  <link rel="icon" type="image/png" href="/favicon96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  {
+    theater.languages.map(lng => {
+      return (
+        <link rel="alternate" href={theater.our_website_link + pathname.replace('/'+lang+'/', '/'+lng.lang_code+'/')} hreflang={lng.lang_code} />
+      );
+    })
+  }
+  <link rel="alternate" href={theater.our_website_link + pathname.replace('/'+lang+'/', '/ru/')} hreflang="x-default" />
+  <SocialMediaHead lang={lang} title={title} description={description} og_title={ogTitle} play_id = {play_id}/>
+  <meta name="generator" content={Astro.generator} />
+</head>
