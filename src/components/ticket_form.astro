@@ -61,10 +61,10 @@ const COUNTS = [0,1,2,3,4,5,6,7,8,9];
           prices.map(price => {
             return (
               <div class={'price-flex ' + price.type} data-type={price.type}>
-                <div class='price-info'>
+                <label class='price-info' for={'count-'+price.type}>
                   <span class="font-opacity1">{price.text[lang]}, </span>
                   <span class="font-opacity0">{price.value.toString()}€</span>
-                </div>
+                </label>
                 <div class="ticket-count">
                   <select class="count-input" name={'count-'+price.type} id={'count-'+price.type}>
                     {

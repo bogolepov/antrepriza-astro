@@ -20,7 +20,7 @@ const { lang } = Astro.props;
   <form method="POST" class="form feedback-form">
     <input type="hidden" name="subject" value={dictionary.question_form_label[lang] + " - {topic}"}  />
     <input class="form-input x-phone" type="tel" name="phone" />
-    <div class="form-label font-opacity0">{dictionary.question_subject[lang]}</div>
+    <label class="form-label font-opacity0" for="topic">{dictionary.question_subject[lang]}</label>
     <div class="select-wrapper">
       <select class="form-input" name="topic" id="topic">
       {
@@ -32,14 +32,14 @@ const { lang } = Astro.props;
       }
       </select>
     </div>
-    <div class="form-label required font-opacity0">{dictionary.name[lang]}</div>
-    <input class="form-input qff" type="text" name="name" placeholder={dictionary.name_hint[lang]} autocomplete="on">
+    <label class="form-label required font-opacity0" for="qff-name">{dictionary.name[lang]}</label>
+    <input class="form-input qff" type="text" name="name" id="qff-name" placeholder={dictionary.name_hint[lang]} autocomplete="on">
     <div class="form-error" data-for="name"></div>
-    <div class="form-label required font-opacity0">{dictionary.email[lang]}</div>
-    <input class="form-input qff" type="text" name="email" placeholder={dictionary.email_hint[lang]} autocomplete="on">
+    <label class="form-label required font-opacity0" for="qff-email">{dictionary.email[lang]}</label>
+    <input class="form-input qff" type="text" name="email" id="qff-email" placeholder={dictionary.email_hint[lang]} autocomplete="on">
     <div class="form-error" data-for="email"></div>
-    <div class="form-label required font-opacity0">{dictionary.message[lang]}</div>
-    <textarea class="form-input qff" name="message" rows="5" maxlength="2000" placeholder={dictionary.message_hint[lang]} autocomplete="on"></textarea>
+    <label class="form-label required font-opacity0" for="qff-message">{dictionary.message[lang]}</label>
+    <textarea class="form-input qff" name="message"  id="qff-message" rows="5" maxlength="2000" placeholder={dictionary.message_hint[lang]} autocomplete="on"></textarea>
     <div class="form-error" data-for="message"></div>
     <div class="question-btn-wrapper">
       <button id="feedback-submit-button" class="pink-button" type="submit">{dictionary.question_btn_send[lang]}</button>

@@ -1,8 +1,7 @@
-.month-list[data-counter='0'] {
+.month-program:has(.month-list[data-counter='0']) {
 	display: none;
 }
-
-.program-month {
+.month-title {
 	font-size: clamp(1.55rem, 3.7vw, 2.7rem);
 	font-weight: var(--font-extra-weight);
 	color: var(--colorFont-Op1);
@@ -15,9 +14,6 @@
 	padding: 0.44em 0px 0.5em 0px;
 	text-align: center;
 	margin-bottom: 0px;
-}
-h1.section-title + div .program-month {
-	border-top: 1px solid var(--colorFont);
 }
 
 .program-play-block {

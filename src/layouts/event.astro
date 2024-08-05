@@ -78,22 +78,22 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
     }
     <div class="ev-flex-item-description">
       <h2 class="ev-name">{dictionary.play_lang[lang]} {play.title[lang].toUpperCase()}</h2>
-      <h5 class="ev-performer">{performer}</h5>
+      <div class="ev-performer">{performer}</div>
       <div class="ev-when">
-        <h4 class="ev-date">{date}</h4>
-        <h4 class="ev-time">{time}</h4>
+        <div class="ev-date">{date}</div>
+        <div class="ev-time">{time}</div>
       </div>
-      <h4 class="play-property label-before" data-label={dictionary.genre[lang]+": "}>
+      <div class="play-property label-before" data-label={dictionary.genre[lang]+": "}>
         {play.genre[lang]}, {play.age}
-      </h4>
-      <h4 class="play-property label-before" data-label={dictionary.language[lang]+": "}>
+      </div>
+      <div class="play-property label-before" data-label={dictionary.language[lang]+": "}>
         {play.lang[lang]}
-      </h4>
+      </div>
       {
         event.event_type && event.event_type.is_festival &&
-        <h4 class="play-property label-before ev-festival" data-label={dictionary.festival[lang]+": "}>
+        <div class="play-property label-before ev-festival" data-label={dictionary.festival[lang]+": "}>
           { event.event_name[lang] }
-        </h4>
+        </div>
       }
       <div class="ev-info-flex">
         <address class="play-property label-before" data-label={dictionary.address[lang]+": "}></address>
@@ -105,14 +105,14 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
       {
         event.prices.length > 0 &&
         <div class="ev-info-flex">
-          <h4 class="play-property label-before" data-label={dictionary.tickets[lang]+": "}></h4>
-          <h4 class="play-property">
+          <div class="play-property label-before" data-label={dictionary.tickets[lang]+": "}></div>
+          <div class="play-property">
             { ticketsName }<br>
             { ticketsPrice }
-          </h4>
+          </div>
         </div>
       }     
-      <h4><a href={`/${lang}/plays/${play.suffix}/`} class="ev-link-more">{dictionary.more_about_play[lang]}</a></h4>  
+      <a href={`/${lang}/plays/${play.suffix}/`} class="ev-link-more">{dictionary.more_about_play[lang]}</a>  
 
       { !event.no_tickets && 
         <TicketBookButton add_classes="ev-button" button_type='ticket' price=''

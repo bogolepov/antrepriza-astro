@@ -47,12 +47,10 @@
 
 .ev-when {
 	padding: 1em 0;
-	line-height: 1.5em;
 	color: var(--colorFontDate);
-}
-
-.ev-when h4 {
 	font-size: clamp(1.1rem, 2vw, 1.25rem);
+	font-weight: 400;
+	line-height: 1.35em;
 }
 
 .play-property.ev-festival {
@@ -67,16 +65,17 @@
 }
 
 .ev-link-more {
+	display: block;
 	font-size: clamp(1rem, 1.8vw, 1.2rem);
 	font-weight: var(--font-normal-weight);
 	text-decoration: underline;
 }
 
-.event h4:has(a) {
+.event a {
 	padding: 0.8em 0 1.8em 0;
 }
 
-.event:not(:has(.ev-button)) h4:has(a) {
+.event:not(:has(.ev-button)) a {
 	padding-top: 1.5em;
 }
 

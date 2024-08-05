@@ -1,7 +1,7 @@
 {
 	"languages": [
-		{ "lang_code": "ru", "lang_name": "Русский" },
-		{ "lang_code": "de", "lang_name": "Deutsch" }
+		{ "lang_code": "ru", "lang_name": "Русский", "locale": "ru-RU" },
+		{ "lang_code": "de", "lang_name": "Deutsch", "locale": "de-DE" }
 	],
 	"menu_main": [
 		{ "dict_word": "program", "url": "program" },

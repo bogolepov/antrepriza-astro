@@ -21,8 +21,8 @@ const posterImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*
 <script is:inline src="/js/swiper-bundle.min.js" defer></script>
 
 <section class="gallery">
+  <h1 class="section-title">{dictionary.gallery[lang]}</h1>
   <ul>
-    <h1 class="section-title">{dictionary.gallery[lang]}</h1>
     {
       plays.map(play => {
         let playFotos = photos.filter(photo => photo.filename && photo.suffix == play.suffix && photo.is_landscape);

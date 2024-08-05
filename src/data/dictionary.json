@@ -11,6 +11,7 @@
 	"impressum": { "ru": "Impressum", "de": "Impressum" },
 	"privacy_policy": { "ru": "Политика конфиденциальности", "de": "Datenschutz" },
 	"newsletter": { "ru": "Подписка на новости", "de": "Newsletter" },
+	"menu": { "ru": "Меню", "de": "Menü" },
 	"menu_about": { "ru": "О театре", "de": "Über Theater" },
 	"menu_team": { "ru": "Команда", "de": "Team" },
 	"menu_actors": { "ru": "Артисты", "de": "Schauspieler" },
@@ -103,8 +104,8 @@
 	"more_about_play": { "ru": "Подробнее о спектакле", "de": "Mehr zur Theaterproduktion" },
 
 	"description_index": {
-		"ru": "Театр Антреприза Берлин существует с 2019 года и предлагает постановки различных жанровых направлений для взрослой и детской аудитории.",
-		"de": "Theater Antrepriza Berlin entstand Ende 2019 und bietet Inszenierungen unterschiedlicher Genres für Erwachsene und Kinder."
+		"ru": "Для детей и взрослых. От классики до социально-политических постановок. Билеты по доступной цене.",
+		"de": "Аür Kinder und Erwachsene. Von Klassikern bis zu gesellschaftspolitischen Produktionen. Erschwingliche Ticketpreise."
 	},
 	"description_about": {
 		"ru": "Об истории Театра, репертуаре, коллективе и многом другом.",
