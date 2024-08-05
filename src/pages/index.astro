@@ -6,23 +6,35 @@ import theater from '@data/theater.json'
 import dictionary from '@data/dictionary.json'
 
 let now = new Date();
+
+// <meta name="google-site-verification" content="D5UaIDmzJIOUQz06voBegItDECWG5dKBhOxT6M-TWxw" />
+
 ---
 <html>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="robots" content="index, follow" />
-		<meta http-equiv="Last-Modified" content={now.toUTCString()}>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>{theater.longTheaterName.ru}</title>
 		<meta name="description" content={dictionary.description_index.ru}/>
-		<meta name="google-site-verification" content="D5UaIDmzJIOUQz06voBegItDECWG5dKBhOxT6M-TWxw" />
+		<meta http-equiv="Last-Modified" content={now.toUTCString()}>
 		<link rel="sitemap" href="/sitemap-index.xml" />
-		<!-- TODO: -->
 		<link rel="icon" href="/favicon32.ico" sizes="32x32" />
 		<link rel="icon" href="/favicon.ico" sizes="48x48" />
 		<link rel="icon" type="image/png" href="/favicon.png" sizes="32x32" />
 		<link rel="icon" type="image/png" href="/favicon.png" sizes="48x48" />
 		<link rel="icon" type="image/png" href="/favicon96.png" sizes="96x96" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta property="fb:app_id" content="109865105533274" />
+		<meta property="og:title" content={theater.longTheaterName['de']}>
+		<meta property="og:description" content={dictionary.description_index['ru']}>
+		<meta property="og:url" content={theater.our_website_link}>
+		<meta property="og:type" content="website">
+		<meta property="og:site_name" content={theater.longTheaterName['ru']}>
+		<meta property="og:image" content="https://antrepriza.eu/assets/logo_rw_1200.png">
+		<meta property="og:image:type" content="image/png">
+		<meta property="og:image:width" content="1200"/>
+		<meta property="og:image:height" content="628"/>
 		{
 			theater.languages.map(lng => {
 				return (
