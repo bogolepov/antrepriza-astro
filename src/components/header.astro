@@ -59,14 +59,14 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 			</div>
 		</div>
 		<div class="navigator-logo-item">
-			<a href={"/" + lang + "/"} class:list={{active_link: currentPath[1] === undefined}}>
+			<a href={"/" + lang + "/"} class:list={{active_link: currentPath[1] === undefined}} aria-label={dictionary.main_page[lang]}>
 				<svg class="navigator-icon-logo-text">
 					<use href={AntreprizaLogo + '#logo-text-' + lang}></use>
-					<title>{dictionary.logo[lang]}</title>
+					<!-- <title>{dictionary.logo[lang]}</title> -->
 				</svg>
 				<svg class="navigator-icon-logo">
 					<use href={AntreprizaLogo + '#logo'}></use>
-					<title>{dictionary.logo[lang]}</title>
+					<!-- <title>{dictionary.logo[lang]}</title> -->
 				</svg>
 			</a>
 		</div>
@@ -85,7 +85,7 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 <header class="header-mobile"lang={lang}>
 	<div class="header-burger">
 		<div class="burger-button-wrapper">
-			<BurgerButton id="burger-button"/>
+			<BurgerButton id="burger-button" lang={lang}/>
 		</div>
 		<nav class="burger-menu">
 			<Menu lang={lang} add_classes="mobile"/>
@@ -110,13 +110,17 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 			</ul>
 		</nav>
 	</div>
-	<a class="header-logo" href={"/" + lang + "/"} class:list={{active_link: currentPath[1] === undefined}}>
-		<svg class="header-logo-text-icon">
-			<use href={AntreprizaLogo + "#logo-text-" + lang}></use>
-		</svg>
-		<svg class="header-logo-icon">
-			<use href={AntreprizaLogo + "#logo"}></use>
-		</svg>
+	<a 
+		class="header-logo" 
+		href={"/" + lang + "/"} 
+		class:list={{active_link: currentPath[1] === undefined}} 
+		aria-label={dictionary.main_page[lang]}>
+			<svg class="header-logo-text-icon">
+				<use href={AntreprizaLogo + "#logo-text-" + lang}></use>
+			</svg>
+			<svg class="header-logo-icon">
+				<use href={AntreprizaLogo + "#logo"}></use>
+			</svg>
 	</a>
 	<div></div>
 	<TicketPageButton lang={lang} />
