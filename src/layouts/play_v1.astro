@@ -59,9 +59,9 @@ const { Content } = await entry.render();
 
   }
   <div class="play-info">
-    <h4 class="play-property label-before" data-label={dictionary.genre[lang]+": "}>{thisPlay.genre[lang]}, {thisPlay.age}</h4>
-    <h4 class="play-property label-before" data-label={dictionary.language[lang]+": "}>{thisPlay.lang[lang]}</h4>
-    <h4 class="play-property label-before" data-label={dictionary.duration[lang]+": "}>{strDuration}</h4>
+    <div class="play-property label-before" data-label={dictionary.genre[lang]+": "}>{thisPlay.genre[lang]}, {thisPlay.age}</div>
+    <div class="play-property label-before" data-label={dictionary.language[lang]+": "}>{thisPlay.lang[lang]}</div>
+    <div class="play-property label-before" data-label={dictionary.duration[lang]+": "}>{strDuration}</div>
   </div>
   {
     thisPlayDates.length > 0 &&

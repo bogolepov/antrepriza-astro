@@ -91,10 +91,10 @@ let iMonth: number = -1;
 											
 											<div class="program-when" >
 												{event.premiere && 
-													<h4 class="play-property-hot-notice">{dictionary.premiere[lang]}</h4>
+													<div class="play-property-hot-notice">{dictionary.premiere[lang]}</div>
 												}
 												{event.event_type && event.event_type.is_festival && 
-													<h4 class="play-property-hot-notice">{dictionary.festival[lang]}</h4>
+													<div class="play-property-hot-notice">{dictionary.festival[lang]}</div>
 												}
 												<time class="program-date" data-day={playDate.toLocaleDateString(lang, { weekday: 'short' })}>
 													{playDate.getDate().toString().padStart(2, '0')}.{(playDate.getMonth()+1).toString().padStart(2, '0')},
@@ -109,12 +109,12 @@ let iMonth: number = -1;
 											</a>
 
 											<div class="program-info">
-												<h4 class="play-property label-before" data-label={dictionary.genre[lang]+": "}>
+												<div class="play-property label-before" data-label={dictionary.genre[lang]+": "}>
 													{play.genre[lang]}, {play.age}
-												</h4>
-												<h4 class="play-property label-before" data-label={dictionary.language[lang]+": "}>
+												</div>
+												<div class="play-property label-before" data-label={dictionary.language[lang]+": "}>
 													{play.lang[lang]}
-												</h4>
+												</div>
 												<div class="info-address">
 													<address class="play-property label-before" data-label={dictionary.address[lang]+": "}></address>
 													
