@@ -143,8 +143,7 @@
 		],
 		"seo": {
 			"open_graph": {
-				"image_url": "miks_1200.jpg",
-				"image_type": "image/jpeg",
+				"image": { "url": "miks_1200.jpg", "type": "image/jpeg" },
 				"description": {
 					"ru": "Постановка по пьесе К.Попова. Современная история, 16+. Спектакль на русском языке.",
 					"de": "Inszenierung nach dem Stück von K.Popov. Moderne Geschichte, 16+. Die Aufführung ist auf Russisch."
@@ -208,11 +207,10 @@
 		],
 		"seo": {
 			"open_graph": {
-				"image_url": "mik_1200.jpg",
-				"image_type": "image/jpeg",
+				"image": { "url": "mik_1200.jpg", "type": "image/jpeg" },
 				"description": {
-					"ru": "Постановка для ДЕТЕЙ по мотивам повести А.Линдгрен. Приключения, 3+. Спектакль на русском языке.",
-					"de": "Produktion für KINDER nach der Geschichte von A.Lindgren. Abenteuer, 3+. Die Aufführung ist auf Russisch."
+					"ru": "Постановка для детей по мотивам повести А.Линдгрен. Приключения, 3+. Спектакль на русском языке.",
+					"de": "Produktion für Kinder nach der Geschichte von A.Lindgren. Abenteuer, 3+. Die Aufführung ist auf Russisch."
 				}
 			}
 		}
@@ -273,8 +271,7 @@
 		],
 		"seo": {
 			"open_graph": {
-				"image_url": "op_1200.jpg",
-				"image_type": "image/jpeg",
+				"image": { "url": "op_1200.jpg", "type": "image/jpeg" },
 				"description": {
 					"ru": "Постановка по пьесе Дж.Б.Пристли. Детектив, 18+. Спектакль на русском языке.",
 					"de": "Inszenierung nach dem Stück von J.B.Priestley. Krimi, 16+. Die Aufführung ist auf Russisch."
@@ -365,8 +362,7 @@
 		],
 		"seo": {
 			"open_graph": {
-				"image_url": "dk_1200.jpg",
-				"image_type": "image/jpeg",
+				"image": { "url": "dk_1200.jpg", "type": "image/jpeg" },
 				"description": {
 					"ru": "Постановка по пьесе Т.Москвиной. Трагикомедия, 18+. Спектакль на русском языке.",
 					"de": "Inszenierung nach dem Stück von Т.Moskvina. Tragikomödie, 18+. Die Aufführung ist auf Russisch."
@@ -557,8 +553,7 @@
 		],
 		"seo": {
 			"open_graph": {
-				"image_url": "ts_1200.jpg",
-				"image_type": "image/jpeg",
+				"image": { "url": "ts_1200.jpg", "type": "image/jpeg" },
 				"description": {
 					"ru": "Постановка по пьесе А.Чехова. Драма, 14+. Спектакль на русском языке.",
 					"de": "Inszenierung nach dem Stück von A.Tschechow. Drama, 14+. Die Aufführung ist auf Russisch."
