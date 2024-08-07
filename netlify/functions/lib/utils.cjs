@@ -6,6 +6,13 @@ module.exports.fromHtmlToPlainText = function (str) {
 	return str;
 };
 
+module.exports.nonBreakingSpace = function (str) {
+	if (str) {
+		str = str.replaceAll(' ', '&nbsp;');
+	}
+	return str;
+};
+
 // module.exports = {
 // 	fromHtmlToPlainText: fromHtmlToPlainText,
 // };

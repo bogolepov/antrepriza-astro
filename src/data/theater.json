@@ -103,6 +103,7 @@
 	],
 	"fix_stages": ["ost", "west"],
 	"our_website_link": "https://antrepriza.eu",
+	"our_website_domain": "antrepriza.eu",
 	"our_website_text": "antrepriza.eu",
 	"social_pages": [
 		{ "name": "Facebook", "url": "https://www.facebook.com/AntreprizaBerlin", "svg": "#facebook-outline" },

@@ -135,25 +135,6 @@
 	color: var(--colorFontDate);
 }
 
-.play-image {
-	display: block;
-	border-radius: 4px;
-	max-width: 100%;
-	height: auto;
-	object-fit: contain;
-
-	-webkit-filter: grayscale(95%);
-	filter: grayscale(95%);
-	transition: filter 250ms ease-in;
-}
-
-.program-play-block a:focus-visible {
-	outline: none;
-}
-.program-play-block:has(a:focus-visible) {
-	outline: 2px solid;
-}
-
 @media screen and (max-width: 1040px) {
 	.program-play-text {
 		/* min-width: 50vw; */

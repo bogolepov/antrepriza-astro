@@ -40,14 +40,6 @@
 }
 
 /* --------------------------------------------------- */
-.play-block a:focus-visible {
-	outline: none;
-}
-.play-block:has(a:focus-visible) {
-	outline: 2px solid;
-}
-
-/* --------------------------------------------------- */
 @media screen and (max-width: 660px) {
 	.play-block {
 		flex-direction: column;
