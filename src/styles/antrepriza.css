@@ -436,7 +436,7 @@ h4.notification-label {
 }
 
 /* --------------------------------------------------- */
-/* ------------------- hover effect ------------------ */
+/* ------------------ hover / focus ------------------ */
 /* --------------------------------------------------- */
 
 /* this hover-effect works only if javascript is out */
@@ -464,10 +464,19 @@ h4.notification-label {
 	filter: grayscale(0%);
 }
 
+.hover-block:has(a:focus-visible) .black-white-filter,
+.hover-block:has(button:focus-visible) .black-white-filter,
 .black-white-filter:focus-visible {
 	transition: filter 500ms ease-out;
 	-webkit-filter: grayscale(0%);
 	filter: grayscale(0%);
+}
+
+main .hover-block a:focus-visible {
+	outline: none;
+}
+main .hover-block:has(a:focus-visible) {
+	outline: 2px solid;
 }
 
 /* --------------------------------------------------- */

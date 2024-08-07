@@ -1,8 +1,8 @@
 import nodemailer from 'nodemailer';
 import fs from 'fs';
-// import { NewslettersDB } from './lib/antreprizaDB.cjs';
 import { LANG_LIST, EMAIL_REGEX } from './lib/consts.cjs';
-import { fromHtmlToPlainText } from './lib/utils.cjs';
+import { fromHtmlToPlainText, nonBreakingSpace } from './lib/utils.cjs';
+import { makeHtmlEmail } from './lib/emailUtils.cjs';
 
 let dictionaryServer;
 let theater;
@@ -57,7 +57,7 @@ export const handler = async (event, context) => {
 		from: `${theater.longTheaterName[lang]} <${process.env.ANTREPRIZA_EMAIL_INFO}>`,
 		to: email,
 		subject: subject,
-		html: makeHtmlEmail(lang, topic, name, email, message, false),
+		html: makeHtmlEmail(lang, topic, makeContent(lang, topic, name, email, message, now, false)),
 	};
 
 	let mailTo;
@@ -68,10 +68,10 @@ export const handler = async (event, context) => {
 	}
 	const mailOptionsAntrepriza = {
 		// from: `${theater.longTheaterName[lang]} <${process.env.ANTREPRIZA_TRANSPORT_EMAIL}>`,
-		from: `${theater.longTheaterName[lang]} <${process.env.ANTREPRIZA_EMAIL_SUBSCRIPTION}>`,
+		from: `${theater.longTheaterName[lang]} <${process.env.ANTREPRIZA_EMAIL_INFO}>`,
 		to: mailTo,
 		subject: subject,
-		html: makeHtmlEmail(lang, topic, name, email, message, now, true),
+		html: makeHtmlEmail(lang, topic, makeContent(lang, topic, name, email, message, now, true)),
 	};
 
 	try {
@@ -128,52 +128,11 @@ function validateMessage(messageData) {
 	*/
 }
 
-// function fromHtmlToText(str) {
-// 	if (str) {
-// 		str = str.replaceAll('<', '&lt;');
-// 		str = str.replaceAll('>', '&gt;');
-// 	}
-// 	return str;
-// }
-
-function makeHtmlEmail(lang, topic, name, email, message, now, forAntrepriza = false) {
-	return (
-		`<!DOCTYPE html><html lang="${lang}">` + makeHead(lang) + makeBody(lang, topic, name, email, message, now, forAntrepriza) + `</html>`
-	);
+function makeContent(lang, topic, name, email, message, now, forAntrepriza) {
+	return makeOurMessage(lang, name, now, forAntrepriza) + makeFeedbackMessage(lang, topic, name, email, message);
 }
 
-function makeHead(lang) {
-	let htmlHead =
-		'<head><meta charset="UTF-8"><meta http-equiv="content-type" content="text/html"><title>' +
-		theater.shortTheaterName[lang] +
-		' - ' +
-		dictionaryServer.email_news_subscription_reg_subject[lang] +
-		'</title><meta name="viewport" content="width=device-width, initial-scale=1.0"><style>' +
-		'table {border-spacing:0;} td {vertical-align:top;}' +
-		'.email-body {font-size:16px;background-color:#292929;color:#d6d6d6;}' +
-		'.email-body a {color:#d6d6d6;} .email-body .im * {color:#d6d6d6;}' +
-		'.body-table {width:100%;}' +
-		'.email-wrapper {padding:2rem;margin-left:auto;margin-right:auto;} .pr15{padding-right:15px;}' +
-		'.lh12 {line-height:1.2em;} .fcw {color:#d6d6d6;} .fcg{color:#888888;} .b700 {font-weight:700;} .m50 {margin:50px 0;}' +
-		// sdv
-		'.hello-titel {font-size:1.35rem;margin-bottom:15px;line-height:1.2em;}' +
-		'.user-table {margin-bottom:15px;border-top:1px solid #d6d6d6;padding-top:12px;width:100%;}' +
-		'.user-table tr td {min-width:5em;color:#d6d6d6;}' +
-		'</style></head>';
-
-	return htmlHead;
-}
-
-function makeBody(lang, topic, name, email, message, now, forAntrepriza) {
-	return (
-		`<body><div class='email-body'><table class='body-table'><tbody><tr><td class='email-wrapper'>` +
-		makeTextForRecipient(lang, name, now, forAntrepriza) +
-		makeQuestionBlock(lang, topic, name, email, message) +
-		`</td></tr></tbody></table></div></body>`
-	);
-}
-
-function makeTextForRecipient(lang, name, now, forAntrepriza) {
+function makeOurMessage(lang, name, now, forAntrepriza) {
 	const date = new Date(now);
 	let getHello = hour => {
 		if (hour < 6 && lang === 'ru') return dictionaryServer.hello[lang];
@@ -181,6 +140,9 @@ function makeTextForRecipient(lang, name, now, forAntrepriza) {
 		else if (hour < 18) return dictionaryServer.good_afternoon[lang];
 		else return dictionaryServer.good_evening[lang];
 	};
+
+	let diffText;
+	let strHello;
 
 	if (forAntrepriza) {
 		let options = {
@@ -192,35 +154,59 @@ function makeTextForRecipient(lang, name, now, forAntrepriza) {
 		};
 		let strCurrentDate = date.toLocaleDateString(lang, options);
 
-		let strHello = getHello(date.getHours()) + (lang === 'ru' ? '!' : ',');
-		return (
-			`<div class='hello-titel b700 fcw'>${strHello}</div>` +
-			`<p class='lh12 fcw'>${dictionaryServer.email_feedback_form_text_antrepriza[lang]} <span class='fcg'>[${strCurrentDate}]</span></p>`
-		);
+		strHello = getHello(date.getHours()) + (lang === 'ru' ? '!' : ',');
+		diffText = `\
+<tr><td style="font-size: 125%; padding-bottom: 15px; line-height: 120%; color: #d6d6d6; font-weight: 500">${strHello}</td></tr>\
+<tr><td style="line-height: 120%; color: #d6d6d6">${dictionaryServer.email_feedback_form_text_antrepriza[lang]}</td></tr>\
+<tr><td style="font-size: 90%; line-height: 120%; color: #888888; font-weight: 500">[${strCurrentDate}]</td></tr>\
+`;
 	} else {
-		let strHello = getHello(date.getHours()) + (lang === 'ru' ? ', ' : ' ') + fromHtmlToPlainText(name) + (lang === 'ru' ? '!' : ',');
-		return (
-			`<div class='hello-titel b700 fcw'>${strHello}</div>` +
-			`<p class='lh12 fcw'>${dictionaryServer.email_feedback_form_text[lang]}</p>` +
-			`<p><div class='lh12 fcw'>${theater.longTheaterName[lang]}</div>` +
-			`<a href='${theater.our_website_link}/${lang}' class='lh12 fcw'>${theater.our_website_text}</a></p>`
-		);
+		strHello = getHello(date.getHours()) + (lang === 'ru' ? ', ' : ' ') + fromHtmlToPlainText(name) + (lang === 'ru' ? '!' : ',');
+		diffText = `\
+<tr><td style="font-size: 125%; padding-bottom: 15px; line-height: 120%; color: #d6d6d6; font-weight: 500">${strHello}</td></tr>\
+<tr><td style="line-height: 120%; color: #d6d6d6; padding-bottom: 15px">${dictionaryServer.email_feedback_form_text[lang]}</td></tr>\
+<tr><td style="line-height: 120%; color: #d6d6d6">${theater.longTheaterName[lang]}</td></tr>\
+<tr><td style="line-height: 120%; color: #888888">\
+<a href='${theater.our_website_link}/${lang}' style="line-height: 120%; color: #d6d6d6">${theater.our_website_text}</a>\
+</td></tr>\
+`;
 	}
+
+	return `\
+<table \
+border="0" cellpadding="0" cellspacing="0" role="presentation"
+style="width: 100%; margin: 0; padding: 0 0 15px 0; border-bottom: 1px solid #d6d6d6">\
+<tbody>\
+${diffText}
+</tbody>\
+</table>\
+`;
 }
 
-function makeQuestionBlock(lang, topic, name, email, message) {
-	return (
-		`<table class='user-table'>` +
-		`<tr><td><span class='fcg pr15'>${dictionaryServer.question_subject[lang] + ' :'}</span></td><td>${fromHtmlToPlainText(
-			topic
-		)}</td></tr>` +
-		`<tr><td><span class='fcg pr15'>${dictionaryServer.lang_name[lang] + ' :'}</span</td><td>${fromHtmlToPlainText(name)}</td></tr>` +
-		`<tr><td><span class='fcg pr15'>${dictionaryServer.lang_email[lang] + ' :'}</span</td><td>${fromHtmlToPlainText(email)}</td></tr>` +
-		`<tr><td><span class='fcg pr15'>${dictionaryServer.lang_message[lang] + ' :'}</span</td><td>${fromHtmlToPlainText(message)}</td></tr>` +
-		`</table>`
-	);
-
-	/* 
-	<table class='user-table'><tr><td class='fcg'>Topic</td><td>Tickets</td></tr><tr><td class='fcg'>Message: </td><td></td></tr><tr><td></td><td>bla bla bla fvbklnköv  dflvbadöfl dkvalkdf</td></tr></table>
-  */
+function makeFeedbackMessage(lang, topic, name, email, message) {
+	return `\
+<table \
+border="0" cellpadding="0" cellspacing="0" role="presentation" \
+style="width: 100%; margin: 0; padding: 15px 0 0 0">\
+<tbody>\
+<tr>\
+<td style="line-height: 120%; color: #888888; vertical-align: top">${nonBreakingSpace(dictionaryServer.question_subject[lang] + ' :')}</td>\
+<td style="line-height: 120%; color: #d6d6d6; vertical-align: top; padding: 0 0 10px 8px">${fromHtmlToPlainText(topic)}</td>\
+</tr>\
+<tr>\
+<td style="line-height: 120%; color: #888888; vertical-align: top">${nonBreakingSpace(dictionaryServer.lang_name[lang] + ' :')}</td>\
+<td style="line-height: 120%; color: #d6d6d6; vertical-align: top; padding: 0 0 10px 8px">${fromHtmlToPlainText(name)}</td>\
+</tr>\
+<tr>\
+<td style="line-height: 120%; color: #888888; vertical-align: top">${nonBreakingSpace(dictionaryServer.lang_email[lang] + ' :')}</td>\
+<td style="line-height: 120%; color: #d6d6d6; vertical-align: top; padding: 0 0 10px 8px">\
+<a href='${'mailto:' + fromHtmlToPlainText(email)}' style="line-height: 120%; color: #d6d6d6">${fromHtmlToPlainText(email)}</a></td>\
+</tr>\
+<tr>\
+<td style="line-height: 120%; color: #888888; vertical-align: top">${nonBreakingSpace(dictionaryServer.lang_message[lang] + ' :')}</td>\
+<td style="line-height: 120%; color: #d6d6d6; vertical-align: top; padding: 0 0 10px 8px">${fromHtmlToPlainText(message)}</td>\
+</tr>\
+</tbody>\
+</table>\
+`;
 }

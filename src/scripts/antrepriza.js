@@ -52,10 +52,25 @@ function initPageController() {
 	});
 }
 
+function initScrollFocusedToCenter() {
+	Element.prototype.documentOffsetTop = function () {
+		return this.offsetTop + (this.offsetParent ? this.offsetParent.documentOffsetTop() : 0);
+	};
+
+	Element.prototype.scrollIntoViewCenter = function () {
+		window.scrollTo(0, this.documentOffsetTop() - window.innerHeight / 2);
+	};
+
+	window.addEventListener('keyup', event => {
+		if ('Tab' == event.code) document.activeElement.scrollIntoViewCenter();
+	});
+}
+
 export function initPage() {
 	removeNoJS();
 	saveLangOfPage();
 	initPageController();
+	// initScrollFocusedToCenter();
 	// loadPageState();
 }
 
