@@ -1,13 +1,5 @@
 [
 	{
-		"date": "2024-07-31",
-		"time": "19:30",
-		"play_id": 5,
-		"stage_sid": "ost",
-		"free_place": true,
-		"prices": ["standart", "reduce"]
-	},
-	{
 		"date": "2024-12-22",
 		"time": "16:00",
 		"play_id": 6,
@@ -53,7 +45,7 @@
 		"play_id": 9,
 		"stage_sid": "ost",
 		"free_place": true,
-		"prices": ["standart", "reduce"],
+		"prices": ["standart22", "reduce"],
 		"premiere": true
 	},
 	{
@@ -62,7 +54,7 @@
 		"play_id": 9,
 		"stage_sid": "ost",
 		"free_place": true,
-		"prices": ["standart", "reduce"],
+		"prices": ["standart22", "reduce"],
 		"premiere": true
 	},
 	{

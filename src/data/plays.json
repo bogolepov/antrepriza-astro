@@ -29,7 +29,7 @@
 					"ru": "молодой человек под валютной ипотекой",
 					"de": "Mann unter Hypothek"
 				},
-				"actors": [106]
+				"actors": [106, 110]
 			},
 			{
 				"id": 2,
@@ -38,7 +38,7 @@
 					"ru": "девушка Славика",
 					"de": "Slawiks Freundin"
 				},
-				"actors": [111, 128]
+				"actors": [111, 128, 127]
 			},
 			{
 				"id": 3,
@@ -53,7 +53,7 @@
 					"ru": "отец Славика, психопат по мнению Мироздания",
 					"de": "Slawiks Vater, ein Psychopath nach Ansicht dem Universum"
 				},
-				"actors": [103]
+				"actors": [103, 129]
 			}
 		],
 		"creators": [

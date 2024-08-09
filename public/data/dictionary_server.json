@@ -35,23 +35,39 @@
 		"de": "Sie haben eine neue Rückfrage auf der Webseite."
 	},
 	"email_reservation_text": {
-		"ru": "Большое спасибо за Ваше бронирование. Ниже Вы найдете информацию по бронированию.",
-		"de": "vielen Dank für Ihre Ticketreservierung. Nachfolgend finden Sie Informationen zur Reservierung."
+		"ru": "Ваши билеты успешно зарезервированы. Ниже Вы найдете информацию по бронированию.",
+		"de": "Ihre Tickets wurden erfolgreich reserviert. Nachfolgend finden Sie Informationen zur Reservierung."
 	},
-	"email_reservation_text2": {
-		"ru": "Обратите внимание, что оплата зарезервированных билетов производится в наличной форме перед спектаклем на входе. Бар принимает к оплате также только наличность.",
-		"de": "Bitte beachten Sie, dass die Bezahlung der reservierten Karten vor der Vorstellung am Eingang in bar erfolgen muss. Die Bar akzeptiert außerdem nur Bargeld als Zahlungsmittel."
+	"email_reservation_where": {
+		"ru": "Где мы находимся и как к нам проехать Вы можете посмотреть",
+		"de": "Wo wir sind  und wie Sie unser Theater erreichen, erfahren Sie"
 	},
-	"email_reservation_text3": {
-		"ru": "Театр открывает свои двери за 30 минут до начала спектакля.",
-		"de": "Unser Theater öffnet seine Türen 30 Minuten vor Vorstellungsbeginn."
+	"email_reservation_where_link_text": {
+		"ru": "здесь",
+		"de": "hier"
 	},
-	"email_reservation_text4": {
+	"email_reservation_note": {
+		"ru": "Обратите внимание, что:",
+		"de": "Bitte beachten Sie, dass:"
+	},
+	"email_reservation_note1": {
+		"ru": "- оплата зарезервированных билетов производится в наличной форме перед спектаклем на входе;",
+		"de": "- Die Bezahlung der reservierten Karten vor der Vorstellung am Eingang in bar erfolgen muss"
+	},
+	"email_reservation_note2": {
+		"ru": "- бар принимает к оплате также только наличность;",
+		"de": "- Die Bar akzeptiert außerdem nur Bargeld als Zahlungsmittel"
+	},
+	"email_reservation_note3": {
+		"ru": "- театр открывает свои двери за 30 минут до начала спектакля.",
+		"de": "- Unser Theater öffnet seine Türen 30 Minuten vor Vorstellungsbeginn"
+	},
+	"email_reservation_welcome": {
 		"ru": "Мы будем рады Вашему визиту и с нетерпением ждем Вас!",
 		"de": "Wir freuen uns auf Ihren Besuch!"
 	},
 	"email_subscription_text": {
-		"ru": "Мы очень рады, что Вы решили подписаться на новости Театра Антреприза Берлин.",
+		"ru": "Мы рады, что Вы решили подписаться на новости Театра Антреприза Берлин.",
 		"de": "wie schön, dass Sie sich für News des Theaters Antrepriza Berlin entschieden haben!"
 	},
 	"email_subscription_text2": {
