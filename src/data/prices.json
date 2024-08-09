@@ -1,5 +1,11 @@
 [
 	{
+		"type": "standart22",
+		"value": 22,
+		"text": { "ru": "Обычный билет", "de": "Normalticket" },
+		"text_short": { "ru": "Обычный", "de": "Normal" }
+	},
+	{
 		"type": "standart",
 		"value": 19,
 		"text": { "ru": "Обычный билет", "de": "Normalticket" },

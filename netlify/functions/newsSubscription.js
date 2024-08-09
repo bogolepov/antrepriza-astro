@@ -1,6 +1,9 @@
 import nodemailer from 'nodemailer';
 import fs from 'fs';
+import { LANG_LIST, EMAIL_REGEX } from './lib/consts.cjs';
 import { NewslettersDB } from './lib/antreprizaDB.cjs';
+import { fromHtmlToPlainText } from './lib/utils.cjs';
+import { makeHtmlEmail } from './lib/emailUtils.cjs';
 
 let dictionaryServer;
 let theater;
@@ -19,11 +22,33 @@ export const handler = async (event, context) => {
 	const messageData = JSON.parse(event.body);
 	const { lang, email, sid, usid } = messageData;
 
+	// spam checking
+	if (!lang || !LANG_LIST.includes(lang)) {
+		// fake OK-result
+		return {
+			statusCode: 200,
+			body: JSON.stringify({
+				message: 'Successfully',
+			}),
+		};
+	}
+
 	if (email && email.length > 0) return await emailRegistration(lang, email);
 	else if (sid) return emailConfirmation(lang, sid);
 	else if (usid) return emailRemoving(lang, usid);
 
 	async function emailRegistration(lang, email) {
+		// spam checking
+		if (!email || !EMAIL_REGEX.test(email) || email.length > 64) {
+			// fake OK-result
+			return {
+				statusCode: 200,
+				body: JSON.stringify({
+					message: 'Email sent successfully',
+				}),
+			};
+		}
+
 		NewslettersDB.openDatabase();
 		let res = NewslettersDB.addNewEmail(lang, email);
 		NewslettersDB.closeDatabase();
@@ -57,11 +82,15 @@ export const handler = async (event, context) => {
 			},
 		});
 
+		const subject = dictionaryServer.email_news_subscription_reg_subject[lang];
+		const subjectToAntrepriza = dictionaryServer.email_news_subscription_reg_subject_antrepriza[lang];
+
 		const mailOptions = {
+			// from: `${theater.longTheaterName[lang]} <${process.env.ANTREPRIZA_TRANSPORT_EMAIL}>`,
 			from: `${theater.longTheaterName[lang]} <${process.env.ANTREPRIZA_EMAIL_SUBSCRIPTION}>`,
 			to: email,
-			subject: `${dictionaryServer.email_news_subscription_reg_subject[lang]}`,
-			html: makeHtmlEmail(lang, email, sid, false),
+			subject: subject,
+			html: makeHtmlEmail(lang, subject, makeContent(lang, email, sid, false)),
 		};
 
 		let mailTo;
@@ -73,8 +102,8 @@ export const handler = async (event, context) => {
 		const mailOptionsAntrepriza = {
 			from: `${theater.longTheaterName[lang]} <${process.env.ANTREPRIZA_EMAIL_SUBSCRIPTION}>`,
 			to: mailTo,
-			subject: `${dictionaryServer.email_news_subscription_reg_subject_antrepriza[lang]}`,
-			html: makeHtmlEmail(lang, email, sid, true),
+			subject: subjectToAntrepriza,
+			html: makeHtmlEmail(lang, subjectToAntrepriza, makeContent(lang, email, sid, true)),
 		};
 
 		try {
@@ -101,62 +130,47 @@ export const handler = async (event, context) => {
 		}
 	}
 
-	function makeHtmlEmail(lang, email, sid, forAntrepriza = false) {
-		return `<!DOCTYPE html><html lang="${lang}">` + makeHead(lang) + makeBody(lang, email, sid, forAntrepriza) + `</html>`;
-	}
-
-	function makeHead(lang) {
-		let htmlHead =
-			'<head><meta charset="UTF-8"><meta http-equiv="content-type" content="text/html"><title>' +
-			theater.shortTheaterName[lang] +
-			' - ' +
-			dictionaryServer.email_news_subscription_reg_subject[lang] +
-			'</title><meta name="viewport" content="width=device-width, initial-scale=1.0"><style>' +
-			'table {border-spacing:0;} td {vertical-align:top;}' +
-			'.email-body {font-size:16px;background-color:#292929;color:#d6d6d6;}' +
-			'.email-body a {color:#d6d6d6;} .email-body .im * {color:#d6d6d6;}' +
-			'.body-table {width:100%;}' +
-			'.email-wrapper {padding:2rem;margin-left:auto;margin-right:auto;} ' +
-			'.subscription-titel {font-size:1.35rem;margin-bottom:15px;line-height:1.2em;}' +
-			'.lh12 {line-height:1.2em;} .fcw {color:#d6d6d6;} .b700 {font-weight:700;} .m50 {margin:50px 0;}' +
-			'.confirm-button {border:1px solid #87605e;padding:10px 20px;text-decoration:none;line-height:1.2em;}' +
-			'.email-body a.confirm-button{color:#87605e;}' +
-			'.user-table {margin-bottom:15px;}' +
-			'.user-table tr td {min-width:5em;color:#d6d6d6;}' +
-			'</style></head>';
-
-		return htmlHead;
-	}
-
-	function makeBody(lang, email, sid, forAntrepriza) {
-		return (
-			`<body><div class='email-body'><table class='body-table'><tbody><tr><td class='email-wrapper'>` +
-			makeTextAboutConfirmation(lang, email, sid, forAntrepriza) +
-			`</td></tr></tbody></table></div></body>`
-		);
-	}
-
-	function makeTextAboutConfirmation(lang, email, sid, forAntrepriza) {
-		if (forAntrepriza) {
-			return (
-				`<div class='subscription-titel fcw'>${dictionaryServer.new_subscription_text[lang]} :</div>` +
-				`<table class='user-table'>` +
-				`<tr><td>Email :</td><td>${email}</td></tr>` +
-				`<tr><td>SID :</td><td>${sid}</td></tr>` +
-				`</table>`
-			);
+	function makeContent(lang, email, sid, toAntrepriza) {
+		let diffText;
+		if (toAntrepriza) {
+			diffText = `\
+<tr><td colspan="2" style="font-size: 125%; padding-bottom: 15px; line-height: 120%; color: #d6d6d6; font-weight: 500">\
+${dictionaryServer.new_subscription_text[lang]}\
+</td></tr>\
+<tr>\
+<td style="line-height: 120%; color: #d6d6d6; vertical-align: top">Email :</td>\
+<td style="line-height: 120%; color: #d6d6d6; vertical-align: top; padding: 0 0 5px 8px">
+<a href='${'mailto:' + fromHtmlToPlainText(email)}' style="line-height: 120%; color: #d6d6d6">${fromHtmlToPlainText(email)}</a></td>\
+</tr>\
+<tr>\
+<td style="line-height: 120%; color: #d6d6d6; vertical-align: top">SID :</td>\
+<td style="line-height: 120%; color: #d6d6d6; vertical-align: top; padding: 0 0 0 8px">${sid}</td>\
+</tr>\
+`;
 		} else {
 			let strHello = dictionaryServer.dear_audience[lang] + (lang === 'ru' ? '!' : ',');
-			return (
-				`<div class='subscription-titel b700 fcw'>${strHello}</div>` +
-				`<p class='lh12 fcw'>${dictionaryServer.email_subscription_text[lang]}</p>` +
-				`<p class='lh12 fcw'>${dictionaryServer.email_subscription_text2[lang]}</p>` +
-				`<p class='m50'><a href='https://antrepriza.eu/${lang}/newsletter?sid=${sid}' class='confirm-button'>${dictionaryServer.email_subscription_button_text[lang]}</a></p>` +
-				`<p><div class='lh12 fcw'>${dictionaryServer.email_subscription_text3[lang]}</div>` +
-				`<div class='lh12 fcw'>${theater.longTheaterName[lang]}</div>` +
-				`<a href='${theater.our_website_link}/${lang}' class='lh12 fcw'>${theater.our_website_text}</a></p>`
-			);
+			diffText = `\
+<tr><td style="font-size: 125%; padding-bottom: 15px; line-height: 120%; color: #d6d6d6; font-weight: 500">${strHello}</td></tr>\
+<tr><td style="line-height: 120%; color: #d6d6d6; padding-bottom: 15px">${dictionaryServer.email_subscription_text[lang]}</td></tr>\
+<tr><td style="line-height: 120%; color: #d6d6d6; padding-bottom: 45px">${dictionaryServer.email_subscription_text2[lang]}</td></tr>\
+<tr><td style="line-height: 120%; padding-bottom: 45px">\
+<a href='https://antrepriza.eu/${lang}/newsletter?sid=${sid}' \
+ style="font-size: 105%; font-weight: 500; line-height: 120%; color: #87605e; border: 1px solid #87605e; padding: 10px 20px 10px 20px; text-decoration: none">\
+${dictionaryServer.email_subscription_button_text[lang]}</a>\
+</td></tr>\
+<tr><td style="line-height: 120%; color: #d6d6d6; padding: 0">${dictionaryServer.email_subscription_text3[lang]}</td></tr>\
+<tr><td style="line-height: 120%; color: #d6d6d6; padding: 0">${theater.longTheaterName[lang]}</td></tr>\
+<tr><td style="line-height: 120%; padding: 0">\
+<a href='${theater.our_website_link}/${lang}' style="line-height: 120%; color: #d6d6d6">${theater.our_website_text}</a>\
+</td></tr>\
+`;
 		}
+
+		return `\
+<table border="0" cellpadding="0" role="presentation" style="width: 100%; margin: 0; padding: 0 0 15px 0"><tbody>\
+${diffText}\
+</tbody></table>\
+`;
 	}
 
 	async function emailConfirmation(lang, sid) {
@@ -190,11 +204,12 @@ export const handler = async (event, context) => {
 		} else {
 			mailTo = process.env.ANTREPRIZA_EMAIL_BOGOLEPOV;
 		}
+		const subject = dictionaryServer.email_news_subscription_confirmed_subject[lang];
 		const mailOptions = {
 			from: `${theater.longTheaterName[lang]} <${process.env.ANTREPRIZA_EMAIL_SUBSCRIPTION}>`,
 			to: mailTo,
-			subject: `${dictionaryServer.email_news_subscription_confirmed_subject[lang]}`,
-			html: makeHtmlConfirmedEmail(lang, sid, false),
+			subject: subject,
+			html: makeHtmlEmail(lang, subject, makeContentConfirmed(sid)),
 		};
 		try {
 			await transporter.sendMail(mailOptions);
@@ -210,29 +225,15 @@ export const handler = async (event, context) => {
 		};
 	}
 
-	function makeHtmlConfirmedEmail(lang, sid) {
-		return (
-			`<!DOCTYPE html><html lang="${lang}">` +
-			'<head><meta charset="UTF-8"><meta http-equiv="content-type" content="text/html"><title>' +
-			theater.shortTheaterName[lang] +
-			' - ' +
-			dictionaryServer.email_news_subscription_confirmed_subject[lang] +
-			'</title><meta name="viewport" content="width=device-width, initial-scale=1.0"><style>' +
-			'table {border-spacing:0;} td {vertical-align:top;}' +
-			'.email-body {font-size:16px;background-color:#292929;color:#d6d6d6;}' +
-			'.email-body .im * {color:#d6d6d6;}' +
-			'.body-table {width:100%;}' +
-			'.email-wrapper {padding:2rem;margin-left:auto;margin-right:auto;} ' +
-			'.user-table {margin-bottom:15px;}' +
-			'.user-table tr td {min-width:5em;color:#d6d6d6;}' +
-			'</style></head>' +
-			`<body><div class='email-body'><table class='body-table'><tbody><tr><td class='email-wrapper'>` +
-			`<table class='user-table'>` +
-			`<tr><td>SID :</td><td>${sid}</td></tr>` +
-			`</table>` +
-			`</td></tr></tbody></table></div></body>` +
-			`</html>`
-		);
+	function makeContentConfirmed(sid) {
+		return `\
+<table border="0" cellpadding="0" role="presentation" style="width: 100%; margin: 0; padding: 0 0 15px 0"><tbody>\
+<tr>\
+<td style="line-height: 120%; color: #d6d6d6; vertical-align: top">SID :</td>\
+<td style="line-height: 120%; color: #d6d6d6; vertical-align: top; padding: 0 0 0 8px">${sid}</td>\
+</tr>\
+</tbody></table>\
+`;
 	}
 
 	async function emailRemoving(lang, usid) {

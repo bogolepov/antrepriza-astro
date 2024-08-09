@@ -16,9 +16,9 @@ body, table, td, p, a { font-family: Verdana, Arial, sans-serif; }\
 </style>\
 <![endif]-->\
 <table \
-border="0" cellspacing="0" cellpadding="0" role="presentation" \
+border="0" cellpadding="0" role="presentation" \
 style="width: 100%; border-spacing: 0; font-size: 16px; background-color: #292929; \
-color: #d6d6d6; font-family: Verdana, Arial, sans-serif;">\
+color: #d6d6d6; font-family: Arial, sans-serif;">\
 <tbody><tr><td style="vertical-align: top">\
 <!--[if mso | IE]>\
 <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" style="width: 600px">\

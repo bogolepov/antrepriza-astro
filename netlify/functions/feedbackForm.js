@@ -128,11 +128,11 @@ function validateMessage(messageData) {
 	*/
 }
 
-function makeContent(lang, topic, name, email, message, now, forAntrepriza) {
-	return makeOurMessage(lang, name, now, forAntrepriza) + makeFeedbackMessage(lang, topic, name, email, message);
+function makeContent(lang, topic, name, email, message, now, toAntrepriza) {
+	return makePersonalMessage(lang, name, now, toAntrepriza) + makeFeedbackBlock(lang, topic, name, email, message);
 }
 
-function makeOurMessage(lang, name, now, forAntrepriza) {
+function makePersonalMessage(lang, name, now, toAntrepriza) {
 	const date = new Date(now);
 	let getHello = hour => {
 		if (hour < 6 && lang === 'ru') return dictionaryServer.hello[lang];
@@ -144,7 +144,7 @@ function makeOurMessage(lang, name, now, forAntrepriza) {
 	let diffText;
 	let strHello;
 
-	if (forAntrepriza) {
+	if (toAntrepriza) {
 		let options = {
 			year: 'numeric',
 			month: 'long',
@@ -166,28 +166,27 @@ function makeOurMessage(lang, name, now, forAntrepriza) {
 <tr><td style="font-size: 125%; padding-bottom: 15px; line-height: 120%; color: #d6d6d6; font-weight: 500">${strHello}</td></tr>\
 <tr><td style="line-height: 120%; color: #d6d6d6; padding-bottom: 15px">${dictionaryServer.email_feedback_form_text[lang]}</td></tr>\
 <tr><td style="line-height: 120%; color: #d6d6d6">${theater.longTheaterName[lang]}</td></tr>\
-<tr><td style="line-height: 120%; color: #888888">\
+<tr><td style="line-height: 120%">\
 <a href='${theater.our_website_link}/${lang}' style="line-height: 120%; color: #d6d6d6">${theater.our_website_text}</a>\
 </td></tr>\
 `;
 	}
 
 	return `\
-<table \
-border="0" cellpadding="0" cellspacing="0" role="presentation"
-style="width: 100%; margin: 0; padding: 0 0 15px 0; border-bottom: 1px solid #d6d6d6">\
+<table border="0" role="presentation" style="width: 100%; margin: 0; padding: 0 0 15px 0; border-bottom: 1px solid #d6d6d6">\
 <tbody>\
-${diffText}
+${diffText}\
 </tbody>\
 </table>\
 `;
 }
 
-function makeFeedbackMessage(lang, topic, name, email, message) {
-	return `\
-<table \
-border="0" cellpadding="0" cellspacing="0" role="presentation" \
-style="width: 100%; margin: 0; padding: 15px 0 0 0">\
+let feedbackBlock;
+function makeFeedbackBlock(lang, topic, name, email, message) {
+	if (feedbackBlock) return feedbackBlock;
+
+	feedbackBlock = `\
+<table border="0" cellpadding="0" role="presentation" style="width: 100%; margin: 0; padding: 15px 0 0 0">\
 <tbody>\
 <tr>\
 <td style="line-height: 120%; color: #888888; vertical-align: top">${nonBreakingSpace(dictionaryServer.question_subject[lang] + ' :')}</td>\
@@ -209,4 +208,5 @@ style="width: 100%; margin: 0; padding: 15px 0 0 0">\
 </tbody>\
 </table>\
 `;
+	return feedbackBlock;
 }
