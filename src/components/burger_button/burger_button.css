@@ -7,6 +7,15 @@
 	cursor: pointer;
 }
 
+.burger-button label {
+	position: absolute;
+	display: block;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
 .burger-button * {
 	line-height: 1px;
 }

@@ -29,7 +29,7 @@ const components = await Astro.glob('@layouts/content/theater/contact*.astro');
           <div class="contact-flex">
             <h3 class="stage-name">{dictionary.stage[lang] + " - " + stage.name[lang].toUpperCase()}</h3>
             <iframe 
-              class="flex-item-left" src={stage.google_map.embed[lang]} width="600" height="450" style="border:0;" 
+              class="flex-item-left" src={stage.google_map.embed[lang]} class="gmap" width="600" height="450" 
               allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
             </iframe>
             <div class="flex-item-right">

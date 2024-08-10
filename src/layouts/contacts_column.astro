@@ -34,7 +34,7 @@ const components = await Astro.glob('@layouts/content/theater/contact*.astro');
               {stage.address.index} {stage.address.city}-{stage.address.district}
             </address>
             <h4 class="place-name">{stage.place_name}</h4>
-            <iframe src={stage.google_map.embed[lang]} width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe src={stage.google_map.embed[lang]} class="gmap" width="100%" height="400" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             <div class="description">
               {
                 components.map(component => {

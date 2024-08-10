@@ -7,7 +7,7 @@ const {lang, id} = Astro.props;
 
 ---
 
-<label class="burger-button" for={id}>
+<div class="burger-button">
   <input type="checkbox" id={id} class="burger-switcher" aria-label={dictionary.menu[lang]}/>
   <div class="burger-icon-wrapper">
     <svg class="burger-icon" viewBox="0 0 100 100">
@@ -37,4 +37,5 @@ const {lang, id} = Astro.props;
       ></rect>
     </svg>
   </div>
-</label>
+  <label for={id}></label>
+</div>
