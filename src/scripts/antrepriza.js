@@ -96,7 +96,7 @@ export function initThemeMode() {
 	themeSwitcher.checked = mode === consts.THEME_DARK;
 	themeSwitcher.dispatchEvent(new Event('change'));
 
-	let themeSwitcherItems = document.querySelectorAll('.theme-switcher-item');
+	let themeSwitcherItems = document.querySelectorAll('.theme-switcher-label');
 	themeSwitcherItems.forEach(item => {
 		item.addEventListener('keydown', event => {
 			if (event.code === 'Enter' || event.code === 'Space') {
@@ -144,7 +144,11 @@ export function initHeaderSubMenuListener() {
 	}
 
 	let burgerSwitcher = document.querySelector('#burger-button');
+	if (burgerSwitcher) console.log('YES!');
+
 	burgerSwitcher.addEventListener('change', () => {
+		console.log('click');
+
 		if (burgerSwitcher.checked === false) {
 			closeAllBurgerItems();
 		}

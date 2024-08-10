@@ -26,9 +26,22 @@
 	width: clamp(var(--toolbarSmallIconSize), 2vw, var(--toolbarNormalIconSize));
 	height: clamp(var(--toolbarSmallIconSize), 2vw, var(--toolbarNormalIconSize));
 }
+
 .tool-icon:where(.mobile) {
 	width: 1.3rem;
 	height: 1.3rem;
+}
+
+.theme-button {
+	position: relative;
+}
+.theme-switcher-label {
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
 }
 
 .theme-text {
@@ -68,9 +81,9 @@ body:has(#theme-switcher:not(:checked)) .theme-block-dark {
 	display: flex;
 }
 
-.theme-switcher-item:focus-visible .theme-block {
+.theme-button:has(.theme-switcher-label:focus-visible) {
 	outline: 1px solid var(--colorAntreprizaRed);
 }
-.theme-switcher-item:focus-visible {
+.theme-switcher-label:focus-visible {
 	outline: 0;
 }
