@@ -31,8 +31,8 @@ let playsWithGrouppedDatesArray = Array.from(playsWithGrouppedDatesMap, ([key, v
 ---
 
 <section class="section-plays">
+	<h1 class="section-title">{dictionary.plays[lang]}</h1>
 	<ul>
-		<h1 class="section-title">{dictionary.plays[lang]}</h1>
 		{
 			PLAYS_ORDER.map (play_id => {
 				let play = plays.find(item => item.id === play_id);

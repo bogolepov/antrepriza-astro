@@ -159,6 +159,10 @@
 		"ru": "Сотрудничество, спонсорство. Мы всегда рады новым проектам и идеям.",
 		"de": "Zusammenarbeit, Sponsoring. Wir freuen uns immer über neue Projekte und Ideen."
 	},
+	"aria_theme_switch": { "ru": "Смена темы оформления: темная или светлая", "de": "Themaänderung: dunkel oder hell" },
+	"aria_slide_next": { "ru": "Следующий слайд", "de": "Nächste Folie" },
+	"aria_slide_prev": { "ru": "Предыдущий слайд", "de": "Vorherige Folie" },
+	"aria_submenu": { "ru": "Подраздел меню", "de": "Untermenü" },
 
 	"": { "ru": "", "de": "" }
 }

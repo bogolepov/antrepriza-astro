@@ -7,6 +7,7 @@
 	cursor: pointer;
 }
 
+.burger-button input,
 .burger-button label {
 	position: absolute;
 	display: block;
@@ -15,22 +16,23 @@
 	left: 0;
 	right: 0;
 }
+.burger-button input {
+	-webkit-appearance: none;
+	appearance: none;
+}
+.burger-button input:focus-visible {
+	outline: 0;
+}
 
 .burger-button * {
 	line-height: 1px;
 }
 
-.burger-button input,
 .burger-icon-wrapper {
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-}
-
-.burger-button input {
-	-webkit-appearance: none;
-	appearance: none;
 }
 
 .burger-icon {

@@ -1,5 +1,5 @@
 ---
-import '@styles/ticket_form.css'
+import '@components/ticket_form/ticket_form.css'
 import dictionary from '@data/dictionary.json'
 import prices from '@data/prices.json'
 
@@ -16,7 +16,7 @@ const COUNTS = [0,1,2,3,4,5,6,7,8,9];
 <Dialog uniq_class='d-ticket' loader_bkg='yes'>
   <div class="form ticket-form">
     <div class="ticket-play-info">
-      <h4 class="play-name"></h4>
+      <div class="play-name"></div>
       <div class="play-descr"></div>
       <div class="info-flex">
         <div class="icon-item">

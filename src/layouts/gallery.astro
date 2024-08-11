@@ -65,7 +65,7 @@ const posterImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*
                 {
                   playFotos && playFotos.length > 0 &&
                   <div class="photo_container">
-                    <PlayGallery play_id={play.id} play_suffix={play.suffix} hover="false"/>
+                    <PlayGallery lang={lang} play_id={play.id} play_suffix={play.suffix} hover="false"/>
                   </div>
                 }
                 {

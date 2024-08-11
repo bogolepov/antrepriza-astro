@@ -213,7 +213,7 @@ const { Content } = await entry.render();
     gallery.length > 0 &&
     <div class="play-description new-chapter">
       <h2>{dictionary.photos[lang].toUpperCase()}</h2>
-      <Gallery play_id={play_id} play_suffix={thisPlay.suffix}/>
+      <Gallery lang={lang} play_id={play_id} play_suffix={thisPlay.suffix}/>
     </div>
   }
   <div class="page-end"></div>

@@ -2,8 +2,9 @@
 import "@styles/swiper-bundle.min.css"
 import "@styles/play_gallery.css"
 
-const { play_id, play_suffix, hover } = Astro.props;
+const { lang, play_id, play_suffix, hover } = Astro.props;
 
+import dictionary from '@data/dictionary.json'
 import photos from '@data/plays_photos.json'
 let gallery = photos.filter(photo => photo.filename && photo.suffix == play_suffix && photo.is_landscape);
 
@@ -75,8 +76,8 @@ let strLoading;
         }
       </div>
       <div class="swiper-pagination"></div>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev" tabindex="0" role="button" aria-label={dictionary.aria_slide_prev[lang]}></div>
+      <div class="swiper-button-next" tabindex="0" role="button" aria-label={dictionary.aria_slide_next[lang]}></div>
     </div>
   </div>
 </div>
