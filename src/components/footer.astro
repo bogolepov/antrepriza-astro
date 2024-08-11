@@ -144,6 +144,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
           </div>
         </div>
       </div>
+      <div class="check-css"></div>
       <div class="web-developer">
         <div class="label font-opacity1">{dictionary.web_developer[lang]}</div>
         <a class="font-opacity1 bold1" href={theater.web_developer.url} target="_blank"	rel="noopener external">{theater.web_developer.name[lang]}</a> 
@@ -151,3 +152,14 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
     </div>
   </div>
 </footer>
+
+<script is:inline>
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') {
+      const checkCSS = document.querySelector('.check-css');
+      if (checkCSS && getComputedStyle(checkCSS).display !== 'none') {
+        location.replace(window.location.href);
+      }
+    }
+  });
+</script>
