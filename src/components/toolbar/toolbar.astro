@@ -9,9 +9,9 @@ import dictionary from '@data/dictionary.json'
 
 ---
 
-<ul class:list={["toolbar-list", add_classes]}>
+<ul class:list={["toolbar-list", add_classes]} role="toolbar">
   <li class="theme-button">
-    <label class="theme-switcher-label" for="theme-switcher" tabindex="0"></label>
+    <label class="theme-switcher-label" for="theme-switcher" tabindex="0" role="button" aria-label={dictionary.aria_theme_switch[lang]}></label>
     <div class="theme-block theme-block-light">
       <svg class="tool-icon">
         <use href={Symbols + "#light-mode"}></use>

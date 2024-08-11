@@ -38,7 +38,7 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
             }
             {
               hasSubmenu &&
-              <svg class="submenu-icon">
+              <svg class="submenu-icon" role="button" aria-label={dictionary.aria_submenu[lang]}>
                 <use href={Symbols + "#drop-down"}></use>
               </svg>
             }

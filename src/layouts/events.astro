@@ -60,11 +60,13 @@ let isFirstTab = true;
       })
     }
 
-    <div class="evs-flex-tabs">
+    <div class="evs-flex-tabs" role="tablist">
       {
         events.map(evGroup => {
           return (
-            <label class={'evs-tab-' + evGroup.sid + " evs-tab-item"} for={'evs-tab-'+evGroup.sid}>{evGroup.tabLabel}</label>
+            <label class={'evs-tab-' + evGroup.sid + " evs-tab-item"} for={'evs-tab-'+evGroup.sid} role="tab" aria-controls={"tabpanel-"+evGroup.sid}>
+              {evGroup.tabLabel}
+            </label>
           );
         })
       }
@@ -74,7 +76,7 @@ let isFirstTab = true;
     {
       events.flatMap(evGroup => {
         return (
-          <ul class={"evs-list-" + evGroup.sid}>
+          <ul class={"evs-list-" + evGroup.sid} role="tabpanel" id={"tabpanel-"+evGroup.sid}>
             {
               evGroup.list.map(event => {
                 let play = plays.find(item => item.id === event.play_id);

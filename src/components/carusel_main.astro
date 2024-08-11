@@ -87,7 +87,8 @@ let strLoading;
             let languageLabel = dictionary.language[lang];
             if (lang === "ru") languageLabel = languageLabel.toLowerCase();
             return (
-              <a class="swiper-slide" data-play={play.id} href={"/"+lang+"/plays/"+play.suffix} >
+              <a class="swiper-slide" data-play={play.id} href={"/"+lang+"/plays/"+play.suffix} 
+                  aria-label={dictionary.play_lang[lang] + ' ' + play.title[lang]} >
                 <div class="carusel-play-card">
                   <div class="carusel-play-image">
                     <Picture 
@@ -124,8 +125,8 @@ let strLoading;
 
       <div class="swiper-pagination"></div>
 
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev" tabindex="0" role="button" aria-label={dictionary.aria_slide_prev[lang]}></div>
+      <div class="swiper-button-next" tabindex="0" role="button" aria-label={dictionary.aria_slide_next[lang]}></div>
     </div>
   </div>
 </div>

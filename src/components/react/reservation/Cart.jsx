@@ -81,7 +81,7 @@ export function Cart({ lang, tickets, totalAmount, handleCloseClick, handleAddTi
 					)}
 					{isJsonsLoaded && (
 						<>
-							<h5 className='cart-title'>{clientJsons.dictionary.my_reservations[lang]}</h5>
+							<div className='cart-title'>{clientJsons.dictionary.my_reservations[lang]}</div>
 							<div className='order-list-wrapper'>
 								{tickets.length === 0 && <div className='cart-empty'>{clientJsons.dictionary.empty_reservation_list[lang]}</div>}
 								<ul>

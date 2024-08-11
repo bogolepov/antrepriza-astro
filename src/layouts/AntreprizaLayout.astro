@@ -3,13 +3,15 @@ import "@styles/font.css"
 import "@styles/init.css"
 import "@styles/antrepriza.css"
 
+import dictionary from '@data/dictionary.json'
+
 import Header from "@components/header.astro";
 import Footer from "@components/footer.astro";
 import Reservation from "@react-components/reservation/Reservation";
 import Head from "@components/head/head.astro";
 
 import FeedbackForm from "@components/feedback_form.astro"
-import TicketForm from "@components/ticket_form.astro";
+import TicketForm from "@components/ticket_form/ticket_form.astro";
 
 const { title, description, lang, reservation, robots = "index, follow", ticket_form = "no", play_id } = Astro.props;
 
@@ -46,7 +48,7 @@ let pageNeedTicketForm = (ticket_form === "yes");
 			pageNeedTicketForm &&
 			<TicketForm lang={lang}/>
 		}
-    <input type="checkbox" id="theme-switcher" tabindex="-1" checked/>
+    <input type="checkbox" id="theme-switcher" tabindex="-1" aria-label={dictionary.aria_theme_switch[lang]} checked/>
 	</body>
 	
 </html>
