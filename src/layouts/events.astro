@@ -76,27 +76,29 @@ let isFirstTab = true;
     {
       events.flatMap(evGroup => {
         return (
-          <ul class={"evs-list-" + evGroup.sid} role="list tabpanel" id={"tabpanel-"+evGroup.sid}>
-            {
-              evGroup.list.map(event => {
-                let play = plays.find(item => item.id === event.play_id);
-                let eventDate = event.date.replaceAll("-","");
-                let eventTime = event.time.replaceAll(":","");
-                let pageName = `${evGroup.sid}_${eventDate}_${eventTime}`;
+          <div role="tabpanel" id={"tabpanel-"+evGroup.sid}>
+            <ul class={"evs-list-" + evGroup.sid}>
+              {
+                evGroup.list.map(event => {
+                  let play = plays.find(item => item.id === event.play_id);
+                  let eventDate = event.date.replaceAll("-","");
+                  let eventTime = event.time.replaceAll(":","");
+                  let pageName = `${evGroup.sid}_${eventDate}_${eventTime}`;
 
-                let fullDate = event.date+'T'+event.time;
-                let playDate = new Date(fullDate); 
+                  let fullDate = event.date+'T'+event.time;
+                  let playDate = new Date(fullDate); 
 
-                return (
-                  <li><a class="evs-event-flex" href={`/${lang}/theater/events/${pageName}`}>                    
-                    <div>{playDate.getDate().toString().padStart(2, '0')}.{(playDate.getMonth()+1).toString().padStart(2, '0')}.{playDate.getFullYear().toString().padStart(4, '0')}</div>
-                    <div class="font-opacity1">{event.time}</div>
-                    <div>{play.title[lang]}</div>          
-                  </a></li>
-                );
-              })
-            }
-          </ul>
+                  return (
+                    <li><a class="evs-event-flex" href={`/${lang}/theater/events/${pageName}`}>                    
+                      <div>{playDate.getDate().toString().padStart(2, '0')}.{(playDate.getMonth()+1).toString().padStart(2, '0')}.{playDate.getFullYear().toString().padStart(4, '0')}</div>
+                      <div class="font-opacity1">{event.time}</div>
+                      <div>{play.title[lang]}</div>          
+                    </a></li>
+                  );
+                })
+              }
+            </ul>
+          </div>
         );
       })
     }
