@@ -154,27 +154,12 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 </footer>
 
 <script is:inline>
-  console.log(window.location.href);
-  document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOMContentLoaded');
-    console.log(new Date());
-    
-
-    document.addEventListener('visibilitychange', () => {
-      console.log('visibilitychange');
-      
-      if (document.visibilityState === 'visible') {
-        console.log('check-css');
-        
-        const checkCSS = document.querySelector('.check-css');
-        console.log(checkCSS.display);
-        
-        if (checkCSS && checkCSS.display !== 'none') {
-          console.log('reload');
-          location.replace(window.location.href);
-          // location.reload(true);
-        }
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') {
+      const checkCSS = document.querySelector('.check-css');
+      if (checkCSS && getComputedStyle(checkCSS).display !== 'none') {
+        location.replace(window.location.href);
       }
-    });
+    }
   });
 </script>

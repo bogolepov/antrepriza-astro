@@ -30,31 +30,6 @@ function saveLangOfPage() {
 	}
 }
 
-// PAGE LIFECYCLE CONTROLLER
-function initPageController() {
-	// lostVisibilityMoment = Date.now();
-	document.addEventListener('visibilitychange', () => {
-		// if (document.visibilityState === 'hidden') {
-		// 	lostVisibilityMoment = Date.now();
-		// }
-		console.log('visibilitychange : file');
-
-		if (document.visibilityState === 'visible') {
-			console.log('page is visible : file');
-
-			const checkCSS = document.querySelector('.check-css');
-			if (checkCSS && checkCSS.display !== 'none') {
-				console.log('reload');
-
-				location.reload();
-			}
-			// if (Date.now() - lostVisibilityMoment > consts.MINUTES_30) {
-			// 	location.reload(true);
-			// }
-		}
-	});
-}
-
 function initScrollFocusedToCenter() {
 	Element.prototype.documentOffsetTop = function () {
 		return this.offsetTop + (this.offsetParent ? this.offsetParent.documentOffsetTop() : 0);
@@ -72,7 +47,6 @@ function initScrollFocusedToCenter() {
 export function initPage() {
 	removeNoJS();
 	saveLangOfPage();
-	initPageController();
 
 	// initScrollFocusedToCenter();
 	// loadPageState();
@@ -150,8 +124,6 @@ export function initHeaderSubMenuListener() {
 	let burgerSwitcher = document.querySelector('#burger-button');
 
 	burgerSwitcher.addEventListener('change', () => {
-		console.log('click');
-
 		if (burgerSwitcher.checked === false) {
 			closeAllBurgerItems();
 		}
