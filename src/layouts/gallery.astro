@@ -34,24 +34,18 @@ const posterImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*
                 <h2><a href={"/"+lang+"/plays/"+play.suffix}>{play.title[lang].toUpperCase()}</a>
                 </h2>
 
-                <div class="media-flex-top tabs" role="tablist">
+                <div class="media-flex-top tabs">
                   {
                     playFotos && (playFotos.length > 0) &&
-                    <label class="media-photo tab-item" for={"photo-"+play.id} role="tab" aria-controls={"tabpanel-photo-"+play.id}>
-                      {dictionary.photo[lang]}
-                    </label>
+                    <label class="media-photo tab-item" for={"photo-"+play.id}>{dictionary.photo[lang]}</label>
                   }
                   {
                     play.trailer_embed &&
-                    <label class="media-video tab-item" for={"video-"+play.id} role="tab" aria-controls={"tabpanel-video-"+play.id}>
-                      {dictionary.video[lang]}
-                    </label>
+                    <label class="media-video tab-item" for={"video-"+play.id}>{dictionary.video[lang]}</label>
                   }
                   {
                     play.posters.afisha && (play.posters.afisha.length > 0) &&
-                    <label class="media-poster tab-item" for={"poster-"+play.id} role="tab" aria-controls={"tabpanel-poster-"+play.id}>
-                      {dictionary.poster[lang]}
-                    </label>
+                    <label class="media-poster tab-item" for={"poster-"+play.id}>{dictionary.poster[lang]}</label>
                   }
                   {
                     play.posters.afisha && (play.posters.afisha.length > 0) &&
@@ -70,19 +64,19 @@ const posterImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*
               <div>
                 {
                   playFotos && playFotos.length > 0 &&
-                  <div class="photo_container" role="tabpanel" id={"tabpanel-photo-"+play.id}>
+                  <div class="photo_container">
                     <PlayGallery lang={lang} play_id={play.id} play_suffix={play.suffix} hover="false"/>
                   </div>
                 }
                 {
                   play.trailer_embed &&
-                  <div class="video_container" role="tabpanel" id={"tabpanel-video-"+play.id}>
+                  <div class="video_container">
                     <YoutubePlayer lang={lang} url={play.trailer_embed} />
                   </div>
                 }
                 {
                   play.posters.afisha && play.posters.afisha.length > 0 &&
-                  <div class="poster_container" role="tabpanel" id={"tabpanel-poster-"+play.id}>
+                  <div class="poster_container">
                     <div class="flex-center poster ">
                       <Picture 
                         class:list={'image-wrapper-portrait'} 
@@ -101,21 +95,15 @@ const posterImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*
                 <div class="media-flex-bottom tabs">
                   {
                     playFotos && playFotos.length &&
-                    <label class="media-photo tab-item" for={"photo-"+play.id} role="tab" aria-controls={"tabpanel-photo-"+play.id}>
-                      {dictionary.photo[lang]}
-                    </label>
+                    <label class="media-photo tab-item" for={"photo-"+play.id}>{dictionary.photo[lang]}</label>
                   }
                   {
                     play.trailer_embed &&
-                    <label class="media-video tab-item" for={"video-"+play.id} role="tab" aria-controls={"tabpanel-video-"+play.id}>
-                      {dictionary.video[lang]}
-                    </label>
+                    <label class="media-video tab-item" for={"video-"+play.id}>{dictionary.video[lang]}</label>
                   }
                   {
                     play.posters.afisha && (play.posters.afisha.length > 0) &&
-                    <label class="media-poster tab-item" for={"poster-"+play.id} role="tab" aria-controls={"tabpanel-poster-"+play.id}>
-                      {dictionary.poster[lang]}
-                    </label>
+                    <label class="media-poster tab-item" for={"poster-"+play.id}>{dictionary.poster[lang]}</label>
                   }
                 </div>
               </div>

@@ -60,13 +60,11 @@ let isFirstTab = true;
       })
     }
 
-    <div class="evs-flex-tabs" role="tablist">
+    <div class="evs-flex-tabs">
       {
         events.map(evGroup => {
           return (
-            <label class={'evs-tab-' + evGroup.sid + " evs-tab-item"} for={'evs-tab-'+evGroup.sid} role="tab" aria-controls={"tabpanel-"+evGroup.sid}>
-              {evGroup.tabLabel}
-            </label>
+            <label class={'evs-tab-' + evGroup.sid + " evs-tab-item"} for={'evs-tab-'+evGroup.sid}>{evGroup.tabLabel}</label>
           );
         })
       }
@@ -76,29 +74,27 @@ let isFirstTab = true;
     {
       events.flatMap(evGroup => {
         return (
-          <div role="tabpanel" id={"tabpanel-"+evGroup.sid}>
-            <ul class={"evs-list-" + evGroup.sid}>
-              {
-                evGroup.list.map(event => {
-                  let play = plays.find(item => item.id === event.play_id);
-                  let eventDate = event.date.replaceAll("-","");
-                  let eventTime = event.time.replaceAll(":","");
-                  let pageName = `${evGroup.sid}_${eventDate}_${eventTime}`;
+          <ul class={"evs-list-" + evGroup.sid}>
+            {
+              evGroup.list.map(event => {
+                let play = plays.find(item => item.id === event.play_id);
+                let eventDate = event.date.replaceAll("-","");
+                let eventTime = event.time.replaceAll(":","");
+                let pageName = `${evGroup.sid}_${eventDate}_${eventTime}`;
 
-                  let fullDate = event.date+'T'+event.time;
-                  let playDate = new Date(fullDate); 
+                let fullDate = event.date+'T'+event.time;
+                let playDate = new Date(fullDate); 
 
-                  return (
-                    <li><a class="evs-event-flex" href={`/${lang}/theater/events/${pageName}`}>                    
-                      <div>{playDate.getDate().toString().padStart(2, '0')}.{(playDate.getMonth()+1).toString().padStart(2, '0')}.{playDate.getFullYear().toString().padStart(4, '0')}</div>
-                      <div class="font-opacity1">{event.time}</div>
-                      <div>{play.title[lang]}</div>          
-                    </a></li>
-                  );
-                })
-              }
-            </ul>
-          </div>
+                return (
+                  <li><a class="evs-event-flex" href={`/${lang}/theater/events/${pageName}`}>                    
+                    <div>{playDate.getDate().toString().padStart(2, '0')}.{(playDate.getMonth()+1).toString().padStart(2, '0')}.{playDate.getFullYear().toString().padStart(4, '0')}</div>
+                    <div class="font-opacity1">{event.time}</div>
+                    <div>{play.title[lang]}</div>          
+                  </a></li>
+                );
+              })
+            }
+          </ul>
         );
       })
     }
