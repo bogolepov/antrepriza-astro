@@ -310,3 +310,9 @@ footer .feedback-button {
 footer .feedback-button:focus-visible {
 	outline: 1px solid var(--colorAntreprizaRed);
 }
+
+.check-css {
+	width: 1px;
+	height: 1px;
+	display: none;
+}

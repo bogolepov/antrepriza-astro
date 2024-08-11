@@ -7,7 +7,7 @@ let dictionary;
 /* ------------------- INIT PAGE  -------------------- */
 /* --------------------------------------------------- */
 let currLang;
-let lostVisibilityMoment;
+// let lostVisibilityMoment;
 
 //  NoJS flag
 // remove NoJS flag, because JS isn't out
@@ -30,24 +30,23 @@ function saveLangOfPage() {
 	}
 }
 
-// safe page state: email in the subscription field, feedback form dates, etc
-function savePageState() {}
-
-// load page state: email in the subscription field, feedback form dates, etc
-function loadPageState() {}
-
 // PAGE LIFECYCLE CONTROLLER
 function initPageController() {
-	lostVisibilityMoment = Date.now();
+	// lostVisibilityMoment = Date.now();
 	window.addEventListener('visibilitychange', () => {
-		if (document.visibilityState === 'hidden') {
-			lostVisibilityMoment = Date.now();
-			// savePageState();
-		}
+		// if (document.visibilityState === 'hidden') {
+		// 	lostVisibilityMoment = Date.now();
+		// }
 		if (document.visibilityState === 'visible') {
-			if (Date.now() - lostVisibilityMoment > consts.MINUTES_30) {
+			const checkCSS = document.querySelector('.check-css');
+			if (checkCSS && checkCSS.display !== 'none') {
+				console.log('reload');
+
 				location.reload(true);
 			}
+			// if (Date.now() - lostVisibilityMoment > consts.MINUTES_30) {
+			// 	location.reload(true);
+			// }
 		}
 	});
 }
@@ -144,7 +143,6 @@ export function initHeaderSubMenuListener() {
 	}
 
 	let burgerSwitcher = document.querySelector('#burger-button');
-	if (burgerSwitcher) console.log('YES!');
 
 	burgerSwitcher.addEventListener('change', () => {
 		console.log('click');
