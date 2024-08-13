@@ -86,7 +86,9 @@ let iMonth: number = -1;
 								}
 
 								return (
-									<li class="program-play-block hover-block hover-background" data-date={event.date}>
+									<li class:list={['program-play-block hover-block hover-background', 
+																	{festival: event.event_type && event.event_type.is_festival}]}
+											data-date={event.date}>
 										<div class="program-play-text">
 											
 											<div class="program-when" >
@@ -115,10 +117,10 @@ let iMonth: number = -1;
 												<div class="play-property">{play.lang[lang]}</div>
 												<address class="play-property-label">{dictionary.address[lang]+": "}</address>
 												<address class="play-property">
-													{/* <span class="address-stage-name">{ stageNameText }</span> */}
+													<span class='address-stage'>{ stageNameText }</span>
+													<br>
 													{ stage.address.full_string }
 													<br>
-													<span class:list={['address-stage-name', event.stage_sid, {festival: event.event_type && event.event_type.is_festival}]}>{ stageNameText }</span>
 												</address>
 											</div>
 

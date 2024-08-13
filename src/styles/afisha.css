@@ -4,7 +4,7 @@
 .month-title {
 	font-size: clamp(1.55rem, 3.7vw, 2.7rem);
 	font-weight: var(--font-extra-weight);
-	color: var(--colorFont-Op1);
+	color: var(--colorFontDate);
 	line-height: 1.25em;
 	letter-spacing: 0.04em;
 	text-transform: uppercase;
@@ -53,76 +53,41 @@
 
 .program-when {
 	grid-area: when;
-	align-self: start;
+	align-self: first baseline;
 	line-height: clamp(1.2rem, 2.5vw, 1.5rem);
+}
+.program-when:has(.play-property-hot-notice) {
+	align-self: self-start;
 }
 
 .program-title {
 	grid-area: title;
-	align-self: start;
+	align-self: first baseline;
 }
 
 .program-info {
 	grid-area: info;
-	align-self: start;
+	align-self: first baseline;
 
 	display: grid;
 	grid-template-columns: min-content auto;
 	column-gap: 10px;
 }
 
+.program-info .play-property {
+	align-self: first baseline;
+}
 .play-property-label {
 	font-size: clamp(0.95rem, 1.8vw, 1.05rem);
 	font-weight: var(--font-normal-weight);
-	line-height: 1.8;
+	/* line-height: 1.8; */
 	color: var(--colorFont-Op1);
 	text-transform: uppercase;
+	align-self: first baseline;
 }
 
-.address-stage-name {
-	/* background-color: var(--colorBkgPageInvers);
-	color: var(--colorFontInvers);
-	font-weight: var(--font-invers-weight); */
-	/* padding: 0 0.2em; */
-	font-weight: 500;
-	line-height: 1.1;
-}
-.address-stage-name:is(.ost) {
-	color: #ff7f50;
-}
-.address-stage-name:is(.west) {
-	/* color: #6495ed; */
-	color: #467fe9;
-}
-
-.hover-block:has(.festival) {
-	/* background-color: var(--colorAntreprizaRed); */
-	background-color: rgb(210, 69, 69);
-}
-@media (hover: hover) {
-	body.no-js .hover-block:has(.festival).hover-background:hover {
-		transition: background-color 500ms ease-out;
-		background-color: rgb(214, 57, 57);
-	}
-}
-/* this hover-effect works only if javascript is on */
-.hover-block:has(.festival).hover-background[hover] {
-	transition: background-color 500ms ease-out;
-	background-color: rgb(214, 57, 57);
-}
-
-/* .hover-block:has(.festival) .play-property {
-	color: var(--gray-13); 
-}*/
-.hover-block:has(.festival) * {
-	color: var(--grey-11);
-}
-.hover-block:has(.festival) .play-property-label {
-	color: var(--grey-17);
-}
-.hover-block:has(.festival) .program-date,
-.hover-block:has(.festival) .program-time {
-	color: rgb(204, 242, 177);
+.address-stage {
+	color: var(--colorFontDate);
 }
 
 .program-tickets {
@@ -161,6 +126,30 @@
 .program-time {
 	display: block;
 	color: var(--colorFontDate);
+}
+
+.hover-block:is(.festival) {
+	/* background-color: var(--colorAntreprizaRed); */
+	background-color: rgb(210, 69, 69);
+}
+
+@media (hover: hover) {
+	body.no-js .hover-block:is(.festival).hover-background:hover {
+		transition: background-color 500ms ease-out;
+		background-color: rgb(214, 57, 57);
+	}
+}
+/* this hover-effect works only if javascript is on */
+.hover-block:is(.festival).hover-background[hover] {
+	transition: background-color 500ms ease-out;
+	background-color: rgb(214, 57, 57);
+}
+
+.hover-block:is(.festival) * {
+	color: var(--grey-11);
+}
+.hover-block:is(.festival) .play-property-label {
+	color: var(--grey-17);
 }
 
 @media screen and (max-width: 1040px) {
