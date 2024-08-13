@@ -130,8 +130,8 @@ export function initHeaderSubMenuListener() {
 	});
 
 	window.addEventListener('blur', () => {
-		burgerSwitcher.checked = false;
-		closeAllBurgerItems();
+		// burgerSwitcher.checked = false;
+		// closeAllBurgerItems();
 	});
 }
 

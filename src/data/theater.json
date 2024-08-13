@@ -106,9 +106,9 @@
 	"our_website_domain": "antrepriza.eu",
 	"our_website_text": "antrepriza.eu",
 	"social_pages": [
-		{ "name": "Facebook", "url": "https://www.facebook.com/AntreprizaBerlin", "svg": "#facebook-outline" },
-		{ "name": "Instagram", "url": "https://www.instagram.com/AntreprizaBerlin", "svg": "#instagram-outline2" },
-		{ "name": "YouTube", "url": "https://www.youtube.com/@AntreprizaBerlin", "svg": "#youtube-outline2" }
+		{ "name": "Facebook", "url": "https://www.facebook.com/AntreprizaBerlin", "svg": "#facebook-4" },
+		{ "name": "Instagram", "url": "https://www.instagram.com/AntreprizaBerlin", "svg": "#instagram-4" },
+		{ "name": "YouTube", "url": "https://www.youtube.com/@AntreprizaBerlin", "svg": "#youtube-4" }
 	],
 	"email": "info@antrepriza.eu",
 	"phone": "+49 176 49787741",

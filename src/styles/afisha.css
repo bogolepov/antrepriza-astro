@@ -65,36 +65,64 @@
 .program-info {
 	grid-area: info;
 	align-self: start;
+
+	display: grid;
+	grid-template-columns: min-content auto;
+	column-gap: 10px;
 }
 
-.info-address {
-	display: flex;
-	flex-direction: row;
-	column-gap: 0.25em;
-	line-height: 1.25;
+.play-property-label {
+	font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+	font-weight: var(--font-normal-weight);
+	line-height: 1.8;
+	color: var(--colorFont-Op1);
+	text-transform: uppercase;
 }
 
 .address-stage-name {
-	background-color: var(--colorBkgPageInvers);
-	/* background: linear-gradient(0deg, var(--colorGradInversSides) 0%, var(--colorGradInversCenter) 52%, var(--colorGradInversSides) 100%); */
+	/* background-color: var(--colorBkgPageInvers);
 	color: var(--colorFontInvers);
-	font-weight: var(--font-invers-weight);
-	padding: 0 0.2em;
+	font-weight: var(--font-invers-weight); */
+	/* padding: 0 0.2em; */
+	font-weight: 500;
 	line-height: 1.1;
 }
-/* .address-stage-name.festival {
-	background-color: var(--colorAntreprizaRed);
-	color: var(--colorFont);
-	font-weight: var(--font-bold-weight);
-	padding: 0 0.2em;
-	line-height: 1.1;
-} */
-.address-stage-name.festival {
-	background-color: var(--grey-15);
-	color: var(--colorAntreprizaRed);
-	font-weight: 500;
-	padding: 0 0.2em;
-	line-height: 1.1;
+.address-stage-name:is(.ost) {
+	color: #ff7f50;
+}
+.address-stage-name:is(.west) {
+	/* color: #6495ed; */
+	color: #467fe9;
+}
+
+.hover-block:has(.festival) {
+	/* background-color: var(--colorAntreprizaRed); */
+	background-color: rgb(210, 69, 69);
+}
+@media (hover: hover) {
+	body.no-js .hover-block:has(.festival).hover-background:hover {
+		transition: background-color 500ms ease-out;
+		background-color: rgb(214, 57, 57);
+	}
+}
+/* this hover-effect works only if javascript is on */
+.hover-block:has(.festival).hover-background[hover] {
+	transition: background-color 500ms ease-out;
+	background-color: rgb(214, 57, 57);
+}
+
+/* .hover-block:has(.festival) .play-property {
+	color: var(--gray-13); 
+}*/
+.hover-block:has(.festival) * {
+	color: var(--grey-11);
+}
+.hover-block:has(.festival) .play-property-label {
+	color: var(--grey-17);
+}
+.hover-block:has(.festival) .program-date,
+.hover-block:has(.festival) .program-time {
+	color: rgb(204, 242, 177);
 }
 
 .program-tickets {

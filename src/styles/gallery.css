@@ -117,9 +117,9 @@
 }
 
 .poster {
-	height: min(100vw, 60vh);
-	max-height: 67vw;
-	min-height: 220px;
+	width: 100%;
+	max-width: min(110vh, 920px);
+	margin: auto;
 	position: relative;
 }
 

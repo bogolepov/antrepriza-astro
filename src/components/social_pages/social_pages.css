@@ -1,11 +1,15 @@
 .social-list {
+	--toolbarNormalIconSize: 25px;
+	--toolbarSmallIconSize: 22px;
+	--clampSensitive: 2vw;
+
 	display: flex;
-	gap: clamp(0.5rem, 2vw, 0.8rem);
+	gap: clamp(0.4rem, var(--clampSensitive), 0.6rem);
 	height: 100%;
 	min-height: 37px;
 }
 .social-list:where(.mobile) {
-	gap: 1rem;
+	gap: 0.85rem;
 }
 
 .social-list svg {
@@ -21,15 +25,21 @@
 }
 
 .social-icon {
-	fill: var(--colorFont);
-	width: clamp(var(--toolbarSmallIconSize), 2vw, var(--toolbarNormalIconSize));
-	height: clamp(var(--toolbarSmallIconSize), 2vw, var(--toolbarNormalIconSize));
+	fill: var(--colorSocialIcon);
+	width: clamp(var(--toolbarSmallIconSize), var(--clampSensitive), var(--toolbarNormalIconSize));
+	height: clamp(var(--toolbarSmallIconSize), var(--clampSensitive), var(--toolbarNormalIconSize));
 }
-.social-icon:where(.mobile) {
-	width: 1.3rem;
-	height: 1.3rem;
+.mobile .social-icon {
+	width: 1.6rem;
+	height: 1.6rem;
 }
 
-.social-icon:where(.facebook) {
-	width: 15px;
+footer .social-icon {
+	width: 1.5rem;
+	height: 1.5rem;
+	fill: var(--colorSocialIconFooter);
 }
+
+/* .social-icon:where(.facebook) {
+	width: 15px;
+} */

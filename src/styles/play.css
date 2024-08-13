@@ -119,12 +119,17 @@ section.play {
 }
 
 .afisha {
-	/* margin-top: clamp(1.1rem, 2.6vw, 2rem); */
-	width: 70%;
-	max-width: min(80vh, 540px);
-	/* max-height: 80vh; */
+	/* width: 70%;
+	max-width: min(80vh, 540px); */
+
+	width: 100%;
+	max-width: 110vh;
+	margin: auto;
+
+	/* width: 100%;
+	max-width: 900px;
 	margin-left: auto;
-	margin-right: auto;
+	margin-right: auto; */
 }
 
 .list {
