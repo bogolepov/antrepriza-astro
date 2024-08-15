@@ -39,7 +39,3 @@ footer .social-icon {
 	height: 1.5rem;
 	fill: var(--colorSocialIconFooter);
 }
-
-/* .social-icon:where(.facebook) {
-	width: 15px;
-} */

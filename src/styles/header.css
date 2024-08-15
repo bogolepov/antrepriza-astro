@@ -343,7 +343,7 @@ header a:focus-visible {
 }
 
 .language-list {
-	line-height: 2rem;
+	line-height: 1.7rem;
 }
 
 @media screen and (max-width: 910px) {
