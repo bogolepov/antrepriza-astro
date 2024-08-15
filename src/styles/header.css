@@ -45,7 +45,7 @@ header {
 	font-weight: var(--font-normal-weight);
 	letter-spacing: 1px;
 	user-select: none;
-	font-size: clamp(0.85rem, 1.5vw, 1.05rem);
+	font-size: clamp(0.85rem, 1.4vw, 1.05rem);
 }
 
 .header {
@@ -332,18 +332,18 @@ header a:focus-visible {
 
 .social-block {
 	height: 100%;
-	padding-left: clamp(var(--toolbarGap), 1.3vw, 2 * var(--toolbarGap));
-	padding-right: clamp(var(--toolbarGap), 1.3vw, 2 * var(--toolbarGap));
+	padding-left: clamp(0.8 * var(--toolbarGap), 1vw, 1.6 * var(--toolbarGap));
+	padding-right: clamp(0.8 * var(--toolbarGap), 1vw, 1.6 * var(--toolbarGap));
 }
 
 .toolbar-block {
 	height: 100%;
-	padding-left: calc(0.6 * var(--toolbarGap));
+	padding-left: calc(0.8 * var(--toolbarGap));
 	padding-right: calc(1.6 * var(--toolbarGap));
 }
 
 .language-list {
-	line-height: 2rem;
+	line-height: 1.7rem;
 }
 
 @media screen and (max-width: 910px) {

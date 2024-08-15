@@ -47,16 +47,18 @@ const { Content } = await entry.render();
   <div class="play-author">{thisPlay.author_full[lang].toUpperCase()}</div>
   {
     thisPlay.posters.afisha &&
-    <Picture 
-      class:list={'image-wrapper-landscape float afisha'} 
-      src={images["/src/assets/" + thisPlay.posters.afisha]()} 
-      formats={['webp']} 
-      fallbackFormat='jpg'
-      loading="eager"
-      widths={[210, 300, 420]}
-      sizes={'(max-width: 380px) 210px, (max-width: 530px) 300px, 420px'}
-      alt={thisPlay.title[lang]} />
-
+    <div class="afisha">
+      <Picture 
+        class:list={'image-wrapper-landscape float'} 
+        src={images["/src/assets/" + thisPlay.posters.afisha]()} 
+        formats={['webp']} 
+        fallbackFormat='jpg'
+        loading="eager"
+        widths={[320, 460, 600, 720, 900]}
+        sizes={'(max-width: 380px) 320px, (max-width: 540px) 460px, (max-width: 700px) 600px, (max-width: 830px) 720px, 900px'}
+        quality="85"
+        alt={thisPlay.title[lang]} />
+    </div>
   }
   <div class="play-info">
     <div class="play-property label-before" data-label={dictionary.genre[lang]+": "}>{thisPlay.genre[lang]}, {thisPlay.age}</div>
