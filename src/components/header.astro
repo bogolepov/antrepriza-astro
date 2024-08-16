@@ -95,7 +95,7 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 			<ul class="language-list">
 				{
 					theater.languages.map(lng => {
-						if (lng.lang_code != lang) {
+						if (lng.lang_code !== lang) {
 							return (
 								<li>
 									<a href={pathname.replace('/'+lang+'/', '/'+lng.lang_code+'/')}>

@@ -15,8 +15,8 @@
 			"landscape": "soon.jpg",
 			"landscape_16_9": "soon_16_9.jpg",
 			"portrait": "soon_poster.jpg",
-			"afisha": "fb_n32_soon.jpg",
-			"facebook": "",
+			"afisha": "afisha_n32_soon.jpg",
+			"facebook": "fb_n32_soon.jpg",
 			"minimum": ""
 		},
 		"lang": { "ru": "русский", "de": "Russisch" },
@@ -87,8 +87,8 @@
 			"landscape": "steppke_und_karl_son.jpg",
 			"landscape_16_9": "steppke_und_karl_son_16_9.jpg",
 			"portrait": "steppke_und_karl_son_poster.jpg",
-			"afisha": "fb_miks.jpg",
-			"facebook": "",
+			"afisha": "afisha_miks.jpg",
+			"facebook": "fb_miks.jpg",
 			"minimum": ""
 		},
 		"lang": { "ru": "русский", "de": "Russisch" },
@@ -170,8 +170,8 @@
 			"landscape": "steppke_und_karlson.jpg",
 			"landscape_16_9": "steppke_und_karlson_16_9.jpg",
 			"portrait": "steppke_und_karlson_poster.jpg",
-			"afisha": "fb_mik.jpg",
-			"facebook": "",
+			"afisha": "kontra_mik.jpg",
+			"facebook": "fb_mik.jpg",
 			"minimum": ""
 		},
 		"lang": { "ru": "русский", "de": "Russisch" },
@@ -231,8 +231,8 @@
 			"landscape": "gefaerliche_kurve.jpg",
 			"landscape_16_9": "gefaerliche_kurve_16_9.jpg",
 			"portrait": "gefaerliche_kurve_poster.jpg",
-			"afisha": "fb_op.jpg",
-			"facebook": "",
+			"afisha": "kontra_op.jpg",
+			"facebook": "fb_op.jpg",
 			"minimum": ""
 		},
 		"lang": { "ru": "русский", "de": "Russisch" },
@@ -297,8 +297,8 @@
 			"landscape": "teure_wohnung.jpg",
 			"landscape_16_9": "teure_wohnung_16_9.jpg",
 			"portrait": "teure_wohnung_poster.jpg",
-			"afisha": "fb_dk.jpg",
-			"facebook": "",
+			"afisha": "kontra_dk.jpg",
+			"facebook": "fb_dk.jpg",
 			"minimum": ""
 		},
 		"lang": { "ru": "русский", "de": "Russisch" },
@@ -385,8 +385,8 @@
 		"posters": {
 			"landscape": "sieg_oder_verrat.jpg",
 			"portrait": "sieg_oder_verrat_poster.jpg",
-			"afisha": "fb_pip.jpg",
-			"facebook": "",
+			"afisha": "afisha_pip.jpg",
+			"facebook": "fb_pip.jpg",
 			"minimum": ""
 		},
 		"lang": { "ru": "русский", "de": "Russisch" },
@@ -478,8 +478,8 @@
 			"landscape": "drei_schwestern.jpg",
 			"landscape_16_9": "drei_schwestern_16_9.jpg",
 			"portrait": "drei_schwestern_poster.jpg",
-			"afisha": "fb_ts.jpg",
-			"facebook": "",
+			"afisha": "kontra_ts.jpg",
+			"facebook": "fb_ts.jpg",
 			"minimum": ""
 		},
 		"lang": { "ru": "русский", "de": "Russisch" },

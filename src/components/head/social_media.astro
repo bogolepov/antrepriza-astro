@@ -11,7 +11,7 @@ let language = theater.languages.find(lng => lng.lang_code === lang);
 let play;
 if (play_id) play = plays.find(item => item.id.toString() === play_id);
 
-let imageUrl = theater.our_website_link+'/assets/logo_rw_1200.png'; 
+let imageUrl = theater.our_website_link+'/assets/logo_1200.png'; 
 let imageType = 'image/png'; 
 if (play && play.seo && play.seo.open_graph) {
   if (play.seo.open_graph.image) {

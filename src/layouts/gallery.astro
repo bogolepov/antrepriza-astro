@@ -25,7 +25,7 @@ const posterImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*
   <ul>
     {
       plays.map(play => {
-        let playFotos = photos.filter(photo => photo.filename && photo.suffix == play.suffix && photo.is_landscape);
+        let playFotos = photos.filter(photo => photo.filename && photo.suffix === play.suffix && photo.is_landscape);
         if ( (!playFotos || playFotos.length === 0) && !play.trailer_embed) return;
         return (
           <li class="gallery-block">
@@ -44,11 +44,11 @@ const posterImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*
                     <label class="media-video tab-item" for={"video-"+play.id}>{dictionary.video[lang]}</label>
                   }
                   {
-                    play.posters.afisha && (play.posters.afisha.length > 0) &&
+                    play.posters.facebook && (play.posters.facebook.length > 0) &&
                     <label class="media-poster tab-item" for={"poster-"+play.id}>{dictionary.poster[lang]}</label>
                   }
                   {
-                    play.posters.afisha && (play.posters.afisha.length > 0) &&
+                    play.posters.facebook && (play.posters.facebook.length > 0) &&
                     <input type="radio" id={"poster-"+play.id} name={"media-"+play.id} value="poster" {!playFotos && (playFotos.length === 0) && !play.trailer_embed && checked} />
                   }
                   {
@@ -65,7 +65,7 @@ const posterImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*
                 {
                   playFotos && playFotos.length > 0 &&
                   <div class="photo_container">
-                    <PlayGallery lang={lang} play_id={play.id} play_suffix={play.suffix} hover="false"/>
+                    <PlayGallery lang={lang} play_suffix={play.suffix} hover="false"/>
                   </div>
                 }
                 {
@@ -75,12 +75,12 @@ const posterImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*
                   </div>
                 }
                 {
-                  play.posters.afisha && play.posters.afisha.length > 0 &&
+                  play.posters.facebook && play.posters.facebook.length > 0 &&
                   <div class="poster_container">
                     <div class="poster">
                       <Picture 
                         class:list={'image-wrapper-landscape float'} 
-                        src={posterImages["/src/assets/" + play.posters.afisha]()} 
+                        src={posterImages["/src/assets/" + play.posters.facebook]()} 
                         formats={['webp']} 
                         fallbackFormat='jpg'
                         loading="eager"
@@ -103,7 +103,7 @@ const posterImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*
                     <label class="media-video tab-item" for={"video-"+play.id}>{dictionary.video[lang]}</label>
                   }
                   {
-                    play.posters.afisha && (play.posters.afisha.length > 0) &&
+                    play.posters.facebook && (play.posters.facebook.length > 0) &&
                     <label class="media-poster tab-item" for={"poster-"+play.id}>{dictionary.poster[lang]}</label>
                   }
                 </div>

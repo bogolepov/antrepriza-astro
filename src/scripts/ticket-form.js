@@ -125,7 +125,7 @@ function openForm(event, button) {
 		if (!afishaItem) {
 			alert('Afisha Error!');
 		}
-		playItem = clientJsons.theater.plays.find(item => afishaItem.play_id == item.id);
+		playItem = clientJsons.theater.plays.find(item => afishaItem.play_id === item.id);
 		if (!playItem) {
 			alert('Play Error!');
 		}
@@ -195,7 +195,7 @@ function closeForm() {
 function handleToDistributor() {
 	closeForm();
 	if (afishaItem.distributor) window.open(afishaItem.distributor.link, '_blank');
-	else window.open(playItem.url_kontramarka, '_blank');
+	else if (playItem.url_kontramarka) window.open(playItem.url_kontramarka, '_blank');
 }
 
 function handleAddToCart() {
