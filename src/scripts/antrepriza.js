@@ -40,7 +40,7 @@ function initScrollFocusedToCenter() {
 	};
 
 	window.addEventListener('keyup', event => {
-		if ('Tab' == event.code) document.activeElement.scrollIntoViewCenter();
+		if ('Tab' === event.code) document.activeElement.scrollIntoViewCenter();
 	});
 }
 
@@ -144,21 +144,21 @@ export function initHoverModeForTouchScreen() {
 	let blocks = document.getElementsByClassName('hover-block');
 	for (let block of blocks) {
 		block.addEventListener('pointerdown', event => {
-			if (event.isPrimary && (event.pointerType == 'pen' || event.pointerType == 'touch') && currentHoverBlock != block) {
+			if (event.isPrimary && (event.pointerType === 'pen' || event.pointerType === 'touch') && currentHoverBlock !== block) {
 				if (currentHoverBlock) currentHoverBlock.removeAttribute('hover');
 				currentHoverBlock = block;
 				currentHoverBlock.setAttribute('hover', '');
 			}
 		});
 		block.addEventListener('pointerenter', event => {
-			if (event.pointerType == 'mouse' && currentHoverBlock != block) {
+			if (event.pointerType === 'mouse' && currentHoverBlock !== block) {
 				if (currentHoverBlock) currentHoverBlock.removeAttribute('hover');
 				currentHoverBlock = block;
 				currentHoverBlock.setAttribute('hover', '');
 			}
 		});
 		block.addEventListener('pointerleave', event => {
-			if (event.pointerType == 'mouse' && currentHoverBlock == block) {
+			if (event.pointerType === 'mouse' && currentHoverBlock === block) {
 				currentHoverBlock.removeAttribute('hover');
 				currentHoverBlock = null;
 			}
@@ -255,10 +255,10 @@ export async function submitFeedbackForm(event) {
 		let resMessage;
 		if (isOk) {
 			formResultButton.classList.add('ok');
-			resMessage = dictionary ? dictionary['contact_form__result_ok'][currLang] : currLang == 'ru' ? 'Отправлено!' : 'Gesendet!';
+			resMessage = dictionary ? dictionary['contact_form__result_ok'][currLang] : currLang === 'ru' ? 'Отправлено!' : 'Gesendet!';
 		} else {
 			formResultButton.classList.add('error');
-			resMessage = dictionary ? dictionary['contact_form__result_error'][currLang] : currLang == 'ru' ? 'Ошибка...' : 'Unerfolgreich...';
+			resMessage = dictionary ? dictionary['contact_form__result_error'][currLang] : currLang === 'ru' ? 'Ошибка...' : 'Unerfolgreich...';
 			console.error(error);
 		}
 
@@ -431,7 +431,7 @@ export async function submitNewsletterForm(event) {
 		let nlph = document.querySelector('#newsletter-phone');
 		if (nlph) {
 			let date = Number(nlph.innerText);
-			if (Number(nlph.value) !== date + 9 || Math.trunc(date / 10).toString() != nlph.innerText.slice(0, -1)) {
+			if (Number(nlph.value) !== date + 9 || Math.trunc(date / 10).toString() !== nlph.innerText.slice(0, -1)) {
 				emailInput.value = '';
 				return;
 			}

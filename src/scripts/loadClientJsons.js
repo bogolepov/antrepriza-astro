@@ -34,9 +34,9 @@ function json_prepare(jsonName, jsonIndex) {
 				.then(response => response.json())
 				.then(jsonData => {
 					JSONs[jsonIndex] = jsonData;
-					if (jsonIndex == 0) jsonAfisha = jsonData;
-					else if (jsonIndex == 1) jsonTheater = jsonData;
-					else if (jsonIndex == 2) jsonDictionary = jsonData;
+					if (jsonIndex === 0) jsonAfisha = jsonData;
+					else if (jsonIndex === 1) jsonTheater = jsonData;
+					else if (jsonIndex === 2) jsonDictionary = jsonData;
 					resolve();
 				})
 				.catch(error => reject(error));

@@ -17,9 +17,9 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/people/
   <ul class="people-table">
     {
       theater.actors.map(actor_id => {
-        let person = theater.people.find(actor => actor.id == actor_id);
+        let person = theater.people.find(actor => actor.id === actor_id);
         let hasPage = person.suffix ? true : false;
-        let strJobName = (person.gender == 'f') ? dictionary.actress[lang] : dictionary.actor[lang];
+        let strJobName = (person.gender === 'f') ? dictionary.actress[lang] : dictionary.actor[lang];
         return (
           <li class="person-card hover-block">
             <div class="person-photo">

@@ -7,7 +7,7 @@ import theater from '@data/theater.json'
 
 import "../styles/impressum.css"
 
-const director = theater.people.find(person => person.id == theater.director);
+const director = theater.people.find(person => person.id === theater.director);
 
 ---
 
@@ -29,7 +29,7 @@ const director = theater.people.find(person => person.id == theater.director);
         <a href={"mailto:"+theater.email}><span class="font-opacity1">{dictionary.email[lang]}:</span> {theater.email}</a>
       </div>
     </div>
-    <h3 class="h3-title person">{lang == "ru" && "Ответственное лицо"}{lang == "de" && "Verantwortung"}</h3>
+    <h3 class="h3-title person">{dictionary.responsible[lang]}</h3>
     <div class="person-name">{director.name[lang]} {director.surname[lang]} <span class="font-opacity1">({dictionary.director[lang]})</span></div>
 
   </div>
