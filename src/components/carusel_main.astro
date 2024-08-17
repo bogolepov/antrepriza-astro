@@ -96,6 +96,7 @@ let strLoading;
                       src={images["/src/assets/" + play.posters.portrait]()} 
                       formats={['webp']} 
                       fallbackFormat='jpg'
+                      decoding="async"
                       // loading="eager"
                       widths={[290, 350, 450, 580]}
                       sizes={'(max-width: 360px) 290px, (max-width: 480px) 350px, (max-width: 560px) 450px, 580px'}
