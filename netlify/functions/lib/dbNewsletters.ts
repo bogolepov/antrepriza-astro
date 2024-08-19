@@ -11,14 +11,14 @@ const EMAIL_STATUS_REMOVED = 2;
 
 let db;
 
-function getRandomIntInclusive(min, max) {
+function getRandomIntInclusive(min: number, max: number): number {
 	min = Math.ceil(min);
 	max = Math.floor(max);
 	return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function getIdAdd(currDate) {
-	let strIdAdd =
+function getIdAdd(currDate: Date): number {
+	const strIdAdd: string =
 		getRandomIntInclusive(1, 9).toString() +
 		(currDate.getFullYear() - 2000 + ID_SHIFTS_ADD.y).toString() +
 		getRandomIntInclusive(100, 999).toString() +
@@ -29,8 +29,8 @@ function getIdAdd(currDate) {
 	return Number(strIdAdd);
 }
 
-function getIdRemove(currDate) {
-	let strIdRemove =
+function getIdRemove(currDate: Date): number {
+	const strIdRemove: string =
 		getRandomIntInclusive(10, 99).toString() +
 		(currDate.getMonth() + 1 + ID_SHIFTS_REMOVE.m).toString() +
 		getRandomIntInclusive(10, 99).toString() +
@@ -41,7 +41,14 @@ function getIdRemove(currDate) {
 	return Number(strIdRemove);
 }
 
-class Newsletters {
+export type TAddEmailResult = {
+	existed: boolean;
+	sid: number;
+	confirmed: boolean;
+	removed: boolean;
+};
+
+export class Newsletters {
 	static openDatabase() {
 		return;
 
@@ -76,11 +83,11 @@ class Newsletters {
 		}
 	}
 
-	static addNewEmail(lang, email) {
-		const today = new Date();
+	static addNewEmail(lang: string, email: string): TAddEmailResult {
+		const today: Date = new Date();
 		return { existed: false, sid: getIdAdd(today), confirmed: false, removed: false };
 
-		if (!db) return { exists: false, sid: 0 };
+		if (!db) return { existed: false, sid: 0, confirmed: false, removed: false };
 
 		const existEmail = db.prepare(`SELECT * FROM ${TABLE_NAME} WHERE email = ?`).get(email);
 
@@ -116,13 +123,13 @@ class Newsletters {
 		try {
 			addEmail(item);
 		} catch {
-			return { existed: false, sid: 0 };
+			return { existed: false, sid: 0, confirmed: false, removed: false };
 		}
 
 		return { existed: false, sid: item.id_add, confirmed: false, removed: false };
 	}
 
-	static confirmEmail(sid) {
+	static confirmEmail(sid: number): boolean {
 		return true;
 
 		if (!db) return false;
@@ -145,7 +152,7 @@ class Newsletters {
 		return true;
 	}
 
-	static removeEmail(usid) {
+	static removeEmail(usid: number): boolean {
 		return true;
 
 		if (!db) return false;
@@ -177,5 +184,3 @@ class Newsletters {
 		return true;
 	}
 }
-
-module.exports = Newsletters;

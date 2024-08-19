@@ -455,14 +455,14 @@ export async function submitNewsletterForm(event) {
 		body: JSON.stringify(emailData),
 	};
 
-	const handleResult = isOk => {
+	const handleResult = (message, isOk) => {
 		emailInput.value = '';
 		emailInputLoader.style.display = 'none';
 		emailInputLoader.innerText = '';
 
 		if (dictionary) {
 			if (isOk) {
-				showNewsletterMessage(dictionary.newsletter_subscribed[currLang], false);
+				showNewsletterMessage(message, false);
 			} else {
 				showNewsletterMessage(dictionary.newsletter__result_error[currLang], true);
 			}
@@ -481,10 +481,10 @@ export async function submitNewsletterForm(event) {
 			})
 			.then(data => {
 				// console.log(data.message);
-				if (isOk) handleResult(true);
+				if (isOk) handleResult(data.message, true);
 				else throw new Error(data.message);
 			})
-			.catch(() => handleResult(false));
+			.catch(err => handleResult('', false));
 	});
 }
 
