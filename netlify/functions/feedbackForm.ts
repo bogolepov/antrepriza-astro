@@ -1,21 +1,23 @@
-import nodemailer from 'nodemailer';
-import fs from 'fs';
-import { LANG_LIST, EMAIL_REGEX } from './lib/consts.cjs';
-import { fromHtmlToPlainText, nonBreakingSpace } from './lib/utils.cjs';
-import { makeHtmlEmail } from './lib/emailUtils.cjs';
+import type { Handler } from '@netlify/functions';
+import { LANG_LIST, EMAIL_REGEX } from './lib/consts.ts';
+import { fromHtmlToPlainText, getJsonDictionary, getJsonTheater, nonBreakingSpace } from './lib/utils.ts';
+import { makeHtmlEmail } from './lib/mailUtils.ts';
+import { type TMail, sendMails } from './lib/mailService.ts';
 
 let dictionaryServer;
 let theater;
 
-export const handler = async (event, context) => {
-	try {
-		let data = fs.readFileSync('./public/data/dictionary_server.json');
-		dictionaryServer = JSON.parse(data);
-
-		data = fs.readFileSync('./public/data/theater.json');
-		theater = JSON.parse(data);
-	} catch (error) {
-		console.error(error);
+export const handler: Handler = async (event, context) => {
+	dictionaryServer = getJsonDictionary();
+	theater = getJsonTheater();
+	if (!dictionaryServer || !theater) {
+		console.error('JSON files are not found');
+		return {
+			statusCode: 500,
+			body: JSON.stringify({
+				message: 'Internal Server Error',
+			}),
+		};
 	}
 
 	const messageData = JSON.parse(event.body);
@@ -33,69 +35,19 @@ export const handler = async (event, context) => {
 
 	const { lang, subject, topic, name, email, message, now } = messageData;
 
-	// const transporter = nodemailer.createTransport({
-	// 	service: 'gmail',
-	// 	auth: {
-	// 		user: process.env.ANTREPRIZA_TRANSPORT_EMAIL,
-	// 		pass: process.env.ANTREPRIZA_TRANSPORT_PASSWORD,
-	// 	},
-	// });
-
-	const transporter = nodemailer.createTransport({
-		pool: true,
-		host: process.env.ANTREPRIZA_SMTP_HOST,
-		port: 465,
-		secure: true, // use TLS
-		auth: {
-			user: process.env.ANTREPRIZA_EMAIL_INFO,
-			pass: process.env.ANTREPRIZA_SMTP_PASSWORD,
-		},
-	});
-
-	const mailOptions = {
-		// from: `${theater.longTheaterName[lang]} <${process.env.ANTREPRIZA_TRANSPORT_EMAIL}>`,
-		from: `${theater.longTheaterName[lang]} <${process.env.ANTREPRIZA_EMAIL_INFO}>`,
+	const transporterMail: string = process.env.ANTREPRIZA_EMAIL_INFO;
+	let clientMail: TMail = {
 		to: email,
 		subject: subject,
 		html: makeHtmlEmail(lang, topic, makeContent(lang, topic, name, email, message, now, false)),
 	};
-
-	let mailTo;
-	if (process.env.MODE === process.env.MODE_PRODUCTION) {
-		mailTo = process.env.ANTREPRIZA_EMAIL_INFO + ', ' + process.env.ANTREPRIZA_EMAIL_MAMONTOV;
-	} else {
-		mailTo = process.env.ANTREPRIZA_EMAIL_BOGOLEPOV;
-	}
-	const mailOptionsAntrepriza = {
-		// from: `${theater.longTheaterName[lang]} <${process.env.ANTREPRIZA_TRANSPORT_EMAIL}>`,
-		from: `${theater.longTheaterName[lang]} <${process.env.ANTREPRIZA_EMAIL_INFO}>`,
-		to: mailTo,
+	let antreprizaMail: TMail = {
+		to: '',
 		subject: subject,
 		html: makeHtmlEmail(lang, topic, makeContent(lang, topic, name, email, message, now, true)),
 	};
 
-	try {
-		await transporter.sendMail(mailOptions);
-
-		try {
-			await transporter.sendMail(mailOptionsAntrepriza);
-		} catch (error) {}
-
-		return {
-			statusCode: 200,
-			body: JSON.stringify({
-				message: 'Email sent successfully',
-			}),
-		};
-	} catch (error) {
-		console.error(error);
-		return {
-			statusCode: 500,
-			body: JSON.stringify({
-				message: error.message,
-			}),
-		};
-	}
+	return await sendMails(lang, transporterMail, clientMail, antreprizaMail);
 };
 
 function validateMessage(messageData) {
@@ -154,14 +106,14 @@ function makePersonalMessage(lang, name, now, toAntrepriza) {
 		};
 		let strCurrentDate = date.toLocaleDateString(lang, options);
 
-		strHello = getHello(date.getHours()) + (lang === 'ru' ? '!' : ',');
+		strHello = getHello(date.getHours()) + (lang === 'ru' ? '!' : '.');
 		diffText = `\
 <tr><td style="font-size: 125%; padding-bottom: 15px; line-height: 120%; color: #d6d6d6; font-weight: 500">${strHello}</td></tr>\
 <tr><td style="line-height: 120%; color: #d6d6d6">${dictionaryServer.email_feedback_form_text_antrepriza[lang]}</td></tr>\
 <tr><td style="font-size: 90%; line-height: 120%; color: #888888; font-weight: 500">[${strCurrentDate}]</td></tr>\
 `;
 	} else {
-		strHello = getHello(date.getHours()) + (lang === 'ru' ? ', ' : ' ') + fromHtmlToPlainText(name) + (lang === 'ru' ? '!' : ',');
+		strHello = getHello(date.getHours()) + (lang === 'ru' ? ', ' : ' ') + fromHtmlToPlainText(name) + (lang === 'ru' ? '!' : '.');
 		diffText = `\
 <tr><td style="font-size: 125%; padding-bottom: 15px; line-height: 120%; color: #d6d6d6; font-weight: 500">${strHello}</td></tr>\
 <tr><td style="line-height: 120%; color: #d6d6d6; padding-bottom: 15px">${dictionaryServer.email_feedback_form_text[lang]}</td></tr>\

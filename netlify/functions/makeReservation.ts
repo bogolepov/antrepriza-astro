@@ -1,44 +1,24 @@
-import nodemailer from 'nodemailer';
-import fs from 'fs';
-import { LANG_LIST, EMAIL_REGEX } from './lib/consts.cjs';
-import { fromHtmlToPlainText } from './lib/utils.cjs';
-import { makeHtmlEmail } from './lib/emailUtils.cjs';
+import type { Handler } from '@netlify/functions';
+import { LANG_LIST, EMAIL_REGEX } from './lib/consts.ts';
+import { fromHtmlToPlainText, getJsonDictionary, getJsonTheater } from './lib/utils.ts';
+import { makeHtmlEmail } from './lib/mailUtils.ts';
+import { type TMail, sendMails } from './lib/mailService.ts';
 
 let dictionaryServer;
 let theater;
 
-export const handler = async (event, context) => {
-	try {
-		let data = fs.readFileSync('./public/data/dictionary_server.json');
-		dictionaryServer = JSON.parse(data);
-
-		data = fs.readFileSync('./public/data/theater.json');
-		theater = JSON.parse(data);
-
-		// console.log(dictionaryServer);
-		// console.log(theater);
-	} catch (error) {
-		console.error(error);
+export const handler: Handler = async (event, context) => {
+	dictionaryServer = getJsonDictionary();
+	theater = getJsonTheater();
+	if (!dictionaryServer || !theater) {
+		console.error('JSON files are not found');
+		return {
+			statusCode: 500,
+			body: JSON.stringify({
+				message: 'Internal Server Error',
+			}),
+		};
 	}
-
-	// const transporter = nodemailer.createTransport({
-	// 	service: 'gmail',
-	// 	auth: {
-	// 		user: process.env.ANTREPRIZA_TRANSPORT_EMAIL,
-	// 		pass: process.env.ANTREPRIZA_TRANSPORT_PASSWORD,
-	// 	},
-	// });
-
-	const transporter = nodemailer.createTransport({
-		pool: true,
-		host: process.env.ANTREPRIZA_SMTP_HOST,
-		port: 465,
-		secure: true, // use TLS
-		auth: {
-			user: process.env.ANTREPRIZA_EMAIL_TICKETS,
-			pass: process.env.ANTREPRIZA_SMTP_PASSWORD,
-		},
-	});
 
 	const messageData = JSON.parse(event.body);
 
@@ -56,61 +36,20 @@ export const handler = async (event, context) => {
 	const { lang, name, email, reservations, amount, now } = messageData;
 
 	const subject = dictionaryServer.email_reservation_subject[lang];
-	const htmlEmailToClient = makeHtmlEmail(lang, subject, makeContent(lang, name, email, reservations, amount, now, false));
-	const htmlEmailToAntrepriza = makeHtmlEmail(lang, subject, makeContent(lang, name, email, reservations, amount, now, true));
+	const transporterMail: string = process.env.ANTREPRIZA_EMAIL_TICKETS;
 
-	const makeMailOptions = toAntrepriza => {
-		let mailTo = email;
-		if (toAntrepriza) {
-			if (process.env.MODE === process.env.MODE_PRODUCTION) {
-				mailTo = process.env.ANTREPRIZA_EMAIL_TICKETS + ', ' + process.env.ANTREPRIZA_EMAIL_MAMONTOV;
-			} else {
-				mailTo = process.env.ANTREPRIZA_EMAIL_BOGOLEPOV;
-			}
-		}
-		return {
-			// from: `${theater.longTheaterName[lang]} <${process.env.ANTREPRIZA_TRANSPORT_EMAIL}>`,
-			from: `${theater.longTheaterName[lang]} <${process.env.ANTREPRIZA_EMAIL_TICKETS}>`,
-			to: mailTo,
-			subject: subject,
-			html: toAntrepriza ? htmlEmailToAntrepriza : htmlEmailToClient,
-		};
+	let clientMail: TMail = {
+		to: email,
+		subject: subject,
+		html: makeHtmlEmail(lang, subject, makeContent(lang, name, email, reservations, amount, now, false)),
+	};
+	let antreprizaMail: TMail = {
+		to: '',
+		subject: subject,
+		html: makeHtmlEmail(lang, subject, makeContent(lang, name, email, reservations, amount, now, true)),
 	};
 
-	try {
-		// console.log('call sendMail.......');
-
-		// email for the client;
-		// the result of sending is IMPORTANT
-		await transporter.sendMail(makeMailOptions(false));
-		// email for Antrepriza
-		// the result of sending is NOT important,
-		// because the reservations SHOULD BE save somewhere (TODO:)
-		// transporter.sendMail(makeMailOptions(false), (err, result) => {
-		// 	console.error(err);
-		// });
-		try {
-			await transporter.sendMail(makeMailOptions(true));
-		} catch (error) {}
-
-		// console.log('result:');
-		// console.log(info);
-
-		return {
-			statusCode: 200,
-			body: JSON.stringify({
-				message: 'Email sent successfully',
-			}),
-		};
-	} catch (error) {
-		console.error(error);
-		return {
-			statusCode: 500,
-			body: JSON.stringify({
-				message: error.message,
-			}),
-		};
-	}
+	return await sendMails(lang, transporterMail, clientMail, antreprizaMail);
 };
 
 function validateMessage(messageData) {
@@ -162,13 +101,11 @@ function validateMessage(messageData) {
 }
 
 function makeContent(lang, name, email, reservations, amount, now, toAntrepriza) {
-	return makePersonalMessage(lang, name, email, now, toAntrepriza) + makeReservationsBlock(lang, reservations, amount);
-}
-
-function makePersonalMessage(lang, name, email, now, toAntrepriza) {
 	const dateOfReservation = new Date(now);
 	// const offset = dateOfReservation.getTimezoneOffset();
 	// dateOfReservation = new Date(dateOfReservation.getTime() - offset * 60 * 1000);
+
+	const htmlReservation = makeReservationsBlock(lang, reservations, amount);
 
 	let diffText;
 
@@ -197,8 +134,9 @@ ${dictionaryServer.new_reservation_text[lang]}\
 </tr>\
 <tr>\
 <td style="line-height: 120%; color: #d6d6d6; vertical-align: top">${dictionaryServer.lang_when[lang]} :</td>\
-<td style="line-height: 120%; color: #d6d6d6; vertical-align: top; padding: 0 0 0 8px">${strCurrentDate}</td>\
+<td style="line-height: 120%; color: #d6d6d6; vertical-align: top; padding: 0 0 15px 8px">${strCurrentDate}</td>\
 </tr>\
+<tr><td colspan="2">${htmlReservation}</td></tr>\
 `;
 	} else {
 		let getHello = hour => {
@@ -208,7 +146,7 @@ ${dictionaryServer.new_reservation_text[lang]}\
 			else return dictionaryServer.good_evening[lang];
 		};
 		let strHello =
-			getHello(dateOfReservation.getHours()) + (lang === 'ru' ? ', ' : ' ') + fromHtmlToPlainText(name) + (lang === 'ru' ? '!' : ',');
+			getHello(dateOfReservation.getHours()) + (lang === 'ru' ? ', ' : ' ') + fromHtmlToPlainText(name) + (lang === 'ru' ? '!' : '.');
 
 		diffText = `\
 <tr><td style="font-size: 125%; padding-bottom: 15px; line-height: 120%; color: #d6d6d6; font-weight: 500">${strHello}</td></tr>\
@@ -221,8 +159,10 @@ ${dictionaryServer.email_reservation_where_link_text[lang]}</a>.\
 <tr><td style="line-height: 120%; color: #d6d6d6; padding-bottom: 3px">${dictionaryServer.email_reservation_note[lang]}</td></tr>\
 <tr><td style="line-height: 120%; color: #d6d6d6; padding: 0 0 3px 20px">${dictionaryServer.email_reservation_note1[lang]}</td></tr>\
 <tr><td style="line-height: 120%; color: #d6d6d6; padding: 0 0 3px 20px">${dictionaryServer.email_reservation_note2[lang]}</td></tr>\
-<tr><td style="line-height: 120%; color: #d6d6d6; padding: 0 0 15px 20px">${dictionaryServer.email_reservation_note3[lang]}</td></tr>\
-<tr><td style="line-height: 120%; color: #d6d6d6; padding-bottom: 15px">${dictionaryServer.email_reservation_welcome[lang]}</td></tr>\
+<tr><td style="line-height: 120%; color: #d6d6d6; padding: 0 0 20px 20px">${dictionaryServer.email_reservation_note3[lang]}</td></tr>\
+<tr><td style="line-height: 120%; color: #d6d6d6; padding-bottom: 5px">${dictionaryServer.email_reservation_note4[lang]}</td></tr>\
+<tr><td>${htmlReservation}</td></tr>\
+<tr><td style="line-height: 120%; color: #d6d6d6; padding: 20px 0 15px 0">${dictionaryServer.email_reservation_welcome[lang]}</td></tr>\
 <tr><td style="line-height: 120%; color: #d6d6d6">${theater.longTheaterName[lang]}</td></tr>\
 <tr><td style="line-height: 120%">\
 <a href='${theater.our_website_link}/${lang}' style="line-height: 120%; color: #d6d6d6">${theater.our_website_text}</a>\
@@ -231,7 +171,7 @@ ${dictionaryServer.email_reservation_where_link_text[lang]}</a>.\
 	}
 
 	return `\
-<table border="0" cellpadding="0" role="presentation" style="width: 100%; margin: 0; padding: 0 0 15px 0; border-bottom: 1px solid #d6d6d6">\
+<table border="0" cellpadding="0" role="presentation" style="width: 100%; margin: 0; padding: 0 0 15px 0">\
 <tbody>\
 ${diffText}\
 </tbody>\
@@ -254,10 +194,9 @@ function makeReservationsBlock(lang, reservations, amount) {
 	// `;
 
 	reservationsBlock = `\
-<table border="0" cellspacing="0" role="presentation" style="width: 100%; margin: 0; padding: 15px 0 0 0"><tbody>\
+<table border="0" cellspacing="0" role="presentation" style="width: 100%; margin: 0; padding: 15px 0 0 0; \
+border-top: 1px solid #d6d6d6; border-bottom: 1px solid #d6d6d6"><tbody>\
 ${eventsRows}\
-<tr><td colspan="2" style="padding: 0; border-top: 1px solid #d6d6d6"></td></tr>\
-${totalAmountRow}\
 </tbody></table>\
 `;
 
