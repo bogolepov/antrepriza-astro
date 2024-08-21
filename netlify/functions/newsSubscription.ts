@@ -117,7 +117,7 @@ ${dictionaryServer.new_subscription_text[lang]}\
  style="font-size: 105%; font-weight: 500; line-height: 120%; color: #87605e; border: 1px solid #87605e; padding: 10px 20px 10px 20px; text-decoration: none">\
 ${dictionaryServer.email_subscription_button_text[lang]}</a>\
 </td></tr>\
-<tr><td style="line-height: 120%; color: #d6d6d6; padding: 0">${dictionaryServer.email_subscription_text3[lang]}</td></tr>\
+<tr><td style="line-height: 120%; color: #d6d6d6; padding: 0 0 15px 0">${dictionaryServer.email_subscription_text3[lang]}</td></tr>\
 <tr><td style="line-height: 120%; color: #d6d6d6; padding: 0">${theater.longTheaterName[lang]}</td></tr>\
 <tr><td style="line-height: 120%; padding: 0">\
 <a href='${theater.our_website_link}/${lang}' style="line-height: 120%; color: #d6d6d6">${theater.our_website_text}</a>\

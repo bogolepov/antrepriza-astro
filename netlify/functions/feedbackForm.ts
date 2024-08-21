@@ -80,21 +80,29 @@ function validateMessage(messageData) {
 	*/
 }
 
-function makeContent(lang, topic, name, email, message, now, toAntrepriza) {
+function makeContent(
+	lang: string,
+	topic: string,
+	name: string,
+	email: string,
+	message: string,
+	now: number,
+	toAntrepriza: boolean
+): string {
 	return makePersonalMessage(lang, name, now, toAntrepriza) + makeFeedbackBlock(lang, topic, name, email, message);
 }
 
-function makePersonalMessage(lang, name, now, toAntrepriza) {
+function makePersonalMessage(lang: string, name: string, now: number, toAntrepriza: boolean): string {
 	const date = new Date(now);
-	let getHello = hour => {
+	const getHello = (hour: number): string => {
 		if (hour < 6 && lang === 'ru') return dictionaryServer.hello[lang];
 		else if (hour < 12) return dictionaryServer.good_morning[lang];
 		else if (hour < 18) return dictionaryServer.good_afternoon[lang];
 		else return dictionaryServer.good_evening[lang];
 	};
 
-	let diffText;
-	let strHello;
+	let diffText: string;
+	let strHello: string;
 
 	if (toAntrepriza) {
 		let options = {
@@ -104,7 +112,7 @@ function makePersonalMessage(lang, name, now, toAntrepriza) {
 			hour: '2-digit',
 			minute: '2-digit',
 		};
-		let strCurrentDate = date.toLocaleDateString(lang, options);
+		let strCurrentDate: string = date.toLocaleDateString(lang, options);
 
 		strHello = getHello(date.getHours()) + (lang === 'ru' ? '!' : '.');
 		diffText = `\
@@ -133,8 +141,8 @@ ${diffText}\
 `;
 }
 
-let feedbackBlock;
-function makeFeedbackBlock(lang, topic, name, email, message) {
+let feedbackBlock: string;
+function makeFeedbackBlock(lang: string, topic: string, name: string, email: string, message: string): string {
 	if (feedbackBlock) return feedbackBlock;
 
 	feedbackBlock = `\
