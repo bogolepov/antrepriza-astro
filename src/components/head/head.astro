@@ -29,7 +29,7 @@ if (title && title.length > 0) {
 let pageDescription = description;
 if ((!pageDescription || pageDescription.length === 0) && play_id) {
   let play = plays.find(item => item.id.toString() === play_id);
-  let playDescription = play?.seo?.open_graph?.description;
+  let playDescription = play?.seo?.description;
   if (playDescription) pageDescription = playDescription[lang];
 }
 
@@ -89,7 +89,7 @@ const addSeoEvent = seo_event === 'true';
   <SocialMediaHead lang={lang} title={title} description={description} og_title={ogTitle} play_id = {play_id}/>
   {
     addSeoEvent &&
-    <SeoEvent lang={lang} play_id = {play_id} date={date} time={time} description={description}/>
+    <SeoEvent lang={lang} play_id = {play_id} date={date} time={time} description={pageDescription}/>
   }
   <meta name="generator" content={Astro.generator} />
 </head>
