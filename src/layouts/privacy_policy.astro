@@ -1,12 +1,23 @@
 ---
+import "@styles/privacy_policy.css"
+import { LANG_RU } from "@scripts/consts";
 
 const { lang } = Astro.props;
 
 import dictionary from '@data/dictionary.json'
 
+// import ContentRu from '@layouts/content/privacy_policy_ru.astro'
+import ContentDe from '@layouts/content/privacy_policy_de.astro'
+
+let Content = ContentDe;
+// if (lang === LANG_RU) Content = ContentRu;
+
 ---
 
-<section class="impressum">
-  <h1 class="section-title">{dictionary.privacy_policy[lang]}</h1>
+<section class="privacy-policy">
+  <h1 class="section-title">{dictionary.privacy_policy_full[lang]}</h1>
+  <div class="description">
+    <Content/>
+  </div>
   <div class="page-end"></div>
 </section>

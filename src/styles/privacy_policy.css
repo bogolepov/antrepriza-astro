@@ -1,0 +1,49 @@
+.privacy-policy .description {
+	--font-size: 1rem;
+	--font-size: clamp(0.85rem, 1.8vw, 1.05rem);
+}
+.privacy-policy .description p,
+.privacy-policy .description ul {
+	font-size: var(--font-size);
+	line-height: 1.35em;
+	padding-left: calc(var(--font-size) * 1.5);
+}
+.privacy-policy .description ul {
+	padding-left: 3em;
+}
+
+.privacy-policy .description h2 {
+	font-size: calc(var(--font-size) * 2.1);
+	line-height: 1.25em;
+	margin: 0.65em 0;
+}
+.privacy-policy .description h3 {
+	font-size: calc(var(--font-size) * 1.6);
+	line-height: 1.25em;
+	margin: 0.8em 0;
+}
+.privacy-policy .description h4 {
+	font-size: calc(var(--font-size) * 1.25);
+	line-height: 1.25em;
+	margin: 0.8em 0;
+	color: var(--colorFont-Op1);
+	font-weight: var(--font-bold-weight);
+	padding-left: calc(var(--font-size) * 1.5);
+}
+
+.privacy-policy a {
+	text-decoration: underline;
+	color: var(--colorFont-Op0);
+}
+
+.responsible {
+	font-size: calc(var(--font-size) * 1.05);
+	color: var(--colorFont-Op0);
+}
+
+.l-padding {
+	padding-left: calc(var(--font-size) * 1.5);
+}
+.t-padding {
+	padding-top: calc(var(--font-size) * 1.5);
+}

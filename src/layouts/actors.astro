@@ -30,6 +30,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/people/
                 fallbackFormat='jpg'
                 loading="eager"
                 widths={[240,320]}
+                quality="100"
                 sizes={'(max-width: 320px) 240px, 320px'}
                 alt={person.name[lang] + ' ' + person.surname[lang]} />
             </div>
