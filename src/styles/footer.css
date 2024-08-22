@@ -115,6 +115,7 @@ footer a:focus-visible {
 }
 
 footer .address {
+	display: block;
 	padding-bottom: 0.4em;
 }
 

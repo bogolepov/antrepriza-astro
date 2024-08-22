@@ -45,6 +45,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/people/
                 loading="eager"
                 widths={[240,320]}
                 sizes={'(max-width: 320px) 240px, 320px'}
+                quality="100"
                 alt={person.name[lang] + ' ' + person.surname[lang]} />
             </div>
             <div class="person-title font-opacity1 bold1">{strJobs}</div>

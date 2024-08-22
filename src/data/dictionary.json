@@ -10,6 +10,7 @@
 	"events": { "ru": "Мероприятия", "de": "Veranstaltungen" },
 	"impressum": { "ru": "Impressum", "de": "Impressum" },
 	"privacy_policy": { "ru": "Политика конфиденциальности", "de": "Datenschutz" },
+	"privacy_policy_full": { "ru": "Политика конфиденциальности", "de": "Datenschutzerklärung" },
 	"newsletter": { "ru": "Подписка на новости", "de": "Newsletter" },
 	"menu": { "ru": "Меню", "de": "Menü" },
 	"menu_about": { "ru": "О театре", "de": "Über Theater" },
