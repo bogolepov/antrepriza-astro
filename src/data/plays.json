@@ -21,6 +21,7 @@
 		},
 		"lang": { "ru": "русский", "de": "Russisch" },
 		"lang_id": "ru",
+		"url_kontramarka": "https://www.kontramarka.de/tour/teatr-antrepriza-spektakl-neznakomka-32/",
 		"characters": [
 			{
 				"id": 1,
@@ -63,11 +64,17 @@
 			{ "type": "graphic_design", "people": [6] }
 		],
 		"seo": {
-			"open_graph": {
-				"description": {
-					"ru": "По пьесе В.Зайкина. Комедия, 16+. На русском языке.",
-					"de": "Nach dem Stück von V.Zajkin. Komödie, 16+. Auf Russisch."
-				}
+			"description": {
+				"ru": "По пьесе В.Зайкина. Комедия, 16+. На русском языке.",
+				"de": "Nach dem Stück von V.Zajkin. Komödie, 16+. Auf Russisch."
+			},
+			"open_graph": {},
+			"event": {
+				"images": [
+					{ "format": "19_6", "url": "n32_soon_1920t.jpg" },
+					{ "format": "3_4", "url": "kontra_n32_1920t.jpg" },
+					{ "format": "3_4_1050", "url": "kontra_n32_1050t.webp" }
+				]
 			}
 		}
 	},
@@ -93,6 +100,7 @@
 		},
 		"lang": { "ru": "русский", "de": "Russisch" },
 		"lang_id": "ru",
+		"url_kontramarka": "https://www.kontramarka.de/tour/antrepriza-spektakl-malysh-i-karlson/",
 		"characters": [
 			{
 				"id": 1,
@@ -142,12 +150,19 @@
 			{ "type": "photographer", "people": [5] }
 		],
 		"seo": {
+			"description": {
+				"ru": "По пьесе К.Попова. Современная история, 16+. На русском языке.",
+				"de": "Nach dem Stück von K.Popov. Moderne Geschichte, 16+. Auf Russisch."
+			},
 			"open_graph": {
-				"image": { "url": "miks_1200.jpg", "type": "image/jpeg" },
-				"description": {
-					"ru": "По пьесе К.Попова. Современная история, 16+. На русском языке.",
-					"de": "Nach dem Stück von K.Popov. Moderne Geschichte, 16+. Auf Russisch."
-				}
+				"image": { "url": "miks_1200t.jpg", "type": "image/jpeg" }
+			},
+			"event": {
+				"images": [
+					{ "format": "19_6", "url": "miks_1920t.jpg" },
+					{ "format": "3_4", "url": "kontra_miks_1920t.jpg" },
+					{ "format": "3_4_1050", "url": "kontra_miks_1050t.webp" }
+				]
 			}
 		}
 	},
@@ -176,6 +191,7 @@
 		},
 		"lang": { "ru": "русский", "de": "Russisch" },
 		"lang_id": "ru",
+		"url_kontramarka": "https://www.kontramarka.de/tour/teatr-antrepriza-spektakl-malysh-i-karlson/",
 		"characters": [
 			{ "id": 1, "name": { "ru": "Малыш", "de": "Steppke" }, "actors": [110, 118] },
 			{
@@ -206,12 +222,19 @@
 			{ "type": "stage_setup", "people": [103] }
 		],
 		"seo": {
+			"description": {
+				"ru": "Для детей по мотивам повести А.Линдгрен. Приключения, 3+. На русском языке.",
+				"de": "Für Kinder nach der Geschichte von A.Lindgren. Abenteuer, 3+. Auf Russisch."
+			},
 			"open_graph": {
-				"image": { "url": "mik_1200.jpg", "type": "image/jpeg" },
-				"description": {
-					"ru": "Для детей по мотивам повести А.Линдгрен. Приключения, 3+. На русском языке.",
-					"de": "Für Kinder nach der Geschichte von A.Lindgren. Abenteuer, 3+. Auf Russisch."
-				}
+				"image": { "url": "mik_1200t.jpg", "type": "image/jpeg" }
+			},
+			"event": {
+				"images": [
+					{ "format": "19_6", "url": "mik_1920t.jpg" },
+					{ "format": "3_4", "url": "kontra_mik_1920t.jpg" },
+					{ "format": "3_4_1050", "url": "kontra_mik_1050t.webp" }
+				]
 			}
 		}
 	},
@@ -237,6 +260,7 @@
 		},
 		"lang": { "ru": "русский", "de": "Russisch" },
 		"lang_id": "ru",
+		"url_kontramarka": "https://www.kontramarka.de/tour/teatr-antrepriza-spektakl-opasnyy-povorot/",
 		"characters": [
 			{ "id": 1, "name": { "ru": "Роберт Кэплен", "de": "Robert Caplan" }, "actors": [103] },
 			{
@@ -270,12 +294,19 @@
 			{ "type": "stage_setup", "people": [103, 106] }
 		],
 		"seo": {
+			"description": {
+				"ru": "По пьесе Дж.Б.Пристли. Детектив, 18+. На русском языке.",
+				"de": "Nach dem Stück von J.B.Priestley. Krimi, 16+. Auf Russisch."
+			},
 			"open_graph": {
-				"image": { "url": "op_1200.jpg", "type": "image/jpeg" },
-				"description": {
-					"ru": "По пьесе Дж.Б.Пристли. Детектив, 18+. На русском языке.",
-					"de": "Nach dem Stück von J.B.Priestley. Krimi, 16+. Auf Russisch."
-				}
+				"image": { "url": "op_1200t.jpg", "type": "image/jpeg" }
+			},
+			"event": {
+				"images": [
+					{ "format": "19_6", "url": "op_1920t.jpg" },
+					{ "format": "3_4", "url": "kontra_op_1920t.jpg" },
+					{ "format": "3_4_1050", "url": "kontra_op_1050t.webp" }
+				]
 			}
 		}
 	},
@@ -303,6 +334,7 @@
 		},
 		"lang": { "ru": "русский", "de": "Russisch" },
 		"lang_id": "ru",
+		"url_kontramarka": "https://www.kontramarka.de/tour/teatr-antrepriza-spektakl-dorogaya-kvartira/",
 		"characters": [
 			{
 				"id": 1,
@@ -361,12 +393,19 @@
 			{ "type": "stage_setup", "people": [103, 106] }
 		],
 		"seo": {
+			"description": {
+				"ru": "По пьесе Т.Москвиной. Трагикомедия, 18+. На русском языке.",
+				"de": "Nach dem Stück von Т.Moskvina. Tragikomödie, 18+. Auf Russisch."
+			},
 			"open_graph": {
-				"image": { "url": "dk_1200.jpg", "type": "image/jpeg" },
-				"description": {
-					"ru": "По пьесе Т.Москвиной. Трагикомедия, 18+. На русском языке.",
-					"de": "Nach dem Stück von Т.Moskvina. Tragikomödie, 18+. Auf Russisch."
-				}
+				"image": { "url": "dk_1200t.jpg", "type": "image/jpeg" }
+			},
+			"event": {
+				"images": [
+					{ "format": "19_6", "url": "dk_1920t.jpg" },
+					{ "format": "3_4", "url": "kontra_dk_1920t.jpg" },
+					{ "format": "3_4_1050", "url": "kontra_dk_1050t.webp" }
+				]
 			}
 		}
 	},
@@ -484,6 +523,7 @@
 		},
 		"lang": { "ru": "русский", "de": "Russisch" },
 		"lang_id": "ru",
+		"url_kontramarka": "https://www.kontramarka.de/tour/teatr-antrepriza-spektakl-tri-sestry/",
 		"characters": [
 			{ "id": 1, "name": { "ru": "Прозоров Андрей Сергеевич", "de": "Andrej Sergejewitsch Prosorow" }, "actors": [3] },
 			{
@@ -552,12 +592,19 @@
 			{ "type": "stage_setup", "people": [103, 106, 108] }
 		],
 		"seo": {
+			"description": {
+				"ru": "По пьесе А.Чехова. Драма, 14+. На русском языке.",
+				"de": "Nach dem Stück von A.Tschechow. Drama, 14+. Auf Russisch."
+			},
 			"open_graph": {
-				"image": { "url": "ts_1200.jpg", "type": "image/jpeg" },
-				"description": {
-					"ru": "По пьесе А.Чехова. Драма, 14+. На русском языке.",
-					"de": "Nach dem Stück von A.Tschechow. Drama, 14+. Auf Russisch."
-				}
+				"image": { "url": "ts_1200t.jpg", "type": "image/jpeg" }
+			},
+			"event": {
+				"images": [
+					{ "format": "19_6", "url": "ts_1920t.jpg" },
+					{ "format": "3_4", "url": "kontra_ts_1920t.jpg" },
+					{ "format": "3_4_1050", "url": "kontra_ts_1050t.webp" }
+				]
 			}
 		}
 	}

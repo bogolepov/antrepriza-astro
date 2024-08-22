@@ -11,15 +11,13 @@ let language = theater.languages.find(lng => lng.lang_code === lang);
 let play;
 if (play_id) play = plays.find(item => item.id.toString() === play_id);
 
-let imageUrl = theater.our_website_link+'/assets/logo_1200.png'; 
+let imageUrl = theater.our_website_link+'/assets/logo_1200t.png'; 
 let imageType = 'image/png'; 
-if (play && play.seo && play.seo.open_graph) {
-  if (play.seo.open_graph.image) {
-    imageUrl = theater.our_website_link+'/assets/' + play.seo.open_graph.image.url; 
-    imageType = play.seo.open_graph.image.type; 
-  }
-  if (play.seo.open_graph.description) ogDescription = play.seo.open_graph.description[lang];
+if (play?.seo?.open_graph?.image) {
+  imageUrl = theater.our_website_link+'/assets/' + play.seo.open_graph.image.url; 
+  imageType = play.seo.open_graph.image.type; 
 }
+if (play?.seo?.description) ogDescription = play.seo.description[lang];
 
 // <meta property="fb:app_id" content="2869829356509709" />
 
@@ -38,6 +36,7 @@ if (play && play.seo && play.seo.open_graph) {
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content={theater.longTheaterName[lang]} />
 <meta property="og:image" content={imageUrl} />
+<meta property="og:image:secure_url" content={imageUrl}>
 <meta property="og:image:type" content={imageType} />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="628" />

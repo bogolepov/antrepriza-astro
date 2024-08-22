@@ -34,9 +34,16 @@ event.prices.forEach(price_type => {
   }
 });
 
-import type { ImageMetadata } from 'astro'
-import { Picture } from 'astro:assets'
-const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg,jpg}');
+let image_root;
+if ( process.env.MODE === process.env.MODE_BRANCH ) image_root = '/assets/';
+else {
+  image_root = (( process.env.MODE === process.env.MODE_PRODUCTION ) ? theater.our_website_link : '/public') + '/assets/';
+}
+let image = play.seo.event.images.find(image => image.format === '3_4_1050');
+
+// import type { ImageMetadata } from 'astro'
+// import { Picture } from 'astro:assets'
+// const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg,jpg}');
 
 /*
   .ev-photo {
@@ -58,13 +65,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 
 */
 
----
-
-<section class="event">
-  <div class="ev-event-flex">
-    {
-      play && event && play.posters.afisha &&
-      <div class="ev-flex-item-poster">
+/*
         <Picture 
           class:list={'image-wrapper-landscape float ev-poster'} 
           src={images["/src/assets/" + play.posters.afisha]()} 
@@ -75,6 +76,21 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
           sizes={'320px'}
           quality="85"
           alt={play.title[lang]} />
+
+*/
+---
+
+<section class="event">
+  <div class="ev-event-flex">
+    {
+      play && event && play.posters.afisha &&
+      <div class="ev-flex-item-poster">
+        <img 
+          class="image-wrapper-landscape float ev-poster" 
+          src={image_root + image.url}
+          loading="eager"
+          alt={play.title[lang]} 
+          width="280px">
       </div>
     }
     <div class="ev-flex-item-description">

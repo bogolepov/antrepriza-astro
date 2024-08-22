@@ -5,9 +5,11 @@ const ID_SHIFTS_REMOVE = { y: 817, m: 66, d: 54 };
 const DB_NAME = './public/data/antrepriza.ldb';
 const TABLE_NAME = 'newsletters';
 
-const EMAIL_STATUS_ADDED = 0;
-const EMAIL_STATUS_CONFIRMED = 1;
-const EMAIL_STATUS_REMOVED = 2;
+const enum EMAIL_STATUS {
+	ADDED = 0,
+	CONFIRMED = 1,
+	REMOVED = 2,
+}
 
 let db;
 
@@ -92,16 +94,16 @@ export class Newsletters {
 		const existEmail = db.prepare(`SELECT * FROM ${TABLE_NAME} WHERE email = ?`).get(email);
 
 		// exists, but not removed from maillist
-		if (existEmail && existEmail.status !== EMAIL_STATUS_REMOVED) {
-			return { existed: true, sid: existEmail.id_add, confirmed: existEmail.status === EMAIL_STATUS_CONFIRMED, removed: false };
+		if (existEmail && existEmail.status !== EMAIL_STATUS.REMOVED) {
+			return { existed: true, sid: existEmail.id_add, confirmed: existEmail.status === EMAIL_STATUS.CONFIRMED, removed: false };
 		}
 		// exists and removed from maillist - we will reinitialize (added, not confirmed)
-		else if (existEmail && existEmail.status === EMAIL_STATUS_REMOVED) {
+		else if (existEmail && existEmail.status === EMAIL_STATUS.REMOVED) {
 			const stmtUpdateEmail = db.prepare(`UPDATE ${TABLE_NAME} SET lang = ?, status = ? WHERE email = ?`);
 			const updateEmail = db.transaction((lang, email, status) => {
 				let info = stmtUpdateEmail.run(lang, status, email);
 			});
-			updateEmail(lang, existEmail.email, EMAIL_STATUS_ADDED);
+			updateEmail(lang, existEmail.email, EMAIL_STATUS.ADDED);
 
 			return { existed: true, sid: existEmail.id_add, confirmed: false, removed: false };
 		}
@@ -136,7 +138,7 @@ export class Newsletters {
 
 		const stmtConfirmEmail = db.prepare(`UPDATE ${TABLE_NAME} SET status = ? WHERE id_add = ?`);
 		const confirmEmail = db.transaction(sid => {
-			let res = stmtConfirmEmail.run(EMAIL_STATUS_CONFIRMED, sid);
+			let res = stmtConfirmEmail.run(EMAIL_STATUS.CONFIRMED, sid);
 			if (res.changes === 0) {
 				let err = 'NO CHANGES at confirmation email with sid ' + sid;
 				// console.error(err);
@@ -160,12 +162,12 @@ export class Newsletters {
 		const existsEmail = db.prepare(`SELECT * FROM ${TABLE_NAME} WHERE id_remove = ?`).get(usid);
 		if (!existsEmail) {
 			return false;
-		} else if (existsEmail.status === EMAIL_STATUS_REMOVED) {
+		} else if (existsEmail.status === EMAIL_STATUS.REMOVED) {
 			return true;
-		} else if (existsEmail.status === EMAIL_STATUS_CONFIRMED) {
+		} else if (existsEmail.status === EMAIL_STATUS.CONFIRMED) {
 			const stmtRemoveEmail = db.prepare(`UPDATE ${TABLE_NAME} SET status = ?, remove_counter = ? WHERE id_remove = ?`);
 			const removeEmail = db.transaction(usid => {
-				let res = stmtRemoveEmail.run(EMAIL_STATUS_REMOVED, existsEmail.remove_counter + 1, usid);
+				let res = stmtRemoveEmail.run(EMAIL_STATUS.REMOVED, existsEmail.remove_counter + 1, usid);
 				if (res.changes === 0) {
 					let err = 'NO CHANGES at removing email with usid ' + usid;
 					// console.error(err);

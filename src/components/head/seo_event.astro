@@ -1,0 +1,112 @@
+---
+
+import plays from '@data/plays.json'
+import dictionary from '@data/dictionary.json'
+import theater from '@data/theater.json'
+import program from '@public_data/afisha.json'
+import prices from '@data/prices.json'
+
+import { ONE_DAY } from '@scripts/consts';
+
+const { lang, play_id, date, time, description } = Astro.props;
+
+const play = plays.find(item => (item.id.toString() === play_id));
+const event = program.find(item => (item.play_id.toString() === play_id && item.date === date && item.time === time));
+
+const stage = theater.stages.find(stg => stg.sid === event.stage_sid);
+const stageNameText  = dictionary.stage[lang] + " " + stage.name[lang].toUpperCase();
+
+let performer = theater.longTheaterName[lang];
+if (theater.fix_stages.includes(stage.sid)) performer = performer + " - " + stage.name[lang].toUpperCase();
+
+let placeName = '';
+if (stage.fix_stage) placeName = stage.place_name;
+else if (event.event_type && event.event_type.is_festival) placeName = event.event_name[lang];
+
+const startTime = time.split(':');
+const start = Number(startTime[0])*60 + Number(startTime[1]);
+const end = start + play.length;
+const endTime = `${Math.floor(end/60)}:${end%60}`;
+
+
+let images = []; 
+if (play?.seo?.event?.images) {
+  play.seo.event.images.forEach(image => images.push(theater.our_website_link+'/assets/'+image.url));
+} else {
+  images.push(theater.our_website_link+'/assets/logo_1920t.png');
+}
+
+const dateFrom = new Date(Date.now() - ONE_DAY);
+let strDateFrom = dateFrom.toISOString();
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": dictionary.play_lang[lang] + ' ' + dictionary.opening_quote[lang] + play.title[lang] + dictionary.closing_quote[lang],
+  "description": description,
+  "startDate": date + 'T' + time,
+  "endDate": date + 'T' + endTime,
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "location": {
+    "@type": "Place",
+    "name": placeName,
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": stage.address.street + ' ' + stage.address.building,
+      "addressLocality": stage.address.city,
+      "postalCode": stage.address.index,
+      "addressCountry": stage.address.country
+    }
+  },
+  "image": images,
+  "performer": {
+    "@type": "PerformingGroup",
+    "name": performer
+  },
+  "organizer": {
+    "@type": "Organization",
+    "name": theater.longTheaterName[lang],
+    "url": theater.our_website_link
+  }
+};
+
+if (event.prices && event.prices.length > 0) {
+  let event_prices = prices.filter(item => event.prices.includes(item.type));
+
+  const makeOffer = (price) => {
+    return {
+      "@type": "Offer",
+      "url": play.url_kontramarka,
+      "name" : price.text[lang],
+      "price": price.value.toString(),
+      "priceCurrency": "EUR",
+      "availability": "InStock"};
+  }
+  
+  if (event_prices.length === 1) {
+    schema["offers"] = makeOffer(event_prices[0]);
+  }
+  else if (event_prices.length > 1) {
+    const offers = [];
+    event_prices.sort((price1, price2) => price2.value - price1.value);
+    event_prices.forEach(price => offers.push(makeOffer(price)));
+
+    schema["offers"] = { 
+    "@type": "AggregateOffer",
+    "offerCount": event_prices.length.toString(),
+    "lowPrice": offers[offers.length-1].price,
+    "highPrice": offers[0].price,
+    "priceCurrency": "EUR",
+    "url": play.url_kontramarka,
+    "availability": "InStock",
+    "validFrom": strDateFrom,
+    "validThrough": date + 'T' + time,
+    "offers": offers,
+    }
+  }
+}
+
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

@@ -4,8 +4,9 @@ import dictionary from '@data/dictionary.json'
 import plays from '@data/plays.json'
 
 import SocialMediaHead from '@components/head/social_media.astro';
+import SeoEvent from '@components/head/seo_event.astro';
 
-const { lang, title, description, robots, play_id } = Astro.props;
+const { lang, title, description, robots, play_id, seo_event, date, time } = Astro.props;
 
 let now = new Date();
 
@@ -28,9 +29,11 @@ if (title && title.length > 0) {
 let pageDescription = description;
 if ((!pageDescription || pageDescription.length === 0) && play_id) {
   let play = plays.find(item => item.id.toString() === play_id);
-  let playDescription = play?.seo?.open_graph?.description;
+  let playDescription = play?.seo?.description;
   if (playDescription) pageDescription = playDescription[lang];
 }
+
+const addSeoEvent = seo_event === 'true';
 
 {
   /*
@@ -84,5 +87,9 @@ if ((!pageDescription || pageDescription.length === 0) && play_id) {
   }
   <link rel="alternate" href={theater.our_website_link + pathname.replace('/'+lang+'/', '/ru/')} hreflang="x-default" />
   <SocialMediaHead lang={lang} title={title} description={description} og_title={ogTitle} play_id = {play_id}/>
+  {
+    addSeoEvent &&
+    <SeoEvent lang={lang} play_id = {play_id} date={date} time={time} description={pageDescription}/>
+  }
   <meta name="generator" content={Astro.generator} />
 </head>

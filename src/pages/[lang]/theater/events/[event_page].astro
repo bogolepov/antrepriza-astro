@@ -46,7 +46,10 @@ let needTicketForm = event.no_tickets ? "no" : "yes";
 
 ---
 
-<AntreprizaLayout title={pageTitle} lang={pageLang} play_id={playID} ticket_form = {needTicketForm}>
+<AntreprizaLayout 
+  title={pageTitle} lang={pageLang} play_id={playID} 
+  ticket_form = {needTicketForm} 
+  seo_event = 'true' date={playDate} time={playTime}>
   <Event lang={pageLang} play_id={playID} date={playDate} time={playTime}></Event>
 </AntreprizaLayout>
 

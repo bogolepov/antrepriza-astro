@@ -13,14 +13,14 @@ import Head from "@components/head/head.astro";
 import FeedbackForm from "@components/feedback_form.astro"
 import TicketForm from "@components/ticket_form/ticket_form.astro";
 
-const { title, description, lang, reservation, robots = "index, follow", ticket_form = "no", play_id } = Astro.props;
+const { title, description, lang, reservation, robots = "index, follow", ticket_form = "no", play_id, seo_event = 'false', date, time } = Astro.props;
 
 let pageNeedTicketForm = (ticket_form === "yes");
 
 ---
 
 <html lang={lang}>
-	<Head lang={lang} title={title} description={description} robots={robots} play_id = {play_id} />
+	<Head lang={lang} title={title} description={description} robots={robots} play_id = {play_id} seo_event={seo_event} date={date} time={time}/>
 
 	<body class="no-js">
 
