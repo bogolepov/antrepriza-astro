@@ -1,6 +1,10 @@
 .privacy-policy .description {
 	--font-size: 1rem;
 	--font-size: clamp(0.85rem, 1.8vw, 1.05rem);
+
+	width: 100%;
+	max-width: 960px;
+	margin: 0 auto;
 }
 .privacy-policy .description p,
 .privacy-policy .description ul {
