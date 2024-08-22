@@ -73,7 +73,7 @@
 				"images": [
 					{ "format": "19_6", "url": "n32_soon_1920t.jpg" },
 					{ "format": "3_4", "url": "kontra_n32_1920t.jpg" },
-					{ "format": "3_4_1050", "url": "kontra_n32_1050t.jpg" }
+					{ "format": "3_4_1050", "url": "kontra_n32_1050t.webp" }
 				]
 			}
 		}
@@ -161,7 +161,7 @@
 				"images": [
 					{ "format": "19_6", "url": "miks_1920t.jpg" },
 					{ "format": "3_4", "url": "kontra_miks_1920t.jpg" },
-					{ "format": "3_4_1050", "url": "kontra_miks_1050t.jpg" }
+					{ "format": "3_4_1050", "url": "kontra_miks_1050t.webp" }
 				]
 			}
 		}
@@ -233,7 +233,7 @@
 				"images": [
 					{ "format": "19_6", "url": "mik_1920t.jpg" },
 					{ "format": "3_4", "url": "kontra_mik_1920t.jpg" },
-					{ "format": "3_4_1050", "url": "kontra_mik_1050t.jpg" }
+					{ "format": "3_4_1050", "url": "kontra_mik_1050t.webp" }
 				]
 			}
 		}
@@ -305,7 +305,7 @@
 				"images": [
 					{ "format": "19_6", "url": "op_1920t.jpg" },
 					{ "format": "3_4", "url": "kontra_op_1920t.jpg" },
-					{ "format": "3_4_1050", "url": "kontra_op_1050t.jpg" }
+					{ "format": "3_4_1050", "url": "kontra_op_1050t.webp" }
 				]
 			}
 		}
@@ -404,7 +404,7 @@
 				"images": [
 					{ "format": "19_6", "url": "dk_1920t.jpg" },
 					{ "format": "3_4", "url": "kontra_dk_1920t.jpg" },
-					{ "format": "3_4_1050", "url": "kontra_dk_1050t.jpg" }
+					{ "format": "3_4_1050", "url": "kontra_dk_1050t.webp" }
 				]
 			}
 		}
@@ -603,7 +603,7 @@
 				"images": [
 					{ "format": "19_6", "url": "ts_1920t.jpg" },
 					{ "format": "3_4", "url": "kontra_ts_1920t.jpg" },
-					{ "format": "3_4_1050", "url": "kontra_ts_1050t.jpg" }
+					{ "format": "3_4_1050", "url": "kontra_ts_1050t.webp" }
 				]
 			}
 		}
