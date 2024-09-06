@@ -65,7 +65,9 @@ export function initThemeMode() {
 
 	themeSwitcher = document.querySelector('#theme-switcher');
 
-	themeSwitcher.addEventListener('change', () => {
+	themeSwitcher.addEventListener('change', event => {
+		event.stopImmediatePropagation();
+		event.preventDefault();
 		let newMode = themeSwitcher.checked ? consts.THEME_DARK : consts.THEME_LIGHT;
 		// document.body.dataset.theme = newMode;
 		localStorage.setItem(consts.CNF_MODE, newMode);
@@ -74,15 +76,21 @@ export function initThemeMode() {
 	themeSwitcher.checked = mode === consts.THEME_DARK;
 	themeSwitcher.dispatchEvent(new Event('change'));
 
+	const handleChange = event => {
+		event.preventDefault();
+		themeSwitcher.checked = !themeSwitcher.checked;
+		themeSwitcher.dispatchEvent(new Event('change'));
+	};
+
 	let themeSwitcherItems = document.querySelectorAll('.theme-switcher-label');
 	themeSwitcherItems.forEach(item => {
 		item.addEventListener('keydown', event => {
 			if (event.code === 'Enter' || event.code === 'Space') {
-				event.preventDefault();
-				themeSwitcher.checked = !themeSwitcher.checked;
-				themeSwitcher.dispatchEvent(new Event('change'));
+				handleChange(event);
 			}
 		});
+		// we should use our click-function to avoid page jumping up, because labels for the switcher are there
+		item.addEventListener('click', handleChange);
 	});
 }
 
@@ -163,6 +171,26 @@ export function initHoverModeForTouchScreen() {
 				currentHoverBlock = null;
 			}
 		});
+	}
+}
+
+/* --------------------------------------------------- */
+/* ------------------- Events Page ------------------- */
+/* --------------------------------------------------- */
+export function initEventsTab() {
+	let params = new URLSearchParams(document.location.search);
+
+	let stage = params.get('stage');
+	if (!stage) return;
+
+	stage = stage.toLowerCase();
+	if (stage === 'west') {
+		const checkbox = document.querySelector('#evs-tab-west');
+		if (checkbox) checkbox.checked = true;
+	}
+	if (stage === 'ost') {
+		const checkbox = document.querySelector('#evs-tab-ost');
+		if (checkbox) checkbox.checked = true;
 	}
 }
 

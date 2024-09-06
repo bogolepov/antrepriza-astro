@@ -41,12 +41,18 @@ if (list.length > 0) {
 list = actualProgram.filter(event => event.event_type && event.event_type.is_tour);
 if (list.length > 0) {
   tabLabel = dictionary.tours[lang];
-  events.push(newEventsGroup(FESTIVAL, undefined, list, SID_TOUR, tabLabel));
+  events.push(newEventsGroup(TOUR, undefined, list, SID_TOUR, tabLabel));
 }
 
 let isFirstTab = true;
 
 ---
+<script>
+  import { initEventsTab } from "@scripts/antrepriza.js"
+	document.addEventListener('DOMContentLoaded', () => {
+		initEventsTab();
+	});
+</script>
 
 <section class="events">
   <h1 class="section-title">{dictionary.events[lang].toUpperCase()}</h1>
@@ -86,11 +92,13 @@ let isFirstTab = true;
                 let playDate = new Date(fullDate); 
 
                 return (
-                  <li><a class="evs-event-flex" href={`/${lang}/theater/events/${pageName}`}>                    
-                    <div>{playDate.getDate().toString().padStart(2, '0')}.{(playDate.getMonth()+1).toString().padStart(2, '0')}.{playDate.getFullYear().toString().padStart(4, '0')}</div>
-                    <div class="font-opacity1">{event.time}</div>
-                    <div>{play.title[lang]}</div>          
-                  </a></li>
+                  <li class="evs-item" data-date={event.date} data-time={event.time}>
+                    <a class="evs-event-flex" href={`/${lang}/theater/events/${pageName}`}>                    
+                      <div>{playDate.getDate().toString().padStart(2, '0')}.{(playDate.getMonth()+1).toString().padStart(2, '0')}.{playDate.getFullYear().toString().padStart(4, '0')}</div>
+                      <div class="font-opacity1">{event.time}</div>
+                      <div>{play.title[lang]}</div>          
+                    </a>
+                  </li>
                 );
               })
             }
@@ -102,3 +110,17 @@ let isFirstTab = true;
   </form>
   <div class="page-end"></div>
 </section>
+
+<script>
+	let events = document.querySelectorAll('.evs-item');
+	for (let event of events) {
+		let eventDay = new Date(Date.parse(event.getAttribute("data-date")+'T00:00:00'));
+		
+		eventDay.setDate(eventDay.getDate() + 1);
+		if (eventDay.valueOf()  <= Date.now()) {
+			(event as HTMLElement).style.textDecorationLine = 'line-through';
+      // (event as HTMLElement).style.display = 'none';
+		} 
+	}
+</script>
+

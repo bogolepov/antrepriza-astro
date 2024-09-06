@@ -12,7 +12,7 @@ const {lang} = Astro.props;
 
 import type { ImageMetadata } from 'astro'
 import { Picture } from 'astro:assets'
-const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg,jpg,png,gif}');
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/partners/*.{jpeg,jpg,png,gif}');
 
 ---
 <script>
@@ -86,63 +86,74 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
     <div class="footer-flex-item flex2">
       <div class="footer-partners">
         <div class="title font-opacity1">{dictionary.partners[lang].toUpperCase()}</div>
-        <div class="logo-flex">
-          <div class="logo-50 hover-block">
+        <ul class="logo-flex">
+          <li class="logo-50 hover-block">
             <a href="https://svoi.berlin/" target="_blank"	rel="noopener external">
               <Picture 
                 class:list={'image-wrapper-landscape black-white-filter'} 
-                src={images["/src/assets/logo_svoi.png"]()} 
+                src={images["/src/assets/partners/logo_svoi_t.png"]()} 
                 formats={['webp']} 
                 sizes={'50px'}
                 widths={[50]}
                 alt="Svoi.Berlin" />
               </a>
-          </div>
-          <div class="logo-50 hover-block">
-            <a href="https://www.auswaertiges-amt.de/" target="_blank"	rel="noopener external">
+          </li>
+          <li class="logo-50 hover-block">
+            <a href="https://www.av-huette.de/" target="_blank"	rel="noopener external">
               <Picture 
                 class:list={'image-wrapper-landscape black-white-filter'} 
-                src={images["/src/assets/logo_auswaertiges_amt.png"]()} 
+                src={images["/src/assets/partners/logo_avh_t.png"]()} 
                 formats={['webp']} 
                 sizes={'50px'}
                 widths={[50]}
-                alt="Auswärtiges Amt" />
+                alt="Akademischer Verein Hütte" />
               </a>
-          </div>
-          <div class="logo-50 hover-block">
+          </li>
+          <li class="logo-50 hover-block">
             <a href="https://www.neue-buehne-friedrichshain.de/" target="_blank"	rel="noopener external">
               <Picture 
                 class:list={'image-wrapper-landscape black-white-filter'} 
-                src={images["/src/assets/logo_nbf.png"]()} 
+                src={images["/src/assets/partners/logo_nbf_t.png"]()} 
                 formats={['webp']} 
                 sizes={'50px'}
                 widths={[50]}
                 alt="Neue Bühne Friedrichshain" />
               </a>
-          </div>
-          <div class="logo-75 hover-block">
+          </li>
+          <li class="logo-50 hover-block">
+            <a href="https://www.thelgbtlife.de/" target="_blank"	rel="noopener external">
+              <Picture 
+                class:list={'image-wrapper-landscape black-white-filter'} 
+                src={images["/src/assets/partners/logo_lgbt_life_t.png"]()} 
+                formats={['webp']} 
+                sizes={'50px'}
+                widths={[50]}
+                alt="The LGBT Life" />
+              </a>
+          </li>
+          <li class="logo-90 hover-block">
+            <a href="https://www.fonds-soziokultur.de/" target="_blank"	rel="noopener external">
+              <Picture 
+                class:list={'image-wrapper-landscape black-white-filter'} 
+                src={images["/src/assets/partners/logo_fonds_soziokultur_t.png"]()} 
+                formats={['webp']} 
+                sizes={'90px'}
+                widths={[90]}
+                alt="Fonds Soziokultur" />
+              </a>
+          </li>
+          <li class="logo-90 hover-block">
             <a href="https://www.kontramarka.de" target="_blank"	rel="noopener external">
               <Picture 
                 class:list={'image-wrapper-landscape black-white-filter'} 
-                src={images["/src/assets/logo_kontramarka.png"]()} 
+                src={images["/src/assets/partners/logo_kontramarka_t.png"]()} 
                 formats={['webp']} 
-                sizes={'75px'}
-                widths={[75]}
+                sizes={'90px'}
+                widths={[90]}
                 alt="Kontramarka" />
               </a>
-          </div>
-          <div class="logo-75 hover-block">
-            <a href="https://www.quarteera.de/" target="_blank"	rel="noopener external">
-              <Picture 
-                class:list={'image-wrapper-landscape black-white-filter'} 
-                src={images["/src/assets/logo_quarteera.png"]()} 
-                formats={['webp']} 
-                sizes={'75px'}
-                widths={[75]}
-                alt="Quarteera" />
-              </a>
-          </div>
-        </div>
+          </li>
+        </ul>
       </div>
       <div class="check-css"></div>
       <div class="web-developer">

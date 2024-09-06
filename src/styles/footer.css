@@ -151,7 +151,8 @@ footer .phone-number {
 .footer-partners .title {
 	/* text-align: end; */
 	padding-bottom: 0.3em;
-	font-size: clamp(0.75rem, 1.8vw, 0.9rem);
+	font-size: clamp(0.75rem, 1.8vw, 0.85rem);
+	font-weight: 400;
 }
 
 footer .logo-flex {
@@ -171,7 +172,12 @@ footer .logo-50 {
 footer .logo-75 {
 	max-width: 75px;
 }
-
+footer .logo-90 {
+	max-width: 90px;
+}
+footer .logo-100 {
+	max-width: 100px;
+}
 /* --------------------------------------------------- */
 /* --------------------- Newsletter ------------------ */
 /* --------------------------------------------------- */
