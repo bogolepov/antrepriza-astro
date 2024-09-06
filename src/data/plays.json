@@ -597,11 +597,11 @@
 				"de": "Nach dem Stück von A.Tschechow. Drama, 14+. Auf Russisch."
 			},
 			"open_graph": {
-				"image": { "url": "ts_1200t.jpg", "type": "image/jpeg" }
+				"image": { "url": "ts_1200wt.jpg", "type": "image/jpeg" }
 			},
 			"event": {
 				"images": [
-					{ "format": "19_6", "url": "ts_1920t.jpg" },
+					{ "format": "19_6", "url": "ts_1920wt.jpg" },
 					{ "format": "3_4", "url": "kontra_ts_1920t.jpg" },
 					{ "format": "3_4_1050", "url": "kontra_ts_1050t.webp" }
 				]
