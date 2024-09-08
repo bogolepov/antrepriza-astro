@@ -155,7 +155,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/partner
           </li>
         </ul>
       </div>
-      <div class="check-css"></div>
+      <div class="check-css">© 2024</div>
       <div class="web-developer">
         <div class="label font-opacity1">{dictionary.web_developer[lang]}</div>
         <a class="font-opacity1 bold1" href={theater.web_developer.url} target="_blank"	rel="noopener external">{theater.web_developer.name[lang]}</a> 
@@ -169,8 +169,9 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/partner
     if (document.visibilityState === 'visible') {
       const checkCSS = document.querySelector('.check-css');
       if (checkCSS && getComputedStyle(checkCSS).display !== 'none') {
-        location.replace(window.location.href);
+        location.reload();
+        // location.replace(window.location.href);
       }
     }
-  });
+	});
 </script>
