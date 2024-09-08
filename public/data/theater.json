@@ -64,6 +64,10 @@
 	"our_website_text": "antrepriza.eu",
 	"email": "info@antrepriza.eu",
 	"phone": "+49 176 49787741",
+	"review_links": [
+		{ "name": "Google", "link": "https://g.page/r/CXSamsbDK3NlEBI/review", "logo": "google-logo.svg" },
+		{ "name": "Facebook", "link": "https://www.facebook.com/AntreprizaBerlin/reviews", "logo": "facebook-logo.svg" }
+	],
 	"prices": [
 		{
 			"type": "standart22",

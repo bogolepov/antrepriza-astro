@@ -66,9 +66,13 @@
 		"ru": "Ваши бронирования: ",
 		"de": "Ihre Reservierungen: "
 	},
-	"email_reservation_welcome": {
-		"ru": "Мы будем рады Вашему визиту и с нетерпением ждем Вас!",
-		"de": "Wir freuen uns auf Ihren Besuch!"
+	"email_reservation_welcome1": {
+		"ru": "Мы будем рады Вашему визиту и Вашим словам поддержки-отзывам в %Google и %Facebook!",
+		"de": "Wir freuen uns auf Ihren Besuch und Ihre unterstützenden Worte-Bewertungen auf %Google und %Facebook!"
+	},
+	"email_reservation_welcome2": {
+		"ru": "С нетерпением ждем Вас!",
+		"de": "Sie sind sehnlichst erwartet von uns!"
 	},
 	"email_subscription_text": {
 		"ru": "Мы рады, что Вы решили подписаться на новости Театра Антреприза Берлин.",

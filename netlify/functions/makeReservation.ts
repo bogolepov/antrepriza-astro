@@ -139,14 +139,15 @@ ${dictionaryServer.new_reservation_text[lang]}\
 <tr><td colspan="2">${htmlReservation}</td></tr>\
 `;
 	} else {
-		let getHello = hour => {
+		const getHello = hour => {
 			if (hour < 6 && lang === 'ru') return dictionaryServer.hello[lang];
 			else if (hour < 12) return dictionaryServer.good_morning[lang];
 			else if (hour < 18) return dictionaryServer.good_afternoon[lang];
 			else return dictionaryServer.good_evening[lang];
 		};
-		let strHello =
+		const strHello =
 			getHello(dateOfReservation.getHours()) + (lang === 'ru' ? ', ' : ' ') + fromHtmlToPlainText(name) + (lang === 'ru' ? '!' : '.');
+		const strWelcome1_WithLinks = makeLinks(dictionaryServer.email_reservation_welcome1[lang]);
 
 		diffText = `\
 <tr><td style="font-size: 125%; padding-bottom: 15px; line-height: 120%; color: #d6d6d6; font-weight: 500">${strHello}</td></tr>\
@@ -162,7 +163,8 @@ ${dictionaryServer.email_reservation_where_link_text[lang]}</a>.\
 <tr><td style="line-height: 120%; color: #d6d6d6; padding: 0 0 20px 20px">${dictionaryServer.email_reservation_note3[lang]}</td></tr>\
 <tr><td style="line-height: 120%; color: #d6d6d6; padding-bottom: 5px">${dictionaryServer.email_reservation_note4[lang]}</td></tr>\
 <tr><td>${htmlReservation}</td></tr>\
-<tr><td style="line-height: 120%; color: #d6d6d6; padding: 20px 0 15px 0">${dictionaryServer.email_reservation_welcome[lang]}</td></tr>\
+<tr><td style="line-height: 120%; color: #d6d6d6; padding: 20px 0 15px 0">${strWelcome1_WithLinks}</td></tr>\
+<tr><td style="line-height: 120%; color: #d6d6d6; padding: 0 0 15px 0">${dictionaryServer.email_reservation_welcome2[lang]}</td></tr>\
 <tr><td style="line-height: 120%; color: #d6d6d6">${theater.longTheaterName[lang]}</td></tr>\
 <tr><td style="line-height: 120%">\
 <a href='${theater.our_website_link}/${lang}' style="line-height: 120%; color: #d6d6d6">${theater.our_website_text}</a>\
@@ -284,4 +286,16 @@ function makeTicketsRows(lang, tickets) {
 	});
 
 	return { amount: amount, html: ticketsRows };
+}
+
+function makeLinks(text) {
+	if (text) {
+		theater.review_links.forEach(item => {
+			text = text.replace(
+				`%${item.name}`,
+				`<a href='${item.link}' style="line-height: 120%; color: #87605e; font-weight: 700">${item.name}</a>`
+			);
+		});
+	}
+	return text;
 }
