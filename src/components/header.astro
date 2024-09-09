@@ -36,7 +36,7 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 			<div class="burger-button-wrapper">
 				<BurgerButton id="burger-button" lang={lang}/>
 			</div>
-			<nav class="burger-menu">
+			<div class="burger-menu">
 				<Menu lang={lang} add_classes="mobile"/>
 				<SocialPages lang={lang} add_classes="mobile social-pages-mobile" />
 				<Toolbar lang={lang} add_classes="mobile toolbar-mobile"/>
@@ -57,7 +57,7 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 						})
 					}
 				</ul>
-			</nav>
+			</div>
 		</div>
 		<div class="language-menu">
 			<div class="lang-button" tabindex="-1">

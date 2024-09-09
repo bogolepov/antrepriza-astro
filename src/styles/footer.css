@@ -39,35 +39,25 @@ footer .footer-flex-item {
 	/* align-self: flex-end; */
 }
 
-footer a,
-footer a * {
+footer a {
 	text-decoration: none;
 	transition: color 400ms ease-out;
 }
-
-footer label,
-footer button {
+footer a * {
 	transition: color 400ms ease-out;
 }
 
-@media (hover: hover) {
-	footer a:hover,
-	footer a:hover *,
-	footer label:hover,
-	footer button:hover {
-		transition: color 400ms ease-out;
-		color: var(--colorAntreprizaRed);
-	}
-	footer .info-text:has(a:hover) {
-		transition: color 400ms ease-out;
-		color: var(--colorAntreprizaRed);
-	}
+footer button {
+	transition: color 400ms ease-out;
+}
+footer .mainpage-link {
+	color: var(--colorFont);
 }
 
 .footer-logo {
 	width: var(--footerLogoWidth);
 	height: var(--footerLogoHeight);
-	color: var(--colorFont);
+	color: currentColor;
 }
 
 .footer-text-link {
@@ -164,6 +154,20 @@ footer .logo-90 {
 footer .logo-100 {
 	max-width: 100px;
 }
+
+@media (hover: hover) {
+	footer a:hover,
+	footer a:hover *,
+	footer button:hover {
+		transition: color 400ms ease-out;
+		color: var(--colorAntreprizaRed);
+	}
+	footer .info-text:has(a:hover) {
+		transition: color 400ms ease-out;
+		color: var(--colorAntreprizaRed);
+	}
+}
+
 /* --------------------------------------------------- */
 /* --------------------- Newsletter ------------------ */
 /* --------------------------------------------------- */

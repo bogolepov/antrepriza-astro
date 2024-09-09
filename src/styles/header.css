@@ -21,8 +21,7 @@
 	--toolbarLogoTextWidth: 112.4px;
 }
 
-header a,
-header a * {
+header a {
 	text-decoration: none;
 	transition: color 400ms ease-out;
 }
@@ -34,14 +33,16 @@ header a * {
 	display: none;
 	width: var(--toolbarLogoWidth);
 	height: var(--toolbarLogoHeight);
-	color: var(--colorFont);
+	color: currentColor;
+	/* color: var(--colorFont); */
 }
 
 .icon-logo-text {
 	display: block;
 	width: var(--toolbarLogoTextWidth);
 	height: var(--toolbarLogoHeight);
-	color: var(--colorFont);
+	color: currentColor;
+	/* color: var(--colorFont); */
 }
 
 @media screen and (max-width: 1050px) {
@@ -132,7 +133,7 @@ header {
 	display: block;
 	height: 18px;
 	width: 18px;
-	color: var(--colorFont);
+	color: currentColor;
 }
 
 .lang-text {
@@ -142,7 +143,10 @@ header {
 	letter-spacing: 2px;
 }
 
-.lang-button * {
+/* .lang-button * , */
+.toolbar-list li,
+header a .lang-brief,
+.lang-button {
 	transition: color 400ms ease-out;
 }
 
@@ -269,8 +273,8 @@ header:has(.burger-switcher:checked) .burger-menu {
 /* --------------------------------------------------- */
 /* -------------- active - current pages-------------- */
 /* --------------------------------------------------- */
-.active_link,
-.active_link * {
+/* .active_link *, */
+.active_link {
 	color: var(--colorAntreprizaRed);
 }
 
@@ -279,9 +283,9 @@ header:has(.burger-switcher:checked) .burger-menu {
 /* --------------------------------------------------- */
 @media (hover: hover) {
 	header a:hover,
-	header a:hover *,
-	.lang-button:hover *,
-	.toolbar-list li:hover * {
+	.toolbar-list li:hover,
+	.lang-button:hover,
+	header a:hover .lang-brief {
 		cursor: pointer;
 		transition: color 400ms ease-out;
 		color: var(--colorAntreprizaRed);

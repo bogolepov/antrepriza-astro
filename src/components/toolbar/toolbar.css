@@ -15,14 +15,9 @@
 .toolbar-list li {
 	align-self: center;
 }
-.toolbar-list li * {
-	transition:
-		color 400ms ease-out,
-		fill 400ms ease-out;
-}
 
 .tool-icon {
-	color: var(--colorFont);
+	color: currentColor;
 	width: clamp(var(--toolbarSmallIconSize), 2vw, var(--toolbarNormalIconSize));
 	height: clamp(var(--toolbarSmallIconSize), 2vw, var(--toolbarNormalIconSize));
 }
