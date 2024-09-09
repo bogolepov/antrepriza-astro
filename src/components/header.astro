@@ -1,8 +1,7 @@
 ---
 import "@styles/header.css"
 
-import Symbols from '@svg/symbols.svg?url'
-import AntreprizaLogo from '@svg/logo.svg?url'
+import { Icon } from 'astro-icon/components'
 
 const {lang} = Astro.props;
 
@@ -36,10 +35,8 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 	<nav class="nav-flex">
 		<div class="language-menu">
 			<div class="lang-button" tabindex="-1">
-					<svg class="lang-icon">
-						<use href={Symbols + '#language'}></use>
-					</svg>
-					<div class="lang-text">{lang}</div>
+				<Icon name="planet" class="lang-icon" />
+				<div class="lang-text">{lang}</div>
 			</div>
 			<div class="dropdown-box">
 				<ul class="submenu-list">
@@ -60,14 +57,8 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 		</div>
 		<div class="navigator-logo-item">
 			<a href={"/" + lang + "/"} class:list={{active_link: currentPath[1] === undefined}} aria-label={dictionary.main_page[lang]}>
-				<svg class="navigator-icon-logo-text">
-					<use href={AntreprizaLogo + '#logo-text-' + lang}></use>
-					<!-- <title>{dictionary.logo[lang]}</title> -->
-				</svg>
-				<svg class="navigator-icon-logo">
-					<use href={AntreprizaLogo + '#logo'}></use>
-					<!-- <title>{dictionary.logo[lang]}</title> -->
-				</svg>
+				<Icon name={"logo-"+lang} class="icon-logo-text" />
+				<Icon name="logo" class="icon-logo" />
 			</a>
 		</div>
     <Menu lang={lang} />
@@ -115,12 +106,8 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 		href={"/" + lang + "/"} 
 		class:list={{active_link: currentPath[1] === undefined}} 
 		aria-label={dictionary.main_page[lang]}>
-			<svg class="header-logo-text-icon">
-				<use href={AntreprizaLogo + "#logo-text-" + lang}></use>
-			</svg>
-			<svg class="header-logo-icon">
-				<use href={AntreprizaLogo + "#logo"}></use>
-			</svg>
+			<Icon name={"logo-"+lang} class="icon-logo-text" />
+			<Icon name="logo" class="icon-logo" />
 	</a>
 	<div></div>
 	<TicketPageButton lang={lang} />

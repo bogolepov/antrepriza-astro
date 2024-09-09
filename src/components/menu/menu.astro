@@ -1,7 +1,7 @@
 ---
 import "@components/menu/menu.css"
 
-import Symbols from '@svg/symbols.svg?url'
+import { Icon } from 'astro-icon/components'
 
 import dictionary from '@data/dictionary.json'
 import theater from '@data/theater.json'
@@ -38,9 +38,7 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
             }
             {
               hasSubmenu &&
-              <svg class="submenu-icon" role="button" aria-label={dictionary.aria_submenu[lang]}>
-                <use href={Symbols + "#drop-down"}></use>
-              </svg>
+              <Icon name="drop-down" class="submenu-icon" role="button" aria-label={dictionary.aria_submenu[lang]} />
             }
           </div>
           {

@@ -1,9 +1,9 @@
 ---
 import "@components/toolbar/toolbar.css"
 
-import Symbols from '@svg/symbols.svg?url'
+import { Icon } from 'astro-icon/components'
 
-const {lang, add_classes} = Astro.props;
+const { lang, add_classes} = Astro.props;
 
 import dictionary from '@data/dictionary.json'
 
@@ -13,15 +13,11 @@ import dictionary from '@data/dictionary.json'
   <li class="theme-button">
     <label class="theme-switcher-label" for="theme-switcher" tabindex="0"></label>
     <div class="theme-block theme-block-light">
-      <svg class="tool-icon">
-        <use href={Symbols + "#light-mode-4"}></use>
-      </svg>
-      <span class="theme-text">{dictionary.themeTextLight[lang]}</span>
+      <Icon name="light-mode" class="tool-icon" />
+      <span class="theme-text">{dictionary.themeTextLight[lang]}</span> 
     </div>
     <div class="theme-block theme-block-dark">
-      <svg class="tool-icon">
-        <use href={Symbols + "#dark-mode-4"}></use>
-      </svg>
+      <Icon name="dark-mode" class="tool-icon" />
       <span class="theme-text">{dictionary.themeTextDark[lang]}</span>
     </div>
   </li>

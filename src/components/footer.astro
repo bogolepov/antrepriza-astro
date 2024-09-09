@@ -4,7 +4,7 @@ import "@styles/footer.css"
 import theater from '@data/theater.json'
 import dictionary from '@data/dictionary.json'
 
-import Logo from '../svg/logo.svg?url'
+import { Icon } from 'astro-icon/components'
 
 import SocialPages from '@components/social_pages/social_pages.astro'
 
@@ -30,13 +30,9 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/partner
 <footer>
   <div class="footer-flex">
     <div class="footer-flex-item flex2">
-      <div class="footer-logo">
+      <div>
         <a href={"/" + lang + "/"}>
-          <svg class="footer-logo-svg">
-            <!-- <use href={Logo + "#logo"}></use> -->
-            <use href={Logo + "#logo-text-" + lang}></use>
-            <title>{dictionary.logo[lang]}</title>
-          </svg>
+          <Icon name={"logo-"+lang} class="footer-logo" />
         </a>
       </div>
       {

@@ -42,16 +42,12 @@ footer .footer-flex-item {
 footer a,
 footer a * {
 	text-decoration: none;
-	transition:
-		color 400ms ease-out,
-		fill 400ms ease-out;
+	transition: color 400ms ease-out;
 }
 
 footer label,
 footer button {
-	transition:
-		color 400ms ease-out,
-		fill 400ms ease-out;
+	transition: color 400ms ease-out;
 }
 
 @media (hover: hover) {
@@ -59,11 +55,8 @@ footer button {
 	footer a:hover *,
 	footer label:hover,
 	footer button:hover {
-		transition:
-			color 400ms ease-out,
-			fill 400ms ease-out;
+		transition: color 400ms ease-out;
 		color: var(--colorAntreprizaRed);
-		fill: var(--colorAntreprizaRed);
 	}
 	footer .info-text:has(a:hover) {
 		transition: color 400ms ease-out;
@@ -72,16 +65,9 @@ footer button {
 }
 
 .footer-logo {
-}
-
-.footer-logo-svg {
 	width: var(--footerLogoWidth);
 	height: var(--footerLogoHeight);
-	fill: var(--colorFont);
-	font-family: 'Roboto';
-	font-weight: var(--font-logo-weight);
-	font-size: 9px;
-	stroke-width: 0px;
+	color: var(--colorFont);
 }
 
 .footer-text-link {

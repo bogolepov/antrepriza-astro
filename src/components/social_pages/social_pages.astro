@@ -1,12 +1,10 @@
 ---
 import "@components/social_pages/social_pages.css"
 
-import SocialIcons from '@svg/symbols.svg?url'
+import { Icon } from 'astro-icon/components'
 
+const {add_classes} = Astro.props;
 
-const {lang, add_classes} = Astro.props;
-
-import dictionary from '@data/dictionary.json'
 import theater from '@data/theater.json'
 
 ---
@@ -17,10 +15,7 @@ import theater from '@data/theater.json'
       return (
         <li>
           <a href={socialPage.url} target="_blank"	rel="noopener external">
-            <svg class:list={['social-icon', socialPage.name.toLowerCase()]}>
-              <use href={SocialIcons + socialPage.svg}></use>
-              <title>{dictionary.logo[lang]} {socialPage.name}</title>
-            </svg>
+            <Icon name={socialPage.name.toLowerCase()} class="social-icon" />
           </a>
         </li>
       );

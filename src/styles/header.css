@@ -24,9 +24,51 @@
 header a,
 header a * {
 	text-decoration: none;
-	transition:
-		color 400ms ease-out,
-		fill 400ms ease-out;
+	transition: color 400ms ease-out;
+}
+
+/* --------------------------------------------------- */
+/* ----------------------- LOGO ---------------------- */
+/* --------------------------------------------------- */
+.icon-logo {
+	display: none;
+	width: var(--toolbarLogoWidth);
+	height: var(--toolbarLogoHeight);
+	color: var(--colorFont);
+}
+
+.icon-logo-text {
+	display: block;
+	width: var(--toolbarLogoTextWidth);
+	height: var(--toolbarLogoHeight);
+	color: var(--colorFont);
+}
+
+@media screen and (max-width: 1050px) {
+	.icon-logo {
+		display: block;
+	}
+	.icon-logo-text {
+		display: none;
+	}
+}
+
+@media screen and (max-width: 910px) {
+	.icon-logo {
+		display: none;
+	}
+	.icon-logo-text {
+		display: block;
+	}
+}
+
+@media screen and (max-width: 400px) {
+	.icon-logo {
+		display: block;
+	}
+	.icon-logo-text {
+		display: none;
+	}
 }
 
 /* --------------------------------------------------- */
@@ -128,7 +170,7 @@ header {
 	display: block;
 	height: 18px;
 	width: 18px;
-	fill: var(--colorFont);
+	color: var(--colorFont);
 }
 
 .lang-text {
@@ -139,9 +181,7 @@ header {
 }
 
 .lang-button * {
-	transition:
-		color 400ms ease-out,
-		fill 400ms ease-out;
+	transition: color 400ms ease-out;
 }
 
 /* --------------------------------------------------- */
@@ -153,33 +193,11 @@ header {
 }
 
 /* --------------------------------------------------- */
-
-.navigator-icon-logo {
-	width: var(--toolbarLogoWidth);
-	height: var(--toolbarLogoHeight);
-	fill: var(--colorFont);
-	stroke-width: 0px;
-}
-
-.navigator-icon-logo-text {
-	width: var(--toolbarLogoTextWidth);
-	height: var(--toolbarLogoHeight);
-	fill: var(--colorFont);
-	font-family: 'Roboto';
-	font-weight: var(--font-logo-weight);
-	font-size: 9px;
-	stroke-width: 0px;
-}
-
-/* --------------------------------------------------- */
 /* -------------- active - current pages-------------- */
 /* --------------------------------------------------- */
-.active_link {
+.active_link,
+.active_link * {
 	color: var(--colorAntreprizaRed);
-}
-
-.active_link svg {
-	fill: var(--colorAntreprizaRed);
 }
 
 /* --------------------------------------------------- */
@@ -191,11 +209,8 @@ header {
 	.lang-button:hover *,
 	.toolbar-list li:hover * {
 		cursor: pointer;
-		transition:
-			color 400ms ease-out,
-			fill 400ms ease-out;
+		transition: color 400ms ease-out;
 		color: var(--colorAntreprizaRed);
-		fill: var(--colorAntreprizaRed);
 	}
 }
 
@@ -207,48 +222,9 @@ header a:focus-visible {
 	outline-offset: 3px;
 }
 
-.navigator-logo-item a:focus-visible .navigator-icon-logo-text,
-.navigator-logo-item a:focus-visible .navigator-icon-logo {
+.navigator-logo-item a:focus-visible .icon-logo-text,
+.navigator-logo-item a:focus-visible .icon-logo {
 	outline: 1px solid var(--colorAntreprizaRed);
-}
-
-/* --------------------------------------------------- */
-/* ----------------- screen adaptation --------------- */
-/* --------------------------------------------------- */
-
-@media screen and (min-width: 1050px) {
-	.navigator-icon-logo {
-		display: none;
-	}
-	.navigator-icon-logo-text {
-		display: block;
-	}
-}
-@media screen and (max-width: 1050px) {
-	.navigator-icon-logo {
-		display: block;
-	}
-	.navigator-icon-logo-text {
-		display: none;
-	}
-}
-
-@media screen and (max-width: 910px) {
-	.navigator-icon-logo {
-		display: none;
-	}
-	.navigator-icon-logo-text {
-		display: block;
-	}
-}
-
-@media screen and (max-width: 570px) {
-	.navigator-icon-logo {
-		display: block;
-	}
-	.navigator-icon-logo-text {
-		display: none;
-	}
 }
 
 /* --------------------------------------------------- */
@@ -261,23 +237,6 @@ header a:focus-visible {
 .header-logo {
 	box-sizing: content-box;
 	padding: 4px 15px;
-}
-
-.header-logo-icon {
-	width: var(--toolbarLogoWidth);
-	height: var(--toolbarLogoHeight);
-	fill: var(--colorFont);
-	stroke-width: 0px;
-}
-
-.header-logo-text-icon {
-	width: var(--toolbarLogoTextWidth);
-	height: var(--toolbarLogoHeight);
-	fill: var(--colorFont);
-	font-family: 'Roboto';
-	font-weight: var(--font-logo-weight);
-	font-size: 9px;
-	stroke-width: 0px;
 }
 
 .lang-brief {
@@ -344,22 +303,4 @@ header a:focus-visible {
 
 .language-list {
 	line-height: 1.7rem;
-}
-
-@media screen and (max-width: 910px) {
-	.header-logo-icon {
-		display: none;
-	}
-	.header-logo-text-icon {
-		display: block;
-	}
-}
-
-@media screen and (max-width: 400px) {
-	.header-logo-icon {
-		display: block;
-	}
-	.header-logo-text-icon {
-		display: none;
-	}
 }

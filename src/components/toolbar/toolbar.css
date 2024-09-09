@@ -22,7 +22,7 @@
 }
 
 .tool-icon {
-	fill: var(--colorFont);
+	color: var(--colorFont);
 	width: clamp(var(--toolbarSmallIconSize), 2vw, var(--toolbarNormalIconSize));
 	height: clamp(var(--toolbarSmallIconSize), 2vw, var(--toolbarNormalIconSize));
 }
