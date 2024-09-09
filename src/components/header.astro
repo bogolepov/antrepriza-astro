@@ -1,6 +1,4 @@
 ---
-import "@styles/header.css"
-
 import { Icon } from 'astro-icon/components'
 
 const {lang} = Astro.props;
@@ -15,6 +13,7 @@ import SocialPages from '@components/social_pages/social_pages.astro'
 import Toolbar from '@components/toolbar/toolbar.astro'
 import BurgerButton from "./burger_button/burger_button.astro";
 
+import "@styles/header.css"
 
 plays.sort((play1, play2) => play1.alt_title[lang].toLowerCase().localeCompare(play2.alt_title[lang].toLowerCase(), lang));
 
@@ -31,8 +30,35 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 	});
 </script>
 
-<header class="header" lang={lang}>
-	<nav class="nav-flex">
+<header>
+	<nav class="header-navigator">
+		<div class="burger">
+			<div class="burger-button-wrapper">
+				<BurgerButton id="burger-button" lang={lang}/>
+			</div>
+			<nav class="burger-menu">
+				<Menu lang={lang} add_classes="mobile"/>
+				<SocialPages lang={lang} add_classes="mobile social-pages-mobile" />
+				<Toolbar lang={lang} add_classes="mobile toolbar-mobile"/>
+
+				<ul class="language-list">
+					{
+						theater.languages.map(lng => {
+							if (lng.lang_code !== lang) {
+								return (
+									<li>
+										<a href={pathname.replace('/'+lang+'/', '/'+lng.lang_code+'/')}>
+											<span class="lang-brief">{lng.lang_code.toUpperCase()}</span>
+											<span class="lang-title">{lng.lang_name}</span>
+										</a>
+									</li>
+								);
+							}
+						})
+					}
+				</ul>
+			</nav>
+		</div>
 		<div class="language-menu">
 			<div class="lang-button" tabindex="-1">
 				<Icon name="planet" class="lang-icon" />
@@ -44,7 +70,7 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 					theater.languages.map(lng => {
 						return (
 							<li>
-								<a href={theater.our_website_link + pathname.replace('/'+lang+'/', '/'+lng.lang_code+'/')} >
+								<a href={pathname.replace('/'+lang+'/', '/'+lng.lang_code+'/')} >
 									<span class="lang-brief">{lng.lang_code.toUpperCase()}</span>
 									<span class="lang-title">{lng.lang_name}</span>
 								</a>
@@ -61,55 +87,16 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 				<Icon name="logo" class="icon-logo" />
 			</a>
 		</div>
-    <Menu lang={lang} />
+    <Menu lang={lang} add_classes="desktop-menu"/>
 		<div class="flex-spreader"></div>
 		<TicketPageButton lang={lang} />
     <div class="social-block">
 			<SocialPages lang={lang} />
 		</div>
-	</nav>
-	<div class="toolbar-block">
-		<Toolbar lang={lang}/>
-	</div>
-</header>
-
-<header class="header-mobile"lang={lang}>
-	<div class="header-burger">
-		<div class="burger-button-wrapper">
-			<BurgerButton id="burger-button" lang={lang}/>
+		<div class="toolbar-block">
+			<Toolbar lang={lang}/>
 		</div>
-		<nav class="burger-menu">
-			<Menu lang={lang} add_classes="mobile"/>
-			<SocialPages lang={lang} add_classes="mobile" />
-			<Toolbar lang={lang} add_classes="mobile"/>
-
-			<ul class="language-list">
-				{
-					theater.languages.map(lng => {
-						if (lng.lang_code !== lang) {
-							return (
-								<li>
-									<a href={pathname.replace('/'+lang+'/', '/'+lng.lang_code+'/')}>
-										<span class="lang-brief">{lng.lang_code.toUpperCase()}</span>
-										<span class="lang-title">{lng.lang_name}</span>
-									</a>
-								</li>
-							);
-						}
-					})
-				}
-			</ul>
-		</nav>
-	</div>
-	<a 
-		class="header-logo" 
-		href={"/" + lang + "/"} 
-		class:list={{active_link: currentPath[1] === undefined}} 
-		aria-label={dictionary.main_page[lang]}>
-			<Icon name={"logo-"+lang} class="icon-logo-text" />
-			<Icon name="logo" class="icon-logo" />
-	</a>
-	<div></div>
-	<TicketPageButton lang={lang} />
+	</nav>
 </header>
+
 <div class="main-padding-top"></div>
