@@ -44,11 +44,11 @@ export async function sendMails(
 
 	const theater = getJsonTheater();
 	const fromEmailDescription: string = theater ? `${theater.longTheaterName[lang]} ` : '';
-	const fromEmail: string = `${fromEmailDescription}<${process.env.ANTREPRIZA_GMAIL_EMAIL}>`;
-	// const fromEmail: string =
-	// 	process.env.MODE === process.env.MODE_LOCALHOST
-	// 		? `${fromEmailDescription}<${process.env.ANTREPRIZA_GMAIL_EMAIL}>`
-	// 		: `${fromEmailDescription}<${transporterMail}>`;
+	// const fromEmail: string = `${fromEmailDescription}<${process.env.ANTREPRIZA_GMAIL_EMAIL}>`;
+	const fromEmail: string =
+		process.env.MODE === process.env.MODE_LOCALHOST
+			? `${fromEmailDescription}<${process.env.ANTREPRIZA_GMAIL_EMAIL}>`
+			: `${fromEmailDescription}<${transporterMail}>`;
 
 	const mailOptionsClient = {
 		from: fromEmail,
