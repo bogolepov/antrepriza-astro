@@ -56,6 +56,7 @@ export async function sendMails(
 		subject: clientMail.subject,
 		html: clientMail.html,
 	};
+	console.log(mailOptionsClient);
 
 	try {
 		await transporter.sendMail(mailOptionsClient);
