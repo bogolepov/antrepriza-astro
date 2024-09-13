@@ -15,6 +15,7 @@ export async function sendMails(
 	clientMail: TMail,
 	antreprizaMail?: TMail
 ): Promise<HandlerResponse> {
+	console.log('createTransport......');
 	const transporter = nodemailer.createTransport({
 		service: 'gmail',
 		auth: {
@@ -41,6 +42,7 @@ export async function sendMails(
 	// 				pass: process.env.ANTREPRIZA_SMTP_PASSWORD,
 	// 			},
 	// 	  });
+	console.log('...done');
 
 	const theater = getJsonTheater();
 	const fromEmailDescription: string = theater ? `${theater.longTheaterName[lang]} ` : '';
@@ -50,17 +52,20 @@ export async function sendMails(
 	// 		? `${fromEmailDescription}<${process.env.ANTREPRIZA_GMAIL_EMAIL}>`
 	// 		: `${fromEmailDescription}<${transporterMail}>`;
 
+	console.log('*** mailOptionsClient : ');
 	const mailOptionsClient = {
 		from: fromEmail,
 		to: clientMail.to,
 		subject: clientMail.subject,
 		html: clientMail.html,
 	};
+	console.log(mailOptionsClient);
 
 	try {
 		await transporter.sendMail(mailOptionsClient);
 
 		if (antreprizaMail) {
+			console.log('*** mailOptionsAntrepriza : ');
 			const antreprizaMailTo: string =
 				process.env.MODE === process.env.MODE_PRODUCTION
 					? transporterMail + ', ' + process.env.ANTREPRIZA_EMAIL_MAMONTOV
@@ -72,6 +77,7 @@ export async function sendMails(
 				subject: antreprizaMail.subject,
 				html: antreprizaMail.html,
 			};
+			console.log(mailOptionsAntrepriza);
 
 			try {
 				await transporter.sendMail(mailOptionsAntrepriza);
