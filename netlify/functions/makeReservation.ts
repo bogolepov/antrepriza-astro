@@ -93,7 +93,7 @@ function validateMessage(messageData) {
 	});
 
 	if (valid && myAmount != messageData.amount) {
-		console.log('Amount is not correct');
+		// console.log('Amount is not correct');
 		valid = false;
 	}
 
