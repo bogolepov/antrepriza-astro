@@ -15,6 +15,7 @@ export async function sendMails(
 	clientMail: TMail,
 	antreprizaMail?: TMail
 ): Promise<HandlerResponse> {
+	console.log('sendMails1');
 	const transporter =
 		process.env.MODE === process.env.MODE_LOCALHOST
 			? nodemailer.createTransport({
@@ -35,13 +36,16 @@ export async function sendMails(
 					},
 			  });
 
+	console.log('sendMails2');
 	const theater = getJsonTheater();
 	const fromEmailDescription: string = theater ? `${theater.longTheaterName[lang]} ` : '';
+	console.log('sendMails3');
 	const fromEmail: string =
 		process.env.MODE === process.env.MODE_LOCALHOST
 			? `${fromEmailDescription}<${process.env.ANTREPRIZA_GMAIL_EMAIL}>`
 			: `${fromEmailDescription}<${transporterMail}>`;
 
+	console.log('sendMails4');
 	const mailOptionsClient = {
 		from: fromEmail,
 		to: clientMail.to,
@@ -49,15 +53,20 @@ export async function sendMails(
 		html: clientMail.html,
 	};
 
+	console.log('sendMails5');
 	try {
+		console.log('sendMails5-1');
 		await transporter.sendMail(mailOptionsClient);
 
+		console.log('sendMails5-2');
 		if (antreprizaMail) {
+			console.log('sendMails5-3');
 			const antreprizaMailTo: string =
 				process.env.MODE === process.env.MODE_PRODUCTION
 					? transporterMail + ', ' + process.env.ANTREPRIZA_EMAIL_MAMONTOV
 					: process.env.ANTREPRIZA_EMAIL_BOGOLEPOV;
 
+			console.log('sendMails5-4');
 			const mailOptionsAntrepriza = {
 				from: fromEmail,
 				to: antreprizaMailTo,
@@ -65,12 +74,17 @@ export async function sendMails(
 				html: antreprizaMail.html,
 			};
 
+			console.log('sendMails5-5');
 			try {
+				console.log('sendMails5-6');
 				await transporter.sendMail(mailOptionsAntrepriza);
+				console.log('sendMails5-7');
 			} catch (error) {
+				console.log('sendMails5-8');
 				console.error(error);
 			}
 		}
+		console.log('sendMails5-9');
 
 		return {
 			statusCode: 200,
@@ -79,6 +93,7 @@ export async function sendMails(
 			}),
 		};
 	} catch (error) {
+		console.log('sendMails5-10');
 		console.error(error);
 		return {
 			statusCode: 500,

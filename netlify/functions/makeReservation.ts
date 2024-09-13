@@ -8,7 +8,10 @@ let dictionaryServer;
 let theater;
 
 export const handler: Handler = async (event, context) => {
+	console.log('ticket1');
+
 	dictionaryServer = getJsonDictionary();
+	console.log('ticket2');
 	theater = getJsonTheater();
 	if (!dictionaryServer || !theater) {
 		console.error('JSON files are not found');
@@ -20,10 +23,13 @@ export const handler: Handler = async (event, context) => {
 		};
 	}
 
+	console.log('ticket3');
 	const messageData = JSON.parse(event.body);
+	console.log('ticket4');
 
 	// spam checking
 	if (!validateMessage(messageData)) {
+		console.log('ticket: error 1');
 		// fake OK-result
 		return {
 			statusCode: 200,
@@ -35,19 +41,23 @@ export const handler: Handler = async (event, context) => {
 
 	const { lang, name, email, reservations, amount, now } = messageData;
 
+	console.log('ticket5');
 	const subject = dictionaryServer.email_reservation_subject[lang];
 	const transporterMail: string = process.env.ANTREPRIZA_EMAIL_TICKETS;
+	console.log('ticket6');
 
 	let clientMail: TMail = {
 		to: email,
 		subject: subject,
 		html: makeHtmlEmail(lang, subject, makeContent(lang, name, email, reservations, amount, now, false)),
 	};
+	console.log('ticket7');
 	let antreprizaMail: TMail = {
 		to: '',
 		subject: subject,
 		html: makeHtmlEmail(lang, subject, makeContent(lang, name, email, reservations, amount, now, true)),
 	};
+	console.log('ticket8');
 
 	return await sendMails(lang, transporterMail, clientMail, antreprizaMail);
 };
