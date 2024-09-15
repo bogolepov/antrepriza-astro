@@ -15,40 +15,40 @@ export async function sendMails(
 	clientMail: TMail,
 	antreprizaMail?: TMail
 ): Promise<HandlerResponse> {
-	const transporter = nodemailer.createTransport({
-		service: 'gmail',
-		auth: {
-			user: process.env.ANTREPRIZA_GMAIL_EMAIL,
-			pass: process.env.ANTREPRIZA_GMAIL_PASSWORD,
-		},
-	});
-	// const transporter =
-	// process.env.MODE === process.env.MODE_LOCALHOST
-	// 	? nodemailer.createTransport({
-	// 			service: 'gmail',
-	// 			auth: {
-	// 				user: process.env.ANTREPRIZA_GMAIL_EMAIL,
-	// 				pass: process.env.ANTREPRIZA_GMAIL_PASSWORD,
-	// 			},
-	// 	  })
-	// 	: nodemailer.createTransport({
-	// 			pool: true,
-	// 			host: process.env.ANTREPRIZA_SMTP_HOST,
-	// 			port: 465,
-	// 			secure: true, // use TLS
-	// 			auth: {
-	// 				user: transporterMail,
-	// 				pass: process.env.ANTREPRIZA_SMTP_PASSWORD,
-	// 			},
-	// 	  });
+	// const transporter = nodemailer.createTransport({
+	// 	service: 'gmail',
+	// 	auth: {
+	// 		user: process.env.ANTREPRIZA_GMAIL_EMAIL,
+	// 		pass: process.env.ANTREPRIZA_GMAIL_PASSWORD,
+	// 	},
+	// });
+	const transporter =
+		process.env.MODE === process.env.MODE_LOCALHOST
+			? nodemailer.createTransport({
+					service: 'gmail',
+					auth: {
+						user: process.env.ANTREPRIZA_GMAIL_EMAIL,
+						pass: process.env.ANTREPRIZA_GMAIL_PASSWORD,
+					},
+			  })
+			: nodemailer.createTransport({
+					pool: true,
+					host: process.env.ANTREPRIZA_SMTP_HOST,
+					port: 465,
+					secure: true, // use TLS
+					auth: {
+						user: transporterMail,
+						pass: process.env.ANTREPRIZA_SMTP_PASSWORD,
+					},
+			  });
 
 	const theater = getJsonTheater();
 	const fromEmailDescription: string = theater ? `${theater.longTheaterName[lang]} ` : '';
-	const fromEmail: string = `${fromEmailDescription}<${process.env.ANTREPRIZA_GMAIL_EMAIL}>`;
-	// const fromEmail: string =
-	// 	process.env.MODE === process.env.MODE_LOCALHOST
-	// 		? `${fromEmailDescription}<${process.env.ANTREPRIZA_GMAIL_EMAIL}>`
-	// 		: `${fromEmailDescription}<${transporterMail}>`;
+	// const fromEmail: string = `${fromEmailDescription}<${process.env.ANTREPRIZA_GMAIL_EMAIL}>`;
+	const fromEmail: string =
+		process.env.MODE === process.env.MODE_LOCALHOST
+			? `${fromEmailDescription}<${process.env.ANTREPRIZA_GMAIL_EMAIL}>`
+			: `${fromEmailDescription}<${transporterMail}>`;
 
 	const mailOptionsClient = {
 		from: fromEmail,

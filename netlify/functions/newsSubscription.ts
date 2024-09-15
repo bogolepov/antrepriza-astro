@@ -2,7 +2,8 @@ import type { Handler, HandlerResponse } from '@netlify/functions';
 import { LANG_LIST, EMAIL_REGEX } from './lib/consts.ts';
 import { fromHtmlToPlainText, getJsonDictionary, getJsonTheater, nonBreakingSpace } from './lib/utils.ts';
 import { makeHtmlEmail } from './lib/mailUtils.ts';
-import { type TMail, sendMails } from './lib/mailService.ts';
+// import { type TMail, sendMails } from './lib/mailService.ts';
+import { type TMail, sendMails } from './lib/mailService2.ts';
 import { type TAddEmailResult, Newsletters } from './lib/dbNewsletters.ts';
 
 let dictionaryServer;
