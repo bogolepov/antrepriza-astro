@@ -154,7 +154,9 @@ footer .logo-90 {
 footer .logo-100 {
 	max-width: 100px;
 }
-
+footer .logo-120 {
+	max-width: 120px;
+}
 @media (hover: hover) {
 	footer a:hover,
 	footer a:hover *,

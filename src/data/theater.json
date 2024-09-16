@@ -416,24 +416,6 @@
 			}
 		},
 		{
-			"name": { "ru": "Fonds Soziokultur", "de": "Fonds Soziokultur" },
-			"logo": "logo_fonds_soziokultur_t.png",
-			"url": "https://www.fonds-soziokultur.de/",
-			"description": {
-				"ru": null,
-				"de": null
-			}
-		},
-		{
-			"name": { "ru": "The LGBT Life", "de": "The LGBT Life" },
-			"logo": "logo_lgbt_life_t.png",
-			"url": "https://www.thelgbtlife.de/",
-			"description": {
-				"ru": "",
-				"de": ""
-			}
-		},
-		{
 			"name": { "ru": "Akademischer Verein Hütte", "de": "Akademischer Verein Hütte" },
 			"logo": "logo_avh_t.png",
 			"url": "https://www.av-huette.de/",
@@ -472,6 +454,24 @@
 		}
 	],
 	"ex_partners": [
+		{
+			"name": { "ru": "Fonds Soziokultur", "de": "Fonds Soziokultur" },
+			"logo": "logo_fonds_soziokultur_t.png",
+			"url": "https://www.fonds-soziokultur.de/",
+			"description": {
+				"ru": null,
+				"de": null
+			}
+		},
+		{
+			"name": { "ru": "The LGBT Life", "de": "The LGBT Life" },
+			"logo": "logo_lgbt_life_t.png",
+			"url": "https://www.thelgbtlife.de/",
+			"description": {
+				"ru": "",
+				"de": ""
+			}
+		},
 		{
 			"name": { "ru": "Quarteera", "de": "Quarteera" },
 			"logo": "logo_quarteera.png",

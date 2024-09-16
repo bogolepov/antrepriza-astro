@@ -67,8 +67,8 @@
 		"de": "Ihre Reservierungen: "
 	},
 	"email_reservation_welcome1": {
-		"ru": "Мы будем рады Вашему визиту и Вашим словам поддержки-отзывам в %Google и %Facebook!",
-		"de": "Wir freuen uns auf Ihren Besuch und Ihre unterstützenden Worte-Bewertungen auf %Google und %Facebook!"
+		"ru": "Мы будем рады Вашему визиту в наш театр и Вашим отзывам в %Google и %Facebook!",
+		"de": "Wir freuen uns auf Ihren Besuch in unserem Theater und Ihre Bewertungen auf %Google und %Facebook!"
 	},
 	"email_reservation_welcome2": {
 		"ru": "С нетерпением ждем Вас!",
