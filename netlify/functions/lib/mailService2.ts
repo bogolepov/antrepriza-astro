@@ -34,7 +34,7 @@ export async function sendMails(
 			: nodemailer.createTransport({
 					pool: true,
 					host: process.env.ANTREPRIZA_SMTP_HOST,
-					port: 465,
+					port: 25,
 					secure: false, // use TLS
 					auth: {
 						user: transporterMail,
