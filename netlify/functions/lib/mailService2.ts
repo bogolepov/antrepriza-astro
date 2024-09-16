@@ -35,7 +35,7 @@ export async function sendMails(
 					pool: true,
 					host: process.env.ANTREPRIZA_SMTP_HOST,
 					port: 587,
-					// secure: false, // use TLS
+					secure: false, // use TLS
 					auth: {
 						user: transporterMail,
 						pass: process.env.ANTREPRIZA_SMTP_PASSWORD,
