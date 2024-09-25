@@ -120,7 +120,7 @@ ${dictionaryServer.email_subscription_button_text[lang]}</a>\
 <tr><td style="line-height: 120%; color: #d6d6d6; padding: 0 0 15px 0">${dictionaryServer.email_subscription_text3[lang]}</td></tr>\
 <tr><td style="line-height: 120%; color: #d6d6d6; padding: 0">${theater.longTheaterName[lang]}</td></tr>\
 <tr><td style="line-height: 120%; padding: 0">\
-<a href='${theater.our_website_link}/${lang}' style="line-height: 120%; color: #d6d6d6">${theater.our_website_text}</a>\
+<a href='${theater.our_website_link}/${lang}/' style="line-height: 120%; color: #d6d6d6">${theater.our_website_text}</a>\
 </td></tr>\
 `;
 	}

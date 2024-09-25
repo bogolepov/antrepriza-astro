@@ -131,7 +131,7 @@ for (let price of prices) {
 									{item.value.find(item => item.premiere) && 
 										<div class="play-property-hot-notice">{dictionary.premiere[lang]}</div>
 									}
-									<a class="stretch-link" href={"/"+lang+"/plays/"+playInfo.suffix}>
+									<a class="stretch-link" href={`/${lang}/plays/${playInfo.suffix}/`}>
 										<h3 class="play-title">{playInfo.alt_title[lang]}</h3>
 									</a>
 								</div>

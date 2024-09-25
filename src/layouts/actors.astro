@@ -38,7 +38,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/people/
             <div class="person-name">{person.name[lang]} {person.surname[lang]}</div>
             {
               hasPage &&
-              <a class="stretch-link" href={"/"+lang+"/theater/people/"+person.suffix}></a>
+              <a class="stretch-link" href={`/${lang}/theater/people/${person.suffix}/`}></a>
             }
           </li>
         )

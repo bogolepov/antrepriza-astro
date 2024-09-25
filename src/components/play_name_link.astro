@@ -9,4 +9,4 @@ let opening_quote = (has_quotes && has_quotes === 'true') ? dictionary.opening_q
 let closing_quote = (has_quotes && has_quotes === 'true') ? dictionary.closing_quote[lang] : '';
 
 ---
-<a class={classes} href={"/"+lang+"/plays/"+play.suffix}>{opening_quote + play.alt_title[lang] + closing_quote}</a>
+<a class={classes} href={`/${lang}/plays/${play.suffix}/`}>{opening_quote + play.alt_title[lang] + closing_quote}</a>

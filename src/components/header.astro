@@ -47,7 +47,7 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 							if (lng.lang_code !== lang) {
 								return (
 									<li>
-										<a href={pathname.replace('/'+lang+'/', '/'+lng.lang_code+'/')}>
+										<a href={pathname.replace(`/${lang}/`, `/${lng.lang_code}/`)}>
 											<span class="lang-brief">{lng.lang_code.toUpperCase()}</span>
 											<span class="lang-title">{lng.lang_name}</span>
 										</a>
@@ -70,7 +70,7 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 					theater.languages.map(lng => {
 						return (
 							<li>
-								<a href={pathname.replace('/'+lang+'/', '/'+lng.lang_code+'/')} >
+								<a href={pathname.replace(`/${lang}/`, `/${lng.lang_code}/`)} >
 									<span class="lang-brief">{lng.lang_code.toUpperCase()}</span>
 									<span class="lang-title">{lng.lang_name}</span>
 								</a>
@@ -82,7 +82,7 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
 			</div>
 		</div>
 		<div class="navigator-logo-item">
-			<a href={"/" + lang + "/"} class:list={{active_link: currentPath[1] === undefined}} aria-label={dictionary.main_page[lang]}>
+			<a href={`/${lang}/`} class:list={{active_link: currentPath[1] === undefined}} aria-label={dictionary.main_page[lang]}>
 				<Icon name={"logo-"+lang} class="icon-logo-text" />
 				<Icon name="logo" class="icon-logo" />
 			</a>

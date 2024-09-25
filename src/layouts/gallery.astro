@@ -31,7 +31,7 @@ const posterImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*
           <li class="gallery-block">
             <form>
               <div class="block-title">
-                <h2><a href={"/"+lang+"/plays/"+play.suffix}>{play.title[lang].toUpperCase()}</a>
+                <h2><a href={`/${lang}/plays/${play.suffix}/`}>{play.title[lang].toUpperCase()}</a>
                 </h2>
 
                 <div class="media-flex-top tabs">

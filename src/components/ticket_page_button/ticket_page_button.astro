@@ -14,5 +14,5 @@ const pageUrl = 'tickets';
 
 <a 
   class="tickets-page-button" 
-  href={"/" + lang + "/" + pageUrl} class:list={{active_link: currentPath[1] === pageUrl}}>{dictionary.tickets[lang]}
+  href={`/${lang}/${pageUrl}/`} class:list={{active_link: currentPath[1] === pageUrl}}>{dictionary.tickets[lang]}
 </a>

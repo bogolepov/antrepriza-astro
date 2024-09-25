@@ -81,11 +81,11 @@ const addSeoEvent = seo_event === 'true';
   {
     theater.languages.map(lng => {
       return (
-        <link rel="alternate" href={theater.our_website_link + pathname.replace('/'+lang+'/', '/'+lng.lang_code+'/')} hreflang={lng.lang_code} />
+        <link rel="alternate" href={theater.our_website_link + pathname.replace(`/${lang}/`, `/${lng.lang_code}/`)} hreflang={lng.lang_code} />
       );
     })
   }
-  <link rel="alternate" href={theater.our_website_link + pathname.replace('/'+lang+'/', '/ru/')} hreflang="x-default" />
+  <link rel="alternate" href={theater.our_website_link + pathname.replace(`/${lang}/`, '/ru/')} hreflang="x-default" />
   <SocialMediaHead lang={lang} title={title} description={description} og_title={ogTitle} play_id = {play_id}/>
   {
     addSeoEvent &&

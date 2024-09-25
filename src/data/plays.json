@@ -1,5 +1,97 @@
 [
 	{
+		"id": 10,
+		"suffix": "kd",
+		"title": { "ru": "Кошкин дом", "de": "Das Katzenhaus" },
+		"alt_title": { "ru": "Кошкин\u00A0дом", "de": "Das\u00A0Katzenhaus" },
+		"__title_notice": { "ru": "RU", "de": "RU" },
+		"author": { "ru": "С.Маршак", "de": "S.Marschak" },
+		"author_full": { "ru": "Самуил Маршак", "de": "Samuil Marschak" },
+		"genre": { "ru": "детский", "de": "für Kinder" },
+		"length": 50,
+		"break": false,
+		"age": "5+",
+		"description": { "ru": null, "de": null },
+		"trailer": null,
+		"trailer_embed": null,
+		"posters": {
+			"landscape": "soon.jpg",
+			"landscape_16_9": "soon_16_9.jpg",
+			"portrait": "soon_poster.jpg",
+			"afisha": "kontra_n32.jpg",
+			"facebook": "fb_kd_soon.jpg",
+			"minimum": ""
+		},
+		"lang": { "ru": "русский", "de": "Russisch" },
+		"lang_id": "ru",
+		"url_kontramarka": null,
+		"characters": [
+			{ "id": 1, "name": { "ru": "Кошка", "de": "Die Katze" }, "actors": [100, 105] },
+			{
+				"id": 2,
+				"name": { "ru": "Кот Василий", "de": "Der Kater Wassili" },
+				"actors": [103, 129]
+			},
+			{
+				"id": 3,
+				"name": { "ru": "1-й котенок", "de": "Erstes Kätzchen" },
+				"actors": [118]
+			},
+			{
+				"id": 4,
+				"name": { "ru": "2-й котенок", "de": "Zweites Kätzchen" },
+				"actors": [110]
+			},
+			{
+				"id": 5,
+				"name": { "ru": "Петух", "de": "Der Hahn" },
+				"actors": [129, 107]
+			},
+			{
+				"id": 6,
+				"name": { "ru": "Курица", "de": "Die Henne" },
+				"actors": [108]
+			},
+			{
+				"id": 7,
+				"name": { "ru": "Козел", "de": "Der Ziegenbock" },
+				"actors": []
+			},
+			{
+				"id": 8,
+				"name": { "ru": "Коза", "de": "Die Ziege" },
+				"actors": [111]
+			},
+			{
+				"id": 9,
+				"name": { "ru": "Свинья", "de": "Die Sau" },
+				"actors": [116, 102]
+			}
+		],
+		"creators": [
+			{ "type": "regie", "people": [8, 1] },
+			{ "type": "light", "people": [] },
+			{ "type": "sound", "people": [] },
+			{ "type": "graphic_design", "people": [] },
+			{ "type": "photographer", "people": [] },
+			{ "type": "stage_setup", "people": [] }
+		],
+		"seo": {
+			"description": {
+				"ru": "Для детей по мотивам сказки-повести С.Маршак. Музыкальная сказка, 5+. На русском языке.",
+				"de": "Für Kinder nach der Märchen-Geschichte von S.Marschak. Musikalisches Märchen, 5+. Auf Russisch."
+			},
+			"open_graph": {},
+			"event": {
+				"images": [
+					{ "format": "19_6", "url": "mik_1920t.jpg" },
+					{ "format": "3_4", "url": "kontra_mik_1920t.jpg" },
+					{ "format": "3_4_1050", "url": "kontra_mik_1050t.webp" }
+				]
+			}
+		}
+	},
+	{
 		"id": 9,
 		"suffix": "n32",
 		"title": { "ru": "Незнакомка 32", "de": "Die Unbekannte 32" },
@@ -30,7 +122,7 @@
 					"ru": "молодой человек под валютной ипотекой",
 					"de": "Mann unter Hypothek"
 				},
-				"actors": [106, 110]
+				"actors": [110]
 			},
 			{
 				"id": 2,
@@ -39,7 +131,7 @@
 					"ru": "девушка Славика",
 					"de": "Slawiks Freundin"
 				},
-				"actors": [111, 128, 127]
+				"actors": [111, 128]
 			},
 			{
 				"id": 3,
@@ -291,7 +383,7 @@
 			{ "type": "sound", "people": [4] },
 			{ "type": "graphic_design", "people": [6] },
 			{ "type": "photographer", "people": [5] },
-			{ "type": "stage_setup", "people": [103, 106] }
+			{ "type": "stage_setup", "people": [103] }
 		],
 		"seo": {
 			"description": {
@@ -390,7 +482,7 @@
 			{ "type": "sound", "people": [4] },
 			{ "type": "graphic_design", "people": [6] },
 			{ "type": "photographer", "people": [5] },
-			{ "type": "stage_setup", "people": [103, 106] }
+			{ "type": "stage_setup", "people": [103] }
 		],
 		"seo": {
 			"description": {
@@ -450,7 +542,7 @@
 				"id": 6,
 				"name": { "ru": "Данила", "de": "Danila" },
 				"description": { "ru": "старшеклассник", "de": "Oberstufenschüler" },
-				"actors": [119, 106]
+				"actors": [119]
 			},
 			{
 				"id": 7,
@@ -589,7 +681,7 @@
 			{ "type": "costumes", "people": [126] },
 			{ "type": "graphic_design", "people": [6] },
 			{ "type": "photographer", "people": [5] },
-			{ "type": "stage_setup", "people": [103, 106, 108] }
+			{ "type": "stage_setup", "people": [103, 108] }
 		],
 		"seo": {
 			"description": {

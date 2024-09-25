@@ -30,7 +30,7 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
           <div class:list={["menu-item-label", {active_link: currentPath.length > 1 && (currentPath[1] === main_menu_item.url || currentPath[1] === main_menu_item.submenu_folder)}]}>
             {
               isLink &&
-              <a href={"/" + lang + "/" + main_menu_item.url}>{dictionary[main_menu_item.dict_word][lang]}</a>
+              <a href={`/${lang}/${main_menu_item.url}/`}>{dictionary[main_menu_item.dict_word][lang]}</a>
             }
             {
               !isLink &&
@@ -62,7 +62,7 @@ const currentPath: string[] = pathname.split("/").filter(Boolean);
                       <li>
                         <a
                           class:list={[{active_link: currentPath[1] === main_menu_item.submenu_folder && currentPath[2] === submenuItemLink}]}												 
-                          href={"/"+lang+"/" + main_menu_item.submenu_folder + "/"+submenuItemLink}>
+                          href={`/${lang}/${main_menu_item.submenu_folder}/${submenuItemLink}/`}>
                             {submenuItemLabel}
                         </a>
                       </li>

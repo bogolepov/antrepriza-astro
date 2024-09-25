@@ -24,7 +24,7 @@ let stageOst = theater.stages.find(stg => stg.sid === "ost");
   <h1 class="section-title">{dictionary.menu_about[lang]}</h1>
   <div class="description">
     <Content>
-      <b slot='theater-name' class="big-font"><a class="a-no-u" href={"/" + lang + "/"}>{theater.longTheaterName[lang]}</a></b>
+      <b slot='theater-name' class="big-font"><a class="a-no-u" href={`/${lang}/`}>{theater.longTheaterName[lang]}</a></b>
       <Fragment slot='play-name-link-ts'><PlayNameLink play_suffix="ts" lang={lang} has_quotes="true" classes="font-opacity1 bold1 a-no-u"/></Fragment>
       <Fragment slot='play-name-link-dk'><PlayNameLink play_suffix="dk" lang={lang} has_quotes="true" classes="font-opacity1 bold1 a-no-u"/></Fragment>
       <Fragment slot='play-name-link-op'><PlayNameLink play_suffix="op" lang={lang} has_quotes="true" classes="font-opacity1 bold1 a-no-u"/></Fragment>
@@ -38,7 +38,7 @@ let stageOst = theater.stages.find(stg => stg.sid === "ost");
         <div><a href="https://g.page/r/CXSamsbDK3NlEBI/review" target="_blank"	rel="noopener external"><img src = "/google-logo.svg" alt="Google Reviews Antrepriza" class="google-svg"/></a></div>
         <div><a href="https://www.facebook.com/AntreprizaBerlin/reviews" target="_blank"	rel="noopener external"><img src = "/facebook-logo.svg" alt="Facebook Reviews Antrepriza" class="facebook-svg"/></a></div>
       </div>
-      <b slot="afisha"><a class="a-no-u" href={"/" + lang + "/program"}>
+      <b slot="afisha"><a class="a-no-u" href={`/${lang}/program/`}>
         { lang === 'ru' && 'афишей'}
         { lang !== 'ru' && dictionary.program[lang]}
       </a></b>

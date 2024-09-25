@@ -73,7 +73,7 @@ let strLoading;
       <div class="swiper-wrapper">
         {
           plays.map(play => {
-            if (play.id === 2) return;
+            if (play.id === 2 || play.id === 10) return;
 
             if (firstSlide) {
               strLoading = "eager";
@@ -87,7 +87,7 @@ let strLoading;
             let languageLabel = dictionary.language[lang];
             if (lang === "ru") languageLabel = languageLabel.toLowerCase();
             return (
-              <a class="swiper-slide" data-play={play.id} href={"/"+lang+"/plays/"+play.suffix} 
+              <a class="swiper-slide" data-play={play.id} href={`/${lang}/plays/${play.suffix}/`} 
                   aria-label={dictionary.play_lang[lang] + ' ' + play.title[lang]} >
                 <div class="carusel-play-card">
                   <div class="carusel-play-image">

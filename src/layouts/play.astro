@@ -122,6 +122,7 @@ const { Content } = await entry.render();
   <ul class="list">
   {
     thisPlay.creators.map(creator => {
+      if (!creator.people || creator.people.length < 1) return;
       return (
         <li class="list-item">
           <div class="list-item-left">
@@ -141,7 +142,7 @@ const { Content } = await entry.render();
                   if (_person.suffix)
                     return (
                       <div>
-                        <a class="person-link" href={"/"+lang+"/theater/people/"+_person.suffix}>
+                        <a class="person-link" href={`/${lang}/theater/people/${_person.suffix}/`}>
                           {_person.name[lang]} {_person.surname[lang]}
                         </a>
                       </div>
@@ -199,7 +200,7 @@ const { Content } = await entry.render();
                 return actor.map(_actor => {
                   return (
                     <div>
-                      <a class="person-link" href={"/"+lang+"/theater/people/"+_actor.suffix}>{_actor.name[lang]} {_actor.surname[lang]}</a>
+                      <a class="person-link" href={`/${lang}/theater/people/${_actor.suffix}/`}>{_actor.name[lang]} {_actor.surname[lang]}</a>
                     </div>
                   )
                 });

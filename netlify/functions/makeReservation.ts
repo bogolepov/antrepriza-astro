@@ -167,7 +167,7 @@ ${dictionaryServer.email_reservation_where_link_text[lang]}</a>.\
 <tr><td style="line-height: 120%; color: #d6d6d6; padding: 0 0 15px 0">${dictionaryServer.email_reservation_welcome2[lang]}</td></tr>\
 <tr><td style="line-height: 120%; color: #d6d6d6">${theater.longTheaterName[lang]}</td></tr>\
 <tr><td style="line-height: 120%">\
-<a href='${theater.our_website_link}/${lang}' style="line-height: 120%; color: #d6d6d6">${theater.our_website_text}</a>\
+<a href='${theater.our_website_link}/${lang}/' style="line-height: 120%; color: #d6d6d6">${theater.our_website_text}</a>\
 </td></tr>\
 `;
 	}
