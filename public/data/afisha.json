@@ -96,7 +96,8 @@
 		"play_id": 1,
 		"stage_sid": "west",
 		"free_place": true,
-		"prices": ["standart", "reduce"]
+		"prices": ["standart", "reduce"],
+		"sold_out": true
 	},
 	{
 		"date": "2024-09-28",
@@ -104,7 +105,8 @@
 		"play_id": 1,
 		"stage_sid": "west",
 		"free_place": true,
-		"prices": ["standart", "reduce"]
+		"prices": ["standart", "reduce"],
+		"sold_out": true
 	},
 	{
 		"date": "2024-09-13",

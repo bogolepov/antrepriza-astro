@@ -160,7 +160,7 @@ for (let price of prices) {
 																	let fullDate: string = play_date.date+'T'+play_date.time;
 																	let playDate: Date = new Date(fullDate);
 																	return (
-																		<TicketBookButton add_classes='' button_type='ticket' price=''
+																		<TicketBookButton add_classes='' button_type='ticket' price='' sold_out={play_date.sold_out}
 																											date={play_date.date} time={play_date.time} play_id={playInfo.id}	>
 																				{playDate.getDate().toString().padStart(2, '0')}.{(playDate.getMonth()+1).toString().padStart(2, '0')},
 																				{playDate.toLocaleDateString(lang, { weekday: 'short' })} / {play_date.time}
