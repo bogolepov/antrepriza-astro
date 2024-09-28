@@ -164,7 +164,11 @@ for (let price of prices) {
 																											date={play_date.date} time={play_date.time} play_id={playInfo.id}	>
 																				{playDate.getDate().toString().padStart(2, '0')}.{(playDate.getMonth()+1).toString().padStart(2, '0')},
 																				{playDate.toLocaleDateString(lang, { weekday: 'short' })} / {play_date.time}
-																		</TicketBookButton>
+																				{ play_date.sold_out && <br>}
+																				{ play_date.sold_out && dictionary.tickets[lang]}
+																				{ play_date.sold_out && <br>}
+																				{ play_date.sold_out && dictionary.tickets_sold_out[lang]}
+																				</TicketBookButton>
 																	)
 															} )
 														}

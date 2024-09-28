@@ -103,6 +103,7 @@
 	"closing_quote": { "ru": "»", "de": "“" },
 	"logo": { "ru": "Логотип", "de": "Logo" },
 	"more_about_play": { "ru": "Подробнее о спектакле", "de": "Mehr zur Theaterproduktion" },
+	"tickets_sold_out": { "ru": "распроданы", "de": "ausverkauft" },
 
 	"description_index": {
 		"ru": "Для детей и взрослых. От классики до социально-политических постановок. Билеты по доступной цене.",

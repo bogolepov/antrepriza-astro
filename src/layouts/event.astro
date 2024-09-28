@@ -135,6 +135,8 @@ let image = play.seo.event.images.find(image => image.format === '3_4_1050');
         <TicketBookButton add_classes="ev-button" button_type='ticket' price=''
                           date={event.date} time={event.time} play_id={event.play_id}	sold_out={event.sold_out}>
             {dictionary.tickets[lang]}
+            { event.sold_out && <br>}
+            { event.sold_out && dictionary.tickets_sold_out[lang]}
         </TicketBookButton>
       }
     </div>
