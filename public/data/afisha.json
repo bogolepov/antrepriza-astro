@@ -67,6 +67,22 @@
 		"prices": ["standart", "reduce"]
 	},
 	{
+		"date": "2024-11-03",
+		"time": "19:30",
+		"play_id": 1,
+		"stage_sid": "west",
+		"free_place": true,
+		"prices": ["standart", "reduce"]
+	},
+	{
+		"date": "2024-11-02",
+		"time": "19:30",
+		"play_id": 8,
+		"stage_sid": "west",
+		"free_place": true,
+		"prices": ["standart", "reduce"]
+	},
+	{
 		"date": "2024-10-27",
 		"time": "19:30",
 		"play_id": 5,
