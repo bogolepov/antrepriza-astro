@@ -121,7 +121,11 @@ for (let price of prices) {
 						playInfo = piece;
 						return; 
 					}
-				} )
+				} );
+				let stages = [];
+				item.value.forEach(event => {
+					if (!stages.includes(event.stage_sid)) stages.push(event.stage_sid);
+				});
 
 				if (playInfo) {
 					return (
@@ -142,7 +146,8 @@ for (let price of prices) {
 								<div class="tickets-play-dates">
 									<h4 class="notification-label">{dictionary.nextDates[lang]}:</h4>
 									{
-										theater.stages.map(stg => {
+										stages.map(stg_sid => {
+											let stg = theater.stages.find(stg_item => stg_item.sid === stg_sid);
 											let playsOnThisStage = item.value.filter(stg_item => stg_item.stage_sid === stg.sid);
 											let stageNameText;
 											if (stg.fix_stage) {
