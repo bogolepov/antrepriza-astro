@@ -18,7 +18,7 @@
 
 .tickets-page-button:where(.active_link) {
 	border-color: var(--colorAntreprizaRed);
-	font-weight: var(--font-normal-weight);
+	font-weight: var(--font-bold-weight);
 	background-color: var(--colorBkgForm);
 	color: var(--colorAntreprizaRed);
 }

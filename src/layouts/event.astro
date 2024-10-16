@@ -143,3 +143,10 @@ let image = play.seo.event.images.find(image => image.format === '3_4_1050');
   </div>
   <div class="page-end"></div>
 </section>
+
+<script>
+  const button = document.querySelector('.ev-button');
+  if(button && Date.parse(button.dataset.date+"T"+button.dataset.time) < Date.now()) button.disabled = true;
+</script>
+
+

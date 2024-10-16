@@ -10,12 +10,12 @@ import theater from '@data/theater.json'
 import program from '@public_data/afisha.json'
 
 export const getStaticPaths = (() => { 
-  const ONE_DAY: number = 24*60*60*1000;	
   const SID_FESTIVAL = "festival";
   const SID_TOUR = "tour";
+  const startDate = Date.parse('01.07.2024');
 
   program.sort((play1, play2) => Date.parse(play1.date+"T"+play1.time) - Date.parse(play2.date+"T"+play2.time));
-  let events = program.filter(performance => (Date.parse(performance.date) + ONE_DAY >= Date.now() ));
+  let events = program.filter(performance => (Date.parse(performance.date) >= startDate ));
   return theater.languages.flatMap(lng => {
     return events.map(event => {
       let event_sid;
