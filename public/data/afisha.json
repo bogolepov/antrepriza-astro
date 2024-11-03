@@ -72,7 +72,8 @@
 		"play_id": 1,
 		"stage_sid": "west",
 		"free_place": true,
-		"prices": ["standart22", "reduce"]
+		"prices": ["standart22", "reduce"],
+		"sold_out": true
 	},
 	{
 		"date": "2024-11-02",

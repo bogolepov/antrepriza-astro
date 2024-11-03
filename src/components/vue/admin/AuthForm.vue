@@ -175,6 +175,7 @@ main {
 
 .password-field input.password-input {
 	max-width: calc(var(--form-width-vw) - var(--label-width) - var(--eye-width));
+	width: 100%;
 }
 
 .auth-error {
