@@ -5,6 +5,7 @@
 		"paths": {
 			"@components/*": ["src/components/*"],
 			"@react-components/*": ["src/components/react/*"],
+			"@vue-components/*": ["src/components/vue/*"],
 			"@layouts/*": ["src/layouts/*"],
 			"@styles/*": ["src/styles/*"],
 			"@data/*": ["src/data/*"],
@@ -13,7 +14,7 @@
 			"@assets/*": ["src/assets/*"],
 			"@scripts/*": ["src/scripts/*"]
 		},
-		"jsx": "react-jsx",
+		"jsx": "preserve",
 		"jsxImportSource": "react"
 	}
 }

@@ -10,22 +10,25 @@
 		"astro": "astro"
 	},
 	"dependencies": {
-		"@astrojs/react": "^3.6.0",
-		"@astrojs/sitemap": "^3.1.6",
-		"@astrojs/vue": "^4.5.0",
+		"@astrojs/netlify": "^5.5.4",
+		"@astrojs/react": "^3.6.2",
+		"@astrojs/sitemap": "^3.2.1",
+		"@astrojs/vue": "^4.5.2",
 		"@nanostores/react": "^0.7.2",
-		"@netlify/functions": "^2.8.1",
+		"@netlify/functions": "^2.8.2",
 		"@types/nodemailer": "^6.4.15",
 		"@types/react": "^18.2.79",
 		"@types/react-dom": "^18.2.25",
-		"astro": "^4.12.2",
+		"astro": "^4.16.6",
 		"astro-icon": "^1.1.1",
+		"firebase": "^10.14.0",
 		"json5": "^2.2.3",
 		"nanostores": "^0.10.3",
 		"nodemailer": "^6.9.14",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
-		"vue": "^3.4.24"
+		"vue": "^3.5.12",
+		"vue-router": "^4.4.5"
 	},
 	"devDependencies": {
 		"@netlify/plugin-sitemap": "^0.8.1",

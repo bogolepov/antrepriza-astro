@@ -1,0 +1,24 @@
+---
+import "@styles/font.css"
+import "@styles/init.css"
+import "@styles/antrepriza.css"
+
+import theater from '@data/theater.json'
+import dictionary from '@data/dictionary.json'
+
+import Head from "@components/head/head.astro";
+import Admin from "@components/vue/admin/AdminRoot.vue"
+
+const { title, description, lang, reservation, robots = "noindex, nofollow", ticket_form = "no", play_id, seo_event = 'false', date, time } = Astro.props;
+
+---
+
+<html lang={lang}>
+	<Head lang={lang} title={title} description={description} robots={robots} play_id = {play_id} seo_event={seo_event} date={date} time={time}/>
+
+	<body>
+		<Admin client:only="vue"></Admin>
+    <input type="checkbox" id="theme-switcher" tabindex="-1" aria-label={dictionary.aria_theme_switch[lang]} checked/>
+	</body>
+	
+</html>

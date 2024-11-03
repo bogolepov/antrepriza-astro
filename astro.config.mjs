@@ -3,6 +3,7 @@ import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import plays from './src/data/plays.json';
 import icon from 'astro-icon';
+import vue from '@astrojs/vue';
 let now = new Date();
 // const offset = now.getTimezoneOffset();
 // now = new Date(now.getTime() - offset * 60 * 1000);
@@ -58,13 +59,24 @@ function isSpecialPage(url) {
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://antrepriza.eu',
+	redirects: {
+		'/admin/repetitions': '/admin?page=/repetitions',
+		'/admin/performances': '/admin?page=/performances',
+		'/admin/plays': '/admin?page=/plays',
+		'/admin/visitors': '/admin?page=/visitors',
+	},
 	integrations: [
 		react(),
+		vue({
+			appEntrypoint: '/vue-entry',
+		}),
+		icon(),
 		sitemap({
 			filter: page =>
 				page !== 'https://antrepriza.eu/404/' &&
 				page !== 'https://antrepriza.eu/ru/404/' &&
 				page !== 'https://antrepriza.eu/de/404/' &&
+				page !== 'https://antrepriza.eu/admin/' &&
 				page !== 'https://antrepriza.eu/ru/newsletter/' &&
 				page !== 'https://antrepriza.eu/de/newsletter/',
 			// i18n: {
@@ -94,6 +106,5 @@ export default defineConfig({
 				return item;
 			},
 		}),
-		icon(),
 	],
 });

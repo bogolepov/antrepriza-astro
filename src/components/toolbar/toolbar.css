@@ -46,16 +46,6 @@
 	display: block;
 }
 
-#theme-switcher {
-	position: absolute;
-	width: 1px;
-	height: 1px;
-	right: 50%;
-	bottom: 50%;
-	-webkit-appearance: none;
-	appearance: none;
-}
-
 .theme-block {
 	display: none;
 	flex-direction: row;
