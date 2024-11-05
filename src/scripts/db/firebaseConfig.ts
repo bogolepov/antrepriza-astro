@@ -46,16 +46,14 @@ export function getFirebaseConfig(handleConfig: (config: TFirebaseConfig) => voi
 		let isOk: boolean;
 		fetch('/.netlify/functions/getFirebaseConfig')
 			.then(response => {
-				console.log('netlify function: answer 1');
-
 				isOk = response.ok;
 				return response.json();
 			})
 			.then(data => {
 				if (isOk && data && data.firebaseConfig) {
 					firebaseConfig = data.firebaseConfig as TFirebaseConfig;
-					console.log('firebaseConfig');
-					console.log(firebaseConfig);
+					// console.log('firebaseConfig');
+					// console.log(firebaseConfig);
 					handleConfig(firebaseConfig);
 				} else throw new Error('BACKEND error');
 			})

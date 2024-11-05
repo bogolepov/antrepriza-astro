@@ -62,13 +62,14 @@ export default defineConfig({
 	redirects: {
 		'/admin/repetitions': '/admin?page=/repetitions',
 		'/admin/performances': '/admin?page=/performances',
+		'/admin/stages': '/admin?page=/stages',
 		'/admin/plays': '/admin?page=/plays',
 		'/admin/visitors': '/admin?page=/visitors',
 	},
 	integrations: [
 		react(),
 		vue({
-			appEntrypoint: '/vue-entry',
+			appEntrypoint: '@components/vue/vue-entry',
 		}),
 		icon(),
 		sitemap({

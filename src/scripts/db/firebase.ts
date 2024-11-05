@@ -25,8 +25,6 @@ function handleConfig(config: TFirebaseConfig): void {
 		firebaseConfig = config;
 		firebase = initializeApp(firebaseConfig);
 		firestore = getFirestore(firebase);
-		console.log('firestore:');
-		console.log(firestore);
 
 		handleResultConnect(firestore != undefined);
 	} else handleResultConnect(false);

@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { ref, inject, onMounted } from 'vue';
+import { onBeforeRouteLeave } from 'vue-router';
 import PlayCard from '../components/PlayCard.vue';
 import type { TPlay } from '@scripts/db/baseTypes';
-import { validatePlayStructure } from '@scripts/db/baseTypes';
+import { validatePlayStructure, isUniquePlaysSID, type TUniqPlaysResult } from '@scripts/db/baseTypes';
 import { savePlays, changedPlays } from '@scripts/db/antreprizaDB';
 
 // const plays = inject('plays');
@@ -26,7 +27,7 @@ function addPlay() {
 	newPlay = validatePlayStructure(newPlay);
 	newPlay.name.ru = '...новый спектакль';
 	newPlay.id = maxPlayId.value;
-	plays.value.push(validatePlayStructure(newPlay));
+	plays.value.push(newPlay);
 
 	checkPlaysChanging();
 }
@@ -38,9 +39,20 @@ function deletePlay(playId: number) {
 	}
 }
 
-function savePlaysDB() {
+async function savePlaysDB() {
+	// check uniq plays SID
+	const uniqPlaysResult: TUniqPlaysResult = isUniquePlaysSID(plays.value);
+	if (!uniqPlaysResult.isUniq) {
+		let play1: string = plays.value[uniqPlaysResult.firstItem].name.ru;
+		let play2: string = plays.value[uniqPlaysResult.secondItem].name.ru;
+		alert(
+			`Текстовый идентификатор каждого спектакля должен быть уникальным.\n` +
+				`Идентификатор повторяется у спектаклей "${play1}" и "${play2}"`
+		);
+		return;
+	}
 	// save plays in AntreprizaDB
-	savePlays(plays.value);
+	await savePlays(plays.value);
 	// update plays in provider
 	updatePlays(plays.value);
 	// if plays were saved successfully, then button Save will be hidden:
@@ -49,6 +61,13 @@ function savePlaysDB() {
 
 onMounted(() => {
 	checkPlaysChanging();
+});
+
+onBeforeRouteLeave((to, from, next) => {
+	if (playsChanged.value === true && confirm('Сохранить изменения?')) {
+		savePlaysDB();
+	}
+	next();
 });
 </script>
 
@@ -72,6 +91,9 @@ onMounted(() => {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
+	flex-wrap: wrap;
+	column-gap: 1.5rem;
+	row-gap: 0.1rem;
 }
 .plays-actions {
 	display: grid;

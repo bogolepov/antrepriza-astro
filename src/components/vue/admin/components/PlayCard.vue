@@ -44,7 +44,7 @@ function deletePlay() {
 		<li>
 			<div class="label">Текстовый идентификатор:</div>
 			<div v-if="!editCard">{{ play.sid ? play.sid : ' - ' }}</div>
-			<div v-else><input type="text" v-model="play.sid" maxlength="4" /></div>
+			<input v-else type="text" v-model="play.sid" maxlength="4" />
 		</li>
 		<li>
 			<div class="label">Название:</div>
@@ -74,7 +74,7 @@ function deletePlay() {
 		<li>
 			<div class="label">Возрастные ограничения:</div>
 			<div v-if="!editCard">{{ play.age ? play.age : ' - ' }}</div>
-			<div v-else><input type="text" v-model="play.age" /></div>
+			<input v-else type="text" v-model="play.age" />
 		</li>
 		<li>
 			<div class="label">Язык:</div>
@@ -83,12 +83,12 @@ function deletePlay() {
 		<li>
 			<div class="label">Продолжительность (мин.):</div>
 			<div v-if="!editCard">{{ play.duration ? play.duration : ' - ' }}</div>
-			<div v-else><input type="number" v-model="play.duration" /></div>
+			<input v-else type="number" v-model="play.duration" />
 		</li>
 		<li>
 			<div class="label">Количество антрактов:</div>
 			<div v-if="!editCard">{{ play.break >= 0 ? play.break : ' - ' }}</div>
-			<div v-else><input type="number" v-model="play.break" /></div>
+			<input v-else type="number" v-model="play.break" />
 		</li>
 		<li class="play-modify">
 			<button @click="modifyPlay" :disabled="isDemo">{{ editCard ? 'OK' : 'Редактировать' }}</button>
@@ -134,28 +134,41 @@ h3 {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
-	column-gap: 0.7rem;
+	/* column-gap: 0.7rem; */
 }
 .author-flex {
 	display: flex;
 	flex-direction: column;
-	padding-left: 1.5rem;
+	/* padding-left: 1.5rem; */
 }
 .author-flex > div {
 	display: flex;
 	flex-direction: row;
-	column-gap: 0.7rem;
+	flex-wrap: wrap;
+
+	/* column-gap: 0.7rem; */
 }
+
 .label {
 	color: var(--colorFont-Op1);
 	font-weight: 400;
 }
+.label + * {
+	margin-left: 1rem;
+}
+.label + input {
+	line-height: 1;
+	margin-bottom: 0.4rem;
+}
+
 .play-modify {
 	display: flex;
 	flex-direction: row;
 	/* align-items: center; */
 	justify-items: flex-end;
 	margin-top: 0.5rem;
+	column-gap: 0.7rem;
+	row-gap: 0.5rem;
 }
 .play-modify button {
 	background-color: transparent;

@@ -3,7 +3,7 @@ import { ref, defineAsyncComponent, onMounted, provide } from 'vue';
 import AuthForm from './AuthForm.vue';
 import { type TFirebaseConfig, initFirebaseConfig } from '@scripts/db/firebaseConfig';
 import { dbConnect, dbDisconnect } from '@scripts/db/firebase';
-import { readPlays } from '@scripts/db/antreprizaDB';
+import { readPlays, readStages } from '@scripts/db/antreprizaDB';
 
 const AdminPage = defineAsyncComponent(() => import('./AdminPage.vue'));
 
@@ -18,6 +18,7 @@ const connectedDB = ref(false);
 async function handleConnectDB(connected: boolean) {
 	if (connected) {
 		await readPlays();
+		await readStages();
 	}
 	connectedDB.value = connected;
 }

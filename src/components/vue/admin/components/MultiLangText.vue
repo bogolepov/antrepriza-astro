@@ -18,8 +18,8 @@ function showText(text) {
 <template>
 	<ul class="multi-flex">
 		<template v-for="lang in LANG_LIST">
-			<li v-if="!isEdit">{{ showText(multiText[lang]) }}</li>
-			<li v-else><input type="text" v-model="multiText[lang]" :placeholder="lang" /></li>
+			<li v-if="!isEdit" class="multi-view">{{ showText(multiText[lang]) }}</li>
+			<li v-else class="multi-edit"><input type="text" v-model="multiText[lang]" :placeholder="lang" /></li>
 		</template>
 	</ul>
 </template>
@@ -30,9 +30,10 @@ function showText(text) {
 	flex-direction: row;
 	row-gap: 0;
 	flex-wrap: wrap;
+	flex-grow: 1;
 }
 
-.multi-flex li + li::before {
+.multi-flex li:has(+ li)::after {
 	content: '/';
 	padding: 0 0.5rem;
 }

@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue';
+import { ref, onMounted, watch, inject } from 'vue';
+
+const { updateFontSize } = inject('font-size');
 
 const LS_LETTER_SIZE: string = 'letterSize';
 const LETTER_SIZES: Array<string> = ['16px', '19px', '22px'];
@@ -18,6 +20,7 @@ watch(letterSize, newValue => {
 	document.documentElement.style.setProperty('--font-size', newValue);
 	document.body.style.setProperty('--font-size', newValue);
 	localStorage.setItem(LS_LETTER_SIZE, newValue);
+	updateFontSize(newValue);
 });
 
 function changeSize(event: KeyboardEvent, size: string): void {
