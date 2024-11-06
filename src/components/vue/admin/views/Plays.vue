@@ -1,15 +1,20 @@
 <script setup lang="ts">
-import { ref, inject, onMounted } from 'vue';
+import { ref, inject, computed, onMounted } from 'vue';
 import { onBeforeRouteLeave } from 'vue-router';
 import PlayCard from '../components/PlayCard.vue';
-import type { TPlay } from '@scripts/db/baseTypes';
-import { validatePlayStructure, isUniquePlaysSID, type TUniqPlaysResult } from '@scripts/db/baseTypes';
-import { savePlays, changedPlays } from '@scripts/db/antreprizaDB';
+import ChapterTitle from '../components/ChapterTitle.vue';
+import { EAuthRole } from '@scripts/auth';
+import type { TPlay, TUniqStatus } from '@scripts/db/baseTypes';
+import { validatePlayStructure, checkUniqueSIDs, EItemType } from '@scripts/db/baseTypes';
+import { savePlays, changedItems } from '@scripts/db/antreprizaDB';
 
 // const plays = inject('plays');
 const { plays, updatePlays } = inject('plays');
 
-const isDemo: boolean = inject('demo');
+// const isDemo: boolean = inject('demo');
+const authRole: EAuthRole = inject('authRole');
+const isDemo = computed(() => authRole.value === EAuthRole.DEMO);
+
 const playsChanged = ref(false);
 
 let maxId: number = 0;
@@ -18,7 +23,8 @@ const maxPlayId = ref(maxId);
 
 function checkPlaysChanging() {
 	if (isDemo.value && playsChanged.value) playsChanged.value = false;
-	else playsChanged.value = changedPlays(plays.value);
+	else playsChanged.value = changedItems<TPlay>(plays.value, EItemType.PLAY);
+	// else playsChanged.value = changedPlays(plays.value);
 }
 
 function addPlay() {
@@ -41,10 +47,10 @@ function deletePlay(playId: number) {
 
 async function savePlaysDB() {
 	// check uniq plays SID
-	const uniqPlaysResult: TUniqPlaysResult = isUniquePlaysSID(plays.value);
-	if (!uniqPlaysResult.isUniq) {
-		let play1: string = plays.value[uniqPlaysResult.firstItem].name.ru;
-		let play2: string = plays.value[uniqPlaysResult.secondItem].name.ru;
+	const uniqStatus: TUniqStatus = checkUniqueSIDs<TPlay>(plays.value);
+	if (!uniqStatus.isUniq) {
+		let play1: string = plays.value[uniqStatus.firstItem].name.ru;
+		let play2: string = plays.value[uniqStatus.secondItem].name.ru;
 		alert(
 			`Текстовый идентификатор каждого спектакля должен быть уникальным.\n` +
 				`Идентификатор повторяется у спектаклей "${play1}" и "${play2}"`
@@ -72,12 +78,13 @@ onBeforeRouteLeave((to, from, next) => {
 </script>
 
 <template>
-	<div class="plays-title">
+	<ChapterTitle title="Спектакли" @handle-save-button="savePlaysDB" :show-save-button="playsChanged" :is-demo="isDemo" />
+	<!-- <div class="plays-title">
 		<h1>Спектакли</h1>
 		<div class="plays-actions">
 			<button v-show="playsChanged" @click="savePlaysDB" :disabled="isDemo" class="save-button">Сохранить</button>
 		</div>
-	</div>
+	</div> -->
 	<ul>
 		<template v-for="play of plays">
 			<li><PlayCard :play @check-plays-changing="checkPlaysChanging" @delete-play="deletePlay" /></li>
@@ -87,7 +94,7 @@ onBeforeRouteLeave((to, from, next) => {
 </template>
 
 <style scoped>
-.plays-title {
+/* .plays-title {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
@@ -99,13 +106,7 @@ onBeforeRouteLeave((to, from, next) => {
 	display: grid;
 	place-items: center;
 }
-ul {
-	margin-top: 1rem;
-}
-button {
-	padding: 0 0.6rem;
-	margin-top: 1rem;
-}
+
 .plays-actions button {
 	margin-top: 0;
 }
@@ -116,5 +117,5 @@ button {
 	color: var(--colorAntreprizaRed);
 	border: 1px solid var(--colorAntreprizaRed);
 	cursor: pointer;
-}
+} */
 </style>

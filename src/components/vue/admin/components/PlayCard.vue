@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { inject, ref } from 'vue';
+import { computed, inject, ref } from 'vue';
+import { EAuthRole } from '@scripts/auth';
 import type { TPlay } from '@scripts/db/baseTypes';
 import MultiLangText from './MultiLangText.vue';
 
@@ -14,7 +15,8 @@ const emit = defineEmits(['checkPlaysChanging', 'deletePlay']);
 // });
 
 // const play: TPlay = plays.value.find(item => item.sid === props.play_sid);
-const isDemo: boolean = inject('demo');
+const authRole: EAuthRole = inject('authRole');
+const isDemo = computed(() => authRole.value === EAuthRole.DEMO);
 
 const showCard = ref(false);
 const editCard = ref(false);
@@ -35,7 +37,7 @@ function deletePlay() {
 	<div class="play-title" @click="showCard = !showCard">
 		<h3>{{ play.name.ru }}</h3>
 		<div class="play-actions">
-			<button>
+			<button class="expand-item-button">
 				{{ showCard ? '➖' : '➕' }}
 			</button>
 		</div>
@@ -90,7 +92,7 @@ function deletePlay() {
 			<div v-if="!editCard">{{ play.break >= 0 ? play.break : ' - ' }}</div>
 			<input v-else type="number" v-model="play.break" />
 		</li>
-		<li class="play-modify">
+		<li class="modify-item">
 			<button @click="modifyPlay" :disabled="isDemo">{{ editCard ? 'OK' : 'Редактировать' }}</button>
 			<button @click="deletePlay" :disabled="isDemo">Удалить</button>
 		</li>
@@ -113,14 +115,6 @@ h3 {
 .play-actions {
 	display: grid;
 	place-items: center;
-}
-.play-actions button {
-	line-height: 1;
-	background-color: transparent;
-	border: 0;
-	cursor: pointer;
-	width: 1.8rem;
-	height: 1.8rem;
 }
 
 .play-card {
@@ -159,21 +153,5 @@ h3 {
 .label + input {
 	line-height: 1;
 	margin-bottom: 0.4rem;
-}
-
-.play-modify {
-	display: flex;
-	flex-direction: row;
-	/* align-items: center; */
-	justify-items: flex-end;
-	margin-top: 0.5rem;
-	column-gap: 0.7rem;
-	row-gap: 0.5rem;
-}
-.play-modify button {
-	background-color: transparent;
-	padding: 0 0.6rem;
-	border: 1px solid var(--colorFont);
-	cursor: pointer;
 }
 </style>

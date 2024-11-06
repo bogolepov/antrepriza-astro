@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { ref, computed, onBeforeMount, provide, onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
+import { EAuthRole } from '@scripts/auth';
 import { type TFirebaseConfig } from '@scripts/db/firebaseConfig';
-import { getPlays, getStages, getProgram } from '@scripts/db/antreprizaDB';
+import { getPlays, getStages, getPerformances } from '@scripts/db/antreprizaDB';
 import LetterSizeControl from './components/LetterSizeControl.vue';
 
 const router = useRouter();
@@ -10,7 +11,7 @@ const route = useRoute();
 
 const plays = ref();
 const stages = ref();
-const program = ref();
+const performances = ref();
 
 const fontSize = ref();
 const smallScreen = ref(false);
@@ -48,14 +49,17 @@ function updatePlays(newPlays) {
 function updateStages(newStages) {
 	stages.value = newStages;
 }
+function updatePerformances(newPerformances) {
+	performances.value = newPerformances;
+}
 
 provide('plays', { plays, updatePlays });
 provide('stages', { stages, updateStages });
-provide('program', program);
+provide('performances', { performances, updatePerformances });
 provide('font-size', { updateFontSize });
 
 const emit = defineEmits<{
-	authorize: [isAuthorized: boolean, isDemo?: boolean, firebaseConfig?: TFirebaseConfig];
+	authorize: [role: EAuthRole, firebaseConfig?: TFirebaseConfig];
 }>();
 
 window.addEventListener('resize', updatePageComposition);
@@ -63,6 +67,7 @@ window.addEventListener('resize', updatePageComposition);
 onBeforeMount(() => {
 	plays.value = getPlays();
 	stages.value = getStages();
+	performances.value = getPerformances();
 	if (route.query.page) {
 		router.push('/admin' + route.query.page);
 	}
@@ -87,7 +92,7 @@ onMounted(() => {
 					<li><router-link to="/admin/visitors">Зрители</router-link></li>
 				</ul>
 			</nav>
-			<button class="logout-button" @click="$emit('authorize', false)">Выйти</button>
+			<button class="logout-button" @click="$emit('authorize', EAuthRole.UNAUTHORIZED, undefined)">Выйти</button>
 		</aside>
 		<main>
 			<button v-show="smallScreen" @click="showMenu = true" class="open-menu-button">⇛</button>
@@ -146,12 +151,27 @@ aside {
 nav ul {
 	padding: 1rem 0;
 }
+
 main {
 	position: relative;
 	padding: 1rem 1.5rem;
 	border-left: 1px solid var(--color-border);
 	min-height: max-content;
 	flex-grow: 1;
+}
+main button {
+	padding: 0 0.6rem;
+	margin-top: 1rem;
+	cursor: pointer;
+}
+main button[disabled] {
+	cursor: auto;
+}
+main > ul {
+	padding-top: 0.75rem;
+	margin-top: 0.65rem;
+	/* border-style: ridge; */
+	border-top: 4px double var(--color-border);
 }
 
 .letter-size-control {
@@ -161,6 +181,15 @@ main {
 
 .active {
 	color: var(--colorAntreprizaRed);
+}
+
+.expand-item-button {
+	margin: 0;
+	line-height: 1;
+	background-color: transparent;
+	border: 0;
+	cursor: pointer;
+	height: 1.8rem;
 }
 
 .small-screen aside {
@@ -175,5 +204,20 @@ main {
 .small-screen main {
 	border-left: 0;
 	padding-top: 2.2rem;
+}
+
+.modify-item {
+	display: flex;
+	flex-direction: row;
+	justify-items: flex-end;
+	margin-top: 0.5rem;
+	column-gap: 0.7rem;
+	row-gap: 0.5rem;
+}
+.modify-item button {
+	background-color: transparent;
+	padding: 0 0.6rem;
+	margin-top: 0;
+	border: 1px solid var(--colorFont);
 }
 </style>

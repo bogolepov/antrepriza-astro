@@ -1,11 +1,12 @@
 import { getAntreprizaDB } from './firebase';
 import { collection, getDocs, getDoc, setDoc, doc } from 'firebase/firestore';
-import type { TPlay, TStage } from './baseTypes';
-import { validatePlayStructure, validateStageStructure, checkEqualPlays, checkEqualStages } from './baseTypes';
+import { type TPlay, type TStage, type IItem, EItemType, type TPerformance } from './baseTypes';
+import { validatePlayStructure, validateStageStructure, validatePerformanceStructure, checkEqualItems } from './baseTypes';
 
 const COLLECTION_THEATER: string = 'theater';
 const DOC_THEATER_PLAYS: string = 'plays';
 const DOC_THEATER_STAGES: string = 'stages';
+const DOC_THEATER_PERFORMANCES: string = 'performances';
 
 let program;
 async function readProgram() {
@@ -24,17 +25,6 @@ export function getProgram() {
 // ---------------------------------------
 //                  PLAYS
 // ---------------------------------------
-
-// export async function readPlays() {
-// 	plays = [];
-// 	srcPlays = [];
-// 	const querySnapshotPlays = await getDocs(collection(getAntreprizaDB(), 'plays'));
-// 	querySnapshotPlays.forEach(doc => {
-// 		const play: TPlay = doc.data() as TPlay;
-// 		plays.push(validatePlayStructure(play));
-// 	});
-// 	srcPlays = JSON.parse(JSON.stringify(plays));
-// }
 
 let plays: Array<TPlay>;
 let srcPlays: Array<TPlay>;
@@ -61,13 +51,6 @@ export function getPlays(): Array<TPlay> {
 export async function savePlays(currPlays: Array<TPlay>) {
 	await setDoc(doc(getAntreprizaDB(), COLLECTION_THEATER, DOC_THEATER_PLAYS), { plays: currPlays });
 	srcPlays = JSON.parse(JSON.stringify(currPlays));
-}
-
-export function changedPlays(currPlays: Array<TPlay>) {
-	if (currPlays.length !== srcPlays.length) return true;
-
-	let equalPlays = currPlays.filter(play => srcPlays.find(srcPlay => play.id === srcPlay.id && checkEqualPlays(play, srcPlay)));
-	return equalPlays.length !== currPlays.length;
 }
 
 // ---------------------------------------
@@ -106,9 +89,67 @@ export async function saveStages(currStages: Array<TStage>) {
 	srcStages = JSON.parse(JSON.stringify(currStages));
 }
 
-export function changedStages(currStages: Array<TStage>) {
-	if (currStages.length !== srcStages.length) return true;
+// ---------------------------------------
+//              PERFORMANCES
+// ---------------------------------------
+let performances: Array<TPerformance>;
+let srcPerformances: Array<TPerformance>;
 
-	let equalStages = currStages.filter(stage => srcStages.find(srcStage => stage.id === srcStage.id && checkEqualStages(stage, srcStage)));
-	return equalStages.length !== currStages.length;
+export async function readPerformances() {
+	console.log('readPerformances:');
+
+	const docRef = doc(getAntreprizaDB(), COLLECTION_THEATER, DOC_THEATER_PERFORMANCES);
+	const docSnap = await getDoc(docRef);
+
+	if (docSnap.exists() && docSnap.data().events) {
+		performances = docSnap.data().events;
+		performances.forEach(performance => validatePerformanceStructure(performance));
+		srcPerformances = JSON.parse(JSON.stringify(performances));
+	} else {
+		console.log('empty performance');
+
+		performances = [];
+		srcPerformances = [];
+	}
+}
+
+export function getPerformances(): Array<TPerformance> {
+	if (!srcPerformances) readPerformances();
+	return performances;
+}
+
+export async function savePerformances(currPerformances: Array<TPerformance>) {
+	console.log(currPerformances);
+
+	await setDoc(doc(getAntreprizaDB(), COLLECTION_THEATER, DOC_THEATER_PERFORMANCES), { events: currPerformances });
+	srcPerformances = JSON.parse(JSON.stringify(currPerformances));
+}
+
+// ---------------------------------------
+//                  <T>
+// ---------------------------------------
+function getSrcItems<T>(type: EItemType): T[] {
+	switch (type) {
+		case EItemType.PLAY:
+			return srcPlays;
+		case EItemType.STAGE:
+			return srcStages;
+		case EItemType.PERFORMANCE:
+			return srcPerformances;
+		default:
+			return undefined;
+	}
+}
+
+export function changedItems<T extends IItem>(currItems: T[], type: EItemType): boolean {
+	console.log('+++ changedItems');
+
+	const srcItems = getSrcItems<T>(type);
+	if (!srcItems) {
+		console.log('changedItems: type ERROR !!!');
+		return false;
+	}
+
+	let equalItems = currItems.filter(item => srcItems.find(srcItem => item.id === srcItem.id && checkEqualItems(item, srcItem, type)));
+	return equalItems.length !== currItems.length;
 }

@@ -1,9 +1,10 @@
-<script setup>
+<script setup lang="ts">
 import { ref, computed } from 'vue';
+import { EAuthRole } from '@scripts/auth';
 
 const emit = defineEmits(['authorize']);
 
-const fEmail = '';
+const fEmail: string = '';
 const login = ref('');
 const password = ref('');
 const email = ref(fEmail);
@@ -33,7 +34,9 @@ function submit(event) {
 	const handleResult = (ok, isDemo, firebaseConfig) => {
 		if (ok) {
 			authError.value = '';
-			emit('authorize', true, isDemo, firebaseConfig);
+			let role = EAuthRole.ADMIN;
+			if (isDemo) role = EAuthRole.DEMO;
+			emit('authorize', role, firebaseConfig);
 		} else {
 			authError.value = 'Введен неверный логин или пароль.';
 		}
@@ -49,10 +52,11 @@ function submit(event) {
 		})
 		.then(data => {
 			// console.log(data.message);
-			if (isOk) handleResult(true, data?.demo, data.firebaseConfig);
-			else throw new Error();
+			if (isOk) {
+				handleResult(true, data?.demo, data.firebaseConfig);
+			} else throw new Error();
 		})
-		.catch(() => handleResult(false));
+		.catch(() => handleResult(false, undefined, undefined));
 }
 </script>
 

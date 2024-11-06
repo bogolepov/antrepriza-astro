@@ -1,7 +1,23 @@
+export const enum EItemType {
+	PLAY = 'play',
+	STAGE = 'stage',
+	PERFORMANCE = 'performance',
+	REPETITION = 'repetition',
+}
+
+export interface IItem {
+	id: number;
+	sid: string;
+}
+
 export type TMultiText = {
 	ru: string;
 	de: string;
 };
+
+// ---------------------------------------
+//                TPlay
+// ---------------------------------------
 
 type TAuthor = {
 	firstname: TMultiText;
@@ -15,9 +31,7 @@ type TRole = {
 	actors: Array<number>;
 };
 
-export type TPlay = {
-	id: number;
-	sid: string;
+interface IPlay extends IItem {
 	name: TMultiText;
 	author: TAuthor;
 	genre: TMultiText;
@@ -26,7 +40,12 @@ export type TPlay = {
 	duration: number;
 	language: TMultiText;
 	roles: Array<TRole>;
-};
+}
+export type TPlay = IPlay;
+
+// ---------------------------------------
+//                TStage
+// ---------------------------------------
 
 type TPhone = {
 	country: number;
@@ -53,20 +72,43 @@ type TContacts = {
 	email: string;
 };
 
+let phone: TPhone = { country: 49, number: 111 };
+console.log(typeof phone);
+
 type TStageHost = {
 	name: string;
 	contacts: TContacts;
 };
 
-export type TStage = {
-	id: number;
-	sid: string;
+interface IStage extends IItem {
 	name: TMultiText;
 	address: TAddress;
 	fixed: boolean;
 	host: TStageHost;
-};
+}
 
+export type TStage = IStage;
+
+// ---------------------------------------
+//                TPerformance
+// ---------------------------------------
+enum EPerformanceType {
+	REGULAR = 'обычный',
+	FESTIVAL = 'фестиваль',
+	TOUR = 'гастроли',
+}
+interface IPerformance extends IItem {
+	play_sid: string;
+	stage_sid: string;
+	date: string;
+	time: string;
+	premiere: boolean;
+	event_type: EPerformanceType;
+}
+export type TPerformance = IPerformance;
+// ---------------------------------------
+//                validation
+// ---------------------------------------
 function validateMultiTextStructure(text: TMultiText): TMultiText {
 	if (!text) text = {} as TMultiText;
 	if (text.ru === undefined) text.ru = '';
@@ -156,6 +198,36 @@ export function validateStageStructure(stage: TStage): TStage {
 	return stage;
 }
 
+export function validatePerformanceStructure(performance: TPerformance): TPerformance {
+	if (!performance) performance = {} as TPerformance;
+	if (performance.id === undefined) performance.id = 0;
+	if (performance.sid === undefined) performance.sid = '';
+	if (performance.play_sid === undefined) performance.play_sid = '';
+	if (performance.stage_sid === undefined) performance.stage_sid = '';
+	if (performance.date === undefined) performance.date = '';
+	if (performance.time === undefined) performance.time = '';
+	if (performance.premiere === undefined) performance.premiere = false;
+	if (performance.event_type === undefined) performance.event_type = EPerformanceType.REGULAR;
+	return performance;
+}
+
+// ---------------------------------------
+//                validation
+// ---------------------------------------
+export type TUniqStatus = {
+	isUniq: boolean;
+	firstItem: number;
+	secondItem: number;
+};
+export function checkUniqueSIDs<T extends IItem>(items: Array<T>): TUniqStatus {
+	if (items.length < 2) return { isUniq: true, firstItem: -1, secondItem: -1 };
+	for (let i = 0; i < items.length - 1; i++)
+		for (let j = i + 1; j < items.length; j++) {
+			if (items[i].sid === items[j].sid) return { isUniq: false, firstItem: i, secondItem: j };
+		}
+	return { isUniq: true, firstItem: -1, secondItem: -1 };
+}
+
 export type TUniqPlaysResult = {
 	isUniq: boolean;
 	firstItem: number;
@@ -184,6 +256,9 @@ export function isUniqueStagesSID(stages: Array<TStage>): TUniqStagesResult {
 	return { isUniq: true, firstItem: -1, secondItem: -1 };
 }
 
+// ---------------------------------------
+//                compare
+// ---------------------------------------
 function checkEqualMultiText(text1: TMultiText, text2: TMultiText): boolean {
 	return text1.ru === text2.ru && text1.de === text2.de;
 }
@@ -229,7 +304,7 @@ function checkEqualHost(host1: TStageHost, host2: TStageHost): boolean {
 	return host1.name === host2.name && checkEqualContacts(host1.contacts, host2.contacts);
 }
 
-export function checkEqualPlays(play1: TPlay, play2: TPlay): boolean {
+function checkEqualPlays(play1: TPlay, play2: TPlay): boolean {
 	return (
 		play1.age === play2.age &&
 		play1.break === play2.break &&
@@ -243,7 +318,20 @@ export function checkEqualPlays(play1: TPlay, play2: TPlay): boolean {
 	);
 }
 
-export function checkEqualStages(stage1: TStage, stage2: TStage): boolean {
+function checkEqualPerformances(performance1: TPerformance, performance2: TPerformance): boolean {
+	return (
+		performance1.id === performance2.id &&
+		performance1.sid === performance2.sid &&
+		performance1.premiere === performance2.premiere &&
+		performance1.play_sid === performance2.play_sid &&
+		performance1.stage_sid === performance2.stage_sid &&
+		performance1.date === performance2.date &&
+		performance1.time === performance2.time &&
+		performance1.event_type === performance2.event_type
+	);
+}
+
+function checkEqualStages(stage1: TStage, stage2: TStage): boolean {
 	return (
 		stage1.id === stage2.id &&
 		stage1.sid === stage2.sid &&
@@ -252,4 +340,17 @@ export function checkEqualStages(stage1: TStage, stage2: TStage): boolean {
 		checkEqualAddress(stage1.address, stage2.address) &&
 		checkEqualHost(stage1.host, stage2.host)
 	);
+}
+export function checkEqualItems<T extends IItem>(item1: T, item2: T, type: EItemType): boolean {
+	switch (type) {
+		case EItemType.PLAY:
+			return checkEqualPlays(item1, item2);
+		case EItemType.STAGE:
+			return checkEqualStages(item1, item2);
+		case EItemType.PERFORMANCE:
+			return checkEqualPerformances(item1, item2);
+		default:
+			console.log('checkEqualItems: type ERROR !!!');
+			return true;
+	}
 }

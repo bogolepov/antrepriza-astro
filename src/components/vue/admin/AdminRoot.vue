@@ -1,24 +1,25 @@
 <script setup lang="ts">
-import { ref, defineAsyncComponent, onMounted, provide } from 'vue';
+import { ref, defineAsyncComponent, onMounted, provide, readonly } from 'vue';
 import AuthForm from './AuthForm.vue';
 import { type TFirebaseConfig, initFirebaseConfig } from '@scripts/db/firebaseConfig';
+import { EAuthRole } from '@scripts/auth';
 import { dbConnect, dbDisconnect } from '@scripts/db/firebase';
-import { readPlays, readStages } from '@scripts/db/antreprizaDB';
+import { readPlays, readStages, readPerformances } from '@scripts/db/antreprizaDB';
 
 const AdminPage = defineAsyncComponent(() => import('./AdminPage.vue'));
 
-const LS_ADMIN_AUTH: string = 'adminAuth';
-const LS_DEMO_AUTH: string = 'demoAuth';
-const LS_ADMIN_AUTH_DATE: string = 'adminAuthDate';
+const LS_AUTH_ROLE = 'authRole';
+const LS_AUTH_DATE = 'authDate';
 
-const authorized = ref(false);
-const isDemoMode = ref(false);
+const authRole = ref(EAuthRole.UNAUTHORIZED);
+
 const connectedDB = ref(false);
 
 async function handleConnectDB(connected: boolean) {
 	if (connected) {
 		await readPlays();
 		await readStages();
+		await readPerformances();
 	}
 	connectedDB.value = connected;
 }
@@ -26,42 +27,49 @@ function handleDisconnectDB(connected: boolean): void {
 	connectedDB.value = connected;
 }
 
-function changeAuthorized(isAuthorized: boolean, isDemo: boolean = false, firebaseConfig?: TFirebaseConfig): void {
-	authorized.value = isAuthorized;
-	isDemoMode.value = isDemo;
-	localStorage.setItem(LS_ADMIN_AUTH, isAuthorized.toString());
-	localStorage.setItem(LS_DEMO_AUTH, isDemo.toString());
-	if (isAuthorized) {
-		localStorage.setItem(LS_ADMIN_AUTH_DATE, Date.now().toString());
+function changeAuthorized(role: EAuthRole, firebaseConfig?: TFirebaseConfig): void {
+	console.log('changeAuthorized: set ' + role);
+
+	authRole.value = role;
+	console.log('set role to loacalStorage');
+	localStorage.setItem(LS_AUTH_ROLE, role);
+	console.log('get role from loacalStorage: ' + localStorage.getItem(LS_AUTH_ROLE));
+	if (role === EAuthRole.UNAUTHORIZED) {
+		dbDisconnect(handleDisconnectDB);
+		localStorage.removeItem(LS_AUTH_DATE);
+	} else {
+		localStorage.setItem(LS_AUTH_DATE, Date.now().toString());
 		if (firebaseConfig) {
 			initFirebaseConfig(firebaseConfig);
 			dbConnect(handleConnectDB);
 		}
-	} else {
-		dbDisconnect(handleDisconnectDB);
-		localStorage.removeItem(LS_ADMIN_AUTH_DATE);
-		localStorage.removeItem(LS_DEMO_AUTH);
 	}
 }
 
-provide('demo', isDemoMode);
+provide('authRole', readonly(authRole));
 
 onMounted(() => {
-	let item = localStorage.getItem(LS_ADMIN_AUTH);
-	if (item !== undefined) {
-		authorized.value = JSON.parse(item);
-	}
-	item = localStorage.getItem(LS_DEMO_AUTH);
-	if (item !== undefined) {
-		isDemoMode.value = JSON.parse(item);
-	}
-	if (authorized.value && !connectedDB.value) {
-		dbConnect(handleConnectDB);
+	console.log('AuthRole in localStorage: ' + localStorage.getItem(LS_AUTH_ROLE));
+
+	const strRole: string = localStorage.getItem(LS_AUTH_ROLE);
+	let role: EAuthRole = EAuthRole.UNAUTHORIZED;
+	if (Object.values(EAuthRole).includes(strRole)) role = strRole;
+	console.log('authRole:');
+	console.log(role);
+	if (role === EAuthRole.DEMO) console.log('role === EAuthRole.DEMO');
+
+	if (role === undefined || role === EAuthRole.UNAUTHORIZED) {
+		authRole.value = EAuthRole.UNAUTHORIZED;
+	} else {
+		authRole.value = role;
+		if (!connectedDB.value) {
+			dbConnect(handleConnectDB);
+		}
 	}
 });
 </script>
 
 <template>
-	<AuthForm v-if="!authorized" @authorize="changeAuthorized"></AuthForm>
-	<AdminPage v-else-if="authorized && connectedDB" @authorize="changeAuthorized"></AdminPage>
+	<AuthForm v-if="authRole === EAuthRole.UNAUTHORIZED" @authorize="changeAuthorized"></AuthForm>
+	<AdminPage v-else-if="authRole !== EAuthRole.UNAUTHORIZED && connectedDB" @authorize="changeAuthorized"></AdminPage>
 </template>

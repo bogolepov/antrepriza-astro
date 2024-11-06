@@ -1,55 +1,54 @@
 <script setup lang="ts">
 import { inject, ref, computed } from 'vue';
 import { EAuthRole } from '@scripts/auth';
-import type { TStage } from '@scripts/db/baseTypes';
+import type { TPerformance } from '@scripts/db/baseTypes';
 import MultiLangText from './MultiLangText.vue';
 
 interface Props {
-	stage: TStage;
+	performance: TPerformance;
 }
-const { stage } = defineProps<Props>();
-const emit = defineEmits(['checkStagesChanging', 'deleteStage']);
+const { performance } = defineProps<Props>();
+const emit = defineEmits(['checkPerformancesChanging', 'deletePerformance']);
 
-// const isDemo: boolean = inject('demo');
 const authRole: EAuthRole = inject('authRole');
 const isDemo = computed(() => authRole.value === EAuthRole.DEMO);
 
 const showCard = ref(false);
 const editCard = ref(false);
 
-const fixedStageOptions = ref([
+const premiereOptions = ref([
 	{ text: 'нет', value: false },
 	{ text: 'да', value: true },
 ]);
 
-function modifyStage() {
+function modifyPerformance() {
 	const wasEditMode = editCard.value;
 	editCard.value = !editCard.value;
 	if (wasEditMode) {
-		emit('checkStagesChanging');
+		emit('checkPerformancesChanging');
 	}
 }
-function deleteStage() {
-	emit('deleteStage', stage.id);
+function deletePerformance() {
+	emit('deletePerformance', performance.id);
 }
 </script>
 
 <template>
-	<div class="stage-title" @click="showCard = !showCard">
-		<h3>Сцена {{ stage.name.ru.toUpperCase() }}</h3>
-		<div class="stage-actions">
+	<div class="performance-title" @click="showCard = !showCard">
+		<h3>Спектакль</h3>
+		<!-- <h3>Спектакль {{ stage.name.ru.toUpperCase() }}</h3> -->
+		<div class="performance-actions">
 			<button class="expand-item-button">
 				{{ showCard ? '➖' : '➕' }}
 			</button>
 		</div>
 	</div>
-	<ul v-show="showCard" class="stage-card">
+	<ul v-show="showCard" class="performance-card">
 		<li>
 			<div class="label">Текстовый идентификатор:</div>
-			<div v-if="!editCard">{{ stage.sid ? stage.sid : ' - ' }}</div>
-			<input v-else type="text" v-model="stage.sid" maxlength="10" />
+			<div>{{ performance.sid ? performance.sid : ' - ' }}</div>
 		</li>
-		<li>
+		<!-- <li>
 			<div class="label">Название:</div>
 			<MultiLangText :multiText="stage.name" :isEdit="editCard" />
 		</li>
@@ -106,10 +105,10 @@ function deleteStage() {
 					<input v-else type="text" v-model="stage.address.full_address" class="max-width" />
 				</div>
 			</div>
-		</li>
+		</li> -->
 		<li class="modify-item">
-			<button @click="modifyStage" :disabled="isDemo">{{ editCard ? 'OK' : 'Редактировать' }}</button>
-			<button @click="deleteStage" :disabled="isDemo">Удалить</button>
+			<button @click="modifyPerformance" :disabled="isDemo">{{ editCard ? 'OK' : 'Редактировать' }}</button>
+			<button @click="deletePerformance" :disabled="isDemo">Удалить</button>
 		</li>
 	</ul>
 </template>
@@ -119,7 +118,7 @@ h3 {
 	font-size: 1.75em;
 	line-height: 1.15;
 }
-.stage-title {
+.performance-title {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
@@ -127,28 +126,18 @@ h3 {
 	cursor: pointer;
 	margin-top: 0.6rem;
 }
-.stage-actions {
+.performance-actions {
 	display: grid;
 	place-items: center;
 }
 
-.stage-card {
+.performance-card {
 	background-color: var(--grey-120);
 	border-radius: 6px;
 	margin: 0.3rem 0 0.6rem 1rem;
 	padding: 0.6rem 1rem;
 }
-.stage-card > li {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-}
-.address-flex {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-}
-.address-flex > div {
+.performance-card > li {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
