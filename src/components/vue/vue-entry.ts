@@ -1,11 +1,11 @@
 import type { App } from 'vue';
 import { createRouter, createWebHistory } from 'vue-router';
+
 import Repetition from '@components/vue/admin/views/Repetitions.vue';
 import Performances from '@components/vue/admin/views/Performances.vue';
 import Plays from '@components/vue/admin/views/Plays.vue';
 import Stages from '@components/vue/admin/views/Stages.vue';
 // import Visitors from '@components/vue/admin/views/Visitors.vue';
-
 const Visitors = () => import('@components/vue/admin/views/Visitors.vue');
 
 export default (app: App) => {

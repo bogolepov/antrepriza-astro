@@ -9,7 +9,8 @@ import dictionary from '@data/dictionary.json'
 import theater from '@data/theater.json'
 
 export const getStaticPaths = (() => {
-  let team = theater.people.filter(person => person.suffix);  
+  let people = [].concat(theater.people, theater.ex_people);
+  let team = people.filter(person => person.suffix);  
   return theater.languages.flatMap(lng => {
     return team.map(person => {
       let aTitle = person.name[lng.lang_code] + " " + person.surname[lng.lang_code];

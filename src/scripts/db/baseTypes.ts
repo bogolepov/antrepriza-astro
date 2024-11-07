@@ -92,7 +92,7 @@ export type TStage = IStage;
 // ---------------------------------------
 //                TPerformance
 // ---------------------------------------
-enum EPerformanceType {
+export enum EPerformanceType {
 	REGULAR = 'обычный',
 	FESTIVAL = 'фестиваль',
 	TOUR = 'гастроли',

@@ -60,7 +60,7 @@ let stages: Array<TStage>;
 let srcStages: Array<TStage>;
 
 export async function readStages() {
-	console.log('readStages:');
+	// console.log('readStages:');
 
 	const docRef = doc(getAntreprizaDB(), COLLECTION_THEATER, DOC_THEATER_STAGES);
 	const docSnap = await getDoc(docRef);
@@ -70,8 +70,7 @@ export async function readStages() {
 		stages.forEach(stage => validateStageStructure(stage));
 		srcStages = JSON.parse(JSON.stringify(stages));
 	} else {
-		console.log('empty stages');
-
+		// console.log('empty stages');
 		stages = [];
 		srcStages = [];
 	}
@@ -83,8 +82,7 @@ export function getStages(): Array<TStage> {
 }
 
 export async function saveStages(currStages: Array<TStage>) {
-	console.log(currStages);
-
+	// console.log(currStages);
 	await setDoc(doc(getAntreprizaDB(), COLLECTION_THEATER, DOC_THEATER_STAGES), { stages: currStages });
 	srcStages = JSON.parse(JSON.stringify(currStages));
 }
@@ -96,8 +94,7 @@ let performances: Array<TPerformance>;
 let srcPerformances: Array<TPerformance>;
 
 export async function readPerformances() {
-	console.log('readPerformances:');
-
+	// console.log('readPerformances:');
 	const docRef = doc(getAntreprizaDB(), COLLECTION_THEATER, DOC_THEATER_PERFORMANCES);
 	const docSnap = await getDoc(docRef);
 
@@ -106,8 +103,7 @@ export async function readPerformances() {
 		performances.forEach(performance => validatePerformanceStructure(performance));
 		srcPerformances = JSON.parse(JSON.stringify(performances));
 	} else {
-		console.log('empty performance');
-
+		// console.log('empty performance');
 		performances = [];
 		srcPerformances = [];
 	}
@@ -119,8 +115,7 @@ export function getPerformances(): Array<TPerformance> {
 }
 
 export async function savePerformances(currPerformances: Array<TPerformance>) {
-	console.log(currPerformances);
-
+	// console.log(currPerformances);
 	await setDoc(doc(getAntreprizaDB(), COLLECTION_THEATER, DOC_THEATER_PERFORMANCES), { events: currPerformances });
 	srcPerformances = JSON.parse(JSON.stringify(currPerformances));
 }
@@ -142,8 +137,7 @@ function getSrcItems<T>(type: EItemType): T[] {
 }
 
 export function changedItems<T extends IItem>(currItems: T[], type: EItemType): boolean {
-	console.log('+++ changedItems');
-
+	// console.log('+++ changedItems');
 	const srcItems = getSrcItems<T>(type);
 	if (!srcItems) {
 		console.log('changedItems: type ERROR !!!');

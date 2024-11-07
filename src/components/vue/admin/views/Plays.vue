@@ -79,43 +79,10 @@ onBeforeRouteLeave((to, from, next) => {
 
 <template>
 	<ChapterTitle title="Спектакли" @handle-save-button="savePlaysDB" :show-save-button="playsChanged" :is-demo="isDemo" />
-	<!-- <div class="plays-title">
-		<h1>Спектакли</h1>
-		<div class="plays-actions">
-			<button v-show="playsChanged" @click="savePlaysDB" :disabled="isDemo" class="save-button">Сохранить</button>
-		</div>
-	</div> -->
 	<ul>
-		<template v-for="play of plays">
+		<template v-for="play of plays" :key="play.id">
 			<li><PlayCard :play @check-plays-changing="checkPlaysChanging" @delete-play="deletePlay" /></li>
 		</template>
 	</ul>
 	<button @click="addPlay" :disabled="isDemo">Добавить спектакль</button>
 </template>
-
-<style scoped>
-/* .plays-title {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	flex-wrap: wrap;
-	column-gap: 1.5rem;
-	row-gap: 0.1rem;
-}
-.plays-actions {
-	display: grid;
-	place-items: center;
-}
-
-.plays-actions button {
-	margin-top: 0;
-}
-.save-button {
-	background-color: transparent;
-	font-size: 1.1em;
-	font-weight: 400;
-	color: var(--colorAntreprizaRed);
-	border: 1px solid var(--colorAntreprizaRed);
-	cursor: pointer;
-} */
-</style>

@@ -35,15 +35,15 @@ function deleteStage() {
 </script>
 
 <template>
-	<div class="stage-title" @click="showCard = !showCard">
+	<div class="item-title" @click="showCard = !showCard">
 		<h3>Сцена {{ stage.name.ru.toUpperCase() }}</h3>
-		<div class="stage-actions">
+		<div class="item-title-actions">
 			<button class="expand-item-button">
 				{{ showCard ? '➖' : '➕' }}
 			</button>
 		</div>
 	</div>
-	<ul v-show="showCard" class="stage-card">
+	<ul v-show="showCard" class="item-card">
 		<li>
 			<div class="label">Текстовый идентификатор:</div>
 			<div v-if="!editCard">{{ stage.sid ? stage.sid : ' - ' }}</div>
@@ -56,7 +56,7 @@ function deleteStage() {
 		<li>
 			<div class="label">Постоянная сцена:</div>
 			<div v-if="!editCard">{{ stage.fixed ? 'да' : 'нет' }}</div>
-			<select v-else v-model="stage.fixed" class="fixed-select">
+			<select v-else v-model="stage.fixed" class="list-select">
 				<option v-for="option in fixedStageOptions" :value="option.value">
 					{{ option.text }}
 				</option>
@@ -115,34 +115,6 @@ function deleteStage() {
 </template>
 
 <style>
-h3 {
-	font-size: 1.75em;
-	line-height: 1.15;
-}
-.stage-title {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	user-select: none;
-	cursor: pointer;
-	margin-top: 0.6rem;
-}
-.stage-actions {
-	display: grid;
-	place-items: center;
-}
-
-.stage-card {
-	background-color: var(--grey-120);
-	border-radius: 6px;
-	margin: 0.3rem 0 0.6rem 1rem;
-	padding: 0.6rem 1rem;
-}
-.stage-card > li {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-}
 .address-flex {
 	display: flex;
 	flex-direction: column;
@@ -153,23 +125,6 @@ h3 {
 	flex-direction: row;
 	flex-wrap: wrap;
 }
-
-.label {
-	color: var(--colorFont-Op1);
-	font-weight: 400;
-}
-.label + * {
-	margin-left: 1rem;
-}
-.label + input {
-	line-height: 1;
-	margin-bottom: 0.4rem;
-}
-
-.fixed-select {
-	min-width: 6rem;
-}
-
 .max-width {
 	flex-grow: 1;
 	max-width: 25rem;

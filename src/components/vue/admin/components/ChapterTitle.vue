@@ -14,6 +14,7 @@ const emit = defineEmits<{
 	<div class="chapter-title">
 		<h1>{{ title }}</h1>
 		<div class="chapter-actions">
+			<slot name="chapter-actions"></slot>
 			<button v-show="showSaveButton" @click="$emit('handleSaveButton')" :disabled="isDemo" class="save-button">Сохранить</button>
 		</div>
 	</div>
@@ -31,6 +32,11 @@ const emit = defineEmits<{
 .chapter-actions {
 	display: grid;
 	place-items: center;
+	/* place-items: center; */
+	/* grid-template-columns: repeat(auto-fill, 1fr); */
+	grid-auto-flow: column;
+	column-gap: 0.5rem;
+	row-gap: 0.3rem;
 }
 .chapter-actions button {
 	margin-top: 0;

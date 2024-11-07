@@ -34,15 +34,15 @@ function deletePlay() {
 </script>
 
 <template>
-	<div class="play-title" @click="showCard = !showCard">
+	<div class="item-title" @click="showCard = !showCard">
 		<h3>{{ play.name.ru }}</h3>
-		<div class="play-actions">
+		<div class="item-title-actions">
 			<button class="expand-item-button">
 				{{ showCard ? '➖' : '➕' }}
 			</button>
 		</div>
 	</div>
-	<ul v-show="showCard" class="play-card">
+	<ul v-show="showCard" class="item-card">
 		<li>
 			<div class="label">Текстовый идентификатор:</div>
 			<div v-if="!editCard">{{ play.sid ? play.sid : ' - ' }}</div>
@@ -100,58 +100,13 @@ function deletePlay() {
 </template>
 
 <style>
-h3 {
-	font-size: 1.75em;
-	line-height: 1.15;
-}
-.play-title {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	user-select: none;
-	cursor: pointer;
-	margin-top: 0.6rem;
-}
-.play-actions {
-	display: grid;
-	place-items: center;
-}
-
-.play-card {
-	/* width: 100%; */
-	background-color: var(--grey-120);
-	border-radius: 6px;
-	margin: 0.3rem 0 0.6rem 1rem;
-	padding: 0.6rem 1rem;
-}
-.play-card > li {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	/* column-gap: 0.7rem; */
-}
 .author-flex {
 	display: flex;
 	flex-direction: column;
-	/* padding-left: 1.5rem; */
 }
 .author-flex > div {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
-
-	/* column-gap: 0.7rem; */
-}
-
-.label {
-	color: var(--colorFont-Op1);
-	font-weight: 400;
-}
-.label + * {
-	margin-left: 1rem;
-}
-.label + input {
-	line-height: 1;
-	margin-bottom: 0.4rem;
 }
 </style>

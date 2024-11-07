@@ -5,13 +5,14 @@ import { EAuthRole } from '@scripts/auth';
 import { type TFirebaseConfig } from '@scripts/db/firebaseConfig';
 import { getPlays, getStages, getPerformances } from '@scripts/db/antreprizaDB';
 import LetterSizeControl from './components/LetterSizeControl.vue';
+import type { TPerformance, TPlay, TStage } from '@scripts/db/baseTypes';
 
 const router = useRouter();
 const route = useRoute();
 
-const plays = ref();
-const stages = ref();
-const performances = ref();
+const plays = ref<Array<TPlay>>([]);
+const stages = ref<Array<TStage>>([]);
+const performances = ref<Array<TPerformance>>([]);
 
 const fontSize = ref();
 const smallScreen = ref(false);
@@ -130,18 +131,6 @@ aside {
 	user-select: none;
 	cursor: pointer;
 }
-.open-menu-button {
-	position: absolute;
-	top: 0;
-	left: 0;
-	padding: 0 0.75rem;
-	background-color: transparent;
-	border: 0;
-	border-right: 1px solid var(--color-border);
-	font-size: 1.25em;
-	user-select: none;
-	cursor: pointer;
-}
 .logout-button {
 	margin-top: 1.2rem;
 	width: 100%;
@@ -172,6 +161,20 @@ main > ul {
 	margin-top: 0.65rem;
 	/* border-style: ridge; */
 	border-top: 4px double var(--color-border);
+}
+
+.open-menu-button {
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 0 0.75rem;
+	margin: 0;
+	background-color: transparent;
+	border: 0;
+	border-right: 1px solid var(--color-border);
+	font-size: 1.25em;
+	user-select: none;
+	cursor: pointer;
 }
 
 .letter-size-control {
@@ -219,5 +222,53 @@ main > ul {
 	padding: 0 0.6rem;
 	margin-top: 0;
 	border: 1px solid var(--colorFont);
+}
+
+/* ------------ ITEM TITLE ----------- */
+.item-title {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	user-select: none;
+	cursor: pointer;
+	margin-top: 0.6rem;
+}
+.item-title h3 {
+	font-size: 1.75em;
+	line-height: 1.15;
+}
+.item-title-actions {
+	display: grid;
+	place-items: center;
+}
+/* ------------- ITEM CARD ------------ */
+.item-card {
+	background-color: var(--grey-120);
+	border-radius: 6px;
+	margin: 0.3rem 0 0.6rem 1rem;
+	padding: 0.6rem 1rem;
+}
+.item-card > li {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.item-card .label {
+	color: var(--colorFont-Op1);
+	font-weight: 400;
+}
+.item-card .label + * {
+	margin-left: 1rem;
+}
+.item-card .label + input,
+.item-card .label + select {
+	line-height: 1;
+	margin-bottom: 0.4rem;
+}
+
+.item-card .list-select {
+	min-width: 6rem;
+	padding-right: 1rem;
 }
 </style>

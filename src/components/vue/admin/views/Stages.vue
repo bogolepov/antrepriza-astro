@@ -74,7 +74,7 @@ onBeforeRouteLeave((to, from, next) => {
 <template>
 	<ChapterTitle title="Сцены, площадки" @handle-save-button="saveStagesDB" :show-save-button="stagesChanged" :is-demo="isDemo" />
 	<ul>
-		<template v-for="stage of stages">
+		<template v-for="stage of stages" :key="stage.id">
 			<li><StageCard :stage @check-stages-changing="checkStagesChanging" @delete-stage="deleteStage" /></li>
 		</template>
 	</ul>
