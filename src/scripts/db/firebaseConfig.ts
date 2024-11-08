@@ -13,9 +13,6 @@ let firebaseConfig: TFirebaseConfig;
 export function initFirebaseConfig(config: TFirebaseConfig) {
 	if (!firebaseConfig) {
 		firebaseConfig = config;
-		console.log('initFirebaseConfig:');
-
-		console.log(firebaseConfig);
 	}
 }
 
@@ -52,13 +49,10 @@ export function getFirebaseConfig(handleConfig: (config: TFirebaseConfig) => voi
 			.then(data => {
 				if (isOk && data && data.firebaseConfig) {
 					firebaseConfig = data.firebaseConfig as TFirebaseConfig;
-					// console.log('firebaseConfig');
-					// console.log(firebaseConfig);
 					handleConfig(firebaseConfig);
 				} else throw new Error('BACKEND error');
 			})
 			.catch(error => {
-				console.log(error);
 				handleConfig(undefined);
 			});
 	}

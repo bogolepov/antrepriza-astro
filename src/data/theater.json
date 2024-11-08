@@ -129,8 +129,8 @@
 		}
 	},
 	"director": 1,
-	"team": [1, 8, 7, 2, 4, 6, 5],
-	"actors": [1, 100, 101, 103, 104, 105, 111, 108, 109, 110, 107, 119, 112, 130, 116, 129, 118, 123, 124],
+	"team": [1, 8, 7, 2, 4, 5],
+	"actors": [1, 100, 130, 101, 103, 105, 111, 129, 108, 109, 110, 104, 107, 119, 112, 131, 132, 116, 133, 118, 123, 124],
 	"ex_actors": [3, 102, 106, 117, 121, 122, 125, 126, 128],
 	"people": [
 		{
@@ -167,14 +167,6 @@
 			"name": { "ru": "Илья", "de": "Ilya" },
 			"surname": { "ru": "Деньчуков", "de": "Denchukov" },
 			"jobs": ["photographer"]
-		},
-		{
-			"id": 6,
-			"photo": "dep.jpg",
-			"gender": "m",
-			"name": { "ru": "Денис", "de": "Denis" },
-			"surname": { "ru": "Епифанцев", "de": "Epifantsev" },
-			"jobs": ["graphic_design"]
 		},
 		{
 			"id": 7,
@@ -324,7 +316,7 @@
 		{
 			"id": 129,
 			"suffix": "igg",
-			"photo": "no-photo.jpg",
+			"photo": "igg.jpg",
 			"gender": "m",
 			"name": { "ru": "Игорь", "de": "Igor" },
 			"surname": { "ru": "Гнездилов", "de": "Gnesdilov" }
@@ -332,10 +324,34 @@
 		{
 			"id": 130,
 			"suffix": "ink",
-			"photo": "no-photo.jpg",
+			"photo": "ink.jpg",
 			"gender": "f",
-			"name": { "ru": "Инесе", "de": "Inesse" },
-			"surname": { "ru": "Крылова", "de": "Krylova" }
+			"name": { "ru": "Инесе", "de": "Inese" },
+			"surname": { "ru": "Крылова", "de": "Krilova" }
+		},
+		{
+			"id": 131,
+			"suffix": "sg",
+			"photo": "sh.jpg",
+			"gender": "f",
+			"name": { "ru": "София", "de": "Sofiia" },
+			"surname": { "ru": "Гейко", "de": "Heiko" }
+		},
+		{
+			"id": 132,
+			"suffix": "bol",
+			"photo": "bol.jpg",
+			"gender": "f",
+			"name": { "ru": "Ольга", "de": "Olga" },
+			"surname": { "ru": "Барк", "de": "Bark" }
+		},
+		{
+			"id": 133,
+			"suffix": "vab",
+			"photo": "vab.jpg",
+			"gender": "m",
+			"name": { "ru": "Валерий", "de": "Valeriy" },
+			"surname": { "ru": "Билков", "de": "Bilkov" }
 		}
 	],
 	"ex_people": [
@@ -347,6 +363,14 @@
 			"name": { "ru": "Борис", "de": "Boris" },
 			"surname": { "ru": "Бирман", "de": "Birman" },
 			"jobs": ["actor"]
+		},
+		{
+			"id": 6,
+			"photo": "dep.jpg",
+			"gender": "m",
+			"name": { "ru": "Денис", "de": "Denis" },
+			"surname": { "ru": "Епифанцев", "de": "Epifantsev" },
+			"jobs": ["graphic_design"]
 		},
 		{
 			"id": 102,

@@ -28,12 +28,8 @@ function handleDisconnectDB(connected: boolean): void {
 }
 
 function changeAuthorized(role: EAuthRole, firebaseConfig?: TFirebaseConfig): void {
-	console.log('changeAuthorized: set ' + role);
-
 	authRole.value = role;
-	console.log('set role to loacalStorage');
 	localStorage.setItem(LS_AUTH_ROLE, role);
-	console.log('get role from loacalStorage: ' + localStorage.getItem(LS_AUTH_ROLE));
 	if (role === EAuthRole.UNAUTHORIZED) {
 		dbDisconnect(handleDisconnectDB);
 		localStorage.removeItem(LS_AUTH_DATE);
@@ -49,14 +45,9 @@ function changeAuthorized(role: EAuthRole, firebaseConfig?: TFirebaseConfig): vo
 provide('authRole', readonly(authRole));
 
 onMounted(() => {
-	console.log('AuthRole in localStorage: ' + localStorage.getItem(LS_AUTH_ROLE));
-
 	const strRole: string = localStorage.getItem(LS_AUTH_ROLE);
 	let role: EAuthRole = EAuthRole.UNAUTHORIZED;
 	if (Object.values(EAuthRole).includes(strRole)) role = strRole;
-	console.log('authRole:');
-	console.log(role);
-	if (role === EAuthRole.DEMO) console.log('role === EAuthRole.DEMO');
 
 	if (role === undefined || role === EAuthRole.UNAUTHORIZED) {
 		authRole.value = EAuthRole.UNAUTHORIZED;

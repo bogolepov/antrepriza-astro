@@ -6,7 +6,7 @@ import Performance from '../components/Performance.vue';
 import iconCalendar from '../components/iconCalendar.vue';
 import { EAuthRole } from '@scripts/auth';
 import { ONE_DAY } from '@scripts/consts';
-import type { TPerformance, TPlay, TStage, TUniqStatus } from '@scripts/db/baseTypes';
+import type { IEvent, TPerformance, TPlay, TStage, TUniqStatus } from '@scripts/db/baseTypes';
 import { validatePerformanceStructure, checkUniqueSIDs, EItemType } from '@scripts/db/baseTypes';
 import { savePerformances, changedItems } from '@scripts/db/antreprizaDB';
 import IconCalendar from '../components/iconCalendar.vue';
@@ -27,11 +27,24 @@ const listPlays = ref([]);
 
 plays.value.forEach((play: TPlay) => listPlays.value.push({ text: play.name.ru, value: play.sid }));
 
+let firstEventsInMonths: TPerformance[];
+
 const performancesToShow = computed(() => {
 	let list = performances.value;
-	if (isActualPerformances.value === true) list = performances.value.filter(item => Date.parse(item.date) + ONE_DAY >= Date.now());
-	return [...list].sort((item1, item2) => Date.parse(item1.date + 'T' + item1.time) - Date.parse(item2.date + 'T' + item2.time));
+	if (isActualPerformances.value === true) {
+		list = performances.value.filter(item => Date.parse(item.date) + ONE_DAY >= Date.now());
+	}
+	list = [...list].sort((item1, item2) => Date.parse(item1.date + 'T' + item1.time) - Date.parse(item2.date + 'T' + item2.time));
+	makeListOfFirstEventsInMonths(list);
+	return list;
 });
+
+function makeListOfFirstEventsInMonths(list: TPerformance[]) {
+	firstEventsInMonths = list.filter((item, index) => {
+		if (index === 0) return true;
+		return new Date(list[index - 1].date).getMonth() !== new Date(item.date).getMonth();
+	});
+}
 
 function getStageName(stage: TStage) {
 	if (stage.fixed) return 'Сцена ' + stage.name.ru.toUpperCase();
@@ -48,12 +61,12 @@ function checkPerformancesChanging() {
 	else performancesChanged.value = changedItems<TPerformance>(performances.value, EItemType.PERFORMANCE);
 }
 
-function changeListViewMode() {
-	isActualPerformances.value = !isActualPerformances.value;
-	updateListView();
+function getMonthName(date: string): string {
+	return new Date(date).toLocaleString('ru', { month: 'long' });
 }
-
-function updateListView() {}
+function isfirstEventInMonth(event: TPerformance): boolean {
+	return firstEventsInMonths.findIndex(item => item.sid == event.sid) !== -1;
+}
 
 function addPerformance() {
 	maxPerformanceId.value++;
@@ -107,7 +120,7 @@ onBeforeRouteLeave((to, from, next) => {
 <template>
 	<ChapterTitle title="Выступления" @handle-save-button="savePerformancesDB" :show-save-button="performancesChanged" :is-demo="isDemo">
 		<template v-slot:chapter-actions>
-			<button @click="changeListViewMode" class="expand-item-button icon-calendar">
+			<button @click="isActualPerformances = !isActualPerformances" class="expand-item-button icon-calendar">
 				<IconCalendar />
 				<div v-show="isActualPerformances" class="icon-calendar-actual">✔️</div>
 			</button>
@@ -115,6 +128,7 @@ onBeforeRouteLeave((to, from, next) => {
 	</ChapterTitle>
 	<ul>
 		<template v-for="performance of performancesToShow" :key="performance.id">
+			<li v-show="isfirstEventInMonth(performance)" class="month-item">{{ getMonthName(performance.date).toUpperCase() }}</li>
 			<li>
 				<Performance
 					:performance
@@ -138,9 +152,17 @@ onBeforeRouteLeave((to, from, next) => {
 .icon-calendar-actual {
 	position: absolute;
 	bottom: -0.1rem;
-	right: 0.1rem;
-	font-size: 0.9rem;
+	right: -0.1rem;
+	font-size: 1.2rem;
 	line-height: 1;
 	user-select: none;
+}
+.month-item {
+	font-size: 2rem;
+	font-weight: var(--font-bold-weight);
+	color: var(--colorFont-Op1);
+	margin-top: 1.5rem;
+	line-height: 1;
+	/* text-align: center; */
 }
 </style>

@@ -73,7 +73,6 @@ type TContacts = {
 };
 
 let phone: TPhone = { country: 49, number: 111 };
-console.log(typeof phone);
 
 type TStageHost = {
 	name: string;
@@ -97,11 +96,14 @@ export enum EPerformanceType {
 	FESTIVAL = 'фестиваль',
 	TOUR = 'гастроли',
 }
-interface IPerformance extends IItem {
-	play_sid: string;
-	stage_sid: string;
+
+export interface IEvent {
 	date: string;
 	time: string;
+}
+interface IPerformance extends IItem, IEvent {
+	play_sid: string;
+	stage_sid: string;
 	premiere: boolean;
 	event_type: EPerformanceType;
 }

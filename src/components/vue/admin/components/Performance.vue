@@ -17,8 +17,8 @@ const isDemo = computed(() => authRole.value === EAuthRole.DEMO);
 const showCard = ref(false);
 const editCard = ref(false);
 
-const minDate = ref(new Date().toISOString().split('T')[0]);
-// const minDate = ref('2024-01-01');
+// const minDate = ref(new Date().toISOString().split('T')[0]);
+const minDate = ref('2024-01-01');
 
 const listYesNo = ref([
 	{ text: 'нет', value: false },

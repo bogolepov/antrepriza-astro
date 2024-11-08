@@ -39,18 +39,18 @@ function updatePageComposition() {
 	}
 }
 
-function updateFontSize(newFontSize) {
+function updateFontSize(newFontSize: string) {
 	fontSize.value = newFontSize;
 	updatePageComposition();
 }
 
-function updatePlays(newPlays) {
+function updatePlays(newPlays: TPlay[]) {
 	plays.value = newPlays;
 }
-function updateStages(newStages) {
+function updateStages(newStages: TStage[]) {
 	stages.value = newStages;
 }
-function updatePerformances(newPerformances) {
+function updatePerformances(newPerformances: TPerformance[]) {
 	performances.value = newPerformances;
 }
 
@@ -234,7 +234,7 @@ main > ul {
 	margin-top: 0.6rem;
 }
 .item-title h3 {
-	font-size: 1.75em;
+	font-size: 1.65em;
 	line-height: 1.15;
 }
 .item-title-actions {

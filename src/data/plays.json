@@ -18,8 +18,8 @@
 			"landscape": "soon.jpg",
 			"landscape_16_9": "soon_16_9.jpg",
 			"portrait": "soon_poster.jpg",
-			"afisha": "kontra_n32.jpg",
-			"facebook": "fb_kd_soon.jpg",
+			"afisha": "afisha_kd.jpg",
+			"facebook": "fb_kd.jpg",
 			"minimum": ""
 		},
 		"lang": { "ru": "русский", "de": "Russisch" },
@@ -108,7 +108,7 @@
 			"landscape_16_9": "soon_16_9.jpg",
 			"portrait": "soon_poster.jpg",
 			"afisha": "kontra_n32.jpg",
-			"facebook": "fb_n32_soon.jpg",
+			"facebook": "fb_n32.jpg",
 			"minimum": ""
 		},
 		"lang": { "ru": "русский", "de": "Russisch" },
