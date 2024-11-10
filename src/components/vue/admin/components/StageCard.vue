@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { inject, ref, computed } from 'vue';
-import { EAuthRole } from '@scripts/auth';
+import { ref } from 'vue';
+import { isDemo } from '../statesStore';
 import type { TStage } from '@scripts/db/baseTypes';
 import MultiLangText from './MultiLangText.vue';
 
@@ -9,10 +9,6 @@ interface Props {
 }
 const { stage } = defineProps<Props>();
 const emit = defineEmits(['checkStagesChanging', 'deleteStage']);
-
-// const isDemo: boolean = inject('demo');
-const authRole: EAuthRole = inject('authRole');
-const isDemo = computed(() => authRole.value === EAuthRole.DEMO);
 
 const showCard = ref(false);
 const editCard = ref(false);
@@ -57,6 +53,7 @@ function deleteStage() {
 			<div class="label">Постоянная сцена:</div>
 			<div v-if="!editCard">{{ stage.fixed ? 'да' : 'нет' }}</div>
 			<select v-else v-model="stage.fixed" class="list-select">
+				<option disabled value="">Выбрать:</option>
 				<option v-for="option in fixedStageOptions" :value="option.value">
 					{{ option.text }}
 				</option>

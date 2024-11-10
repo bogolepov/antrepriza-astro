@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, inject, ref } from 'vue';
-import { EAuthRole } from '@scripts/auth';
+import { ref } from 'vue';
+import { isDemo } from '../statesStore';
 import type { TPlay } from '@scripts/db/baseTypes';
 import MultiLangText from './MultiLangText.vue';
 
@@ -9,14 +9,6 @@ interface Props {
 }
 const { play } = defineProps<Props>();
 const emit = defineEmits(['checkPlaysChanging', 'deletePlay']);
-
-// const props = defineProps({
-// 	play_sid: String,
-// });
-
-// const play: TPlay = plays.value.find(item => item.sid === props.play_sid);
-const authRole: EAuthRole = inject('authRole');
-const isDemo = computed(() => authRole.value === EAuthRole.DEMO);
 
 const showCard = ref(false);
 const editCard = ref(false);
@@ -56,16 +48,12 @@ function deletePlay() {
 			<div class="label" style="width: 100%">Автор:</div>
 			<div class="author-flex">
 				<div>
-					<div class="label">Имя:</div>
-					<MultiLangText :multiText="play.author.firstname" :isEdit="editCard" />
+					<div class="label">Полное имя:</div>
+					<MultiLangText :multiText="play.author.name" :isEdit="editCard" />
 				</div>
 				<div>
 					<div class="label">Сокращенное имя:</div>
-					<MultiLangText :multiText="play.author.firstname_short" :isEdit="editCard" />
-				</div>
-				<div>
-					<div class="label">Фамилия:</div>
-					<MultiLangText :multiText="play.author.surname" :isEdit="editCard" />
+					<MultiLangText :multiText="play.author.short_name" :isEdit="editCard" />
 				</div>
 			</div>
 		</li>

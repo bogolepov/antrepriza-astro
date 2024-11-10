@@ -1,17 +1,14 @@
 <script setup lang="ts">
-import { ref, inject, computed, onMounted } from 'vue';
+import { ref, inject, onMounted } from 'vue';
 import { onBeforeRouteLeave } from 'vue-router';
+import { showMenu, smallScreen, isDemo } from '../statesStore';
 import StageCard from '../components/StageCard.vue';
 import ChapterTitle from '../components/ChapterTitle.vue';
-import { EAuthRole } from '@scripts/auth';
 import type { TStage, TUniqStatus } from '@scripts/db/baseTypes';
 import { validateStageStructure, checkUniqueSIDs, EItemType } from '@scripts/db/baseTypes';
 import { saveStages, changedItems } from '@scripts/db/antreprizaDB';
 
 const { stages, updateStages } = inject('stages');
-
-const authRole: EAuthRole = inject('authRole');
-const isDemo = computed(() => authRole.value === EAuthRole.DEMO);
 
 const stagesChanged = ref(false);
 
@@ -67,12 +64,13 @@ onBeforeRouteLeave((to, from, next) => {
 	if (stagesChanged.value === true && confirm('Сохранить изменения?')) {
 		saveStagesDB();
 	}
+	if (smallScreen.value) showMenu.value = false;
 	next();
 });
 </script>
 
 <template>
-	<ChapterTitle title="Сцены, площадки" @handle-save-button="saveStagesDB" :show-save-button="stagesChanged" :is-demo="isDemo" />
+	<ChapterTitle title="Сцены, площадки" @handle-save-button="saveStagesDB" :show-save-button="stagesChanged" />
 	<ul>
 		<template v-for="stage of stages" :key="stage.id">
 			<li><StageCard :stage @check-stages-changing="checkStagesChanging" @delete-stage="deleteStage" /></li>

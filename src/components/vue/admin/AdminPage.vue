@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { ref, computed, onBeforeMount, provide, onMounted } from 'vue';
+import { ref, onBeforeMount, provide } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
+import { showMenu, smallScreen } from './statesStore';
 import { EAuthRole } from '@scripts/auth';
 import { type TFirebaseConfig } from '@scripts/db/firebaseConfig';
-import { getPlays, getStages, getPerformances } from '@scripts/db/antreprizaDB';
+import { getPlays, getStages, getPerformances, getRepetitions } from '@scripts/db/antreprizaDB';
 import LetterSizeControl from './components/LetterSizeControl.vue';
-import type { TPerformance, TPlay, TStage } from '@scripts/db/baseTypes';
+import type { TPlay, TStage, TPerformance, TRepetition } from '@scripts/db/baseTypes';
 
 const router = useRouter();
 const route = useRoute();
@@ -13,10 +14,9 @@ const route = useRoute();
 const plays = ref<Array<TPlay>>([]);
 const stages = ref<Array<TStage>>([]);
 const performances = ref<Array<TPerformance>>([]);
+const repetitions = ref<Array<TRepetition>>([]);
 
 const fontSize = ref();
-const smallScreen = ref(false);
-const showMenu = ref(true);
 
 function updatePageComposition() {
 	let desktopWidth: number = 16 * 31;
@@ -53,10 +53,14 @@ function updateStages(newStages: TStage[]) {
 function updatePerformances(newPerformances: TPerformance[]) {
 	performances.value = newPerformances;
 }
+function updateRepetitions(newRepetitions: TRepetition[]) {
+	repetitions.value = newRepetitions;
+}
 
 provide('plays', { plays, updatePlays });
 provide('stages', { stages, updateStages });
 provide('performances', { performances, updatePerformances });
+provide('repetitions', { repetitions, updateRepetitions });
 provide('font-size', { updateFontSize });
 
 const emit = defineEmits<{
@@ -69,13 +73,10 @@ onBeforeMount(() => {
 	plays.value = getPlays();
 	stages.value = getStages();
 	performances.value = getPerformances();
+	repetitions.value = getRepetitions();
 	if (route.query.page) {
 		router.push('/admin' + route.query.page);
 	}
-});
-
-onMounted(() => {
-	// program.value = getProgram();
 });
 </script>
 
@@ -157,9 +158,8 @@ main button[disabled] {
 	cursor: auto;
 }
 main > ul {
-	padding-top: 0.75rem;
 	margin-top: 0.65rem;
-	/* border-style: ridge; */
+	padding-top: 0.5rem;
 	border-top: 4px double var(--color-border);
 }
 
@@ -231,10 +231,10 @@ main > ul {
 	justify-content: space-between;
 	user-select: none;
 	cursor: pointer;
-	margin-top: 0.6rem;
+	margin-top: 0.35rem;
 }
 .item-title h3 {
-	font-size: 1.65em;
+	font-size: 1.4em;
 	line-height: 1.15;
 }
 .item-title-actions {

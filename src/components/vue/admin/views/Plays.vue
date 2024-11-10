@@ -1,19 +1,15 @@
 <script setup lang="ts">
-import { ref, inject, computed, onMounted } from 'vue';
+import { ref, inject, onMounted } from 'vue';
 import { onBeforeRouteLeave } from 'vue-router';
+import { showMenu, smallScreen, isDemo } from '../statesStore';
 import PlayCard from '../components/PlayCard.vue';
 import ChapterTitle from '../components/ChapterTitle.vue';
-import { EAuthRole } from '@scripts/auth';
 import type { TPlay, TUniqStatus } from '@scripts/db/baseTypes';
 import { validatePlayStructure, checkUniqueSIDs, EItemType } from '@scripts/db/baseTypes';
 import { savePlays, changedItems } from '@scripts/db/antreprizaDB';
 
 // const plays = inject('plays');
 const { plays, updatePlays } = inject('plays');
-
-// const isDemo: boolean = inject('demo');
-const authRole: EAuthRole = inject('authRole');
-const isDemo = computed(() => authRole.value === EAuthRole.DEMO);
 
 const playsChanged = ref(false);
 
@@ -73,12 +69,13 @@ onBeforeRouteLeave((to, from, next) => {
 	if (playsChanged.value === true && confirm('Сохранить изменения?')) {
 		savePlaysDB();
 	}
+	if (smallScreen.value) showMenu.value = false;
 	next();
 });
 </script>
 
 <template>
-	<ChapterTitle title="Спектакли" @handle-save-button="savePlaysDB" :show-save-button="playsChanged" :is-demo="isDemo" />
+	<ChapterTitle title="Спектакли" @handle-save-button="savePlaysDB" :show-save-button="playsChanged" />
 	<ul>
 		<template v-for="play of plays" :key="play.id">
 			<li><PlayCard :play @check-plays-changing="checkPlaysChanging" @delete-play="deletePlay" /></li>

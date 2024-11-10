@@ -1,13 +1,17 @@
 <script setup lang="ts">
+import { isDemo } from '../statesStore';
+
 interface Props {
 	title: string;
-	isDemo: boolean;
 	showSaveButton: boolean;
 }
-const { title, isDemo, showSaveButton } = defineProps<Props>();
+const { title, showSaveButton } = defineProps<Props>();
 const emit = defineEmits<{
 	handleSaveButton: [];
 }>();
+function clickSaveButton() {
+	emit('handleSaveButton');
+}
 </script>
 
 <template>
@@ -15,7 +19,7 @@ const emit = defineEmits<{
 		<h1>{{ title }}</h1>
 		<div class="chapter-actions">
 			<slot name="chapter-actions"></slot>
-			<button v-show="showSaveButton" @click="$emit('handleSaveButton')" :disabled="isDemo" class="save-button">Сохранить</button>
+			<button v-show="showSaveButton" @click="clickSaveButton" :disabled="isDemo" class="save-button">Сохранить</button>
 		</div>
 	</div>
 </template>
@@ -28,6 +32,9 @@ const emit = defineEmits<{
 	flex-wrap: wrap;
 	column-gap: 1.5rem;
 	row-gap: 0.1rem;
+}
+.chapter-title h1 {
+	font-size: 2.1rem;
 }
 .chapter-actions {
 	display: grid;

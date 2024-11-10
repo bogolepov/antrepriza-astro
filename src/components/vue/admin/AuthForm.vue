@@ -31,11 +31,11 @@ function submit(event) {
 		body: JSON.stringify(authData),
 	};
 
-	const handleResult = (ok, isDemo, firebaseConfig) => {
+	const handleResult = (ok, isDemoMode, firebaseConfig) => {
 		if (ok) {
 			authError.value = '';
 			let role = EAuthRole.ADMIN;
-			if (isDemo) role = EAuthRole.DEMO;
+			if (isDemoMode) role = EAuthRole.DEMO;
 			emit('authorize', role, firebaseConfig);
 		} else {
 			authError.value = 'Введен неверный логин или пароль.';

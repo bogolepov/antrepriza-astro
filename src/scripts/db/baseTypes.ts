@@ -10,6 +10,13 @@ export interface IItem {
 	sid: string;
 }
 
+interface IEvent {
+	date: string;
+	time_start: string;
+	time_end: string;
+	stage_sid: string;
+}
+
 export type TMultiText = {
 	ru: string;
 	de: string;
@@ -20,9 +27,8 @@ export type TMultiText = {
 // ---------------------------------------
 
 type TAuthor = {
-	firstname: TMultiText;
-	surname: TMultiText;
-	firstname_short: TMultiText;
+	name: TMultiText;
+	short_name: TMultiText;
 };
 
 type TRole = {
@@ -93,21 +99,40 @@ export type TStage = IStage;
 // ---------------------------------------
 export enum EPerformanceType {
 	REGULAR = 'обычный',
+	PREMIERE = 'премьера',
+	NEWYEAR = 'новогодний',
 	FESTIVAL = 'фестиваль',
 	TOUR = 'гастроли',
 }
 
-export interface IEvent {
-	date: string;
-	time: string;
-}
 interface IPerformance extends IItem, IEvent {
 	play_sid: string;
-	stage_sid: string;
-	premiere: boolean;
 	event_type: EPerformanceType;
 }
 export type TPerformance = IPerformance;
+
+// ---------------------------------------
+//                TRepetition
+// ---------------------------------------
+export enum ERepetitionType {
+	NORMAL = 'Репетиция',
+	READING = 'Репетиция-читка',
+	RUN_THROUGH = 'Прогон',
+	TECHNICAL_REHEARSAL = 'Технический прогон',
+	FINAL_REHEARSAL = 'Генеральный прогон',
+	WORKSHOP = 'Мастер-класс',
+}
+
+export type TSubRepetition = {
+	play_sid: string;
+	event_type: ERepetitionType;
+};
+
+interface IRepetition extends IItem, IEvent {
+	subRepetitions: TSubRepetition[];
+}
+export type TRepetition = IRepetition;
+
 // ---------------------------------------
 //                validation
 // ---------------------------------------
@@ -119,9 +144,8 @@ function validateMultiTextStructure(text: TMultiText): TMultiText {
 }
 function validateAuthorStructure(author: TAuthor): TAuthor {
 	if (!author) author = {} as TAuthor;
-	author.firstname = validateMultiTextStructure(author.firstname);
-	author.firstname_short = validateMultiTextStructure(author.firstname_short);
-	author.surname = validateMultiTextStructure(author.surname);
+	author.name = validateMultiTextStructure(author.name);
+	author.short_name = validateMultiTextStructure(author.short_name);
 	return author;
 }
 function validateRolesStructure(roles: Array<TRole>): Array<TRole> {
@@ -207,14 +231,33 @@ export function validatePerformanceStructure(performance: TPerformance): TPerfor
 	if (performance.play_sid === undefined) performance.play_sid = '';
 	if (performance.stage_sid === undefined) performance.stage_sid = '';
 	if (performance.date === undefined) performance.date = '';
-	if (performance.time === undefined) performance.time = '';
-	if (performance.premiere === undefined) performance.premiere = false;
+	if (performance.time_start === undefined) performance.time_start = '';
+	if (performance.time_end === undefined) performance.time_end = '';
 	if (performance.event_type === undefined) performance.event_type = EPerformanceType.REGULAR;
 	return performance;
 }
 
+export function validateRepetitionStructure(repetition: TRepetition): TRepetition {
+	if (!repetition) repetition = {} as TRepetition;
+	if (repetition.id === undefined) repetition.id = 0;
+	if (repetition.sid === undefined) repetition.sid = '';
+	if (repetition.stage_sid === undefined) repetition.stage_sid = '';
+	if (repetition.date === undefined) repetition.date = '';
+	if (repetition.time_start === undefined) repetition.time_start = '';
+	if (repetition.time_end === undefined) repetition.time_end = '';
+	if (repetition.subRepetitions === undefined || repetition.subRepetitions.length === 0) {
+		repetition.subRepetitions = [{ play_sid: '', event_type: ERepetitionType.NORMAL }];
+	} else {
+		repetition.subRepetitions.forEach(subRepetition => {
+			if (subRepetition.play_sid === undefined) subRepetition.play_sid = '';
+			if (subRepetition.event_type === undefined) subRepetition.event_type = ERepetitionType.NORMAL;
+		});
+	}
+	return repetition;
+}
+
 // ---------------------------------------
-//                validation
+//              UNIQ-validation
 // ---------------------------------------
 export type TUniqStatus = {
 	isUniq: boolean;
@@ -230,47 +273,15 @@ export function checkUniqueSIDs<T extends IItem>(items: Array<T>): TUniqStatus {
 	return { isUniq: true, firstItem: -1, secondItem: -1 };
 }
 
-export type TUniqPlaysResult = {
-	isUniq: boolean;
-	firstItem: number;
-	secondItem: number;
-};
-export function isUniquePlaysSID(plays: Array<TPlay>): TUniqPlaysResult {
-	if (plays.length < 2) return { isUniq: true, firstItem: -1, secondItem: -1 };
-	for (let i = 0; i < plays.length - 1; i++)
-		for (let j = i + 1; j < plays.length; j++) {
-			if (plays[i].sid === plays[j].sid) return { isUniq: false, firstItem: i, secondItem: j };
-		}
-	return { isUniq: true, firstItem: -1, secondItem: -1 };
-}
-
-export type TUniqStagesResult = {
-	isUniq: boolean;
-	firstItem: number;
-	secondItem: number;
-};
-export function isUniqueStagesSID(stages: Array<TStage>): TUniqStagesResult {
-	if (stages.length < 2) return { isUniq: true, firstItem: -1, secondItem: -1 };
-	for (let i = 0; i < stages.length - 1; i++)
-		for (let j = i + 1; j < stages.length; j++) {
-			if (stages[i].sid === stages[j].sid) return { isUniq: false, firstItem: i, secondItem: j };
-		}
-	return { isUniq: true, firstItem: -1, secondItem: -1 };
-}
-
 // ---------------------------------------
-//                compare
+//             compare : equal
 // ---------------------------------------
 function checkEqualMultiText(text1: TMultiText, text2: TMultiText): boolean {
 	return text1.ru === text2.ru && text1.de === text2.de;
 }
 
 function checkEqualAuthor(author1: TAuthor, author2: TAuthor): boolean {
-	return (
-		checkEqualMultiText(author1.firstname, author2.firstname) &&
-		checkEqualMultiText(author1.firstname_short, author2.firstname_short) &&
-		checkEqualMultiText(author1.surname, author2.surname)
-	);
+	return checkEqualMultiText(author1.name, author2.name) && checkEqualMultiText(author1.short_name, author2.short_name);
 }
 
 function checkEqualAddress(address1: TAddress, address2: TAddress): boolean {
@@ -324,12 +335,32 @@ function checkEqualPerformances(performance1: TPerformance, performance2: TPerfo
 	return (
 		performance1.id === performance2.id &&
 		performance1.sid === performance2.sid &&
-		performance1.premiere === performance2.premiere &&
 		performance1.play_sid === performance2.play_sid &&
 		performance1.stage_sid === performance2.stage_sid &&
 		performance1.date === performance2.date &&
-		performance1.time === performance2.time &&
+		performance1.time_start === performance2.time_start &&
+		performance1.time_end === performance2.time_end &&
 		performance1.event_type === performance2.event_type
+	);
+}
+
+function checkEqualSubRepetitions(list1: TSubRepetition[], list2: TSubRepetition[]): boolean {
+	if (list1.length !== list2.length) return false;
+	for (let item1 of list1) {
+		if (!list2.find(item2 => item1.play_sid === item2.play_sid && item1.event_type === item2.event_type)) return false;
+	}
+	return true;
+}
+
+function checkEqualRepetitions(repetition1: TRepetition, repetition2: TRepetition): boolean {
+	return (
+		repetition1.id === repetition2.id &&
+		repetition1.sid === repetition2.sid &&
+		repetition1.stage_sid === repetition2.stage_sid &&
+		repetition1.date === repetition2.date &&
+		repetition1.time_start === repetition2.time_start &&
+		repetition1.time_end === repetition2.time_end &&
+		checkEqualSubRepetitions(repetition1.subRepetitions, repetition2.subRepetitions)
 	);
 }
 
@@ -351,6 +382,8 @@ export function checkEqualItems<T extends IItem>(item1: T, item2: T, type: EItem
 			return checkEqualStages(item1, item2);
 		case EItemType.PERFORMANCE:
 			return checkEqualPerformances(item1, item2);
+		case EItemType.REPETITION:
+			return checkEqualRepetitions(item1, item2);
 		default:
 			console.log('checkEqualItems: type ERROR !!!');
 			return true;

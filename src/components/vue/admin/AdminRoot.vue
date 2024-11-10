@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { ref, defineAsyncComponent, onMounted, provide, readonly } from 'vue';
+import { ref, defineAsyncComponent, onMounted } from 'vue';
+import { setAuthRole } from './statesStore';
 import AuthForm from './AuthForm.vue';
 import { type TFirebaseConfig, initFirebaseConfig } from '@scripts/db/firebaseConfig';
 import { EAuthRole } from '@scripts/auth';
 import { dbConnect, dbDisconnect } from '@scripts/db/firebase';
-import { readPlays, readStages, readPerformances } from '@scripts/db/antreprizaDB';
+import { readPlays, readStages, readPerformances, readRepetitions } from '@scripts/db/antreprizaDB';
 
 const AdminPage = defineAsyncComponent(() => import('./AdminPage.vue'));
 
@@ -20,6 +21,7 @@ async function handleConnectDB(connected: boolean) {
 		await readPlays();
 		await readStages();
 		await readPerformances();
+		await readRepetitions();
 	}
 	connectedDB.value = connected;
 }
@@ -29,6 +31,7 @@ function handleDisconnectDB(connected: boolean): void {
 
 function changeAuthorized(role: EAuthRole, firebaseConfig?: TFirebaseConfig): void {
 	authRole.value = role;
+	setAuthRole(role);
 	localStorage.setItem(LS_AUTH_ROLE, role);
 	if (role === EAuthRole.UNAUTHORIZED) {
 		dbDisconnect(handleDisconnectDB);
@@ -42,7 +45,7 @@ function changeAuthorized(role: EAuthRole, firebaseConfig?: TFirebaseConfig): vo
 	}
 }
 
-provide('authRole', readonly(authRole));
+// provide('authRole', readonly(authRole));
 
 onMounted(() => {
 	const strRole: string = localStorage.getItem(LS_AUTH_ROLE);
@@ -51,8 +54,10 @@ onMounted(() => {
 
 	if (role === undefined || role === EAuthRole.UNAUTHORIZED) {
 		authRole.value = EAuthRole.UNAUTHORIZED;
+		setAuthRole(authRole.value);
 	} else {
 		authRole.value = role;
+		setAuthRole(authRole.value);
 		if (!connectedDB.value) {
 			dbConnect(handleConnectDB);
 		}
