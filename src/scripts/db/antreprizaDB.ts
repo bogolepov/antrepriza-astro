@@ -1,26 +1,34 @@
 import { getAntreprizaDB } from './firebase';
 import { collection, getDocs, getDoc, setDoc, doc } from 'firebase/firestore';
-import { type TPlay, type TStage, type IItem, EItemType, type TPerformance } from './baseTypes';
-import { validatePlayStructure, validateStageStructure, validatePerformanceStructure, checkEqualItems } from './baseTypes';
+import type { TPlay, TStage, IItem, TPerformance, TRepetition } from './baseTypes';
+import { EItemType } from './baseTypes';
+import {
+	validatePlayStructure,
+	validateStageStructure,
+	validatePerformanceStructure,
+	validateRepetitionStructure,
+	checkEqualItems,
+} from './baseTypes';
 
 const COLLECTION_THEATER: string = 'theater';
 const DOC_THEATER_PLAYS: string = 'plays';
 const DOC_THEATER_STAGES: string = 'stages';
 const DOC_THEATER_PERFORMANCES: string = 'performances';
+const DOC_THEATER_REPETITIONS: string = 'repetitions';
 
-let program;
-async function readProgram() {
-	const querySnapshotProgram = await getDocs(collection(getAntreprizaDB(), 'program'));
-	querySnapshotProgram.forEach(doc => {
-		const events = doc.data();
-		program.push(events);
-	});
-}
+// let program;
+// async function readProgram() {
+// 	const querySnapshotProgram = await getDocs(collection(getAntreprizaDB(), 'program'));
+// 	querySnapshotProgram.forEach(doc => {
+// 		const events = doc.data();
+// 		program.push(events);
+// 	});
+// }
 
-export function getProgram() {
-	if (!program) readProgram();
-	return program;
-}
+// export function getProgram() {
+// 	if (!program) readProgram();
+// 	return program;
+// }
 
 // ---------------------------------------
 //                  PLAYS
@@ -49,7 +57,7 @@ export function getPlays(): Array<TPlay> {
 }
 
 export async function savePlays(currPlays: Array<TPlay>) {
-	await setDoc(doc(getAntreprizaDB(), COLLECTION_THEATER, DOC_THEATER_PLAYS), { plays: currPlays });
+	await setDoc(doc(getAntreprizaDB(), COLLECTION_THEATER, DOC_THEATER_PLAYS), { plays: currPlays }, { merge: false });
 	srcPlays = JSON.parse(JSON.stringify(currPlays));
 }
 
@@ -121,6 +129,38 @@ export async function savePerformances(currPerformances: Array<TPerformance>) {
 }
 
 // ---------------------------------------
+//              REPETITIONS
+// ---------------------------------------
+let repetitions: Array<TRepetition>;
+let srcRepetitions: Array<TRepetition>;
+
+export async function readRepetitions() {
+	// console.log('readRepetitions:');
+	const docRef = doc(getAntreprizaDB(), COLLECTION_THEATER, DOC_THEATER_REPETITIONS);
+	const docSnap = await getDoc(docRef);
+
+	if (docSnap.exists() && docSnap.data().events) {
+		repetitions = docSnap.data().events;
+		repetitions.forEach(repetition => validateRepetitionStructure(repetition));
+		srcRepetitions = JSON.parse(JSON.stringify(repetitions));
+	} else {
+		// console.log('empty repetition');
+		repetitions = [];
+		srcRepetitions = [];
+	}
+}
+
+export function getRepetitions(): Array<TRepetition> {
+	if (!srcRepetitions) readRepetitions();
+	return repetitions;
+}
+
+export async function saveRepetitions(currRepetitions: Array<TRepetition>) {
+	await setDoc(doc(getAntreprizaDB(), COLLECTION_THEATER, DOC_THEATER_REPETITIONS), { events: currRepetitions });
+	srcRepetitions = JSON.parse(JSON.stringify(currRepetitions));
+}
+
+// ---------------------------------------
 //                  <T>
 // ---------------------------------------
 function getSrcItems<T>(type: EItemType): T[] {
@@ -131,18 +171,21 @@ function getSrcItems<T>(type: EItemType): T[] {
 			return srcStages;
 		case EItemType.PERFORMANCE:
 			return srcPerformances;
+		case EItemType.REPETITION:
+			return srcRepetitions;
 		default:
 			return undefined;
 	}
 }
 
 export function changedItems<T extends IItem>(currItems: T[], type: EItemType): boolean {
-	// console.log('+++ changedItems');
 	const srcItems = getSrcItems<T>(type);
 	if (!srcItems) {
 		console.log('changedItems: type ERROR !!!');
 		return false;
 	}
+
+	if (currItems.length != srcItems.length) return true;
 
 	let equalItems = currItems.filter(item => srcItems.find(srcItem => item.id === srcItem.id && checkEqualItems(item, srcItem, type)));
 	return equalItems.length !== currItems.length;
