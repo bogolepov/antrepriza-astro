@@ -91,7 +91,7 @@ onBeforeMount(() => {
 					<li><router-link to="/admin/performances">Выступления</router-link></li>
 					<li><router-link to="/admin/plays">Спектакли</router-link></li>
 					<li><router-link to="/admin/stages">Сцены</router-link></li>
-					<li><router-link to="/admin/visitors">Зрители</router-link></li>
+					<li><router-link to="/admin/tickets">Бронирования</router-link></li>
 				</ul>
 			</nav>
 			<button class="logout-button" @click="$emit('authorize', EAuthRole.UNAUTHORIZED, undefined)">Выйти</button>
@@ -193,6 +193,7 @@ main > ul {
 	border: 0;
 	cursor: pointer;
 	height: 1.8rem;
+	user-select: none;
 }
 
 .small-screen aside {
@@ -229,7 +230,7 @@ main > ul {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	user-select: none;
+	/* user-select: none; */
 	cursor: pointer;
 	margin-top: 0.35rem;
 }

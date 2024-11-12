@@ -64,7 +64,7 @@ export default defineConfig({
 		'/admin/performances': '/admin?page=/performances',
 		'/admin/stages': '/admin?page=/stages',
 		'/admin/plays': '/admin?page=/plays',
-		'/admin/visitors': '/admin?page=/visitors',
+		'/admin/tickets': '/admin?page=/tickets',
 	},
 	integrations: [
 		react(),

@@ -80,7 +80,9 @@
 				"ru": "Для детей по мотивам сказки-повести С.Маршак. Музыкальная сказка, 5+. На русском языке.",
 				"de": "Für Kinder nach der Märchen-Geschichte von S.Marschak. Musikalisches Märchen, 5+. Auf Russisch."
 			},
-			"open_graph": {},
+			"open_graph": {
+				"image": { "url": "kd_1200t.jpg", "type": "image/jpeg" }
+			},
 			"event": {
 				"images": [
 					{ "format": "19_6", "url": "kd_1920t.jpg" },
@@ -159,7 +161,9 @@
 				"ru": "По пьесе В.Зайкина. Комедия, 16+. На русском языке.",
 				"de": "Nach dem Stück von V.Zajkin. Komödie, 16+. Auf Russisch."
 			},
-			"open_graph": {},
+			"open_graph": {
+				"image": { "url": "n32_1200t.jpg", "type": "image/jpeg" }
+			},
 			"event": {
 				"images": [
 					{ "format": "19_6", "url": "n32_1920t.jpg" },

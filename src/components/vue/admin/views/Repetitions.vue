@@ -176,17 +176,17 @@ onBeforeRouteLeave((to, from, next) => {
 <template>
 	<ChapterTitle title="Репетиции" @handle-save-button="handleSaveButton" :show-save-button="showSaveButton">
 		<template v-slot:chapter-actions>
-			<button @click="isActualEvents = !isActualEvents" class="expand-item-button icon-calendar">
+			<button @click="isActualEvents = !isActualEvents" class="expand-item-button icon-transform">
 				<IconCalendar />
-				<div v-show="isActualEvents" class="icon-active">✔️</div>
+				<div v-show="isActualEvents" class="icon-active"></div>
 			</button>
 			<button @click="showPerformances = !showPerformances" class="expand-item-button icon-calendar">
 				<div>🎭</div>
-				<div v-show="showPerformances" class="icon-active">✔️</div>
+				<div v-show="showPerformances" class="icon-active"></div>
 			</button>
-			<button v-show="!showSaveButton" @click="whatsappMode = !whatsappMode" class="expand-item-button icon-calendar">
+			<button v-show="!showSaveButton" @click="whatsappMode = !whatsappMode" class="expand-item-button icon-transform">
 				<IconWhatsapp />
-				<div v-show="whatsappMode" class="icon-active">✔️</div>
+				<div v-show="whatsappMode" class="icon-active"></div>
 			</button>
 		</template>
 	</ChapterTitle>
@@ -215,7 +215,7 @@ onBeforeRouteLeave((to, from, next) => {
 </template>
 
 <style>
-.expand-item-button.icon-calendar {
+.expand-item-button.icon-transform {
 	position: relative;
 	font-size: 2rem;
 	height: 2rem;
@@ -223,11 +223,12 @@ onBeforeRouteLeave((to, from, next) => {
 }
 .icon-active {
 	position: absolute;
-	bottom: -0.1rem;
-	right: -0.1rem;
-	font-size: 1.2rem;
-	line-height: 1;
-	user-select: none;
+	top: 0;
+	right: 0;
+	width: 0.7rem;
+	height: 0.7rem;
+	background-color: var(--colorAntreprizaRed);
+	border-radius: 50%;
 }
 .month-item {
 	font-size: 1.8rem;

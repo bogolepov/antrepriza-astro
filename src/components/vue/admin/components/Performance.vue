@@ -99,7 +99,7 @@ watch(
 			/>
 		</li>
 		<li>
-			<div class="label">Время:</div>
+			<div class="label">Время начала:</div>
 			<div v-if="!editCard">{{ performance.time_start ? performance.time_start : ' - ' }}</div>
 			<input
 				v-else
@@ -137,11 +137,11 @@ watch(
 			<div v-if="!editCard">{{ performance.time_end ? performance.time_end : ' - ' }}</div>
 			<input v-else type="text" v-model="performance.time_end" disabled />
 		</li>
-		<li>
+		<!-- <li>
 			<div class="label">Текстовый идентификатор:</div>
 			<div v-if="!editCard">{{ performance.sid ? performance.sid : ' - ' }}</div>
 			<input v-else type="text" v-model="performance.sid" disabled />
-		</li>
+		</li> -->
 		<li class="modify-item">
 			<button @click="modifyPerformance" :disabled="isDemo">{{ editCard ? 'OK' : 'Редактировать' }}</button>
 			<button @click="deletePerformance" :disabled="isDemo">Удалить</button>
