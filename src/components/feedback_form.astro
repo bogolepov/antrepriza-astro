@@ -23,13 +23,14 @@ const { lang } = Astro.props;
     <label class="form-label font-opacity0" for="topic">{dictionary.question_subject[lang]}</label>
     <div class="select-wrapper">
       <select class="form-input" name="topic" id="topic">
-      {
-        theater.question_subjects.map(subject => {
-          return (
-            <option>{dictionary[subject][lang]}</option>
-          )
-        })
-      }
+				<option disabled value="">{dictionary.select_topic[lang]}</option>
+        {
+          theater.question_subjects.map(subject => {
+            return (
+              <option>{dictionary[subject][lang]}</option>
+            )
+          })
+        }
       </select>
     </div>
     <label class="form-label required font-opacity0" for="qff-name">{dictionary.name[lang]}</label>

@@ -44,7 +44,8 @@ export async function readPlays() {
 	if (docSnap.exists() && docSnap.data().plays) {
 		plays = docSnap.data().plays;
 		plays.forEach(play => validatePlayStructure(play));
-		srcPlays = JSON.parse(JSON.stringify(plays));
+		// srcPlays = JSON.parse(JSON.stringify(plays));
+		srcPlays = structuredClone(plays);
 	} else {
 		plays = [];
 		srcPlays = [];
@@ -58,7 +59,8 @@ export function getPlays(): Array<TPlay> {
 
 export async function savePlays(currPlays: Array<TPlay>) {
 	await setDoc(doc(getAntreprizaDB(), COLLECTION_THEATER, DOC_THEATER_PLAYS), { plays: currPlays }, { merge: false });
-	srcPlays = JSON.parse(JSON.stringify(currPlays));
+	srcPlays = structuredClone(currPlays);
+	// srcPlays = JSON.parse(JSON.stringify(currPlays));
 }
 
 // ---------------------------------------

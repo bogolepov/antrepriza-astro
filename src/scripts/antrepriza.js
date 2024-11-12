@@ -364,7 +364,7 @@ function closeFeedbackDialog() {
 
 	resetErrorElements();
 	const elemTopics = dialogFeedback.querySelector('#topic');
-	if (elemTopics) elemTopics.value = elemTopics.item(0).text;
+	if (elemTopics) elemTopics.value = elemTopics.item(1).text;
 	const elemInputs = dialogFeedback.querySelectorAll('.form-input.qff');
 	elemInputs?.forEach(element => {
 		element.value = '';

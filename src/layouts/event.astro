@@ -94,6 +94,12 @@ let image = play.seo.event.images.find(image => image.format === '3_4_1050');
       </div>
     }
     <div class="ev-flex-item-description">
+        {event.premiere && 
+          <div class="play-property-hot-notice">{dictionary.premiere[lang]}</div>
+        }
+        {event.newyear && 
+          <div class="play-property-hot-notice">{dictionary.newyear[lang]}</div>
+        }
       <h2 class="ev-name">{dictionary.play_lang[lang]} {play.title[lang].toUpperCase()}</h2>
       <div class="ev-performer">{performer}</div>
       <div class="ev-when">

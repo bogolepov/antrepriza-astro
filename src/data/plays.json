@@ -4,7 +4,6 @@
 		"suffix": "kd",
 		"title": { "ru": "Кошкин дом", "de": "Das Katzenhaus" },
 		"alt_title": { "ru": "Кошкин\u00A0дом", "de": "Das\u00A0Katzenhaus" },
-		"__title_notice": { "ru": "RU", "de": "RU" },
 		"author": { "ru": "С.Маршак", "de": "S.Marschak" },
 		"author_full": { "ru": "Самуил Маршак", "de": "Samuil Marschak" },
 		"genre": { "ru": "детский", "de": "für Kinder" },
@@ -24,7 +23,7 @@
 		},
 		"lang": { "ru": "русский", "de": "Russisch" },
 		"lang_id": "ru",
-		"url_kontramarka": null,
+		"url_kontramarka": "https://www.kontramarka.de/tour/teatr-antrepriza-spektakl-koshkin-dom/",
 		"characters": [
 			{ "id": 1, "name": { "ru": "Кошка", "de": "Die Katze" }, "actors": [100, 105] },
 			{
@@ -84,9 +83,9 @@
 			"open_graph": {},
 			"event": {
 				"images": [
-					{ "format": "19_6", "url": "mik_1920t.jpg" },
-					{ "format": "3_4", "url": "kontra_mik_1920t.jpg" },
-					{ "format": "3_4_1050", "url": "kontra_mik_1050t.webp" }
+					{ "format": "19_6", "url": "kd_1920t.jpg" },
+					{ "format": "3_4", "url": "afisha_kd_1920t.jpg" },
+					{ "format": "3_4_1050", "url": "afisha_kd_1050t.webp" }
 				]
 			}
 		}
@@ -163,7 +162,7 @@
 			"open_graph": {},
 			"event": {
 				"images": [
-					{ "format": "19_6", "url": "n32_soon_1920t.jpg" },
+					{ "format": "19_6", "url": "n32_1920t.jpg" },
 					{ "format": "3_4", "url": "kontra_n32_1920t.jpg" },
 					{ "format": "3_4_1050", "url": "kontra_n32_1050t.webp" }
 				]
@@ -263,7 +262,6 @@
 		"suffix": "mik",
 		"title": { "ru": "Малыш и Карлсон", "de": "Steppke und Karlson" },
 		"alt_title": { "ru": "Малыш\u00A0и Карлсон", "de": "Steppke\u00A0und Karlson" },
-		"__title_notice": { "ru": "RU", "de": "RU" },
 		"author": { "ru": "А.Линдгрен", "de": "A.Lindgren" },
 		"author_full": { "ru": "Астрид Линдгрен", "de": "Astrid Lindgren" },
 		"genre": { "ru": "детский", "de": "für Kinder" },

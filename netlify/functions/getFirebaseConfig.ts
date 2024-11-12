@@ -1,5 +1,5 @@
 import type { Handler } from '@netlify/functions';
-import { firebaseConfig } from './lib/firebaseConfig';
+import { firebaseConfig } from './lib/db/firebaseConfig';
 
 export const handler: Handler = async (event, context) => {
 	return {

@@ -18,6 +18,18 @@
 		"text_short": { "ru": "Детский", "de": "Kind" }
 	},
 	{
+		"type": "kids_present_35",
+		"value": 35,
+		"text": { "ru": "Детский билет с подарком", "de": "Kinderticket mit Geschenk" },
+		"text_short": { "ru": "Детский + 🎁", "de": "Kind + 🎁" }
+	},
+	{
+		"type": "reduce_present_25",
+		"value": 25,
+		"text": { "ru": "Льготный билет с подарком", "de": "Ermäßigtes Ticket mit Geschenk" },
+		"text_short": { "ru": "Льготный + 🎁", "de": "Ermäßigt + 🎁" }
+	},
+	{
 		"type": "adult",
 		"value": 20,
 		"text": { "ru": "Взрослый билет", "de": "Erwachsenenticket" },

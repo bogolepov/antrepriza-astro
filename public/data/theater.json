@@ -98,9 +98,36 @@
 			"value": 25,
 			"text": { "ru": "Детский билет", "de": "Kinderticket" },
 			"text_short": { "ru": "Детский", "de": "Kind" }
+		},
+		{
+			"type": "kids_present_35",
+			"value": 35,
+			"text": { "ru": "Детский билет с подарком", "de": "Kinderticket mit Geschenk" },
+			"text_short": { "ru": "Детский + 🎁", "de": "Kind + 🎁" }
+		},
+		{
+			"type": "reduce_present_25",
+			"value": 25,
+			"text": { "ru": "Льготный билет с подарком", "de": "Ermäßigtes Ticket mit Geschenk" },
+			"text_short": { "ru": "Льготный + 🎁", "de": "Ermäßigt + 🎁" }
 		}
 	],
 	"plays": [
+		{
+			"id": 10,
+			"suffix": "kd",
+			"title": { "ru": "Кошкин дом", "de": "Das Katzenhaus" },
+			"alt_title": { "ru": "Кошкин\u00A0дом", "de": "Das\u00A0Katzenhaus" },
+			"author": { "ru": "С.Маршак", "de": "S.Marschak" },
+			"author_full": { "ru": "Самуил Маршак", "de": "Samuil Marschak" },
+			"genre": { "ru": "детский", "de": "für Kinder" },
+			"length": 50,
+			"break": false,
+			"age": "3+",
+			"lang": { "ru": "русский", "de": "Russisch" },
+			"lang_id": "ru",
+			"url_kontramarka": "https://www.kontramarka.de/tour/teatr-antrepriza-spektakl-koshkin-dom/"
+		},
 		{
 			"id": 9,
 			"suffix": "n32",

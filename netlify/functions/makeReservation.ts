@@ -3,6 +3,7 @@ import { LANG_LIST, EMAIL_REGEX } from './lib/consts.ts';
 import { fromHtmlToPlainText, getJsonDictionary, getJsonTheater } from './lib/utils.ts';
 import { makeHtmlEmail } from './lib/mailUtils.ts';
 import { type TMail, sendMails } from './lib/mailService.ts';
+import { addReservations } from './lib/db/antreprizaDB.ts';
 
 let dictionaryServer;
 let theater;
@@ -34,6 +35,12 @@ export const handler: Handler = async (event, context) => {
 	}
 
 	const { lang, name, email, reservations, amount, now } = messageData;
+
+	try {
+		await addReservations(lang, name, email, reservations);
+	} catch (error) {
+		console.error(error);
+	}
 
 	const subject = dictionaryServer.email_reservation_subject[lang];
 	const transporterMail: string = process.env.ANTREPRIZA_EMAIL_TICKETS;
@@ -100,17 +107,25 @@ function validateMessage(messageData) {
 	return valid;
 }
 
-function makeContent(lang, name, email, reservations, amount, now, toAntrepriza) {
+function makeContent(
+	lang: string,
+	name: string,
+	email: string,
+	reservations: TReservation[],
+	amount: number,
+	now: string,
+	toAntrepriza: boolean
+): string {
 	const dateOfReservation = new Date(now);
 	// const offset = dateOfReservation.getTimezoneOffset();
 	// dateOfReservation = new Date(dateOfReservation.getTime() - offset * 60 * 1000);
 
 	const htmlReservation = makeReservationsBlock(lang, reservations, amount);
 
-	let diffText;
+	let diffText: string;
 
 	if (toAntrepriza) {
-		let options = {
+		let options: Intl.DateTimeFormatOptions = {
 			year: 'numeric',
 			month: 'long',
 			day: '2-digit',
@@ -139,7 +154,7 @@ ${dictionaryServer.new_reservation_text[lang]}\
 <tr><td colspan="2">${htmlReservation}</td></tr>\
 `;
 	} else {
-		const getHello = hour => {
+		const getHello = (hour: number) => {
 			if (hour < 6 && lang === 'ru') return dictionaryServer.hello[lang];
 			else if (hour < 12) return dictionaryServer.good_morning[lang];
 			else if (hour < 18) return dictionaryServer.good_afternoon[lang];
@@ -181,13 +196,12 @@ ${diffText}\
 `;
 }
 
-let reservationsBlock;
-function makeReservationsBlock(lang, reservations, amount) {
+let reservationsBlock: string;
+function makeReservationsBlock(lang: string, reservations: TReservation[], amount: number): string {
 	if (reservationsBlock) return reservationsBlock;
 	// console.log(reservations);
 
-	const eventsRows = makeEventsRows(lang, reservations);
-	const totalAmountRow = '';
+	// const totalAmountRow: string = '';
 	// 	totalAmountRow = `\
 	// <tr>\
 	// <td style="font-size: 130%; line-height: 120%; color: #d6d6d6; padding: 8px 0 0 0">${dictionaryServer.total_amount[lang]}</td>\
@@ -198,37 +212,47 @@ function makeReservationsBlock(lang, reservations, amount) {
 	reservationsBlock = `\
 <table border="0" cellspacing="0" role="presentation" style="width: 100%; margin: 0; padding: 15px 0 0 0; \
 border-top: 1px solid #d6d6d6; border-bottom: 1px solid #d6d6d6"><tbody>\
-${eventsRows}\
+${makeEventsRows(lang, reservations)}\
 </tbody></table>\
 `;
 
 	return reservationsBlock;
 }
 
-function makeEventsRows(lang, reservations) {
-	if (!reservations) return;
+function getOrderIdText(event: TReservation): string {
+	if (event?.order_id) return '#' + event.order_id;
+	else return '';
+}
 
-	let rows = '';
-	reservations.forEach(event => {
+function makeEventsRows(lang: string, reservations: TReservation[]): string {
+	if (!reservations) return '';
+
+	let rows: string = '';
+
+	// console.log('events: ' + reservations.length.toString());
+	reservations.forEach((event, index) => {
+		// console.log(event);
+
 		let play = theater.plays.find(item => item.id === event.play_id); // play - thisPlay
-		let playName = play.title[lang];
+		let playName: string = play.title[lang];
 		let playDate = new Date(event.date);
-		let options = {
+		let options: Intl.DateTimeFormatOptions = {
 			year: 'numeric',
 			month: 'short',
 			day: '2-digit',
 		};
-		let strDate = playDate.toLocaleDateString(lang, options);
+		let strDate: string = playDate.toLocaleDateString(lang, options);
 
 		let stage = theater.stages.find(stg => stg.sid === event.stage_sid);
 		let ticketsRows = makeTicketsRows(lang, event.tickets);
-		if (!ticketsRows || !ticketsRows.amount || !ticketsRows.html) return;
+		if (!ticketsRows || !ticketsRows.amount || !ticketsRows.html) return '';
 
 		rows =
 			rows +
 			`\
 <tr><td style="vertical-align: top">\
 <table border="0" cellspacing="0" role="presentation" style="width: 100%; margin: 0; padding: 0"><tbody>\
+<tr><td style="font-size: 85%; line-height: 120%; color: #888888; font-weight: 400; padding: 3px 0 0 0">${getOrderIdText(event)}</td></tr>\
 <tr><td style="font-size: 115%; line-height: 120%; color: #87605e; font-weight: 600">${strDate}</td></tr>\
 <tr><td style="font-size: 115%; line-height: 120%; color: #87605e; font-weight: 600">${event.time}</td></tr>\
 </tbody></table>\
@@ -262,11 +286,16 @@ ${dictionaryServer.stage[lang]} - ${stage.name[lang].toUpperCase()}\
 	return rows;
 }
 
-function makeTicketsRows(lang, tickets) {
+type TTicketsRows = {
+	amount: number;
+	html: string;
+};
+
+function makeTicketsRows(lang: string, tickets: TTicketInfo[]): TTicketsRows | undefined {
 	if (!tickets) return;
 
-	let ticketsRows = '';
-	let amount = 0;
+	let ticketsRows: string = '';
+	let amount: number = 0;
 
 	tickets.forEach(ticket => {
 		if (ticket.count < 1) return;
@@ -288,7 +317,7 @@ function makeTicketsRows(lang, tickets) {
 	return { amount: amount, html: ticketsRows };
 }
 
-function makeLinks(text) {
+function makeLinks(text: string): string {
 	if (text) {
 		theater.review_links.forEach(item => {
 			text = text.replace(

@@ -1,5 +1,23 @@
 [
 	{
+		"date": "2024-12-26",
+		"time": "16:00",
+		"play_id": 10,
+		"stage_sid": "west",
+		"free_place": true,
+		"newyear": true,
+		"prices": ["kids_present_35", "adult", "reduce", "reduce_present_25"]
+	},
+	{
+		"date": "2024-12-25",
+		"time": "16:00",
+		"play_id": 10,
+		"stage_sid": "west",
+		"free_place": true,
+		"newyear": true,
+		"prices": ["kids_present_35", "adult", "reduce", "reduce_present_25"]
+	},
+	{
 		"date": "2024-12-22",
 		"time": "16:00",
 		"play_id": 6,
