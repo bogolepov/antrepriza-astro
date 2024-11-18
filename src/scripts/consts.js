@@ -1,6 +1,6 @@
-export const FROZEN_BOOK_TIME = 2 * 60 * 60 * 1000; // 2 hours
-export const ONE_DAY = 24 * 60 * 60 * 1000; // 24 hours
-export const MINUTES_30 = 30 * 60 * 1000; // 30 minutes
+export const FROZEN_BOOK_TIME = 2 * 60 * 60 * 1000; // 2 hours in ms
+export const ONE_DAY = 24 * 60 * 60 * 1000; // 24 hours in ms
+export const MINUTES_30 = 30 * 60 * 1000; // 30 minutes in ms
 
 export const THEME_DARK = 'dark';
 export const THEME_LIGHT = 'light';

@@ -14,9 +14,9 @@
 		"trailer": null,
 		"trailer_embed": null,
 		"posters": {
-			"landscape": "soon.jpg",
+			"landscape": "katzenhaus.jpg",
 			"landscape_16_9": "soon_16_9.jpg",
-			"portrait": "soon_poster.jpg",
+			"portrait": "kd_poster.jpg",
 			"afisha": "afisha_kd.jpg",
 			"facebook": "fb_kd.jpg",
 			"minimum": ""
@@ -105,9 +105,9 @@
 		"age": "16+",
 		"description": { "ru": "play_n32_ru", "de": "play_n32_de" },
 		"posters": {
-			"landscape": "soon.jpg",
+			"landscape": "neznakomka32.jpg",
 			"landscape_16_9": "soon_16_9.jpg",
-			"portrait": "soon_poster.jpg",
+			"portrait": "n32_poster.jpg",
 			"afisha": "kontra_n32.jpg",
 			"facebook": "fb_n32.jpg",
 			"minimum": ""

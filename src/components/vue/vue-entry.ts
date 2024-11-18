@@ -5,6 +5,7 @@ import Repetition from '@components/vue/admin/views/Repetitions.vue';
 import Performances from '@components/vue/admin/views/Performances.vue';
 import Plays from '@components/vue/admin/views/Plays.vue';
 import Stages from '@components/vue/admin/views/Stages.vue';
+import Whatsapp from './admin/views/Whatsapp.vue';
 // import Visitors from '@components/vue/admin/views/Visitors.vue';
 const Tickets = () => import('@components/vue/admin/views/Tickets.vue');
 
@@ -15,6 +16,7 @@ export default (app: App) => {
 			{ path: '/admin/performances', component: Performances },
 			{ path: '/admin/plays', component: Plays },
 			{ path: '/admin/stages', component: Stages },
+			{ path: '/admin/whatsapp', component: Whatsapp },
 			{ path: '/admin/tickets', component: Tickets },
 		];
 

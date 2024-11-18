@@ -1,27 +1,20 @@
 <script setup lang="ts">
-import { ref, inject, computed, onMounted } from 'vue';
+import { ref, computed, onBeforeMount } from 'vue';
 import { onBeforeRouteLeave } from 'vue-router';
-import { showMenu, smallScreen, isDemo } from '../statesStore';
+import { performances, showMenu, smallScreen, isDemo } from '../store/statesStore';
+import { initPlays, initStages, initPerformances } from '../store/statesStore';
 import ChapterTitle from '../components/ChapterTitle.vue';
 import Performance from '../components/Performance.vue';
 import { ONE_DAY } from '@scripts/consts';
-import type { TPerformance, TPlay, TStage, TUniqStatus } from '@scripts/db/baseTypes';
+import type { TPerformance, TUniqStatus } from '@scripts/db/baseTypes';
 import { validatePerformanceStructure, checkUniqueSIDs, EItemType } from '@scripts/db/baseTypes';
 import { savePerformances, changedItems } from '@scripts/db/antreprizaDB';
 import IconCalendar from '../components/iconCalendar.vue';
 
-const { plays } = inject('plays');
-const { stages } = inject('stages');
-const { performances, updatePerformances } = inject('performances');
 const isActualPerformances = ref(true);
-
 const performancesChanged = ref(false);
+const maxPerformanceId = ref(0);
 const todayDate = ref(new Date().toISOString().split('T')[0]);
-
-const listStages = ref([]);
-const listPlays = ref([]);
-
-plays.value.forEach((play: TPlay) => listPlays.value.push({ text: play.name.ru, value: play.sid, duration: play.duration }));
 
 let firstEventsInMonths: TPerformance[];
 
@@ -37,22 +30,33 @@ const performancesToShow = computed(() => {
 	return list;
 });
 
+async function handleBeforeMount() {
+	await initPlays();
+	await initStages();
+	await initPerformances();
+	checkPerformancesChanging();
+
+	let maxId: number = maxPerformanceId.value;
+	if (performances.value.length > 0) performances.value.forEach(item => (maxId = item.id > maxId ? item.id : maxId));
+	maxPerformanceId.value = maxId;
+}
+onBeforeMount(handleBeforeMount);
+
+async function handleBeforeRouteLeave(to, from, next) {
+	if (performancesChanged.value === true && confirm('Сохранить изменения?')) {
+		await savePerformancesDB();
+	}
+	if (smallScreen.value) showMenu.value = false;
+	next();
+}
+onBeforeRouteLeave(handleBeforeRouteLeave);
+
 function makeListOfFirstEventsInMonths(list: TPerformance[]) {
 	firstEventsInMonths = list.filter((item, index) => {
 		if (index === 0) return true;
 		return new Date(list[index - 1].date).getMonth() !== new Date(item.date).getMonth();
 	});
 }
-
-function getStageName(stage: TStage) {
-	if (stage.fixed) return 'Сцена ' + stage.name.ru.toUpperCase();
-	else return stage.name.ru;
-}
-stages.value.forEach((stage: TStage) => listStages.value.push({ text: getStageName(stage), value: stage.sid }));
-
-let maxId: number = 0;
-if (performances.value.length > 0) performances.value.forEach(iPerformance => (maxId = iPerformance.id > maxId ? iPerformance.id : maxId));
-const maxPerformanceId = ref(maxId);
 
 function checkPerformancesChanging() {
 	if (isDemo.value && performancesChanged.value) performancesChanged.value = false;
@@ -96,28 +100,14 @@ async function savePerformancesDB() {
 	}
 	// save performances in AntreprizaDB
 	await savePerformances(performances.value);
-	// update performances in provider
-	updatePerformances(performances.value);
 	// if performances were saved successfully, then button Save will be hidden:
 	checkPerformancesChanging();
 }
-
-onMounted(() => {
-	checkPerformancesChanging();
-});
-
-onBeforeRouteLeave((to, from, next) => {
-	if (performancesChanged.value === true && confirm('Сохранить изменения?')) {
-		savePerformancesDB();
-	}
-	if (smallScreen.value) showMenu.value = false;
-	next();
-});
 </script>
 
 <template>
 	<ChapterTitle title="Выступления" @handle-save-button="savePerformancesDB" :show-save-button="performancesChanged">
-		<template v-slot:chapter-actions>
+		<template v-slot:actions-slot>
 			<button @click="isActualPerformances = !isActualPerformances" class="expand-item-button icon-calendar">
 				<IconCalendar />
 				<div v-show="isActualPerformances" class="icon-calendar-actual">✔️</div>
@@ -129,13 +119,7 @@ onBeforeRouteLeave((to, from, next) => {
 		<template v-for="performance of performancesToShow" :key="performance.id">
 			<li v-show="isfirstEventInMonth(performance)" class="month-item">{{ getMonthName(performance.date).toUpperCase() }}</li>
 			<li>
-				<Performance
-					:performance
-					:list-plays="listPlays"
-					:list-stages="listStages"
-					@check-performances-changing="checkPerformancesChanging"
-					@delete-performance="deletePerformance"
-				/>
+				<Performance :performance @check-performances-changing="checkPerformancesChanging" @delete-performance="deletePerformance" />
 			</li>
 		</template>
 	</ul>

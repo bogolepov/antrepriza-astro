@@ -3,6 +3,7 @@ export const enum EItemType {
 	STAGE = 'stage',
 	PERFORMANCE = 'performance',
 	REPETITION = 'repetition',
+	WHATSAPP_NOTE = 'note',
 }
 
 export interface IItem {
@@ -10,7 +11,7 @@ export interface IItem {
 	sid: string;
 }
 
-interface IEvent {
+export interface IEvent {
 	date: string;
 	time_start: string;
 	time_end: string;
@@ -134,8 +135,36 @@ interface IRepetition extends IItem, IEvent {
 export type TRepetition = IRepetition;
 
 // ---------------------------------------
+//                TWhatsappNote
+// ---------------------------------------
+export const enum EEventType {
+	REPETITION = 'repetition',
+	PERFORMANCE = 'performance',
+}
+interface IWhatsappNote extends IItem, IEvent {
+	parent_type: EEventType;
+	event_sid: string;
+	text: string;
+}
+export type TWhatsappNote = IWhatsappNote;
+
+// ---------------------------------------
 //                validation
 // ---------------------------------------
+function validateIItem(iItem: IItem) {
+	if (iItem.id === undefined) iItem.id = 0;
+	if (iItem.sid === undefined) iItem.sid = '';
+	return iItem;
+}
+
+function validateIEvent(iEvent: IEvent) {
+	if (iEvent.date === undefined) iEvent.date = '';
+	if (iEvent.stage_sid === undefined) iEvent.stage_sid = '';
+	if (iEvent.time_start === undefined) iEvent.time_start = '';
+	if (iEvent.time_end === undefined) iEvent.time_end = '';
+	return iEvent;
+}
+
 function validateMultiTextStructure(text: TMultiText): TMultiText {
 	if (!text) text = {} as TMultiText;
 	if (text.ru === undefined) text.ru = '';
@@ -197,10 +226,9 @@ function validateStageHost(host: TStageHost): TStageHost {
 	return host;
 }
 
-export function validatePlayStructure(play: TPlay): TPlay {
+export function validatePlayStructure(play: TPlay | undefined): TPlay {
 	if (!play) play = {} as TPlay;
-	if (play.id === undefined) play.id = 0;
-	if (play.sid === undefined) play.sid = '';
+	validateIItem(play);
 	play.name = validateMultiTextStructure(play.name);
 	play.author = validateAuthorStructure(play.author);
 	play.genre = validateMultiTextStructure(play.genre);
@@ -213,10 +241,9 @@ export function validatePlayStructure(play: TPlay): TPlay {
 	return play;
 }
 
-export function validateStageStructure(stage: TStage): TStage {
+export function validateStageStructure(stage: TStage | undefined): TStage {
 	if (!stage) stage = {} as TStage;
-	if (stage.id === undefined) stage.id = 0;
-	if (stage.sid === undefined) stage.sid = '';
+	validateIItem(stage);
 	if (stage.fixed === undefined) stage.fixed = false;
 	stage.name = validateMultiTextStructure(stage.name);
 	stage.address = validateAddressStructure(stage.address);
@@ -224,27 +251,19 @@ export function validateStageStructure(stage: TStage): TStage {
 	return stage;
 }
 
-export function validatePerformanceStructure(performance: TPerformance): TPerformance {
+export function validatePerformanceStructure(performance: TPerformance | undefined): TPerformance {
 	if (!performance) performance = {} as TPerformance;
-	if (performance.id === undefined) performance.id = 0;
-	if (performance.sid === undefined) performance.sid = '';
+	validateIItem(performance);
+	validateIEvent(performance);
 	if (performance.play_sid === undefined) performance.play_sid = '';
-	if (performance.stage_sid === undefined) performance.stage_sid = '';
-	if (performance.date === undefined) performance.date = '';
-	if (performance.time_start === undefined) performance.time_start = '';
-	if (performance.time_end === undefined) performance.time_end = '';
 	if (performance.event_type === undefined) performance.event_type = EPerformanceType.REGULAR;
 	return performance;
 }
 
-export function validateRepetitionStructure(repetition: TRepetition): TRepetition {
+export function validateRepetitionStructure(repetition: TRepetition | undefined): TRepetition {
 	if (!repetition) repetition = {} as TRepetition;
-	if (repetition.id === undefined) repetition.id = 0;
-	if (repetition.sid === undefined) repetition.sid = '';
-	if (repetition.stage_sid === undefined) repetition.stage_sid = '';
-	if (repetition.date === undefined) repetition.date = '';
-	if (repetition.time_start === undefined) repetition.time_start = '';
-	if (repetition.time_end === undefined) repetition.time_end = '';
+	validateIItem(repetition);
+	validateIEvent(repetition);
 	if (repetition.subRepetitions === undefined || repetition.subRepetitions.length === 0) {
 		repetition.subRepetitions = [{ play_sid: '', event_type: ERepetitionType.NORMAL }];
 	} else {
@@ -254,6 +273,16 @@ export function validateRepetitionStructure(repetition: TRepetition): TRepetitio
 		});
 	}
 	return repetition;
+}
+
+export function validateWhatsappNoteStructure(note: TWhatsappNote | undefined): TWhatsappNote {
+	if (!note) note = {} as TWhatsappNote;
+	validateIItem(note);
+	validateIEvent(note);
+	if (note.event_sid === undefined) note.event_sid = '';
+	if (note.parent_type === undefined) note.parent_type = EEventType.PERFORMANCE;
+	if (note.text === undefined) note.text = '';
+	return note;
 }
 
 // ---------------------------------------
@@ -276,6 +305,19 @@ export function checkUniqueSIDs<T extends IItem>(items: Array<T>): TUniqStatus {
 // ---------------------------------------
 //             compare : equal
 // ---------------------------------------
+function checkEqualIItem(iItem1: IItem, iItem2: IItem) {
+	return iItem1.id === iItem2.id && iItem1.sid === iItem2.sid;
+}
+
+function checkEqualIEvent(iEvent1: IEvent, iEvent2: IEvent) {
+	return (
+		iEvent1.date === iEvent2.date &&
+		iEvent1.stage_sid === iEvent2.stage_sid &&
+		iEvent1.time_start === iEvent2.time_start &&
+		iEvent1.time_end === iEvent2.time_end
+	);
+}
+
 function checkEqualMultiText(text1: TMultiText, text2: TMultiText): boolean {
 	return text1.ru === text2.ru && text1.de === text2.de;
 }
@@ -322,8 +364,7 @@ function checkEqualPlays(play1: TPlay, play2: TPlay): boolean {
 		play1.age === play2.age &&
 		play1.break === play2.break &&
 		play1.duration === play2.duration &&
-		play1.id === play2.id &&
-		play1.sid === play2.sid &&
+		checkEqualIItem(play1, play2) &&
 		checkEqualMultiText(play1.genre, play2.genre) &&
 		checkEqualMultiText(play1.language, play2.language) &&
 		checkEqualMultiText(play1.name, play2.name) &&
@@ -331,16 +372,22 @@ function checkEqualPlays(play1: TPlay, play2: TPlay): boolean {
 	);
 }
 
+function checkEqualStages(stage1: TStage, stage2: TStage): boolean {
+	return (
+		stage1.fixed === stage2.fixed &&
+		checkEqualIItem(stage1, stage2) &&
+		checkEqualMultiText(stage1.name, stage2.name) &&
+		checkEqualAddress(stage1.address, stage2.address) &&
+		checkEqualHost(stage1.host, stage2.host)
+	);
+}
+
 function checkEqualPerformances(performance1: TPerformance, performance2: TPerformance): boolean {
 	return (
-		performance1.id === performance2.id &&
-		performance1.sid === performance2.sid &&
 		performance1.play_sid === performance2.play_sid &&
-		performance1.stage_sid === performance2.stage_sid &&
-		performance1.date === performance2.date &&
-		performance1.time_start === performance2.time_start &&
-		performance1.time_end === performance2.time_end &&
-		performance1.event_type === performance2.event_type
+		performance1.event_type === performance2.event_type &&
+		checkEqualIItem(performance1, performance2) &&
+		checkEqualIEvent(performance1, performance2)
 	);
 }
 
@@ -354,26 +401,22 @@ function checkEqualSubRepetitions(list1: TSubRepetition[], list2: TSubRepetition
 
 function checkEqualRepetitions(repetition1: TRepetition, repetition2: TRepetition): boolean {
 	return (
-		repetition1.id === repetition2.id &&
-		repetition1.sid === repetition2.sid &&
-		repetition1.stage_sid === repetition2.stage_sid &&
-		repetition1.date === repetition2.date &&
-		repetition1.time_start === repetition2.time_start &&
-		repetition1.time_end === repetition2.time_end &&
+		checkEqualIItem(repetition1, repetition2) &&
+		checkEqualIEvent(repetition1, repetition2) &&
 		checkEqualSubRepetitions(repetition1.subRepetitions, repetition2.subRepetitions)
 	);
 }
 
-function checkEqualStages(stage1: TStage, stage2: TStage): boolean {
+function checkEqualWhatsappNotes(note1: TWhatsappNote, note2: TWhatsappNote): boolean {
 	return (
-		stage1.id === stage2.id &&
-		stage1.sid === stage2.sid &&
-		stage1.fixed === stage2.fixed &&
-		checkEqualMultiText(stage1.name, stage2.name) &&
-		checkEqualAddress(stage1.address, stage2.address) &&
-		checkEqualHost(stage1.host, stage2.host)
+		note1.event_sid === note2.event_sid &&
+		note1.parent_type === note2.parent_type &&
+		note1.text === note2.text &&
+		checkEqualIItem(note1, note2) &&
+		checkEqualIEvent(note1, note2)
 	);
 }
+
 export function checkEqualItems<T extends IItem>(item1: T, item2: T, type: EItemType): boolean {
 	switch (type) {
 		case EItemType.PLAY:
@@ -384,6 +427,8 @@ export function checkEqualItems<T extends IItem>(item1: T, item2: T, type: EItem
 			return checkEqualPerformances(item1, item2);
 		case EItemType.REPETITION:
 			return checkEqualRepetitions(item1, item2);
+		case EItemType.WHATSAPP_NOTE:
+			return checkEqualWhatsappNotes(item1, item2);
 		default:
 			console.log('checkEqualItems: type ERROR !!!');
 			return true;

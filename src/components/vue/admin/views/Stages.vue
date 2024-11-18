@@ -1,20 +1,15 @@
 <script setup lang="ts">
-import { ref, inject, onMounted } from 'vue';
+import { ref, onBeforeMount } from 'vue';
 import { onBeforeRouteLeave } from 'vue-router';
-import { showMenu, smallScreen, isDemo } from '../statesStore';
+import { stages, initStages, showMenu, smallScreen, isDemo, commitStages } from '../store/statesStore';
 import StageCard from '../components/StageCard.vue';
 import ChapterTitle from '../components/ChapterTitle.vue';
 import type { TStage, TUniqStatus } from '@scripts/db/baseTypes';
 import { validateStageStructure, checkUniqueSIDs, EItemType } from '@scripts/db/baseTypes';
 import { saveStages, changedItems } from '@scripts/db/antreprizaDB';
 
-const { stages, updateStages } = inject('stages');
-
 const stagesChanged = ref(false);
-
-let maxId: number = 0;
-stages.value.forEach(iStage => (maxId = iStage.id > maxId ? iStage.id : maxId));
-const maxStageId = ref(maxId);
+const maxStageId = ref(1);
 
 function checkStagesChanging() {
 	if (isDemo.value && stagesChanged.value) stagesChanged.value = false;
@@ -49,24 +44,29 @@ async function saveStagesDB() {
 		return;
 	}
 	// save stages in AntreprizaDB
-	await saveStages(stages.value);
-	// update stages in provider
-	updateStages(stages.value);
+	await saveStages(stages.value, commitStages);
 	// if stages were saved successfully, then button Save will be hidden:
 	checkStagesChanging();
 }
 
-onMounted(() => {
+async function handleBeforeMount() {
+	await initStages();
 	checkStagesChanging();
-});
 
-onBeforeRouteLeave((to, from, next) => {
+	let maxId: number = maxStageId.value;
+	if (stages.value.length > 0) stages.value.forEach(item => (maxId = item.id > maxId ? item.id : maxId));
+	maxStageId.value = maxId;
+}
+onBeforeMount(handleBeforeMount);
+
+async function handleBeforeRouteLeave(to, from, next) {
 	if (stagesChanged.value === true && confirm('Сохранить изменения?')) {
-		saveStagesDB();
+		await saveStagesDB();
 	}
 	if (smallScreen.value) showMenu.value = false;
 	next();
-});
+}
+onBeforeRouteLeave(handleBeforeRouteLeave);
 </script>
 
 <template>

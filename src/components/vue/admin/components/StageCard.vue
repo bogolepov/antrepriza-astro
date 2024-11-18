@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { isDemo } from '../statesStore';
+import { isDemo } from '../store/statesStore';
 import type { TStage } from '@scripts/db/baseTypes';
 import MultiLangText from './MultiLangText.vue';
 

@@ -1,16 +1,13 @@
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue';
-import { isDemo } from '../statesStore';
+import { isDemo, optionListPlays, optionListStages } from '../store/statesStore';
 import { type TRepetition, ERepetitionType, type TSubRepetition } from '@scripts/db/baseTypes';
 
 interface Props {
 	repetition: TRepetition;
-	listPlays;
-	listStages;
 }
-const { repetition, listPlays, listStages } = defineProps<Props>();
+const { repetition } = defineProps<Props>();
 const emit = defineEmits(['checkRepetitionsChanging', 'deleteRepetition']);
-// , 'addSubRepetition', 'deleteSubRepetition'
 
 const showCard = ref(false);
 const editCard = ref(false);
@@ -30,9 +27,11 @@ function deleteRepetition() {
 }
 
 const stageName = computed(() => {
-	let stage = listStages.find(stage => stage.value === repetition.stage_sid);
-	if (stage) return stage.text;
-	else return '-';
+	let stage = optionListStages.value.find(stage => stage.value === repetition.stage_sid);
+	if (stage) {
+		if (stage.fixed) return 'Сцена ' + stage.text.toUpperCase();
+		else return stage.text;
+	} else return '-';
 });
 
 const playNames = computed(() => {
@@ -40,20 +39,17 @@ const playNames = computed(() => {
 	let plays: string[] = [];
 	repetition.subRepetitions.forEach(item => {
 		if (item.event_type != ERepetitionType.WORKSHOP && item.play_sid != '') {
-			let play = listPlays.find(play => play.value === item.play_sid);
+			let play = optionListPlays.value.find(play => play.value === item.play_sid);
 			if (play) plays.push(play.text);
 		}
 	});
 	names = plays.join(', ');
 	if (names.length > 0) names = names + '.';
 	return names;
-	// let play = listPlays.find(play => play.value === repetition.play_sid);
-	// if (play) return play.text;
-	// else return '-';
 });
 
 function getPlayName(play_sid: string) {
-	let play = listPlays.find(play => play.value === play_sid);
+	let play = optionListPlays.value.find(play => play.value === play_sid);
 	if (play) return play.text;
 	else return '-';
 }
@@ -135,7 +131,7 @@ watch(
 			<div v-if="!editCard">{{ stageName }}</div>
 			<select v-else v-model="repetition.stage_sid" class="list-select">
 				<option disabled value="">Выбрать:</option>
-				<option v-for="option in listStages" :value="option.value">
+				<option v-for="option in optionListStages" :value="option.value">
 					{{ option.text }}
 				</option>
 			</select>
@@ -165,7 +161,7 @@ watch(
 								class="list-select"
 							>
 								<option disabled value="">Выбрать спектакль:</option>
-								<option v-for="option of listPlays" :value="option.value">
+								<option v-for="option of optionListPlays" :value="option.value">
 									{{ option.text }}
 								</option>
 							</select>

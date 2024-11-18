@@ -15,7 +15,8 @@
 		"stage_sid": "west",
 		"free_place": true,
 		"newyear": true,
-		"prices": ["kids_present_35", "adult", "reduce", "reduce_present_25"]
+		"prices": ["kids_present_35", "adult", "reduce", "reduce_present_25"],
+		"sold_out": true
 	},
 	{
 		"date": "2024-12-22",
@@ -39,7 +40,8 @@
 		"play_id": 6,
 		"stage_sid": "ost",
 		"free_place": true,
-		"prices": ["kids", "adult", "reduce"]
+		"prices": ["kids", "adult", "reduce"],
+		"sold_out": true
 	},
 	{
 		"date": "2024-12-19",
@@ -55,7 +57,8 @@
 		"play_id": 6,
 		"stage_sid": "ost",
 		"free_place": true,
-		"prices": ["kids", "adult", "reduce"]
+		"prices": ["kids", "adult", "reduce"],
+		"sold_out": true
 	},
 	{
 		"date": "2024-11-28",
@@ -73,7 +76,8 @@
 		"stage_sid": "ost",
 		"free_place": true,
 		"prices": ["standart22", "reduce"],
-		"premiere": true
+		"premiere": true,
+		"sold_out": true
 	},
 	{
 		"date": "2024-11-10",

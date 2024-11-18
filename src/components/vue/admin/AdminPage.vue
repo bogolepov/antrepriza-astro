@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { ref, onBeforeMount, provide } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
-import { showMenu, smallScreen } from './statesStore';
+import { showMenu, smallScreen } from './store/statesStore';
 import { EAuthRole } from '@scripts/auth';
 import { type TFirebaseConfig } from '@scripts/db/firebaseConfig';
 import { getPlays, getStages, getPerformances, getRepetitions } from '@scripts/db/antreprizaDB';
 import LetterSizeControl from './components/LetterSizeControl.vue';
 import type { TPlay, TStage, TPerformance, TRepetition } from '@scripts/db/baseTypes';
+
+import IconWhatsapp from './components/iconWhatsapp.vue';
 
 const router = useRouter();
 const route = useRoute();
@@ -87,6 +89,9 @@ onBeforeMount(() => {
 			<LetterSizeControl class="letter-size-control" />
 			<nav>
 				<ul>
+					<li>
+						<router-link to="/admin/whatsapp">Сообщение&nbsp;&nbsp;<IconWhatsapp /> </router-link>
+					</li>
 					<li><router-link to="/admin/repetitions">Репетиции</router-link></li>
 					<li><router-link to="/admin/performances">Выступления</router-link></li>
 					<li><router-link to="/admin/plays">Спектакли</router-link></li>
@@ -111,6 +116,7 @@ h1 {
 	--color-border: var(--grey-46);
 	display: flex;
 	height: 100%;
+	/* font-weight: 400; */
 }
 aside {
 	display: flex;
@@ -257,7 +263,7 @@ main > ul {
 
 .item-card .label {
 	color: var(--colorFont-Op1);
-	font-weight: 400;
+	font-weight: 300;
 }
 .item-card .label + * {
 	margin-left: 1rem;

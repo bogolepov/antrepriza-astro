@@ -1,26 +1,19 @@
 <script setup lang="ts">
-import { ref, inject, onMounted } from 'vue';
+import { ref, onBeforeMount } from 'vue';
 import { onBeforeRouteLeave } from 'vue-router';
-import { showMenu, smallScreen, isDemo } from '../statesStore';
+import { plays, initPlays, showMenu, smallScreen, isDemo, commitPlays } from '../store/statesStore';
 import PlayCard from '../components/PlayCard.vue';
 import ChapterTitle from '../components/ChapterTitle.vue';
 import type { TPlay, TUniqStatus } from '@scripts/db/baseTypes';
 import { validatePlayStructure, checkUniqueSIDs, EItemType } from '@scripts/db/baseTypes';
 import { savePlays, changedItems } from '@scripts/db/antreprizaDB';
 
-// const plays = inject('plays');
-const { plays, updatePlays } = inject('plays');
-
 const playsChanged = ref(false);
-
-let maxId: number = 0;
-plays.value.forEach(iPlay => (maxId = iPlay.id > maxId ? iPlay.id : maxId));
-const maxPlayId = ref(maxId);
+const maxPlayId = ref(1);
 
 function checkPlaysChanging() {
 	if (isDemo.value && playsChanged.value) playsChanged.value = false;
 	else playsChanged.value = changedItems<TPlay>(plays.value, EItemType.PLAY);
-	// else playsChanged.value = changedPlays(plays.value);
 }
 
 function addPlay() {
@@ -54,24 +47,29 @@ async function savePlaysDB() {
 		return;
 	}
 	// save plays in AntreprizaDB
-	await savePlays(plays.value);
-	// update plays in provider
-	updatePlays(plays.value);
+	await savePlays(plays.value, commitPlays);
 	// if plays were saved successfully, then button Save will be hidden:
 	checkPlaysChanging();
 }
 
-onMounted(() => {
+async function handleBeforeMount() {
+	await initPlays();
 	checkPlaysChanging();
-});
 
-onBeforeRouteLeave((to, from, next) => {
+	let maxId: number = maxPlayId.value;
+	if (plays.value.length > 0) plays.value.forEach(item => (maxId = item.id > maxId ? item.id : maxId));
+	maxPlayId.value = maxId;
+}
+onBeforeMount(handleBeforeMount);
+
+async function handleBeforeRouteLeave(to, from, next) {
 	if (playsChanged.value === true && confirm('Сохранить изменения?')) {
-		savePlaysDB();
+		await savePlaysDB();
 	}
 	if (smallScreen.value) showMenu.value = false;
 	next();
-});
+}
+onBeforeRouteLeave(handleBeforeRouteLeave);
 </script>
 
 <template>

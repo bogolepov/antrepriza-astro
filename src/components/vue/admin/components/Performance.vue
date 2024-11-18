@@ -1,14 +1,12 @@
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue';
-import { isDemo } from '../statesStore';
+import { isDemo, optionListPlays, optionListStages } from '../store/statesStore';
 import { type TPerformance, EPerformanceType } from '@scripts/db/baseTypes';
 
 interface Props {
 	performance: TPerformance;
-	listPlays;
-	listStages;
 }
-const { performance, listPlays, listStages } = defineProps<Props>();
+const { performance } = defineProps<Props>();
 
 const emit = defineEmits(['checkPerformancesChanging', 'deletePerformance']);
 
@@ -30,12 +28,14 @@ function deletePerformance() {
 }
 
 const stageName = computed(() => {
-	let stage = listStages.find(stage => stage.value === performance.stage_sid);
-	if (stage) return stage.text;
-	else return '-';
+	let stage = optionListStages.value.find(stage => stage.value === performance.stage_sid);
+	if (stage) {
+		if (stage.fixed) return 'Сцена ' + stage.text.toUpperCase();
+		else return stage.text;
+	} else return '-';
 });
 const playName = computed(() => {
-	let play = listPlays.find(play => play.value === performance.play_sid);
+	let play = optionListPlays.value.find(play => play.value === performance.play_sid);
 	if (play) return play.text;
 	else return '-';
 });
@@ -52,7 +52,7 @@ watch(
 watch(
 	() => [performance.play_sid, performance.time_start],
 	() => {
-		let play = listPlays.find(play => play.value === performance.play_sid);
+		let play = optionListPlays.value.find(play => play.value === performance.play_sid);
 		let date = new Date('2024-01-01T' + performance.time_start);
 		date.setMinutes(date.getMinutes() + play.duration);
 		performance.time_end = `${date.getHours()}:${date.getMinutes()}`;
@@ -78,7 +78,7 @@ watch(
 			<div v-if="!editCard">{{ playName }}</div>
 			<select v-else v-model="performance.play_sid" class="list-select">
 				<option disabled value="">Выбрать спектакль:</option>
-				<option v-for="option in listPlays" :value="option.value">
+				<option v-for="option in optionListPlays" :value="option.value">
 					{{ option.text }}
 				</option>
 			</select>
@@ -117,7 +117,7 @@ watch(
 			<div v-if="!editCard">{{ stageName }}</div>
 			<select v-else v-model="performance.stage_sid" class="list-select">
 				<option disabled value="">Выбрать площадку:</option>
-				<option v-for="option in listStages" :value="option.value">
+				<option v-for="option in optionListStages" :value="option.value">
 					{{ option.text }}
 				</option>
 			</select>

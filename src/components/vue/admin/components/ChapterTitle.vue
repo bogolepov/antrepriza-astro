@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { isDemo } from '../statesStore';
+import { isDemo } from '../store/statesStore';
 
 interface Props {
 	title: string;
@@ -18,7 +18,7 @@ function clickSaveButton() {
 	<div class="chapter-title">
 		<h1>{{ title }}</h1>
 		<div class="chapter-actions">
-			<slot name="chapter-actions"></slot>
+			<slot name="actions-slot"></slot>
 			<button v-show="showSaveButton" @click="clickSaveButton" :disabled="isDemo" class="save-button">Сохранить</button>
 		</div>
 	</div>

@@ -1,7 +1,7 @@
 import { getAntreprizaDB } from './firebase';
 import { collection, getDocs, getDoc, setDoc, doc } from 'firebase/firestore';
-import type { TPlay, TStage, IItem, TPerformance, TRepetition } from './baseTypes';
-import { EItemType } from './baseTypes';
+import type { TPlay, TStage, IItem, TPerformance, TRepetition, TWhatsappNote } from './baseTypes';
+import { EEventType, EItemType } from './baseTypes';
 import {
 	validatePlayStructure,
 	validateStageStructure,
@@ -9,12 +9,14 @@ import {
 	validateRepetitionStructure,
 	checkEqualItems,
 } from './baseTypes';
+import { ONE_DAY } from '@scripts/consts';
 
 const COLLECTION_THEATER: string = 'theater';
 const DOC_THEATER_PLAYS: string = 'plays';
 const DOC_THEATER_STAGES: string = 'stages';
 const DOC_THEATER_PERFORMANCES: string = 'performances';
 const DOC_THEATER_REPETITIONS: string = 'repetitions';
+const DOC_THEATER_WHATSAPP_NOTES: string = 'whatsapp_notes';
 
 // let program;
 // async function readProgram() {
@@ -34,8 +36,8 @@ const DOC_THEATER_REPETITIONS: string = 'repetitions';
 //                  PLAYS
 // ---------------------------------------
 
-let plays: Array<TPlay>;
-let srcPlays: Array<TPlay>;
+let plays: Array<TPlay> = [];
+let srcPlays: Array<TPlay> = [];
 
 export async function readPlays() {
 	const docRef = doc(getAntreprizaDB(), COLLECTION_THEATER, DOC_THEATER_PLAYS);
@@ -53,21 +55,22 @@ export async function readPlays() {
 }
 
 export function getPlays(): Array<TPlay> {
-	if (!srcPlays) readPlays();
+	if (!srcPlays || !srcPlays.length) readPlays();
 	return plays;
 }
 
-export async function savePlays(currPlays: Array<TPlay>) {
+export async function savePlays(currPlays: Array<TPlay>, handleResult) {
 	await setDoc(doc(getAntreprizaDB(), COLLECTION_THEATER, DOC_THEATER_PLAYS), { plays: currPlays }, { merge: false });
 	srcPlays = structuredClone(currPlays);
 	// srcPlays = JSON.parse(JSON.stringify(currPlays));
+	await handleResult();
 }
 
 // ---------------------------------------
 //                  STAGES
 // ---------------------------------------
-let stages: Array<TStage>;
-let srcStages: Array<TStage>;
+let stages: Array<TStage> = [];
+let srcStages: Array<TStage> = [];
 
 export async function readStages() {
 	// console.log('readStages:');
@@ -87,21 +90,22 @@ export async function readStages() {
 }
 
 export function getStages(): Array<TStage> {
-	if (!srcStages) readStages();
+	if (!srcStages || !srcStages.length) readStages();
 	return stages;
 }
 
-export async function saveStages(currStages: Array<TStage>) {
+export async function saveStages(currStages: Array<TStage>, handleResult) {
 	// console.log(currStages);
 	await setDoc(doc(getAntreprizaDB(), COLLECTION_THEATER, DOC_THEATER_STAGES), { stages: currStages });
 	srcStages = JSON.parse(JSON.stringify(currStages));
+	await handleResult();
 }
 
 // ---------------------------------------
 //              PERFORMANCES
 // ---------------------------------------
-let performances: Array<TPerformance>;
-let srcPerformances: Array<TPerformance>;
+let performances: Array<TPerformance> = [];
+let srcPerformances: Array<TPerformance> = [];
 
 export async function readPerformances() {
 	// console.log('readPerformances:');
@@ -120,7 +124,7 @@ export async function readPerformances() {
 }
 
 export function getPerformances(): Array<TPerformance> {
-	if (!srcPerformances) readPerformances();
+	if (!srcPerformances || !performances.length) readPerformances();
 	return performances;
 }
 
@@ -133,8 +137,8 @@ export async function savePerformances(currPerformances: Array<TPerformance>) {
 // ---------------------------------------
 //              REPETITIONS
 // ---------------------------------------
-let repetitions: Array<TRepetition>;
-let srcRepetitions: Array<TRepetition>;
+let repetitions: Array<TRepetition> = [];
+let srcRepetitions: Array<TRepetition> = [];
 
 export async function readRepetitions() {
 	// console.log('readRepetitions:');
@@ -153,13 +157,66 @@ export async function readRepetitions() {
 }
 
 export function getRepetitions(): Array<TRepetition> {
-	if (!srcRepetitions) readRepetitions();
+	if (!srcRepetitions || !srcRepetitions.length) readRepetitions();
 	return repetitions;
 }
 
 export async function saveRepetitions(currRepetitions: Array<TRepetition>) {
 	await setDoc(doc(getAntreprizaDB(), COLLECTION_THEATER, DOC_THEATER_REPETITIONS), { events: currRepetitions });
 	srcRepetitions = JSON.parse(JSON.stringify(currRepetitions));
+}
+
+// ---------------------------------------
+//              WHATSAPP NOTES
+// ---------------------------------------
+let whatsappNotes: Array<TWhatsappNote> = [];
+let srcWhatsappNotes: Array<TWhatsappNote> = [];
+
+export async function readWhatsappNotes() {
+	console.log('readWhatsappNotes:');
+	const docRef = doc(getAntreprizaDB(), COLLECTION_THEATER, DOC_THEATER_WHATSAPP_NOTES);
+	const docSnap = await getDoc(docRef);
+
+	if (docSnap.exists() && docSnap.data().notes) {
+		console.log('notes');
+		console.log(docSnap.data().notes);
+
+		whatsappNotes = docSnap.data().notes;
+		const actualDate = Date.now() - ONE_DAY;
+		whatsappNotes = whatsappNotes.filter(note => {
+			return (
+				note.id &&
+				note.sid &&
+				note.sid.length > 0 &&
+				note.event_sid.length > 0 &&
+				note.date &&
+				note.time_start &&
+				note.text &&
+				note.parent_type &&
+				Date.parse(note.date + 'T' + note.time_start) > actualDate &&
+				note.text?.length > 0 &&
+				(note.parent_type === EEventType.PERFORMANCE || note.parent_type === EEventType.REPETITION)
+			);
+		});
+		srcWhatsappNotes = JSON.parse(JSON.stringify(whatsappNotes));
+	} else {
+		// console.log('empty whatsappNotes');
+		whatsappNotes = [];
+		srcWhatsappNotes = [];
+	}
+	console.log(whatsappNotes);
+}
+
+export function getWhatsappNotes(): Array<TWhatsappNote> {
+	console.log('DB: getWhatsappNotes()');
+
+	if (!srcWhatsappNotes || !srcWhatsappNotes.length) readWhatsappNotes();
+	return whatsappNotes;
+}
+
+export async function saveWhatsappNotes(currWhatsappNotes: Array<TWhatsappNote>) {
+	await setDoc(doc(getAntreprizaDB(), COLLECTION_THEATER, DOC_THEATER_WHATSAPP_NOTES), { notes: currWhatsappNotes });
+	srcRepetitions = JSON.parse(JSON.stringify(currWhatsappNotes));
 }
 
 // ---------------------------------------
@@ -175,6 +232,11 @@ function getSrcItems<T>(type: EItemType): T[] {
 			return srcPerformances;
 		case EItemType.REPETITION:
 			return srcRepetitions;
+		case EItemType.WHATSAPP_NOTE:
+			console.log('EItemType.WHATSAPP_NOTE:');
+			console.log(srcWhatsappNotes);
+
+			return srcWhatsappNotes;
 		default:
 			return undefined;
 	}

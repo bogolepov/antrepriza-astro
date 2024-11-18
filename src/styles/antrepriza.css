@@ -88,8 +88,8 @@ body:has(#theme-switcher:checked) {
 	--colorGradInversSides: var(--grey-46);
 	--colorFontInvers: var(--grey-120);
 
-	--colorFontSoldOut: var(--grey-200);
-	--weightFontSoldOut: 700;
+	--colorFontSoldOut: var(--grey-24);
+	--weightFontSoldOut: 500;
 
 	--colorBkgLayerUnderForm: hsla(0 0% 15% / 0.65);
 

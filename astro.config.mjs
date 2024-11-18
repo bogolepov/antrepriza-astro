@@ -65,6 +65,7 @@ export default defineConfig({
 		'/admin/stages': '/admin?page=/stages',
 		'/admin/plays': '/admin?page=/plays',
 		'/admin/tickets': '/admin?page=/tickets',
+		'/admin/whatsapp': '/admin?page=/whatsapp',
 	},
 	integrations: [
 		react(),
