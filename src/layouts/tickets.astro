@@ -167,15 +167,16 @@ for (let price of prices) {
 															playsOnThisStage.map((play_date) => {
 																	let fullDate: string = play_date.date+'T'+play_date.time;
 																	let playDate: Date = new Date(fullDate);
+																	let addClasses : string = play_date.canceled ? 'canceled' : '';
 																	return (
-																		<TicketBookButton add_classes='' button_type='ticket' price='' sold_out={play_date.sold_out}
+																		<TicketBookButton add_classes={addClasses} button_type='ticket' price='' sold_out={play_date.sold_out || play_date.canceled}
 																											date={play_date.date} time={play_date.time} play_id={playInfo.id}	>
 																				{playDate.getDate().toString().padStart(2, '0')}.{(playDate.getMonth()+1).toString().padStart(2, '0')},
 																				{playDate.toLocaleDateString(lang, { weekday: 'short' })} / {play_date.time}
-																				{ play_date.sold_out && <br>}
-																				{ play_date.sold_out && dictionary.tickets[lang]}
-																				{ play_date.sold_out && <br>}
-																				{ play_date.sold_out && dictionary.tickets_sold_out[lang]}
+																				{ play_date.sold_out && !play_date.canceled && <br>}
+																				{ play_date.sold_out && !play_date.canceled && dictionary.tickets[lang]}
+																				{ play_date.sold_out && !play_date.canceled && <br>}
+																				{ play_date.sold_out && !play_date.canceled && dictionary.tickets_sold_out[lang]}
 																				</TicketBookButton>
 																	)
 															} )

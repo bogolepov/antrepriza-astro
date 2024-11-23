@@ -47,6 +47,9 @@
 	font-size: clamp(0.9rem, 2.3vw, 1.3rem);
 	width: fit-content;
 }
+.evs-event-flex.canceled {
+	text-decoration: line-through;
+}
 
 .evs-list-ost,
 .evs-list-west,

@@ -9,6 +9,7 @@ import Header from "@components/header.astro";
 import Footer from "@components/footer.astro";
 import Reservation from "@react-components/reservation/Reservation";
 import Head from "@components/head/head.astro";
+import RunLine from "@components/run_line.astro"
 
 import FeedbackForm from "@components/feedback_form.astro"
 import TicketForm from "@components/ticket_form/ticket_form.astro";
@@ -16,6 +17,8 @@ import TicketForm from "@components/ticket_form/ticket_form.astro";
 const { title, description, lang, reservation, robots = "index, follow", ticket_form = "no", play_id, seo_event = 'false', date, time } = Astro.props;
 
 let pageNeedTicketForm = (ticket_form === "yes");
+
+let runLine: boolean = true;
 
 ---
 
@@ -34,6 +37,10 @@ let pageNeedTicketForm = (ticket_form === "yes");
 		<div class="wrapper">
 			<Header lang={lang} />
 			<main class="wrapper-main">
+				{
+					runLine &&
+					<RunLine lang={lang} />
+				}
 				<slot/>
 			</main>
 			<Footer lang={lang} />

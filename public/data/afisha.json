@@ -1,5 +1,15 @@
 [
 	{
+		"date": "2025-01-19",
+		"time": "19:30",
+		"play_id": 9,
+		"stage_sid": "ost",
+		"free_place": true,
+		"prices": ["standart22", "reduce"],
+		"premiere": true,
+		"sold_out": true
+	},
+	{
 		"date": "2024-12-26",
 		"time": "16:00",
 		"play_id": 10,
@@ -63,10 +73,29 @@
 	{
 		"date": "2024-11-28",
 		"time": "19:30",
+		"play_id": 8,
+		"stage_sid": "ost",
+		"free_place": true,
+		"prices": ["standart22", "reduce"],
+		"sold_out": true
+	},
+	{
+		"date": "2024-11-27",
+		"time": "19:30",
+		"play_id": 8,
+		"stage_sid": "ost",
+		"free_place": true,
+		"prices": ["standart22", "reduce"],
+		"sold_out": true
+	},
+	{
+		"date": "2024-11-28",
+		"time": "19:30",
 		"play_id": 9,
 		"stage_sid": "ost",
 		"free_place": true,
 		"prices": ["standart22", "reduce"],
+		"canceled": true,
 		"premiere": true
 	},
 	{
@@ -77,6 +106,7 @@
 		"free_place": true,
 		"prices": ["standart22", "reduce"],
 		"premiere": true,
+		"canceled": true,
 		"sold_out": true
 	},
 	{

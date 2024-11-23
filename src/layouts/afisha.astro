@@ -92,13 +92,16 @@ let iMonth: number = -1;
 										<div class="program-play-text">
 											
 											<div class="program-when" >
-												{event.premiere && 
+												{event.canceled &&
+													<div class="play-property-hot-notice">{dictionary.canceled[lang]}</div>
+												}
+												{event.premiere && !event.canceled &&
 													<div class="play-property-hot-notice">{dictionary.premiere[lang]}</div>
 												}
-												{event.newyear && 
+												{event.newyear && !event.canceled &&
 													<div class="play-property-hot-notice">{dictionary.newyear[lang]}</div>
 												}
-												{event.event_type && event.event_type.is_festival && 
+												{event.event_type && !event.canceled && event.event_type.is_festival && 
 													<div class="play-property-hot-notice">{dictionary.festival[lang]}</div>
 												}
 												<time class="program-date" data-day={playDate.toLocaleDateString(lang, { weekday: 'short' })}>
@@ -110,7 +113,7 @@ let iMonth: number = -1;
 											</div>
 
 											<a class="program-title stretch-link" href={`/${lang}/plays/${play.suffix}/`}>
-												<h3 class="play-title">{play.alt_title[lang]}</h3>
+												<h3 class:list={["play-title", {canceled: event.canceled}]} >{play.alt_title[lang]}</h3>
 											</a>
 
 											<div class="program-info">
@@ -127,7 +130,7 @@ let iMonth: number = -1;
 												</address>
 											</div>
 
-											{ !event.no_tickets && 
+											{ !event.no_tickets && !event.canceled &&
 												<div class="program-tickets">
 													<TicketBookButton add_classes="afisha" button_type='ticket' price=''
 																						date={event.date} time={event.time} play_id={event.play_id} sold_out={event.sold_out} >

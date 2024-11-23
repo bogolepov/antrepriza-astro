@@ -69,6 +69,10 @@ const { Content } = await entry.render();
     thisPlayDates.length > 0 &&
       <div class="play-dates">
         <div class="next-plays-label">{dictionary.nextDates[lang]}:</div>
+        { 
+          thisPlay.suffix === "n32" &&
+          <div class="hot-line-info">{dictionary.canceled_n32_1[lang]}</div>
+        }
         <div class="buttons-block">
           {
             thisPlayDates.map((play_date) => {
@@ -83,16 +87,17 @@ const { Content } = await entry.render();
                 else {
                   stageNameText = stage.place_name.toUpperCase();
                 }
+								let addClasses : string = play_date.canceled ? 'canceled' : '';
                 return (
-                  <TicketBookButton add_classes='' button_type='ticket' price=''
+                  <TicketBookButton add_classes={addClasses} button_type='ticket' price=''
                                     date={play_date.date} time={play_date.time} play_id={thisPlay.id} 
                                     no_sell={play_date.no_tickets} 
-                                    sold_out={play_date.sold_out}>
+                                    sold_out={play_date.sold_out || play_date.canceled}>
                     <div class="button-date">
                       {playDate.toLocaleDateString(lang, { year: "numeric",  month: "short",  day: "2-digit" })},
                       {playDate.toLocaleDateString(lang, { weekday: 'short' })} / {play_date.time}
-                      { play_date.sold_out && <br>}
-                      { play_date.sold_out && `${dictionary.tickets[lang]} ${dictionary.tickets_sold_out[lang]}`.toLocaleUpperCase(lang)}
+                      { play_date.sold_out && !play_date.canceled && <br>}
+                      { play_date.sold_out && !play_date.canceled && `${dictionary.tickets[lang]} ${dictionary.tickets_sold_out[lang]}`.toLocaleUpperCase(lang)}
                     </div>
                     <div class="button-address">
                       <div class="stage-name">{stageNameText}</div>

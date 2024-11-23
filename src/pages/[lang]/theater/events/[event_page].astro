@@ -31,6 +31,7 @@ export const getStaticPaths = (() => {
       let eventDate = event.date.replaceAll("-","");
       let eventTime = event.time.replaceAll(":","");
       let pageName = `${event_sid}_${eventDate}_${eventTime}`;
+      if (event.canceled) pageName += 'canceled';
       return {
         params: {lang: lng.lang_code, event_page: pageName},
         props: {pageLang: lng.lang_code, pageTitle: aTitle, playID: play.id.toString(), playDate: event.date, playTime: event.time},

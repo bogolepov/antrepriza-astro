@@ -1,0 +1,70 @@
+---
+import dictionary from '@data/dictionary.json'
+
+const {lang} = Astro.props;
+
+---
+
+<div class="run-line-wrapper">
+  <div class="run-line">
+    <div>
+      <p class="run-text1">{dictionary.canceled_n32_1[lang]}</p>
+      <p class="run-text2">{dictionary.canceled_n32_1[lang]}</p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .run-line-wrapper {
+    height: clamp(2.0rem, 4vw, 2.5rem);
+  }
+
+  .run-line {
+    position: absolute;
+    left: 0;
+    width: 200%;
+    z-index: 900;
+    background-color: var(--colorAntreprizaRed);
+    color: #ffffff;
+    height: clamp(2.0rem, 4vw, 2.5rem);
+    font-weight: 300;
+  }
+
+  .run-line div {
+    display: flex;
+    flex-direction: row;
+    width: 200%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .run-line p {
+    margin: auto 0;
+    line-height: 1;
+    width: max-content;
+    white-space: nowrap;
+    display: inline-block;
+    padding: 2px 12vw 0 12vw;
+  }
+
+  .run-text1 {
+      animation: run-text1 70s infinite linear;
+      animation-delay: -70s;
+  }
+
+  .run-text2 {
+      animation: run-text2 70s infinite linear;
+      animation-delay: -35s;
+  }
+
+  @keyframes run-text1 {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+  @keyframes run-text2 {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-200%); }
+  }
+
+</style>

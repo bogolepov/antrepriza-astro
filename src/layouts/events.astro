@@ -93,7 +93,7 @@ let isFirstTab = true;
 
                 return (
                   <li class="evs-item" data-date={event.date} data-time={event.time}>
-                    <a class="evs-event-flex" href={`/${lang}/theater/events/${pageName}/`}>                    
+                    <a class:list={["evs-event-flex",{canceled:event.canceled}]} href={`/${lang}/theater/events/${pageName}/`}>                    
                       <div>{playDate.getDate().toString().padStart(2, '0')}.{(playDate.getMonth()+1).toString().padStart(2, '0')}.{playDate.getFullYear().toString().padStart(4, '0')}</div>
                       <div class="font-opacity1">{event.time}</div>
                       <div>{play.title[lang]}</div>          

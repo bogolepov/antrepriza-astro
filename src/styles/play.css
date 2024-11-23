@@ -69,6 +69,15 @@ section.play {
 	column-gap: 1rem;
 }
 
+.hot-line-info {
+	padding: 0.4rem;
+	background-color: var(--colorAntreprizaRed);
+	color: #ffffff;
+	font-weight: 300;
+	line-height: 1.25;
+	margin-bottom: 0.6rem;
+}
+
 .button-date {
 	padding-top: 0.3rem;
 	padding-bottom: 0.25rem;

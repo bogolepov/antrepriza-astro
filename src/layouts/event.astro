@@ -137,7 +137,7 @@ let image = play.seo.event.images.find(image => image.format === '3_4_1050');
       }     
       <a href={`/${lang}/plays/${play.suffix}/`} class="ev-link-more">{dictionary.more_about_play[lang]}</a>  
 
-      { !event.no_tickets && 
+      { !event.no_tickets && !event.canceled &&
         <TicketBookButton add_classes="ev-button" button_type='ticket' price=''
                           date={event.date} time={event.time} play_id={event.play_id}	sold_out={event.sold_out}>
             {dictionary.tickets[lang]}
