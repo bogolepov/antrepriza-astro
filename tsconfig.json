@@ -3,6 +3,7 @@
 	"compilerOptions": {
 		"baseUrl": ".",
 		"paths": {
+			"@netlify/*": ["netlify/functions/*"],
 			"@components/*": ["src/components/*"],
 			"@react-components/*": ["src/components/react/*"],
 			"@vue-components/*": ["src/components/vue/*"],

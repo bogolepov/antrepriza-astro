@@ -24,7 +24,7 @@ async function eventInTicketsExists(eventName: string): Promise<boolean> {
 export async function addReservations(lang: string, name: string, email: string, reservations: TReservation[]) {
 	if (reservations?.length > 0) {
 		for (let event of reservations) {
-			const eventDocName = `${event.stage_sid}_${onlyNumbers(event.date)}_${onlyNumbers(event.time)}`;
+			const eventDocName = `${event.stage_sid}_${onlyNumbers(event.date)}_${onlyNumbers(event.time)}_${event.play_id}`;
 			event.order_id = makeReservationId(event.date, event.time);
 			const reservation: TPlayReservation = {
 				name: name,

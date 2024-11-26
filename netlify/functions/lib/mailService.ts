@@ -56,9 +56,7 @@ export async function sendMails(
 
 		if (antreprizaMail) {
 			const antreprizaMailTo: string =
-				process.env.MODE === process.env.MODE_PRODUCTION
-					? transporterMail + ', ' + process.env.ANTREPRIZA_EMAIL_MAMONTOV
-					: process.env.ANTREPRIZA_EMAIL_BOGOLEPOV;
+				process.env.MODE === process.env.MODE_PRODUCTION ? transporterMail : process.env.ANTREPRIZA_EMAIL_BOGOLEPOV;
 
 			const mailOptionsAntrepriza = {
 				from: fromEmail,
