@@ -212,7 +212,7 @@ function handleAddToCart() {
 	} else {
 		let newTickets = [];
 		clientJsons.theater.prices.forEach(price => newTickets.push({ type: price.type, count: getTicketCount(price.type) }));
-		// TODO:
+		// TODO: play_id => play_sid
 		let newReservation = {
 			date: afishaItem.date,
 			time: afishaItem.time,
