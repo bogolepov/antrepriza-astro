@@ -3,15 +3,9 @@ import { isDemo } from '../store/statesStore';
 
 interface Props {
 	title: string;
-	showSaveButton: boolean;
+	// showSaveButton: boolean;
 }
-const { title, showSaveButton } = defineProps<Props>();
-const emit = defineEmits<{
-	handleSaveButton: [];
-}>();
-function clickSaveButton() {
-	emit('handleSaveButton');
-}
+const { title } = defineProps<Props>();
 </script>
 
 <template>
@@ -19,7 +13,6 @@ function clickSaveButton() {
 		<h1>{{ title }}</h1>
 		<div class="chapter-actions">
 			<slot name="actions-slot"></slot>
-			<button v-show="showSaveButton" @click="clickSaveButton" :disabled="isDemo" class="save-button">Сохранить</button>
 		</div>
 	</div>
 </template>

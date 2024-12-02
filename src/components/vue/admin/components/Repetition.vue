@@ -2,6 +2,7 @@
 import { ref, computed, watch } from 'vue';
 import { isDemo, optionListPlays, optionListStages } from '../store/statesStore';
 import { type TRepetition, ERepetitionType, type TSubRepetition } from '@scripts/db/baseTypes';
+import { onlyNumbers } from '@netlify/lib/utils';
 
 interface Props {
 	repetition: TRepetition;
@@ -65,10 +66,7 @@ function deleteSubRepetition(index) {
 watch(
 	() => [repetition.stage_sid, repetition.date, repetition.time_start],
 	() => {
-		repetition.sid = `${repetition.stage_sid}_${repetition.date.replace(/[^0-9]/g, '')}_${repetition.time_start.replace(
-			/[^0-9]/g,
-			''
-		)}_rep`;
+		repetition.sid = `${repetition.stage_sid}_${onlyNumbers(repetition.date)}_${onlyNumbers(repetition.time_start)}_rep`;
 	}
 );
 </script>

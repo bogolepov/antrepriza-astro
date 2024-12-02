@@ -106,12 +106,13 @@ async function savePerformancesDB() {
 </script>
 
 <template>
-	<ChapterTitle title="Выступления" @handle-save-button="savePerformancesDB" :show-save-button="performancesChanged">
+	<ChapterTitle title="Выступления">
 		<template v-slot:actions-slot>
 			<button @click="isActualPerformances = !isActualPerformances" class="expand-item-button icon-calendar">
 				<IconCalendar />
 				<div v-show="isActualPerformances" class="icon-calendar-actual">✔️</div>
 			</button>
+			<button v-show="performancesChanged" @click="savePerformancesDB" :disabled="isDemo" class="save-button">Сохранить</button>
 		</template>
 	</ChapterTitle>
 	<ul>

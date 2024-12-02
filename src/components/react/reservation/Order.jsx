@@ -53,26 +53,28 @@ export default function Order({ lang, jsons, play, handleAddTicket, handleRemove
 					<div className='order-flex wrap' key={ticket_type.type}>
 						{/* <div className='item-name'>{`${ticketTypes.get(ticket_type.type).title}, ${ticketTypes.get(ticket_type.type).price}€`}</div> */}
 						<div className='item-name font-opacity0'>{ticketTypes.get(ticket_type.type).title}</div>
-						<div className='item-count-change'>
-							<button
-								className='count-change-button left'
-								onClick={() => {
-									handleRemoveTicket(play, ticket_type.type, ticket_type.count);
-								}}
-							>
-								-
-							</button>
-							<span className='count-change-number'>{ticket_type.count}</span>
-							<button
-								className='count-change-button right'
-								onClick={() => {
-									handleAddTicket(play, ticket_type.type);
-								}}
-							>
-								+
-							</button>
+						<div className='item-price-flex'>
+							<div className='item-count-change'>
+								<button
+									className='count-change-button left'
+									onClick={() => {
+										handleRemoveTicket(play, ticket_type.type, ticket_type.count);
+									}}
+								>
+									-
+								</button>
+								<span className='count-change-number'>{ticket_type.count}</span>
+								<button
+									className='count-change-button right'
+									onClick={() => {
+										handleAddTicket(play, ticket_type.type);
+									}}
+								>
+									+
+								</button>
+							</div>
+							<div className='item-amount'>{ticket_type.count * ticketTypes.get(ticket_type.type).price}€</div>
 						</div>
-						<div className='item-amount'>{ticket_type.count * ticketTypes.get(ticket_type.type).price}€</div>
 					</div>
 				) : null;
 			})}

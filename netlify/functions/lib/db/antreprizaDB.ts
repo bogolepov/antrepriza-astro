@@ -18,7 +18,7 @@ function makeReservationId(date: string, time: string) {
 }
 async function eventInTicketsExists(eventName: string): Promise<boolean> {
 	const snap = await getCountFromServer(query(collection(firestore, ROOT_COLLECTION_TICKETS), where(documentId(), '==', eventName)));
-	return !!snap.data().count;
+	return snap.data().count > 0;
 }
 
 export async function addReservations(lang: string, name: string, email: string, reservations: TReservation[]) {

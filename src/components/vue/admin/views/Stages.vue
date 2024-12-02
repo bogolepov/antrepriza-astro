@@ -70,7 +70,11 @@ onBeforeRouteLeave(handleBeforeRouteLeave);
 </script>
 
 <template>
-	<ChapterTitle title="Сцены, площадки" @handle-save-button="saveStagesDB" :show-save-button="stagesChanged" />
+	<ChapterTitle title="Сцены, площадки">
+		<template v-slot:actions-slot>
+			<button v-show="stagesChanged" @click="saveStagesDB" :disabled="isDemo" class="save-button">Сохранить</button>
+		</template>
+	</ChapterTitle>
 	<ul>
 		<template v-for="stage of stages" :key="stage.id">
 			<li><StageCard :stage @check-stages-changing="checkStagesChanging" @delete-stage="deleteStage" /></li>

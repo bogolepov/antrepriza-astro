@@ -2,6 +2,7 @@
 import { ref, computed, watch } from 'vue';
 import { isDemo, optionListPlays, optionListStages } from '../store/statesStore';
 import { type TPerformance, EPerformanceType } from '@scripts/db/baseTypes';
+import { onlyNumbers } from '@netlify/lib/utils';
 
 interface Props {
 	performance: TPerformance;
@@ -41,12 +42,11 @@ const playName = computed(() => {
 });
 
 watch(
-	() => [performance.stage_sid, performance.date, performance.time_start],
+	() => [performance.stage_sid, performance.date, performance.time_start, performance.play_sid],
 	() => {
-		performance.sid = `${performance.stage_sid}_${performance.date.replace(/[^0-9]/g, '')}_${performance.time_start.replace(
-			/[^0-9]/g,
-			''
-		)}`;
+		performance.sid = `${performance.stage_sid}_${onlyNumbers(performance.date)}_${onlyNumbers(performance.time_start)}_${
+			performance.play_sid
+		}`;
 	}
 );
 watch(

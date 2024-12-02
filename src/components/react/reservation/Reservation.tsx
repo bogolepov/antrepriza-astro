@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useStore } from '@nanostores/react';
 
 import { Cart, getPrice } from '@components/react/reservation/Cart';
 import CartButton from '@components/react/reservation/CartButton';
 import { isCartOpen, isTicketsAdded } from './cartStore';
 
-import { FROZEN_BOOK_TIME } from '@scripts/consts';
-
-const RESERVATION_KEY = 'reservations';
+import { FROZEN_BOOK_TIME, STORE_RESERVATION_KEY } from '@scripts/consts';
+import { EJsonType, getClientJson } from '@scripts/clientJsons';
 
 export default function Reservation({ lang }) {
 	const [reservations, setReservations] = useState([]);
@@ -84,14 +83,14 @@ export default function Reservation({ lang }) {
 
 	function loadReservationsFromStorage() {
 		let loadedReservations;
-		let lsValue = window.localStorage.getItem(RESERVATION_KEY);
+		let lsValue = window.localStorage.getItem(STORE_RESERVATION_KEY);
 		if (lsValue) loadedReservations = JSON.parse(lsValue);
 		else loadedReservations = [];
 
-		// other windows (not CURRENT!!!) listen, if localStorage with key RESERVATION_KEY was changed,
+		// other windows (not CURRENT!!!) listen, if localStorage with key STORE_RESERVATION_KEY was changed,
 		// then counter od CartButton and reservations-state will be updated
 		window.addEventListener('storage', e => {
-			if (e.key === RESERVATION_KEY) {
+			if (e.key === STORE_RESERVATION_KEY) {
 				let updReservations = JSON.parse(e.newValue);
 				updateReservations(updReservations);
 			}
@@ -101,7 +100,7 @@ export default function Reservation({ lang }) {
 	}
 
 	function saveReservationsToStorage(updReservations) {
-		window.localStorage.setItem(RESERVATION_KEY, JSON.stringify(updReservations));
+		window.localStorage.setItem(STORE_RESERVATION_KEY, JSON.stringify(updReservations));
 	}
 
 	function updateReservations(updReservations) {

@@ -1,3 +1,5 @@
+import { type TMultiText } from '@scripts/types/base';
+
 export const enum EItemType {
 	PLAY = 'play',
 	STAGE = 'stage',
@@ -17,11 +19,6 @@ export interface IEvent {
 	time_end: string;
 	stage_sid: string;
 }
-
-export type TMultiText = {
-	ru: string;
-	de: string;
-};
 
 // ---------------------------------------
 //                TPlay

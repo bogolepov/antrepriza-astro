@@ -11,6 +11,7 @@ import type { TRepetition, TPerformance, TWhatsappNote, TUniqStatus } from '@scr
 import { checkUniqueSIDs, EItemType } from '@scripts/db/baseTypes';
 import { saveWhatsappNotes, changedItems } from '@scripts/db/antreprizaDB';
 import IconWhatsapp from '../components/iconWhatsapp.vue';
+import { type TWhatsappItem } from '@scripts/vueBaseTypes';
 
 const showPerformances = ref(true);
 const showRepetitions = ref(true);
@@ -153,7 +154,7 @@ function handleWhatsappButton() {
 </script>
 
 <template>
-	<ChapterTitle title="Сообщение для актеров" @handle-save-button="handleSaveButton" :show-save-button="showSaveButton">
+	<ChapterTitle title="Сообщение для актеров">
 		<template v-slot:actions-slot>
 			<button @click="showRepetitions = !showRepetitions" class="expand-item-button icon-transform">
 				<div>🛠️</div>
@@ -167,6 +168,7 @@ function handleWhatsappButton() {
 				<IconWhatsapp />
 				<div v-show="previewMode" class="icon-active"></div>
 			</button>
+			<button v-show="showSaveButton" @click="handleSaveButton" :disabled="isDemo" class="save-button">Сохранить</button>
 		</template>
 	</ChapterTitle>
 	<ul>

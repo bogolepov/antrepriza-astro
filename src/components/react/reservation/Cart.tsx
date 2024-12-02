@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useStore } from '@nanostores/react';
 import { isCartOpen } from './cartStore';
 
-import { loadClientJsons } from '@scripts/loadClientJsons';
+import { type IClientJsons, loadClientJsons } from '@scripts/clientJsons';
 
 import '@styles/cart.css';
 import '@styles/loader.css';
@@ -10,7 +10,7 @@ import '@styles/loader.css';
 import Order from '@components/react/reservation/Order';
 import FinalReservationForm from '@components/react/reservation/FinalReservationForm';
 
-const clientJsons = { afisha: null, theater: null, dictionary: null };
+const clientJsons: IClientJsons = { afisha: null, theater: null, dictionary: null };
 
 export function getPrice(price_type) {
 	if (clientJsons.theater === null) return 0;
@@ -48,7 +48,7 @@ export function Cart({ lang, tickets, totalAmount, handleCloseClick, handleAddTi
 			body: JSON.stringify(emailData),
 		};
 
-		let isOk;
+		let isOk: boolean;
 		await fetch('/.netlify/functions/makeReservation', options)
 			.then(response => {
 				isOk = response.ok;

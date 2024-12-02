@@ -73,7 +73,11 @@ onBeforeRouteLeave(handleBeforeRouteLeave);
 </script>
 
 <template>
-	<ChapterTitle title="Спектакли" @handle-save-button="savePlaysDB" :show-save-button="playsChanged" />
+	<ChapterTitle title="Спектакли">
+		<template v-slot:actions-slot>
+			<button v-show="playsChanged" @click="savePlaysDB" :disabled="isDemo" class="save-button">Сохранить</button>
+		</template>
+	</ChapterTitle>
 	<ul>
 		<template v-for="play of plays" :key="play.id">
 			<li><PlayCard :play @check-plays-changing="checkPlaysChanging" @delete-play="deletePlay" /></li>

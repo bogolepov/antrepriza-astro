@@ -1,19 +1,14 @@
 import * as consts from '@scripts/consts';
-
-import { atom } from 'nanostores';
+import { type IClientJsons, loadClientJsons } from '@scripts/clientJsons';
 import { isCartOpen, isTicketsAdded } from '@react-components/reservation/cartStore';
 
-import { loadClientJsons } from '@scripts/loadClientJsons';
-
-const RESERVATION_KEY = 'reservations';
-
-const clientJsons = { afisha: null, theater: null, dictionary: null };
+const clientJsons: IClientJsons = { afisha: null, theater: null, dictionary: null };
 
 let afishaItem;
 let stage;
 let playItem;
 
-let currLang;
+let currLang: string | null;
 
 let afishaButton;
 
@@ -200,7 +195,7 @@ function handleToDistributor() {
 
 function handleAddToCart() {
 	let reservations;
-	let value = window.localStorage.getItem(RESERVATION_KEY);
+	let value = window.localStorage.getItem(consts.STORE_RESERVATION_KEY);
 	if (value) reservations = JSON.parse(value);
 	else reservations = [];
 
@@ -222,7 +217,7 @@ function handleAddToCart() {
 		};
 		reservations.push(newReservation);
 	}
-	window.localStorage.setItem(RESERVATION_KEY, JSON.stringify(reservations));
+	window.localStorage.setItem(consts.STORE_RESERVATION_KEY, JSON.stringify(reservations));
 
 	closeForm();
 	isCartOpen.set(true);
