@@ -2,14 +2,20 @@ import { firestore } from './firebase';
 import { collection, doc, setDoc, updateDoc, arrayUnion } from 'firebase/firestore';
 import { getCountFromServer, query, documentId, where } from '@firebase/firestore';
 import { onlyNumbers, getRandomIntInclusive } from '../utils';
+import type { TReservation, TOrderItem } from '@scripts/types/reservation';
 
 const ROOT_COLLECTION_TICKETS: string = 'tickets';
 
-type TPlayReservation = {
+type TReservationDB = {
 	name: string;
 	email: string;
 	lang: string;
-	tickets: TTicketInfo[];
+	when: string;
+	order_id: string;
+	tickets: TOrderItem[];
+};
+
+export type TReservationExt = TReservation & {
 	order_id: string;
 };
 
@@ -21,16 +27,17 @@ async function eventInTicketsExists(eventName: string): Promise<boolean> {
 	return snap.data().count > 0;
 }
 
-export async function addReservations(lang: string, name: string, email: string, reservations: TReservation[]) {
+export async function addReservations(lang: string, name: string, email: string, when: string, reservations: TReservationExt[]) {
 	if (reservations?.length > 0) {
 		for (let event of reservations) {
-			const eventDocName = `${event.stage_sid}_${onlyNumbers(event.date)}_${onlyNumbers(event.time)}_${event.play_id}`;
+			const eventDocName = `${event.stage_sid}_${onlyNumbers(event.date)}_${onlyNumbers(event.time)}_${event.play_sid}`;
 			event.order_id = makeReservationId(event.date, event.time);
-			const reservation: TPlayReservation = {
+			const reservation: TReservationDB = {
 				name: name,
 				email: email,
 				lang: lang,
 				order_id: event.order_id,
+				when: when,
 				tickets: [],
 			};
 			reservation.tickets = event.tickets.filter(ticket => ticket.count > 0);

@@ -3,6 +3,8 @@ import { useStore } from '@nanostores/react';
 import { isCartOpen } from './cartStore';
 
 import { type IClientJsons, loadClientJsons } from '@scripts/clientJsons';
+import { type TTicketType } from '@scripts/types/prices';
+import { type TNetlifyDataReservations } from '@scripts/types/reservation';
 
 import '@styles/cart.css';
 import '@styles/loader.css';
@@ -17,7 +19,16 @@ export function getPrice(price_type) {
 	return clientJsons.theater.prices.find(price => price.type === price_type).value;
 }
 
-export function Cart({ lang, tickets, totalAmount, handleCloseClick, handleAddTicket, handleRemoveTicket, handleReservationDone }) {
+interface ICart {
+	lang: string;
+	tickets: TReservation[];
+	totalAmount: number;
+	handleCloseClick: () => void;
+	handleAddTicket: (play: TReservation, ticket_type: TTicketType) => void;
+	handleRemoveTicket: (play: TReservation, ticket_type: TTicketType, count: number) => void;
+	handleReservationDone: () => void;
+}
+export function Cart({ lang, tickets, totalAmount, handleCloseClick, handleAddTicket, handleRemoveTicket, handleReservationDone }: ICart) {
 	const $isCartOpen = useStore(isCartOpen);
 	const [isJsonsLoaded, setIsJsonsLoaded] = useState(false);
 	const [isFinalFormOpen, setIsFinalFormOpen] = useState(false);
@@ -34,11 +45,27 @@ export function Cart({ lang, tickets, totalAmount, handleCloseClick, handleAddTi
 		setIsFinalFormOpen(false);
 	};
 
-	const handleFinalFormSubmit = async (name, email, handleResult) => {
+	const handleFinalFormSubmit = async (name: string, email: string, handleResult: (isOk: boolean) => void) => {
 		// console.log('Name: ' + name + ', email: ' + email);
 
 		const now = new Date();
-		const emailData = { lang: lang, name: name, email: email, reservations: tickets, amount: totalAmount, now: now.getTime() };
+		let dateOptions: Intl.DateTimeFormatOptions = {
+			year: 'numeric',
+			month: 'long',
+			day: '2-digit',
+			hour: '2-digit',
+			minute: '2-digit',
+		};
+		let bookTime = now.toLocaleDateString(lang, dateOptions);
+
+		const emailData: TNetlifyDataReservations = {
+			lang: lang,
+			name: name,
+			email: email,
+			reservations: tickets,
+			amount: totalAmount,
+			when: bookTime,
+		};
 
 		const options = {
 			method: 'POST',

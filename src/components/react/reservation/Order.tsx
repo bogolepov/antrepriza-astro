@@ -1,12 +1,23 @@
 import { useMemo } from 'react';
+import type { IClientJsons } from '@scripts/clientJsons';
+import type { TTicketType } from '@scripts/types/prices';
+import type { TReservation } from '@scripts/types/reservation';
 
-export default function Order({ lang, jsons, play, handleAddTicket, handleRemoveTicket }) {
+interface IOrder {
+	lang: string;
+	jsons: IClientJsons;
+	play: TReservation;
+	handleAddTicket: (play: TReservation, ticket_type: TTicketType) => void;
+	handleRemoveTicket: (play: TReservation, ticket_type: TTicketType, count: number) => void;
+}
+
+export default function Order({ lang, jsons, play, handleAddTicket, handleRemoveTicket }: IOrder) {
 	const getPlayName = () => {
-		return jsons.theater.plays.find(item => item.id === play.play_id).title[lang];
+		return jsons.theater.plays.find(item => item.suffix === play.play_sid).title[lang];
 	};
 	const getPlayDate = () => {
 		let playDate = new Date(play.date);
-		let options = {
+		let options: Intl.DateTimeFormatOptions = {
 			year: 'numeric',
 			month: 'long',
 			day: '2-digit',

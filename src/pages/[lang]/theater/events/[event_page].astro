@@ -24,34 +24,34 @@ export const getStaticPaths = (() => {
       else if (event.event_type && event.event_type.is_tour) event_sid = SID_TOUR;
 
       let strEventDate = (new Date(event.date))?.toLocaleDateString(lng.lang_code, { year: "numeric",  month: "long",  day: "2-digit" });
-      let play = plays.find(item => item.id === event.play_id);
+      let play = plays.find(item => item.suffix === event.play_sid);
       let aTitle = dictionary.play_lang[lng.lang_code] + " " + 
         dictionary.opening_quote[lng.lang_code] + play.title[lng.lang_code] + 
         dictionary.closing_quote[lng.lang_code] + " [" + strEventDate + "]";
       let eventDate = event.date.replaceAll("-","");
       let eventTime = event.time.replaceAll(":","");
-      let pageName = `${event_sid}_${eventDate}_${eventTime}`;
+      let pageName = `${event_sid}_${eventDate}_${eventTime}_${play.suffix}`;
       if (event.canceled) pageName += 'canceled';
       return {
         params: {lang: lng.lang_code, event_page: pageName},
-        props: {pageLang: lng.lang_code, pageTitle: aTitle, playID: play.id.toString(), playDate: event.date, playTime: event.time},
+        props: {pageLang: lng.lang_code, pageTitle: aTitle, playSID: play.suffix, playDate: event.date, playTime: event.time},
       }
     })
   });
 }) satisfies GetStaticPaths;
 
-const {pageLang, pageTitle, playID, playDate, playTime} = Astro.props;
+const {pageLang, pageTitle, playSID, playDate, playTime} = Astro.props;
 
-let event = program.find(item => (item.play_id.toString() === playID && item.date === playDate && item.time === playTime));
+let event = program.find(item => (item.play_sid === playSID && item.date === playDate && item.time === playTime));
 let needTicketForm = event.no_tickets ? "no" : "yes";
 
 ---
 
 <AntreprizaLayout 
-  title={pageTitle} lang={pageLang} play_id={playID} 
+  title={pageTitle} lang={pageLang} play_sid={playSID} 
   ticket_form = {needTicketForm} 
   seo_event = 'true' date={playDate} time={playTime}>
-  <Event lang={pageLang} play_id={playID} date={playDate} time={playTime}></Event>
+  <Event lang={pageLang} play_sid={playSID} date={playDate} time={playTime}></Event>
 </AntreprizaLayout>
 
 

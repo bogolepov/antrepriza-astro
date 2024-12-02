@@ -1,6 +1,6 @@
 ---
 
-const { lang, play_id, date, time } = Astro.props;
+const { lang, play_sid, date, time } = Astro.props;
 
 import '@styles/event.css'
 
@@ -12,8 +12,8 @@ import prices from '@data/prices.json'
 
 import TicketBookButton from "@components/ticket_book_button.astro";
 
-let play = plays.find(item => (item.id.toString() === play_id));
-let event = program.find(item => (item.play_id.toString() === play_id && item.date === date && item.time === time));
+let play = plays.find(item => (item.suffix === play_sid));
+let event = program.find(item => (item.play_sid === play_sid && item.date === date && item.time === time));
 
 let stage = theater.stages.find(stg => stg.sid === event.stage_sid);
 let stageNameText  = dictionary.stage[lang] + " " + stage.name[lang].toUpperCase();
@@ -40,44 +40,6 @@ else {
   image_root = (( process.env.MODE === process.env.MODE_PRODUCTION ) ? theater.our_website_link : '/public') + '/assets/';
 }
 let image = play.seo.event.images.find(image => image.format === '3_4_1050');
-
-// import type { ImageMetadata } from 'astro'
-// import { Picture } from 'astro:assets'
-// const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg,jpg}');
-
-/*
-  .ev-photo {
-    max-width: 460px;
-    margin: 2em auto 0 auto;
-  }
-
-  <div class="ev-photo">
-    <Picture 
-      class:list={'image-wrapper-landscape'} 
-      src={images["/src/assets/" + play.posters.landscape]()} 
-      formats={['webp']} 
-      fallbackFormat='jpg'
-      loading="eager"
-      widths={[640]}
-      sizes={'640px'}
-      alt={play.alt_title[lang]} />
-  </div>
-
-*/
-
-/*
-        <Picture 
-          class:list={'image-wrapper-landscape float ev-poster'} 
-          src={images["/src/assets/" + play.posters.afisha]()} 
-          formats={['webp']} 
-          fallbackFormat='jpg'
-          loading="eager"
-          widths={[320]}
-          sizes={'320px'}
-          quality="85"
-          alt={play.title[lang]} />
-
-*/
 ---
 
 <section class="event">
@@ -139,7 +101,7 @@ let image = play.seo.event.images.find(image => image.format === '3_4_1050');
 
       { !event.no_tickets && !event.canceled &&
         <TicketBookButton add_classes="ev-button" button_type='ticket' price=''
-                          date={event.date} time={event.time} play_id={event.play_id}	sold_out={event.sold_out}>
+                          date={event.date} time={event.time} play_sid={event.play_sid}	sold_out={event.sold_out}>
             {dictionary.tickets[lang]}
             { event.sold_out && <br>}
             { event.sold_out && dictionary.tickets_sold_out[lang]}

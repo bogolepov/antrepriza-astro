@@ -34,6 +34,19 @@ export function getJsonTheater() {
 	}
 }
 
+let program;
+export function getJsonAfisha() {
+	if (program) return program;
+	try {
+		let data = fs.readFileSync('./public/data/afisha.json');
+		program = JSON.parse(data.toString());
+		return program;
+	} catch (error) {
+		console.error(error);
+		return undefined;
+	}
+}
+
 export function onlyNumbers(text: string): string {
 	return text?.replace(/[^0-9]/g, '');
 }

@@ -3,7 +3,14 @@ import '@styles/loader.css';
 
 import { useRef, useState } from 'react';
 
-export default function FinalReservationForm({ lang, dictionary, isShow, handleClose, handleMakeReservation }) {
+interface IFinalReservation {
+	lang: string;
+	dictionary: any;
+	isShow: boolean;
+	handleClose: () => void;
+	handleMakeReservation: (name: string, email: string, handleResult: (isOk: boolean) => void) => void;
+}
+export default function FinalReservationForm({ lang, dictionary, isShow, handleClose, handleMakeReservation }: IFinalReservation) {
 	const userName = useRef(null);
 	const userEmail = useRef(null);
 	const [userNameError, setUserNameError] = useState('');

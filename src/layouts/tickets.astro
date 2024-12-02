@@ -25,8 +25,8 @@ let actualProgram = program.filter(performance => (Date.parse(performance.date) 
 
 let playsWithGrouppedDatesMap = new Map();
 actualProgram.forEach(element => {
-	if (!playsWithGrouppedDatesMap.has(element.play_id)) {
-		playsWithGrouppedDatesMap.set(element.play_id, actualProgram.filter(performance => performance.play_id === element.play_id));
+	if (!playsWithGrouppedDatesMap.has(element.play_sid)) {
+		playsWithGrouppedDatesMap.set(element.play_sid, actualProgram.filter(performance => performance.play_sid === element.play_sid));
 	}
 });
 let playsWithGrouppedDatesArray = Array.from(playsWithGrouppedDatesMap, ([key, value]) => ({ key, value }));
@@ -117,7 +117,7 @@ for (let price of prices) {
 				// console.log("key: " + item.key);
 				let playInfo;
 				plays.some((piece) => {
-					if (item.key === piece.id) {
+					if (item.key === piece.suffix) {
 						playInfo = piece;
 						return; 
 					}
@@ -129,7 +129,7 @@ for (let price of prices) {
 
 				if (playInfo) {
 					return (
-						<li id={playInfo.suffix} class="item-block tickets-play-block hover-block hover-background" data-play={playInfo.id}>
+						<li id={playInfo.suffix} class="item-block tickets-play-block hover-block hover-background" data-play={playInfo.suffix}>
 							<div class="tickets-play-text">
 								<div class="tickets-play-name">
 									{item.value.find(item => item.premiere) && 
@@ -170,7 +170,7 @@ for (let price of prices) {
 																	let addClasses : string = play_date.canceled ? 'canceled' : '';
 																	return (
 																		<TicketBookButton add_classes={addClasses} button_type='ticket' price='' sold_out={play_date.sold_out || play_date.canceled}
-																											date={play_date.date} time={play_date.time} play_id={playInfo.id}	>
+																											date={play_date.date} time={play_date.time} play_sid={playInfo.suffix}	>
 																				{playDate.getDate().toString().padStart(2, '0')}.{(playDate.getMonth()+1).toString().padStart(2, '0')},
 																				{playDate.toLocaleDateString(lang, { weekday: 'short' })} / {play_date.time}
 																				{ play_date.sold_out && !play_date.canceled && <br>}
@@ -210,7 +210,11 @@ for (let price of prices) {
 
 
 <script>
-	const PLAYS = new Array(40).fill(0);
+	type PlayCounter = {
+		play_sid: string;
+		count: number;
+	}
+	const playCounters: Array<PlayCounter> = [];
 
 	let ticketBtns = document.querySelectorAll('.pink-button.book-ticket.open-book-form');
 	for (let btn of ticketBtns) {
@@ -222,13 +226,18 @@ for (let price of prices) {
 			// (btn as HTMLElement).disabled = true;
 		}
 		else {
-			PLAYS[btn.getAttribute("data-play")]++;
+			const playSid = btn.getAttribute("data-play");
+			const playCounter = playCounters.find(item => item.play_sid === playSid);
+			if (playCounter) playCounter.count++;
+			else playCounters.push({ play_sid: playSid, count: 1});
 		}
 	}
 
 	let playBolcks = document.querySelectorAll('.tickets-play-block');
 	for (let block of playBolcks) {
-		if (PLAYS[block.getAttribute("data-play")] === 0)
+		const playSid = block.getAttribute("data-play");
+		const playCounter = playCounters.find(item => item.play_sid === playSid);
+		if (!playCounter || playCounter.count < 1)
 			(block as HTMLElement).hidden = true;
 	}
 

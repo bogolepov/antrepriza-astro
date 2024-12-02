@@ -3,6 +3,7 @@
 		"date": "2025-01-19",
 		"time": "19:30",
 		"play_id": 9,
+		"play_sid": "n32",
 		"stage_sid": "ost",
 		"free_place": true,
 		"prices": ["standart22", "reduce"],
@@ -13,6 +14,7 @@
 		"date": "2024-12-26",
 		"time": "16:00",
 		"play_id": 10,
+		"play_sid": "kd",
 		"stage_sid": "west",
 		"free_place": true,
 		"newyear": true,
@@ -22,6 +24,7 @@
 		"date": "2024-12-25",
 		"time": "16:00",
 		"play_id": 10,
+		"play_sid": "kd",
 		"stage_sid": "west",
 		"free_place": true,
 		"newyear": true,
@@ -32,6 +35,7 @@
 		"date": "2024-12-22",
 		"time": "16:00",
 		"play_id": 6,
+		"play_sid": "mik",
 		"stage_sid": "ost",
 		"free_place": true,
 		"prices": ["kids", "adult", "reduce"]
@@ -40,6 +44,7 @@
 		"date": "2024-12-21",
 		"time": "16:00",
 		"play_id": 6,
+		"play_sid": "mik",
 		"stage_sid": "ost",
 		"free_place": true,
 		"prices": ["kids", "adult", "reduce"]
@@ -48,6 +53,7 @@
 		"date": "2024-12-20",
 		"time": "16:00",
 		"play_id": 6,
+		"play_sid": "mik",
 		"stage_sid": "ost",
 		"free_place": true,
 		"prices": ["kids", "adult", "reduce"],
@@ -57,6 +63,7 @@
 		"date": "2024-12-19",
 		"time": "16:00",
 		"play_id": 6,
+		"play_sid": "mik",
 		"stage_sid": "ost",
 		"free_place": true,
 		"prices": ["kids", "adult", "reduce"]
@@ -65,6 +72,7 @@
 		"date": "2024-12-01",
 		"time": "16:00",
 		"play_id": 6,
+		"play_sid": "mik",
 		"stage_sid": "ost",
 		"free_place": true,
 		"prices": ["kids", "adult", "reduce"],
@@ -74,6 +82,7 @@
 		"date": "2024-11-28",
 		"time": "19:30",
 		"play_id": 8,
+		"play_sid": "miks",
 		"stage_sid": "ost",
 		"free_place": true,
 		"prices": ["standart22", "reduce"]
@@ -82,6 +91,7 @@
 		"date": "2024-11-27",
 		"time": "19:30",
 		"play_id": 8,
+		"play_sid": "miks",
 		"stage_sid": "ost",
 		"free_place": true,
 		"prices": ["standart22", "reduce"]
@@ -90,6 +100,7 @@
 		"date": "2024-11-28",
 		"time": "19:30",
 		"play_id": 9,
+		"play_sid": "n32",
 		"stage_sid": "ost",
 		"free_place": true,
 		"prices": ["standart22", "reduce"],
@@ -100,6 +111,7 @@
 		"date": "2024-11-27",
 		"time": "19:30",
 		"play_id": 9,
+		"play_sid": "n32",
 		"stage_sid": "ost",
 		"free_place": true,
 		"prices": ["standart22", "reduce"],
@@ -111,6 +123,7 @@
 		"date": "2024-11-10",
 		"time": "19:30",
 		"play_id": 8,
+		"play_sid": "miks",
 		"stage_sid": "ost",
 		"free_place": true,
 		"premiere": true,
@@ -120,6 +133,7 @@
 		"date": "2024-11-03",
 		"time": "19:30",
 		"play_id": 1,
+		"play_sid": "ts",
 		"stage_sid": "west",
 		"free_place": true,
 		"prices": ["standart22", "reduce"],
@@ -129,6 +143,7 @@
 		"date": "2024-11-02",
 		"time": "20:00",
 		"play_id": 8,
+		"play_sid": "miks",
 		"stage_sid": "west",
 		"free_place": true,
 		"prices": ["standart", "reduce"]
@@ -137,6 +152,7 @@
 		"date": "2024-10-27",
 		"time": "19:30",
 		"play_id": 5,
+		"play_sid": "op",
 		"stage_sid": "ost",
 		"free_place": true,
 		"prices": ["standart", "reduce"]
@@ -145,6 +161,7 @@
 		"date": "2024-10-26",
 		"time": "19:30",
 		"play_id": 5,
+		"play_sid": "op",
 		"stage_sid": "ost",
 		"free_place": true,
 		"prices": ["standart", "reduce"]
@@ -153,6 +170,7 @@
 		"date": "2024-10-06",
 		"time": "19:30",
 		"play_id": 4,
+		"play_sid": "dk",
 		"stage_sid": "ost",
 		"free_place": true,
 		"prices": ["standart", "reduce"]
@@ -161,6 +179,7 @@
 		"date": "2024-09-29",
 		"time": "19:30",
 		"play_id": 1,
+		"play_sid": "ts",
 		"stage_sid": "west",
 		"free_place": true,
 		"prices": ["standart", "reduce"],
@@ -170,6 +189,7 @@
 		"date": "2024-09-28",
 		"time": "19:30",
 		"play_id": 1,
+		"play_sid": "ts",
 		"stage_sid": "west",
 		"free_place": true,
 		"prices": ["standart", "reduce"],
@@ -179,6 +199,7 @@
 		"date": "2024-09-13",
 		"time": "17:00",
 		"play_id": 8,
+		"play_sid": "miks",
 		"stage_sid": "rlv1",
 		"free_place": true,
 		"event_type": { "is_festival": true },
@@ -191,6 +212,7 @@
 		"date": "2024-09-01",
 		"time": "16:00",
 		"play_id": 6,
+		"play_sid": "mik",
 		"stage_sid": "ost",
 		"free_place": true,
 		"prices": ["kids", "adult", "reduce"]
@@ -199,6 +221,7 @@
 		"date": "2024-08-25",
 		"time": "19:30",
 		"play_id": 1,
+		"play_sid": "ts",
 		"stage_sid": "ost",
 		"free_place": true,
 		"prices": ["standart", "reduce"]
@@ -207,6 +230,7 @@
 		"date": "2024-05-05",
 		"time": "17:00",
 		"play_id": 6,
+		"play_sid": "mik",
 		"stage_sid": "ost",
 		"free_place": true,
 		"prices": ["kids", "adult", "reduce"]
@@ -215,6 +239,7 @@
 		"date": "2022-02-24",
 		"time": "19:30",
 		"play_id": 2,
+		"play_sid": "pip",
 		"stage_sid": "ost",
 		"free_place": true,
 		"prices": ["standart", "reduce"]
@@ -223,6 +248,7 @@
 		"date": "2023-11-08",
 		"time": "19:30",
 		"play_id": 4,
+		"play_sid": "dk",
 		"stage_sid": "ost",
 		"free_place": true,
 		"prices": ["standart", "reduce"]
@@ -231,6 +257,7 @@
 		"date": "2023-12-28",
 		"time": "16:00",
 		"play_id": 6,
+		"play_sid": "mik",
 		"stage_sid": "ost",
 		"free_place": true,
 		"prices": ["kids", "adult", "reduce"]
@@ -239,6 +266,7 @@
 		"date": "2023-12-29",
 		"time": "16:00",
 		"play_id": 6,
+		"play_sid": "mik",
 		"stage_sid": "ost",
 		"free_place": true,
 		"prices": ["kids", "adult", "reduce"]
@@ -247,6 +275,7 @@
 		"date": "2023-12-30",
 		"time": "16:00",
 		"play_id": 6,
+		"play_sid": "mik",
 		"stage_sid": "ost",
 		"free_place": true,
 		"prices": ["kids", "adult", "reduce"]
@@ -255,6 +284,7 @@
 		"date": "2024-01-05",
 		"time": "16:00",
 		"play_id": 6,
+		"play_sid": "mik",
 		"stage_sid": "ost",
 		"free_place": true,
 		"prices": ["kids", "adult", "reduce"]
@@ -263,6 +293,7 @@
 		"date": "2024-01-06",
 		"time": "16:00",
 		"play_id": 6,
+		"play_sid": "mik",
 		"stage_sid": "ost",
 		"free_place": true,
 		"prices": ["kids", "adult", "reduce"]
@@ -271,6 +302,7 @@
 		"date": "2024-01-07",
 		"time": "16:00",
 		"play_id": 6,
+		"play_sid": "mik",
 		"stage_sid": "ost",
 		"free_place": true,
 		"prices": ["kids", "adult", "reduce"]
@@ -279,6 +311,7 @@
 		"date": "2024-01-20",
 		"time": "16:00",
 		"play_id": 6,
+		"play_sid": "mik",
 		"stage_sid": "ost",
 		"free_place": true,
 		"prices": ["kids", "adult", "reduce"]
@@ -287,6 +320,7 @@
 		"date": "2024-01-21",
 		"time": "16:00",
 		"play_id": 6,
+		"play_sid": "mik",
 		"stage_sid": "ost",
 		"free_place": true,
 		"prices": ["kids", "adult", "reduce"]
@@ -295,6 +329,7 @@
 		"date": "2024-02-29",
 		"time": "17:00",
 		"play_id": 6,
+		"play_sid": "mik",
 		"stage_sid": "ost",
 		"free_place": true,
 		"prices": ["kids", "adult", "reduce"]
@@ -303,6 +338,7 @@
 		"date": "2024-04-14",
 		"time": "17:00",
 		"play_id": 6,
+		"play_sid": "mik",
 		"stage_sid": "ost",
 		"free_place": true,
 		"prices": ["kids", "adult", "reduce"]
@@ -311,6 +347,7 @@
 		"date": "2024-02-04",
 		"time": "19:30",
 		"play_id": 4,
+		"play_sid": "dk",
 		"stage_sid": "ost",
 		"free_place": true,
 		"prices": ["standart", "reduce"]
@@ -319,6 +356,7 @@
 		"date": "2024-03-30",
 		"time": "19:30",
 		"play_id": 4,
+		"play_sid": "dk",
 		"stage_sid": "ost",
 		"free_place": true,
 		"prices": ["standart", "reduce"]
@@ -327,6 +365,7 @@
 		"date": "2024-02-01",
 		"time": "19:30",
 		"play_id": 5,
+		"play_sid": "op",
 		"stage_sid": "ost",
 		"free_place": true,
 		"prices": ["standart", "reduce"]
@@ -335,6 +374,7 @@
 		"date": "2024-04-21",
 		"time": "19:30",
 		"play_id": 5,
+		"play_sid": "op",
 		"stage_sid": "ost",
 		"free_place": true,
 		"prices": ["standart", "reduce"]
@@ -343,6 +383,7 @@
 		"date": "2024-03-31",
 		"time": "19:30",
 		"play_id": 1,
+		"play_sid": "ts",
 		"stage_sid": "ost",
 		"free_place": true,
 		"prices": ["standart", "reduce"]
@@ -351,6 +392,7 @@
 		"date": "2024-04-07",
 		"time": "19:30",
 		"play_id": 1,
+		"play_sid": "ts",
 		"stage_sid": "ost",
 		"free_place": true,
 		"prices": ["standart", "reduce"]
@@ -359,6 +401,7 @@
 		"date": "2024-05-17",
 		"time": "19:30",
 		"play_id": 8,
+		"play_sid": "miks",
 		"stage_sid": "ost",
 		"free_place": true,
 		"prices": ["standart", "reduce"],
@@ -368,6 +411,7 @@
 		"date": "2024-05-18",
 		"time": "19:30",
 		"play_id": 8,
+		"play_sid": "miks",
 		"stage_sid": "ost",
 		"free_place": true,
 		"prices": ["standart", "reduce"],
@@ -377,6 +421,7 @@
 		"date": "2024-05-19",
 		"time": "19:30",
 		"play_id": 8,
+		"play_sid": "miks",
 		"stage_sid": "ost",
 		"free_place": true,
 		"prices": ["standart", "reduce"],
@@ -386,6 +431,7 @@
 		"date": "2024-06-02",
 		"time": "19:30",
 		"play_id": 8,
+		"play_sid": "miks",
 		"stage_sid": "ost",
 		"free_place": true,
 		"prices": ["standart", "reduce"],
@@ -396,6 +442,7 @@
 		"date": "2024-06-09",
 		"time": "19:30",
 		"play_id": 8,
+		"play_sid": "miks",
 		"stage_sid": "ost",
 		"free_place": true,
 		"prices": ["standart", "reduce"],

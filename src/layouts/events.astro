@@ -83,10 +83,10 @@ let isFirstTab = true;
           <ul class={"evs-list-" + evGroup.sid}>
             {
               evGroup.list.map(event => {
-                let play = plays.find(item => item.id === event.play_id);
+                let play = plays.find(item => item.suffix === event.play_sid);
                 let eventDate = event.date.replaceAll("-","");
                 let eventTime = event.time.replaceAll(":","");
-                let pageName = `${evGroup.sid}_${eventDate}_${eventTime}`;
+                let pageName = `${evGroup.sid}_${eventDate}_${eventTime}_${event.play_sid}`;
 
                 let fullDate = event.date+'T'+event.time;
                 let playDate = new Date(fullDate); 

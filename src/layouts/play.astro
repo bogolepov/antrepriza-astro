@@ -2,7 +2,7 @@
 
 import "@styles/play.css"
 
-const {lang, play_id} = Astro.props;
+const {lang, play_sid} = Astro.props;
 
 import theater from '@data/theater.json'
 import dictionary from '@data/dictionary.json'
@@ -19,9 +19,9 @@ import YoutubePlayerCore from "@components/youtube_player/youtube_player_core.as
 
 import { getEntry } from 'astro:content';
 
-let thisPlay = plays.find(play => play.id.toString() === play_id);
+let thisPlay = plays.find(play => play.suffix === play_sid);
 
-let thisPlayDates = program.filter(performance => performance.play_id.toString() === play_id);
+let thisPlayDates = program.filter(performance => performance.play_sid === play_sid);
 thisPlayDates = thisPlayDates.filter(performance => Date.parse(performance.date) + ONE_DAY >= Date.now());
 thisPlayDates.sort((perform1, perform2) => Date.parse(perform1.date+"T"+perform1.time) - Date.parse(perform2.date+"T"+perform2.time));
 
@@ -93,7 +93,7 @@ const { Content } = await entry.render();
 								let addClasses : string = play_date.canceled ? 'canceled' : '';
                 return (
                   <TicketBookButton add_classes={addClasses} button_type='ticket' price=''
-                                    date={play_date.date} time={play_date.time} play_id={thisPlay.id} 
+                                    date={play_date.date} time={play_date.time} play_sid={thisPlay.suffix} 
                                     no_sell={play_date.no_tickets} 
                                     sold_out={play_date.sold_out || play_date.canceled}>
                     <div class="button-date">

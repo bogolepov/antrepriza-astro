@@ -61,7 +61,7 @@ let iMonth: number = -1;
 					<ul class="month-list" data-counter={monthProgram.events.length.toString()}>
 						{
 							monthProgram.events.map(event => {
-								let play = plays.find(item => item.id === event.play_id);
+								let play = plays.find(item => item.suffix === event.play_sid);
 								if (!play) {
 									console.error("Play isn't found");
 									return;				
@@ -133,7 +133,7 @@ let iMonth: number = -1;
 											{ !event.no_tickets && !event.canceled &&
 												<div class="program-tickets">
 													<TicketBookButton add_classes="afisha" button_type='ticket' price=''
-																						date={event.date} time={event.time} play_id={event.play_id} sold_out={event.sold_out} >
+																						date={event.date} time={event.time} play_sid={event.play_sid} sold_out={event.sold_out} >
 															{dictionary.tickets[lang]}
 															{ event.sold_out && <br>}
 															{ event.sold_out && dictionary.tickets_sold_out[lang]}

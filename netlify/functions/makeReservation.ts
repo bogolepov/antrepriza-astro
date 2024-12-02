@@ -1,16 +1,20 @@
 import type { Handler } from '@netlify/functions';
-import { LANG_LIST, EMAIL_REGEX } from './lib/consts.ts';
-import { fromHtmlToPlainText, getJsonDictionary, getJsonTheater } from './lib/utils.ts';
+import { LANG_LIST, EMAIL_REGEX } from '@scripts/consts.ts';
+import { fromHtmlToPlainText, getJsonAfisha, getJsonDictionary, getJsonTheater } from './lib/utils.ts';
 import { makeHtmlEmail } from './lib/mailUtils.ts';
 import { type TMail, sendMails } from './lib/mailService.ts';
-import { addReservations } from './lib/db/antreprizaDB.ts';
+import { addReservations, type TReservationExt } from './lib/db/antreprizaDB.ts';
+import { type TNetlifyDataReservations, type TOrderItem } from '@scripts/types/reservation.ts';
 
 let dictionaryServer;
 let theater;
+let afisha;
 
 export const handler: Handler = async (event, context) => {
 	dictionaryServer = getJsonDictionary();
 	theater = getJsonTheater();
+	afisha = getJsonAfisha();
+
 	if (!dictionaryServer || !theater) {
 		console.error('JSON files are not found');
 		return {
@@ -21,7 +25,7 @@ export const handler: Handler = async (event, context) => {
 		};
 	}
 
-	const messageData = JSON.parse(event.body);
+	const messageData: TNetlifyDataReservations = JSON.parse(event.body);
 
 	// spam checking
 	if (!validateMessage(messageData)) {
@@ -34,10 +38,11 @@ export const handler: Handler = async (event, context) => {
 		};
 	}
 
-	const { lang, name, email, reservations, amount, now } = messageData;
+	const { lang, name, email, reservations, amount, when } = messageData;
 
+	let extReservations: TReservationExt[] = reservations as TReservationExt[];
 	try {
-		await addReservations(lang, name, email, reservations);
+		await addReservations(lang, name, email, when, extReservations);
 	} catch (error) {
 		console.error(error);
 	}
@@ -48,23 +53,23 @@ export const handler: Handler = async (event, context) => {
 	let clientMail: TMail = {
 		to: email,
 		subject: subject,
-		html: makeHtmlEmail(lang, subject, makeContent(lang, name, email, reservations, amount, now, false)),
+		html: makeHtmlEmail(lang, subject, makeContent(lang, name, email, extReservations, amount, when, false)),
 	};
 	let antreprizaMail: TMail = {
 		to: '',
 		subject: subject,
-		html: makeHtmlEmail(lang, subject, makeContent(lang, name, email, reservations, amount, now, true)),
+		html: makeHtmlEmail(lang, subject, makeContent(lang, name, email, extReservations, amount, when, true)),
 	};
 
 	return await sendMails(lang, transporterMail, clientMail, antreprizaMail);
 };
 
-function validateMessage(messageData) {
+function validateMessage(messageData: TNetlifyDataReservations) {
 	if (!messageData || !messageData.lang || !LANG_LIST.includes(messageData.lang)) return false;
 	if (!messageData.name || messageData.name.length < 2) return false;
 	if (!messageData.email || !EMAIL_REGEX.test(messageData.email) || messageData.email.length < 5 || messageData.email.length > 64)
 		return false;
-	if (messageData.amount <= 0 || messageData.now <= 0) return false;
+	if (!messageData.amount || messageData.amount <= 0 || !messageData.when) return false;
 	if (!messageData.reservations || messageData.reservations.length === 0) return false;
 
 	let myAmount = 0;
@@ -78,10 +83,17 @@ function validateMessage(messageData) {
 			return;
 		}
 
-		let play = theater.plays.find(item => item.id === element.play_id);
-		let playDate = new Date(element.date);
+		let play = theater.plays.find(item => item.suffix === element.play_sid);
 		let stage = theater.stages.find(stg => stg.sid === element.stage_sid);
-		if (!play || !playDate || !stage || !element.tickets || element.tickets.length === 0) {
+		if (!play || !stage) {
+			valid = false;
+			return;
+		}
+
+		let event = afisha.find(
+			ev => ev.play_sid === play.suffix && ev.stage_sid === stage.sid && ev.date === element.date && ev.time === element.time
+		);
+		if (!event || !element.tickets || element.tickets.length === 0) {
 			valid = false;
 			return;
 		}
@@ -111,29 +123,16 @@ function makeContent(
 	lang: string,
 	name: string,
 	email: string,
-	reservations: TReservation[],
+	reservations: TReservationExt[],
 	amount: number,
-	now: string,
+	when: string,
 	toAntrepriza: boolean
 ): string {
-	const dateOfReservation = new Date(now);
-	// const offset = dateOfReservation.getTimezoneOffset();
-	// dateOfReservation = new Date(dateOfReservation.getTime() - offset * 60 * 1000);
-
 	const htmlReservation = makeReservationsBlock(lang, reservations, amount);
 
 	let diffText: string;
 
 	if (toAntrepriza) {
-		let options: Intl.DateTimeFormatOptions = {
-			year: 'numeric',
-			month: 'long',
-			day: '2-digit',
-			hour: '2-digit',
-			minute: '2-digit',
-		};
-		let strCurrentDate = dateOfReservation.toLocaleDateString(lang, options);
-
 		diffText = `\
 <tr><td colspan="2" style="font-size: 125%; padding-bottom: 15px; line-height: 120%; color: #d6d6d6; font-weight: 500">\
 ${dictionaryServer.new_reservation_text[lang]}\
@@ -149,11 +148,12 @@ ${dictionaryServer.new_reservation_text[lang]}\
 </tr>\
 <tr>\
 <td style="line-height: 120%; color: #d6d6d6; vertical-align: top">${dictionaryServer.lang_when[lang]} :</td>\
-<td style="line-height: 120%; color: #d6d6d6; vertical-align: top; padding: 0 0 15px 8px">${strCurrentDate}</td>\
+<td style="line-height: 120%; color: #d6d6d6; vertical-align: top; padding: 0 0 15px 8px">${when}</td>\
 </tr>\
 <tr><td colspan="2">${htmlReservation}</td></tr>\
 `;
 	} else {
+		const dateOfReservation = new Date(when);
 		const getHello = (hour: number) => {
 			if (hour < 6 && lang === 'ru') return dictionaryServer.hello[lang];
 			else if (hour < 12) return dictionaryServer.good_morning[lang];
@@ -197,7 +197,7 @@ ${diffText}\
 }
 
 let reservationsBlock: string;
-function makeReservationsBlock(lang: string, reservations: TReservation[], amount: number): string {
+function makeReservationsBlock(lang: string, reservations: TReservationExt[], amount: number): string {
 	if (reservationsBlock) return reservationsBlock;
 	// console.log(reservations);
 
@@ -219,12 +219,12 @@ ${makeEventsRows(lang, reservations)}\
 	return reservationsBlock;
 }
 
-function getOrderIdText(event: TReservation): string {
+function getOrderIdText(event: TReservationExt): string {
 	if (event?.order_id) return '#' + event.order_id;
 	else return '';
 }
 
-function makeEventsRows(lang: string, reservations: TReservation[]): string {
+function makeEventsRows(lang: string, reservations: TReservationExt[]): string {
 	if (!reservations) return '';
 
 	let rows: string = '';
@@ -291,7 +291,7 @@ type TTicketsRows = {
 	html: string;
 };
 
-function makeTicketsRows(lang: string, tickets: TTicketInfo[]): TTicketsRows | undefined {
+function makeTicketsRows(lang: string, tickets: TOrderItem[]): TTicketsRows | undefined {
 	if (!tickets) return;
 
 	let ticketsRows: string = '';

@@ -1,6 +1,7 @@
 import * as consts from '@scripts/consts';
 import { type IClientJsons, loadClientJsons } from '@scripts/clientJsons';
 import { isCartOpen, isTicketsAdded } from '@react-components/reservation/cartStore';
+import type { TOrderItem, TReservation } from './types/reservation';
 
 const clientJsons: IClientJsons = { afisha: null, theater: null, dictionary: null };
 
@@ -115,12 +116,13 @@ function openForm(event, button) {
 	const handleThen = () => {
 		let aDate = afishaButton.getAttribute('data-date');
 		let aTime = afishaButton.getAttribute('data-time');
+		let aPlay = afishaButton.getAttribute('data-play');
 
-		afishaItem = clientJsons.afisha.find(item => item.date === aDate && item.time === aTime);
+		afishaItem = clientJsons.afisha.find(item => item.date === aDate && item.time === aTime && item.play_sid === aPlay);
 		if (!afishaItem) {
 			alert('Afisha Error!');
 		}
-		playItem = clientJsons.theater.plays.find(item => afishaItem.play_id === item.id);
+		playItem = clientJsons.theater.plays.find(item => afishaItem.play_sid === item.suffix);
 		if (!playItem) {
 			alert('Play Error!');
 		}
@@ -194,24 +196,25 @@ function handleToDistributor() {
 }
 
 function handleAddToCart() {
-	let reservations;
+	let reservations: TReservation[];
 	let value = window.localStorage.getItem(consts.STORE_RESERVATION_KEY);
 	if (value) reservations = JSON.parse(value);
 	else reservations = [];
 
 	let reservation = reservations.find(
-		item => item.date === afishaItem.date && item.time === afishaItem.time && item.play_id === afishaItem.play_id
+		item => item.date === afishaItem.date && item.time === afishaItem.time && item.play_sid === afishaItem.play_sid
 	);
 	if (reservation) {
 		reservation.tickets.forEach(price_type => (price_type.count += getTicketCount(price_type.type)));
 	} else {
-		let newTickets = [];
+		let newTickets: TOrderItem[] = [];
 		clientJsons.theater.prices.forEach(price => newTickets.push({ type: price.type, count: getTicketCount(price.type) }));
 		// TODO: play_id => play_sid
-		let newReservation = {
+		let newReservation: TReservation = {
 			date: afishaItem.date,
 			time: afishaItem.time,
 			play_id: afishaItem.play_id,
+			play_sid: afishaItem.play_sid,
 			stage_sid: stage.sid,
 			tickets: newTickets,
 		};
@@ -248,7 +251,7 @@ function getPlayDescription() {
 
 function getPlayDate() {
 	let playDate = new Date(afishaItem.date);
-	let options = {
+	let options: Intl.DateTimeFormatOptions = {
 		year: 'numeric',
 		month: 'long',
 		day: '2-digit',

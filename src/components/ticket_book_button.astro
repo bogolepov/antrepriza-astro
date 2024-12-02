@@ -1,5 +1,5 @@
 ---
-const { button_type, play_id, date, time, price, no_sell, add_classes, sold_out } = Astro.props;
+const { button_type, play_sid, date, time, price, no_sell, add_classes, sold_out } = Astro.props;
 
 let noSellClass = no_sell ? "no-sell " : "";
 let noSellStatus = no_sell ? true : false;
@@ -10,6 +10,6 @@ if (!noSellStatus) noSellStatus = sold_out;
 
 <button class={"pink-button book-ticket open-book-form " + noSellClass + soldOutClass + add_classes} 
         type="button" disabled={noSellStatus} data-type={button_type} data-date={date} data-time={time} 
-        data-play={play_id} data-price={price} >
+        data-play={play_sid} data-price={price} >
         <slot/>
 </button>

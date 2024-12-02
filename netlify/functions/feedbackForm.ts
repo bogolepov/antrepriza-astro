@@ -1,5 +1,5 @@
 import type { Handler } from '@netlify/functions';
-import { LANG_LIST, EMAIL_REGEX } from './lib/consts.ts';
+import { LANG_LIST, EMAIL_REGEX } from '@scripts/consts.ts';
 import { fromHtmlToPlainText, getJsonDictionary, getJsonTheater, nonBreakingSpace } from './lib/utils.ts';
 import { makeHtmlEmail } from './lib/mailUtils.ts';
 import { type TMail, sendMails } from './lib/mailService.ts';
@@ -105,7 +105,7 @@ function makePersonalMessage(lang: string, name: string, now: number, toAntrepri
 	let strHello: string;
 
 	if (toAntrepriza) {
-		let options = {
+		let options: Intl.DateTimeFormatOptions = {
 			year: 'numeric',
 			month: 'long',
 			day: '2-digit',

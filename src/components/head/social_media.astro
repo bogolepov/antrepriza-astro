@@ -2,14 +2,14 @@
 import theater from '@data/theater.json'
 import plays from '@data/plays.json'
 
-const { lang, title, description, og_title, play_id } = Astro.props;
+const { lang, title, description, og_title, play_sid } = Astro.props;
 const pathname: string = new URL(Astro.request.url).pathname;
 
 let ogDescription = description;
 let language = theater.languages.find(lng => lng.lang_code === lang);
 
 let play;
-if (play_id) play = plays.find(item => item.id.toString() === play_id);
+if (play_sid) play = plays.find(item => item.suffix === play_sid);
 
 let imageUrl = theater.our_website_link+'/assets/logo_1200t.png'; 
 let imageType = 'image/png'; 

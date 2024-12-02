@@ -9,12 +9,12 @@ import dictionary from '@data/dictionary.json'
 import Head from "@components/head/head.astro";
 import Admin from "@components/vue/admin/AdminRoot.vue"
 
-const { title, description, lang, reservation, robots = "noindex, nofollow", ticket_form = "no", play_id, seo_event = 'false', date, time } = Astro.props;
+const { title, description, lang, robots = "noindex, nofollow", seo_event = 'false' } = Astro.props;
 
 ---
 
 <html lang={lang}>
-	<Head lang={lang} title={title} description={description} robots={robots} play_id = {play_id} seo_event={seo_event} date={date} time={time}/>
+	<Head lang={lang} title={title} description={description} robots={robots} seo_event={seo_event}/>
 
 	<body>
 		<Admin client:only="vue"></Admin>

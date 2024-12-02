@@ -8,10 +8,10 @@ import prices from '@data/prices.json'
 
 import { ONE_DAY } from '@scripts/consts';
 
-const { lang, play_id, date, time, description } = Astro.props;
+const { lang, play_sid, date, time, description } = Astro.props;
 
-const play = plays.find(item => (item.id.toString() === play_id));
-const event = program.find(item => (item.play_id.toString() === play_id && item.date === date && item.time === time));
+const play = plays.find(item => (item.suffix === play_sid));
+const event = program.find(item => (item.play_sid === play_sid && item.date === date && item.time === time));
 
 const stage = theater.stages.find(stg => stg.sid === event.stage_sid);
 const stageNameText  = dictionary.stage[lang] + " " + stage.name[lang].toUpperCase();

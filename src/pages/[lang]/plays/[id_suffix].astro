@@ -17,18 +17,18 @@ export const getStaticPaths = (() => {
       if (play.title_notice && play.title_notice[lng.lang_code]) aTitle = aTitle + " [" + play.title_notice[lng.lang_code] + "]";
       return {
         params: {lang: lng.lang_code, id_suffix: play.suffix},
-        props: {pageLang: lng.lang_code, pageTitle: aTitle, playID: play.id.toString()},
+        props: {pageLang: lng.lang_code, pageTitle: aTitle, playSID: play.suffix},
       }
     })
   });
 }) satisfies GetStaticPaths;
 
-const {pageLang, pageTitle, playID} = Astro.props;
+const {pageLang, pageTitle, playSID} = Astro.props;
 
 ---
 
-<AntreprizaLayout title={pageTitle} lang={pageLang} play_id={playID} ticket_form = "yes">
-  <PlayLayout lang={pageLang} play_id={playID}></PlayLayout>
+<AntreprizaLayout title={pageTitle} lang={pageLang} play_sid={playSID} ticket_form = "yes">
+  <PlayLayout lang={pageLang} play_sid={playSID}></PlayLayout>
 </AntreprizaLayout>
 
 

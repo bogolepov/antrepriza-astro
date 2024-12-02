@@ -37,27 +37,27 @@ const posterImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*
                 <div class="media-flex-top tabs">
                   {
                     playFotos && (playFotos.length > 0) &&
-                    <label class="media-photo tab-item" for={"photo-"+play.id}>{dictionary.photo[lang]}</label>
+                    <label class="media-photo tab-item" for={"photo-"+play.suffix}>{dictionary.photo[lang]}</label>
                   }
                   {
                     play.trailer_embed &&
-                    <label class="media-video tab-item" for={"video-"+play.id}>{dictionary.video[lang]}</label>
+                    <label class="media-video tab-item" for={"video-"+play.suffix}>{dictionary.video[lang]}</label>
                   }
                   {
                     play.posters.facebook && (play.posters.facebook.length > 0) &&
-                    <label class="media-poster tab-item" for={"poster-"+play.id}>{dictionary.poster[lang]}</label>
+                    <label class="media-poster tab-item" for={"poster-"+play.suffix}>{dictionary.poster[lang]}</label>
                   }
                   {
                     play.posters.facebook && (play.posters.facebook.length > 0) &&
-                    <input type="radio" id={"poster-"+play.id} name={"media-"+play.id} value="poster" {!playFotos && (playFotos.length === 0) && !play.trailer_embed && checked} />
+                    <input type="radio" id={"poster-"+play.suffix} name={"media-"+play.suffix} value="poster" {!playFotos && (playFotos.length === 0) && !play.trailer_embed && checked} />
                   }
                   {
                     play.trailer_embed &&
-                    <input type="radio" id={"video-"+play.id} name={"media-"+play.id} value="video" {!playFotos && (playFotos.length === 0) && checked} />
+                    <input type="radio" id={"video-"+play.suffix} name={"media-"+play.suffix} value="video" {!playFotos && (playFotos.length === 0) && checked} />
                   }
                   {
                     playFotos && (playFotos.length > 0) &&
-                    <input type="radio" id={"photo-"+play.id} name={"media-"+play.id} value="photo" checked/>
+                    <input type="radio" id={"photo-"+play.suffix} name={"media-"+play.suffix} value="photo" checked/>
                   }
                 </div>
               </div>
@@ -96,15 +96,15 @@ const posterImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*
                 <div class="media-flex-bottom tabs">
                   {
                     playFotos && playFotos.length &&
-                    <label class="media-photo tab-item" for={"photo-"+play.id}>{dictionary.photo[lang]}</label>
+                    <label class="media-photo tab-item" for={"photo-"+play.suffix}>{dictionary.photo[lang]}</label>
                   }
                   {
                     play.trailer_embed &&
-                    <label class="media-video tab-item" for={"video-"+play.id}>{dictionary.video[lang]}</label>
+                    <label class="media-video tab-item" for={"video-"+play.suffix}>{dictionary.video[lang]}</label>
                   }
                   {
                     play.posters.facebook && (play.posters.facebook.length > 0) &&
-                    <label class="media-poster tab-item" for={"poster-"+play.id}>{dictionary.poster[lang]}</label>
+                    <label class="media-poster tab-item" for={"poster-"+play.suffix}>{dictionary.poster[lang]}</label>
                   }
                 </div>
               </div>
