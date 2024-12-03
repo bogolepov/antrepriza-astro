@@ -1,6 +1,6 @@
 import { getAntreprizaDB } from './firebase';
 import { collection, getDocs, getDoc, setDoc, doc } from 'firebase/firestore';
-import type { TPlay, TStage, IItem, TPerformance, TRepetition, TWhatsappNote } from './baseTypes';
+import type { TPlay, TStage, IItem, TPerformance, TRepetition, TWhatsappNote, TReservationDB } from './baseTypes';
 import { EEventType, EItemType } from './baseTypes';
 import {
 	validatePlayStructure,
@@ -11,7 +11,8 @@ import {
 } from './baseTypes';
 import { ONE_DAY } from '@scripts/consts';
 
-const COLLECTION_THEATER: string = 'theater';
+export const COLLECTION_THEATER: string = 'theater';
+export const COLLECTION_TICKETS: string = 'tickets';
 const DOC_THEATER_PLAYS: string = 'plays';
 const DOC_THEATER_STAGES: string = 'stages';
 const DOC_THEATER_PERFORMANCES: string = 'performances';
@@ -217,6 +218,43 @@ export function getWhatsappNotes(): Array<TWhatsappNote> {
 export async function saveWhatsappNotes(currWhatsappNotes: Array<TWhatsappNote>) {
 	await setDoc(doc(getAntreprizaDB(), COLLECTION_THEATER, DOC_THEATER_WHATSAPP_NOTES), { notes: currWhatsappNotes });
 	srcRepetitions = JSON.parse(JSON.stringify(currWhatsappNotes));
+}
+
+// ---------------------------------------
+//                  RESERVATIONS
+// ---------------------------------------
+
+// let program;
+// async function readProgram() {
+// 	const querySnapshotProgram = await getDocs(collection(getAntreprizaDB(), 'program'));
+// 	querySnapshotProgram.forEach(doc => {
+// 		const events = doc.data();
+// 		program.push(events);
+// 	});
+// }
+
+// export function getProgram() {
+// 	if (!program) readProgram();
+// 	return program;
+// }
+
+type TEventTickets = {
+	event_sid: string;
+	reservations: TReservationDB[];
+};
+
+let tickets: Array<TEventTickets>;
+export async function readTickets() {
+	tickets = [];
+	const querySnapshotTickets = await getDocs(collection(getAntreprizaDB(), COLLECTION_TICKETS));
+	querySnapshotTickets.forEach(doc => {
+		tickets.push({ event_sid: doc.id.trim(), reservations: doc.data().reservations });
+	});
+}
+
+export function getTickets(): Array<any> {
+	if (!tickets) readTickets();
+	return tickets;
 }
 
 // ---------------------------------------

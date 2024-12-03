@@ -2,7 +2,7 @@
 import { ref, computed, watch } from 'vue';
 import { isDemo, optionListPlays, optionListStages } from '../store/statesStore';
 import { type TPerformance, EPerformanceType } from '@scripts/db/baseTypes';
-import { onlyNumbers } from '@netlify/lib/utils';
+import { onlyNumbers } from '@scripts/utils_src';
 
 interface Props {
 	performance: TPerformance;

@@ -1,4 +1,4 @@
-// import Sqlite3 from 'better-sqlite3';
+import { getRandomIntInclusive } from '@scripts/utils_src';
 
 const ID_SHIFTS_ADD = { y: 347, m: 23, d: 56 };
 const ID_SHIFTS_REMOVE = { y: 817, m: 66, d: 54 };
@@ -12,12 +12,6 @@ const enum EMAIL_STATUS {
 }
 
 let db;
-
-function getRandomIntInclusive(min: number, max: number): number {
-	min = Math.ceil(min);
-	max = Math.floor(max);
-	return Math.floor(Math.random() * (max - min + 1) + min);
-}
 
 function getIdAdd(currDate: Date): number {
 	const strIdAdd: string =

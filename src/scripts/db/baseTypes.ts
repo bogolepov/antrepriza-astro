@@ -1,4 +1,5 @@
 import { type TMultiText } from '@scripts/types/base';
+import { type TOrderItem } from '@scripts/types/reservation';
 
 export const enum EItemType {
 	PLAY = 'play',
@@ -144,6 +145,18 @@ interface IWhatsappNote extends IItem, IEvent {
 	text: string;
 }
 export type TWhatsappNote = IWhatsappNote;
+
+// ---------------------------------------
+//                TReservationDB
+// ---------------------------------------
+export type TReservationDB = {
+	name: string;
+	email: string;
+	lang: string;
+	when: string;
+	order_id: string;
+	tickets: TOrderItem[];
+};
 
 // ---------------------------------------
 //                validation

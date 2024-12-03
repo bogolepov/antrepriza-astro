@@ -1,19 +1,10 @@
 import { firestore } from './firebase';
 import { collection, doc, setDoc, updateDoc, arrayUnion } from 'firebase/firestore';
 import { getCountFromServer, query, documentId, where } from '@firebase/firestore';
-import { onlyNumbers, getRandomIntInclusive } from '../utils';
 import type { TReservation, TOrderItem } from '@scripts/types/reservation';
-
-const ROOT_COLLECTION_TICKETS: string = 'tickets';
-
-type TReservationDB = {
-	name: string;
-	email: string;
-	lang: string;
-	when: string;
-	order_id: string;
-	tickets: TOrderItem[];
-};
+import type { TReservationDB } from '@scripts/db/baseTypes';
+import { COLLECTION_TICKETS } from '@scripts/db/antreprizaDB';
+import { onlyNumbers, getRandomIntInclusive } from '@scripts/utils_src';
 
 export type TReservationExt = TReservation & {
 	order_id: string;
@@ -23,7 +14,7 @@ function makeReservationId(date: string, time: string) {
 	return date.slice(5, 7) + date.slice(8) + time.slice(0, 2) + getRandomIntInclusive(4179, 9378).toString();
 }
 async function eventInTicketsExists(eventName: string): Promise<boolean> {
-	const snap = await getCountFromServer(query(collection(firestore, ROOT_COLLECTION_TICKETS), where(documentId(), '==', eventName)));
+	const snap = await getCountFromServer(query(collection(firestore, COLLECTION_TICKETS), where(documentId(), '==', eventName)));
 	return snap.data().count > 0;
 }
 
@@ -43,9 +34,9 @@ export async function addReservations(lang: string, name: string, email: string,
 			reservation.tickets = event.tickets.filter(ticket => ticket.count > 0);
 
 			if (await eventInTicketsExists(eventDocName)) {
-				await updateDoc(doc(firestore, ROOT_COLLECTION_TICKETS, eventDocName), { spectators: arrayUnion(reservation) });
+				await updateDoc(doc(firestore, COLLECTION_TICKETS, eventDocName), { reservations: arrayUnion(reservation) });
 			} else {
-				await setDoc(doc(firestore, ROOT_COLLECTION_TICKETS, eventDocName), { spectators: arrayUnion(reservation) });
+				await setDoc(doc(firestore, COLLECTION_TICKETS, eventDocName), { reservations: arrayUnion(reservation) });
 			}
 		}
 	}
