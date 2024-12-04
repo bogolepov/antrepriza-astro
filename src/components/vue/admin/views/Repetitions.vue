@@ -20,9 +20,6 @@ const maxRepetitionId = ref(1000);
 const todayDate = ref(new Date().toISOString().split('T')[0]);
 
 async function handleBeforeMount() {
-	await initPlays();
-	await initStages();
-	await initPerformances();
 	await initRepetitions();
 	checkRepetitionsChanging();
 

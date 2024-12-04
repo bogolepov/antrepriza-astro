@@ -1,6 +1,6 @@
 import { getAntreprizaDB } from './firebase';
 import { collection, getDocs, getDoc, setDoc, doc } from 'firebase/firestore';
-import type { TPlay, TStage, IItem, TPerformance, TRepetition, TWhatsappNote, TReservationDB } from './baseTypes';
+import type { TPlay, TStage, IItem, TPerformance, TRepetition, TWhatsappNote, TEventTickets } from './baseTypes';
 import { EEventType, EItemType } from './baseTypes';
 import {
 	validatePlayStructure,
@@ -55,8 +55,8 @@ export async function readPlays() {
 	}
 }
 
-export function getPlays(): Array<TPlay> {
-	if (!srcPlays || !srcPlays.length) readPlays();
+export async function getPlays(): Promise<TPlay[]> {
+	if (!srcPlays || !srcPlays.length) await readPlays();
 	return plays;
 }
 
@@ -90,8 +90,8 @@ export async function readStages() {
 	}
 }
 
-export function getStages(): Array<TStage> {
-	if (!srcStages || !srcStages.length) readStages();
+export async function getStages(): Promise<TStage[]> {
+	if (!srcStages || !srcStages.length) await readStages();
 	return stages;
 }
 
@@ -124,8 +124,8 @@ export async function readPerformances() {
 	}
 }
 
-export function getPerformances(): Array<TPerformance> {
-	if (!srcPerformances || !performances.length) readPerformances();
+export async function getPerformances(): Promise<TPerformance[]> {
+	if (!srcPerformances || !performances.length) await readPerformances();
 	return performances;
 }
 
@@ -157,8 +157,8 @@ export async function readRepetitions() {
 	}
 }
 
-export function getRepetitions(): Array<TRepetition> {
-	if (!srcRepetitions || !srcRepetitions.length) readRepetitions();
+export async function getRepetitions(): Promise<TRepetition[]> {
+	if (!srcRepetitions || !srcRepetitions.length) await readRepetitions();
 	return repetitions;
 }
 
@@ -208,10 +208,10 @@ export async function readWhatsappNotes() {
 	console.log(whatsappNotes);
 }
 
-export function getWhatsappNotes(): Array<TWhatsappNote> {
+export async function getWhatsappNotes(): Promise<TWhatsappNote[]> {
 	console.log('DB: getWhatsappNotes()');
 
-	if (!srcWhatsappNotes || !srcWhatsappNotes.length) readWhatsappNotes();
+	if (!srcWhatsappNotes || !srcWhatsappNotes.length) await readWhatsappNotes();
 	return whatsappNotes;
 }
 
@@ -238,12 +238,7 @@ export async function saveWhatsappNotes(currWhatsappNotes: Array<TWhatsappNote>)
 // 	return program;
 // }
 
-type TEventTickets = {
-	event_sid: string;
-	reservations: TReservationDB[];
-};
-
-let tickets: Array<TEventTickets>;
+let tickets: TEventTickets[];
 export async function readTickets() {
 	tickets = [];
 	const querySnapshotTickets = await getDocs(collection(getAntreprizaDB(), COLLECTION_TICKETS));
@@ -252,8 +247,8 @@ export async function readTickets() {
 	});
 }
 
-export function getTickets(): Array<any> {
-	if (!tickets) readTickets();
+export async function getTickets(): Promise<TEventTickets[]> {
+	if (!tickets) await readTickets();
 	return tickets;
 }
 

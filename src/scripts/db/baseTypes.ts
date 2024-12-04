@@ -158,6 +158,11 @@ export type TReservationDB = {
 	tickets: TOrderItem[];
 };
 
+export type TEventTickets = {
+	event_sid: string;
+	reservations: TReservationDB[];
+};
+
 // ---------------------------------------
 //                validation
 // ---------------------------------------

@@ -1,7 +1,7 @@
 import { ref } from 'vue';
 import { EAuthRole } from '@scripts/auth';
-import type { TStage, TPlay, TWhatsappNote, TPerformance, TRepetition } from '@scripts/db/baseTypes';
-import { getPerformances, getPlays, getRepetitions, getStages, getWhatsappNotes } from '@scripts/db/antreprizaDB';
+import type { TStage, TPlay, TWhatsappNote, TPerformance, TRepetition, TEventTickets } from '@scripts/db/baseTypes';
+import { getPerformances, getPlays, getRepetitions, getStages, getWhatsappNotes, getTickets } from '@scripts/db/antreprizaDB';
 
 // -----------------------------------------------------
 export const showMenu = ref(true);
@@ -39,12 +39,17 @@ export function commitStages() {
 export const performances = ref<Array<TPerformance>>([]);
 export async function initPerformances() {
 	if (performances.value.length) return;
+	await initPlays();
+	await initStages();
 	performances.value = await getPerformances();
 }
 
 export const repetitions = ref<Array<TRepetition>>([]);
 export async function initRepetitions() {
 	if (repetitions.value.length) return;
+	await initPlays();
+	await initStages();
+	await initPerformances();
 	repetitions.value = await getRepetitions();
 }
 
@@ -52,6 +57,15 @@ export const whatsappNotes = ref<Array<TWhatsappNote>>([]);
 export async function initWhatsappNotes() {
 	if (whatsappNotes.value.length) return;
 	whatsappNotes.value = await getWhatsappNotes();
+}
+
+export const tickets = ref<Array<TEventTickets>>([]);
+export async function initTickets() {
+	if (tickets.value.length) return;
+	await initPlays();
+	await initStages();
+	await initPerformances();
+	tickets.value = await getTickets();
 }
 
 // export function updateWhatsappNotes(notes: TWhatsappNote[]) {

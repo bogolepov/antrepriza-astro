@@ -2,7 +2,7 @@
 import { ref, computed, onBeforeMount } from 'vue';
 import { onBeforeRouteLeave } from 'vue-router';
 import { performances, showMenu, smallScreen, isDemo } from '../store/statesStore';
-import { initPlays, initStages, initPerformances } from '../store/statesStore';
+import { initPerformances } from '../store/statesStore';
 import ChapterTitle from '../components/ChapterTitle.vue';
 import Performance from '../components/Performance.vue';
 import { ONE_DAY } from '@scripts/consts';
@@ -31,8 +31,6 @@ const performancesToShow = computed(() => {
 });
 
 async function handleBeforeMount() {
-	await initPlays();
-	await initStages();
 	await initPerformances();
 	checkPerformancesChanging();
 

@@ -1,70 +1,56 @@
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue';
-import { isDemo, optionListPlays, optionListStages } from '../store/statesStore';
-import { type TPerformance, EPerformanceType } from '@scripts/db/baseTypes';
+import { ref } from 'vue';
+import type { TEventTickets, TPerformance, TPlay, TStage } from '@scripts/db/baseTypes';
+import { performances, plays, stages } from '../store/statesStore';
 import { onlyNumbers } from '@scripts/utils_src';
+import type { TOrderItem } from '@scripts/types/reservation';
 
 interface Props {
-	performance: TPerformance;
+	event: TEventTickets;
 }
-const { performance } = defineProps<Props>();
-
-const emit = defineEmits(['checkPerformancesChanging', 'deletePerformance']);
+const { event } = defineProps<Props>();
 
 const showCard = ref(false);
-const editCard = ref(false);
 
-// const minDate = ref(new Date().toISOString().split('T')[0]);
-const minDate = ref('2024-01-01');
+let performance: TPerformance;
+let stage: TStage;
+let play: TPlay;
 
-function modifyPerformance() {
-	const wasEditMode = editCard.value;
-	editCard.value = !editCard.value;
-	if (wasEditMode) {
-		emit('checkPerformancesChanging');
+function initEventInfo(event_sid: string) {
+	// 0: stage_sid, 1: date, 2: time, 3: play_sid
+	const eventData: string[] = event_sid.split('_');
+	performance = performances.value.find(
+		item =>
+			item.stage_sid === eventData[0] &&
+			onlyNumbers(item.date) === eventData[1] &&
+			onlyNumbers(item.time_start) === eventData[2] &&
+			item.play_sid === eventData[3]
+	);
+	if (performance) {
+		stage = stages.value.find(item => item.sid === performance.stage_sid);
+		play = plays.value.find(item => item.sid === performance.play_sid);
 	}
 }
-function deletePerformance() {
-	emit('deletePerformance', performance.id);
+initEventInfo(event.event_sid);
+
+let totalTickets: number = 0;
+event.reservations.forEach(item => item.tickets.forEach(it => (totalTickets += it.count)));
+
+function ticketsCount(tickets: TOrderItem[]): number {
+	if (!tickets || !tickets.length) return 0;
+	let n = 0;
+	tickets.forEach(item => {
+		n += item.count;
+	});
+	return n;
 }
-
-const stageName = computed(() => {
-	let stage = optionListStages.value.find(stage => stage.value === performance.stage_sid);
-	if (stage) {
-		if (stage.fixed) return 'Сцена ' + stage.text.toUpperCase();
-		else return stage.text;
-	} else return '-';
-});
-const playName = computed(() => {
-	let play = optionListPlays.value.find(play => play.value === performance.play_sid);
-	if (play) return play.text;
-	else return '-';
-});
-
-watch(
-	() => [performance.stage_sid, performance.date, performance.time_start, performance.play_sid],
-	() => {
-		performance.sid = `${performance.stage_sid}_${onlyNumbers(performance.date)}_${onlyNumbers(performance.time_start)}_${
-			performance.play_sid
-		}`;
-	}
-);
-watch(
-	() => [performance.play_sid, performance.time_start],
-	() => {
-		let play = optionListPlays.value.find(play => play.value === performance.play_sid);
-		let date = new Date('2024-01-01T' + performance.time_start);
-		date.setMinutes(date.getMinutes() + play.duration);
-		performance.time_end = `${date.getHours()}:${date.getMinutes()}`;
-	}
-);
 </script>
 
 <template>
 	<div class="item-title" @click="showCard = !showCard">
 		<h3>
 			<span class="item-title-date">[{{ performance.date }} {{ performance.time_start }}]</span>
-			{{ playName }}
+			{{ play.name.ru }}
 		</h3>
 		<div class="item-title-actions">
 			<button class="expand-item-button">
@@ -73,7 +59,20 @@ watch(
 		</div>
 	</div>
 	<ul v-show="showCard" class="item-card">
-		<li>
+		<template v-for="reservation of event.reservations">
+			<li class="reservation-item">
+				<div>
+					{{ reservation.name }} // <span class="res-email">{{ reservation.email }}</span>
+				</div>
+				<div class="count-item">{{ ticketsCount(reservation.tickets) }}</div>
+			</li>
+		</template>
+		<li class="reservation-item result">
+			<div>Итого</div>
+			<div class="count-item">{{ totalTickets }}</div>
+		</li>
+
+		<!-- <li>
 			<div class="label">Спектакль:</div>
 			<div v-if="!editCard">{{ playName }}</div>
 			<select v-else v-model="performance.play_sid" class="list-select">
@@ -137,20 +136,28 @@ watch(
 			<div v-if="!editCard">{{ performance.time_end ? performance.time_end : ' - ' }}</div>
 			<input v-else type="text" v-model="performance.time_end" disabled />
 		</li>
-		<!-- <li>
-			<div class="label">Текстовый идентификатор:</div>
-			<div v-if="!editCard">{{ performance.sid ? performance.sid : ' - ' }}</div>
-			<input v-else type="text" v-model="performance.sid" disabled />
-		</li> -->
 		<li class="modify-item">
 			<button @click="modifyPerformance" :disabled="isDemo">{{ editCard ? 'OK' : 'Редактировать' }}</button>
 			<button @click="deletePerformance" :disabled="isDemo">Удалить</button>
-		</li>
+		</li> -->
 	</ul>
 </template>
 
 <style>
-.item-title-date {
-	color: var(--colorFontDate);
+.item-card .reservation-item {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+.reservation-item .res-email {
+	font-size: smaller;
+	color: #00bfff;
+}
+.reservation-item.result {
+	border-top: 1px solid;
+	margin-top: 0.1rem;
+}
+.count-item {
+	padding-right: 0.2rem;
 }
 </style>
