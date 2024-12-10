@@ -13,18 +13,27 @@ const emit = defineEmits(['checkPerformancesChanging', 'deletePerformance']);
 
 const showCard = ref(false);
 const editCard = ref(false);
+const proxyPerformance = ref<TPerformance>(null);
 
 // const minDate = ref(new Date().toISOString().split('T')[0]);
 const minDate = ref('2024-01-01');
 
 function modifyPerformance() {
-	const wasEditMode = editCard.value;
-	editCard.value = !editCard.value;
-	if (wasEditMode) {
+	if (editCard.value) {
+		Object.assign(performance, proxyPerformance.value);
 		emit('checkPerformancesChanging');
+		proxyPerformance.value = null;
+	} else {
+		proxyPerformance.value = JSON.parse(JSON.stringify(performance));
 	}
+	editCard.value = !editCard.value;
+}
+function cancelModifyPerformance() {
+	proxyPerformance.value = null;
+	editCard.value = false;
 }
 function deletePerformance() {
+	proxyPerformance.value = null;
 	emit('deletePerformance', performance.id);
 }
 
@@ -76,7 +85,7 @@ watch(
 		<li>
 			<div class="label">Спектакль:</div>
 			<div v-if="!editCard">{{ playName }}</div>
-			<select v-else v-model="performance.play_sid" class="list-select">
+			<select v-else v-model="proxyPerformance.play_sid" class="list-select">
 				<option disabled value="">Выбрать спектакль:</option>
 				<option v-for="option in optionListPlays" :value="option.value">
 					{{ option.text }}
@@ -89,10 +98,10 @@ watch(
 			<input
 				v-else
 				type="date"
-				:value="performance.date"
+				:value="proxyPerformance.date"
 				@change="
 					event => {
-						performance.date = event.target.value;
+						proxyPerformance.date = (event.target as HTMLInputElement).value;
 					}
 				"
 				:min="minDate"
@@ -104,10 +113,10 @@ watch(
 			<input
 				v-else
 				type="time"
-				:value="performance.time_start"
+				:value="proxyPerformance.time_start"
 				@change="
 					event => {
-						performance.time_start = event.target.value;
+						proxyPerformance.time_start = (event.target as HTMLInputElement).value;
 					}
 				"
 			/>
@@ -115,7 +124,7 @@ watch(
 		<li>
 			<div class="label">Площадка:</div>
 			<div v-if="!editCard">{{ stageName }}</div>
-			<select v-else v-model="performance.stage_sid" class="list-select">
+			<select v-else v-model="proxyPerformance.stage_sid" class="list-select">
 				<option disabled value="">Выбрать площадку:</option>
 				<option v-for="option in optionListStages" :value="option.value">
 					{{ option.text }}
@@ -125,7 +134,7 @@ watch(
 		<li>
 			<div class="label">Тип выступления:</div>
 			<div v-if="!editCard">{{ performance.event_type }}</div>
-			<select v-else v-model="performance.event_type" class="list-select">
+			<select v-else v-model="proxyPerformance.event_type" class="list-select">
 				<option disabled value="">Выбрать:</option>
 				<option v-for="option in Object.values(EPerformanceType)" :value="option">
 					{{ option }}
@@ -135,15 +144,11 @@ watch(
 		<li>
 			<div class="label">Время окончания:</div>
 			<div v-if="!editCard">{{ performance.time_end ? performance.time_end : ' - ' }}</div>
-			<input v-else type="text" v-model="performance.time_end" disabled />
+			<input v-else type="text" v-model="proxyPerformance.time_end" disabled />
 		</li>
-		<!-- <li>
-			<div class="label">Текстовый идентификатор:</div>
-			<div v-if="!editCard">{{ performance.sid ? performance.sid : ' - ' }}</div>
-			<input v-else type="text" v-model="performance.sid" disabled />
-		</li> -->
 		<li class="modify-item">
 			<button @click="modifyPerformance" :disabled="isDemo">{{ editCard ? 'OK' : 'Редактировать' }}</button>
+			<button v-show="!isDemo && editCard" @click="cancelModifyPerformance">Отменить</button>
 			<button @click="deletePerformance" :disabled="isDemo">Удалить</button>
 		</li>
 	</ul>

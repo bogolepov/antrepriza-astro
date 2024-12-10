@@ -12,18 +12,27 @@ const emit = defineEmits(['checkRepetitionsChanging', 'deleteRepetition']);
 
 const showCard = ref(false);
 const editCard = ref(false);
+const proxyRepetition = ref<TRepetition>();
 
 const minDate = ref(new Date().toISOString().split('T')[0]);
 // const minDate = ref('2024-01-01');
 
 function modifyRepetition() {
-	const wasEditMode = editCard.value;
-	editCard.value = !editCard.value;
-	if (wasEditMode) {
+	if (editCard.value) {
+		Object.assign(repetition, proxyRepetition.value);
 		emit('checkRepetitionsChanging');
+		proxyRepetition.value = null;
+	} else {
+		proxyRepetition.value = JSON.parse(JSON.stringify(repetition));
 	}
+	editCard.value = !editCard.value;
+}
+function cancelModifyRepetition() {
+	proxyRepetition.value = null;
+	editCard.value = false;
 }
 function deleteRepetition() {
+	proxyRepetition.value = null;
 	emit('deleteRepetition', repetition.id);
 }
 
@@ -57,10 +66,10 @@ function getPlayName(play_sid: string) {
 
 function addSubRepetition() {
 	let subRepetition: TSubRepetition = { play_sid: '', event_type: ERepetitionType.NORMAL };
-	repetition.subRepetitions.push(subRepetition);
+	proxyRepetition.value.subRepetitions.push(subRepetition);
 }
 function deleteSubRepetition(index) {
-	repetition.subRepetitions.splice(index, 1);
+	proxyRepetition.value.subRepetitions.splice(index, 1);
 }
 
 watch(
@@ -90,10 +99,10 @@ watch(
 			<input
 				v-else
 				type="date"
-				:value="repetition.date"
+				:value="proxyRepetition.date"
 				@change="
 					event => {
-						repetition.date = event.target.value;
+						proxyRepetition.date = (event.target as HTMLInputElement).value;
 					}
 				"
 				:min="minDate"
@@ -105,20 +114,20 @@ watch(
 			<div v-else class="repetition-time-edit">
 				<input
 					type="time"
-					:value="repetition.time_start"
+					:value="proxyRepetition.time_start"
 					@change="
 						event => {
-							repetition.time_start = event.target.value;
+							proxyRepetition.time_start = (event.target as HTMLInputElement).value;
 						}
 					"
 				/>
 				<span class="time-from-to">-</span>
 				<input
 					type="time"
-					:value="repetition.time_end"
+					:value="proxyRepetition.time_end"
 					@change="
 						event => {
-							repetition.time_end = event.target.value;
+							proxyRepetition.time_end = (event.target as HTMLInputElement).value;
 						}
 					"
 				/>
@@ -127,7 +136,7 @@ watch(
 		<li>
 			<div class="label">Площадка:</div>
 			<div v-if="!editCard">{{ stageName }}</div>
-			<select v-else v-model="repetition.stage_sid" class="list-select">
+			<select v-else v-model="proxyRepetition.stage_sid" class="list-select">
 				<option disabled value="">Выбрать:</option>
 				<option v-for="option in optionListStages" :value="option.value">
 					{{ option.text }}
@@ -137,16 +146,22 @@ watch(
 		<li>
 			<div class="label" style="width: 100%">
 				Задачи:
-				<button v-show="editCard && repetition.subRepetitions.length < 3" class="modify-subrepetition" @click="addSubRepetition">+</button>
+				<button v-show="editCard && proxyRepetition.subRepetitions.length < 3" class="modify-subrepetition" @click="addSubRepetition">
+					+
+				</button>
 			</div>
 			<ul class="subrepeptitions-list">
-				<template v-for="(subRepetition, index) in repetition.subRepetitions" :key="subRepetition.play_sid">
-					<li>
-						<template v-if="!editCard">
+				<template v-if="!editCard">
+					<template v-for="(subRepetition, index) in repetition.subRepetitions" :key="subRepetition.play_sid">
+						<li>
 							<div>{{ subRepetition.event_type }}{{ subRepetition.event_type === ERepetitionType.WORKSHOP ? '' : ':' }}</div>
 							<div v-show="subRepetition.event_type !== ERepetitionType.WORKSHOP">{{ getPlayName(subRepetition.play_sid) }}</div>
-						</template>
-						<template v-else>
+						</li>
+					</template>
+				</template>
+				<template v-else>
+					<template v-for="(subRepetition, index) in proxyRepetition.subRepetitions" :key="subRepetition.play_sid">
+						<li>
 							<select v-model="subRepetition.event_type" class="list-select">
 								<option disabled value="">Выбрать:</option>
 								<option v-for="option in Object.values(ERepetitionType)" :value="option">
@@ -166,13 +181,14 @@ watch(
 							<button v-show="repetition.subRepetitions.length > 1" class="modify-subrepetition" @click="deleteSubRepetition(index)">
 								-
 							</button>
-						</template>
-					</li>
+						</li>
+					</template>
 				</template>
 			</ul>
 		</li>
 		<li class="modify-item">
 			<button @click="modifyRepetition" :disabled="isDemo">{{ editCard ? 'OK' : 'Редактировать' }}</button>
+			<button v-show="!isDemo && editCard" @click="cancelModifyRepetition">Отменить</button>
 			<button @click="deleteRepetition()" :disabled="isDemo">Удалить</button>
 		</li>
 	</ul>
