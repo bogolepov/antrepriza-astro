@@ -57,7 +57,9 @@ export function getDayMonthItemText(strDate: string): string {
 	if (!strDate) return undefined;
 	const date = new Date(strDate);
 	if (!date) return undefined;
-	return date.toLocaleString('ru', { month: 'long', day: '2-digit' }) + ', ' + date.toLocaleString('ru', { weekday: 'short' });
+	return (
+		date.toLocaleString('ru', { month: 'long', day: '2-digit' }) + ', ' + date.toLocaleString('ru', { weekday: 'short' }).toLowerCase()
+	);
 }
 
 export function getTimeDurationItemText(date: Date, durationMinutes: number = 0): string {

@@ -106,9 +106,13 @@ async function savePerformancesDB() {
 <template>
 	<ChapterTitle title="Выступления">
 		<template v-slot:actions-slot>
-			<button @click="isActualPerformances = !isActualPerformances" class="expand-item-button icon-calendar">
+			<button
+				@click="isActualPerformances = !isActualPerformances"
+				class="expand-item-button icon-calendar"
+				:class="{ 'black-white-filter': !isActualPerformances }"
+				title="Только предстоящие"
+			>
 				<IconCalendar />
-				<div v-show="isActualPerformances" class="icon-calendar-actual">✔️</div>
 			</button>
 			<button v-show="performancesChanged" @click="savePerformancesDB" :disabled="isDemo" class="save-button">Сохранить</button>
 		</template>
@@ -129,14 +133,6 @@ async function savePerformancesDB() {
 	position: relative;
 	font-size: 2rem;
 	height: 2rem;
-}
-.icon-calendar-actual {
-	position: absolute;
-	bottom: -0.1rem;
-	right: -0.1rem;
-	font-size: 1.2rem;
-	line-height: 1;
-	user-select: none;
 }
 .month-item {
 	font-size: 1.8rem;

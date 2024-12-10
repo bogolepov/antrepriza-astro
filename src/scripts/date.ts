@@ -26,8 +26,14 @@ export function getMonthNameFromEventSID(sid: string): string {
 	const date = `2024.${dateSubstr.slice(4, 6)}.01`;
 	return new Date(date).toLocaleString('ru', { month: 'long' });
 }
+
+// month: '1', '2', ... , '12', '01', '02', ... , '12'
 export function getMonthName(month: string): string {
-	return new Date(`2024.${month}.01`).toLocaleString('ru', { month: 'long' });
+	let nMonth: number = Number(month);
+	if (!nMonth) console.error('getMonthName: ' + month + ' - ERROR!');
+	if (nMonth > 12) console.error('getMonthName: ' + month + ' - ERROR overflow!');
+	if (nMonth) nMonth--;
+	return new Date(2024, nMonth, 1).toLocaleString('ru', { month: 'long' });
 }
 
 export function convertOnlyNumberDateToValidDate(onlyNumberDate: string): string {

@@ -54,6 +54,8 @@ function makeWhatsappItems() {
 	if (!preNote) {
 		preNote = { note_type: EWhatsappNoteType.PRE_NOTE, sid: EWhatsappNoteType.PRE_NOTE, text: PRE_NOTE_TEXT };
 		whatsappNotes.value.push(preNote);
+	} else {
+		if (!preNote.text.length) preNote.text = PRE_NOTE_TEXT;
 	}
 	items.push({ checked, visible: true, type: EWAItemType.PRE_NOTE, obj: null, note: preNote });
 
@@ -272,22 +274,39 @@ function hadleRemoveEventNote(eventSID: string, type: EWAItemType): void {
 	whatsappNotes.value.splice(indexNote, 1);
 	checkWhatsappNotesChanging();
 }
+
+function getWhatsappButtonTooltip() {
+	return previewMode.value ? 'Редактировать сообщение' : 'Предпросмотр сообщения';
+}
 </script>
 
 <template>
 	<ChapterTitle title="Сообщение для актеров">
 		<template v-slot:actions-slot>
-			<button @click="showRepetitions = !showRepetitions" class="expand-item-button icon-transform">
+			<button
+				@click="showRepetitions = !showRepetitions"
+				class="expand-item-button icon-transform"
+				:class="{ 'black-white-filter': !showRepetitions }"
+				title="Репетиции"
+			>
 				<div>🛠️</div>
-				<div v-show="showRepetitions" class="icon-active"></div>
 			</button>
-			<button @click="showPerformances = !showPerformances" class="expand-item-button icon-transform">
+			<button
+				@click="showPerformances = !showPerformances"
+				class="expand-item-button icon-transform"
+				:class="{ 'black-white-filter': !showPerformances }"
+				title="Выступления"
+			>
 				<div>🎭</div>
-				<div v-show="showPerformances" class="icon-active"></div>
 			</button>
-			<button v-show="!showSaveButton" @click="handleWhatsappButton" class="expand-item-button icon-transform">
+			<button
+				v-show="!showSaveButton"
+				@click="handleWhatsappButton"
+				class="expand-item-button icon-transform"
+				:class="{ 'black-white-filter': !previewMode }"
+				:title="getWhatsappButtonTooltip()"
+			>
 				<IconWhatsapp />
-				<div v-show="previewMode" class="icon-active"></div>
 			</button>
 			<button v-show="showSaveButton" @click="handleSaveButton" :disabled="isDemo" class="save-button">Сохранить</button>
 		</template>
@@ -323,15 +342,6 @@ function hadleRemoveEventNote(eventSID: string, type: EWAItemType): void {
 	font-size: 2rem;
 	height: 2rem;
 	padding: 0 0.2rem;
-}
-.icon-active {
-	position: absolute;
-	top: 0;
-	right: 0;
-	width: 0.7rem;
-	height: 0.7rem;
-	background-color: var(--colorAntreprizaRed);
-	border-radius: 50%;
 }
 .month-item {
 	font-size: 1.8rem;

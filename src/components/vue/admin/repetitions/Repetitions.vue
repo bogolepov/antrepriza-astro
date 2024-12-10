@@ -122,13 +122,21 @@ async function saveRepetitionsDB() {
 <template>
 	<ChapterTitle title="Репетиции">
 		<template v-slot:actions-slot>
-			<button @click="isActualEvents = !isActualEvents" class="expand-item-button icon-transform">
+			<button
+				@click="isActualEvents = !isActualEvents"
+				class="expand-item-button icon-transform"
+				:class="{ 'black-white-filter': !isActualEvents }"
+				title="Только предстоящие"
+			>
 				<IconCalendar />
-				<div v-show="isActualEvents" class="icon-active"></div>
 			</button>
-			<button @click="showPerformances = !showPerformances" class="expand-item-button icon-transform">
+			<button
+				@click="showPerformances = !showPerformances"
+				class="expand-item-button icon-transform"
+				:class="{ 'black-white-filter': !showPerformances }"
+				title="Выступления"
+			>
 				<div>🎭</div>
-				<div v-show="showPerformances" class="icon-active"></div>
 			</button>
 			<button v-show="repetitionsChanged" @click="saveRepetitionsDB" :disabled="isDemo" class="save-button">Сохранить</button>
 		</template>
@@ -156,15 +164,6 @@ async function saveRepetitionsDB() {
 	font-size: 2rem;
 	height: 2rem;
 	padding: 0 0.2rem;
-}
-.icon-active {
-	position: absolute;
-	top: 0;
-	right: 0;
-	width: 0.7rem;
-	height: 0.7rem;
-	background-color: var(--colorAntreprizaRed);
-	border-radius: 50%;
 }
 .month-item {
 	font-size: 1.8rem;

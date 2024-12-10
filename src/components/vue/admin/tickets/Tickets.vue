@@ -67,9 +67,13 @@ onBeforeMount(handleBeforeMount);
 <template>
 	<ChapterTitle title="Бронирования">
 		<template v-slot:actions-slot>
-			<button @click="isActualPerformances = !isActualPerformances" class="expand-item-button icon-calendar">
+			<button
+				@click="isActualPerformances = !isActualPerformances"
+				class="expand-item-button icon-calendar"
+				:class="{ 'black-white-filter': !isActualPerformances }"
+				title="Только предстоящие"
+			>
 				<IconCalendar />
-				<div v-show="isActualPerformances" class="icon-calendar-actual">✔️</div>
 			</button>
 		</template>
 	</ChapterTitle>
