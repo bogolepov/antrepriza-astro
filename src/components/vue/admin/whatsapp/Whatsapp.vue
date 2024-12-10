@@ -14,7 +14,7 @@ import { type TWhatsappItem, ECheckboxStatus3, EWAItemType, memTextItem } from '
 
 const showPerformances = ref(true);
 const showRepetitions = ref(true);
-const previewMode = ref(false);
+const previewMode = ref(isDemo.value);
 const eventsNotesChanged = ref(false);
 const generalCheckboxStatus = ref<ECheckboxStatus3>(ECheckboxStatus3.CHECKED);
 
@@ -208,7 +208,7 @@ async function handleSaveButton() {
 	if (!previewMode.value) await saveWhatsappNotesDB();
 }
 function handleWhatsappButton() {
-	previewMode.value = !previewMode.value;
+	if (!isDemo.value) previewMode.value = !previewMode.value;
 }
 
 function handleCopyMessageToMemory() {

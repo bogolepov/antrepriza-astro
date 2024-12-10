@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { ECheckboxStatus3 } from '../lib/whatsapp_types';
+import { isDemo } from '../lib/statesStore';
 
 interface Props {
 	generalCheckboxStatus: ECheckboxStatus3;
@@ -31,7 +32,7 @@ function generalCheckboxStatusChanged(e: Event) {
 			<label for="checkbox-all-item"> Применить ко всем записям</label>
 		</div>
 	</div>
-	<button v-else @click="$emit('copyMessageToMemory')">Скопировать текст сообщения</button>
+	<button v-else @click="$emit('copyMessageToMemory')" :disabled="isDemo">Скопировать текст сообщения</button>
 </template>
 
 <style>
