@@ -4,9 +4,9 @@
 		"baseUrl": ".",
 		"paths": {
 			"@netlify/*": ["netlify/functions/*"],
-			"@components/*": ["src/components/*"],
 			"@react-components/*": ["src/components/react/*"],
 			"@vue-components/*": ["src/components/vue/*"],
+			"@components/*": ["src/components/*"],
 			"@layouts/*": ["src/layouts/*"],
 			"@styles/*": ["src/styles/*"],
 			"@data/*": ["src/data/*"],

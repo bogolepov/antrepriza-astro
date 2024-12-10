@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { isDemo } from '../store/statesStore';
+import { isDemo } from '../lib/statesStore';
 
 interface Props {
 	title: string;

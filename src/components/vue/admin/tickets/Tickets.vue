@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, onBeforeMount, computed } from 'vue';
 import ChapterTitle from '../components/ChapterTitle.vue';
-import { tickets, initTickets, isDemo } from '../store/statesStore';
-import TicketsEvent from '../components/TicketsEvent.vue';
+import { tickets, initTickets, isDemo } from '../lib/statesStore';
+import TicketsEvent from './TicketsEvent.vue';
 import { ONE_DAY } from '@scripts/consts';
 import IconCalendar from '../components/iconCalendar.vue';
 import type { TEventTickets } from '@scripts/db/baseTypes';
@@ -78,7 +78,7 @@ onBeforeMount(handleBeforeMount);
 			<li>Недоступно для демонстрационного режима.</li>
 		</template>
 		<template v-else>
-			<template v-for="event of ticketsToShow" :key="event.event_sid">
+			<template v-for="event in ticketsToShow" :key="event.event_sid">
 				<li v-show="isfirstEventInMonth(event)" class="month-item">{{ getMonthName(event.event_sid).toUpperCase() }}</li>
 				<li>
 					<TicketsEvent :event />

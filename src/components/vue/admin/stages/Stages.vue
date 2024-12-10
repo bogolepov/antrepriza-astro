@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, onBeforeMount } from 'vue';
 import { onBeforeRouteLeave } from 'vue-router';
-import { stages, initStages, showMenu, smallScreen, isDemo, commitStages } from '../store/statesStore';
-import StageCard from '../components/StageCard.vue';
+import { stages, initStages, showMenu, smallScreen, isDemo, commitStages } from '../lib/statesStore';
+import StageCard from './StageCard.vue';
 import ChapterTitle from '../components/ChapterTitle.vue';
 import type { TStage, TUniqStatus } from '@scripts/db/baseTypes';
 import { validateStageStructure, checkUniqueSIDs, EItemType } from '@scripts/db/baseTypes';
@@ -76,7 +76,7 @@ onBeforeRouteLeave(handleBeforeRouteLeave);
 		</template>
 	</ChapterTitle>
 	<ul>
-		<template v-for="stage of stages" :key="stage.id">
+		<template v-for="stage in stages" :key="stage.id">
 			<li><StageCard :stage @check-stages-changing="checkStagesChanging" @delete-stage="deleteStage" /></li>
 		</template>
 	</ul>

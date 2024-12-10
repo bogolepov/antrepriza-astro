@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue';
-import { isDemo, optionListPlays, optionListStages } from '../store/statesStore';
+import { isDemo, optionListPlays, optionListStages } from '../lib/statesStore';
 import { type TRepetition, ERepetitionType, type TSubRepetition } from '@scripts/db/baseTypes';
 import { onlyNumbers } from '@scripts/utils_src';
 
@@ -140,7 +140,7 @@ watch(
 				<button v-show="editCard && repetition.subRepetitions.length < 3" class="modify-subrepetition" @click="addSubRepetition">+</button>
 			</div>
 			<ul class="subrepeptitions-list">
-				<template v-for="(subRepetition, index) of repetition.subRepetitions" :key="subRepetition.play_sid">
+				<template v-for="(subRepetition, index) in repetition.subRepetitions" :key="subRepetition.play_sid">
 					<li>
 						<template v-if="!editCard">
 							<div>{{ subRepetition.event_type }}{{ subRepetition.event_type === ERepetitionType.WORKSHOP ? '' : ':' }}</div>
@@ -159,7 +159,7 @@ watch(
 								class="list-select"
 							>
 								<option disabled value="">Выбрать спектакль:</option>
-								<option v-for="option of optionListPlays" :value="option.value">
+								<option v-for="option in optionListPlays" :value="option.value">
 									{{ option.text }}
 								</option>
 							</select>
@@ -199,7 +199,7 @@ watch(
 	position: relative;
 }
 .subrepeptitions-list li::before {
-	content: '▫️';
+	content: '•';
 	/* 💠 */
 	position: absolute;
 	top: 0;

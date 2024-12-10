@@ -16,56 +16,72 @@ export function setAuthRole(role: EAuthRole) {
 // -----------------------------------------------------
 //                whatsapp notes
 // -----------------------------------------------------
+let gotPlays: boolean = false;
 export const plays = ref<Array<TPlay>>([]);
 export async function initPlays() {
-	if (plays.value.length) return;
+	if (gotPlays) return;
 	plays.value = await getPlays();
+	gotPlays = true;
 	initOptionListPlays();
 }
 export function commitPlays() {
 	updateOptionListPlays();
 }
 
+let gotStages: boolean = false;
 export const stages = ref<Array<TStage>>([]);
 export async function initStages() {
-	if (stages.value.length) return;
+	if (gotStages) return;
 	stages.value = await getStages();
+	gotStages = true;
 	initOptionListStages();
 }
 export function commitStages() {
 	updateOptionListStages();
 }
 
+let gotPerformances: boolean = false;
 export const performances = ref<Array<TPerformance>>([]);
 export async function initPerformances() {
-	if (performances.value.length) return;
+	if (gotPerformances) return;
 	await initPlays();
 	await initStages();
 	performances.value = await getPerformances();
+	gotPerformances = true;
 }
 
+let gotRepetitions: boolean = false;
 export const repetitions = ref<Array<TRepetition>>([]);
 export async function initRepetitions() {
-	if (repetitions.value.length) return;
+	if (gotRepetitions) return;
 	await initPlays();
 	await initStages();
 	await initPerformances();
 	repetitions.value = await getRepetitions();
+	gotRepetitions = true;
 }
 
+let gotWhatsappNotes: boolean = false;
 export const whatsappNotes = ref<Array<TWhatsappNote>>([]);
 export async function initWhatsappNotes() {
-	if (whatsappNotes.value.length) return;
+	if (gotWhatsappNotes) return;
+	await initPlays();
+	await initStages();
+	await initPerformances();
+	await initRepetitions();
 	whatsappNotes.value = await getWhatsappNotes();
+	gotWhatsappNotes = true;
 }
 
+let gotTickets: boolean = false;
 export const tickets = ref<Array<TEventTickets>>([]);
 export async function initTickets() {
-	if (tickets.value.length) return;
+	if (gotTickets) return;
 	await initPlays();
 	await initStages();
 	await initPerformances();
 	tickets.value = await getTickets();
+	gotTickets = true;
 }
 
 // export function updateWhatsappNotes(notes: TWhatsappNote[]) {

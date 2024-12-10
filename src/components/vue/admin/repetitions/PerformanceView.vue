@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import { optionListPlays, optionListStages } from '../store/statesStore';
+import { optionListPlays, optionListStages } from '../lib/statesStore';
 import { type TPerformance } from '@scripts/db/baseTypes';
 
 interface Props {

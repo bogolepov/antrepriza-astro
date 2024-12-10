@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue';
-import { isDemo, optionListPlays, optionListStages } from '../store/statesStore';
+import { isDemo, optionListPlays, optionListStages } from '../lib/statesStore';
 import { type TPerformance, EPerformanceType } from '@scripts/db/baseTypes';
 import { onlyNumbers } from '@scripts/utils_src';
 

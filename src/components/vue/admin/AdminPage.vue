@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onBeforeMount, provide } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
-import { showMenu, smallScreen } from './store/statesStore';
+import { showMenu, smallScreen } from './lib/statesStore';
 import { EAuthRole } from '@scripts/auth';
 import { type TFirebaseConfig } from '@scripts/db/firebaseConfig';
 import { getPlays, getStages, getPerformances, getRepetitions } from '@scripts/db/antreprizaDB';

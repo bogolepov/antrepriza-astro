@@ -1,13 +1,13 @@
 import type { App } from 'vue';
 import { createRouter, createWebHistory } from 'vue-router';
 
-import Repetition from '@components/vue/admin/views/Repetitions.vue';
-import Performances from '@components/vue/admin/views/Performances.vue';
-import Plays from '@components/vue/admin/views/Plays.vue';
-import Stages from '@components/vue/admin/views/Stages.vue';
-import Whatsapp from './admin/views/Whatsapp.vue';
+import Repetition from '@vue-components/admin/repetitions/Repetitions.vue';
+import Performances from '@vue-components/admin/performances/Performances.vue';
+import Plays from '@vue-components/admin/plays/Plays.vue';
+import Stages from '@vue-components/admin/stages/Stages.vue';
+import Whatsapp from '@vue-components/admin/whatsapp/Whatsapp.vue';
 // import Visitors from '@components/vue/admin/views/Visitors.vue';
-const Tickets = () => import('@components/vue/admin/views/Tickets.vue');
+const Tickets = () => import('@vue-components/admin/tickets/Tickets.vue');
 
 export default (app: App) => {
 	if (!import.meta.env.SSR) {

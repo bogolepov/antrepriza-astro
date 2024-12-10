@@ -6,7 +6,6 @@ export const enum EItemType {
 	STAGE = 'stage',
 	PERFORMANCE = 'performance',
 	REPETITION = 'repetition',
-	WHATSAPP_NOTE = 'note',
 }
 
 export interface IItem {
@@ -135,13 +134,15 @@ export type TRepetition = IRepetition;
 // ---------------------------------------
 //                TWhatsappNote
 // ---------------------------------------
-export const enum EEventType {
-	REPETITION = 'repetition',
+export const enum EWhatsappNoteType {
+	PRE_NOTE = 'pre_note',
+	POST_NOTE = 'post_note',
 	PERFORMANCE = 'performance',
+	REPETITION = 'repetition',
 }
-interface IWhatsappNote extends IItem, IEvent {
-	parent_type: EEventType;
-	event_sid: string;
+interface IWhatsappNote {
+	sid: string;
+	note_type: EWhatsappNoteType;
 	text: string;
 }
 export type TWhatsappNote = IWhatsappNote;
@@ -292,10 +293,8 @@ export function validateRepetitionStructure(repetition: TRepetition | undefined)
 
 export function validateWhatsappNoteStructure(note: TWhatsappNote | undefined): TWhatsappNote {
 	if (!note) note = {} as TWhatsappNote;
-	validateIItem(note);
-	validateIEvent(note);
-	if (note.event_sid === undefined) note.event_sid = '';
-	if (note.parent_type === undefined) note.parent_type = EEventType.PERFORMANCE;
+	if (note.sid === undefined) note.sid = '';
+	if (note.note_type) note.note_type = EWhatsappNoteType.PERFORMANCE;
 	if (note.text === undefined) note.text = '';
 	return note;
 }
@@ -423,13 +422,7 @@ function checkEqualRepetitions(repetition1: TRepetition, repetition2: TRepetitio
 }
 
 function checkEqualWhatsappNotes(note1: TWhatsappNote, note2: TWhatsappNote): boolean {
-	return (
-		note1.event_sid === note2.event_sid &&
-		note1.parent_type === note2.parent_type &&
-		note1.text === note2.text &&
-		checkEqualIItem(note1, note2) &&
-		checkEqualIEvent(note1, note2)
-	);
+	return note1.note_type === note2.note_type && note1.sid === note2.sid && note1.text === note2.text;
 }
 
 export function checkEqualItems<T extends IItem>(item1: T, item2: T, type: EItemType): boolean {
@@ -442,8 +435,6 @@ export function checkEqualItems<T extends IItem>(item1: T, item2: T, type: EItem
 			return checkEqualPerformances(item1, item2);
 		case EItemType.REPETITION:
 			return checkEqualRepetitions(item1, item2);
-		case EItemType.WHATSAPP_NOTE:
-			return checkEqualWhatsappNotes(item1, item2);
 		default:
 			console.log('checkEqualItems: type ERROR !!!');
 			return true;

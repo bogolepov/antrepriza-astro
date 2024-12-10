@@ -1,7 +1,7 @@
 import { getAntreprizaDB } from './firebase';
 import { collection, getDocs, getDoc, setDoc, doc } from 'firebase/firestore';
 import type { TPlay, TStage, IItem, TPerformance, TRepetition, TWhatsappNote, TEventTickets } from './baseTypes';
-import { EEventType, EItemType } from './baseTypes';
+import { EItemType, EWhatsappNoteType } from './baseTypes';
 import {
 	validatePlayStructure,
 	validateStageStructure,
@@ -174,50 +174,40 @@ let whatsappNotes: Array<TWhatsappNote> = [];
 let srcWhatsappNotes: Array<TWhatsappNote> = [];
 
 export async function readWhatsappNotes() {
-	console.log('readWhatsappNotes:');
 	const docRef = doc(getAntreprizaDB(), COLLECTION_THEATER, DOC_THEATER_WHATSAPP_NOTES);
 	const docSnap = await getDoc(docRef);
 
 	if (docSnap.exists() && docSnap.data().notes) {
-		console.log('notes');
-		console.log(docSnap.data().notes);
-
 		whatsappNotes = docSnap.data().notes;
-		const actualDate = Date.now() - ONE_DAY;
+		const actualDate = new Date(Date.now() - ONE_DAY);
+		const onlyNumberActualDate =
+			actualDate.getFullYear().toString() +
+			(actualDate.getMonth() + 1).toString().padStart(2, '0') +
+			actualDate.getDate().toString().padStart(2, '0');
+
 		whatsappNotes = whatsappNotes.filter(note => {
-			return (
-				note.id &&
-				note.sid &&
-				note.sid.length > 0 &&
-				note.event_sid.length > 0 &&
-				note.date &&
-				note.time_start &&
-				note.text &&
-				note.parent_type &&
-				Date.parse(note.date + 'T' + note.time_start) > actualDate &&
-				note.text?.length > 0 &&
-				(note.parent_type === EEventType.PERFORMANCE || note.parent_type === EEventType.REPETITION)
-			);
+			if (note.note_type === EWhatsappNoteType.PRE_NOTE || note.note_type === EWhatsappNoteType.POST_NOTE) return true;
+
+			if (note.sid?.length > 0) {
+				const eventData: string[] = note.sid.split('_');
+				return Number(eventData[1]) > Number(onlyNumberActualDate);
+			} else return false;
 		});
 		srcWhatsappNotes = JSON.parse(JSON.stringify(whatsappNotes));
 	} else {
-		// console.log('empty whatsappNotes');
 		whatsappNotes = [];
 		srcWhatsappNotes = [];
 	}
-	console.log(whatsappNotes);
 }
 
 export async function getWhatsappNotes(): Promise<TWhatsappNote[]> {
-	console.log('DB: getWhatsappNotes()');
-
 	if (!srcWhatsappNotes || !srcWhatsappNotes.length) await readWhatsappNotes();
 	return whatsappNotes;
 }
 
 export async function saveWhatsappNotes(currWhatsappNotes: Array<TWhatsappNote>) {
 	await setDoc(doc(getAntreprizaDB(), COLLECTION_THEATER, DOC_THEATER_WHATSAPP_NOTES), { notes: currWhatsappNotes });
-	srcRepetitions = JSON.parse(JSON.stringify(currWhatsappNotes));
+	srcWhatsappNotes = JSON.parse(JSON.stringify(currWhatsappNotes));
 }
 
 // ---------------------------------------
@@ -255,7 +245,7 @@ export async function getTickets(): Promise<TEventTickets[]> {
 // ---------------------------------------
 //                  <T>
 // ---------------------------------------
-function getSrcItems<T>(type: EItemType): T[] {
+function getSrcItems<T>(type: EItemType): T[] | undefined {
 	switch (type) {
 		case EItemType.PLAY:
 			return srcPlays;
@@ -265,11 +255,6 @@ function getSrcItems<T>(type: EItemType): T[] {
 			return srcPerformances;
 		case EItemType.REPETITION:
 			return srcRepetitions;
-		case EItemType.WHATSAPP_NOTE:
-			console.log('EItemType.WHATSAPP_NOTE:');
-			console.log(srcWhatsappNotes);
-
-			return srcWhatsappNotes;
 		default:
 			return undefined;
 	}
@@ -278,12 +263,30 @@ function getSrcItems<T>(type: EItemType): T[] {
 export function changedItems<T extends IItem>(currItems: T[], type: EItemType): boolean {
 	const srcItems = getSrcItems<T>(type);
 	if (!srcItems) {
-		console.log('changedItems: type ERROR !!!');
+		console.error('changedItems: type ERROR !!!');
 		return false;
 	}
 
-	if (currItems.length != srcItems.length) return true;
+	if (currItems.length !== srcItems.length) return true;
 
 	let equalItems = currItems.filter(item => srcItems.find(srcItem => item.id === srcItem.id && checkEqualItems(item, srcItem, type)));
 	return equalItems.length !== currItems.length;
+}
+
+// ---------------------------------------
+// ---------------------------------------
+export function changedWhatsappNotes(currNotes: TWhatsappNote[]): boolean {
+	if (currNotes.length !== srcWhatsappNotes.length) return true;
+
+	let equalNotes = currNotes.filter(note =>
+		srcWhatsappNotes.find(srcNote => {
+			if (srcNote.note_type !== note.note_type) return false;
+			if (note.note_type === EWhatsappNoteType.PRE_NOTE || note.note_type === EWhatsappNoteType.POST_NOTE)
+				return note.text === srcNote.text;
+			else if (note.note_type === EWhatsappNoteType.PERFORMANCE || note.note_type === EWhatsappNoteType.REPETITION)
+				return note.sid === srcNote.sid && note.text === srcNote.text;
+			else return false;
+		})
+	);
+	return equalNotes.length !== currNotes.length;
 }

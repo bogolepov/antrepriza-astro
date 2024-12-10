@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import type { TEventTickets, TPerformance, TPlay, TStage } from '@scripts/db/baseTypes';
-import { performances, plays, stages } from '../store/statesStore';
+import { performances, plays, stages } from '../lib/statesStore';
 import { onlyNumbers } from '@scripts/utils_src';
 import type { TOrderItem } from '@scripts/types/reservation';
 
@@ -59,7 +59,7 @@ function ticketsCount(tickets: TOrderItem[]): number {
 		</div>
 	</div>
 	<ul v-show="showCard" class="item-card">
-		<template v-for="reservation of event.reservations">
+		<template v-for="reservation in event.reservations">
 			<li class="reservation-item">
 				<div>
 					{{ reservation.name }} // <span class="res-email">{{ reservation.email }}</span>

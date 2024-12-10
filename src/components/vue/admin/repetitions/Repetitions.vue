@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref, computed, onBeforeMount } from 'vue';
 import { onBeforeRouteLeave } from 'vue-router';
-import { performances, repetitions, showMenu, smallScreen, isDemo } from '../store/statesStore';
-import { initPlays, initStages, initPerformances, initRepetitions } from '../store/statesStore';
+import { performances, repetitions, showMenu, smallScreen, isDemo } from '../lib/statesStore';
+import { initPlays, initStages, initPerformances, initRepetitions } from '../lib/statesStore';
 import ChapterTitle from '../components/ChapterTitle.vue';
-import Repetition from '../components/Repetition.vue';
-import PerformanceView from '../components/PerformanceView.vue';
+import Repetition from './Repetition.vue';
+import PerformanceView from './PerformanceView.vue';
 import { ONE_DAY } from '@scripts/consts';
 import type { TRepetition, TPerformance, TUniqStatus } from '@scripts/db/baseTypes';
 import { validateRepetitionStructure, checkUniqueSIDs, EItemType } from '@scripts/db/baseTypes';
@@ -135,7 +135,7 @@ async function saveRepetitionsDB() {
 	</ChapterTitle>
 	<ul>
 		<li><button @click="addRepetition" :disabled="isDemo">Добавить репетицию</button></li>
-		<template v-for="event of eventsToShow" :key="event.id">
+		<template v-for="event in eventsToShow" :key="event.id">
 			<li v-show="isfirstEventInMonth(event)" class="month-item">{{ getMonthName(event.date).toUpperCase() }}</li>
 			<li>
 				<Repetition

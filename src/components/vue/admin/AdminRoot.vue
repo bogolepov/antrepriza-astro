@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, defineAsyncComponent, onMounted } from 'vue';
-import { setAuthRole } from './store/statesStore';
+import { setAuthRole } from './lib/statesStore';
 import AuthForm from './AuthForm.vue';
 import { type TFirebaseConfig, initFirebaseConfig } from '@scripts/db/firebaseConfig';
 import { EAuthRole } from '@scripts/auth';

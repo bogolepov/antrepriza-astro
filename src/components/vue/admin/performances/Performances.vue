@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref, computed, onBeforeMount } from 'vue';
 import { onBeforeRouteLeave } from 'vue-router';
-import { performances, showMenu, smallScreen, isDemo } from '../store/statesStore';
-import { initPerformances } from '../store/statesStore';
+import { performances, showMenu, smallScreen, isDemo } from '../lib/statesStore';
+import { initPerformances } from '../lib/statesStore';
 import ChapterTitle from '../components/ChapterTitle.vue';
-import Performance from '../components/Performance.vue';
+import Performance from './Performance.vue';
 import { ONE_DAY } from '@scripts/consts';
 import type { TPerformance, TUniqStatus } from '@scripts/db/baseTypes';
 import { validatePerformanceStructure, checkUniqueSIDs, EItemType } from '@scripts/db/baseTypes';
@@ -115,7 +115,7 @@ async function savePerformancesDB() {
 	</ChapterTitle>
 	<ul>
 		<li><button @click="addPerformance" :disabled="isDemo">Добавить выступление</button></li>
-		<template v-for="performance of performancesToShow" :key="performance.id">
+		<template v-for="performance in performancesToShow" :key="performance.id">
 			<li v-show="isfirstEventInMonth(performance)" class="month-item">{{ getMonthName(performance.date).toUpperCase() }}</li>
 			<li>
 				<Performance :performance @check-performances-changing="checkPerformancesChanging" @delete-performance="deletePerformance" />

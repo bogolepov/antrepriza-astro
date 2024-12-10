@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, onBeforeMount } from 'vue';
 import { onBeforeRouteLeave } from 'vue-router';
-import { plays, initPlays, showMenu, smallScreen, isDemo, commitPlays } from '../store/statesStore';
-import PlayCard from '../components/PlayCard.vue';
+import { plays, initPlays, showMenu, smallScreen, isDemo, commitPlays } from '../lib/statesStore';
+import PlayCard from './PlayCard.vue';
 import ChapterTitle from '../components/ChapterTitle.vue';
 import type { TPlay, TUniqStatus } from '@scripts/db/baseTypes';
 import { validatePlayStructure, checkUniqueSIDs, EItemType } from '@scripts/db/baseTypes';
@@ -79,7 +79,7 @@ onBeforeRouteLeave(handleBeforeRouteLeave);
 		</template>
 	</ChapterTitle>
 	<ul>
-		<template v-for="play of plays" :key="play.id">
+		<template v-for="play in plays" :key="play.id">
 			<li><PlayCard :play @check-plays-changing="checkPlaysChanging" @delete-play="deletePlay" /></li>
 		</template>
 	</ul>
