@@ -18,7 +18,8 @@
 		"stage_sid": "west",
 		"free_place": true,
 		"newyear": true,
-		"prices": ["kids_present_35", "adult", "reduce", "reduce_present_25"]
+		"prices": ["kids_present_35", "adult", "reduce", "reduce_present_25"],
+		"sold_out": true
 	},
 	{
 		"date": "2024-12-25",
