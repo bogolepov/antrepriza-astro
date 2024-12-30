@@ -13,11 +13,13 @@ import { ONE_DAY } from '@scripts/consts';
 
 export const COLLECTION_THEATER: string = 'theater';
 export const COLLECTION_TICKETS: string = 'tickets';
+export const COLLECTION_EMAILS: string = 'emails';
 const DOC_THEATER_PLAYS: string = 'plays';
 const DOC_THEATER_STAGES: string = 'stages';
 const DOC_THEATER_PERFORMANCES: string = 'performances';
 const DOC_THEATER_REPETITIONS: string = 'repetitions';
 const DOC_THEATER_WHATSAPP_NOTES: string = 'whatsapp_notes';
+const DOC_NEWS_EMAILS: string = 'news';
 
 // let program;
 // async function readProgram() {

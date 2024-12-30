@@ -16,18 +16,6 @@ export function initFirebaseConfig(config: TFirebaseConfig) {
 	}
 }
 
-// let firebaseConfig2: TFirebaseConfig;
-
-// const firebaseConfig3 = {
-// 	apiKey: 'AIzaSyDyMcxNhl03ss4u7hUg4MTVrHPnhDxD-N8',
-// 	authDomain: 'antreprizaweb-9756b.firebaseapp.com',
-// 	projectId: 'antreprizaweb-9756b',
-// 	storageBucket: 'antreprizaweb-9756b.firebasestorage.app',
-// 	messagingSenderId: '205810043255',
-// 	appId: '1:205810043255:web:c86ab00f7c5e83a4e8f972',
-// 	measurementId: 'G-51CX15JKKF',
-// };
-
 export function getFirebaseConfig(handleConfig: (config: TFirebaseConfig) => void) {
 	if (firebaseConfig) {
 		handleConfig(firebaseConfig);

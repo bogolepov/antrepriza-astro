@@ -1,5 +1,11 @@
 [
 	{
+		"type": "standart_25",
+		"value": 25,
+		"text": { "ru": "Обычный билет", "de": "Normalticket" },
+		"text_short": { "ru": "Обычный", "de": "Normal" }
+	},
+	{
 		"type": "standart22",
 		"value": 22,
 		"text": { "ru": "Обычный билет", "de": "Normalticket" },
@@ -13,6 +19,12 @@
 	},
 	{
 		"type": "kids",
+		"value": 25,
+		"text": { "ru": "Детский билет", "de": "Kinderticket" },
+		"text_short": { "ru": "Детский", "de": "Kind" }
+	},
+	{
+		"type": "kids_25",
 		"value": 25,
 		"text": { "ru": "Детский билет", "de": "Kinderticket" },
 		"text_short": { "ru": "Детский", "de": "Kind" }
@@ -32,6 +44,12 @@
 	{
 		"type": "adult",
 		"value": 20,
+		"text": { "ru": "Взрослый билет", "de": "Erwachsenenticket" },
+		"text_short": { "ru": "Взрослый", "de": "Erwachsene" }
+	},
+	{
+		"type": "adult_21",
+		"value": 21,
 		"text": { "ru": "Взрослый билет", "de": "Erwachsenenticket" },
 		"text_short": { "ru": "Взрослый", "de": "Erwachsene" }
 	},

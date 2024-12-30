@@ -165,6 +165,32 @@ export type TEventTickets = {
 };
 
 // ---------------------------------------
+//              TNewsEmail
+// ---------------------------------------
+export const enum EEmailStatus {
+	CREATED = 'created',
+	SUBSCRIBED = 'subscribed',
+	UNSUBSCRIBED = 'unsubscribed',
+	DELETED = 'deleted',
+	NOT_VALID = 'not_valid',
+}
+export const enum EEmailSource {
+	WEBSITE_SUBSCRIPTION = 'website_subscription',
+	RESERVATION = 'reservation',
+	FEEDBACK_FORM = 'feedback_form',
+	DIRECT_EMAILS = 'direct_emails',
+	OTHER = 'other',
+}
+export type TNewsEmail = {
+	address: string;
+	sid: string;
+	ssid: string; // subscription text-identifier
+	ussid: string; // unsubscribe text-identifier
+	status: EEmailStatus;
+	source: EEmailSource;
+};
+
+// ---------------------------------------
 //                validation
 // ---------------------------------------
 function validateIItem(iItem: IItem) {

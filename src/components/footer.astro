@@ -113,43 +113,32 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/partner
         <div><a class="footer-text-link" href={`/${lang}/impressum/`}>{dictionary.impressum[lang]}</a></div>
         <div><a class="footer-text-link" href={`/${lang}/privacy-policy/`}>{dictionary.privacy_policy[lang]}</a></div>
       </div>
-      <div class="copyright-year font-opacity1 lh-1-1">© 2024 {theater.longTheaterName[lang]}</div>
+      <div class="copyright-year font-opacity1 lh-1-1">© 2025 {theater.longTheaterName[lang]}</div>
     </div>
     <div class="footer-flex-item flex2">
       <div class="footer-partners">
         <div class="title font-opacity1">{dictionary.partners[lang].toUpperCase()}</div>
         <ul class="logo-flex">
-          <li class="logo-50 hover-block">
+          <li class="logo-75 hover-block">
             <a href="https://svoi.berlin/" target="_blank"	rel="noopener external">
               <Picture 
                 class:list={'image-wrapper-landscape black-white-filter'} 
                 src={images["/src/assets/partners/logo_svoi_t.png"]()} 
                 formats={['webp']} 
-                sizes={'50px'}
-                widths={[50]}
+                sizes={'75px'}
+                widths={[75]}
                 alt="Svoi.Berlin" />
               </a>
           </li>
-          <li class="logo-50 hover-block">
+          <li class="logo-75 hover-block">
             <a href="https://www.av-huette.de/" target="_blank"	rel="noopener external">
               <Picture 
                 class:list={'image-wrapper-landscape black-white-filter'} 
                 src={images["/src/assets/partners/logo_avh_t.png"]()} 
                 formats={['webp']} 
-                sizes={'50px'}
-                widths={[50]}
+                sizes={'75px'}
+                widths={[75]}
                 alt="Akademischer Verein Hütte" />
-              </a>
-          </li>
-          <li class="logo-50 hover-block">
-            <a href="https://www.neue-buehne-friedrichshain.de/" target="_blank"	rel="noopener external">
-              <Picture 
-                class:list={'image-wrapper-landscape black-white-filter'} 
-                src={images["/src/assets/partners/logo_nbf_t.png"]()} 
-                formats={['webp']} 
-                sizes={'50px'}
-                widths={[50]}
-                alt="Neue Bühne Friedrichshain" />
               </a>
           </li>
           <li class="logo-120 hover-block">

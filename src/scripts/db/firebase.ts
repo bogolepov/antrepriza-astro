@@ -13,11 +13,6 @@ let firebase: FirebaseApp;
 // const analytics = getAnalytics(app);
 let firestore: Firestore;
 
-// const firebaseConfig = getFirebaseConfig();
-// const firebase = initializeApp(firebaseConfig);
-// // const analytics = getAnalytics(app);
-// const firestore = getFirestore(firebase);
-
 let handleResultConnect: (connected: boolean) => void;
 
 function handleConfig(config: TFirebaseConfig): void {

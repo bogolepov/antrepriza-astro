@@ -17,6 +17,7 @@ if (lang === 'de') Content = ContentDe;
 else Content = ContentRu;
 
 let stageOst = theater.stages.find(stg => stg.sid === "ost");
+let stageWest = theater.stages.find(stg => stg.sid === "west");
 
 ---
 
@@ -32,8 +33,8 @@ let stageOst = theater.stages.find(stg => stg.sid === "ost");
       <Fragment slot='play-name-link-miks'><PlayNameLink play_suffix="miks" lang={lang} has_quotes="true" classes="font-opacity1 bold1 a-no-u"/></Fragment>
       <Fragment slot='play-name-link-n32'><PlayNameLink play_suffix="n32" lang={lang} has_quotes="true" classes="font-opacity1 bold1 a-no-u"/></Fragment>
       <Fragment slot='play-name-link-pip'><PlayNameLink play_suffix="pip" lang={lang} has_quotes="true" classes="font-opacity1 bold1 a-no-u"/></Fragment>
-      <b slot='theater-stage'><a class="a-no-u" href={stageOst.place_website} target="_blank"	rel="noopener external">{stageOst.place_name}</a></b>
-      <i slot='theater-address'>{stageOst.address.full_string}</i>
+      <b slot='theater-stage'><a class="a-no-u" href={stageWest.place_website} target="_blank"	rel="noopener external">{stageWest.place_name}</a></b>
+      <i slot='theater-address'>{stageWest.address.full_string}</i>
       <div slot='reviews' class='flex-center flex-review'>
         <div><a href="https://g.page/r/CXSamsbDK3NlEBI/review" target="_blank"	rel="noopener external"><img src = "/google-logo.svg" alt="Google Reviews Antrepriza" class="google-svg"/></a></div>
         <div><a href="https://www.facebook.com/AntreprizaBerlin/reviews" target="_blank"	rel="noopener external"><img src = "/facebook-logo.svg" alt="Facebook Reviews Antrepriza" class="facebook-svg"/></a></div>

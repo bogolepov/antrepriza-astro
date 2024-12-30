@@ -143,3 +143,21 @@ body:has(#theme-switcher:checked) .gmap {
 	width: 100%;
 	flex-wrap: wrap;
 }
+
+.map-description-flex {
+	display: flex;
+	width: 100%;
+	flex-direction: row;
+	column-gap: 5%;
+	flex-wrap: wrap;
+}
+.map-description-flex .gmap {
+	width: 45%;
+	min-width: 260px;
+	flex-grow: 1;
+}
+.map-description-flex .description {
+	min-width: 350px;
+	width: 50%;
+	flex-grow: 1;
+}
