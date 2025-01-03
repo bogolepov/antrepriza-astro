@@ -205,9 +205,17 @@ const { Content } = await entry.render();
                 }
                 // if (actor.length > 1) console.log("PLAY: MORE THAN ONE PERSON have THE SAME ID ["  + actor_id + "] !!!");
                 return actor.map(_actor => {
+                  const hasPage : boolean = (_actor.suffix && _actor.suffix.length > 1);
                   return (
                     <div>
-                      <a class="person-link" href={`/${lang}/theater/people/${_actor.suffix}/`}>{_actor.name[lang]} {_actor.surname[lang]}</a>
+                      {
+                        hasPage &&
+                        <a class="person-link" href={`/${lang}/theater/people/${_actor.suffix}/`}>{_actor.name[lang]} {_actor.surname[lang]}</a>
+                      }
+                      {
+                        !hasPage &&
+                        <span>{_actor.name[lang]} {_actor.surname[lang]}</span>
+                      }                      
                     </div>
                   )
                 });

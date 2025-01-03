@@ -25,46 +25,46 @@
 		"lang_id": "ru",
 		"url_kontramarka": "https://www.kontramarka.de/tour/teatr-antrepriza-spektakl-koshkin-dom/",
 		"characters": [
-			{ "id": 1, "name": { "ru": "Кошка", "de": "Die Katze" }, "actors": [100, 105] },
+			{ "id": 1, "name": { "ru": "Кошка", "de": "Die Katze" }, "actors": [100, 130] },
 			{
 				"id": 2,
 				"name": { "ru": "Кот Василий", "de": "Der Kater Wassili" },
-				"actors": [103, 129]
+				"actors": [103]
 			},
 			{
 				"id": 3,
 				"name": { "ru": "1-й котенок", "de": "Erstes Kätzchen" },
-				"actors": [118]
+				"actors": [136]
 			},
 			{
 				"id": 4,
 				"name": { "ru": "2-й котенок", "de": "Zweites Kätzchen" },
-				"actors": [110]
+				"actors": [137]
 			},
 			{
 				"id": 5,
 				"name": { "ru": "Петух", "de": "Der Hahn" },
-				"actors": [129, 107]
+				"actors": [132]
 			},
 			{
 				"id": 6,
 				"name": { "ru": "Курица", "de": "Die Henne" },
-				"actors": [108]
+				"actors": [108, 134]
 			},
 			{
 				"id": 7,
 				"name": { "ru": "Козел", "de": "Der Ziegenbock" },
-				"actors": []
+				"actors": [133]
 			},
 			{
 				"id": 8,
 				"name": { "ru": "Коза", "de": "Die Ziege" },
-				"actors": [111]
+				"actors": [135]
 			},
 			{
 				"id": 9,
 				"name": { "ru": "Свинья", "de": "Die Sau" },
-				"actors": [116, 102]
+				"actors": [124]
 			}
 		],
 		"creators": [
