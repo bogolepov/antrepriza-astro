@@ -93,5 +93,22 @@
 	{ "filename": "DSC_3794.jpg", "is_landscape": true, "suffix": "miks", "author": 5, "people": [119] },
 	{ "filename": "DSC_3766.jpg", "is_landscape": true, "suffix": "miks", "author": 5, "people": [100, 111] },
 
+	{ "filename": "DSC_6836.jpg", "is_landscape": true, "suffix": "kd", "author": 5, "people": [103] },
+	{ "filename": "DSC_6842.jpg", "is_landscape": true, "suffix": "kd", "author": 5, "people": [108, 124, 130, 135, 132] },
+	{ "filename": "DSC_6843.jpg", "is_landscape": true, "suffix": "kd", "author": 5, "people": [124, 135, 132] },
+	{ "filename": "DSC_6845.jpg", "is_landscape": true, "suffix": "kd", "author": 5, "people": [130] },
+	{ "filename": "DSC_6848.jpg", "is_landscape": true, "suffix": "kd", "author": 5, "people": [132] },
+	{ "filename": "DSC_6852.jpg", "is_landscape": true, "suffix": "kd", "author": 5, "people": [108, 124] },
+	{ "filename": "DSC_6854.jpg", "is_landscape": true, "suffix": "kd", "author": 5, "people": [108, 124, 135, 133] },
+	{ "filename": "DSC_6856.jpg", "is_landscape": true, "suffix": "kd", "author": 5, "people": [] },
+	{ "filename": "DSC_6859.jpg", "is_landscape": true, "suffix": "kd", "author": 5, "people": [124, 130] },
+	{ "filename": "DSC_6861.jpg", "is_landscape": true, "suffix": "kd", "author": 5, "people": [103, 130] },
+	{ "filename": "DSC_6869.jpg", "is_landscape": true, "suffix": "kd", "author": 5, "people": [103, 108, 130] },
+	{ "filename": "DSC_6870.jpg", "is_landscape": true, "suffix": "kd", "author": 5, "people": [135] },
+	{ "filename": "DSC_6871.jpg", "is_landscape": true, "suffix": "kd", "author": 5, "people": [130, 135] },
+	{ "filename": "DSC_6875.jpg", "is_landscape": true, "suffix": "kd", "author": 5, "people": [124] },
+	{ "filename": "DSC_6878.jpg", "is_landscape": true, "suffix": "kd", "author": 5, "people": [103] },
+	{ "filename": "DSC_6889.jpg", "is_landscape": true, "suffix": "kd", "author": 5, "people": [103, 108, 124, 130, 135, 132, 133] },
+
 	{ "filename": null, "is_landscape": true, "suffix": "", "author": 0, "people": [] }
 ]

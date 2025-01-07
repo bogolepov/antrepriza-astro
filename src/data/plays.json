@@ -11,11 +11,11 @@
 		"break": false,
 		"age": "3+",
 		"description": { "ru": null, "de": null },
-		"trailer": null,
-		"trailer_embed": null,
+		"trailer": "https://www.youtube.com/watch?v=ef5v6xDye94",
+		"trailer_embed": "https://www.youtube-nocookie.com/embed/ef5v6xDye94?si=rkB5Hwq5nEP0KuSs",
 		"posters": {
 			"landscape": "katzenhaus.jpg",
-			"landscape_16_9": "soon_16_9.jpg",
+			"landscape_16_9": "katzenhaus_16_9.jpg",
 			"portrait": "kd_poster.jpg",
 			"afisha": "afisha_kd.jpg",
 			"facebook": "fb_kd.jpg",
@@ -72,7 +72,7 @@
 			{ "type": "light", "people": [] },
 			{ "type": "sound", "people": [] },
 			{ "type": "graphic_design", "people": [] },
-			{ "type": "photographer", "people": [] },
+			{ "type": "photographer", "people": [5] },
 			{ "type": "stage_setup", "people": [] }
 		],
 		"seo": {
