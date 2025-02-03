@@ -153,14 +153,6 @@
 			"jobs": ["music"]
 		},
 		{
-			"id": 4,
-			"photo": "no-photo.jpg",
-			"gender": "m",
-			"name": { "ru": "Торстен", "de": "Torsten" },
-			"surname": { "ru": "Айсcрих", "de": "Eissrich" },
-			"jobs": ["job_light", "job_sound"]
-		},
-		{
 			"id": 5,
 			"photo": "ild.jpg",
 			"gender": "m",
@@ -378,6 +370,14 @@
 			"name": { "ru": "Борис", "de": "Boris" },
 			"surname": { "ru": "Бирман", "de": "Birman" },
 			"jobs": ["actor"]
+		},
+		{
+			"id": 4,
+			"photo": "no-photo.jpg",
+			"gender": "m",
+			"name": { "ru": "Торстен", "de": "Torsten" },
+			"surname": { "ru": "Айсcрих", "de": "Eissrich" },
+			"jobs": ["job_light", "job_sound"]
 		},
 		{
 			"id": 6,

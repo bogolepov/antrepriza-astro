@@ -155,6 +155,9 @@ section.play {
 	line-height: 1.35em;
 	padding-bottom: 1em;
 }
+.list-item:has(.no-creators) {
+	display: none;
+}
 
 .list-item-left {
 	width: 50%;
