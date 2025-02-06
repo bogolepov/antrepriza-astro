@@ -137,13 +137,11 @@ const ignoreExCreators : string[] = [ "light", "sound", "stage_setup"];
               creator.people.map((person_id, i) => {
                 let person = theater.people.filter(person => person.id === person_id);
                 if (!ignoreExCreators.includes(creator.type)) {
-                  console.log(theater.ex_people.filter(person => person.id === person_id));
-                  
                   person = person.concat( theater.ex_people.filter(person => person.id === person_id));
                 }
                 // if (!person.length) person = theater.ex_people.filter(person => person.id === person_id);
                 if (!person.length) {
-                  console.error("PLAY: a person with id " + person_id + " isn't found !!!");
+                  //console.error("PLAY: a person with id " + person_id + " isn't found !!!");
                   return <div class="no-creators"></div>
                 }
                 if (person.length > 1) console.error("PLAY: MORE THAN ONE PERSON have THE SAME ID ["  + person_id + "] !!!");

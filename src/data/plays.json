@@ -154,7 +154,7 @@
 			{ "type": "regie", "people": [1] },
 			{ "type": "light", "people": [4] },
 			{ "type": "sound", "people": [4] },
-			{ "type": "graphic_design", "people": [6] }
+			{ "type": "graphic_design", "people": [] }
 		],
 		"seo": {
 			"description": {

@@ -1,5 +1,89 @@
 [
 	{
+		"date": "2025-05-25",
+		"time": "16:00",
+		"play_id": 10,
+		"play_sid": "kd",
+		"stage_sid": "west",
+		"free_place": true,
+		"prices": ["kids_25", "adult_21", "reduce"]
+	},
+	{
+		"date": "2025-05-24",
+		"time": "19:00",
+		"play_id": 9,
+		"play_sid": "n32",
+		"stage_sid": "west",
+		"free_place": true,
+		"prices": ["standart_25", "reduce"],
+		"premiere": true
+	},
+	{
+		"date": "2025-05-23",
+		"time": "16:00",
+		"play_id": 6,
+		"play_sid": "mik",
+		"stage_sid": "west",
+		"free_place": true,
+		"prices": ["kids", "adult", "reduce"]
+	},
+	{
+		"date": "2025-04-27",
+		"time": "16:00",
+		"play_id": 10,
+		"play_sid": "kd",
+		"stage_sid": "west",
+		"free_place": true,
+		"prices": ["kids_25", "adult_21", "reduce"]
+	},
+	{
+		"date": "2025-04-26",
+		"time": "19:00",
+		"play_id": 9,
+		"play_sid": "n32",
+		"stage_sid": "west",
+		"free_place": true,
+		"prices": ["standart_25", "reduce"],
+		"premiere": true
+	},
+	{
+		"date": "2025-04-25",
+		"time": "16:00",
+		"play_id": 6,
+		"play_sid": "mik",
+		"stage_sid": "west",
+		"free_place": true,
+		"prices": ["kids", "adult", "reduce"]
+	},
+	{
+		"date": "2025-03-30",
+		"time": "16:00",
+		"play_id": 10,
+		"play_sid": "kd",
+		"stage_sid": "west",
+		"free_place": true,
+		"prices": ["kids_25", "adult_21", "reduce"]
+	},
+	{
+		"date": "2025-03-29",
+		"time": "19:00",
+		"play_id": 9,
+		"play_sid": "n32",
+		"stage_sid": "west",
+		"free_place": true,
+		"prices": ["standart_25", "reduce"],
+		"premiere": true
+	},
+	{
+		"date": "2025-03-28",
+		"time": "16:00",
+		"play_id": 6,
+		"play_sid": "mik",
+		"stage_sid": "west",
+		"free_place": true,
+		"prices": ["kids", "adult", "reduce"]
+	},
+	{
 		"date": "2025-02-16",
 		"time": "19:30",
 		"play_id": 9,
