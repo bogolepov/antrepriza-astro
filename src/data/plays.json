@@ -123,7 +123,7 @@
 					"ru": "молодой человек под валютной ипотекой",
 					"de": "Mann unter Hypothek"
 				},
-				"actors": [110]
+				"actors": [119, 110]
 			},
 			{
 				"id": 2,
@@ -132,13 +132,13 @@
 					"ru": "девушка Славика",
 					"de": "Slawiks Freundin"
 				},
-				"actors": [111, 128]
+				"actors": [118, 138, 105]
 			},
 			{
 				"id": 3,
 				"name": { "ru": "Незнакомка", "de": "Die Unbekannte" },
 				"description": { "ru": "", "de": "" },
-				"actors": [100, 102]
+				"actors": [100, 116]
 			},
 			{
 				"id": 4,
@@ -147,7 +147,7 @@
 					"ru": "отец Славика, психопат по мнению Мироздания",
 					"de": "Slawiks Vater, ein Psychopath nach Ansicht dem Universum"
 				},
-				"actors": [103, 129]
+				"actors": [103]
 			}
 		],
 		"creators": [
@@ -215,19 +215,28 @@
 			{
 				"id": 3,
 				"name": { "ru": "Марина Загитова", "de": "Marina Sagitowa" },
-				"description": { "ru": "бывшая актриса провинциального театра", "de": "ehemalige Schauspielerin eines Provinztheaters" },
+				"description": {
+					"ru": "бывшая актриса провинциального театра",
+					"de": "ehemalige Schauspielerin eines Provinztheaters"
+				},
 				"actors": [100]
 			},
 			{
 				"id": 4,
 				"name": { "ru": "Леночка Майер", "de": "Lenotschka Meier" },
-				"description": { "ru": "молодая актриса без опыта, модница", "de": "junge Schauspielerin ohne Erfahrung, Modepuppe" },
+				"description": {
+					"ru": "молодая актриса без опыта, модница",
+					"de": "junge Schauspielerin ohne Erfahrung, Modepuppe"
+				},
 				"actors": [111, 116]
 			},
 			{
 				"id": 5,
 				"name": { "ru": "Серафима Вернер", "de": "Serafima Werner" },
-				"description": { "ru": "борец за справедливость всех и вся", "de": "Kämpfer_in für Gerechtigkeit für alle und alles" },
+				"description": {
+					"ru": "борец за справедливость всех и вся",
+					"de": "Kämpfer_in für Gerechtigkeit für alle und alles"
+				},
 				"actors": [108, 105]
 			},
 			{

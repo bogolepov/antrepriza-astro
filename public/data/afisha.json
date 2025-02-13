@@ -10,7 +10,7 @@
 	},
 	{
 		"date": "2025-05-24",
-		"time": "19:00",
+		"time": "19:30",
 		"play_id": 9,
 		"play_sid": "n32",
 		"stage_sid": "west",
@@ -38,7 +38,7 @@
 	},
 	{
 		"date": "2025-04-26",
-		"time": "19:00",
+		"time": "19:30",
 		"play_id": 9,
 		"play_sid": "n32",
 		"stage_sid": "west",
@@ -66,7 +66,7 @@
 	},
 	{
 		"date": "2025-03-29",
-		"time": "19:00",
+		"time": "19:30",
 		"play_id": 9,
 		"play_sid": "n32",
 		"stage_sid": "west",
@@ -320,7 +320,10 @@
 		"event_name": { "ru": "Māra Fest Open Lab", "de": "Māra Fest Open Lab" },
 		"no_tickets": true,
 		"prices": [],
-		"distributor": { "label": { "ru": "Информация о билетах", "de": "Ticketinformation" }, "link": "https://antrepriza.eu" }
+		"distributor": {
+			"label": { "ru": "Информация о билетах", "de": "Ticketinformation" },
+			"link": "https://antrepriza.eu"
+		}
 	},
 	{
 		"date": "2024-09-01",
