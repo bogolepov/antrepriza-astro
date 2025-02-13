@@ -10,6 +10,12 @@ let dictionaryServer;
 let theater;
 let afisha;
 
+type TMessageValidationResult = {
+	valid: boolean;
+	errCode: number;
+	errMessage: string;
+};
+
 export const handler: Handler = async (event, context) => {
 	dictionaryServer = getJsonDictionary();
 	theater = getJsonTheater();
@@ -20,20 +26,21 @@ export const handler: Handler = async (event, context) => {
 		return {
 			statusCode: 500,
 			body: JSON.stringify({
-				message: 'Internal Server Error',
+				message: null,
 			}),
 		};
 	}
 
 	const messageData: TNetlifyDataReservations = JSON.parse(event.body);
 
-	// spam checking
-	if (!validateMessage(messageData)) {
+	// spam or not valid data checking
+	const { valid, errCode, errMessage } = validateMessage(messageData);
+	if (!valid) {
 		// fake OK-result
 		return {
-			statusCode: 200,
+			statusCode: errCode,
 			body: JSON.stringify({
-				message: 'Email sent successfully',
+				message: errMessage,
 			}),
 		};
 	}
@@ -64,19 +71,27 @@ export const handler: Handler = async (event, context) => {
 	return await sendMails(lang, transporterMail, clientMail, antreprizaMail);
 };
 
-function validateMessage(messageData: TNetlifyDataReservations) {
-	if (!messageData || !messageData.lang || !LANG_LIST.includes(messageData.lang)) return false;
-	if (!messageData.name || messageData.name.length < 2) return false;
-	if (!messageData.email || !EMAIL_REGEX.test(messageData.email) || messageData.email.length < 5 || messageData.email.length > 64)
-		return false;
-	if (!messageData.amount || messageData.amount <= 0 || !messageData.when) return false;
-	if (!messageData.reservations || messageData.reservations.length === 0) return false;
+function validateMessage(messageData: TNetlifyDataReservations): TMessageValidationResult {
+	// if message structure is not valid (a fake message), then a fake OK-result
+	const errResult: TMessageValidationResult = { valid: false, errCode: 200, errMessage: "'Email sent successfully'" };
+	if (!messageData || !messageData.lang || !LANG_LIST.includes(messageData.lang)) return errResult;
+	if (!messageData.name || messageData.name.length < 2) return errResult;
+	if (
+		!messageData.email ||
+		!EMAIL_REGEX.test(messageData.email) ||
+		messageData.email.length < 5 ||
+		messageData.email.length > 64
+	)
+		return errResult;
+	if (!messageData.amount || messageData.amount <= 0 || !messageData.when) return errResult;
+	if (!messageData.reservations || messageData.reservations.length === 0) return errResult;
 
 	let myAmount = 0;
 
 	let valid = true;
+	let soldOut = false;
 	messageData.reservations.forEach(element => {
-		if (!valid) return;
+		if (!valid || soldOut) return;
 
 		if (!element.date || !element.time) {
 			valid = false;
@@ -91,10 +106,19 @@ function validateMessage(messageData: TNetlifyDataReservations) {
 		}
 
 		let event = afisha.find(
-			ev => ev.play_sid === play.suffix && ev.stage_sid === stage.sid && ev.date === element.date && ev.time === element.time
+			ev =>
+				ev.play_sid === play.suffix &&
+				ev.stage_sid === stage.sid &&
+				ev.date === element.date &&
+				ev.time === element.time
 		);
 		if (!event || !element.tickets || element.tickets.length === 0) {
 			valid = false;
+			return;
+		}
+
+		if (event.sold_out) {
+			soldOut = true;
 			return;
 		}
 
@@ -111,12 +135,15 @@ function validateMessage(messageData: TNetlifyDataReservations) {
 		});
 	});
 
-	if (valid && myAmount != messageData.amount) {
-		// console.log('Amount is not correct');
+	if (!valid) return errResult;
+	if (valid && (myAmount != messageData.amount || soldOut)) {
 		valid = false;
+		errResult.errCode = 500;
+		errResult.errMessage = dictionaryServer.err_reservation_reset_cart[messageData.lang];
+		return errResult;
 	}
 
-	return valid;
+	return { valid: true, errCode: 200, errMessage: null }; // 200 means OK, no error
 }
 
 function makeContent(
@@ -139,12 +166,16 @@ ${dictionaryServer.new_reservation_text[lang]}\
 </td></tr>\
 <tr>\
 <td style="line-height: 120%; color: #d6d6d6; vertical-align: top">${dictionaryServer.lang_name[lang]} :</td>\
-<td style="line-height: 120%; color: #d6d6d6; vertical-align: top; padding: 0 0 5px 8px">${fromHtmlToPlainText(name)}</td>\
+<td style="line-height: 120%; color: #d6d6d6; vertical-align: top; padding: 0 0 5px 8px">${fromHtmlToPlainText(
+			name
+		)}</td>\
 </tr>\
 <tr>\
 <td style="line-height: 120%; color: #d6d6d6; vertical-align: top">Email :</td>\
 <td style="line-height: 120%; color: #d6d6d6; vertical-align: top; padding: 0 0 5px 8px">
-<a href='${'mailto:' + fromHtmlToPlainText(email)}' style="line-height: 120%; color: #d6d6d6">${fromHtmlToPlainText(email)}</a></td>\
+<a href='${'mailto:' + fromHtmlToPlainText(email)}' style="line-height: 120%; color: #d6d6d6">${fromHtmlToPlainText(
+			email
+		)}</a></td>\
 </tr>\
 <tr>\
 <td style="line-height: 120%; color: #d6d6d6; vertical-align: top">${dictionaryServer.lang_when[lang]} :</td>\
@@ -161,7 +192,10 @@ ${dictionaryServer.new_reservation_text[lang]}\
 			else return dictionaryServer.good_evening[lang];
 		};
 		const strHello =
-			getHello(dateOfReservation.getHours()) + (lang === 'ru' ? ', ' : ' ') + fromHtmlToPlainText(name) + (lang === 'ru' ? '!' : '.');
+			getHello(dateOfReservation.getHours()) +
+			(lang === 'ru' ? ', ' : ' ') +
+			fromHtmlToPlainText(name) +
+			(lang === 'ru' ? '!' : '.');
 		const strWelcome1_WithLinks = makeLinks(dictionaryServer.email_reservation_welcome1[lang]);
 
 		diffText = `\
@@ -252,7 +286,9 @@ function makeEventsRows(lang: string, reservations: TReservationExt[]): string {
 			`\
 <tr><td style="vertical-align: top">\
 <table border="0" cellspacing="0" role="presentation" style="width: 100%; margin: 0; padding: 0"><tbody>\
-<tr><td style="font-size: 85%; line-height: 120%; color: #888888; font-weight: 400; padding: 3px 0 0 0">${getOrderIdText(event)}</td></tr>\
+<tr><td style="font-size: 85%; line-height: 120%; color: #888888; font-weight: 400; padding: 3px 0 0 0">${getOrderIdText(
+				event
+			)}</td></tr>\
 <tr><td style="font-size: 115%; line-height: 120%; color: #87605e; font-weight: 600">${strDate}</td></tr>\
 <tr><td style="font-size: 115%; line-height: 120%; color: #87605e; font-weight: 600">${event.time}</td></tr>\
 </tbody></table>\
@@ -268,7 +304,9 @@ ${play.genre[lang]}, ${play.age}, ${dictionaryServer.play_lang[play.lang_id][lan
 ${ticketsRows.html}\
 <tr><td colspan="4" style="padding-top: 2px; border-bottom: 1px solid #888888"></td></tr>\
 <tr>\
-<td colspan="2" style="padding-top: 3px; text-align: left; vertical-align: top; color: #888888">${dictionaryServer.total_amount[lang]}</td>\
+<td colspan="2" style="padding-top: 3px; text-align: left; vertical-align: top; color: #888888">${
+				dictionaryServer.total_amount[lang]
+			}</td>\
 <td colspan="2" style="padding-top: 3px; vertical-align: top; color: #888888">${ticketsRows.amount}€</td>\
 </tr>\
 </tbody>\

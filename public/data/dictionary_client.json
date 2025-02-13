@@ -4,7 +4,10 @@
 	"err__empty_name": { "ru": "Имя не может быть пустым", "de": "Dieses Feld muss zwingend ausgefüllt sein." },
 	"err__name_to_short": { "ru": "Слишком короткое имя", "de": "Der Name ist zu kurz." },
 	"err__empty_email": { "ru": "Укажите email-адрес", "de": "Dieses Feld muss zwingend ausgefüllt sein." },
-	"err__email_not_correct": { "ru": "Введите корректный email-адрес", "de": "Bitte geben Sie eine korrekte E-Mail-Adresse ein." },
+	"err__email_not_correct": {
+		"ru": "Введите корректный email-адрес",
+		"de": "Bitte geben Sie eine korrekte E-Mail-Adresse ein."
+	},
 	"err__empty_message": { "ru": "Введите текст обращения", "de": "Dieses Feld muss zwingend ausgefüllt sein." },
 	"err__message_to_short": { "ru": "Обращение слишком короткое", "de": "Die Nachricht ist zu kurz." },
 	"newsletter_subscribed": { "ru": "Вы были успешно подписаны.", "de": "Sie wurden erfolgreich angemeldet." },
@@ -12,12 +15,18 @@
 		"ru": "К сожалению, произошла ошибка. Попробуйте позже.",
 		"de": "Leider ist ein Fehler aufgetreten. Versuchen Sie es bitte später noch einmal."
 	},
-	"contact_form__result_ok": { "ru": "Ваше сообщение успешно отправлено!", "de": "Die Nachricht wurde erfolgreich gesendet!." },
+	"contact_form__result_ok": {
+		"ru": "Ваше сообщение успешно отправлено!",
+		"de": "Die Nachricht wurde erfolgreich gesendet!."
+	},
 	"contact_form__result_error": {
 		"ru": "К сожалению, Ваше сообщение не удалось отправить. Попробуйте позже.",
 		"de": "Leider konnte Ihre Nachricht nicht gesendet werden. Bitte versuchen Sie es später noch einmal."
 	},
-	"play_lang": { "ru": { "ru": "на русском", "de": "auf Russisch" }, "de": { "ru": "на немецком", "de": "auf Deutsch" } },
+	"play_lang": {
+		"ru": { "ru": "на русском", "de": "auf Russisch" },
+		"de": { "ru": "на немецком", "de": "auf Deutsch" }
+	},
 	"free_place": { "ru": "свободные места", "de": "freie Platzwahl" },
 	"my_reservations": { "ru": "Мои заказы", "de": "Meine Bestellungen" },
 	"empty_reservation_list": { "ru": "Список заказов пуст.", "de": "Leerer Warenkorb" },

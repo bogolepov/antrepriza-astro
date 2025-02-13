@@ -8,30 +8,45 @@ interface IFinalReservation {
 	dictionary: any;
 	isShow: boolean;
 	handleClose: () => void;
-	handleMakeReservation: (name: string, email: string, handleResult: (isOk: boolean) => void) => void;
+	handleMakeReservation: (
+		name: string,
+		email: string,
+		handleResult: (isOk: boolean, errMessage: string) => void
+	) => void;
 }
-export default function FinalReservationForm({ lang, dictionary, isShow, handleClose, handleMakeReservation }: IFinalReservation) {
+export default function FinalReservationForm({
+	lang,
+	dictionary,
+	isShow,
+	handleClose,
+	handleMakeReservation,
+}: IFinalReservation) {
 	const userName = useRef(null);
 	const userEmail = useRef(null);
 	const [userNameError, setUserNameError] = useState('');
 	const [userEmailError, setUserEmailError] = useState('');
+	const [serverError, setServerError] = useState('');
 
 	const MODE_FORM_EDITING = 0;
 	const MODE_EMAIL_SENDING = 1;
 	const MODE_EMAIL_SENT = 2;
 	const MODE_EMAIL_ERROR = 3;
+	const MODE_SERVER_ERROR = 4;
 
 	const [mode, setMode] = useState(MODE_FORM_EDITING);
 
 	const handleFinalFormSubmit = event => {
 		event.preventDefault();
 
-		const handleResult = isOk => {
+		const handleResult = (isOk: boolean, errMessage: string) => {
 			if (isOk) {
 				resetForm();
 				setMode(MODE_EMAIL_SENT);
 			} else {
-				setMode(MODE_EMAIL_ERROR);
+				if (errMessage && errMessage.length > 1) {
+					setServerError(errMessage);
+					setMode(MODE_SERVER_ERROR);
+				} else setMode(MODE_EMAIL_ERROR);
 			}
 		};
 
@@ -59,6 +74,7 @@ export default function FinalReservationForm({ lang, dictionary, isShow, handleC
 	function resetForm() {
 		setUserNameError(null);
 		setUserEmailError(null);
+		setServerError(null);
 		userName.current.value = '';
 		userEmail.current.value = '';
 	}
@@ -97,9 +113,11 @@ export default function FinalReservationForm({ lang, dictionary, isShow, handleC
 									<div className='antrepriza-loader'></div>
 								</div>
 							)}
-							{(mode === MODE_EMAIL_SENT || mode === MODE_EMAIL_ERROR) && (
+							{(mode === MODE_EMAIL_SENT || mode === MODE_EMAIL_ERROR || mode === MODE_SERVER_ERROR) && (
 								<div className='layer-on-parent show not_transparent message'>
-									<p>{mode === MODE_EMAIL_SENT ? dictionary.msg_email_sent[lang] : dictionary.msg_email_error[lang]}</p>
+									{mode === MODE_EMAIL_SENT && <p>{dictionary.msg_email_sent[lang]}</p>}
+									{mode === MODE_SERVER_ERROR && <p>{serverError}</p>}
+									{mode === MODE_EMAIL_ERROR && <p>{dictionary.msg_email_error[lang]}</p>}
 									<button onClick={handleMessageButton}>OK</button>
 								</div>
 							)}

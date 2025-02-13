@@ -28,7 +28,15 @@ interface ICart {
 	handleRemoveTicket: (play: TReservation, ticket_type: TTicketType, count: number) => void;
 	handleReservationDone: () => void;
 }
-export function Cart({ lang, tickets, totalAmount, handleCloseClick, handleAddTicket, handleRemoveTicket, handleReservationDone }: ICart) {
+export function Cart({
+	lang,
+	tickets,
+	totalAmount,
+	handleCloseClick,
+	handleAddTicket,
+	handleRemoveTicket,
+	handleReservationDone,
+}: ICart) {
 	const $isCartOpen = useStore(isCartOpen);
 	const [isJsonsLoaded, setIsJsonsLoaded] = useState(false);
 	const [isFinalFormOpen, setIsFinalFormOpen] = useState(false);
@@ -45,7 +53,11 @@ export function Cart({ lang, tickets, totalAmount, handleCloseClick, handleAddTi
 		setIsFinalFormOpen(false);
 	};
 
-	const handleFinalFormSubmit = async (name: string, email: string, handleResult: (isOk: boolean) => void) => {
+	const handleFinalFormSubmit = async (
+		name: string,
+		email: string,
+		handleResult: (isOk: boolean, errMessage: string) => void
+	) => {
 		// console.log('Name: ' + name + ', email: ' + email);
 
 		const now = new Date();
@@ -83,11 +95,13 @@ export function Cart({ lang, tickets, totalAmount, handleCloseClick, handleAddTi
 			})
 			.then(data => {
 				if (isOk) {
-					handleResult(true);
+					handleResult(true, null);
 					handleReservationDone();
 				} else throw new Error(data.message);
 			})
-			.catch(() => handleResult(false));
+			.catch(err => {
+				handleResult(false, err.message);
+			});
 	};
 
 	if (!isJsonsLoaded) loadClientJsons(clientJsons, handleThen, handleFinally);
@@ -110,7 +124,9 @@ export function Cart({ lang, tickets, totalAmount, handleCloseClick, handleAddTi
 						<>
 							<div className='cart-title'>{clientJsons.dictionary.my_reservations[lang]}</div>
 							<div className='order-list-wrapper'>
-								{tickets.length === 0 && <div className='cart-empty'>{clientJsons.dictionary.empty_reservation_list[lang]}</div>}
+								{tickets.length === 0 && (
+									<div className='cart-empty'>{clientJsons.dictionary.empty_reservation_list[lang]}</div>
+								)}
 								<ul>
 									{tickets.map((play, index) => (
 										<Order

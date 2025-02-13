@@ -22,8 +22,6 @@ export function loadClientJsons(
 	handleFinally?: () => void,
 	handleCatch?: () => void
 ) {
-	console.log('loadClientJsons !!!');
-
 	if (!jsonContainer) {
 		console.error('loadClientJsons: param jsonContainer is undefined');
 		return;

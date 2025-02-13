@@ -1,7 +1,13 @@
 {
-	"play_lang": { "ru": { "ru": "на русском", "de": "auf Russisch" }, "de": { "ru": "на немецком", "de": "auf Deutsch" } },
+	"play_lang": {
+		"ru": { "ru": "на русском", "de": "auf Russisch" },
+		"de": { "ru": "на немецком", "de": "auf Deutsch" }
+	},
 	"email_reservation_subject": { "ru": "Бронирование билетов", "de": "Ticketreservierung" },
-	"email_news_subscription_reg_subject": { "ru": "Подтвердите подписку на новости", "de": "Newsletter-Anmeldung bestätigen" },
+	"email_news_subscription_reg_subject": {
+		"ru": "Подтвердите подписку на новости",
+		"de": "Newsletter-Anmeldung bestätigen"
+	},
 	"email_news_subscription_reg_subject_antrepriza": {
 		"ru": "Шаг 1. Новая подписка на новости",
 		"de": "Schritt 1. Neue Newsletter-Anmeldung"
@@ -13,7 +19,10 @@
 	"lang_count": { "ru": "шт", "de": "St" },
 	"total_amount": { "ru": "Итого", "de": "Gesamtbetrag" },
 	"new_reservation_text": { "ru": "У вас новое бронирование билетов", "de": "Sie haben eine neue Ticketreservierung" },
-	"new_subscription_text": { "ru": "У вас новая подписка на новости", "de": "Sie haben eine neue Newsletter-Anmeldung" },
+	"new_subscription_text": {
+		"ru": "У вас новая подписка на новости",
+		"de": "Sie haben eine neue Newsletter-Anmeldung"
+	},
 	"stage": { "ru": "Сцена", "de": "Bühne" },
 	"lang_name": { "ru": "Имя", "de": "Name" },
 	"lang_when": { "ru": "Когда", "de": "Wann" },
@@ -26,6 +35,10 @@
 	"question_subject": { "ru": "Тема вопроса", "de": "Betreff" },
 	"lang_message": { "ru": "Сообщение", "de": "Nachricht" },
 	"lang_email": { "ru": "Email", "de": "E-Mail" },
+	"err_reservation_reset_cart": {
+		"ru": "Некорректные данные. Очистите корзину заказов, перезагрузите страницу и добавьте заказы снова.",
+		"de": "Falsche Daten. Bitte leeren Sie Ihren Einkaufswagen, aktualisieren Sie die Seite und geben Sie erneut Bestellungen ein."
+	},
 	"email_feedback_form_text": {
 		"ru": "Ваш запрос успешно отправлен. В случае необходимости мы свяжемся с Вами в ближайшее время.",
 		"de": "Ihre Anfrage wurde erfolgreich gesendet. Bei Bedarf werden wir uns schnellstmöglich mit Ihnen in Verbindung setzen."
@@ -87,8 +100,14 @@
 		"de": "Vergnügt grüßt"
 	},
 	"email_subscription_button_text": { "ru": "Подтвердить адрес электронной почты", "de": "Anmeldung hier bestätigen" },
-	"result_email_registration": { "ru": "Письмо для регистрации успешно отправлено", "de": "Registrierungs-E-Mail erfolgreich gesendet" },
-	"result_email_confirmed": { "ru": "Адрес электронной почты успешно подтвержден", "de": "E-Mail-Adresse erfolgreich bestätigt" },
+	"result_email_registration": {
+		"ru": "Письмо для регистрации успешно отправлено",
+		"de": "Registrierungs-E-Mail erfolgreich gesendet"
+	},
+	"result_email_confirmed": {
+		"ru": "Адрес электронной почты успешно подтвержден",
+		"de": "E-Mail-Adresse erfolgreich bestätigt"
+	},
 	"result_email_removed": {
 		"ru": "Ваш адрес электронной почты успешно удален из рассылки",
 		"de": "Ihre E-Mail-Adresse wurde erfolgreich aus der Mailingliste entfernt"
