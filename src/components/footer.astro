@@ -1,17 +1,19 @@
 ---
-import "@styles/footer.css"
+import '@styles/footer.css';
 
-import theater from '@data/theater.json'
-import dictionary from '@data/dictionary.json'
+import theater from '@data/theater.json';
+import dictionary from '@data/dictionary.json';
 
-import { Icon } from 'astro-icon/components'
+import { Icon } from 'astro-icon/components';
 
-import SocialPages from '@components/social_pages/social_pages.astro'
+import SocialPages from '@components/social_pages/social_pages.astro';
 
-const {lang} = Astro.props;
+const { lang } = Astro.props;
 
-import type { ImageMetadata } from 'astro'
-import { Picture } from 'astro:assets'
+const current_year: string = new Date().getFullYear().toString();
+
+import type { ImageMetadata } from 'astro';
+import { Picture } from 'astro:assets';
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/partners/*.{jpeg,jpg,png,gif}');
 
 /*
@@ -49,128 +51,148 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/partner
               </a>
           </li>
  */
-
 ---
-<script>
-  import { openFeedbackForm, submitNewsletterForm } from "@scripts/antrepriza.js"
-  document.addEventListener('DOMContentLoaded', () => {
-    document.querySelector('.feedback-button')?.addEventListener('click', openFeedbackForm);
-    document.querySelector('#newsletter-button')?.addEventListener('click', submitNewsletterForm);
 
-    let now = Date.now();
-    let nlPh = document.querySelector('#newsletter-phone');
-    if(nlPh) { nlPh.value = (now+9).toString(); nlPh.innerText = now.toString(); }
-  });
+<script>
+	import { openFeedbackForm, submitNewsletterForm } from '@scripts/antrepriza.js';
+	document.addEventListener('DOMContentLoaded', () => {
+		document.querySelector('.feedback-button')?.addEventListener('click', openFeedbackForm);
+		document.querySelector('#newsletter-button')?.addEventListener('click', submitNewsletterForm);
+
+		let now = Date.now();
+		let nlPh = document.querySelector('#newsletter-phone');
+		if (nlPh) {
+			nlPh.value = (now + 9).toString();
+			nlPh.innerText = now.toString();
+		}
+	});
 </script>
 
 <footer>
-  <div class="footer-flex">
-    <div class="footer-flex-item flex2">
-      <div>
-        <a href={`/${lang}/`} class="mainpage-link">
-          <Icon name={"logo-"+lang} class="footer-logo" />
-        </a>
-      </div>
-      {
-        theater.fix_stages.map(fstg => {
-          let stage = theater.stages.find(stg => fstg === stg.sid);
-          if (stage) 
-            return (
-              <a class="address" href={stage.google_map.link[lang]} target="_blank"	rel="noopener external">
-                <div class="info-text font-opacity0 bold">{dictionary.stage[lang] + " - " + stage.name[lang].toUpperCase()}</div>
-                <div class="info-text font-opacity0">{stage.address.full_string}</div>
-              </a>
-          );
-        })
-      }    
-      <div class="contact">
-        <div class="info-text font-opacity0">
-          <a href={"tel:"+theater.phone}><span class="font-opacity1 phone-number">{dictionary.telephone_short[lang]}:</span> {theater.phone}</a>
-        </div>
-        <div class="info-text font-opacity0">
-          <a href={"mailto:"+theater.email}><span class="font-opacity1">{dictionary.email[lang]}:</span> {theater.email}</a>
-        </div>
-      </div>
-    </div>
-    <div class="footer-flex-item flex2">
-      <div class="newsletter">
-        <div class="newsletter-label">{dictionary.newsletter_title[lang]}</div>
-        <form method="POST" id="newsletter-form" class="newsletter-form">
-          <div class="newsletter-input-container">
-            <input id="newsletter-phone" type="hidden" name="phone" value=""/>
-            <input type="text" class="newsletter__input" name="email" placeholder={dictionary.email_hint[lang]} autocomplete="on">
-            <button id="newsletter-button" class="newsletter__button">&#10153;</button>
-            <div class="newsletter-input-loader"></div>
-          </div>
-          <div class="newsletter-message"></div>
-        </form>
-      </div>
-      <SocialPages lang={lang} />
-      <div>
-        <button class="feedback-button">{dictionary.question_form_label[lang]}</button>
-      </div>
-      <div class="lh-1-3">
-        <div><a class="footer-text-link" href={`/${lang}/impressum/`}>{dictionary.impressum[lang]}</a></div>
-        <div><a class="footer-text-link" href={`/${lang}/privacy-policy/`}>{dictionary.privacy_policy[lang]}</a></div>
-      </div>
-      <div class="copyright-year font-opacity1 lh-1-1">© 2025 {theater.longTheaterName[lang]}</div>
-    </div>
-    <div class="footer-flex-item flex2">
-      <div class="footer-partners">
-        <div class="title font-opacity1">{dictionary.partners[lang].toUpperCase()}</div>
-        <ul class="logo-flex">
-          <li class="logo-75 hover-block">
-            <a href="https://svoi.berlin/" target="_blank"	rel="noopener external">
-              <Picture 
-                class:list={'image-wrapper-landscape black-white-filter'} 
-                src={images["/src/assets/partners/logo_svoi_t.png"]()} 
-                formats={['webp']} 
-                sizes={'75px'}
-                widths={[75]}
-                alt="Svoi.Berlin" />
-              </a>
-          </li>
-          <li class="logo-75 hover-block">
-            <a href="https://www.av-huette.de/" target="_blank"	rel="noopener external">
-              <Picture 
-                class:list={'image-wrapper-landscape black-white-filter'} 
-                src={images["/src/assets/partners/logo_avh_t.png"]()} 
-                formats={['webp']} 
-                sizes={'75px'}
-                widths={[75]}
-                alt="Akademischer Verein Hütte" />
-              </a>
-          </li>
-          <li class="logo-120 hover-block">
-            <a href="https://www.kontramarka.de/" target="_blank"	rel="noopener external">
-              <Picture 
-                class:list={'image-wrapper-landscape black-white-filter'} 
-                src={images["/src/assets/partners/logo_kontramarka_t.png"]()} 
-                formats={['webp']} 
-                sizes={'120px'}
-                widths={[120]}
-                alt="Kontramarka" />
-              </a>
-          </li>
-        </ul>
-      </div>
-      <div class="check-css">© 2024</div>
-      <div class="web-developer">
-        <div class="label font-opacity1">{dictionary.web_developer[lang]}</div>
-        <a class="font-opacity1 bold1" href={theater.web_developer.url} target="_blank"	rel="noopener external">{theater.web_developer.name[lang]}</a> 
-      </div>
-    </div>
-  </div>
+	<div class='footer-flex'>
+		<div class='footer-flex-item flex2'>
+			<div>
+				<a href={`/${lang}/`} class='mainpage-link'>
+					<Icon name={'logo-' + lang} class='footer-logo' />
+				</a>
+			</div>
+			{
+				theater.fix_stages.map(fstg => {
+					let stage = theater.stages.find(stg => fstg === stg.sid);
+					if (stage)
+						return (
+							<a class='address' href={stage.google_map.link[lang]} target='_blank' rel='noopener external'>
+								<div class='info-text font-opacity0 bold'>
+									{dictionary.stage[lang] + ' - ' + stage.name[lang].toUpperCase()}
+								</div>
+								<div class='info-text font-opacity0'>{stage.address.full_string}</div>
+							</a>
+						);
+				})
+			}
+			<div class='contact'>
+				<div class='info-text font-opacity0'>
+					<a href={'tel:' + theater.phone}
+						><span class='font-opacity1 phone-number'>{dictionary.telephone_short[lang]}:</span> {theater.phone}</a
+					>
+				</div>
+				<div class='info-text font-opacity0'>
+					<a href={'mailto:' + theater.email}
+						><span class='font-opacity1'>{dictionary.email[lang]}:</span> {theater.email}</a
+					>
+				</div>
+			</div>
+		</div>
+		<div class='footer-flex-item flex2'>
+			<div class='newsletter'>
+				<div class='newsletter-label'>{dictionary.newsletter_title[lang]}</div>
+				<form method='POST' id='newsletter-form' class='newsletter-form'>
+					<div class='newsletter-input-container'>
+						<input id='newsletter-phone' type='hidden' name='phone' value='' />
+						<input
+							type='text'
+							class='newsletter__input'
+							name='email'
+							placeholder={dictionary.email_hint[lang]}
+							autocomplete='on'
+						/>
+						<button id='newsletter-button' class='newsletter__button'>&#10153;</button>
+						<div class='newsletter-input-loader'></div>
+					</div>
+					<div class='newsletter-message'></div>
+				</form>
+			</div>
+			<SocialPages lang={lang} />
+			<div>
+				<button class='feedback-button'>{dictionary.question_form_label[lang]}</button>
+			</div>
+			<div class='lh-1-3'>
+				<div><a class='footer-text-link' href={`/${lang}/impressum/`}>{dictionary.impressum[lang]}</a></div>
+				<div><a class='footer-text-link' href={`/${lang}/privacy-policy/`}>{dictionary.privacy_policy[lang]}</a></div>
+			</div>
+			<div class='copyright-year font-opacity1 lh-1-1'>© 2025 {theater.longTheaterName[lang]}</div>
+		</div>
+		<div class='footer-flex-item flex2'>
+			<div class='footer-partners'>
+				<div class='title font-opacity1'>{dictionary.partners[lang].toUpperCase()}</div>
+				<ul class='logo-flex'>
+					<li class='logo-75 hover-block'>
+						<a href='https://svoi.berlin/' target='_blank' rel='noopener external'>
+							<Picture
+								class:list={'image-wrapper-landscape black-white-filter'}
+								src={images['/src/assets/partners/logo_svoi_t.png']()}
+								formats={['webp']}
+								sizes={'75px'}
+								widths={[75]}
+								alt='Svoi.Berlin'
+							/>
+						</a>
+					</li>
+					<li class='logo-75 hover-block'>
+						<a href='https://www.av-huette.de/' target='_blank' rel='noopener external'>
+							<Picture
+								class:list={'image-wrapper-landscape black-white-filter'}
+								src={images['/src/assets/partners/logo_avh_t.png']()}
+								formats={['webp']}
+								sizes={'75px'}
+								widths={[75]}
+								alt='Akademischer Verein Hütte'
+							/>
+						</a>
+					</li>
+					<li class='logo-120 hover-block'>
+						<a href='https://www.kontramarka.de/' target='_blank' rel='noopener external'>
+							<Picture
+								class:list={'image-wrapper-landscape black-white-filter'}
+								src={images['/src/assets/partners/logo_kontramarka_t.png']()}
+								formats={['webp']}
+								sizes={'120px'}
+								widths={[120]}
+								alt='Kontramarka'
+							/>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class='check-css'>© {current_year}</div>
+			<div class='web-developer'>
+				<div class='label font-opacity1'>{dictionary.web_developer[lang]}</div>
+				<a class='font-opacity1 bold1' href={theater.web_developer.url} target='_blank' rel='noopener external'
+					>{theater.web_developer.name[lang]}</a
+				>
+			</div>
+		</div>
+	</div>
 </footer>
 
 <script is:inline>
-  document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'visible') {
-      const checkCSS = document.querySelector('.check-css');
-      if (checkCSS && getComputedStyle(checkCSS).display !== 'none') {
-        location.reload();
-        // location.replace(window.location.href);
-      }
-    }
+	document.addEventListener('visibilitychange', () => {
+		if (document.visibilityState === 'visible') {
+			const checkCSS = document.querySelector('.check-css');
+			if (checkCSS && getComputedStyle(checkCSS).display !== 'none') {
+				location.reload();
+				// location.replace(window.location.href);
+			}
+		}
 	});
 </script>

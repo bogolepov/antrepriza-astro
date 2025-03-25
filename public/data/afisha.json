@@ -72,7 +72,8 @@
 		"stage_sid": "west",
 		"free_place": true,
 		"prices": ["standart_25", "reduce"],
-		"premiere": true
+		"premiere": true,
+		"sold_out": true
 	},
 	{
 		"date": "2025-03-28",
