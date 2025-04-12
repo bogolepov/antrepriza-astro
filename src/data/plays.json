@@ -105,8 +105,8 @@
 		"age": "16+",
 		"description": { "ru": "play_n32_ru", "de": "play_n32_de" },
 		"posters": {
-			"landscape": "neznakomka32.jpg",
-			"landscape_16_9": "soon_16_9.jpg",
+			"landscape": "n32.jpg",
+			"landscape_16_9": "n32_16_9.jpg",
 			"portrait": "n32_poster.jpg",
 			"afisha": "kontra_n32.jpg",
 			"facebook": "fb_n32.jpg",
