@@ -1,120 +1,130 @@
 ---
-
 const { lang, play_sid, date, time } = Astro.props;
 
-import '@styles/event.css'
+import '@styles/event.css';
 
-import plays from '@data/plays.json'
-import dictionary from '@data/dictionary.json'
-import theater from '@data/theater.json'
-import program from '@public_data/afisha.json'
-import prices from '@data/prices.json'
+import plays from '@data/plays.json';
+import dictionary from '@data/dictionary.json';
+import theater from '@data/theater.json';
+import program from '@public_data/afisha.json';
+import prices from '@data/prices.json';
 
-import TicketBookButton from "@components/ticket_book_button.astro";
+import TicketBookButton from '@components/ticket_book_button.astro';
 
-let play = plays.find(item => (item.suffix === play_sid));
-let event = program.find(item => (item.play_sid === play_sid && item.date === date && item.time === time));
+let play = plays.find(item => item.suffix === play_sid);
+let event = program.find(item => item.play_sid === play_sid && item.date === date && item.time === time);
 
 let stage = theater.stages.find(stg => stg.sid === event.stage_sid);
-let stageNameText  = dictionary.stage[lang] + " " + stage.name[lang].toUpperCase();
+let stageNameText = dictionary.stage[lang] + ' ' + stage.name[lang].toUpperCase();
 
 let performer = theater.longTheaterName[lang];
-if (theater.fix_stages.includes(stage.sid)) performer = performer + " - " + stage.name[lang].toUpperCase();
+if (theater.fix_stages.includes(stage.sid)) performer = performer + ' - ' + stage.name[lang].toUpperCase();
 
-let ticketsName = "";
-let ticketsPrice = "";
+let ticketsName = '';
+let ticketsPrice = '';
 event.prices.forEach(price_type => {
-  let price = prices.find(item => item.type === price_type);
-  if (ticketsName.length === 0) {
-    ticketsName = price.text_short[lang];
-    ticketsPrice = `${price.value.toString()}€`; 
-  } else  {
-    ticketsName = `${ticketsName} / ${price.text_short[lang]}`;
-    ticketsPrice = `${ticketsPrice} / ${price.value.toString()}€`;
-  }
+	let price = prices.find(item => item.type === price_type);
+	if (ticketsName.length === 0) {
+		ticketsName = price.text_short[lang];
+		ticketsPrice = `${price.value.toString()}€`;
+	} else {
+		ticketsName = `${ticketsName} / ${price.text_short[lang]}`;
+		ticketsPrice = `${ticketsPrice} / ${price.value.toString()}€`;
+	}
 });
 
 let image_root;
-if ( process.env.MODE === process.env.MODE_BRANCH ) image_root = '/assets/';
+if (process.env.MODE === process.env.MODE_BRANCH) image_root = '/assets/';
 else {
-  image_root = (( process.env.MODE === process.env.MODE_PRODUCTION ) ? theater.our_website_link : '/public') + '/assets/';
+	image_root = (process.env.MODE === process.env.MODE_PRODUCTION ? theater.our_website_link : '/public') + '/assets/';
 }
 let image = play.seo.event.images.find(image => image.format === '3_4_1050');
 ---
 
-<section class="event">
-  <div class="ev-event-flex">
-    {
-      play && event && play.posters.afisha &&
-      <div class="ev-flex-item-poster">
-        <img 
-          class="image-wrapper-landscape float ev-poster" 
-          src={image_root + image.url}
-          loading="eager"
-          alt={play.title[lang]} 
-          width="280px">
-      </div>
-    }
-    <div class="ev-flex-item-description">
-        {event.premiere && 
-          <div class="play-property-hot-notice">{dictionary.premiere[lang]}</div>
-        }
-        {event.newyear && 
-          <div class="play-property-hot-notice">{dictionary.newyear[lang]}</div>
-        }
-      <h2 class="ev-name">{dictionary.play_lang[lang]} {play.title[lang].toUpperCase()}</h2>
-      <div class="ev-performer">{performer}</div>
-      <div class="ev-when">
-        <div class="ev-date">{date}</div>
-        <div class="ev-time">{time}</div>
-      </div>
-      <div class="play-property label-before" data-label={dictionary.genre[lang]+": "}>
-        {play.genre[lang]}, {play.age}
-      </div>
-      <div class="play-property label-before" data-label={dictionary.language[lang]+": "}>
-        {play.lang[lang]}
-      </div>
-      {
-        event.event_type && event.event_type.is_festival &&
-        <div class="play-property label-before ev-festival" data-label={dictionary.festival[lang]+": "}>
-          { event.event_name[lang] }
-        </div>
-      }
-      <div class="ev-info-flex">
-        <address class="play-property label-before" data-label={dictionary.address[lang]+": "}></address>
-        <address class="play-property">
-          { stage.fix_stage && stage.place_name} { stage.fix_stage && <br>}
-          { stage.address.full_string }
-        </address>
-      </div> 
-      {
-        event.prices.length > 0 &&
-        <div class="ev-info-flex">
-          <div class="play-property label-before" data-label={dictionary.tickets[lang]+": "}></div>
-          <div class="play-property">
-            { ticketsName }<br>
-            { ticketsPrice }
-          </div>
-        </div>
-      }     
-      <a href={`/${lang}/plays/${play.suffix}/`} class="ev-link-more">{dictionary.more_about_play[lang]}</a>  
+<section class='event'>
+	<div class='ev-event-flex'>
+		{
+			play && event && play.posters.afisha && (
+				<div class='ev-flex-item-poster'>
+					<img
+						class='image-wrapper-landscape float ev-poster'
+						src={image_root + image.url}
+						loading='eager'
+						alt={play.title[lang]}
+						width='280px'
+					/>
+				</div>
+			)
+		}
+		<div class='ev-flex-item-description'>
+			{event.canceled && <div class='play-property-hot-notice'>{dictionary.canceled[lang]}</div>}
+			{event.replaced && <div class='play-property-hot-notice'>{dictionary.replaced[lang]}</div>}
+			{event.premiere && <div class='play-property-hot-notice'>{dictionary.premiere[lang]}</div>}
+			{event.newyear && <div class='play-property-hot-notice'>{dictionary.newyear[lang]}</div>}
+			<h2 class='ev-name'>{dictionary.play_lang[lang]} {play.title[lang].toUpperCase()}</h2>
+			<div class='ev-performer'>{performer}</div>
+			<div class:list={['ev-when', { canceled: event.canceled || event.replaced }]}>
+				<div class='ev-date'>{date}</div>
+				<div class='ev-time'>{time}</div>
+			</div>
+			<div class='play-property label-before' data-label={dictionary.genre[lang] + ': '}>
+				{play.genre[lang]}, {play.age}
+			</div>
+			<div class='play-property label-before' data-label={dictionary.language[lang] + ': '}>
+				{play.lang[lang]}
+			</div>
+			{
+				event.event_type && event.event_type.is_festival && (
+					<div class='play-property label-before ev-festival' data-label={dictionary.festival[lang] + ': '}>
+						{event.event_name[lang]}
+					</div>
+				)
+			}
+			<div class='ev-info-flex'>
+				<address class='play-property label-before' data-label={dictionary.address[lang] + ': '}></address>
+				<address class='play-property'>
+					{stage.fix_stage && stage.place_name}
+					{stage.fix_stage && <br />}
+					{stage.address.full_string}
+				</address>
+			</div>
+			{
+				event.prices.length > 0 && (
+					<div class='ev-info-flex'>
+						<div class='play-property label-before' data-label={dictionary.tickets[lang] + ': '} />
+						<div class='play-property'>
+							{ticketsName}
+							<br />
+							{ticketsPrice}
+						</div>
+					</div>
+				)
+			}
+			<a href={`/${lang}/plays/${play.suffix}/`} class='ev-link-more'>{dictionary.more_about_play[lang]}</a>
 
-      { !event.no_tickets && !event.canceled &&
-        <TicketBookButton add_classes="ev-button" button_type='ticket' price=''
-                          date={event.date} time={event.time} play_sid={event.play_sid}	sold_out={event.sold_out}>
-            {dictionary.tickets[lang]}
-            { event.sold_out && <br>}
-            { event.sold_out && dictionary.tickets_sold_out[lang]}
-        </TicketBookButton>
-      }
-    </div>
-  </div>
-  <div class="page-end"></div>
+			{
+				!event.no_tickets && !event.canceled && !event.replaced && (
+					<TicketBookButton
+						add_classes='ev-button'
+						button_type='ticket'
+						price=''
+						date={event.date}
+						time={event.time}
+						play_sid={event.play_sid}
+						sold_out={event.sold_out}
+					>
+						{dictionary.tickets[lang]}
+						{event.sold_out && <br />}
+						{event.sold_out && dictionary.tickets_sold_out[lang]}
+					</TicketBookButton>
+				)
+			}
+		</div>
+	</div>
+	<div class='page-end'></div>
 </section>
 
 <script>
-  const button = document.querySelector('.ev-button');
-  if(button && Date.parse(button.dataset.date+"T"+button.dataset.time) < Date.now()) button.disabled = true;
+	const button = document.querySelector('.ev-button');
+	if (button && Date.parse(button.dataset.date + 'T' + button.dataset.time) < Date.now()) button.disabled = true;
 </script>
-
-

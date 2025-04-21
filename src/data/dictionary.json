@@ -34,6 +34,7 @@
 	"premiere": { "ru": "Премьера", "de": "Premiere" },
 	"newyear": { "ru": "Новогодний", "de": "Neujahr" },
 	"canceled": { "ru": "отменен", "de": "abgesagt" },
+	"replaced": { "ru": "заменен", "de": "ersetzt" },
 	"nextDates": { "ru": "Ближайшие даты", "de": "Kommende Vorstellungen" },
 	"about_play": { "ru": "О спектакле", "de": "Über die Veranstaltung" },
 	"duration": { "ru": "Продолжительность", "de": "Spieldauer" },

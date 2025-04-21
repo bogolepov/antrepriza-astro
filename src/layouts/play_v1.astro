@@ -91,7 +91,7 @@ const ignoreExCreators: string[] = ['light', 'sound', 'stage_setup'];
 						} else {
 							stageNameText = stage.place_name.toUpperCase();
 						}
-						let addClasses: string = play_date.canceled ? 'canceled' : '';
+						let addClasses: string = play_date.canceled || play_date.replaced ? 'canceled' : '';
 						return (
 							<TicketBookButton
 								add_classes={addClasses}
@@ -101,14 +101,15 @@ const ignoreExCreators: string[] = ['light', 'sound', 'stage_setup'];
 								time={play_date.time}
 								play_sid={thisPlay.suffix}
 								no_sell={play_date.no_tickets}
-								sold_out={play_date.sold_out || play_date.canceled}
+								sold_out={play_date.sold_out || play_date.canceled || play_date.replaced}
 							>
 								<div class='button-date'>
 									{playDate.toLocaleDateString(lang, { year: 'numeric', month: 'short', day: '2-digit' })},
 									{playDate.toLocaleDateString(lang, { weekday: 'short' })} / {play_date.time}
-									{play_date.sold_out && !play_date.canceled && <br />}
+									{play_date.sold_out && !play_date.canceled && !play_date.replaced && <br />}
 									{play_date.sold_out &&
 										!play_date.canceled &&
+										!play_date.replaced &&
 										`${dictionary.tickets[lang]} ${dictionary.tickets_sold_out[lang]}`.toLocaleUpperCase(lang)}
 								</div>
 								<div class='button-address'>

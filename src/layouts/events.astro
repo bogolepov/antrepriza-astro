@@ -1,126 +1,136 @@
 ---
-
 const { lang } = Astro.props;
 
-import '@styles/events.css'
+import '@styles/events.css';
 
-import plays from '@data/plays.json'
-import dictionary from '@data/dictionary.json'
-import theater from '@data/theater.json'
-import program from '@public_data/afisha.json'
+import plays from '@data/plays.json';
+import dictionary from '@data/dictionary.json';
+import theater from '@data/theater.json';
+import program from '@public_data/afisha.json';
 
 import { ONE_DAY } from '@scripts/consts';
 
-program.sort((play1, play2) => Date.parse(play1.date+"T"+play1.time) - Date.parse(play2.date+"T"+play2.time));
-let actualProgram = program.filter(performance => Date.parse(performance.date) + ONE_DAY >= Date.now() );
+program.sort((play1, play2) => Date.parse(play1.date + 'T' + play1.time) - Date.parse(play2.date + 'T' + play2.time));
+let actualProgram = program.filter(performance => Date.parse(performance.date) + ONE_DAY >= Date.now());
 let events = [];
 
 const FIX_STAGE = 1;
 const FESTIVAL = 2;
 const TOUR = 3;
-const SID_FESTIVAL = "festival";
-const SID_TOUR = "tour";
+const SID_FESTIVAL = 'festival';
+const SID_TOUR = 'tour';
 
-let newEventsGroup = function(type, stage_sid, list, sid, tabLabel) { return{ type, stage_sid, list, sid, tabLabel } };
+let newEventsGroup = function (type, stage_sid, list, sid, tabLabel) {
+	return { type, stage_sid, list, sid, tabLabel };
+};
 
 let list;
 let tabLabel;
 // added fix stages
 theater.fix_stages.forEach(stage => {
-  list = actualProgram.filter(event => event.stage_sid === stage);
-  if (list.length > 0) {
-    tabLabel = dictionary.stage[lang] + " " + theater.stages.find(stg => stg.sid === stage).name[lang].toUpperCase();
-    events.push(newEventsGroup(FIX_STAGE, stage, list, stage, tabLabel));
-  }
+	list = actualProgram.filter(event => event.stage_sid === stage);
+	if (list.length > 0) {
+		tabLabel = dictionary.stage[lang] + ' ' + theater.stages.find(stg => stg.sid === stage).name[lang].toUpperCase();
+		events.push(newEventsGroup(FIX_STAGE, stage, list, stage, tabLabel));
+	}
 });
 list = actualProgram.filter(event => event.event_type && event.event_type.is_festival);
 if (list.length > 0) {
-  tabLabel = dictionary.festivals[lang];
-  events.push(newEventsGroup(FESTIVAL, undefined, list, SID_FESTIVAL, tabLabel));
+	tabLabel = dictionary.festivals[lang];
+	events.push(newEventsGroup(FESTIVAL, undefined, list, SID_FESTIVAL, tabLabel));
 }
 list = actualProgram.filter(event => event.event_type && event.event_type.is_tour);
 if (list.length > 0) {
-  tabLabel = dictionary.tours[lang];
-  events.push(newEventsGroup(TOUR, undefined, list, SID_TOUR, tabLabel));
+	tabLabel = dictionary.tours[lang];
+	events.push(newEventsGroup(TOUR, undefined, list, SID_TOUR, tabLabel));
 }
 
 let isFirstTab = true;
-
 ---
+
 <script>
-  import { initEventsTab } from "@scripts/antrepriza.js"
+	import { initEventsTab } from '@scripts/antrepriza.js';
 	document.addEventListener('DOMContentLoaded', () => {
 		initEventsTab();
 	});
 </script>
 
-<section class="events">
-  <h1 class="section-title">{dictionary.events[lang].toUpperCase()}</h1>
-  <form>
-    {
-      events.map(evGroup => {
-        let isChecked = isFirstTab;
-        isFirstTab = false;
-        if (isChecked) return <input type="radio" id={'evs-tab-'+evGroup.sid} name="events" value={'evs-tab-'+evGroup.sid} checked /> ;
-        else return <input type="radio" id={'evs-tab-'+evGroup.sid} name="events" value={'evs-tab-'+evGroup.sid} /> ;
-      })
-    }
+<section class='events'>
+	<h1 class='section-title'>{dictionary.events[lang].toUpperCase()}</h1>
+	<form>
+		{
+			events.map(evGroup => {
+				let isChecked = isFirstTab;
+				isFirstTab = false;
+				if (isChecked)
+					return (
+						<input type='radio' id={'evs-tab-' + evGroup.sid} name='events' value={'evs-tab-' + evGroup.sid} checked />
+					);
+				else return <input type='radio' id={'evs-tab-' + evGroup.sid} name='events' value={'evs-tab-' + evGroup.sid} />;
+			})
+		}
 
-    <div class="evs-flex-tabs">
-      {
-        events.map(evGroup => {
-          return (
-            <label class={'evs-tab-' + evGroup.sid + " evs-tab-item"} for={'evs-tab-'+evGroup.sid}>{evGroup.tabLabel}</label>
-          );
-        })
-      }
-      <div class="evs-tab-item-last"></div>
-    </div>
+		<div class='evs-flex-tabs'>
+			{
+				events.map(evGroup => {
+					return (
+						<label class={'evs-tab-' + evGroup.sid + ' evs-tab-item'} for={'evs-tab-' + evGroup.sid}>
+							{evGroup.tabLabel}
+						</label>
+					);
+				})
+			}
+			<div class='evs-tab-item-last'></div>
+		</div>
 
-    {
-      events.flatMap(evGroup => {
-        return (
-          <ul class={"evs-list-" + evGroup.sid}>
-            {
-              evGroup.list.map(event => {
-                let play = plays.find(item => item.suffix === event.play_sid);
-                let eventDate = event.date.replaceAll("-","");
-                let eventTime = event.time.replaceAll(":","");
-                let pageName = `${evGroup.sid}_${eventDate}_${eventTime}_${event.play_sid}`;
+		{
+			events.flatMap(evGroup => {
+				return (
+					<ul class={'evs-list-' + evGroup.sid}>
+						{evGroup.list.map(event => {
+							let play = plays.find(item => item.suffix === event.play_sid);
+							let eventDate = event.date.replaceAll('-', '');
+							let eventTime = event.time.replaceAll(':', '');
+							let pageName = `${evGroup.sid}_${eventDate}_${eventTime}_${event.play_sid}`;
+							if (event.canceled || event.replaced) pageName += '_canceled';
 
-                let fullDate = event.date+'T'+event.time;
-                let playDate = new Date(fullDate); 
+							let fullDate = event.date + 'T' + event.time;
+							let playDate = new Date(fullDate);
 
-                return (
-                  <li class="evs-item" data-date={event.date} data-time={event.time}>
-                    <a class:list={["evs-event-flex",{canceled:event.canceled}]} href={`/${lang}/theater/events/${pageName}/`}>                    
-                      <div>{playDate.getDate().toString().padStart(2, '0')}.{(playDate.getMonth()+1).toString().padStart(2, '0')}.{playDate.getFullYear().toString().padStart(4, '0')}</div>
-                      <div class="font-opacity1">{event.time}</div>
-                      <div>{play.title[lang]}</div>          
-                    </a>
-                  </li>
-                );
-              })
-            }
-          </ul>
-        );
-      })
-    }
-
-  </form>
-  <div class="page-end"></div>
+							return (
+								<li class='evs-item' data-date={event.date} data-time={event.time}>
+									<a
+										class:list={['evs-event-flex', { canceled: event.canceled || event.replaced }]}
+										href={`/${lang}/theater/events/${pageName}/`}
+									>
+										<div>
+											{playDate.getDate().toString().padStart(2, '0')}.
+											{(playDate.getMonth() + 1).toString().padStart(2, '0')}.
+											{playDate.getFullYear().toString().padStart(4, '0')}
+										</div>
+										<div class='font-opacity1'>{event.time}</div>
+										<div>{play.title[lang]}</div>
+									</a>
+								</li>
+							);
+						})}
+					</ul>
+				);
+			})
+		}
+	</form>
+	<div class='page-end'></div>
 </section>
 
 <script>
 	let events = document.querySelectorAll('.evs-item');
 	for (let event of events) {
-		let eventDay = new Date(Date.parse(event.getAttribute("data-date")+'T00:00:00'));
-		
+		let eventDay = new Date(Date.parse(event.getAttribute('data-date') + 'T00:00:00'));
+
 		eventDay.setDate(eventDay.getDate() + 1);
-		if (eventDay.valueOf()  <= Date.now()) {
+		if (eventDay.valueOf() <= Date.now()) {
 			(event as HTMLElement).style.textDecorationLine = 'line-through';
-      // (event as HTMLElement).style.display = 'none';
-		} 
+			// (event as HTMLElement).style.display = 'none';
+		}
 	}
 </script>
-

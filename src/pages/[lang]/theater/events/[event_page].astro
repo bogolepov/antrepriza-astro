@@ -1,57 +1,75 @@
 ---
-import type { GetStaticPaths } from "astro";
+import type { GetStaticPaths } from 'astro';
 
-import AntreprizaLayout from "@layouts/AntreprizaLayout.astro";
-import Event from "@layouts/event.astro";
+import AntreprizaLayout from '@layouts/AntreprizaLayout.astro';
+import Event from '@layouts/event.astro';
 
-import plays from '@data/plays.json'
-import dictionary from '@data/dictionary.json'
-import theater from '@data/theater.json'
-import program from '@public_data/afisha.json'
+import plays from '@data/plays.json';
+import dictionary from '@data/dictionary.json';
+import theater from '@data/theater.json';
+import program from '@public_data/afisha.json';
 
-export const getStaticPaths = (() => { 
-  const SID_FESTIVAL = "festival";
-  const SID_TOUR = "tour";
-  const startDate = Date.parse('01.07.2024');
+export const getStaticPaths = (() => {
+	const SID_FESTIVAL = 'festival';
+	const SID_TOUR = 'tour';
+	const startDate = Date.parse('01.07.2024');
 
-  program.sort((play1, play2) => Date.parse(play1.date+"T"+play1.time) - Date.parse(play2.date+"T"+play2.time));
-  let events = program.filter(performance => (Date.parse(performance.date) >= startDate ));
-  return theater.languages.flatMap(lng => {
-    return events.map(event => {
-      let event_sid;
-      if (theater.fix_stages.includes(event.stage_sid)) event_sid = event.stage_sid;
-      else if (event.event_type && event.event_type.is_festival) event_sid = SID_FESTIVAL;
-      else if (event.event_type && event.event_type.is_tour) event_sid = SID_TOUR;
+	program.sort((play1, play2) => Date.parse(play1.date + 'T' + play1.time) - Date.parse(play2.date + 'T' + play2.time));
+	let events = program.filter(performance => Date.parse(performance.date) >= startDate);
+	return theater.languages.flatMap(lng => {
+		return events.map(event => {
+			let event_sid;
+			if (theater.fix_stages.includes(event.stage_sid)) event_sid = event.stage_sid;
+			else if (event.event_type && event.event_type.is_festival) event_sid = SID_FESTIVAL;
+			else if (event.event_type && event.event_type.is_tour) event_sid = SID_TOUR;
 
-      let strEventDate = (new Date(event.date))?.toLocaleDateString(lng.lang_code, { year: "numeric",  month: "long",  day: "2-digit" });
-      let play = plays.find(item => item.suffix === event.play_sid);
-      let aTitle = dictionary.play_lang[lng.lang_code] + " " + 
-        dictionary.opening_quote[lng.lang_code] + play.title[lng.lang_code] + 
-        dictionary.closing_quote[lng.lang_code] + " [" + strEventDate + "]";
-      let eventDate = event.date.replaceAll("-","");
-      let eventTime = event.time.replaceAll(":","");
-      let pageName = `${event_sid}_${eventDate}_${eventTime}_${play.suffix}`;
-      if (event.canceled) pageName += 'canceled';
-      return {
-        params: {lang: lng.lang_code, event_page: pageName},
-        props: {pageLang: lng.lang_code, pageTitle: aTitle, playSID: play.suffix, playDate: event.date, playTime: event.time},
-      }
-    })
-  });
+			let strEventDate = new Date(event.date)?.toLocaleDateString(lng.lang_code, {
+				year: 'numeric',
+				month: 'long',
+				day: '2-digit',
+			});
+			let play = plays.find(item => item.suffix === event.play_sid);
+			let aTitle =
+				dictionary.play_lang[lng.lang_code] +
+				' ' +
+				dictionary.opening_quote[lng.lang_code] +
+				play.title[lng.lang_code] +
+				dictionary.closing_quote[lng.lang_code] +
+				' [' +
+				strEventDate +
+				']';
+			let eventDate = event.date.replaceAll('-', '');
+			let eventTime = event.time.replaceAll(':', '');
+			let pageName = `${event_sid}_${eventDate}_${eventTime}_${play.suffix}`;
+			if (event.canceled || event.replaced) pageName += '_canceled';
+			return {
+				params: { lang: lng.lang_code, event_page: pageName },
+				props: {
+					pageLang: lng.lang_code,
+					pageTitle: aTitle,
+					playSID: play.suffix,
+					playDate: event.date,
+					playTime: event.time,
+				},
+			};
+		});
+	});
 }) satisfies GetStaticPaths;
 
-const {pageLang, pageTitle, playSID, playDate, playTime} = Astro.props;
+const { pageLang, pageTitle, playSID, playDate, playTime } = Astro.props;
 
-let event = program.find(item => (item.play_sid === playSID && item.date === playDate && item.time === playTime));
-let needTicketForm = event.no_tickets ? "no" : "yes";
-
+let event = program.find(item => item.play_sid === playSID && item.date === playDate && item.time === playTime);
+let needTicketForm = event.no_tickets ? 'no' : 'yes';
 ---
 
-<AntreprizaLayout 
-  title={pageTitle} lang={pageLang} play_sid={playSID} 
-  ticket_form = {needTicketForm} 
-  seo_event = 'true' date={playDate} time={playTime}>
-  <Event lang={pageLang} play_sid={playSID} date={playDate} time={playTime}></Event>
+<AntreprizaLayout
+	title={pageTitle}
+	lang={pageLang}
+	play_sid={playSID}
+	ticket_form={needTicketForm}
+	seo_event='true'
+	date={playDate}
+	time={playTime}
+>
+	<Event lang={pageLang} play_sid={playSID} date={playDate} time={playTime} />
 </AntreprizaLayout>
-
-

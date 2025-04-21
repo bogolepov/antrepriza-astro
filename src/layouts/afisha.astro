@@ -1,16 +1,16 @@
 ---
-import "@styles/afisha.css"
+import '@styles/afisha.css';
 
-const {lang, hide_section_title} = Astro.props;
+const { lang, hide_section_title } = Astro.props;
 
-import program from '@public_data/afisha.json'
-import dictionary from '@data/dictionary.json'
-import theater from '@data/theater.json'
-import plays from '@data/plays.json'
+import program from '@public_data/afisha.json';
+import dictionary from '@data/dictionary.json';
+import theater from '@data/theater.json';
+import plays from '@data/plays.json';
 
 import { ONE_DAY } from '@scripts/consts';
 
-import TicketBookButton from "@components/ticket_book_button.astro";
+import TicketBookButton from '@components/ticket_book_button.astro';
 
 import type { ImageMetadata } from 'astro';
 import { Picture } from 'astro:assets';
@@ -18,37 +18,33 @@ import { Picture } from 'astro:assets';
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg,jpg}');
 // if (!images[url]) throw new Error(`"${url}" does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif}"`);
 
-program.sort((play1, play2) => Date.parse(play1.date+"T"+play1.time) - Date.parse(play2.date+"T"+play2.time));
+program.sort((play1, play2) => Date.parse(play1.date + 'T' + play1.time) - Date.parse(play2.date + 'T' + play2.time));
 
-let actualProgram = program.filter(performance => Date.parse(performance.date) + ONE_DAY >= Date.now() );
+let actualProgram = program.filter(performance => Date.parse(performance.date) + ONE_DAY >= Date.now());
 let gropedProgram = [];
 
 if (actualProgram.length > 0) {
 	let firstDate = new Date(actualProgram[0].date);
-	let lastDate = new Date(actualProgram[actualProgram.length-1].date);
+	let lastDate = new Date(actualProgram[actualProgram.length - 1].date);
 
-	for (let year = firstDate.getFullYear(); year <= lastDate.getFullYear(); year++ ) {
-		let startMonth = (year === firstDate.getFullYear() ? firstDate.getMonth() : 0);
-		let endMonth = (year === lastDate.getFullYear() ? lastDate.getMonth() : 11);
-		for (let month = startMonth; month <= endMonth; month++ ) {
+	for (let year = firstDate.getFullYear(); year <= lastDate.getFullYear(); year++) {
+		let startMonth = year === firstDate.getFullYear() ? firstDate.getMonth() : 0;
+		let endMonth = year === lastDate.getFullYear() ? lastDate.getMonth() : 11;
+		for (let month = startMonth; month <= endMonth; month++) {
 			let events = actualProgram.filter(item => {
 				let date = new Date(item.date);
-				return (date.getFullYear() === year && date.getMonth() === month);
+				return date.getFullYear() === year && date.getMonth() === month;
 			});
-			if (events && events.length > 0) gropedProgram.push({year, month, events});
+			if (events && events.length > 0) gropedProgram.push({ year, month, events });
 		}
-	}	
+	}
 }
-
 
 let iMonth: number = -1;
 ---
 
-<section class="program">
-	{
-		!hide_section_title &&
-		<h1 class="section-title">{dictionary.program[lang]}</h1>
-	}
+<section class='program'>
+	{!hide_section_title && <h1 class='section-title'>{dictionary.program[lang]}</h1>}
 
 	{
 		gropedProgram.map(monthProgram => {
@@ -56,112 +52,126 @@ let iMonth: number = -1;
 			let monthName = date.toLocaleString(lang, { month: 'long' });
 			let strYear = date.getFullYear().toString();
 			return (
-				<div class="month-program">
-					<h2 class="month-title">{monthName}&ensp;{strYear}</h2>
-					<ul class="month-list" data-counter={monthProgram.events.length.toString()}>
-						{
-							monthProgram.events.map(event => {
-								let play = plays.find(item => item.suffix === event.play_sid);
-								if (!play) {
-									console.error("Play isn't found");
-									return;				
+				<div class='month-program'>
+					<h2 class='month-title'>
+						{monthName}&ensp;{strYear}
+					</h2>
+					<ul class='month-list' data-counter={monthProgram.events.length.toString()}>
+						{monthProgram.events.map(event => {
+							let play = plays.find(item => item.suffix === event.play_sid);
+							if (!play) {
+								console.error("Play isn't found");
+								return;
+							}
+
+							let playDate: Date = new Date(event.date);
+
+							let stage = theater.stages.find(stg => stg.sid === event.stage_sid);
+							if (!stage) console.error("Stage isn't found: " + event.stage_sid);
+
+							let stageNameText;
+							if (stage.fix_stage) {
+								stageNameText = dictionary.stage[lang] + ' - ' + stage.name[lang].toUpperCase();
+							} else {
+								if (event.event_type) {
+									if (event.event_type.is_festival)
+										stageNameText =
+											dictionary.festival[lang] +
+											' ' +
+											dictionary.opening_quote[lang] +
+											event.event_name[lang].toUpperCase() +
+											dictionary.closing_quote[lang];
+									else stageNameText = event.event_name[lang].toUpperCase();
 								}
+							}
 
-								let playDate: Date = new Date(event.date);
-
-								let stage = theater.stages.find(stg => stg.sid === event.stage_sid);
-								if (!stage) console.error("Stage isn't found: " + event.stage_sid);
-
-								let stageNameText;
-								if (stage.fix_stage) {
-									stageNameText = dictionary.stage[lang] + " - " + stage.name[lang].toUpperCase();
-								}
-								else {
-									if (event.event_type) {
-										if (event.event_type.is_festival)
-											stageNameText = dictionary.festival[lang] + " " + dictionary.opening_quote[lang] + 
-																			event.event_name[lang].toUpperCase() + dictionary.closing_quote[lang];
-										else stageNameText = event.event_name[lang].toUpperCase();
-									}
-								}
-
-								return (
-									<li class:list={['program-play-block hover-block hover-background', 
-																	{festival: event.event_type && event.event_type.is_festival}]}
-											data-date={event.date}>
-										<div class="program-play-text">
-											
-											<div class="program-when" >
-												{event.canceled &&
-													<div class="play-property-hot-notice">{dictionary.canceled[lang]}</div>
-												}
-												{event.premiere && !event.canceled &&
-													<div class="play-property-hot-notice">{dictionary.premiere[lang]}</div>
-												}
-												{event.newyear && !event.canceled &&
-													<div class="play-property-hot-notice">{dictionary.newyear[lang]}</div>
-												}
-												{event.event_type && !event.canceled && event.event_type.is_festival && 
-													<div class="play-property-hot-notice">{dictionary.festival[lang]}</div>
-												}
-												<time class="program-date" data-day={playDate.toLocaleDateString(lang, { weekday: 'short' })}>
-													{playDate.getDate().toString().padStart(2, '0')}.{(playDate.getMonth()+1).toString().padStart(2, '0')},
-												</time>
-												<time class="program-time">
-														{event.time}
-												</time>
-											</div>
-
-											<a class="program-title stretch-link" href={`/${lang}/plays/${play.suffix}/`}>
-												<h3 class:list={["play-title", {canceled: event.canceled}]} >{play.alt_title[lang]}</h3>
-											</a>
-
-											<div class="program-info">
-												<div class="play-property-label">{dictionary.genre[lang]+": "}</div>
-												<div class="play-property">{play.genre[lang]}, {play.age}</div>
-												<div class="play-property-label">{dictionary.language[lang]+": "}</div>
-												<div class="play-property">{play.lang[lang]}</div>
-												<address class="play-property-label">{dictionary.address[lang]+": "}</address>
-												<address class="play-property">
-													<span class='address-stage'>{ stageNameText }</span>
-													<br>
-													{ stage.address.full_string }
-													<br>
-												</address>
-											</div>
-
-											{ !event.no_tickets && !event.canceled &&
-												<div class="program-tickets">
-													<TicketBookButton add_classes="afisha" button_type='ticket' price=''
-																						date={event.date} time={event.time} play_sid={event.play_sid} sold_out={event.sold_out} >
-															{dictionary.tickets[lang]}
-															{ event.sold_out && <br>}
-															{ event.sold_out && dictionary.tickets_sold_out[lang]}
-													</TicketBookButton>
-												</div>
-											}
-
+							return (
+								<li
+									class:list={[
+										'program-play-block hover-block hover-background',
+										{ festival: event.event_type && event.event_type.is_festival },
+									]}
+									data-date={event.date}
+								>
+									<div class='program-play-text'>
+										<div class='program-when'>
+											{event.canceled && <div class='play-property-hot-notice'>{dictionary.canceled[lang]}</div>}
+											{event.replaced && <div class='play-property-hot-notice'>{dictionary.replaced[lang]}</div>}
+											{event.premiere && !event.canceled && !event.replaced && (
+												<div class='play-property-hot-notice'>{dictionary.premiere[lang]}</div>
+											)}
+											{event.newyear && !event.canceled && !event.replaced && (
+												<div class='play-property-hot-notice'>{dictionary.newyear[lang]}</div>
+											)}
+											{event.event_type && !event.canceled && !event.replaced && event.event_type.is_festival && (
+												<div class='play-property-hot-notice'>{dictionary.festival[lang]}</div>
+											)}
+											<time class='program-date' data-day={playDate.toLocaleDateString(lang, { weekday: 'short' })}>
+												{playDate.getDate().toString().padStart(2, '0')}.
+												{(playDate.getMonth() + 1).toString().padStart(2, '0')},
+											</time>
+											<time class='program-time'>{event.time}</time>
 										</div>
-										<div class="program-play-image">
-											<Picture 
-												class:list={'image-wrapper-landscape black-white-filter'} 
-												src={images["/src/assets/" + play.posters.landscape]()} 
-												formats={['webp']} 
-												fallbackFormat='jpg'
-												loading="eager"
-												widths={[300, 420, 540, 640]}
-												sizes={'(max-width: 360px) 300px, (max-width: 500px) 420px, (max-width: 640px) 540px, 640px'}
-												quality="100"
-												alt={play.alt_title[lang]} />
-										</div>
-									</li>
 
-								);
-							})
-						}
-				</ul>
+										<a class='program-title stretch-link' href={`/${lang}/plays/${play.suffix}/`}>
+											<h3 class:list={['play-title', { canceled: event.canceled || event.replaced }]}>
+												{play.alt_title[lang]}
+											</h3>
+										</a>
+
+										<div class='program-info'>
+											<div class='play-property-label'>{dictionary.genre[lang] + ': '}</div>
+											<div class='play-property'>
+												{play.genre[lang]}, {play.age}
+											</div>
+											<div class='play-property-label'>{dictionary.language[lang] + ': '}</div>
+											<div class='play-property'>{play.lang[lang]}</div>
+											<address class='play-property-label'>{dictionary.address[lang] + ': '}</address>
+											<address class='play-property'>
+												<span class='address-stage'>{stageNameText}</span>
+												<br />
+												{stage.address.full_string}
+												<br />
+											</address>
+										</div>
+
+										{!event.no_tickets && !event.canceled && !event.replaced && (
+											<div class='program-tickets'>
+												<TicketBookButton
+													add_classes='afisha'
+													button_type='ticket'
+													price=''
+													date={event.date}
+													time={event.time}
+													play_sid={event.play_sid}
+													sold_out={event.sold_out}
+												>
+													{dictionary.tickets[lang]}
+													{event.sold_out && <br />}
+													{event.sold_out && dictionary.tickets_sold_out[lang]}
+												</TicketBookButton>
+											</div>
+										)}
+									</div>
+									<div class='program-play-image'>
+										<Picture
+											class:list={'image-wrapper-landscape black-white-filter'}
+											src={images['/src/assets/' + play.posters.landscape]()}
+											formats={['webp']}
+											fallbackFormat='jpg'
+											loading='eager'
+											widths={[300, 420, 540, 640]}
+											sizes={'(max-width: 360px) 300px, (max-width: 500px) 420px, (max-width: 640px) 540px, 640px'}
+											quality='100'
+											alt={play.alt_title[lang]}
+										/>
+									</div>
+								</li>
+							);
+						})}
+					</ul>
 				</div>
-			);			
+			);
 		})
 	}
 </section>
@@ -169,19 +179,19 @@ let iMonth: number = -1;
 <script>
 	let eventBlocks = document.querySelectorAll('.program-play-block');
 	for (let eventBlock of eventBlocks) {
-		let thePlayDay = new Date(Date.parse(eventBlock.getAttribute("data-date")+'T00:00:00'));
-		
+		let thePlayDay = new Date(Date.parse(eventBlock.getAttribute('data-date') + 'T00:00:00'));
+
 		thePlayDay.setDate(thePlayDay.getDate() + 1);
-		if (thePlayDay.valueOf()  <= Date.now()) {
+		if (thePlayDay.valueOf() <= Date.now()) {
 			(eventBlock as HTMLElement).hidden = true;
 			let list = eventBlock.closest('ul');
 			if (list) {
-				list.setAttribute('data-counter', (parseInt(list.getAttribute('data-counter'))-1).toString());
+				list.setAttribute('data-counter', (parseInt(list.getAttribute('data-counter')) - 1).toString());
 			}
 		} else {
 			let btn = eventBlock.querySelector('.pink-button.book-ticket');
 			if (btn) {
-				let fullDate = btn.getAttribute("data-date")+'T'+btn.getAttribute("data-time");
+				let fullDate = btn.getAttribute('data-date') + 'T' + btn.getAttribute('data-time');
 				if (Date.parse(fullDate) <= Date.now()) {
 					btn.disabled = true;
 				}

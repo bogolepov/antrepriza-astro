@@ -63,7 +63,7 @@
 		"stage_sid": "west",
 		"free_place": true,
 		"prices": ["kids", "adult", "reduce"],
-		"canceled": true
+		"replaced": true
 	},
 	{
 		"date": "2025-03-30",

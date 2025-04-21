@@ -52,6 +52,10 @@
 	font-weight: 400;
 	line-height: 1.35em;
 }
+.ev-when.canceled {
+	text-decoration: line-through;
+	text-decoration-color: var(--colorFont-Op1);
+}
 
 .play-property.ev-festival {
 	padding-top: 1em;
