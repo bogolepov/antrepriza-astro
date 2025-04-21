@@ -49,11 +49,21 @@
 	{
 		"date": "2025-04-25",
 		"time": "16:00",
+		"play_id": 10,
+		"play_sid": "kd",
+		"stage_sid": "west",
+		"free_place": true,
+		"prices": ["kids_25", "adult_21", "reduce"]
+	},
+	{
+		"date": "2025-04-25",
+		"time": "16:00",
 		"play_id": 6,
 		"play_sid": "mik",
 		"stage_sid": "west",
 		"free_place": true,
-		"prices": ["kids", "adult", "reduce"]
+		"prices": ["kids", "adult", "reduce"],
+		"canceled": true
 	},
 	{
 		"date": "2025-03-30",

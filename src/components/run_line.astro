@@ -1,71 +1,88 @@
 ---
-import dictionary from '@data/dictionary.json'
+import dictionary from '@data/dictionary.json';
 
-const {lang} = Astro.props;
-
+const { lang, expired = '' } = Astro.props;
 ---
 
-<div class="run-line-wrapper">
-  <div class="run-line">
-    <div>
-      <p class="run-text1">{dictionary.canceled_n32_1[lang]}</p>
-      <p class="run-text2">{dictionary.canceled_n32_1[lang]}</p>
-    </div>
-  </div>
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		const runLine = document.querySelector('.run-line-wrapper');
+		if (runLine && (runLine as HTMLElement).dataset.expired) {
+			const today = new Date();
+			const expired = new Date((runLine as HTMLElement).dataset.expired);
+			if (expired < today) (runLine as HTMLElement).style.display = 'none';
+		}
+	});
+</script>
+
+<div class='run-line-wrapper' data-expired={expired}>
+	<div class='run-line'>
+		<div>
+			<p class='run-text1'>{dictionary.canceled_mik_1[lang]}</p>
+			<p class='run-text2'>{dictionary.canceled_mik_1[lang]}</p>
+		</div>
+	</div>
 </div>
 
 <style>
-  .run-line-wrapper {
-    height: clamp(2.0rem, 4vw, 2.5rem);
-    width: 100%;
-  }
+	.run-line-wrapper {
+		height: clamp(2rem, 4vw, 2.5rem);
+		width: 100%;
+	}
 
-  .run-line {
-    position: absolute;
-    left: 0;
-    right: 0;
-    z-index: 900;
-    background-color: var(--colorAntreprizaRed);
-    color: #ffffff;
-    height: clamp(2.0rem, 4vw, 2.5rem);
-    font-weight: 400;
-  }
+	.run-line {
+		position: absolute;
+		left: 0;
+		right: 0;
+		z-index: 900;
+		background-color: var(--colorAntreprizaRed);
+		color: #ffffff;
+		height: clamp(2rem, 4vw, 2.5rem);
+		font-weight: 400;
+	}
 
-  .run-line div {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-  }
+	.run-line div {
+		display: flex;
+		flex-direction: row;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+	}
 
-  .run-line p {
-    margin: auto 0;
-    line-height: 1;
-    width: max-content;
-    white-space: nowrap;
-    display: inline-block;
-    padding: 2px 12vw 0 12vw;
-  }
+	.run-line p {
+		margin: auto 0;
+		line-height: 1;
+		width: max-content;
+		white-space: nowrap;
+		display: inline-block;
+		padding: 2px 12vw 0 12vw;
+	}
 
-  .run-text1 {
-      animation: run-text1 70s infinite linear;
-      animation-delay: -70s;
-  }
+	.run-text1 {
+		animation: run-text1 70s infinite linear;
+		animation-delay: -70s;
+	}
 
-  .run-text2 {
-      animation: run-text2 70s infinite linear;
-      animation-delay: -35s;
-  }
+	.run-text2 {
+		animation: run-text2 70s infinite linear;
+		animation-delay: -35s;
+	}
 
-  @keyframes run-text1 {
-    0% { transform: translateX(100%); }
-    100% { transform: translateX(-100%); }
-}
+	@keyframes run-text1 {
+		0% {
+			transform: translateX(100%);
+		}
+		100% {
+			transform: translateX(-100%);
+		}
+	}
 
-  @keyframes run-text2 {
-      0% { transform: translateX(0%); }
-      100% { transform: translateX(-200%); }
-  }
-
+	@keyframes run-text2 {
+		0% {
+			transform: translateX(0%);
+		}
+		100% {
+			transform: translateX(-200%);
+		}
+	}
 </style>

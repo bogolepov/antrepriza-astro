@@ -1,61 +1,69 @@
 ---
-import "@styles/font.css"
-import "@styles/init.css"
-import "@styles/antrepriza.css"
+import '@styles/font.css';
+import '@styles/init.css';
+import '@styles/antrepriza.css';
 
-import dictionary from '@data/dictionary.json'
+import dictionary from '@data/dictionary.json';
 
-import Header from "@components/header.astro";
-import Footer from "@components/footer.astro";
-import Reservation from "@react-components/reservation/Reservation";
-import Head from "@components/head/head.astro";
-import RunLine from "@components/run_line.astro"
+import Header from '@components/header.astro';
+import Footer from '@components/footer.astro';
+import Reservation from '@react-components/reservation/Reservation';
+import Head from '@components/head/head.astro';
+import RunLine from '@components/run_line.astro';
 
-import FeedbackForm from "@components/feedback_form.astro"
-import TicketForm from "@components/ticket_form/ticket_form.astro";
+import FeedbackForm from '@components/feedback_form.astro';
+import TicketForm from '@components/ticket_form/ticket_form.astro';
 
-const { title, description, lang, reservation, robots = "index, follow", ticket_form = "no", play_sid, seo_event = 'false', date, time } = Astro.props;
+const {
+	title,
+	description,
+	lang,
+	reservation,
+	robots = 'index, follow',
+	ticket_form = 'no',
+	play_sid,
+	seo_event = 'false',
+	date,
+	time,
+} = Astro.props;
 
-let pageNeedTicketForm = (ticket_form === "yes");
+let pageNeedTicketForm = ticket_form === 'yes';
 
-let runLine: boolean = false;
-
+let runLine: boolean = true;
 ---
 
 <html lang={lang}>
-	<Head lang={lang} title={title} description={description} robots={robots} play_sid = {play_sid} seo_event={seo_event} date={date} time={time}/>
+	<Head
+		lang={lang}
+		title={title}
+		description={description}
+		robots={robots}
+		play_sid={play_sid}
+		seo_event={seo_event}
+		date={date}
+		time={time}
+	/>
 
-	<body class="no-js">
-
+	<body class='no-js'>
 		<script>
-		import { initPage } from "@scripts/antrepriza.js"
+			import { initPage } from '@scripts/antrepriza.js';
 			document.addEventListener('DOMContentLoaded', () => {
 				initPage();
 			});
 		</script>
 
-		<div class="wrapper">
+		<div class='wrapper'>
 			<Header lang={lang} />
-			<main class="wrapper-main">
-				{
-					runLine &&
-					<RunLine lang={lang} />
-				}
-				<slot/>
+			<main class='wrapper-main'>
+				{runLine && <RunLine lang={lang} expired='2025-04-26' />}
+				<slot />
 			</main>
 			<Footer lang={lang} />
 		</div>
-	
-		{
-			(reservation !== 'no') &&
-			<Reservation client:only="react" lang={lang}></Reservation>
-		}
-    <FeedbackForm lang={lang}/>
-		{
-			pageNeedTicketForm &&
-			<TicketForm lang={lang}/>
-		}
-    <input type="checkbox" id="theme-switcher" tabindex="-1" aria-label={dictionary.aria_theme_switch[lang]} checked/>
+
+		{reservation !== 'no' && <Reservation client:only='react' lang={lang} />}
+		<FeedbackForm lang={lang} />
+		{pageNeedTicketForm && <TicketForm lang={lang} />}
+		<input type='checkbox' id='theme-switcher' tabindex='-1' aria-label={dictionary.aria_theme_switch[lang]} checked />
 	</body>
-	
 </html>
