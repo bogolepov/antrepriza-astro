@@ -59,8 +59,16 @@ let image = play.seo.event.images.find(image => image.format === '3_4_1050');
 		<div class='ev-flex-item-description'>
 			{event.canceled && <div class='play-property-hot-notice'>{dictionary.canceled[lang]}</div>}
 			{event.replaced && <div class='play-property-hot-notice'>{dictionary.replaced[lang]}</div>}
-			{event.premiere && <div class='play-property-hot-notice'>{dictionary.premiere[lang]}</div>}
-			{event.newyear && <div class='play-property-hot-notice'>{dictionary.newyear[lang]}</div>}
+			{
+				event.premiere && !event.canceled && !event.replaced && !event.newyear && (
+					<div class='play-property-hot-notice'>{dictionary.premiere[lang]}</div>
+				)
+			}
+			{
+				event.newyear && !event.canceled && !event.replaced && (
+					<div class='play-property-hot-notice'>{dictionary.newyear[lang]}</div>
+				)
+			}
 			<h2 class='ev-name'>{dictionary.play_lang[lang]} {play.title[lang].toUpperCase()}</h2>
 			<div class='ev-performer'>{performer}</div>
 			<div class:list={['ev-when', { canceled: event.canceled || event.replaced }]}>
