@@ -10,7 +10,7 @@ const { lang, expired = '' } = Astro.props;
 		if (runLine && (runLine as HTMLElement).dataset.expired) {
 			const today = new Date();
 			const expired = new Date((runLine as HTMLElement).dataset.expired);
-			if (expired < today) (runLine as HTMLElement).style.display = 'none';
+			if (today < expired) (runLine as HTMLElement).style.display = 'block';
 		}
 	});
 </script>
@@ -28,6 +28,7 @@ const { lang, expired = '' } = Astro.props;
 	.run-line-wrapper {
 		height: clamp(2rem, 4vw, 2.5rem);
 		width: 100%;
+		display: none;
 	}
 
 	.run-line {
