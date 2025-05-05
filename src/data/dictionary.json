@@ -179,6 +179,10 @@
 		"ru": "Дорогие зрители!!! 25 апреля в 16 часов вместо спектакля «МАЛЫШ И КАРЛСОН» состоится спектакль «КОШКИН ДОМ». Cпектакль «НЕЗНАКОМКА» 26 апреля в 19.30 в связи с болезнью актера переносится на 24 мая в 19.30.",
 		"de": "Liebe Gäste!!! Am 25. April um 16:00 Uhr findet anstelle des Theaterstücks „STEPPKE UND KARLSON“ das Theaterstück „DAS KATZENHAUS“ statt. Die Vorstellung „Die Unbekannte 32“ am 26. April um 19.30 Uhr wird aufgrund der Erkrankung des Schauspielers auf den 24. Mai um 19.30 Uhr verschoben."
 	},
+	"canceled_n32_2": {
+		"ru": "Дорогие зрители!!! 24 мая в 19:30 вместо спектакля «НЕЗНАКОМКА 32» состоится спектакль «МАЛЫШ И КАРЛ(СОН)».",
+		"de": "Liebe Gäste!!! Am 24. Mai um 19:30 Uhr findet anstelle des Theaterstücks „DIE UNBEKANNTE 32“ das Theaterstück „STEPPKE UND KARL(SON)“ statt."
+	},
 
 	"": { "ru": "", "de": "" }
 }

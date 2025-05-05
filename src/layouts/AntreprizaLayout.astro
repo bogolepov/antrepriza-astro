@@ -29,7 +29,7 @@ const {
 
 let pageNeedTicketForm = ticket_form === 'yes';
 
-let runLine: boolean = false;
+let runLine: boolean = true;
 ---
 
 <html lang={lang}>
@@ -55,7 +55,7 @@ let runLine: boolean = false;
 		<div class='wrapper'>
 			<Header lang={lang} />
 			<main class='wrapper-main'>
-				{runLine && <RunLine lang={lang} expired='2025-04-29' />}
+				{runLine && <RunLine lang={lang} />}
 				<slot />
 			</main>
 			<Footer lang={lang} />

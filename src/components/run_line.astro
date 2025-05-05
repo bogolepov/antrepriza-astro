@@ -1,7 +1,8 @@
 ---
 import dictionary from '@data/dictionary.json';
 
-const { lang, expired = '' } = Astro.props;
+const { lang } = Astro.props;
+const expired: string = '2025-05-25';
 ---
 
 <script>
@@ -18,8 +19,8 @@ const { lang, expired = '' } = Astro.props;
 <div class='run-line-wrapper' data-expired={expired}>
 	<div class='run-line'>
 		<div>
-			<p class='run-text1'>{dictionary.canceled_mik_1[lang]}</p>
-			<p class='run-text2'>{dictionary.canceled_mik_1[lang]}</p>
+			<p class='run-text1'>{dictionary.canceled_n32_2[lang]}</p>
+			<p class='run-text2'>{dictionary.canceled_n32_2[lang]}</p>
 		</div>
 	</div>
 </div>
