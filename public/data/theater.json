@@ -76,6 +76,12 @@
 			"text_short": { "ru": "Обычный", "de": "Normal" }
 		},
 		{
+			"type": "standart_21",
+			"value": 21,
+			"text": { "ru": "Обычный билет", "de": "Normalticket" },
+			"text_short": { "ru": "Обычный", "de": "Normal" }
+		},
+		{
 			"type": "standart22",
 			"value": 22,
 			"text": { "ru": "Обычный билет", "de": "Normalticket" },
@@ -86,6 +92,12 @@
 			"value": 19,
 			"text": { "ru": "Обычный билет", "de": "Normalticket" },
 			"text_short": { "ru": "Обычный", "de": "Normal" }
+		},
+		{
+			"type": "reduce_12",
+			"value": 12,
+			"text": { "ru": "Льготный билет", "de": "Ermäßigtes Ticket" },
+			"text_short": { "ru": "Льготный", "de": "Ermäßigt" }
 		},
 		{
 			"type": "reduce",
@@ -131,6 +143,21 @@
 		}
 	],
 	"plays": [
+		{
+			"id": 11,
+			"suffix": "eop",
+			"title": { "ru": "Евангелие от Пилата", "de": "Evangelium des Pilatus" },
+			"alt_title": { "ru": "Евангелие от\u00A0Пилата", "de": "Evangelium des\u00A0Pilatus" },
+			"author": { "ru": "М.Булгаков", "de": "M.Bulgakow" },
+			"author_full": { "ru": "Михаил Булгаков", "de": "Michail Bulgakow" },
+			"genre": { "ru": "мистика", "de": "Mystik" },
+			"length": 145,
+			"break": true,
+			"age": "16+",
+			"lang": { "ru": "русский", "de": "Russisch" },
+			"lang_id": "ru",
+			"url_kontramarka": "https://www.kontramarka.de/tour/teatr-antrepriza-spektakl-evangelie-ot-pilata/"
+		},
 		{
 			"id": 10,
 			"suffix": "kd",

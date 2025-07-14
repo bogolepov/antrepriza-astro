@@ -1,5 +1,52 @@
 [
 	{
+		"date": "2025-09-28",
+		"time": "16:00",
+		"play_id": 10,
+		"play_sid": "kd",
+		"stage_sid": "west",
+		"free_place": true,
+		"prices": ["standart_21", "reduce_12"]
+	},
+	{
+		"date": "2025-09-27",
+		"time": "19:30",
+		"play_id": 8,
+		"play_sid": "miks",
+		"stage_sid": "west",
+		"free_place": true,
+		"prices": ["standart_21", "reduce_12"]
+	},
+	{
+		"date": "2025-09-27",
+		"time": "16:00",
+		"play_id": 6,
+		"play_sid": "mik",
+		"stage_sid": "west",
+		"free_place": true,
+		"prices": ["standart_21", "reduce_12"]
+	},
+	{
+		"date": "2025-09-26",
+		"time": "19:30",
+		"play_id": 11,
+		"play_sid": "eop",
+		"stage_sid": "west",
+		"free_place": true,
+		"premiere": true,
+		"prices": ["standart_21", "reduce_12"]
+	},
+	{
+		"date": "2025-09-24",
+		"time": "19:30",
+		"play_id": 11,
+		"play_sid": "eop",
+		"stage_sid": "west",
+		"free_place": true,
+		"premiere": true,
+		"prices": ["standart_21", "reduce_12"]
+	},
+	{
 		"date": "2025-05-25",
 		"time": "16:00",
 		"play_id": 10,

@@ -1,5 +1,58 @@
 [
 	{
+		"id": 11,
+		"suffix": "eop",
+		"title": { "ru": "Евангелие от Пилата", "de": "Evangelium des Pilatus" },
+		"alt_title": { "ru": "Евангелие от\u00A0Пилата", "de": "Evangelium des\u00A0Pilatus" },
+		"author": { "ru": "М.Булгаков", "de": "M.Bulgakow" },
+		"author_full": { "ru": "Михаил Булгаков", "de": "Michail Bulgakow" },
+		"genre": { "ru": "мистика", "de": "Mystik" },
+		"length": 145,
+		"break": true,
+		"age": "16+",
+		"description": { "ru": "play_eop_ru", "de": "play_eop_de" },
+		"posters": {
+			"landscape": "eop.jpg",
+			"landscape_16_9": "eop_16_9.jpg",
+			"portrait": "eop_poster.jpg",
+			"afisha": "kontra_eop.jpg",
+			"facebook": "fb_eop_soon.jpg",
+			"minimum": ""
+		},
+		"lang": { "ru": "русский", "de": "Russisch" },
+		"lang_id": "ru",
+		"url_kontramarka": "https://www.kontramarka.de/tour/teatr-antrepriza-spektakl-evangelie-ot-pilata/",
+		"characters": [
+			{
+				"id": 1,
+				"name": { "ru": "Понтий Пилат и другие", "de": "Pontius Pilatus und andere" },
+				"actors": [139]
+			}
+		],
+		"creators": [
+			{ "type": "regie", "people": [1] },
+			{ "type": "light", "people": [] },
+			{ "type": "sound", "people": [] },
+			{ "type": "graphic_design", "people": [] }
+		],
+		"seo": {
+			"description": {
+				"ru": "По роману М.Булгакова «Мастер и Маргарита». Мистика, 16+. На русском языке.",
+				"de": "Basierend auf dem Roman von M.Bulgakow „Der Meister und Margarita“. Mystik, 16+. Auf Russisch."
+			},
+			"open_graph": {
+				"image": { "url": "afisha_eop.jpg", "type": "image/jpeg" }
+			},
+			"event": {
+				"images": [
+					{ "format": "19_6", "url": "eop_soon_1920t.jpg" },
+					{ "format": "3_4", "url": "kontra_eop_1920t.jpg" },
+					{ "format": "3_4_1050", "url": "kontra_eop_1050t.webp" }
+				]
+			}
+		}
+	},
+	{
 		"id": 10,
 		"suffix": "kd",
 		"title": { "ru": "Кошкин дом", "de": "Das Katzenhaus" },
