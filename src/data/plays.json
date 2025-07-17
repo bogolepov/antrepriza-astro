@@ -6,7 +6,7 @@
 		"alt_title": { "ru": "Евангелие от\u00A0Пилата", "de": "Evangelium des\u00A0Pilatus" },
 		"author": { "ru": "М.Булгаков", "de": "M.Bulgakow" },
 		"author_full": { "ru": "Михаил Булгаков", "de": "Michail Bulgakow" },
-		"genre": { "ru": "мистика", "de": "Mystik" },
+		"genre": { "ru": "мистерия", "de": "Mysterium" },
 		"length": 145,
 		"break": true,
 		"age": "16+",
@@ -30,9 +30,9 @@
 			}
 		],
 		"creators": [
-			{ "type": "regie", "people": [1] },
-			{ "type": "light", "people": [] },
-			{ "type": "sound", "people": [] },
+			{ "type": "regie", "people": [139, 1] },
+			{ "type": "light", "people": [9] },
+			{ "type": "sound", "people": [9] },
 			{ "type": "graphic_design", "people": [] }
 		],
 		"seo": {
@@ -122,8 +122,8 @@
 		],
 		"creators": [
 			{ "type": "regie", "people": [8, 1] },
-			{ "type": "light", "people": [] },
-			{ "type": "sound", "people": [] },
+			{ "type": "light", "people": [9] },
+			{ "type": "sound", "people": [9] },
 			{ "type": "graphic_design", "people": [] },
 			{ "type": "photographer", "people": [5] },
 			{ "type": "stage_setup", "people": [] }
@@ -205,8 +205,8 @@
 		],
 		"creators": [
 			{ "type": "regie", "people": [1] },
-			{ "type": "light", "people": [4] },
-			{ "type": "sound", "people": [4] },
+			{ "type": "light", "people": [9] },
+			{ "type": "sound", "people": [9] },
 			{ "type": "graphic_design", "people": [] }
 		],
 		"seo": {
@@ -301,8 +301,8 @@
 		],
 		"creators": [
 			{ "type": "regie", "people": [1] },
-			{ "type": "light", "people": [4] },
-			{ "type": "sound", "people": [4] },
+			{ "type": "light", "people": [9] },
+			{ "type": "sound", "people": [9] },
 			{ "type": "graphic_design", "people": [6] },
 			{ "type": "photographer", "people": [5] }
 		],
@@ -371,8 +371,8 @@
 		],
 		"creators": [
 			{ "type": "regie", "people": [1] },
-			{ "type": "light", "people": [4] },
-			{ "type": "sound", "people": [4] },
+			{ "type": "light", "people": [9] },
+			{ "type": "sound", "people": [9] },
 			{ "type": "graphic_design", "people": [6] },
 			{ "type": "photographer", "people": [5] },
 			{ "type": "stage_setup", "people": [103] }
