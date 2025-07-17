@@ -15,7 +15,7 @@ import TicketBookButton from '@components/ticket_book_button.astro';
 import Gallery from '@components/play_gallery.astro';
 import YoutubePlayerCore from '@components/youtube_player/youtube_player_core.astro';
 
-import { getEntry } from 'astro:content';
+import { getEntry, render } from 'astro:content';
 
 let thisPlay = plays.find(play => play.suffix === play_sid);
 
@@ -39,7 +39,7 @@ strDuration = strDuration + ', ' + (thisPlay.break ? dictionary.break[lang] : di
 
 const description: string = thisPlay.description[lang] ? thisPlay.description[lang] : 'play_empty';
 const entry = await getEntry('plays', description);
-const { Content } = await entry.render();
+const { Content } = await render(entry);
 
 const ignoreExCreators: string[] = ['light', 'sound', 'stage_setup'];
 ---
