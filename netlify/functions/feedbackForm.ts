@@ -8,8 +8,12 @@ let dictionaryServer;
 let theater;
 
 export const handler: Handler = async (event, context) => {
+	console.log('FF-1');
+
 	dictionaryServer = getJsonDictionary();
+	console.log('FF-2');
 	theater = getJsonTheater();
+	console.log('FF-3');
 	if (!dictionaryServer || !theater) {
 		console.error('JSON files are not found');
 		return {
@@ -20,10 +24,13 @@ export const handler: Handler = async (event, context) => {
 		};
 	}
 
+	console.log('FF-4');
 	const messageData = JSON.parse(event.body);
+	console.log('FF-5');
 
 	// spam checking
 	if (!validateMessage(messageData)) {
+		console.log('FF-5: error!');
 		// fake OK-result
 		return {
 			statusCode: 200,
@@ -33,14 +40,18 @@ export const handler: Handler = async (event, context) => {
 		};
 	}
 
+	console.log('FF-6');
 	const { lang, subject, topic, name, email, message, now } = messageData;
+	console.log('FF-7');
 
 	const transporterMail: string = process.env.ANTREPRIZA_EMAIL_INFO;
+	console.log('FF-8');
 	let clientMail: TMail = {
 		to: email,
 		subject: subject,
 		html: makeHtmlEmail(lang, topic, makeContent(lang, topic, name, email, message, now, false)),
 	};
+	console.log('FF-9');
 	let antreprizaMail: TMail = {
 		to: '',
 		subject: subject,
@@ -55,7 +66,12 @@ function validateMessage(messageData) {
 	if (!messageData.subject || !messageData.subject.includes(' - ')) return false;
 	if (!messageData.topic || !messageData.name || messageData.name.length < 2) return false;
 	if (messageData.phone !== messageData.topic + messageData.name) return false;
-	if (!messageData.email || !EMAIL_REGEX.test(messageData.email) || messageData.email.length < 5 || messageData.email.length > 64)
+	if (
+		!messageData.email ||
+		!EMAIL_REGEX.test(messageData.email) ||
+		messageData.email.length < 5 ||
+		messageData.email.length > 64
+	)
 		return false;
 	if (!messageData.message || messageData.message.length < 10 || messageData.now <= 0) return false;
 	return true;
@@ -121,7 +137,11 @@ function makePersonalMessage(lang: string, name: string, now: number, toAntrepri
 <tr><td style="font-size: 90%; line-height: 120%; color: #888888; font-weight: 500">[${strCurrentDate}]</td></tr>\
 `;
 	} else {
-		strHello = getHello(date.getHours()) + (lang === 'ru' ? ', ' : ' ') + fromHtmlToPlainText(name) + (lang === 'ru' ? '!' : '.');
+		strHello =
+			getHello(date.getHours()) +
+			(lang === 'ru' ? ', ' : ' ') +
+			fromHtmlToPlainText(name) +
+			(lang === 'ru' ? '!' : '.');
 		diffText = `\
 <tr><td style="font-size: 125%; padding-bottom: 15px; line-height: 120%; color: #d6d6d6; font-weight: 500">${strHello}</td></tr>\
 <tr><td style="line-height: 120%; color: #d6d6d6; padding-bottom: 15px">${dictionaryServer.email_feedback_form_text[lang]}</td></tr>\
