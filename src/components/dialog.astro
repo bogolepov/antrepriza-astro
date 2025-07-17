@@ -1,14 +1,13 @@
 ---
-import Loader from "@components/loader.astro";
+import Loader from '@components/loader.astro';
 
-const { lang, uniq_class, loader_bkg='no' } = Astro.props;
-
+const { lang, uniq_class, loader_bkg = 'no', inert } = Astro.props;
 ---
 
-<div class:list={['modal-layer layer-on-window glass6 flex-center', uniq_class]}>
-  <div class="modal-dialog">
-    <button class='close__button'>&#10006;</button>
-    <slot/>
-    <Loader uniq_name={uniq_class} background={loader_bkg}></Loader>
-  </div>
+<div class:list={['modal-layer layer-on-window glass6 flex-center', uniq_class]} {inert}>
+	<div class='modal-dialog'>
+		<button class='close__button'>&#10006;</button>
+		<slot />
+		<Loader uniq_name={uniq_class} background={loader_bkg} />
+	</div>
 </div>

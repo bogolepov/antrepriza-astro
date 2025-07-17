@@ -1,57 +1,74 @@
 ---
-import '@styles/feedback_form.css'
-import dictionary from '@data/dictionary.json'
-import theater from '@data/theater.json'
+import '@styles/feedback_form.css';
+import dictionary from '@data/dictionary.json';
+import theater from '@data/theater.json';
 
-import Dialog from "@components/dialog.astro";
+import Dialog from '@components/dialog.astro';
 
-const { lang } = Astro.props;
-
+const { lang, inert } = Astro.props;
 ---
 
 <script>
-  import { initFeedbackDialog } from "@scripts/antrepriza.js"
-  document.addEventListener('DOMContentLoaded', () => {
-    initFeedbackDialog();
-  });
+	import { initFeedbackDialog } from '@scripts/antrepriza.js';
+	document.addEventListener('DOMContentLoaded', () => {
+		initFeedbackDialog();
+	});
 </script>
 
-<Dialog uniq_class='d-feedback' loader_bkg='no'>
-  <form method="POST" class="form feedback-form">
-    <input type="hidden" name="subject" value={dictionary.question_form_label[lang] + " - {topic}"}  />
-    <input class="form-input x-phone" type="tel" name="phone" />
-    <label class="form-label font-opacity0" for="topic">{dictionary.question_subject[lang]}</label>
-    <div class="select-wrapper">
-      <select class="form-input" name="topic" id="topic">
-				<option disabled value="">{dictionary.select_topic[lang]}</option>
-        {
-          theater.question_subjects.map(subject => {
-            return (
-              <option>{dictionary[subject][lang]}</option>
-            )
-          })
-        }
-      </select>
-    </div>
-    <label class="form-label required font-opacity0" for="qff-name">{dictionary.name[lang]}</label>
-    <input class="form-input qff" type="text" name="name" id="qff-name" placeholder={dictionary.name_hint[lang]} autocomplete="on">
-    <div class="form-error" data-for="name"></div>
-    <label class="form-label required font-opacity0" for="qff-email">{dictionary.email[lang]}</label>
-    <input class="form-input qff" type="text" name="email" id="qff-email" placeholder={dictionary.email_hint[lang]} autocomplete="on">
-    <div class="form-error" data-for="email"></div>
-    <label class="form-label required font-opacity0" for="qff-message">{dictionary.message[lang]}</label>
-    <textarea class="form-input qff" name="message"  id="qff-message" rows="5" maxlength="2000" placeholder={dictionary.message_hint[lang]} autocomplete="on"></textarea>
-    <div class="form-error" data-for="message"></div>
-    <div class="question-btn-wrapper">
-      <button id="feedback-submit-button" class="pink-button" type="submit">{dictionary.question_btn_send[lang]}</button>
-    </div>
-  </form>
-  <div class="layer-on-parent question-form-result-wrapper glass1_5">
-    <div class="question-form-result">
-      <div class="question-form-result-message"></div>
-      <button class="question-form-result-button">OK</button>
-    </div>
-  </div>
+<Dialog uniq_class='d-feedback' loader_bkg='no' {inert}>
+	<form method='POST' class='form feedback-form'>
+		<input type='hidden' name='subject' value={dictionary.question_form_label[lang] + ' - {topic}'} />
+		<input class='form-input x-phone' type='tel' name='phone' />
+		<label class='form-label font-opacity0' for='topic'>{dictionary.question_subject[lang]}</label>
+		<div class='select-wrapper'>
+			<select class='form-input' name='topic' id='topic'>
+				<option disabled value=''>{dictionary.select_topic[lang]}</option>
+				{
+					theater.question_subjects.map(subject => {
+						return <option>{dictionary[subject][lang]}</option>;
+					})
+				}
+			</select>
+		</div>
+		<label class='form-label required font-opacity0' for='qff-name'>{dictionary.name[lang]}</label>
+		<input
+			class='form-input qff'
+			type='text'
+			name='name'
+			id='qff-name'
+			placeholder={dictionary.name_hint[lang]}
+			autocomplete='on'
+		/>
+		<div class='form-error' data-for='name'></div>
+		<label class='form-label required font-opacity0' for='qff-email'>{dictionary.email[lang]}</label>
+		<input
+			class='form-input qff'
+			type='text'
+			name='email'
+			id='qff-email'
+			placeholder={dictionary.email_hint[lang]}
+			autocomplete='on'
+		/>
+		<div class='form-error' data-for='email'></div>
+		<label class='form-label required font-opacity0' for='qff-message'>{dictionary.message[lang]}</label>
+		<textarea
+			class='form-input qff'
+			name='message'
+			id='qff-message'
+			rows='5'
+			maxlength='2000'
+			placeholder={dictionary.message_hint[lang]}
+			autocomplete='on'></textarea>
+		<div class='form-error' data-for='message'></div>
+		<div class='question-btn-wrapper'>
+			<button id='feedback-submit-button' class='pink-button' type='submit'>{dictionary.question_btn_send[lang]}</button
+			>
+		</div>
+	</form>
+	<div class='layer-on-parent question-form-result-wrapper glass1_5'>
+		<div class='question-form-result'>
+			<div class='question-form-result-message'></div>
+			<button class='question-form-result-button'>OK</button>
+		</div>
+	</div>
 </Dialog>
-
-

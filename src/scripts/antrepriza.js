@@ -152,7 +152,11 @@ export function initHoverModeForTouchScreen() {
 	let blocks = document.getElementsByClassName('hover-block');
 	for (let block of blocks) {
 		block.addEventListener('pointerdown', event => {
-			if (event.isPrimary && (event.pointerType === 'pen' || event.pointerType === 'touch') && currentHoverBlock !== block) {
+			if (
+				event.isPrimary &&
+				(event.pointerType === 'pen' || event.pointerType === 'touch') &&
+				currentHoverBlock !== block
+			) {
 				if (currentHoverBlock) currentHoverBlock.removeAttribute('hover');
 				currentHoverBlock = block;
 				currentHoverBlock.setAttribute('hover', '');
@@ -217,6 +221,7 @@ export function initFeedbackDialog() {
 
 export function openFeedbackForm() {
 	dialogFeedback?.classList.add('show');
+	dialogFeedback?.removeAttribute('inert');
 }
 
 function dictionary_prepare() {
@@ -283,10 +288,18 @@ export async function submitFeedbackForm(event) {
 		let resMessage;
 		if (isOk) {
 			formResultButton.classList.add('ok');
-			resMessage = dictionary ? dictionary['contact_form__result_ok'][currLang] : currLang === 'ru' ? 'Отправлено!' : 'Gesendet!';
+			resMessage = dictionary
+				? dictionary['contact_form__result_ok'][currLang]
+				: currLang === 'ru'
+				  ? 'Отправлено!'
+				  : 'Gesendet!';
 		} else {
 			formResultButton.classList.add('error');
-			resMessage = dictionary ? dictionary['contact_form__result_error'][currLang] : currLang === 'ru' ? 'Ошибка...' : 'Unerfolgreich...';
+			resMessage = dictionary
+				? dictionary['contact_form__result_error'][currLang]
+				: currLang === 'ru'
+				  ? 'Ошибка...'
+				  : 'Unerfolgreich...';
 			console.error(error);
 		}
 
@@ -361,6 +374,7 @@ function validateForm(formData) {
 
 function closeFeedbackDialog() {
 	dialogFeedback.classList.remove('show');
+	dialogFeedback.setAttribute('inert', '');
 
 	resetErrorElements();
 	const elemTopics = dialogFeedback.querySelector('#topic');

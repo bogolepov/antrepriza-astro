@@ -1,111 +1,118 @@
 ---
-import '@components/ticket_form/ticket_form.css'
-import dictionary from '@data/dictionary.json'
-import prices from '@data/prices.json'
+import '@components/ticket_form/ticket_form.css';
+import dictionary from '@data/dictionary.json';
+import prices from '@data/prices.json';
 
-import Dialog from "@components/dialog.astro";
+import Dialog from '@components/dialog.astro';
 
-const { lang } = Astro.props;
+const { lang, inert } = Astro.props;
 
-import { Picture } from 'astro:assets'
+import { Picture } from 'astro:assets';
 import imgKontramarka from '/src/assets/partners/logo_kontramarka_t.png';
 
-const COUNTS = [0,1,2,3,4,5,6,7,8,9];
-
+const COUNTS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 ---
-<Dialog uniq_class='d-ticket' loader_bkg='yes'>
-  <div class="form ticket-form">
-    <div class="ticket-play-info">
-      <div class="play-name"></div>
-      <div class="play-descr"></div>
-      <div class="info-flex">
-        <div class="icon-item">
-          <svg xmlns="http://www.w3.org/2000/svg" class="svg_icon bi-calendar-event" viewBox="0 0 16 16">
-            <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"></path>
-            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"></path>
-          </svg>
-        </div>
-        <div>
-          <div class="play-date"></div>
-          <div class="play-time"></div>
-        </div>
-      </div>
-      <div class="info-flex">
-        <div class="icon-item">
-          <svg xmlns="http://www.w3.org/2000/svg" class="svg_icon bi-pin-map" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M3.1 11.2a.5.5 0 0 1 .4-.2H6a.5.5 0 0 1 0 1H3.75L1.5 15h13l-2.25-3H10a.5.5 0 0 1 0-1h2.5a.5.5 0 0 1 .4.2l3 4a.5.5 0 0 1-.4.8H.5a.5.5 0 0 1-.4-.8l3-4z"></path>
-            <path fill-rule="evenodd" d="M8 1a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999z"></path>
-          </svg>
-        </div>
-        <div class="lh-1-1">
-          <address class="play-stage-name">{dictionary.stage[lang]} - </address>
-          <address class="play-address"></address>
-          <address class="play-place-name"></address>
-        </div>
-      </div>
-      <div class="info-flex border-bottom">
-        <div class="icon-item">
-          <svg xmlns="http://www.w3.org/2000/svg" class="svg_icon bi-ticket-perforated" viewBox="0 0 16 16">
-            <path d="M4 4.85v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Z"></path>
-            <path d="M1.5 3A1.5 1.5 0 0 0 0 4.5V6a.5.5 0 0 0 .5.5 1.5 1.5 0 1 1 0 3 .5.5 0 0 0-.5.5v1.5A1.5 1.5 0 0 0 1.5 13h13a1.5 1.5 0 0 0 1.5-1.5V10a.5.5 0 0 0-.5-.5 1.5 1.5 0 0 1 0-3A.5.5 0 0 0 16 6V4.5A1.5 1.5 0 0 0 14.5 3h-13ZM1 4.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v1.05a2.5 2.5 0 0 0 0 4.9v1.05a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-1.05a2.5 2.5 0 0 0 0-4.9V4.5Z"></path>
-          </svg>
-        </div>
-        <div class="play-seating"></div>
-      </div>
-    </div>
-    <div class="book-block ticket-at-antrepriza">
-      <input type="radio" id="antrepriza" name="platform" checked>
-      <label for="antrepriza">{dictionary.radio_book_at_antrepriza[lang]}</label>
-      <div class="subform book-at-theater">
-        {
-          prices.map(price => {
-            return (
-              <div class={'price-flex ' + price.type} data-type={price.type}>
-                <label class='price-info' for={'count-'+price.type}>
-                  <span class="font-opacity1">{price.text[lang]}, </span>
-                  <span class="font-opacity0">{price.value.toString()}€</span>
-                </label>
-                <div class="ticket-count">
-                  <select class="count-input" name={'count-'+price.type} id={'count-'+price.type}>
-                    {
-                      COUNTS.map(i => <option value={i}>{i}</option>)
-                    }
-                  </select>
-                </div>
-              </div>
-            )
-          })
-        }
-        <div class="ticket-form-buttons-div">
-          <button id="ticket-form-book-antrepriza" class="pink-button ticket-book">{dictionary.add_to_cart[lang]}</button>
-        </div>
-      </div>
-    </div>
-    <div class="book-block ticket-at-distributor">
-      <input type="radio" id="distributor" name="platform">
-      <label class="distributor-label" for="distributor">{dictionary.radio_book_at_kontramarka[lang]}</label>
-      <div class="subform book-at-distributor">
-        <div class="ticket-form-buttons-div">
-          <button id="ticket-form-book-distributor" class="pink-button ticket-book flex-center kontramarka">
-            <span class="button-text">{dictionary.go_to_website[lang]}&nbsp;</span>
-            <Picture 
-              class:list={'button-image'} 
-              src={imgKontramarka} 
-              formats={['webp']} 
-              sizes={'115px'}
-              alt="" />
-            </a>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
+
+<Dialog uniq_class='d-ticket' loader_bkg='yes' {inert}>
+	<div class='form ticket-form'>
+		<div class='ticket-play-info'>
+			<div class='play-name'></div>
+			<div class='play-descr'></div>
+			<div class='info-flex'>
+				<div class='icon-item'>
+					<svg xmlns='http://www.w3.org/2000/svg' class='svg_icon bi-calendar-event' viewBox='0 0 16 16'>
+						<path d='M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z'></path>
+						<path
+							d='M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z'
+						></path>
+					</svg>
+				</div>
+				<div>
+					<div class='play-date'></div>
+					<div class='play-time'></div>
+				</div>
+			</div>
+			<div class='info-flex'>
+				<div class='icon-item'>
+					<svg xmlns='http://www.w3.org/2000/svg' class='svg_icon bi-pin-map' viewBox='0 0 16 16'>
+						<path
+							fill-rule='evenodd'
+							d='M3.1 11.2a.5.5 0 0 1 .4-.2H6a.5.5 0 0 1 0 1H3.75L1.5 15h13l-2.25-3H10a.5.5 0 0 1 0-1h2.5a.5.5 0 0 1 .4.2l3 4a.5.5 0 0 1-.4.8H.5a.5.5 0 0 1-.4-.8l3-4z'
+						></path>
+						<path
+							fill-rule='evenodd'
+							d='M8 1a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999z'
+						></path>
+					</svg>
+				</div>
+				<div class='lh-1-1'>
+					<address class='play-stage-name'>{dictionary.stage[lang]} -</address>
+					<address class='play-address'></address>
+					<address class='play-place-name'></address>
+				</div>
+			</div>
+			<div class='info-flex border-bottom'>
+				<div class='icon-item'>
+					<svg xmlns='http://www.w3.org/2000/svg' class='svg_icon bi-ticket-perforated' viewBox='0 0 16 16'>
+						<path
+							d='M4 4.85v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Z'
+						></path>
+						<path
+							d='M1.5 3A1.5 1.5 0 0 0 0 4.5V6a.5.5 0 0 0 .5.5 1.5 1.5 0 1 1 0 3 .5.5 0 0 0-.5.5v1.5A1.5 1.5 0 0 0 1.5 13h13a1.5 1.5 0 0 0 1.5-1.5V10a.5.5 0 0 0-.5-.5 1.5 1.5 0 0 1 0-3A.5.5 0 0 0 16 6V4.5A1.5 1.5 0 0 0 14.5 3h-13ZM1 4.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v1.05a2.5 2.5 0 0 0 0 4.9v1.05a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-1.05a2.5 2.5 0 0 0 0-4.9V4.5Z'
+						></path>
+					</svg>
+				</div>
+				<div class='play-seating'></div>
+			</div>
+		</div>
+		<div class='book-block ticket-at-antrepriza'>
+			<input type='radio' id='antrepriza' name='platform' checked />
+			<label for='antrepriza'>{dictionary.radio_book_at_antrepriza[lang]}</label>
+			<div class='subform book-at-theater'>
+				{
+					prices.map(price => {
+						return (
+							<div class={'price-flex ' + price.type} data-type={price.type}>
+								<label class='price-info' for={'count-' + price.type}>
+									<span class='font-opacity1'>{price.text[lang]}, </span>
+									<span class='font-opacity0'>{price.value.toString()}€</span>
+								</label>
+								<div class='ticket-count'>
+									<select class='count-input' name={'count-' + price.type} id={'count-' + price.type}>
+										{COUNTS.map(i => (
+											<option value={i}>{i}</option>
+										))}
+									</select>
+								</div>
+							</div>
+						);
+					})
+				}
+				<div class='ticket-form-buttons-div'>
+					<button id='ticket-form-book-antrepriza' class='pink-button ticket-book'
+						>{dictionary.add_to_cart[lang]}</button
+					>
+				</div>
+			</div>
+		</div>
+		<div class='book-block ticket-at-distributor'>
+			<input type='radio' id='distributor' name='platform' />
+			<label class='distributor-label' for='distributor'>{dictionary.radio_book_at_kontramarka[lang]}</label>
+			<div class='subform book-at-distributor'>
+				<div class='ticket-form-buttons-div'>
+					<button id='ticket-form-book-distributor' class='pink-button ticket-book flex-center kontramarka'>
+						<span class='button-text'>{dictionary.go_to_website[lang]}&nbsp;</span>
+						<Picture class:list={'button-image'} src={imgKontramarka} formats={['webp']} sizes={'115px'} alt='' />
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </Dialog>
 
 <script>
-  import { initTicketBookForm } from "@scripts/ticket-form.ts"
-  document.addEventListener('DOMContentLoaded', () => {
-    initTicketBookForm();
-  });
-  
+	import { initTicketBookForm } from '@scripts/ticket-form.ts';
+	document.addEventListener('DOMContentLoaded', () => {
+		initTicketBookForm();
+	});
 </script>

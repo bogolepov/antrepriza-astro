@@ -107,8 +107,12 @@ export default function Reservation({ lang }) {
 
 	function updateReservations(updReservations: TReservation[]) {
 		// validate reservations
-		updReservations.sort((play1, play2) => Date.parse(play1.date + 'T' + play1.time) - Date.parse(play2.date + 'T' + play2.time));
-		updReservations = updReservations.filter(play => Date.parse(play.date + 'T' + play.time) - FROZEN_BOOK_TIME > Date.now());
+		updReservations.sort(
+			(play1, play2) => Date.parse(play1.date + 'T' + play1.time) - Date.parse(play2.date + 'T' + play2.time)
+		);
+		updReservations = updReservations.filter(
+			play => Date.parse(play.date + 'T' + play.time) - FROZEN_BOOK_TIME > Date.now()
+		);
 
 		// update
 		setReservations(updReservations);
@@ -140,6 +144,7 @@ export default function Reservation({ lang }) {
 
 	return (
 		<>
+			<CartButton handleCount={calcTicketsCount} handleClick={handleCartButtonClick}></CartButton>
 			<Cart
 				lang={lang}
 				tickets={reservations}
@@ -149,7 +154,6 @@ export default function Reservation({ lang }) {
 				handleRemoveTicket={handleRemoveOneTicket}
 				handleReservationDone={handleReservationDone}
 			></Cart>
-			<CartButton handleCount={calcTicketsCount} handleClick={handleCartButtonClick}></CartButton>
 		</>
 	);
 }

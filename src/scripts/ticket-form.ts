@@ -110,6 +110,7 @@ function openForm(event, button) {
 	isTicketsAdded.set(false);
 
 	elemTicketLayer.classList.add('show');
+	elemTicketLayer.removeAttribute('inert');
 
 	elemLoader.classList.add('show');
 
@@ -174,6 +175,7 @@ function openForm(event, button) {
 
 function closeForm() {
 	elemTicketLayer.classList.remove('show');
+	elemTicketLayer.setAttribute('inert', '');
 
 	elemPlayTitle.innerHTML = '';
 	elemPlayDescription.innerHTML = '';
@@ -208,7 +210,9 @@ function handleAddToCart() {
 		reservation.tickets.forEach(price_type => (price_type.count += getTicketCount(price_type.type)));
 	} else {
 		let newTickets: TOrderItem[] = [];
-		clientJsons.theater.prices.forEach(price => newTickets.push({ type: price.type, count: getTicketCount(price.type) }));
+		clientJsons.theater.prices.forEach(price =>
+			newTickets.push({ type: price.type, count: getTicketCount(price.type) })
+		);
 		// TODO: play_id => play_sid
 		let newReservation: TReservation = {
 			date: afishaItem.date,

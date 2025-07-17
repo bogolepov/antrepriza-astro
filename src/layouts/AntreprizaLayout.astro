@@ -62,8 +62,8 @@ let runLine: boolean = false;
 		</div>
 
 		{reservation !== 'no' && <Reservation client:only='react' lang={lang} />}
-		<FeedbackForm lang={lang} />
-		{pageNeedTicketForm && <TicketForm lang={lang} />}
+		<FeedbackForm lang={lang} inert />
+		{pageNeedTicketForm && <TicketForm lang={lang} inert />}
 		<input type='checkbox' id='theme-switcher' tabindex='-1' aria-label={dictionary.aria_theme_switch[lang]} checked />
 	</body>
 </html>

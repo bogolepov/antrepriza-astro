@@ -101,7 +101,10 @@ export default function FinalReservationForm({
 	if (!dictionary) return <></>;
 	return (
 		<>
-			<div className={'modal-layer modal-layer-reservation layer-on-window flex-center' + (isShow ? ' show' : '')}>
+			<div
+				className={'modal-layer modal-layer-reservation layer-on-window flex-center' + (isShow ? ' show' : '')}
+				inert={isShow ? undefined : ''}
+			>
 				<div className='modal-dialog'>
 					<button className='close__button' onClick={handleFinalFormClose}>
 						&#10006;

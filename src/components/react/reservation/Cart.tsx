@@ -108,7 +108,7 @@ export function Cart({
 
 	return (
 		<>
-			<div className={'ticket-cart' + ($isCartOpen ? ' show' : '')}>
+			<div className={'ticket-cart' + ($isCartOpen ? ' show' : '')} inert={$isCartOpen ? undefined : ''}>
 				<button className='close-cart__button' onClick={handleCloseClick}>
 					&#10006;
 				</button>
