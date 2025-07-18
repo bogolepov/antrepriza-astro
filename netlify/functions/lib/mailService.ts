@@ -1,6 +1,7 @@
 import type { HandlerResponse } from '@netlify/functions';
 import nodemailer from 'nodemailer';
-import { getJsonTheater } from './utils';
+import theater from '@data/theater.json';
+import dictionary from '@data/dictionary.json';
 
 export type TMail = {
 	to: string;
@@ -44,8 +45,6 @@ export async function sendMails(
 	console.log('SM-2: transporter......');
 	console.log(transporter);
 
-	const theater = getJsonTheater();
-	console.log('SM-3');
 	const fromEmailDescription: string = theater ? `${theater.longTheaterName[lang]} ` : '';
 	const fromEmail: string =
 		process.env.MODE === process.env.MODE_LOCALHOST
@@ -93,16 +92,19 @@ export async function sendMails(
 		return {
 			statusCode: 200,
 			body: JSON.stringify({
-				message: 'Email sent successfully',
+				message: dictionary.msg__feedback_form__ok[lang],
 			}),
 		};
 	} catch (error) {
 		console.log('SM-12');
+		console.log(Object.keys(error));
+		console.log('SM-13');
 		console.error(error);
+		console.log('SM-14');
 		return {
-			statusCode: 500,
+			statusCode: error.responseCode,
 			body: JSON.stringify({
-				message: error.message,
+				message: dictionary.msg__feedback_form__srv_error[lang],
 			}),
 		};
 	}

@@ -1,28 +1,30 @@
 import type { Handler } from '@netlify/functions';
 import { LANG_LIST, EMAIL_REGEX } from '@scripts/consts.ts';
-import { fromHtmlToPlainText, getJsonDictionary, getJsonTheater, nonBreakingSpace } from './lib/utils.ts';
+import { fromHtmlToPlainText, /*getJsonDictionary, getJsonTheater,*/ nonBreakingSpace } from './lib/utils.ts';
 import { makeHtmlEmail } from './lib/mailUtils.ts';
 import { type TMail, sendMails } from './lib/mailService.ts';
+import dictionary from '@data/dictionary.json';
+import dictionaryServer from '@public_data/dictionary_server.json';
+import theater from '@data/theater.json';
 
-let dictionaryServer;
-let theater;
+// let dictionaryServer;
 
 export const handler: Handler = async (event, context) => {
 	console.log('FF-1');
 
-	dictionaryServer = getJsonDictionary();
-	console.log('FF-2');
-	theater = getJsonTheater();
-	console.log('FF-3');
-	if (!dictionaryServer || !theater) {
-		console.error('JSON files are not found');
-		return {
-			statusCode: 500,
-			body: JSON.stringify({
-				message: 'Internal Server Error',
-			}),
-		};
-	}
+	// dictionaryServer = getJsonDictionary();
+	// console.log('FF-2');
+	// theater = getJsonTheater();
+	// console.log('FF-3');
+	// if (!dictionaryServer) {
+	// 	console.error('JSON files are not found');
+	// 	return {
+	// 		statusCode: 500,
+	// 		body: JSON.stringify({
+	// 			message: 'Internal Server Error',
+	// 		}),
+	// 	};
+	// }
 
 	console.log('FF-4');
 	const messageData = JSON.parse(event.body);

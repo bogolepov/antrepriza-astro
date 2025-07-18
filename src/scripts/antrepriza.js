@@ -284,26 +284,31 @@ export async function submitFeedbackForm(event) {
 		closeFeedbackDialog();
 	};
 
-	const handleResult = isOk => {
+	const handleResult = (isOk, message) => {
+		console.log('handleResult()');
+		console.log(isOk);
+		console.log(message);
+
 		let resMessage;
 		if (isOk) {
 			formResultButton.classList.add('ok');
-			resMessage = dictionary
-				? dictionary['contact_form__result_ok'][currLang]
-				: currLang === 'ru'
-				  ? 'Отправлено!'
-				  : 'Gesendet!';
+			// resMessage = dictionary
+			// 	? dictionary['contact_form__result_ok'][currLang]
+			// 	: currLang === 'ru'
+			// 		? 'Отправлено!'
+			// 		: 'Gesendet!';
 		} else {
 			formResultButton.classList.add('error');
-			resMessage = dictionary
-				? dictionary['contact_form__result_error'][currLang]
-				: currLang === 'ru'
-				  ? 'Ошибка...'
-				  : 'Unerfolgreich...';
-			console.error(error);
+			// resMessage = dictionary
+			// 	? dictionary['contact_form__result_error'][currLang]
+			// 	: currLang === 'ru'
+			// 		? 'Ошибка...'
+			// 		: 'Unerfolgreich...';
+			// console.error(error);
 		}
 
-		formResultMessage.textContent = resMessage;
+		// formResultMessage.textContent = resMessage;
+		formResultMessage.textContent = message;
 		formLoader.classList.remove('show');
 		formResult.classList.add('show');
 		formResultButton.addEventListener('click', onResultClick);
@@ -333,16 +338,52 @@ export async function submitFeedbackForm(event) {
 	dictionary_prepare().finally(() => {
 		fetch('/.netlify/functions/feedbackForm', options)
 			.then(response => {
+				console.log('feedbackForm: response.....');
+				console.log(response);
+				console.log('json:');
+				const reJson = response.json();
+				console.log(reJson);
+
+				isOk = response.ok;
+				return reJson;
+			})
+			.then(data => {
+				console.log('feedbackForm: data.....');
+				console.log(data);
+				if (isOk) {
+					console.log('data 1');
+					handleResult(true, data.message);
+				} else {
+					console.log('data 2');
+					throw new Error(data.message);
+				}
+			})
+			.catch(error => {
+				console.log('feedbackForm: catch....');
+				console.log(error.message);
+
+				handleResult(false, error.message);
+			});
+	});
+
+	/*
+			let isOk: boolean;
+		await fetch('/.netlify/functions/akeReservation', options)
+			.then(response => {
 				isOk = response.ok;
 				return response.json();
 			})
 			.then(data => {
-				// console.log(data.message);
-				if (isOk) handleResult(true);
-				else throw new Error(data.message);
+				if (isOk) {
+					handleResult(true, null);
+					handleReservationDone();
+				} else throw new Error(data.message);
 			})
-			.catch(() => handleResult(false));
-	});
+			.catch(err => {
+				handleResult(false, err.message);
+			});
+
+	*/
 }
 
 function validateForm(formData) {
