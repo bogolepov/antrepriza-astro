@@ -112,12 +112,7 @@ async function emailConfirmation(lang: string, sid: number): Promise<HandlerResp
 	Newsletters.closeDatabase();
 	if (!res) {
 		console.error(dictionaryServer.email_service_error[lang]);
-		return {
-			statusCode: 500,
-			body: JSON.stringify({
-				message: dictionaryServer.email_service_error[lang],
-			}),
-		};
+		return makeHandlerResponse(500, dictionaryServer.email_service_error[lang]);
 	}
 
 	const transporterMail: string = process.env.ANTREPRIZA_EMAIL_SUBSCRIPTION;
