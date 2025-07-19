@@ -100,18 +100,38 @@
 		"de": "Vergnügt grüßt"
 	},
 	"email_subscription_button_text": { "ru": "Подтвердить адрес электронной почты", "de": "Anmeldung hier bestätigen" },
-	"result_email_registration": {
-		"ru": "Письмо для регистрации успешно отправлено",
-		"de": "Registrierungs-E-Mail erfolgreich gesendet"
-	},
-	"result_email_confirmed": {
-		"ru": "Адрес электронной почты успешно подтвержден",
-		"de": "E-Mail-Adresse erfolgreich bestätigt"
-	},
 	"result_email_removed": {
 		"ru": "Ваш адрес электронной почты успешно удален из рассылки",
 		"de": "Ihre E-Mail-Adresse wurde erfolgreich aus der Mailingliste entfernt"
 	},
 	"email_service_error": { "ru": "Сбой в работе сервиса", "de": "Dienstausfall" },
+
+	"nf__feedback_form__ok": {
+		"ru": "Ваш запрос был успешно отправлен.",
+		"de": "Ihre Anfrage wurde erfolgreich übermittelt."
+	},
+	"nf__feedback_form__error": { "ru": "Ошибка при отправке запроса.", "de": "Fehler beim Senden der Anfrage." },
+
+	"nf__reservations__ok": {
+		"ru": "Подтверждение резервирования билетов успешно отправлено на Ваш электронный адрес.",
+		"de": "Die Bestätigung der Ticketreservierung wurde erfolgreich an Ihre E-Mail-Adresse gesendet."
+	},
+	"nf__reservations__error": {
+		"ru": "К сожалению, не удалось отправить подтверждение на Ваш электронный адрес. Проверьте, что все данные введены правильно, или попробуйте позже.",
+		"de": "Leider konnten wir keine Bestätigung an Ihre E-Mail-Adresse senden. Bitte überprüfen Sie, ob alle Angaben korrekt eingegeben wurden, oder versuchen Sie es später erneut."
+	},
+	"nf__email_registration__ok": {
+		"ru": "Письмо для подтверждения подписки успешно отправлено.",
+		"de": "Ihre Anmeldungs-E-Mail wurde erfolgreich gesendet."
+	},
+	"nf__email_registration__error": {
+		"ru": "Ошибка при отправке письма для подтверждения подписки.",
+		"de": "Beim Senden Ihrer Anmeldungs-E-Mail ist ein Fehler aufgetreten."
+	},
+	"nf__email_confirmation__ok": {
+		"ru": "Адрес электронной почты успешно подтвержден",
+		"de": "E-Mail-Adresse erfolgreich bestätigt"
+	},
+
 	" ": { "ru": "", "de": "" }
 }

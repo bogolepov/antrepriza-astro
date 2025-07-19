@@ -1,66 +1,37 @@
 import type { Handler } from '@netlify/functions';
 import { LANG_LIST, EMAIL_REGEX } from '@scripts/consts.ts';
-import { fromHtmlToPlainText, /*getJsonDictionary, getJsonTheater,*/ nonBreakingSpace } from './lib/utils.ts';
+import { fromHtmlToPlainText, nonBreakingSpace, makeHandlerResponse } from './lib/utils.ts';
 import { makeHtmlEmail } from './lib/mailUtils.ts';
 import { type TMail, sendMails } from './lib/mailService.ts';
-import dictionary from '@data/dictionary.json';
 import dictionaryServer from '@public_data/dictionary_server.json';
 import theater from '@data/theater.json';
 
-// let dictionaryServer;
-
 export const handler: Handler = async (event, context) => {
-	console.log('FF-1');
-
-	// dictionaryServer = getJsonDictionary();
-	// console.log('FF-2');
-	// theater = getJsonTheater();
-	// console.log('FF-3');
-	// if (!dictionaryServer) {
-	// 	console.error('JSON files are not found');
-	// 	return {
-	// 		statusCode: 500,
-	// 		body: JSON.stringify({
-	// 			message: 'Internal Server Error',
-	// 		}),
-	// 	};
-	// }
-
-	console.log('FF-4');
 	const messageData = JSON.parse(event.body);
-	console.log('FF-5');
 
 	// spam checking
-	if (!validateMessage(messageData)) {
-		console.log('FF-5: error!');
-		// fake OK-result
-		return {
-			statusCode: 200,
-			body: JSON.stringify({
-				message: 'Email sent successfully',
-			}),
-		};
-	}
+	if (!validateMessage(messageData)) return makeHandlerResponse(200, 'Email sent successfully');
 
 	console.log('FF-6');
 	const { lang, subject, topic, name, email, message, now } = messageData;
 	console.log('FF-7');
 
 	const transporterMail: string = process.env.ANTREPRIZA_EMAIL_INFO;
-	console.log('FF-8');
 	let clientMail: TMail = {
 		to: email,
 		subject: subject,
 		html: makeHtmlEmail(lang, topic, makeContent(lang, topic, name, email, message, now, false)),
 	};
-	console.log('FF-9');
 	let antreprizaMail: TMail = {
 		to: '',
 		subject: subject,
 		html: makeHtmlEmail(lang, topic, makeContent(lang, topic, name, email, message, now, true)),
 	};
 
-	return await sendMails(lang, transporterMail, clientMail, antreprizaMail);
+	const isSent = await sendMails(lang, transporterMail, clientMail, antreprizaMail);
+
+	if (isSent) return makeHandlerResponse(200, dictionaryServer.nf__feedback_form__ok[lang]);
+	else return makeHandlerResponse(500, dictionaryServer.nf__feedback_form__error[lang]);
 };
 
 function validateMessage(messageData) {

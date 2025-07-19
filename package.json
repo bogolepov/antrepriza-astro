@@ -1,7 +1,7 @@
 {
 	"name": "antrepriza-astro",
 	"type": "module",
-	"version": "1.10.1",
+	"version": "1.11.1",
 	"scripts": {
 		"dev": "astro dev",
 		"start": "astro dev",
@@ -30,6 +30,7 @@
 		"vue-router": "^4.4.5"
 	},
 	"devDependencies": {
+		"@types/nodemailer": "^6.4.17",
 		"prettier": "^3.4.2",
 		"prettier-plugin-astro": "^0.14.1"
 	}

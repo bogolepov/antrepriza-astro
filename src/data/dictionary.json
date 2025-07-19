@@ -184,11 +184,5 @@
 		"de": "Liebe Gäste!!! Am 24. Mai um 19:30 Uhr findet anstelle des Theaterstücks „DIE UNBEKANNTE 32“ das Theaterstück „STEPPKE UND KARL(SON)“ statt."
 	},
 
-	"msg__feedback_form__ok": {
-		"ru": "Ваш запрос был успешно отправлен.",
-		"de": "Ihre Anfrage wurde erfolgreich gesendet."
-	},
-	"msg__feedback_form__srv_error": { "ru": "Ошибка при отправке запроса.", "de": "Fehler beim Senden der Anfrage." },
-
 	"": { "ru": "", "de": "" }
 }

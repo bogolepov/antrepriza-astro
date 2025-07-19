@@ -1,28 +1,14 @@
 import type { Handler, HandlerResponse } from '@netlify/functions';
 import { LANG_LIST, EMAIL_REGEX } from '@scripts/consts.ts';
-import { fromHtmlToPlainText, getJsonDictionary, getJsonTheater, nonBreakingSpace } from './lib/utils.ts';
+import { fromHtmlToPlainText, makeHandlerResponse } from './lib/utils.ts';
 import { makeHtmlEmail } from './lib/mailUtils.ts';
 import { type TMail, sendMails } from './lib/mailService.ts';
 import { type TAddEmailResult, Newsletters } from './lib/dbNewsletters.ts';
 
-let dictionaryServer;
-let theater;
+import dictionaryServer from '@public_data/dictionary_server.json';
+import theater from '@public_data/theater.json';
 
 export const handler: Handler = async (event, context) => {
-	console.log('TypeScript');
-
-	dictionaryServer = getJsonDictionary();
-	theater = getJsonTheater();
-	if (!dictionaryServer || !theater) {
-		console.error('JSON files are not found');
-		return {
-			statusCode: 500,
-			body: JSON.stringify({
-				message: 'Internal Server Error',
-			}),
-		};
-	}
-
 	const messageData = JSON.parse(event.body);
 	const { lang, email, sid, usid } = messageData;
 
@@ -44,15 +30,8 @@ export const handler: Handler = async (event, context) => {
 
 async function emailRegistration(lang: string, email: string): Promise<HandlerResponse> {
 	// spam checking
-	if (!email || !EMAIL_REGEX.test(email) || email.length > 64) {
-		// fake OK-result
-		return {
-			statusCode: 200,
-			body: JSON.stringify({
-				message: 'Email sent successfully',
-			}),
-		};
-	}
+	if (!email || !EMAIL_REGEX.test(email) || email.length > 64)
+		return makeHandlerResponse(200, 'Email sent successfully');
 
 	Newsletters.openDatabase();
 	const res: TAddEmailResult = Newsletters.addNewEmail(lang, email);
@@ -60,12 +39,7 @@ async function emailRegistration(lang: string, email: string): Promise<HandlerRe
 	const sid: number = res.sid;
 	if (sid === 0) {
 		console.error(dictionaryServer.email_service_error[lang]);
-		return {
-			statusCode: 500,
-			body: JSON.stringify({
-				message: dictionaryServer.email_service_error[lang],
-			}),
-		};
+		return makeHandlerResponse(500, dictionaryServer.email_service_error[lang]);
 	}
 
 	const transporterMail: string = process.env.ANTREPRIZA_EMAIL_SUBSCRIPTION;
@@ -83,10 +57,10 @@ async function emailRegistration(lang: string, email: string): Promise<HandlerRe
 		html: makeHtmlEmail(lang, subjectAntrepriza, makeContentRegistration(lang, email, sid, true)),
 	};
 
-	let response: HandlerResponse = await sendMails(lang, transporterMail, clientMail, antreprizaMail);
-	if (response.statusCode === 500) response.body = JSON.stringify({ message: dictionaryServer.email_service_error[lang] });
-	else if (response.statusCode === 200) response.body = JSON.stringify({ message: dictionaryServer.result_email_registration[lang] });
-	return response;
+	const isSent = await sendMails(lang, transporterMail, clientMail, antreprizaMail);
+
+	if (isSent) return makeHandlerResponse(200, dictionaryServer.nf__email_registration__ok[lang]);
+	else return makeHandlerResponse(500, dictionaryServer.nf__email_registration__error[lang]);
 }
 
 function makeContentRegistration(lang: string, email: string, sid: number, toAntrepriza: boolean): string {
@@ -149,7 +123,9 @@ async function emailConfirmation(lang: string, sid: number): Promise<HandlerResp
 	const transporterMail: string = process.env.ANTREPRIZA_EMAIL_SUBSCRIPTION;
 	const subjectClient: string = dictionaryServer.email_news_subscription_confirmed_subject[lang];
 	const email: string =
-		process.env.MODE === process.env.MODE_PRODUCTION ? process.env.ANTREPRIZA_EMAIL_SUBSCRIPTION : process.env.ANTREPRIZA_EMAIL_BOGOLEPOV;
+		process.env.MODE === process.env.MODE_PRODUCTION
+			? process.env.ANTREPRIZA_EMAIL_SUBSCRIPTION
+			: process.env.ANTREPRIZA_EMAIL_BOGOLEPOV;
 
 	const clientMail: TMail = {
 		to: email,
@@ -157,10 +133,10 @@ async function emailConfirmation(lang: string, sid: number): Promise<HandlerResp
 		html: makeHtmlEmail(lang, subjectClient, makeContentConfirmed(sid)),
 	};
 
-	let response: HandlerResponse = await sendMails(lang, transporterMail, clientMail);
-	if (response.statusCode === 500) response.body = JSON.stringify({ message: dictionaryServer.email_service_error[lang] });
-	else if (response.statusCode === 200) response.body = JSON.stringify({ message: dictionaryServer.result_email_confirmed[lang] });
-	return response;
+	const isSent = await sendMails(lang, transporterMail, clientMail);
+
+	if (isSent) return makeHandlerResponse(200, dictionaryServer.nf__email_confirmation__ok[lang]);
+	else return makeHandlerResponse(500, dictionaryServer.email_service_error[lang]);
 }
 
 function makeContentConfirmed(sid: number) {

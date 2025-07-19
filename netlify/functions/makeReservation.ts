@@ -1,14 +1,14 @@
 import type { Handler } from '@netlify/functions';
 import { LANG_LIST, EMAIL_REGEX } from '@scripts/consts.ts';
-import { fromHtmlToPlainText, getJsonAfisha, getJsonDictionary, getJsonTheater } from './lib/utils.ts';
+import { fromHtmlToPlainText, makeHandlerResponse } from './lib/utils.ts';
 import { makeHtmlEmail } from './lib/mailUtils.ts';
 import { type TMail, sendMails } from './lib/mailService.ts';
 import { addReservations, type TReservationExt } from './lib/db/antreprizaDB.ts';
 import { type TNetlifyDataReservations, type TOrderItem } from '@scripts/types/reservation.ts';
 
-let dictionaryServer;
-let theater;
-let afisha;
+import dictionaryServer from '@public_data/dictionary_server.json';
+import theater from '@public_data/theater.json';
+import afisha from '@public_data/afisha.json';
 
 type TMessageValidationResult = {
 	valid: boolean;
@@ -17,33 +17,11 @@ type TMessageValidationResult = {
 };
 
 export const handler: Handler = async (event, context) => {
-	dictionaryServer = getJsonDictionary();
-	theater = getJsonTheater();
-	afisha = getJsonAfisha();
-
-	if (!dictionaryServer || !theater) {
-		console.error('JSON files are not found');
-		return {
-			statusCode: 500,
-			body: JSON.stringify({
-				message: null,
-			}),
-		};
-	}
-
 	const messageData: TNetlifyDataReservations = JSON.parse(event.body);
 
 	// spam or not valid data checking
 	const { valid, errCode, errMessage } = validateMessage(messageData);
-	if (!valid) {
-		// fake OK-result
-		return {
-			statusCode: errCode,
-			body: JSON.stringify({
-				message: errMessage,
-			}),
-		};
-	}
+	if (!valid) return makeHandlerResponse(errCode, errMessage);
 
 	const { lang, name, email, reservations, amount, when } = messageData;
 
@@ -68,7 +46,10 @@ export const handler: Handler = async (event, context) => {
 		html: makeHtmlEmail(lang, subject, makeContent(lang, name, email, extReservations, amount, when, true)),
 	};
 
-	return await sendMails(lang, transporterMail, clientMail, antreprizaMail);
+	const isSent = await sendMails(lang, transporterMail, clientMail, antreprizaMail);
+
+	if (isSent) return makeHandlerResponse(200, dictionaryServer.nf__reservations__ok[lang]);
+	else return makeHandlerResponse(500, dictionaryServer.nf__reservations__error[lang]);
 };
 
 function validateMessage(messageData: TNetlifyDataReservations): TMessageValidationResult {
