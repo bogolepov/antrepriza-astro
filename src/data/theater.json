@@ -102,6 +102,23 @@
 		}
 	],
 	"fix_stages": ["west"],
+	"studio": {
+		"address": {
+			"full_string": "Boxhagener Str. 18, 10245 Berlin",
+			"street": "Boxhagener Str.",
+			"building": "18",
+			"index": "10245",
+			"city": "Berlin",
+			"district": "Friedrichshain",
+			"country": "Deutschland"
+		},
+		"google_map": {
+			"embed": {
+				"ru": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5159.147212529959!2d13.45044099301188!3d52.513336667956395!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a84e5dc85d2a09%3A0xf6af6892081e0a4b!2sBoxhagener%20Str.%2018%2C%2010245%20Berlin!5e1!3m2!1sru!2sde!4v1753372478564!5m2!1sru!2sde",
+				"de": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5172.3813864760305!2d13.4507307560227!3d52.513336600236954!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a84e5dc85d2a09%3A0xf6af6892081e0a4b!2sBoxhagener%20Str.%2018%2C%2010245%20Berlin!5e1!3m2!1sde!2sde!4v1753372696992!5m2!1sde!2sde"
+			}
+		}
+	},
 	"our_website_link": "https://antrepriza.eu",
 	"our_website_domain": "antrepriza.eu",
 	"our_website_text": "antrepriza.eu",

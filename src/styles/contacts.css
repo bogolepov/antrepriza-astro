@@ -100,13 +100,6 @@
 	padding-bottom: 0.7em;
 }
 
-body:has(#theme-switcher:not(:checked)) .gmap {
-	border: 1px solid var(--colorFont-Op1);
-}
-body:has(#theme-switcher:checked) .gmap {
-	border: 0;
-}
-
 .transport-flex {
 	display: flex;
 	flex-direction: column;

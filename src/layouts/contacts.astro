@@ -1,58 +1,67 @@
 ---
 const { lang } = Astro.props;
 
-import dictionary from '@data/dictionary.json'
-import theater from '@data/theater.json'
+import dictionary from '@data/dictionary.json';
+import theater from '@data/theater.json';
+import ContactFormButton from '@vue-components/ContactFormButton.vue';
 
-import '@styles/contacts.css'
+import '@styles/contacts.css';
 
 const components = await Astro.glob('@layouts/content/theater/contact*.astro');
-
 ---
 
-<section class="contact">
-  <h1 class="section-title">{dictionary.menu_contact[lang]}</h1>
-  <h3>{theater.longTheaterName[lang]}</h3>
-  <div class="contact-details">
-    <div class="info-text">
-      <a href={"tel:"+theater.phone}>{dictionary.telephone[lang]}: <span class="font-opacity1 phone-number">{theater.phone}</span></a>
-    </div>
-    <div class="info-text">
-      <a href={"mailto:"+theater.email}>{dictionary.email[lang]}: <span class="font-opacity1">{theater.email}</span></a>
-    </div>
-  </div>
-  {
-    theater.fix_stages.map(stg_sid => {
-      let stage = theater.stages.find(stg => stg.sid === stg_sid);
-      if (stage) {
-        return (
-          <div class="contact-flex">
-            <h3 class="stage-name">{dictionary.stage[lang] + " - " + stage.name[lang].toUpperCase()}</h3>
-            <iframe 
-              class="flex-item-left" src={stage.google_map.embed[lang]} class="gmap" width="600" height="450" 
-              allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
-            <div class="flex-item-right">
-              <h4 class="place-name">{stage.place_name}</h4>
-              <address>
-                {stage.address.street} {stage.address.building} <br>
-                {stage.address.index} {stage.address.city}-{stage.address.district}
-              </address>
-              <div class="description">
-                {
-                  components.map(component => {
-                    if (component.file.replace(/^.*[\\/]/, '') === stage.contact_file[lang]) {
-                      return (
-                        <component.default stage_name={stage.name[lang]}/>
-                      );
-                    }
-                  })
-                }
-              </div>
-            </div>
-          </div>
-      );
-      }
-    })
-  }
+<section class='contact'>
+	<h1 class='section-title'>{dictionary.menu_contact[lang]}</h1>
+	<h3>{theater.longTheaterName[lang]}</h3>
+	<div class='contact-details'>
+		<div class='info-text'>
+			<a href={'tel:' + theater.phone}
+				>{dictionary.telephone[lang]}: <span class='font-opacity1 phone-number'>{theater.phone}</span></a
+			>
+		</div>
+		<div class='info-text'>
+			<a href={'mailto:' + theater.email}
+				>{dictionary.email[lang]}: <span class='font-opacity1'>{theater.email}</span></a
+			>
+		</div>
+		<div class='info-text'>
+			<ContactFormButton client:load text={dictionary.question_form_label[lang]} lang={lang} />
+		</div>
+	</div>
+	{
+		theater.fix_stages.map(stg_sid => {
+			let stage = theater.stages.find(stg => stg.sid === stg_sid);
+			if (stage) {
+				return (
+					<div class='contact-flex'>
+						<h3 class='stage-name'>{dictionary.stage[lang] + ' - ' + stage.name[lang].toUpperCase()}</h3>
+						<iframe
+							class='flex-item-left'
+							src={stage.google_map.embed[lang]}
+							class='gmap'
+							width='600'
+							height='450'
+							allowfullscreen=''
+							loading='lazy'
+							referrerpolicy='no-referrer-when-downgrade'
+						/>
+						<div class='flex-item-right'>
+							<h4 class='place-name'>{stage.place_name}</h4>
+							<address>
+								{stage.address.street} {stage.address.building} <br />
+								{stage.address.index} {stage.address.city}-{stage.address.district}
+							</address>
+							<div class='description'>
+								{components.map(component => {
+									if (component.file.replace(/^.*[\\/]/, '') === stage.contact_file[lang]) {
+										return <component.default stage_name={stage.name[lang]} />;
+									}
+								})}
+							</div>
+						</div>
+					</div>
+				);
+			}
+		})
+	}
 </section>

@@ -585,19 +585,18 @@ main .hover-block:has(a:focus-visible) {
 	backdrop-filter: blur(1.5px);
 }
 
-/* --------------------------------------------------- */
-/* ------------------- flex center ------------------- */
-/* --------------------------------------------------- */
+/* ---------------------  center --------------------- */
 .flex-center {
 	display: flex;
-	/* flex-direction: row; */
 	justify-content: center;
 	align-items: center;
 }
+.grid-center {
+	display: grid;
+	place-items: center;
+}
 
-/* --------------------------------------------------- */
 /* ------------------ theme switcher ----------------- */
-/* --------------------------------------------------- */
 #theme-switcher {
 	position: absolute;
 	width: 1px;
@@ -608,9 +607,15 @@ main .hover-block:has(a:focus-visible) {
 	appearance: none;
 }
 
-/* --------------------------------------------------- */
+/* --------------------- GOOGLE MAP ------------------ */
+body:has(#theme-switcher:not(:checked)) .gmap {
+	border: 1px solid var(--colorFont-Op1);
+}
+body:has(#theme-switcher:checked) .gmap {
+	border: 0;
+}
+
 /* ------------------- modal layer ------------------- */
-/* --------------------------------------------------- */
 .modal-layer {
 	background-color: var(--colorBkgLayerUnderForm);
 	transform: scaleY(0);

@@ -37,11 +37,13 @@ function closeModalDialog() {
 	cursor: pointer;
 	border: none;
 	background-color: transparent;
-	font-size: clamp(0.8rem, 2vw, 0.95rem);
 	padding: 0;
 	margin-bottom: 0.4em;
 }
 .contact-form-button:focus-visible {
 	outline: 1px solid var(--colorAntreprizaRed);
+}
+footer .contact-form-button {
+	font-size: clamp(0.8rem, 2vw, 0.95rem);
 }
 </style>
