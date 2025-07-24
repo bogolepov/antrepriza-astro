@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import type { TEventTickets, TPerformance, TPlay, TStage } from '@scripts/db/baseTypes';
 import { performances, plays, stages } from '../lib/statesStore';
-import { onlyNumbers } from '@scripts/utils_src';
+import { onlyNumbers } from '@scripts/utils';
 import type { TOrderItem } from '@scripts/types/reservation';
 
 interface Props {

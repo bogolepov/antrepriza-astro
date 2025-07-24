@@ -1,4 +1,4 @@
-import { getRandomIntInclusive } from '@scripts/utils_src';
+import { getRandomIntInclusive } from '@scripts/utils';
 
 const ID_SHIFTS_ADD = { y: 347, m: 23, d: 56 };
 const ID_SHIFTS_REMOVE = { y: 817, m: 66, d: 54 };
@@ -89,7 +89,12 @@ export class Newsletters {
 
 		// exists, but not removed from maillist
 		if (existEmail && existEmail.status !== EMAIL_STATUS.REMOVED) {
-			return { existed: true, sid: existEmail.id_add, confirmed: existEmail.status === EMAIL_STATUS.CONFIRMED, removed: false };
+			return {
+				existed: true,
+				sid: existEmail.id_add,
+				confirmed: existEmail.status === EMAIL_STATUS.CONFIRMED,
+				removed: false,
+			};
 		}
 		// exists and removed from maillist - we will reinitialize (added, not confirmed)
 		else if (existEmail && existEmail.status === EMAIL_STATUS.REMOVED) {

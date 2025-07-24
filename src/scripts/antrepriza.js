@@ -408,7 +408,7 @@ function validateForm(formData) {
 		errors.push({ field: 'email', message: 'err__email_not_correct' });
 
 	if (!message) errors.push({ field: 'message', message: 'err__empty_message' });
-	else if (message.length < 10) errors.push({ field: 'message', message: 'err__message_to_short' });
+	else if (message.length < 10) errors.push({ field: 'message', message: 'err__message_too_short' });
 
 	return errors;
 }

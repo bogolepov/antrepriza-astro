@@ -39,11 +39,11 @@
 		"ru": "Некорректные данные. Очистите корзину заказов, перезагрузите страницу и добавьте заказы снова.",
 		"de": "Falsche Daten. Bitte leeren Sie Ihren Einkaufswagen, aktualisieren Sie die Seite und geben Sie erneut Bestellungen ein."
 	},
-	"email_feedback_form_text": {
+	"email_contact_form_text": {
 		"ru": "Ваш запрос успешно отправлен. В случае необходимости мы свяжемся с Вами в ближайшее время.",
 		"de": "Ihre Anfrage wurde erfolgreich gesendet. Bei Bedarf werden wir uns schnellstmöglich mit Ihnen in Verbindung setzen."
 	},
-	"email_feedback_form_text_antrepriza": {
+	"email_contact_form_text_antrepriza": {
 		"ru": "Новый запрос на сайте через Форму обратной связи.",
 		"de": "Sie haben eine neue Rückfrage auf der Webseite."
 	},
@@ -106,11 +106,14 @@
 	},
 	"email_service_error": { "ru": "Сбой в работе сервиса", "de": "Dienstausfall" },
 
-	"nf__feedback_form__ok": {
+	"nf__contact_form__ok": {
 		"ru": "Ваш запрос был успешно отправлен.",
 		"de": "Ihre Anfrage wurde erfolgreich übermittelt."
 	},
-	"nf__feedback_form__error": { "ru": "Ошибка при отправке запроса.", "de": "Fehler beim Senden der Anfrage." },
+	"nf__contact_form__send_error": { "ru": "Ошибка при отправке запроса.", "de": "Fehler beim Senden der Anfrage." },
+	"nf__contact_form__invalid_request": { "ru": "Неверный запрос.", "de": "Ungültige Anfrage." },
+	"nf__contact_form__empty_data": { "ru": "Неверный формат запроса.", "de": "Falsche Anfrage." },
+	"nf__contact_form__invalid_format": { "ru": "Неверный формат данных запроса.", "de": "Falsche Anfragedaten." },
 
 	"nf__reservations__ok": {
 		"ru": "Подтверждение резервирования билетов успешно отправлено на Ваш электронный адрес.",

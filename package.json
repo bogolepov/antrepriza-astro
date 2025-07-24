@@ -1,7 +1,7 @@
 {
 	"name": "antrepriza-astro",
 	"type": "module",
-	"version": "1.11.1",
+	"version": "1.12.1",
 	"scripts": {
 		"dev": "astro dev",
 		"start": "astro dev",
@@ -27,7 +27,8 @@
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1",
 		"vue": "^3.5.12",
-		"vue-router": "^4.4.5"
+		"vue-router": "^4.4.5",
+		"zod": "^3.25.76"
 	},
 	"devDependencies": {
 		"@types/nodemailer": "^6.4.17",

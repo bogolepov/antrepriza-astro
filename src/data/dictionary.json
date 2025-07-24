@@ -92,7 +92,7 @@
 	"newsletter_title": { "ru": "Подписаться на новости", "de": "Newsletter" },
 	"newsletter_service_title": { "ru": "Сервис подписок на новости", "de": "Newsletter-Abonnementdienst" },
 	"email_hint": { "ru": "Ваш электронный адрес", "de": "Ihre E-Mail-Adresse" },
-	"select_topic": { "ru": "Выбрать тему:", "de": "Betreff auswählen:" },
+	"select_topic": { "ru": "Выбрать тему...", "de": "Betreff auswählen..." },
 	"question_form_label": { "ru": "Форма обратной связи", "de": "Kontaktformular" },
 	"question_subject": { "ru": "Тема вопроса", "de": "Betreff" },
 	"name": { "ru": "Имя", "de": "Name" },
@@ -183,6 +183,18 @@
 		"ru": "Дорогие зрители!!! 24 мая в 19:30 вместо спектакля «НЕЗНАКОМКА 32» состоится спектакль «МАЛЫШ И КАРЛ(СОН)».",
 		"de": "Liebe Gäste!!! Am 24. Mai um 19:30 Uhr findet anstelle des Theaterstücks „DIE UNBEKANNTE 32“ das Theaterstück „STEPPKE UND KARL(SON)“ statt."
 	},
+	"err__empty_email": { "ru": "Укажите email-адрес", "de": "Dieses Feld muss zwingend ausgefüllt sein." },
+	"err__email_not_correct": {
+		"ru": "Введите корректный email-адрес.",
+		"de": "Bitte geben Sie eine korrekte E-Mail-Adresse ein."
+	},
+	"err__email_too_long": {
+		"ru": "Слишком длинный email-адрес",
+		"de": "Die E-Mail-Adresse ist zu lang."
+	},
+	"err__empty_message": { "ru": "Введите текст обращения.", "de": "Dieses Feld muss zwingend ausgefüllt sein." },
+	"err__message_too_short": { "ru": "Сообщение слишком короткое.", "de": "Die Nachricht ist zu kurz." },
+	"err__message_too_long": { "ru": "Сообщение слишком длинное.", "de": "Die Nachricht ist zu lang." },
 
 	"": { "ru": "", "de": "" }
 }

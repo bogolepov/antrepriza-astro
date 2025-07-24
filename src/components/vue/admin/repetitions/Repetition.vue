@@ -2,7 +2,7 @@
 import { ref, computed, watch } from 'vue';
 import { isDemo, optionListPlays, optionListStages } from '../lib/statesStore';
 import { type TRepetition, ERepetitionType, type TSubRepetition } from '@scripts/db/baseTypes';
-import { onlyNumbers } from '@scripts/utils_src';
+import { onlyNumbers } from '@scripts/utils';
 
 interface Props {
 	repetition: TRepetition;
@@ -110,7 +110,9 @@ watch(
 		</li>
 		<li>
 			<div class="label">Время:</div>
-			<div v-if="!editCard">{{ repetition.time_start ? repetition.time_start + ' - ' + repetition.time_end : ' - ' }}</div>
+			<div v-if="!editCard">
+				{{ repetition.time_start ? repetition.time_start + ' - ' + repetition.time_end : ' - ' }}
+			</div>
 			<div v-else class="repetition-time-edit">
 				<input
 					type="time"
@@ -146,7 +148,11 @@ watch(
 		<li>
 			<div class="label" style="width: 100%">
 				Задачи:
-				<button v-show="editCard && proxyRepetition.subRepetitions.length < 3" class="modify-subrepetition" @click="addSubRepetition">
+				<button
+					v-show="editCard && proxyRepetition.subRepetitions.length < 3"
+					class="modify-subrepetition"
+					@click="addSubRepetition"
+				>
 					+
 				</button>
 			</div>
@@ -154,8 +160,12 @@ watch(
 				<template v-if="!editCard">
 					<template v-for="(subRepetition, index) in repetition.subRepetitions" :key="subRepetition.play_sid">
 						<li>
-							<div>{{ subRepetition.event_type }}{{ subRepetition.event_type === ERepetitionType.WORKSHOP ? '' : ':' }}</div>
-							<div v-show="subRepetition.event_type !== ERepetitionType.WORKSHOP">{{ getPlayName(subRepetition.play_sid) }}</div>
+							<div>
+								{{ subRepetition.event_type }}{{ subRepetition.event_type === ERepetitionType.WORKSHOP ? '' : ':' }}
+							</div>
+							<div v-show="subRepetition.event_type !== ERepetitionType.WORKSHOP">
+								{{ getPlayName(subRepetition.play_sid) }}
+							</div>
 						</li>
 					</template>
 				</template>
@@ -178,7 +188,11 @@ watch(
 									{{ option.text }}
 								</option>
 							</select>
-							<button v-show="repetition.subRepetitions.length > 1" class="modify-subrepetition" @click="deleteSubRepetition(index)">
+							<button
+								v-show="repetition.subRepetitions.length > 1"
+								class="modify-subrepetition"
+								@click="deleteSubRepetition(index)"
+							>
 								-
 							</button>
 						</li>

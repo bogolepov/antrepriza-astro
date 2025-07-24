@@ -7,6 +7,7 @@ import dictionary from '@data/dictionary.json';
 import { Icon } from 'astro-icon/components';
 
 import SocialPages from '@components/social_pages/social_pages.astro';
+import ContactFormButton from '@vue-components/ContactFormButton.vue';
 
 const { lang } = Astro.props;
 
@@ -124,7 +125,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/partner
 			</div>
 			<SocialPages lang={lang} />
 			<div>
-				<button class='feedback-button'>{dictionary.question_form_label[lang]}</button>
+				<ContactFormButton client:load text={dictionary.question_form_label[lang]} lang={lang} />
 			</div>
 			<div class='lh-1-3'>
 				<div><a class='footer-text-link' href={`/${lang}/impressum/`}>{dictionary.impressum[lang]}</a></div>

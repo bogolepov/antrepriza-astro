@@ -1,31 +1,34 @@
 import type { Handler } from '@netlify/functions';
-import { LANG_LIST, EMAIL_REGEX } from '@scripts/consts.ts';
-import { fromHtmlToPlainText, nonBreakingSpace, makeHandlerResponse } from './lib/utils.ts';
+import type { TContactForm } from '@scripts/types/contactForm.ts';
+import { validationContactFormJson, isValidContactForm } from '@scripts/contact_form';
 import { makeHtmlEmail } from './lib/mailUtils.ts';
 import { type TMail, sendMails } from './lib/mailService.ts';
+import { fromHtmlToPlainText, makeHandlerResponse, nonBreakingSpace } from './lib/utils.ts';
 import dictionaryServer from '@public_data/dictionary_server.json';
 import theater from '@data/theater.json';
+import { LANG_RU } from '@scripts/consts.ts';
 
 export const handler: Handler = async (event, context) => {
-	const messageData = JSON.parse(event.body);
+	if (!event || !event.body)
+		return makeHandlerResponse(400, dictionaryServer.nf__contact_form__invalid_request[LANG_RU]);
 
-	// spam checking
-	if (!validateMessage(messageData)) return makeHandlerResponse(200, 'Email sent successfully');
+	const contactForm: TContactForm = validationContactFormJson(event.body);
+	if (!contactForm) return makeHandlerResponse(400, dictionaryServer.nf__contact_form__empty_data[LANG_RU]);
+	if (!isValidContactForm(contactForm, false))
+		return makeHandlerResponse(400, dictionaryServer.nf__contact_form__invalid_format[LANG_RU]);
 
-	console.log('FF-6');
-	const { lang, subject, topic, name, email, message, now } = messageData;
-	console.log('FF-7');
+	const { lang, email, subject, topic } = contactForm;
 
 	const transporterMail: string = process.env.ANTREPRIZA_EMAIL_INFO;
 	let clientMail: TMail = {
 		to: email,
 		subject: subject,
-		html: makeHtmlEmail(lang, topic, makeContent(lang, topic, name, email, message, now, false)),
+		html: makeHtmlEmail(lang, topic, makeContent(contactForm, false)),
 	};
 	let antreprizaMail: TMail = {
 		to: '',
 		subject: subject,
-		html: makeHtmlEmail(lang, topic, makeContent(lang, topic, name, email, message, now, true)),
+		html: makeHtmlEmail(lang, topic, makeContent(contactForm, true)),
 	};
 
 	const isSent = await sendMails(lang, transporterMail, clientMail, antreprizaMail);
@@ -34,57 +37,16 @@ export const handler: Handler = async (event, context) => {
 	else return makeHandlerResponse(500, dictionaryServer.nf__contact_form__send_error[lang]);
 };
 
-function validateMessage(messageData) {
-	if (!messageData || !messageData.lang || !LANG_LIST.includes(messageData.lang)) return false;
-	if (!messageData.subject || !messageData.subject.includes(' - ')) return false;
-	if (!messageData.topic || !messageData.name || messageData.name.length < 2) return false;
-	if (messageData.phone !== messageData.topic + messageData.name) return false;
-	if (
-		!messageData.email ||
-		!EMAIL_REGEX.test(messageData.email) ||
-		messageData.email.length < 5 ||
-		messageData.email.length > 64
-	)
-		return false;
-	if (!messageData.message || messageData.message.length < 10 || messageData.now <= 0) return false;
-	return true;
-	/*
-	if (
-		messageData &&
-		messageData.subject &&
-		messageData.subject.includes(' - ') &&
-		messageData.topic &&
-		messageData.name &&
-		messageData.name.length >= 2 &&
-		messageData.phone === messageData.topic + messageData.name &&
-		messageData.email &&
-		Consts.EMAIL_REGEX.test(messageData.email) &&
-		messageData.email.length >= 5 &&
-		messageData.email.length <= 64 &&
-		messageData.message &&
-		messageData.message.length >= 10 &&
-		messageData.now)
-		return true;
-	else return false;
-	*/
+function makeContent(contactForm: TContactForm, toAntrepriza: boolean): string {
+	return makePersonalMessage(contactForm, toAntrepriza) + makeFeedbackBlock(contactForm);
 }
 
-function makeContent(
-	lang: string,
-	topic: string,
-	name: string,
-	email: string,
-	message: string,
-	now: number,
-	toAntrepriza: boolean
-): string {
-	return makePersonalMessage(lang, name, now, toAntrepriza) + makeFeedbackBlock(lang, topic, name, email, message);
-}
+function makePersonalMessage(contactForm: TContactForm, toAntrepriza: boolean): string {
+	const { lang } = contactForm;
+	const date = new Date(contactForm.now);
 
-function makePersonalMessage(lang: string, name: string, now: number, toAntrepriza: boolean): string {
-	const date = new Date(now);
 	const getHello = (hour: number): string => {
-		if (hour < 6 && lang === 'ru') return dictionaryServer.hello[lang];
+		if (hour < 6 && contactForm.lang === LANG_RU) return dictionaryServer.hello[lang];
 		else if (hour < 12) return dictionaryServer.good_morning[lang];
 		else if (hour < 18) return dictionaryServer.good_afternoon[lang];
 		else return dictionaryServer.good_evening[lang];
@@ -103,7 +65,7 @@ function makePersonalMessage(lang: string, name: string, now: number, toAntrepri
 		};
 		let strCurrentDate: string = date.toLocaleDateString(lang, options);
 
-		strHello = getHello(date.getHours()) + (lang === 'ru' ? '!' : '.');
+		strHello = getHello(date.getHours()) + (lang === LANG_RU ? '!' : '.');
 		diffText = `\
 <tr><td style="font-size: 125%; padding-bottom: 15px; line-height: 120%; color: #d6d6d6; font-weight: 500">${strHello}</td></tr>\
 <tr><td style="line-height: 120%; color: #d6d6d6">${dictionaryServer.email_contact_form_text_antrepriza[lang]}</td></tr>\
@@ -112,9 +74,9 @@ function makePersonalMessage(lang: string, name: string, now: number, toAntrepri
 	} else {
 		strHello =
 			getHello(date.getHours()) +
-			(lang === 'ru' ? ', ' : ' ') +
-			fromHtmlToPlainText(name) +
-			(lang === 'ru' ? '!' : '.');
+			(lang === LANG_RU ? ', ' : ' ') +
+			fromHtmlToPlainText(contactForm.name) +
+			(lang === LANG_RU ? '!' : '.');
 		diffText = `\
 <tr><td style="font-size: 125%; padding-bottom: 15px; line-height: 120%; color: #d6d6d6; font-weight: 500">${strHello}</td></tr>\
 <tr><td style="line-height: 120%; color: #d6d6d6; padding-bottom: 15px">${dictionaryServer.email_contact_form_text[lang]}</td></tr>\
@@ -134,11 +96,10 @@ ${diffText}\
 `;
 }
 
-let feedbackBlock: string;
-function makeFeedbackBlock(lang: string, topic: string, name: string, email: string, message: string): string {
-	if (feedbackBlock) return feedbackBlock;
+function makeFeedbackBlock(contactForm: TContactForm): string {
+	const { lang, topic, name, email, message } = contactForm;
 
-	feedbackBlock = `\
+	return `\
 <table border="0" cellpadding="0" role="presentation" style="width: 100%; margin: 0; padding: 15px 0 0 0">\
 <tbody>\
 <tr>\
@@ -161,5 +122,4 @@ function makeFeedbackBlock(lang: string, topic: string, name: string, email: str
 </tbody>\
 </table>\
 `;
-	return feedbackBlock;
 }

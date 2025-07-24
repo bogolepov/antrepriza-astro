@@ -46,6 +46,8 @@
 	--red-op1: rgb(from var(--red-rose) r g b / 0.9);
 
 	--font-size: 16px;
+
+	--z-modal-layer: 1200;
 }
 
 html,
@@ -539,10 +541,10 @@ main .hover-block:has(a:focus-visible) {
 .layer-on-window {
 	position: fixed;
 	z-index: 1200;
-	width: 100vw;
-	height: 100svh;
 	top: 0;
 	left: 0;
+	right: 0;
+	bottom: 0;
 }
 
 .layer-on-parent {
@@ -558,6 +560,17 @@ main .hover-block:has(a:focus-visible) {
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
+}
+
+.layer-on-parent-vue {
+	display: grid;
+	place-items: center;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
 }
 
 /* --------------------------------------------------- */

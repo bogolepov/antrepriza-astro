@@ -3,10 +3,12 @@
 /* --------------------------------------------------- */
 .modal-layer.d-feedback .modal-dialog {
 	max-width: 440px;
+	font-size: 1rem;
 }
 
 /* open question-layer at any focused element inside */
-.question:has(.question-layer-switcher:not(:checked)) .question-layer:has(input:focus, textarea:focus, button:focus, select:focus) {
+.question:has(.question-layer-switcher:not(:checked))
+	.question-layer:has(input:focus, textarea:focus, button:focus, select:focus) {
 	transform: scaleY(1);
 }
 
