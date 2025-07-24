@@ -1,26 +1,28 @@
 ---
 const { lang } = Astro.props;
 
-import '@styles/theater.css'
-import dictionary from '@data/dictionary.json'
-import theater from '@data/theater.json'
+import '@styles/theater.css';
+import dictionary from '@data/dictionary.json';
+import theater from '@data/theater.json';
 
-import ContentRu from '@layouts/content/theater/career_ru.astro'
-import ContentDe from '@layouts/content/theater/career_de.astro'
+import ContentRu from '@layouts/content/theater/career_ru.astro';
+import ContentDe from '@layouts/content/theater/career_de.astro';
+import ContactFormButton from '@vue-components/ContactFormButton.vue';
 
 let Content;
 if (lang === 'de') Content = ContentDe;
 else Content = ContentRu;
-
-
 ---
 
-<section class="career">
-  <h1 class="section-title">{dictionary.menu_career[lang]}</h1>
-  <div class="description">
-    <Content>
-      <a slot='email' href={"mailto:"+theater.email} class="font-opacity1">{theater.email}</a>
-    </Content>
-  </div>
-  <div class="page-end"></div>
+<section class='career'>
+	<h1 class='section-title'>{dictionary.menu_career[lang]}</h1>
+	<div class='description'>
+		<Content>
+			<a slot='email' href={'mailto:' + theater.email} class='font-opacity1'>{theater.email}</a>
+			<span slot='contact-form' class='contact-form-span'>
+				<ContactFormButton client:load text={dictionary.question_form_label[lang]} lang={lang} />
+			</span>
+		</Content>
+	</div>
+	<div class='page-end'></div>
 </section>

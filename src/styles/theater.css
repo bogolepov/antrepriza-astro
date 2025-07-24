@@ -108,3 +108,20 @@
 	min-height: 220px;
 	padding-bottom: clamp(0.3rem, max(0.5vh, 2vw), 1rem);
 }
+
+/*  */
+.contact-form-span {
+	display: inline-block;
+}
+
+.studio ol {
+	margin-bottom: 2.5em;
+	margin-top: 1em;
+}
+.studio ol > li {
+	margin-bottom: 0.6em;
+}
+
+.studio ol ul.classic {
+	margin-top: 0.2em;
+}
