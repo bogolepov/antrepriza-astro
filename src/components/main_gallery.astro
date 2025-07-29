@@ -1,5 +1,7 @@
 ---
-import "@styles/swiper-bundle.min.css"
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 import "@styles/carusel_main.css"
 
 const {lang} = Astro.props;
@@ -28,12 +30,14 @@ let firstSlide = true;
 let strLoading;
 
 ---
-<script is:inline src="/js/swiper-bundle.min.js" defer></script>
 <script>
-  let swiper;
+import Swiper from 'swiper';
+import { Navigation, Pagination, Autoplay, Keyboard } from 'swiper/modules';
+  let mainSwiper;
 	document.addEventListener('DOMContentLoaded', () => {
-    swiper = new Swiper('.swiper', {
+    mainSwiper = new Swiper('.swiper', {
       direction: 'horizontal',
+      modules: [Navigation, Pagination, Autoplay, Keyboard ],
       loop: true,
       slidesPerView: 'auto',
       spaceBetween: 200,
