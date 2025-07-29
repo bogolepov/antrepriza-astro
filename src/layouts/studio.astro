@@ -5,7 +5,10 @@ import dictionary from '@data/dictionary.json';
 import studio_photos from '@data/studio_photos.json';
 import theater from '@data/theater.json';
 
-import '@styles/swiper-bundle.min.css';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
 import '@styles/theater.css';
 import '@styles/play_gallery.css';
 
@@ -48,11 +51,14 @@ let firstSlide = true;
 let strLoading;
 ---
 
-<script is:inline src='/js/swiper-bundle.min.js' defer></script>
 <script>
-	let swiper;
+	import Swiper from 'swiper';
+	import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+
+	let swiper_studio;
 	document.addEventListener('DOMContentLoaded', () => {
-		swiper = new Swiper('.swiper', {
+		swiper_studio = new Swiper('.swiper', {
+			modules: [Navigation, Pagination, Autoplay],
 			direction: 'horizontal',
 			loop: true,
 			slidesPerView: 'auto',

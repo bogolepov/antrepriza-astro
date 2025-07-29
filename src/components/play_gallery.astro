@@ -1,11 +1,13 @@
 ---
-import "@styles/swiper-bundle.min.css"
-import "@styles/play_gallery.css"
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import '@styles/play_gallery.css';
 
 const { lang, play_suffix, hover } = Astro.props;
 
-import dictionary from '@data/dictionary.json'
-import photos from '@data/plays_photos.json'
+import dictionary from '@data/dictionary.json';
+import photos from '@data/plays_photos.json';
 let gallery = photos.filter(photo => photo.filename && photo.suffix === play_suffix && photo.is_landscape);
 
 import type { ImageMetadata } from 'astro';
@@ -14,71 +16,74 @@ import { Picture } from 'astro:assets';
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*/*.{jpeg,jpg}');
 
 let strLoading;
-
 ---
+
 <script>
-  let swiper;
+	import Swiper from 'swiper';
+	import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+
+	let swiper;
 	document.addEventListener('DOMContentLoaded', () => {
-    swiper = new Swiper('.swiper', {
-      direction: 'horizontal',
-      loop: true,
-      slidesPerView: 'auto',
-      spaceBetween: 90,
-      watchOverflow: true,
-      // grabCursor: true,
-      speed: 900,
-      centeredSlides: true,
-      lazyPreloadPrevNext: 2,
-    
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-        dynamicBullets: true,
-        dynamicMainBullets: 1,
-      },
+		swiper = new Swiper('.swiper', {
+			modules: [Navigation, Pagination, Autoplay],
+			direction: 'horizontal',
+			loop: true,
+			slidesPerView: 'auto',
+			spaceBetween: 90,
+			watchOverflow: true,
+			// grabCursor: true,
+			speed: 900,
+			centeredSlides: true,
+			lazyPreloadPrevNext: 2,
 
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      
-      keyboard: {
-        enabled: true,
-        onlyInViewport: true,
-      }
+			pagination: {
+				el: '.swiper-pagination',
+				clickable: true,
+				dynamicBullets: true,
+				dynamicMainBullets: 1,
+			},
 
-    });
+			navigation: {
+				nextEl: '.swiper-button-next',
+				prevEl: '.swiper-button-prev',
+			},
+
+			keyboard: {
+				enabled: true,
+				onlyInViewport: true,
+			},
+		});
 	});
 </script>
 
-<div class="play-gallery">
-  <div class:list={['play-gallery-position', {'hover-block': hover === 'true'}]} >
-    <div class="swiper">
-      <div class="swiper-wrapper">
-        {
-          gallery.map((photo, index) => {
-            if (index === 0) strLoading = "eager";
-            else strLoading = "lazy";
-            return (
-              <div class="swiper-slide" >
-                <Picture 
-                  class:list={'play-picture'} 
-                  src={images["/src/assets/" + play_suffix + "/" + photo.filename]()} 
-                  formats={['webp']} 
-                  fallbackFormat='jpg'
-                  widths={[300, 420, 540, 640]}
-                  sizes={'(max-width: 380px) 300px, (max-width: 530px) 420px, (max-width: 680px) 540px, 640px'}
-                  alt=""
-                  loading={strLoading} />
-              </div>
-            )
-          })
-        }
-      </div>
-      <div class="swiper-pagination"></div>
-      <div class="swiper-button-prev" tabindex="0" role="button" aria-label={dictionary.aria_slide_prev[lang]}></div>
-      <div class="swiper-button-next" tabindex="0" role="button" aria-label={dictionary.aria_slide_next[lang]}></div>
-    </div>
-  </div>
+<div class='play-gallery'>
+	<div class:list={['play-gallery-position', { 'hover-block': hover === 'true' }]}>
+		<div class='swiper'>
+			<div class='swiper-wrapper'>
+				{
+					gallery.map((photo, index) => {
+						if (index === 0) strLoading = 'eager';
+						else strLoading = 'lazy';
+						return (
+							<div class='swiper-slide'>
+								<Picture
+									class:list={'play-picture'}
+									src={images['/src/assets/' + play_suffix + '/' + photo.filename]()}
+									formats={['webp']}
+									fallbackFormat='jpg'
+									widths={[300, 420, 540, 640]}
+									sizes={'(max-width: 380px) 300px, (max-width: 530px) 420px, (max-width: 680px) 540px, 640px'}
+									alt=''
+									loading={strLoading}
+								/>
+							</div>
+						);
+					})
+				}
+			</div>
+			<div class='swiper-pagination'></div>
+			<div class='swiper-button-prev' tabindex='0' role='button' aria-label={dictionary.aria_slide_prev[lang]}></div>
+			<div class='swiper-button-next' tabindex='0' role='button' aria-label={dictionary.aria_slide_next[lang]}></div>
+		</div>
+	</div>
 </div>
-

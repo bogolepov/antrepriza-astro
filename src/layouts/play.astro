@@ -44,8 +44,6 @@ const { Content } = await render(entry);
 const ignoreExCreators: string[] = ['light', 'sound', 'stage_setup'];
 ---
 
-<script is:inline src='/js/swiper-bundle.min.js' defer></script>
-
 <section class='play'>
 	<h1 class='play-title'>{thisPlay.title[lang].toUpperCase()}</h1>
 	<div class='play-author'>{thisPlay.author_full[lang].toUpperCase()}</div>
