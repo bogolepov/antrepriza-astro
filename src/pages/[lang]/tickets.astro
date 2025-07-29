@@ -1,23 +1,27 @@
 ---
-import theater from '@data/theater.json'
-import dictionary from '@data/dictionary.json'
+import theater from '@data/theater.json';
+import dictionary from '@data/dictionary.json';
 
-export function getStaticPaths () {
-  return theater.languages.map(lng => {
-    return {
-      params: {lang: lng.lang_code},
-      props: {pageLang: lng.lang_code, pageTitle: dictionary.tickets[lng.lang_code] },
-    };
-  });
+export function getStaticPaths() {
+	return theater.languages.map(lng => {
+		return {
+			params: { lang: lng.lang_code },
+			props: { pageLang: lng.lang_code, pageTitle: dictionary.tickets[lng.lang_code] },
+		};
+	});
 }
 
 const { pageLang, pageTitle } = Astro.props;
 
-import AntreprizaLayout from "@layouts/AntreprizaLayout.astro";
-import TicketsLayout from "@layouts/tickets.astro";
+import AntreprizaLayout from '@layouts/AntreprizaLayout.astro';
+import TicketsLayout from '@layouts/tickets.astro';
 ---
 
-<AntreprizaLayout title={pageTitle} lang={pageLang} description={dictionary.description_tickets[pageLang]} ticket_form = "yes">
-  <TicketsLayout lang={pageLang}/>
+<AntreprizaLayout
+	title={pageTitle}
+	lang={pageLang}
+	description={dictionary.description_tickets[pageLang]}
+	ticket_form='yes'
+>
+	<TicketsLayout lang={pageLang} />
 </AntreprizaLayout>
-

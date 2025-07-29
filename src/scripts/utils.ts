@@ -1,4 +1,18 @@
-import { EMAIL_REGEX, MAX_EMAIL_LENGTH, MIN_EMAIL_LENGTH, PHONE_REGEX } from './consts';
+import * as consts from '@scripts/consts';
+
+let pageLang;
+export function getCurrentPageLang(): string | undefined {
+	if (pageLang) return pageLang;
+
+	let path = window.location.pathname.toLowerCase();
+	for (let lang of consts.LANG_LIST) {
+		if (path.includes(`/${lang}/`)) {
+			pageLang = lang;
+			return lang;
+		}
+	}
+	return undefined;
+}
 
 export function onlyNumbers(text: string): string {
 	return text?.replace(/[^0-9]/g, '');
@@ -12,20 +26,37 @@ export function getRandomIntInclusive(min: number, max: number): number {
 
 export function validPhoneNumberFormat(phone: string): boolean {
 	// const PHONE_REGEX = /^[0\+]{1}[0-9]{7,16}$/;
-	return !phone?.length || PHONE_REGEX.test(phone);
+	return !phone?.length || consts.PHONE_REGEX.test(phone);
 }
 
 export function validEmailAddressFormat(email: string): boolean {
 	// const EMAIL_REGEX: RegExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 	// const EMAIL_REGEX: RegExp = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
-	if (email && email.length >= MIN_EMAIL_LENGTH && email.length <= MAX_EMAIL_LENGTH && EMAIL_REGEX.test(email))
+	if (
+		email &&
+		email.length >= consts.MIN_EMAIL_LENGTH &&
+		email.length <= consts.MAX_EMAIL_LENGTH &&
+		consts.EMAIL_REGEX.test(email)
+	)
 		return true;
 	return false;
 }
 
 export function getEmailAddressError(email: string): string {
 	if (!email || !email.length) return 'err__empty_email';
-	if (email.length > MAX_EMAIL_LENGTH) return 'err__email_too_long';
-	if (!EMAIL_REGEX.test(email)) return 'err__email_not_correct';
+	if (email.length > consts.MAX_EMAIL_LENGTH) return 'err__email_too_long';
+	if (!consts.EMAIL_REGEX.test(email)) return 'err__email_not_correct';
 	return '';
+}
+
+export function getCRC32(obj: Object): string {
+	const generateHash = string => {
+		let hash: number = 0;
+		for (const char of string) {
+			hash = (hash << 5) - hash + char.charCodeAt(0);
+			hash |= 0; // Constrain to 32bit integer
+		}
+		return hash;
+	};
+	return generateHash(JSON.stringify(obj)).toString(16).replace('-', '');
 }

@@ -24,7 +24,7 @@
 	"themeHint": { "ru": "Сменить тему оформления", "de": "Farbmodus wechseln" },
 	"themeTextDark": { "ru": "Темная тема", "de": "Dunkelmodus" },
 	"themeTextLight": { "ru": "Светлая тема", "de": "Lightmodus" },
-	"play_lang": { "ru": "Спектакль", "de": "Die Aufführung" },
+	"play_word": { "ru": "Спектакль", "de": "Die Aufführung" },
 	"genre": { "ru": "Жанр", "de": "Genre" },
 	"language": { "ru": "Язык", "de": "Sprache" },
 	"festival": { "ru": "Фестиваль", "de": "Festival" },
@@ -93,7 +93,7 @@
 	"newsletter_service_title": { "ru": "Сервис подписок на новости", "de": "Newsletter-Abonnementdienst" },
 	"email_hint": { "ru": "Ваш электронный адрес", "de": "Ihre E-Mail-Adresse" },
 	"select_topic": { "ru": "Выбрать тему...", "de": "Betreff auswählen..." },
-	"question_form_label": { "ru": "Форма обратной связи", "de": "Kontaktformular" },
+	"contact_form_name": { "ru": "Форма обратной связи", "de": "Kontaktformular" },
 	"question_subject": { "ru": "Тема вопроса", "de": "Betreff" },
 	"name": { "ru": "Имя", "de": "Name" },
 	"name_hint": { "ru": "Имя и фамилия", "de": "Vor- und Nachname" },
@@ -109,6 +109,35 @@
 	"logo": { "ru": "Логотип", "de": "Logo" },
 	"more_about_play": { "ru": "Подробнее о спектакле", "de": "Mehr zur Theaterproduktion" },
 	"tickets_sold_out": { "ru": "распроданы", "de": "ausverkauft" },
+	"my_reservations": { "ru": "Мои заказы", "de": "Meine Bestellungen" },
+	"empty_reservation_list": { "ru": "Список заказов пуст.", "de": "Leerer Warenkorb" },
+	"total_amount": { "ru": "Итого", "de": "Gesamtbetrag" },
+	"btn_cart_book": { "ru": "Оформить", "de": "Ausstellen" },
+	"btn_reservation": { "ru": "Забронировать", "de": "Reservieren" },
+	"free_place": { "ru": "свободные места", "de": "freie Platzwahl" },
+
+	"error__lang": { "ru": "Ошибка", "de": "Fehler" },
+	"err__incorrect_data": { "ru": "Некорректные данные", "de": "Falsche Daten" },
+	"err__empty_name": { "ru": "Имя не может быть пустым", "de": "Dieses Feld muss zwingend ausgefüllt sein." },
+	"err__name_to_short": { "ru": "Слишком короткое имя", "de": "Der Name ist zu kurz." },
+
+	"newsletter_subscribed": { "ru": "Вы были успешно подписаны.", "de": "Sie wurden erfolgreich angemeldet." },
+	"newsletter__result_error": {
+		"ru": "К сожалению, произошла ошибка. Попробуйте позже.",
+		"de": "Leider ist ein Fehler aufgetreten. Versuchen Sie es bitte später noch einmal."
+	},
+	"contact_form__result_ok": {
+		"ru": "Ваше сообщение успешно отправлено!",
+		"de": "Die Nachricht wurde erfolgreich gesendet!."
+	},
+	"contact_form__result_error": {
+		"ru": "К сожалению, Ваше сообщение не удалось отправить. Попробуйте позже.",
+		"de": "Leider konnte Ihre Nachricht nicht gesendet werden. Bitte versuchen Sie es später noch einmal."
+	},
+	"play_lang": {
+		"ru": { "ru": "на русском", "de": "auf Russisch" },
+		"de": { "ru": "на немецком", "de": "auf Deutsch" }
+	},
 
 	"description_index": {
 		"ru": "Для детей и взрослых. От классики до социально-политических постановок. Билеты по доступной цене.",
@@ -195,6 +224,14 @@
 	"err__empty_message": { "ru": "Введите текст обращения.", "de": "Dieses Feld muss zwingend ausgefüllt sein." },
 	"err__message_too_short": { "ru": "Сообщение слишком короткое.", "de": "Die Nachricht ist zu kurz." },
 	"err__message_too_long": { "ru": "Сообщение слишком длинное.", "de": "Die Nachricht ist zu lang." },
+	"msg_email_sent": {
+		"ru": "Подтверждение резервирования билетов успешно отправлено на Ваш электронный адрес.",
+		"de": "Die Bestätigung der Ticketreservierung wurde erfolgreich an Ihre E-Mail-Adresse gesendet."
+	},
+	"msg_email_error": {
+		"ru": "К сожалению, не удалось отправить подтверждение на Ваш электронный адрес. Проверьте, что все данные введены правильно, или попробуйте позже.",
+		"de": "Leider konnten wir keine Bestätigung an Ihre E-Mail-Adresse senden. Bitte überprüfen Sie, ob alle Angaben korrekt eingegeben wurden, oder versuchen Sie es später erneut."
+	},
 
 	"": { "ru": "", "de": "" }
 }

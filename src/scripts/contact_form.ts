@@ -1,3 +1,4 @@
+import { LANG_LIST } from './consts';
 import { ContactFormSchema, type TContactForm } from './types/contactForm';
 import { validEmailAddressFormat } from './utils';
 import dictionary from '@data/dictionary.json';
@@ -54,10 +55,12 @@ export function validationContactFormJson(json_data: string): TContactForm | und
 
 export function isValidContactForm(contactForm: TContactForm, emptySubject: boolean): boolean {
 	if (
+		LANG_LIST.includes(contactForm.lang) &&
 		contactForm.name.length &&
 		contactForm.topic.length > 3 &&
 		validMessage(contactForm.message) &&
-		validEmailAddressFormat(contactForm.email)
+		validEmailAddressFormat(contactForm.email) &&
+		contactForm.now > Date.parse('2025-01-01')
 	) {
 		if (emptySubject) return !contactForm.subject.length;
 		else return contactForm.subject === codeSubject(contactForm);
@@ -67,5 +70,5 @@ export function isValidContactForm(contactForm: TContactForm, emptySubject: bool
 }
 
 function codeSubject(formData: TContactForm): string {
-	return dictionary.question_form_label[formData.lang] + ' - ' + formData.topic;
+	return dictionary.contact_form_name[formData.lang] + ' - ' + formData.topic;
 }

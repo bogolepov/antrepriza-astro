@@ -10,4 +10,4 @@
 
 [functions]
   node_bundler = "esbuild"
-	included_files = ["./public/data/dictionary_server.json", "./public/data/theater.json", "./public/data/afisha.json"]
+	included_files = []

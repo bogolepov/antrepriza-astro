@@ -121,7 +121,7 @@ function closeMessageBox() {
 </script>
 
 <template>
-	<form method="POST" class="form feedback-form">
+	<form method="POST" class="form contact-form">
 		<input type="hidden" v-model="subject" placeholder="Subject" />
 		<label class="form-label required font-opacity0" for="topic">{{ dictionary.question_subject[lang] }}</label>
 		<div class="select-wrapper">
@@ -175,7 +175,7 @@ function closeMessageBox() {
 			required
 		></textarea>
 		<div v-if="errMessage?.length && !validMessage(message)" class="form-error">{{ dictionary[errMessage][lang] }}</div>
-		<div class="question-btn-wrapper">
+		<div class="contact-form-btn-wrapper">
 			<button type="button" class="pink-button send-form" @click="handleSendForm" :disabled="!buttonValid">
 				{{ dictionary.question_btn_send[lang] }}
 			</button>
@@ -186,11 +186,55 @@ function closeMessageBox() {
 </template>
 
 <style>
+.contact-form {
+	padding: 0 20px 20px 20px;
+}
+
+.contact-form select.form-input::-ms-expand {
+	display: none;
+}
+.contact-form select.form-input {
+	cursor: pointer;
+	-webkit-appearance: none;
+	appearance: none;
+
+	padding: 2px 33px 2px 2px;
+	margin-bottom: 0;
+}
+
+.contact-form .select-wrapper {
+	position: relative;
+	margin-bottom: 0.7em;
+}
+.contact-form .select-wrapper::after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	transform: translateY(-50%);
+	pointer-events: none;
+
+	width: 0px;
+	height: 0px;
+	border-style: solid;
+	border-width: 8px 7.5px 0 7.5px;
+	border-color: var(--colorBkgTicketsBtn) transparent transparent transparent;
+}
+
+.contact-form-btn-wrapper {
+	width: 100%;
+	text-align: right;
+	padding-top: 0.8em;
+}
 .pink-button.send-form[disabled] {
 	border: 1px solid var(--colorBkgDisabledBtn);
 	background-color: var(--colorBkgDisabledBtn);
 	color: var(--colorFontDisabledBtn);
 	text-decoration: none;
 	cursor: default;
+}
+.contact-form textarea {
+	resize: none;
+	display: block;
 }
 </style>

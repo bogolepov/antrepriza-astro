@@ -19,8 +19,8 @@ else Content = ContentRu;
 	<div class='description'>
 		<Content>
 			<a slot='email' href={'mailto:' + theater.email} class='font-opacity1'>{theater.email}</a>
-			<span slot='contact-form' class='contact-form-span'>
-				<ContactFormButton client:load text={dictionary.question_form_label[lang]} lang={lang} />
+			<span slot='contact-form-slot' class='contact-form-span'>
+				<ContactFormButton client:load text={dictionary.contact_form_name[lang]} lang={lang} />
 			</span>
 		</Content>
 	</div>

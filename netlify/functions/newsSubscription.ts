@@ -5,8 +5,8 @@ import { makeHtmlEmail } from './lib/mailUtils.ts';
 import { type TMail, sendMails } from './lib/mailService.ts';
 import { type TAddEmailResult, Newsletters } from './lib/dbNewsletters.ts';
 
-import dictionaryServer from '@public_data/dictionary_server.json';
-import theater from '@public_data/theater.json';
+import dictionaryServer from '@data/dictionary_server.json';
+import theater from '@data/theater.json';
 
 export const handler: Handler = async (event, context) => {
 	const messageData = JSON.parse(event.body);

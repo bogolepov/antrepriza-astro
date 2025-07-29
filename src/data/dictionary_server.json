@@ -17,7 +17,6 @@
 		"de": "Schritt 2. Newsletter-Anmeldung wurde bestätigt"
 	},
 	"lang_count": { "ru": "шт", "de": "St" },
-	"total_amount": { "ru": "Итого", "de": "Gesamtbetrag" },
 	"new_reservation_text": { "ru": "У вас новое бронирование билетов", "de": "Sie haben eine neue Ticketreservierung" },
 	"new_subscription_text": {
 		"ru": "У вас новая подписка на новости",

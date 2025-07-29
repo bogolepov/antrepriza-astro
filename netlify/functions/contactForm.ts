@@ -4,7 +4,7 @@ import { validationContactFormJson, isValidContactForm } from '@scripts/contact_
 import { makeHtmlEmail } from './lib/mailUtils.ts';
 import { type TMail, sendMails } from './lib/mailService.ts';
 import { fromHtmlToPlainText, makeHandlerResponse, nonBreakingSpace } from './lib/utils.ts';
-import dictionaryServer from '@public_data/dictionary_server.json';
+import dictionaryServer from '@data/dictionary_server.json';
 import theater from '@data/theater.json';
 import { LANG_RU } from '@scripts/consts.ts';
 
@@ -38,7 +38,7 @@ export const handler: Handler = async (event, context) => {
 };
 
 function makeContent(contactForm: TContactForm, toAntrepriza: boolean): string {
-	return makePersonalMessage(contactForm, toAntrepriza) + makeFeedbackBlock(contactForm);
+	return makePersonalMessage(contactForm, toAntrepriza) + makeContactFormBlock(contactForm);
 }
 
 function makePersonalMessage(contactForm: TContactForm, toAntrepriza: boolean): string {
@@ -96,7 +96,7 @@ ${diffText}\
 `;
 }
 
-function makeFeedbackBlock(contactForm: TContactForm): string {
+function makeContactFormBlock(contactForm: TContactForm): string {
 	const { lang, topic, name, email, message } = contactForm;
 
 	return `\

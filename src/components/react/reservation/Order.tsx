@@ -1,19 +1,22 @@
 import { useMemo } from 'react';
-import type { IClientJsons } from '@scripts/clientJsons';
 import type { TTicketType } from '@scripts/types/prices';
 import type { TReservation } from '@scripts/types/reservation';
 
+import plays from '@data/plays.json';
+import theater from '@data/theater.json';
+import dictionary from '@data/dictionary.json';
+import prices from '@data/prices.json';
+
 interface IOrder {
 	lang: string;
-	jsons: IClientJsons;
 	play: TReservation;
 	handleAddTicket: (play: TReservation, ticket_type: TTicketType) => void;
 	handleRemoveTicket: (play: TReservation, ticket_type: TTicketType, count: number) => void;
 }
 
-export default function Order({ lang, jsons, play, handleAddTicket, handleRemoveTicket }: IOrder) {
+export default function Order({ lang, play, handleAddTicket, handleRemoveTicket }: IOrder) {
 	const getPlayName = () => {
-		return jsons.theater.plays.find(item => item.suffix === play.play_sid).title[lang];
+		return plays.find(item => item.suffix === play.play_sid).title[lang];
 	};
 	const getPlayDate = () => {
 		let playDate = new Date(play.date);
@@ -25,7 +28,7 @@ export default function Order({ lang, jsons, play, handleAddTicket, handleRemove
 		return playDate.toLocaleDateString(lang, options);
 	};
 	const getStageName = () => {
-		let stage = jsons.theater.stages.find(item => item.sid === play.stage_sid);
+		let stage = theater.stages.find(item => item.sid === play.stage_sid);
 		if (stage) return stage.name[lang];
 		return null;
 	};
@@ -36,7 +39,7 @@ export default function Order({ lang, jsons, play, handleAddTicket, handleRemove
 	const ticketTypes = useMemo(() => {
 		let mapTypes = new Map();
 		play.tickets.map(item => {
-			let ticketType = jsons.theater.prices.find(price => price.type === item.type);
+			let ticketType = prices.find(price => price.type === item.type);
 			mapTypes.set(item.type, { title: ticketType.text_short[lang], price: ticketType.value });
 		});
 		return mapTypes;
@@ -53,7 +56,9 @@ export default function Order({ lang, jsons, play, handleAddTicket, handleRemove
 				</div>
 				<div>
 					<h6 className='play-name'>{playName}</h6>
-					{playStageName && <div className='play-stage'>{jsons.dictionary.stage[lang] + ' - ' + playStageName.toUpperCase()}</div>}
+					{playStageName && (
+						<div className='play-stage'>{dictionary.stage[lang] + ' - ' + playStageName.toUpperCase()}</div>
+					)}
 					<div className='play-date'>
 						{playDate}, {play.time}
 					</div>

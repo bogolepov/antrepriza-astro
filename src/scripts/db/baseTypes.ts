@@ -177,7 +177,7 @@ export const enum EEmailStatus {
 export const enum EEmailSource {
 	WEBSITE_SUBSCRIPTION = 'website_subscription',
 	RESERVATION = 'reservation',
-	FEEDBACK_FORM = 'feedback_form',
+	CONTACT_FORM = 'contact_form',
 	DIRECT_EMAILS = 'direct_emails',
 	OTHER = 'other',
 }

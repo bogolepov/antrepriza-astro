@@ -1,9 +1,12 @@
 import * as consts from '@scripts/consts';
-import { type IClientJsons, loadClientJsons } from '@scripts/clientJsons';
 import { isCartOpen, isTicketsAdded } from '@react-components/reservation/cartStore';
 import type { TOrderItem, TReservation } from './types/reservation';
 
-const clientJsons: IClientJsons = { afisha: null, theater: null, dictionary: null };
+import dictionary from '@data/dictionary.json';
+import plays from '@data/plays.json';
+import theater from '@data/theater.json';
+import prices from '@data/prices.json';
+import afisha from '@data/afisha.json';
 
 let afishaItem;
 let stage;
@@ -114,63 +117,57 @@ function openForm(event, button) {
 
 	elemLoader.classList.add('show');
 
-	const handleThen = () => {
-		let aDate = afishaButton.getAttribute('data-date');
-		let aTime = afishaButton.getAttribute('data-time');
-		let aPlay = afishaButton.getAttribute('data-play');
+	let aDate = afishaButton.getAttribute('data-date');
+	let aTime = afishaButton.getAttribute('data-time');
+	let aPlay = afishaButton.getAttribute('data-play');
 
-		afishaItem = clientJsons.afisha.find(item => item.date === aDate && item.time === aTime && item.play_sid === aPlay);
-		if (!afishaItem) {
-			alert('Afisha Error!');
+	afishaItem = afisha.find(item => item.date === aDate && item.time === aTime && item.play_sid === aPlay);
+	if (!afishaItem) {
+		alert('Afisha Error!');
+	}
+	playItem = plays.find(item => afishaItem.play_sid === item.suffix);
+	if (!playItem) {
+		alert('Play Error!');
+	}
+	stage = theater.stages.find(stg => stg.sid === afishaItem.stage_sid);
+	if (!stage) stage = afishaItem.stage;
+	if (!stage) {
+		console.error('No STAGE information!');
+	}
+	if (afishaItem && playItem) {
+		elemPlayTitle.innerHTML = playItem.title[currLang];
+		elemPlayDescription.innerHTML = getPlayDescription();
+		elemDate.innerHTML = getPlayDate();
+		elemTime.innerHTML = getPlayTime();
+		if (stage.fix_stage) elemStageName.innerHTML = initStageName + stage.name[currLang].toUpperCase();
+		else elemStageName.innerHTML = stage.name[currLang].toUpperCase();
+		elemAddress.innerHTML = getAddress();
+		let placeName = getPlaceName();
+		if (placeName) {
+			elemPlaceName.innerHTML = placeName;
+			elemPlaceName.hidden = false;
+		} else {
+			elemPlaceName.hidden = true;
 		}
-		playItem = clientJsons.theater.plays.find(item => afishaItem.play_sid === item.suffix);
-		if (!playItem) {
-			alert('Play Error!');
-		}
-		stage = clientJsons.theater.stages.find(stg => stg.sid === afishaItem.stage_sid);
-		if (!stage) stage = afishaItem.stage;
-		if (!stage) {
-			console.error('No STAGE information!');
-		}
-		if (afishaItem && playItem) {
-			elemPlayTitle.innerHTML = playItem.title[currLang];
-			elemPlayDescription.innerHTML = getPlayDescription();
-			elemDate.innerHTML = getPlayDate();
-			elemTime.innerHTML = getPlayTime();
-			if (stage.fix_stage) elemStageName.innerHTML = initStageName + stage.name[currLang].toUpperCase();
-			else elemStageName.innerHTML = stage.name[currLang].toUpperCase();
-			elemAddress.innerHTML = getAddress();
-			let placeName = getPlaceName();
-			if (placeName) {
-				elemPlaceName.innerHTML = placeName;
-				elemPlaceName.hidden = false;
-			} else {
-				elemPlaceName.hidden = true;
-			}
-			elemSeating.innerHTML = getSeatingInfo();
-			updatePrices();
+		elemSeating.innerHTML = getSeatingInfo();
+		updatePrices();
 
-			if (afishaItem.distributor) {
-				elemDistributorLabel.innerHTML = afishaItem.distributor.label[currLang];
-				elemButtonDistributor.querySelector('.button-text').innerHTML = afishaItem.event_name[currLang];
-				elemButtonDistributor.querySelector('picture').style.display = 'none';
-				elemButtonDistributor.classList.remove('kontramarka');
-				elemButtonDistributor.classList.remove('flex-center');
-			} else {
-				elemDistributorLabel.innerHTML = defaultDistributorLabel;
-				elemButtonDistributor.querySelector('.button-text').innerHTML = defaultDistribButtonText;
-				elemButtonDistributor.querySelector('picture').style.display = 'block';
-				elemButtonDistributor.classList.add('kontramarka');
-				elemButtonDistributor.classList.add('flex-center');
-			}
+		if (afishaItem.distributor) {
+			elemDistributorLabel.innerHTML = afishaItem.distributor.label[currLang];
+			elemButtonDistributor.querySelector('.button-text').innerHTML = afishaItem.event_name[currLang];
+			elemButtonDistributor.querySelector('picture').style.display = 'none';
+			elemButtonDistributor.classList.remove('kontramarka');
+			elemButtonDistributor.classList.remove('flex-center');
+		} else {
+			elemDistributorLabel.innerHTML = defaultDistributorLabel;
+			elemButtonDistributor.querySelector('.button-text').innerHTML = defaultDistribButtonText;
+			elemButtonDistributor.querySelector('picture').style.display = 'block';
+			elemButtonDistributor.classList.add('kontramarka');
+			elemButtonDistributor.classList.add('flex-center');
 		}
-	};
+	}
 
-	const handleFinally = () => {
-		elemLoader.classList.remove('show');
-	};
-
-	loadClientJsons(clientJsons, handleThen, handleFinally);
+	elemLoader.classList.remove('show');
 }
 
 function closeForm() {
@@ -210,9 +207,7 @@ function handleAddToCart() {
 		reservation.tickets.forEach(price_type => (price_type.count += getTicketCount(price_type.type)));
 	} else {
 		let newTickets: TOrderItem[] = [];
-		clientJsons.theater.prices.forEach(price =>
-			newTickets.push({ type: price.type, count: getTicketCount(price.type) })
-		);
+		prices.forEach(price => newTickets.push({ type: price.type, count: getTicketCount(price.type) }));
 		// TODO: play_id => play_sid
 		let newReservation: TReservation = {
 			date: afishaItem.date,
@@ -250,7 +245,7 @@ function updatePrices() {
 
 function getPlayDescription() {
 	let playLang = playItem.lang['ru'].toLowerCase() === 'немецкий' ? 'de' : 'ru';
-	return playItem.genre[currLang] + ', ' + playItem.age + ', ' + clientJsons.dictionary.play_lang[playLang][currLang];
+	return playItem.genre[currLang] + ', ' + playItem.age + ', ' + dictionary.play_lang[playLang][currLang];
 }
 
 function getPlayDate() {
@@ -278,11 +273,11 @@ function getPlaceName() {
 }
 
 function getSeatingInfo() {
-	return clientJsons.dictionary.free_place[currLang];
+	return dictionary.free_place[currLang];
 }
 
 function getTicketCount(price_type) {
-	let elCounter = document.querySelector('#count-' + price_type);
+	let elCounter = document.querySelector<HTMLInputElement>('#count-' + price_type);
 	if (!elCounter) console.error('COUNT-element: NOT FOUND!');
 	return Number(elCounter.value);
 }

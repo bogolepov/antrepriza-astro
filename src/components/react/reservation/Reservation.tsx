@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useStore } from '@nanostores/react';
 
-import { Cart, getPrice } from '@components/react/reservation/Cart';
+import { Cart } from '@components/react/reservation/Cart';
 import CartButton from '@components/react/reservation/CartButton';
 import { isCartOpen, isTicketsAdded } from './cartStore';
 
@@ -9,6 +9,11 @@ import { FROZEN_BOOK_TIME, STORE_RESERVATION_KEY } from '@scripts/consts';
 import type { TReservation } from '@scripts/types/reservation';
 // import type { Reservations } from '@netlify/lib/dbReservations';
 import type { TTicketType } from '@scripts/types/prices';
+
+import prices from '@data/prices.json';
+export function getPrice(price_type) {
+	return prices.find(price => price.type === price_type).value;
+}
 
 export default function Reservation({ lang }) {
 	const [reservations, setReservations] = useState([]);

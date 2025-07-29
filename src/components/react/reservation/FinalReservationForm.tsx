@@ -1,11 +1,13 @@
 import '@styles/cart.css';
 import '@styles/loader.css';
 
+import dictionary from '@data/dictionary.json';
+
 import { useRef, useState } from 'react';
+import { getEmailAddressError, validEmailAddressFormat } from '@scripts/utils';
 
 interface IFinalReservation {
 	lang: string;
-	dictionary: any;
 	isShow: boolean;
 	handleClose: () => void;
 	handleMakeReservation: (
@@ -14,13 +16,7 @@ interface IFinalReservation {
 		handleResult: (isOk: boolean, errMessage: string) => void
 	) => void;
 }
-export default function FinalReservationForm({
-	lang,
-	dictionary,
-	isShow,
-	handleClose,
-	handleMakeReservation,
-}: IFinalReservation) {
+export default function FinalReservationForm({ lang, isShow, handleClose, handleMakeReservation }: IFinalReservation) {
 	const userName = useRef(null);
 	const userEmail = useRef(null);
 	const [userNameError, setUserNameError] = useState('');
@@ -88,17 +84,16 @@ export default function FinalReservationForm({
 		else if (name.length < 2) setUserNameError(dictionary['err__name_to_short'][lang]);
 		else errorNumbers--;
 
-		let email = userEmail.current.value.trim().replace(/\s+/g, ' ');
-		if (!email) setUserEmailError(dictionary['err__empty_email'][lang]);
-		else if (!EMAIL_REGEX.test(email) || email.length < 5 || email.length > 64)
-			setUserEmailError(dictionary['err__email_not_correct'][lang]);
-		else errorNumbers--;
+		let email = userEmail.current.value.trim().replace(/\s+/g, ' '); // remove all ' '
+		if (!validEmailAddressFormat(email)) {
+			const err = getEmailAddressError(email);
+			if (err.length) setUserEmailError(dictionary[err][lang]);
+		} else errorNumbers--;
 
 		if (errorNumbers === 0) return [name, email];
 		else return [null, null];
 	}
 
-	if (!dictionary) return <></>;
 	return (
 		<>
 			<div

@@ -6,17 +6,17 @@ export const enum EJsonType {
 
 const jsonMap = new Map<EJsonType, any>();
 
-export interface IClientJsons {
+interface IClientJsons {
 	afisha: any;
 	theater: any;
 	dictionary: any;
 }
 
-export function getClientJson(type: EJsonType): any {
+function getClientJson(type: EJsonType): any {
 	return jsonMap.get(type);
 }
 
-export function loadClientJsons(
+function loadClientJsons(
 	jsonContainer: IClientJsons,
 	handleThen?: () => void,
 	handleFinally?: () => void,

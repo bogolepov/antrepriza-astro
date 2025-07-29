@@ -4,10 +4,8 @@ import "@styles/carusel_main.css"
 
 const {lang} = Astro.props;
 
-import program from '@public_data/afisha.json'
+import program from '@data/afisha.json'
 import dictionary from '@data/dictionary.json'
-// import theater from '@data/theater.json'
-
 import plays from '@data/plays.json'
 
 import type { ImageMetadata } from 'astro';
@@ -88,7 +86,7 @@ let strLoading;
             if (lang === "ru") languageLabel = languageLabel.toLowerCase();
             return (
               <a class="swiper-slide" data-play={play.suffix} href={`/${lang}/plays/${play.suffix}/`} 
-                  aria-label={dictionary.play_lang[lang] + ' ' + play.title[lang]} >
+                  aria-label={dictionary.play_word[lang] + ' ' + play.title[lang]} >
                 <div class="carusel-play-card">
                   <div class="carusel-play-image">
                     <Picture 

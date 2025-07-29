@@ -22,7 +22,7 @@ function inlineDialogStyle(): string {
 
 <template>
 	<Transition name="modal-layer">
-		<div v-if="showForm" class="modal-layer-vue d-feedback">
+		<div v-if="showForm" class="modal-layer-vue">
 			<div class="modal-dialog" :style="inlineDialogStyle()">
 				<button @click="close()" class="close-button">&#10006;</button>
 				<slot></slot>

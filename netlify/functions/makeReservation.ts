@@ -6,9 +6,12 @@ import { type TMail, sendMails } from './lib/mailService.ts';
 import { addReservations, type TReservationExt } from './lib/db/antreprizaDB.ts';
 import { type TNetlifyDataReservations, type TOrderItem } from '@scripts/types/reservation.ts';
 
-import dictionaryServer from '@public_data/dictionary_server.json';
-import theater from '@public_data/theater.json';
-import afisha from '@public_data/afisha.json';
+import dictionaryServer from '@data/dictionary_server.json';
+import dictionary from '@data/dictionary.json';
+import theater from '@data/theater.json';
+import plays from '@data/plays.json';
+import prices from '@data/prices.json';
+import afisha from '@data/afisha.json';
 
 type TMessageValidationResult = {
 	valid: boolean;
@@ -79,7 +82,7 @@ function validateMessage(messageData: TNetlifyDataReservations): TMessageValidat
 			return;
 		}
 
-		let play = theater.plays.find(item => item.suffix === element.play_sid);
+		let play = plays.find(item => item.suffix === element.play_sid);
 		let stage = theater.stages.find(stg => stg.sid === element.stage_sid);
 		if (!play || !stage) {
 			valid = false;
@@ -107,7 +110,7 @@ function validateMessage(messageData: TNetlifyDataReservations): TMessageValidat
 			if (!valid) return;
 			if (ticket.count < 1) return;
 
-			let ticketType = theater.prices.find(price => price.type === ticket.type);
+			let ticketType = prices.find(price => price.type === ticket.type);
 			if (!ticketType) {
 				valid = false;
 				return;
@@ -219,7 +222,7 @@ function makeReservationsBlock(lang: string, reservations: TReservationExt[], am
 	// const totalAmountRow: string = '';
 	// 	totalAmountRow = `\
 	// <tr>\
-	// <td style="font-size: 130%; line-height: 120%; color: #d6d6d6; padding: 8px 0 0 0">${dictionaryServer.total_amount[lang]}</td>\
+	// <td style="font-size: 130%; line-height: 120%; color: #d6d6d6; padding: 8px 0 0 0">${dictionary.total_amount[lang]}</td>\
 	// <td style="font-size: 130%; line-height: 120%; color: #d6d6d6; padding: 8px 15px 0 0; text-align: right">${amount}€</td>\
 	// </tr>\
 	// `;
@@ -248,7 +251,7 @@ function makeEventsRows(lang: string, reservations: TReservationExt[]): string {
 	reservations.forEach((event, index) => {
 		// console.log(event);
 
-		let play = theater.plays.find(item => item.id === event.play_id); // play - thisPlay
+		let play = plays.find(item => item.id === event.play_id); // play - thisPlay
 		let playName: string = play.title[lang];
 		let playDate = new Date(event.date);
 		let options: Intl.DateTimeFormatOptions = {
@@ -286,7 +289,7 @@ ${ticketsRows.html}\
 <tr><td colspan="4" style="padding-top: 2px; border-bottom: 1px solid #888888"></td></tr>\
 <tr>\
 <td colspan="2" style="padding-top: 3px; text-align: left; vertical-align: top; color: #888888">${
-				dictionaryServer.total_amount[lang]
+				dictionary.total_amount[lang]
 			}</td>\
 <td colspan="2" style="padding-top: 3px; vertical-align: top; color: #888888">${ticketsRows.amount}€</td>\
 </tr>\
@@ -319,7 +322,7 @@ function makeTicketsRows(lang: string, tickets: TOrderItem[]): TTicketsRows | un
 	tickets.forEach(ticket => {
 		if (ticket.count < 1) return;
 
-		let ticketType = theater.prices.find(price => price.type === ticket.type);
+		let ticketType = prices.find(price => price.type === ticket.type);
 		amount += ticketType.value * ticket.count;
 		ticketsRows =
 			ticketsRows +
