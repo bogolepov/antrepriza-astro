@@ -1,22 +1,25 @@
 import { LANG_LIST } from './consts';
 import {
 	ESubscriptionAction,
-	SUBSCRIPTION_KEY_LENGTH,
+	SUBSCRIPTION_OBJ_LENGTH,
 	SubscriptionPacketSchema,
 	type TSubscriptionPacket,
 } from './types/subscription';
 import { getCRC32, validEmailAddressFormat } from './utils';
 
 export function sendSubscriptionPacket(
-	formData: TSubscriptionPacket,
+	packet: TSubscriptionPacket,
 	handleSendResult: (isOk: boolean, msg: string) => void
 ): void {
+	packet.check = '';
+	packet.check = getCRC32(packet);
+
 	const options = {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
 		},
-		body: JSON.stringify(formData),
+		body: JSON.stringify(packet),
 	};
 
 	let isOk: boolean;
@@ -33,7 +36,7 @@ export function sendSubscriptionPacket(
 		.catch(err => handleSendResult(false, err.message));
 }
 
-export function validationSubscriptionPacketJson(json_data: string): TSubscriptionPacket | undefined {
+export function extractSubscriptionPacketFromJson(json_data: string): TSubscriptionPacket | undefined {
 	console.log(json_data);
 	const result = SubscriptionPacketSchema.safeParse(JSON.parse(json_data));
 	if (result.success) {
@@ -62,11 +65,11 @@ function validCheckSumm(packet: TSubscriptionPacket): boolean {
 function validMainData(packet: TSubscriptionPacket): boolean {
 	switch (packet.action) {
 		case ESubscriptionAction.REG_INIT:
-			return !packet.key.length && !packet.sid && !packet.usid && validEmailAddressFormat(packet.email);
+			return !packet.obj.length && !packet.sid && !packet.usid && validEmailAddressFormat(packet.email);
 		case ESubscriptionAction.REG_CONFIRM:
-			return packet.key.length === SUBSCRIPTION_KEY_LENGTH && packet.sid && !packet.usid && !packet.email.length;
+			return packet.obj.length === SUBSCRIPTION_OBJ_LENGTH && packet.sid && !packet.usid && !packet.email.length;
 		case ESubscriptionAction.REG_DELETE:
-			return packet.key.length === SUBSCRIPTION_KEY_LENGTH && !packet.sid && packet.usid && !packet.email.length;
+			return packet.obj.length === SUBSCRIPTION_OBJ_LENGTH && !packet.sid && packet.usid && !packet.email.length;
 		default:
 			return false;
 	}

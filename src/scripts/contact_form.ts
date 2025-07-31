@@ -41,8 +41,7 @@ export function sendContactForm(formData: TContactForm, handleSendResult: (isOk:
 		.catch(err => handleSendResult(false, err.message));
 }
 
-export function validationContactFormJson(json_data: string): TContactForm | undefined {
-	console.log(json_data);
+export function extractContactFormFromJson(json_data: string): TContactForm | undefined {
 	const result = ContactFormSchema.safeParse(JSON.parse(json_data));
 	if (result.success) {
 		const contactForm: TContactForm = result.data;

@@ -1,6 +1,6 @@
 import type { Handler } from '@netlify/functions';
 import type { TContactForm } from '@scripts/types/contactForm.ts';
-import { validationContactFormJson, isValidContactForm } from '@scripts/contact_form';
+import { extractContactFormFromJson, isValidContactForm } from '@scripts/contact_form';
 import { makeHtmlEmail } from './lib/mailUtils.ts';
 import { type TMail, sendMails } from './lib/mailService.ts';
 import { fromHtmlToPlainText, makeHandlerResponse, nonBreakingSpace } from './lib/utils.ts';
@@ -9,13 +9,12 @@ import theater from '@data/theater.json';
 import { LANG_RU } from '@scripts/consts.ts';
 
 export const handler: Handler = async (event, context) => {
-	if (!event || !event.body)
-		return makeHandlerResponse(400, dictionaryServer.nf__contact_form__invalid_request[LANG_RU]);
+	if (!event || !event.body) return makeHandlerResponse(400, dictionaryServer.nf__invalid_request[LANG_RU]);
 
-	const contactForm: TContactForm = validationContactFormJson(event.body);
-	if (!contactForm) return makeHandlerResponse(400, dictionaryServer.nf__contact_form__empty_data[LANG_RU]);
+	const contactForm: TContactForm = extractContactFormFromJson(event.body);
+	if (!contactForm) return makeHandlerResponse(400, dictionaryServer.nf__empty_request_data[LANG_RU]);
 	if (!isValidContactForm(contactForm, false))
-		return makeHandlerResponse(400, dictionaryServer.nf__contact_form__invalid_format[LANG_RU]);
+		return makeHandlerResponse(400, dictionaryServer.nf__invalid_format[LANG_RU]);
 
 	const { lang, email, subject, topic } = contactForm;
 

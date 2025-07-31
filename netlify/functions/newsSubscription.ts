@@ -1,5 +1,5 @@
 import type { Handler, HandlerResponse } from '@netlify/functions';
-import { LANG_LIST, EMAIL_REGEX } from '@scripts/consts.ts';
+import { LANG_RU } from '@scripts/consts.ts';
 import { fromHtmlToPlainText, makeHandlerResponse } from './lib/utils.ts';
 import { makeHtmlEmail } from './lib/mailUtils.ts';
 import { type TMail, sendMails } from './lib/mailService.ts';
@@ -7,36 +7,34 @@ import { type TAddEmailResult, Newsletters } from './lib/dbNewsletters.ts';
 
 import dictionaryServer from '@data/dictionary_server.json';
 import theater from '@data/theater.json';
+import { ESubscriptionAction, type TSubscriptionPacket } from '@scripts/types/subscription.ts';
+import { extractSubscriptionPacketFromJson, validateSubscriptionPacketData } from '@scripts/subscription.ts';
 
 export const handler: Handler = async (event, context) => {
-	const messageData = JSON.parse(event.body);
-	const { lang, email, sid, usid } = messageData;
+	if (!event || !event.body) return makeHandlerResponse(400, dictionaryServer.nf__invalid_request[LANG_RU]);
 
-	// spam checking
-	if (!lang || !LANG_LIST.includes(lang)) {
-		// fake OK-result
-		return {
-			statusCode: 200,
-			body: JSON.stringify({
-				message: 'Successfully',
-			}),
-		};
+	const packet: TSubscriptionPacket = extractSubscriptionPacketFromJson(event.body);
+	if (!packet) return makeHandlerResponse(400, dictionaryServer.nf__empty_request_data[LANG_RU]);
+	if (!validateSubscriptionPacketData(packet, true))
+		return makeHandlerResponse(400, dictionaryServer.nf__invalid_format[LANG_RU]);
+
+	switch (packet.action) {
+		case ESubscriptionAction.REG_INIT:
+			return await emailRegistration(packet);
+		case ESubscriptionAction.REG_CONFIRM:
+			return await emailConfirmation(packet);
+		case ESubscriptionAction.REG_DELETE:
+			return await emailRemoving(packet);
 	}
-
-	if (email && email.length > 0) return await emailRegistration(lang, email);
-	else if (sid) return await emailConfirmation(lang, sid);
-	else if (usid) return await emailRemoving(lang, usid);
 };
 
-async function emailRegistration(lang: string, email: string): Promise<HandlerResponse> {
-	// spam checking
-	if (!email || !EMAIL_REGEX.test(email) || email.length > 64)
-		return makeHandlerResponse(200, 'Email sent successfully');
+async function emailRegistration(packet: TSubscriptionPacket): Promise<HandlerResponse> {
+	const { lang, email } = packet;
 
 	Newsletters.openDatabase();
 	const res: TAddEmailResult = Newsletters.addNewEmail(lang, email);
 	Newsletters.closeDatabase();
-	const sid: number = res.sid;
+	const { sid, obj } = res;
 	if (sid === 0) {
 		console.error(dictionaryServer.email_service_error[lang]);
 		return makeHandlerResponse(500, dictionaryServer.email_service_error[lang]);
@@ -49,12 +47,12 @@ async function emailRegistration(lang: string, email: string): Promise<HandlerRe
 	const clientMail: TMail = {
 		to: email,
 		subject: subjectClient,
-		html: makeHtmlEmail(lang, subjectClient, makeContentRegistration(lang, email, sid, false)),
+		html: makeHtmlEmail(lang, subjectClient, makeContentRegistration(lang, email, obj, sid, false)),
 	};
 	const antreprizaMail: TMail = {
 		to: '',
 		subject: subjectAntrepriza,
-		html: makeHtmlEmail(lang, subjectAntrepriza, makeContentRegistration(lang, email, sid, true)),
+		html: makeHtmlEmail(lang, subjectAntrepriza, makeContentRegistration(lang, email, obj, sid, true)),
 	};
 
 	const isSent = await sendMails(lang, transporterMail, clientMail, antreprizaMail);
@@ -63,7 +61,7 @@ async function emailRegistration(lang: string, email: string): Promise<HandlerRe
 	else return makeHandlerResponse(500, dictionaryServer.nf__email_registration__error[lang]);
 }
 
-function makeContentRegistration(lang: string, email: string, sid: number, toAntrepriza: boolean): string {
+function makeContentRegistration(lang: string, email: string, obj: string, sid: number, toAntrepriza: boolean): string {
 	let diffText: string;
 	if (toAntrepriza) {
 		diffText = `\
@@ -87,7 +85,7 @@ ${dictionaryServer.new_subscription_text[lang]}\
 <tr><td style="line-height: 120%; color: #d6d6d6; padding-bottom: 15px">${dictionaryServer.email_subscription_text[lang]}</td></tr>\
 <tr><td style="line-height: 120%; color: #d6d6d6; padding-bottom: 45px">${dictionaryServer.email_subscription_text2[lang]}</td></tr>\
 <tr><td style="line-height: 120%; padding-bottom: 45px">\
-<a href='https://antrepriza.eu/${lang}/newsletter?sid=${sid}' \
+<a href='https://antrepriza.eu/${lang}/newsletter?obj=${obj}&sid=${sid}' \
  style="font-size: 105%; font-weight: 500; line-height: 120%; color: #87605e; border: 1px solid #87605e; padding: 10px 20px 10px 20px; text-decoration: none">\
 ${dictionaryServer.email_subscription_button_text[lang]}</a>\
 </td></tr>\
@@ -106,9 +104,10 @@ ${diffText}\
 `;
 }
 
-async function emailConfirmation(lang: string, sid: number): Promise<HandlerResponse> {
+async function emailConfirmation(packet: TSubscriptionPacket): Promise<HandlerResponse> {
+	const { lang, sid, obj } = packet;
 	Newsletters.openDatabase();
-	let res: boolean = Newsletters.confirmEmail(sid);
+	let res: boolean = Newsletters.confirmEmail(obj, sid);
 	Newsletters.closeDatabase();
 	if (!res) {
 		console.error(dictionaryServer.email_service_error[lang]);
@@ -145,9 +144,11 @@ function makeContentConfirmed(sid: number) {
 `;
 }
 
-async function emailRemoving(lang: string, usid: number): Promise<HandlerResponse> {
+async function emailRemoving(packet: TSubscriptionPacket): Promise<HandlerResponse> {
+	const { lang, usid, obj } = packet;
+
 	Newsletters.openDatabase();
-	let res: boolean = Newsletters.removeEmail(usid);
+	let res: boolean = Newsletters.removeEmail(obj, usid);
 	Newsletters.closeDatabase();
 	if (!res) {
 		console.error(dictionaryServer.email_service_error[lang]);

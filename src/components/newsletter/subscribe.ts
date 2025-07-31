@@ -1,5 +1,7 @@
 import dictionary from '@data/dictionary.json';
 import { getCurrentPageLang, getEmailAddressError, validEmailAddressFormat } from '@scripts/utils';
+import { ESubscriptionAction, initSubscriptionPacket, type TSubscriptionPacket } from '@scripts/types/subscription';
+import { sendSubscriptionPacket } from '@scripts/subscription';
 
 let messageTimer: ReturnType<typeof setTimeout>;
 function resetMessageTimer() {
@@ -46,13 +48,6 @@ export async function submitNewsletterForm(event) {
 	const emailInput = form.querySelector<HTMLInputElement>('.newsletter__input');
 	const emailInputLoader = form.querySelector<HTMLInputElement>('.newsletter-input-loader');
 
-	let emailAddress = emailInput?.value.trim().replace(/\s+/g, ' '); // remove all ' '
-	if (!validEmailAddressFormat(emailAddress)) {
-		const err = getEmailAddressError(emailAddress);
-		if (err.length) showNewsletterMessage(dictionary[err][lang], true);
-		return;
-	}
-
 	let nlph = form.querySelector<HTMLInputElement>('#newsletter-phone');
 	if (nlph) {
 		let date = Number(nlph.innerText);
@@ -62,34 +57,23 @@ export async function submitNewsletterForm(event) {
 		}
 	}
 
-	const emailData = { lang, email: emailAddress };
-	const options = {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-		},
-		body: JSON.stringify(emailData),
-	};
+	let emailAddress = emailInput?.value.trim().replace(/\s+/g, ' '); // remove all ' '
+	if (!validEmailAddressFormat(emailAddress)) {
+		const err = getEmailAddressError(emailAddress);
+		if (err.length) showNewsletterMessage(dictionary[err][lang], true);
+		return;
+	}
 
-	const handleResult = (message, isOk) => {
+	const handleResult = (isOk: boolean, message: string) => {
 		emailInput.value = '';
 		emailInputLoader.style.display = 'none';
 		emailInputLoader.innerText = '';
 		showNewsletterMessage(message, !isOk);
 	};
 
-	let isOk;
 	emailInputLoader.innerText = emailInput.value;
 	emailInputLoader.style.display = 'block';
-	fetch('/.netlify/functions/newsSubscription', options)
-		.then(response => {
-			isOk = response.ok;
-			return response.json();
-		})
-		.then(data => {
-			// console.log(data.message);
-			if (isOk) handleResult(data.message, true);
-			else throw new Error(data.message);
-		})
-		.catch(err => handleResult(err.message, false));
+
+	let packet: TSubscriptionPacket = initSubscriptionPacket(lang, ESubscriptionAction.REG_INIT, emailAddress, '', 0, 0);
+	sendSubscriptionPacket(packet, handleResult);
 }

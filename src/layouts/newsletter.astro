@@ -1,25 +1,21 @@
 ---
-
 const { lang } = Astro.props;
 
 import Loader from '@components/loader.astro';
 
-import dictionary from '@data/dictionary.json'
-import '@styles/newsletter.css'
-
+import dictionary from '@data/dictionary.json';
+import '@styles/newsletter.css';
 ---
 
 <script>
-  import { newsletterService } from "@scripts/antrepriza.js"
-	document.addEventListener('DOMContentLoaded', () => {
-		newsletterService();
-	});
+	import { newsletterService } from '@scripts/newsletterService';
+	newsletterService();
 </script>
 
-<div class="newsletter-service">
-  <div class="service-status">
-    <div class="status-title">{dictionary.newsletter_service_title[lang]}</div>
-    <div class="status-message"></div>
-  </div>
-  <Loader uniq_name='newsletter-loader' background='no'></Loader>
+<div class='newsletter-service'>
+	<div class='service-status'>
+		<div class='status-title'>{dictionary.newsletter_service_title[lang]}</div>
+		<div class='status-message'></div>
+	</div>
+	<Loader uniq_name='newsletter-loader' background='no' />
 </div>

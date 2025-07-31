@@ -110,9 +110,18 @@
 		"de": "Ihre Anfrage wurde erfolgreich übermittelt."
 	},
 	"nf__contact_form__send_error": { "ru": "Ошибка при отправке запроса.", "de": "Fehler beim Senden der Anfrage." },
-	"nf__contact_form__invalid_request": { "ru": "Неверный запрос.", "de": "Ungültige Anfrage." },
-	"nf__contact_form__empty_data": { "ru": "Неверный формат запроса.", "de": "Falsche Anfrage." },
-	"nf__contact_form__invalid_format": { "ru": "Неверный формат данных запроса.", "de": "Falsche Anfragedaten." },
+	"nf__invalid_request": {
+		"ru": "Сбой в работе сервера (#12). Пожалуйста, попробуйте еще раз позже.",
+		"de": "Serverfehler (#12). Bitte versuchen Sie es später erneut."
+	},
+	"nf__empty_request_data": {
+		"ru": "Ошибка сервера при получении данных. Пожалуйста, попробуйте еще раз позже.",
+		"de": "Serverfehler beim Empfangen der Daten. Bitte versuchen Sie es später erneut."
+	},
+	"nf__invalid_format": {
+		"ru": "Ошибка сервера. Неверный формат полученных данных.",
+		"de": "Serverfehler. Ungültiges Format der empfangenen Daten."
+	},
 
 	"nf__reservations__ok": {
 		"ru": "Подтверждение резервирования билетов успешно отправлено на Ваш электронный адрес.",

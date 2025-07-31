@@ -13,6 +13,7 @@ export const LANG_LIST: Array<string> = [LANG_RU, LANG_DE];
 export const PHONE_REGEX = /^[0\+]{1}[0-9]{7,16}$/;
 // export const EMAIL_REGEX: RegExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 export const EMAIL_REGEX: RegExp = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+export const EMAIL_HASH_LENGTH: number = 8;
 export const MIN_EMAIL_LENGTH: number = 5;
 export const MAX_EMAIL_LENGTH: number = 64;
 

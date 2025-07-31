@@ -1,4 +1,5 @@
-import { getRandomIntInclusive } from '@scripts/utils';
+import { SUBSCRIPTION_OBJ_LENGTH } from '@scripts/types/subscription';
+import { getCRC32, getRandomIntInclusive } from '@scripts/utils';
 
 const ID_SHIFTS_ADD = { y: 347, m: 23, d: 56 };
 const ID_SHIFTS_REMOVE = { y: 817, m: 66, d: 54 };
@@ -12,6 +13,13 @@ const enum EMAIL_STATUS {
 }
 
 let db;
+
+function makeObjId(currDate: Date, email: string): string {
+	let obj: string = currDate.getTime().toString(16) + getCRC32(email);
+	if (obj.length > SUBSCRIPTION_OBJ_LENGTH) return obj.slice(0, SUBSCRIPTION_OBJ_LENGTH);
+	else if (obj.length < SUBSCRIPTION_OBJ_LENGTH) return obj.padEnd(SUBSCRIPTION_OBJ_LENGTH - obj.length, 'f');
+	else return obj;
+}
 
 function getIdAdd(currDate: Date): number {
 	const strIdAdd: string =
@@ -39,6 +47,7 @@ function getIdRemove(currDate: Date): number {
 
 export type TAddEmailResult = {
 	existed: boolean;
+	obj: string;
 	sid: number;
 	confirmed: boolean;
 	removed: boolean;
@@ -81,7 +90,7 @@ export class Newsletters {
 
 	static addNewEmail(lang: string, email: string): TAddEmailResult {
 		const today: Date = new Date();
-		return { existed: false, sid: getIdAdd(today), confirmed: false, removed: false };
+		return { existed: false, obj: makeObjId(today, email), sid: getIdAdd(today), confirmed: false, removed: false };
 
 		if (!db) return { existed: false, sid: 0, confirmed: false, removed: false };
 
@@ -130,7 +139,7 @@ export class Newsletters {
 		return { existed: false, sid: item.id_add, confirmed: false, removed: false };
 	}
 
-	static confirmEmail(sid: number): boolean {
+	static confirmEmail(obj: string, sid: number): boolean {
 		return true;
 
 		if (!db) return false;
@@ -153,7 +162,7 @@ export class Newsletters {
 		return true;
 	}
 
-	static removeEmail(usid: number): boolean {
+	static removeEmail(obj: string, usid: number): boolean {
 		return true;
 
 		if (!db) return false;
