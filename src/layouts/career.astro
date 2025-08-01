@@ -20,7 +20,7 @@ else Content = ContentRu;
 		<Content>
 			<a slot='email' href={'mailto:' + theater.email} class='font-opacity1'>{theater.email}</a>
 			<span slot='contact-form-slot' class='contact-form-span'>
-				<ContactFormButton client:load text={dictionary.contact_form_name[lang]} lang={lang} />
+				<ContactFormButton client:idle text={dictionary.contact_form_name[lang]} lang={lang} />
 			</span>
 		</Content>
 	</div>

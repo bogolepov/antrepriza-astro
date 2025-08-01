@@ -2,7 +2,7 @@
 import theater from '@data/theater.json';
 import plays from '@data/plays.json';
 
-const { lang, title, description, og_title, play_sid } = Astro.props;
+const { lang, description, og_title, play_sid } = Astro.props;
 const pathname: string = new URL(Astro.request.url).pathname;
 
 let ogDescription = description;

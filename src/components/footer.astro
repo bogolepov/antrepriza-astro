@@ -94,7 +94,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/partner
 			<Subscribe lang={lang} />
 			<SocialPages lang={lang} />
 			<div>
-				<ContactFormButton client:load text={dictionary.contact_form_name[lang]} lang={lang} />
+				<ContactFormButton client:idle text={dictionary.contact_form_name[lang]} lang={lang} />
 			</div>
 			<div class='lh-1-3'>
 				<div><a class='footer-text-link' href={`/${lang}/impressum/`}>{dictionary.impressum[lang]}</a></div>
