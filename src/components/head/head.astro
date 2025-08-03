@@ -69,5 +69,10 @@ const addSeoEvent = seo_event === 'true';
 	<SchemaOrganization lang />
 	<SocialMediaHead {lang} {description} og_title={ogTitle} {play_sid} />
 	{addSeoEvent && <SeoEvent {lang} {play_sid} {date} {time} description={pageDescription} />}
+	<script is:inline>
+		let m = localStorage.getItem('MODE');
+		if (!m) m = 'dark';
+		document.documentElement.setAttribute('data-theme', m);
+	</script>
 	<meta name='generator' content={Astro.generator} />
 </head>

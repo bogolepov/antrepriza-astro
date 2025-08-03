@@ -1,24 +1,21 @@
 ---
-import "@styles/font.css"
-import "@styles/init.css"
-import "@styles/antrepriza.css"
+import '@styles/font.css';
+import '@styles/init.css';
+import '@styles/antrepriza.css';
 
-import theater from '@data/theater.json'
-import dictionary from '@data/dictionary.json'
+import dictionary from '@data/dictionary.json';
 
-import Head from "@components/head/head.astro";
-import Admin from "@components/vue/admin/AdminRoot.vue"
+import Head from '@components/head/head.astro';
+import Admin from '@components/vue/admin/AdminRoot.vue';
 
-const { title, description, lang, robots = "noindex, nofollow", seo_event = 'false' } = Astro.props;
-
+const { title, description, lang, robots = 'noindex, nofollow', seo_event = 'false' } = Astro.props;
 ---
 
-<html lang={lang}>
-	<Head lang={lang} title={title} description={description} robots={robots} seo_event={seo_event}/>
+<html lang={lang} data-theme='dark'>
+	<Head lang={lang} title={title} description={description} robots={robots} seo_event={seo_event} />
 
 	<body>
-		<Admin client:only="vue"></Admin>
-    <input type="checkbox" id="theme-switcher" tabindex="-1" aria-label={dictionary.aria_theme_switch[lang]} checked/>
+		<Admin client:only='vue' />
+		<input type='checkbox' id='theme-switcher' tabindex='-1' aria-label={dictionary.aria_theme_switch[lang]} checked />
 	</body>
-	
 </html>

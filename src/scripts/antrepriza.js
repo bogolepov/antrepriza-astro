@@ -2,8 +2,6 @@
 import * as consts from '@scripts/consts';
 import { getCurrentPageLang } from './utils';
 
-import dictionary from '@data/dictionary.json';
-
 /* --------------------------------------------------- */
 /* ------------------- INIT PAGE  -------------------- */
 /* --------------------------------------------------- */
@@ -66,7 +64,6 @@ export function initThemeMode() {
 
 	themeSwitcher.checked = mode === consts.THEME_DARK;
 	updateTheme(mode);
-	// themeSwitcher.dispatchEvent(new Event('change', { withoutTransition: true }));
 
 	const handleChange = event => {
 		event.preventDefault();
