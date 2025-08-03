@@ -124,7 +124,7 @@
 }
 
 @media screen and (max-width: 640px) {
-	.media-flex-top {
+	.media-flex-top label {
 		display: none;
 	}
 	.media-flex-bottom {

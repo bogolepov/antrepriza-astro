@@ -25,7 +25,7 @@ const posterImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*
 		{
 			plays.map(play => {
 				let playFotos = photos.filter(photo => photo.filename && photo.suffix === play.suffix && photo.is_landscape);
-				if ((!playFotos || playFotos.length === 0) && !play.trailer_embed) return;
+				if (!playFotos.length && !play.trailer_embed) return;
 				return (
 					<li class='gallery-block'>
 						<form>
@@ -35,7 +35,7 @@ const posterImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*
 								</h2>
 
 								<div class='media-flex-top tabs'>
-									{playFotos && playFotos.length > 0 && (
+									{playFotos.length && (
 										<label class='media-photo tab-item' for={'photo-' + play.suffix}>
 											{dictionary.photo[lang]}
 										</label>
@@ -45,18 +45,16 @@ const posterImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*
 											{dictionary.video[lang]}
 										</label>
 									)}
-									{play.posters.facebook && play.posters.facebook.length > 0 && (
+									{play.posters.facebook?.length && (
 										<label class='media-poster tab-item' for={'poster-' + play.suffix}>
 											{dictionary.poster[lang]}
 										</label>
-									)}
-									{play.posters.facebook && play.posters.facebook.length > 0 && (
 										<input
 											type='radio'
 											id={'poster-' + play.suffix}
 											name={'media-' + play.suffix}
 											value='poster'
-											checked
+											checked={playFotos.length === 0 && !play.trailer_embed}
 										/>
 									)}
 									{play.trailer_embed && (
@@ -65,10 +63,10 @@ const posterImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*
 											id={'video-' + play.suffix}
 											name={'media-' + play.suffix}
 											value='video'
-											checked
+											checked={playFotos.length === 0}
 										/>
 									)}
-									{playFotos && playFotos.length > 0 && (
+									{playFotos.length && (
 										<input
 											type='radio'
 											id={'photo-' + play.suffix}
@@ -80,7 +78,7 @@ const posterImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*
 								</div>
 							</div>
 							<div>
-								{playFotos && playFotos.length > 0 && (
+								{playFotos.length && (
 									<div class='photo_container'>
 										<PlayGallery lang={lang} play_suffix={play.suffix} hover='false' />
 									</div>
@@ -90,7 +88,7 @@ const posterImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*
 										<YoutubePlayer lang={lang} url={play.trailer_embed} />
 									</div>
 								)}
-								{play.posters.facebook && play.posters.facebook.length > 0 && (
+								{play.posters.facebook?.length && (
 									<div class='poster_container'>
 										<div class='poster'>
 											<Picture
@@ -112,7 +110,7 @@ const posterImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*
 							</div>
 							<div class='after-gallery'>
 								<div class='media-flex-bottom tabs'>
-									{playFotos && playFotos.length && (
+									{playFotos.length && (
 										<label class='media-photo tab-item' for={'photo-' + play.suffix}>
 											{dictionary.photo[lang]}
 										</label>
@@ -122,7 +120,7 @@ const posterImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*
 											{dictionary.video[lang]}
 										</label>
 									)}
-									{play.posters.facebook && play.posters.facebook.length > 0 && (
+									{play.posters.facebook?.length && (
 										<label class='media-poster tab-item' for={'poster-' + play.suffix}>
 											{dictionary.poster[lang]}
 										</label>
