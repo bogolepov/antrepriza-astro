@@ -1,0 +1,34 @@
+---
+import theater from '@data/theater.json';
+import dictionary from '@data/dictionary.json';
+
+const { lang } = Astro.props;
+
+const mainStage = theater.stages.find(stg => stg.sid === 'west');
+
+const json: string = JSON.stringify({
+	'@context': 'https://schema.org',
+	'@type': 'Organization',
+	url: theater.our_website_link,
+	logo: theater.our_website_link + '/favicon.svg',
+	name: theater.longTheaterName[lang],
+	description: dictionary.description_index[lang],
+	email: theater.email,
+	telephone: theater.phone,
+	address: {
+		'@type': 'PostalAddress',
+		streetAddress: mainStage.address.street + ' ' + mainStage.address.building,
+		addressLocality: mainStage.address.city,
+		addressCountry: 'DE',
+		postalCode: mainStage.address.index,
+	},
+	image: theater.our_website_link + '/assets/logo_1920t.png',
+	geo: {
+		'@type': 'GeoCoordinates',
+		latitude: mainStage.geo.latitude,
+		longitude: mainStage.geo.longitude,
+	},
+});
+---
+
+<script type='application/ld+json' set:html={json} />

@@ -57,12 +57,12 @@
 	align-self: center;
 }
 
-body:has(#theme-switcher:checked) .theme-block-dark,
-body:has(#theme-switcher:not(:checked)) .theme-block-light {
+[data-theme='dark'] .theme-block-dark,
+[data-theme='light'] .theme-block-light {
 	display: none;
 }
-body:has(#theme-switcher:checked) .theme-block-light,
-body:has(#theme-switcher:not(:checked)) .theme-block-dark {
+[data-theme='dark'] .theme-block-light,
+[data-theme='light'] .theme-block-dark {
 	display: flex;
 }
 

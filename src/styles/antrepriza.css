@@ -59,8 +59,8 @@ body {
 /* ---------------- dark/light theme ----------------- */
 /* --------------------------------------------------- */
 
-/* [data-theme='dark'] { */
-body:has(#theme-switcher:checked) {
+/* body:has(#theme-switcher:checked) { */
+[data-theme='dark'] {
 	color-scheme: dark;
 	--font-opacity0: 0.7;
 	--font-opacity1: 0.44;
@@ -116,8 +116,8 @@ body:has(#theme-switcher:checked) {
 	--font-invers-weight: 900;
 }
 
-/* [data-theme='light'] { */
-body:has(#theme-switcher:not(:checked)) {
+/* body:has(#theme-switcher:not(:checked)) { */
+[data-theme='light'] {
 	color-scheme: light;
 	--font-opacity0: 0.85;
 	--font-opacity1: 0.8;
@@ -194,6 +194,78 @@ body {
 }
 
 /* --------------------------------------------------- */
+/* @view-transition {
+	navigation: auto;
+}
+::view-transition-group(root) {
+	animation-duration: 1.5s;
+}
+@property --time {
+	syntax: '<number>';
+	initial-value: 0;
+	inherits: true;
+}
+
+@keyframes move-out {
+	from {
+	}
+	to {
+	}
+}
+
+@keyframes move-in {
+	from {
+		--time: -0.1;
+	}
+	to {
+		--time: 1.1;
+	}
+}
+
+::view-transition-old(root) {
+	animation: 2s ease-in both move-out;
+}
+
+::view-transition-new(root) {
+	--humps: 1.5; 
+	--pi: 3.14;
+	--lr: calc(var(--humps) * pi);
+	--time: 0;
+
+	clip-path: polygon(
+		0% 0%,
+		0% calc(cos(calc(0 + var(--time)) * var(--lr)) * 10% + calc(100% * var(--time))),
+		10% calc(cos(calc(0.1 + var(--time)) * var(--lr)) * 10% + calc(100% * var(--time))),
+		20% calc(cos(calc(0.2 + var(--time)) * var(--lr)) * 10% + calc(100% * var(--time))),
+		30% calc(cos(calc(0.3 + var(--time)) * var(--lr)) * 10% + calc(100% * var(--time))),
+		40% calc(cos(calc(0.4 + var(--time)) * var(--lr)) * 10% + calc(100% * var(--time))),
+		50% calc(cos(calc(0.5 + var(--time)) * var(--lr)) * 10% + calc(100% * var(--time))),
+		60% calc(cos(calc(0.6 + var(--time)) * var(--lr)) * 10% + calc(100% * var(--time))),
+		70% calc(cos(calc(0.7 + var(--time)) * var(--lr)) * 10% + calc(100% * var(--time))),
+		80% calc(cos(calc(0.8 + var(--time)) * var(--lr)) * 10% + calc(100% * var(--time))),
+		90% calc(cos(calc(0.9 + var(--time)) * var(--lr)) * 10% + calc(100% * var(--time))),
+		100% calc(cos(calc(1 + var(--time)) * var(--lr)) * 10% + calc(100% * var(--time))),
+		100% 0%
+	);
+	animation: 1.5s ease-in both move-in;
+} */
+
+::view-transition-old(root) {
+	animation-delay: 500ms;
+}
+::view-transition-new(root) {
+	animation: move-in 500ms;
+}
+
+@keyframes move-in {
+	from {
+		translate: 0 -100%;
+	}
+	to {
+		translate: 0 0;
+	}
+}
+
 /* --------------------------------------------------- */
 /* --------------------------------------------------- */
 html,

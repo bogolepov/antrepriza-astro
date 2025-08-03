@@ -45,16 +45,28 @@ export function initThemeMode() {
 
 	themeSwitcher = document.querySelector('#theme-switcher');
 
+	function updateTheme(newTheme) {
+		document.documentElement.setAttribute('data-theme', newTheme);
+	}
+
 	themeSwitcher.addEventListener('change', event => {
 		event.stopImmediatePropagation();
 		event.preventDefault();
 		let newMode = themeSwitcher.checked ? consts.THEME_DARK : consts.THEME_LIGHT;
-		// document.body.dataset.theme = newMode;
 		localStorage.setItem(consts.CNF_MODE, newMode);
+
+		console.log(event.withoutTransition);
+
+		if (document.startViewTransition)
+			document.startViewTransition(() => {
+				updateTheme(newMode);
+			});
+		else updateTheme(newMode);
 	});
 
 	themeSwitcher.checked = mode === consts.THEME_DARK;
-	themeSwitcher.dispatchEvent(new Event('change'));
+	updateTheme(mode);
+	// themeSwitcher.dispatchEvent(new Event('change', { withoutTransition: true }));
 
 	const handleChange = event => {
 		event.preventDefault();
