@@ -1,7 +1,7 @@
 ---
 import Loader from '@components/loader.astro';
 
-const { lang, uniq_class, loader_bkg = 'no', inert } = Astro.props;
+const { uniq_class, loader_bkg = 'no', inert } = Astro.props;
 ---
 
 <div class:list={['modal-layer layer-on-window glass6 flex-center', uniq_class]} {inert}>

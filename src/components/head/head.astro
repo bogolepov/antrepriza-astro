@@ -66,7 +66,7 @@ const addSeoEvent = seo_event === 'true';
 		})
 	}
 	<link rel='alternate' href={theater.our_website_link + pathname.replace(`/${lang}/`, '/ru/')} hreflang='x-default' />
-	<SchemaOrganization lang />
+	<SchemaOrganization {lang} />
 	<SocialMediaHead {lang} {description} og_title={ogTitle} {play_sid} />
 	{addSeoEvent && <SeoEvent {lang} {play_sid} {date} {time} description={pageDescription} />}
 	<script is:inline>
