@@ -194,9 +194,9 @@ body {
 }
 
 /* --------------------------------------------------- */
-@view-transition {
+/* @view-transition {
 	navigation: auto;
-}
+} */
 ::view-transition-group(root) {
 	animation-duration: 1.5s;
 }
@@ -250,6 +250,21 @@ body {
 	animation: 1.5s ease-in both move-in;
 }
 
+/* ::view-transition-old(root) {
+	animation-delay: 500ms;
+}
+::view-transition-new(root) {
+	animation: move-in 500ms;
+}
+
+@keyframes move-in {
+	from {
+		translate: 0 -100%;
+	}
+	to {
+		translate: 0 0;
+	}
+} */
 /* --------------------------------------------------- */
 /* --------------------------------------------------- */
 html,

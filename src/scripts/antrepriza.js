@@ -40,11 +40,12 @@ export function initThemeMode() {
 	if (!mode || !consts.THEME_LIST.includes(mode)) mode = consts.THEME_DARK;
 
 	// document.body.dataset.theme = mode;
+	const THEME_ATTRIBUTE = 'data-theme';
 
 	themeSwitcher = document.querySelector('#theme-switcher');
 
 	function updateTheme(newTheme) {
-		document.documentElement.setAttribute('data-theme', newTheme);
+		document.documentElement.setAttribute(THEME_ATTRIBUTE, newTheme);
 	}
 
 	themeSwitcher.addEventListener('change', event => {
@@ -53,16 +54,18 @@ export function initThemeMode() {
 		let newMode = themeSwitcher.checked ? consts.THEME_DARK : consts.THEME_LIGHT;
 		localStorage.setItem(consts.CNF_MODE, newMode);
 
-		console.log(event.withoutTransition);
-
-		if (document.startViewTransition)
-			document.startViewTransition(() => {
-				updateTheme(newMode);
-			});
-		else updateTheme(newMode);
+		let oldTheme = document.documentElement.getAttribute(THEME_ATTRIBUTE);
+		if (oldTheme != newMode) {
+			if (document.startViewTransition)
+				document.startViewTransition(() => {
+					updateTheme(newMode);
+				});
+			else updateTheme(newMode);
+		}
 	});
 
 	themeSwitcher.checked = mode === consts.THEME_DARK;
+	// themeSwitcher.dispatchEvent(new Event('change'));
 	updateTheme(mode);
 
 	const handleChange = event => {
