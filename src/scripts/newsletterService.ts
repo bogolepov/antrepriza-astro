@@ -1,5 +1,5 @@
 import { sendSubscriptionPacket, validateSubscriptionPacketData } from './subscription';
-import { ESubscriptionAction, initSubscriptionPacket, type TSubscriptionPacket } from './types/subscription';
+import { ESubscriptionState, initSubscriptionPacket, type TSubscriptionPacket } from './types/subscription';
 import { getCurrentPageLang } from './utils';
 import dictionary from '@data/dictionary.json';
 
@@ -35,8 +35,8 @@ export async function newsletterService() {
 	};
 
 	let packet: TSubscriptionPacket;
-	if (sid) packet = initSubscriptionPacket(lang, ESubscriptionAction.REG_CONFIRM, '', obj, sid, 0);
-	else if (usid) packet = initSubscriptionPacket(lang, ESubscriptionAction.REG_DELETE, '', obj, 0, usid);
+	if (sid) packet = initSubscriptionPacket(lang, ESubscriptionState.REG_CONFIRM, '', obj, sid, 0);
+	else if (usid) packet = initSubscriptionPacket(lang, ESubscriptionState.REG_DELETE, '', obj, 0, usid);
 
 	if (!validateSubscriptionPacketData(packet, false)) {
 		showNewsletterServiceMessage(dictionary.err__incorrect_data[lang], false);

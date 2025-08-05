@@ -8,13 +8,9 @@
 		"ru": "Подтвердите подписку на новости",
 		"de": "Newsletter-Anmeldung bestätigen"
 	},
-	"email_news_subscription_reg_subject_antrepriza": {
-		"ru": "Шаг 1. Новая подписка на новости",
-		"de": "Schritt 1. Neue Newsletter-Anmeldung"
-	},
 	"email_news_subscription_confirmed_subject": {
-		"ru": "Шаг 2. Подписка на новости подтверждена",
-		"de": "Schritt 2. Newsletter-Anmeldung wurde bestätigt"
+		"ru": "У вас новый подписчик",
+		"de": "Sie haben einen neuen Abonnenten"
 	},
 	"lang_count": { "ru": "шт", "de": "St" },
 	"new_reservation_text": { "ru": "У вас новое бронирование билетов", "de": "Sie haben eine neue Ticketreservierung" },

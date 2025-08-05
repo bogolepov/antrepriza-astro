@@ -1,6 +1,6 @@
 import dictionary from '@data/dictionary.json';
 import { getCurrentPageLang, getEmailAddressError, validEmailAddressFormat } from '@scripts/utils';
-import { ESubscriptionAction, initSubscriptionPacket, type TSubscriptionPacket } from '@scripts/types/subscription';
+import { ESubscriptionState, initSubscriptionPacket, type TSubscriptionPacket } from '@scripts/types/subscription';
 import { sendSubscriptionPacket } from '@scripts/subscription';
 
 let messageTimer: ReturnType<typeof setTimeout>;
@@ -74,6 +74,6 @@ export async function submitNewsletterForm(event) {
 	emailInputLoader.innerText = emailInput.value;
 	emailInputLoader.style.display = 'block';
 
-	let packet: TSubscriptionPacket = initSubscriptionPacket(lang, ESubscriptionAction.REG_INIT, emailAddress, '', 0, 0);
+	let packet: TSubscriptionPacket = initSubscriptionPacket(lang, ESubscriptionState.REG_INIT, emailAddress, '', 0, 0);
 	sendSubscriptionPacket(packet, handleResult);
 }

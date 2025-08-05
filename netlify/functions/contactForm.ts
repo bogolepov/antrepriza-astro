@@ -1,7 +1,7 @@
 import type { Handler } from '@netlify/functions';
 import type { TContactForm } from '@scripts/types/contactForm.ts';
 import { extractContactFormFromJson, isValidContactForm } from '@scripts/contact_form';
-import { makeHtmlEmail } from './lib/mailUtils.ts';
+import { makeHtmlEmail } from './lib/emails/mainEmailTemplate.ts';
 import { type TMail, sendMails } from './lib/mailService.ts';
 import { fromHtmlToPlainText, makeHandlerResponse, nonBreakingSpace } from './lib/utils.ts';
 import dictionaryServer from '@data/dictionary_server.json';

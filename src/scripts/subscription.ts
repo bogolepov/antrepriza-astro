@@ -1,6 +1,6 @@
 import { LANG_LIST } from './consts';
 import {
-	ESubscriptionAction,
+	ESubscriptionState,
 	SUBSCRIPTION_OBJ_LENGTH,
 	SubscriptionPacketSchema,
 	type TSubscriptionPacket,
@@ -63,12 +63,12 @@ function validCheckSumm(packet: TSubscriptionPacket): boolean {
 }
 
 function validMainData(packet: TSubscriptionPacket): boolean {
-	switch (packet.action) {
-		case ESubscriptionAction.REG_INIT:
+	switch (packet.state) {
+		case ESubscriptionState.REG_INIT:
 			return !packet.obj.length && !packet.sid && !packet.usid && validEmailAddressFormat(packet.email);
-		case ESubscriptionAction.REG_CONFIRM:
+		case ESubscriptionState.REG_CONFIRM:
 			return packet.obj.length === SUBSCRIPTION_OBJ_LENGTH && packet.sid && !packet.usid && !packet.email.length;
-		case ESubscriptionAction.REG_DELETE:
+		case ESubscriptionState.REG_DELETE:
 			return packet.obj.length === SUBSCRIPTION_OBJ_LENGTH && !packet.sid && packet.usid && !packet.email.length;
 		default:
 			return false;

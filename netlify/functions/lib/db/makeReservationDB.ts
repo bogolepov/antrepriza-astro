@@ -1,4 +1,4 @@
-import { firestore } from './firebase';
+import { antreprizaDB } from './firebase';
 import { collection, doc, setDoc, updateDoc, arrayUnion } from 'firebase/firestore';
 import { getCountFromServer, query, documentId, where } from '@firebase/firestore';
 import type { TReservation, TOrderItem } from '@scripts/types/reservation';
@@ -15,7 +15,7 @@ function makeReservationId(date: string, time: string) {
 }
 async function eventInTicketsExists(eventName: string): Promise<boolean> {
 	const snap = await getCountFromServer(
-		query(collection(firestore, COLLECTION_TICKETS), where(documentId(), '==', eventName))
+		query(collection(antreprizaDB, COLLECTION_TICKETS), where(documentId(), '==', eventName))
 	);
 	return snap.data().count > 0;
 }
@@ -42,9 +42,9 @@ export async function addReservations(
 			reservation.tickets = event.tickets.filter(ticket => ticket.count > 0);
 
 			if (await eventInTicketsExists(eventDocName)) {
-				await updateDoc(doc(firestore, COLLECTION_TICKETS, eventDocName), { reservations: arrayUnion(reservation) });
+				await updateDoc(doc(antreprizaDB, COLLECTION_TICKETS, eventDocName), { reservations: arrayUnion(reservation) });
 			} else {
-				await setDoc(doc(firestore, COLLECTION_TICKETS, eventDocName), { reservations: arrayUnion(reservation) });
+				await setDoc(doc(antreprizaDB, COLLECTION_TICKETS, eventDocName), { reservations: arrayUnion(reservation) });
 			}
 		}
 	}

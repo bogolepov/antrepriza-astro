@@ -19,6 +19,8 @@ const DOC_THEATER_STAGES: string = 'stages';
 const DOC_THEATER_PERFORMANCES: string = 'performances';
 const DOC_THEATER_REPETITIONS: string = 'repetitions';
 const DOC_THEATER_WHATSAPP_NOTES: string = 'whatsapp_notes';
+export const DOC_THEATER_SUBSCRIBERS: string = 'subscribers';
+export const COLLECTION_SUBSCRIBERS_EMAILS: string = 'emails';
 const DOC_NEWS_EMAILS: string = 'news';
 
 // let program;
@@ -271,7 +273,9 @@ export function changedItems<T extends IItem>(currItems: T[], type: EItemType): 
 
 	if (currItems.length !== srcItems.length) return true;
 
-	let equalItems = currItems.filter(item => srcItems.find(srcItem => item.id === srcItem.id && checkEqualItems(item, srcItem, type)));
+	let equalItems = currItems.filter(item =>
+		srcItems.find(srcItem => item.id === srcItem.id && checkEqualItems(item, srcItem, type))
+	);
 	return equalItems.length !== currItems.length;
 }
 
