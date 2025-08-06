@@ -10,18 +10,15 @@ import {
 	checkEqualItems,
 } from './baseTypes';
 import { ONE_DAY } from '@scripts/consts';
-
-export const COLLECTION_THEATER: string = 'theater';
-export const COLLECTION_TICKETS: string = 'tickets';
-export const COLLECTION_EMAILS: string = 'emails';
-const DOC_THEATER_PLAYS: string = 'plays';
-const DOC_THEATER_STAGES: string = 'stages';
-const DOC_THEATER_PERFORMANCES: string = 'performances';
-const DOC_THEATER_REPETITIONS: string = 'repetitions';
-const DOC_THEATER_WHATSAPP_NOTES: string = 'whatsapp_notes';
-export const DOC_THEATER_SUBSCRIBERS: string = 'subscribers';
-export const COLLECTION_SUBSCRIBERS_EMAILS: string = 'emails';
-const DOC_NEWS_EMAILS: string = 'news';
+import {
+	COLLECTION_THEATER,
+	COLLECTION_TICKETS,
+	DOC_THEATER_PERFORMANCES,
+	DOC_THEATER_PLAYS,
+	DOC_THEATER_REPETITIONS,
+	DOC_THEATER_STAGES,
+	DOC_THEATER_WHATSAPP_NOTES,
+} from '@netlify/lib/db/constsDB';
 
 // let program;
 // async function readProgram() {

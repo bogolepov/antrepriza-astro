@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { getMonthName } from '@scripts/date';
+import { getMonthName } from '@scripts/utils';
 import { type TWhatsappItem, EWAItemType } from '../lib/whatsapp_types';
 import WhatsappNoteItem from './WhatsappNoteItem.vue';
 import WhatsappStageItem from './WhatsappStageItem.vue';
@@ -35,8 +35,15 @@ function handleRemoveEventNote(sid: string, type: EWAItemType) {
 		<div v-if="whatsappItem.type === EWAItemType.MONTH" class="month-item wa-item-flex-item">
 			{{ getMonthName(whatsappItem.note as string).toUpperCase() }}
 		</div>
-		<div v-else-if="whatsappItem.type === EWAItemType.PRE_NOTE || whatsappItem.type === EWAItemType.POST_NOTE" class="wa-item-flex-item">
-			<WhatsappNoteItem :whatsapp-item :is-edit @check-whatsapp-notes-changing="$emit('checkWhatsappNotesChanging')"></WhatsappNoteItem>
+		<div
+			v-else-if="whatsappItem.type === EWAItemType.PRE_NOTE || whatsappItem.type === EWAItemType.POST_NOTE"
+			class="wa-item-flex-item"
+		>
+			<WhatsappNoteItem
+				:whatsapp-item
+				:is-edit
+				@check-whatsapp-notes-changing="$emit('checkWhatsappNotesChanging')"
+			></WhatsappNoteItem>
 		</div>
 		<div v-else-if="whatsappItem.type === EWAItemType.STAGE" class="wa-item-flex-item">
 			<WhatsappStageItem :whatsapp-item :is-edit></WhatsappStageItem>
@@ -45,7 +52,12 @@ function handleRemoveEventNote(sid: string, type: EWAItemType) {
 			v-else-if="whatsappItem.type === EWAItemType.PERFORMANCE || whatsappItem.type === EWAItemType.REPETITION"
 			class="wa-item-flex-item"
 		>
-			<WhatsappEventItem :whatsapp-item :is-edit @add-note="handleAddEventNote" @remove-note="handleRemoveEventNote"></WhatsappEventItem>
+			<WhatsappEventItem
+				:whatsapp-item
+				:is-edit
+				@add-note="handleAddEventNote"
+				@remove-note="handleRemoveEventNote"
+			></WhatsappEventItem>
 		</div>
 	</div>
 </template>

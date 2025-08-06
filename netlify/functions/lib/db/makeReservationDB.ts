@@ -3,8 +3,8 @@ import { collection, doc, setDoc, updateDoc, arrayUnion } from 'firebase/firesto
 import { getCountFromServer, query, documentId, where } from '@firebase/firestore';
 import type { TReservation, TOrderItem } from '@scripts/types/reservation';
 import type { TReservationDB } from '@scripts/db/baseTypes';
-import { COLLECTION_TICKETS } from '@scripts/db/antreprizaDB';
 import { onlyNumbers, getRandomIntInclusive } from '@scripts/utils';
+import { COLLECTION_TICKETS } from '@netlify/lib/db/constsDB';
 
 export type TReservationExt = TReservation & {
 	order_id: string;

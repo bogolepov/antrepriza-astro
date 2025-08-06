@@ -60,3 +60,12 @@ export function getCRC32(obj: Object): string {
 	};
 	return generateHash(JSON.stringify(obj)).toString(16).replace('-', '');
 }
+
+// month: '1', '2', ... , '12', '01', '02', ... , '12'
+export function getMonthName(monthNumber: string): string {
+	let nMonth: number = Number(monthNumber);
+	if (!nMonth) console.error('getMonthName: ' + monthNumber + ' - ERROR!');
+	if (nMonth > 12) console.error('getMonthName: ' + monthNumber + ' - ERROR overflow!');
+	if (nMonth) nMonth--;
+	return new Date(2024, nMonth, 1).toLocaleString('ru', { month: 'long' });
+}

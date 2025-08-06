@@ -97,6 +97,7 @@ onBeforeMount(() => {
 					<li><router-link to="/admin/plays">Спектакли</router-link></li>
 					<li><router-link to="/admin/stages">Сцены</router-link></li>
 					<li><router-link to="/admin/tickets">Бронирования</router-link></li>
+					<li><router-link to="/admin/subscribers">Подписчики</router-link></li>
 				</ul>
 			</nav>
 			<button class="logout-button" @click="$emit('authorize', EAuthRole.UNAUTHORIZED, undefined)">Выйти</button>

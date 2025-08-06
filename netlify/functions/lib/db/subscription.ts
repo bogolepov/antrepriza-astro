@@ -1,10 +1,11 @@
 import { antreprizaDB } from './firebase';
 import { collection, doc, setDoc } from 'firebase/firestore';
 import { query, documentId, where, getDocs } from '@firebase/firestore';
-import { COLLECTION_THEATER, DOC_THEATER_SUBSCRIBERS, COLLECTION_SUBSCRIBERS_EMAILS } from '@scripts/db/antreprizaDB';
+import { COLLECTION_THEATER, DOC_THEATER_SUBSCRIBERS, COLLECTION_SUBSCRIBERS_EMAILS } from '@netlify/lib/db/constsDB';
 import { getRandomIntInclusive, getCRC32 } from '@scripts/utils';
 
 import { ESubscriptionState, SUBSCRIPTION_OBJ_LENGTH, type TSubscriber } from '@scripts/types/subscription';
+import type { EmailDocDB } from './typesDB';
 
 export const enum ESubscriptionError {
 	NO_ERROR,
@@ -15,14 +16,6 @@ export const enum ESubscriptionError {
 export type TSubscriptionResult = {
 	subscriber: TSubscriber;
 	error: ESubscriptionError;
-};
-
-type EmailDocDB = {
-	lang: string;
-	obj: string;
-	sid: number;
-	usid: number;
-	state: ESubscriptionState;
 };
 
 const ID_SHIFTS_ADD = { y: 347, m: 23, d: 56 };

@@ -1,0 +1,10 @@
+export const COLLECTION_THEATER: string = 'theater';
+export const COLLECTION_TICKETS: string = 'tickets';
+export const COLLECTION_EMAILS: string = 'emails';
+export const DOC_THEATER_PLAYS: string = 'plays';
+export const DOC_THEATER_STAGES: string = 'stages';
+export const DOC_THEATER_PERFORMANCES: string = 'performances';
+export const DOC_THEATER_REPETITIONS: string = 'repetitions';
+export const DOC_THEATER_WHATSAPP_NOTES: string = 'whatsapp_notes';
+export const DOC_THEATER_SUBSCRIBERS: string = 'subscribers';
+export const COLLECTION_SUBSCRIBERS_EMAILS: string = 'emails';

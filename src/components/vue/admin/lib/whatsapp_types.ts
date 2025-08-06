@@ -1,6 +1,6 @@
 import type { IEvent, TPerformance, TRepetition, TStage, TWhatsappNote } from '@scripts/db/baseTypes';
 import { plays, stages } from './statesStore';
-import { getMonthName } from '@scripts/date';
+import { getMonthName } from '@scripts/utils';
 
 export const enum ECheckboxStatus3 {
 	CHECKED,
@@ -58,32 +58,50 @@ export function getDayMonthItemText(strDate: string): string {
 	const date = new Date(strDate);
 	if (!date) return undefined;
 	return (
-		date.toLocaleString('ru', { month: 'long', day: '2-digit' }) + ', ' + date.toLocaleString('ru', { weekday: 'short' }).toLowerCase()
+		date.toLocaleString('ru', { month: 'long', day: '2-digit' }) +
+		', ' +
+		date.toLocaleString('ru', { weekday: 'short' }).toLowerCase()
 	);
 }
 
 export function getTimeDurationItemText(date: Date, durationMinutes: number = 0): string {
 	if (!date) return undefined;
 	const eventDate = new Date(date);
-	return eventDate.toLocaleString('ru', { month: 'long', day: '2-digit' }) + ', ' + eventDate.toLocaleString('ru', { weekday: 'short' });
+	return (
+		eventDate.toLocaleString('ru', { month: 'long', day: '2-digit' }) +
+		', ' +
+		eventDate.toLocaleString('ru', { weekday: 'short' })
+	);
 }
 
 export function getEventDateText(whatsappItem: TWhatsappItem): string {
-	if (!whatsappItem || (whatsappItem.type !== EWAItemType.PERFORMANCE && whatsappItem.type !== EWAItemType.REPETITION) || !whatsappItem.obj)
+	if (
+		!whatsappItem ||
+		(whatsappItem.type !== EWAItemType.PERFORMANCE && whatsappItem.type !== EWAItemType.REPETITION) ||
+		!whatsappItem.obj
+	)
 		return undefined;
 	const event = whatsappItem.obj as IEvent;
 	return getDayMonthItemText(event.date);
 }
 
 export function getEventTimeText(whatsappItem: TWhatsappItem): string {
-	if (!whatsappItem || (whatsappItem.type !== EWAItemType.PERFORMANCE && whatsappItem.type !== EWAItemType.REPETITION) || !whatsappItem.obj)
+	if (
+		!whatsappItem ||
+		(whatsappItem.type !== EWAItemType.PERFORMANCE && whatsappItem.type !== EWAItemType.REPETITION) ||
+		!whatsappItem.obj
+	)
 		return undefined;
 	const event = whatsappItem.obj as IEvent;
 	return event.time_start.replace(':', '.') + '-' + event.time_end.replace(':', '.');
 }
 
 export function getEventStageText(whatsappItem: TWhatsappItem): string {
-	if (!whatsappItem || (whatsappItem.type !== EWAItemType.PERFORMANCE && whatsappItem.type !== EWAItemType.REPETITION) || !whatsappItem.obj)
+	if (
+		!whatsappItem ||
+		(whatsappItem.type !== EWAItemType.PERFORMANCE && whatsappItem.type !== EWAItemType.REPETITION) ||
+		!whatsappItem.obj
+	)
 		return undefined;
 	const { stage_sid } = whatsappItem.obj as IEvent;
 	const stage = stages.value.find(stg => stg.sid === stage_sid);
@@ -117,7 +135,8 @@ export function memTextItem(item: TWhatsappItem): string {
 	}
 
 	if (item.type === EWAItemType.PERFORMANCE || item.type === EWAItemType.REPETITION) {
-		let memText = '* ' + getEventDateText(item) + ', ' + getEventTimeText(item) + ', *' + getEventStageText(item) + '*, ';
+		let memText =
+			'* ' + getEventDateText(item) + ', ' + getEventTimeText(item) + ', *' + getEventStageText(item) + '*, ';
 		if (item.type === EWAItemType.PERFORMANCE && item.obj) {
 			const { play_sid } = item.obj as TPerformance;
 			memText += 'спектакль 🎭 _*' + getPlayName(play_sid) + '*_';
