@@ -66,8 +66,8 @@ export async function getReservationsNetlify() {
 
 	const handleResult = (isOk: boolean, message: string, packet: TReservationsPanelPacket) => {
 		if (isOk) {
-			const verifiedPacket = extractReservationsPanelPacketFromJson(JSON.stringify(packet));
-			if (verifiedPacket && packet.hash === getCRC32(packet.events)) {
+			//const verifiedPacket = extractReservationsPanelPacketFromJson(JSON.stringify(packet));
+			if (/*verifiedPacket*/ packet && packet.hash === getCRC32(packet.events)) {
 				reservations.value = packet.events;
 				gotReservations = true;
 			} else console.error('*VUE*  getReservations() : INVALID PACKET');
