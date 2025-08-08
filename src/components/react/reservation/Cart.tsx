@@ -2,8 +2,7 @@ import { useState } from 'react';
 import { useStore } from '@nanostores/react';
 import { isCartOpen } from './cartStore';
 
-import { type TTicketType } from '@scripts/types/prices';
-import { type TNetlifyDataReservations, type TReservation } from '@scripts/types/reservation';
+import { type TNetlifyDataReservations, type TDoReservation } from '@scripts/types/reservation';
 
 import '@styles/cart.css';
 import '@styles/loader.css';
@@ -15,11 +14,11 @@ import FinalReservationForm from '@components/react/reservation/FinalReservation
 
 interface ICart {
 	lang: string;
-	tickets: TReservation[];
+	tickets: TDoReservation[];
 	totalAmount: number;
 	handleCloseClick: () => void;
-	handleAddTicket: (play: TReservation, ticket_type: TTicketType) => void;
-	handleRemoveTicket: (play: TReservation, ticket_type: TTicketType, count: number) => void;
+	handleAddTicket: (play: TDoReservation, ticket_type: string) => void;
+	handleRemoveTicket: (play: TDoReservation, ticket_type: string, count: number) => void;
 	handleReservationDone: () => void;
 }
 export function Cart({

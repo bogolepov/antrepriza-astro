@@ -1,7 +1,7 @@
 {
 	"name": "antrepriza-astro",
 	"type": "module",
-	"version": "1.14.01",
+	"version": "1.15.01",
 	"scripts": {
 		"dev": "astro dev",
 		"start": "astro dev",

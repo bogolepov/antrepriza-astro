@@ -82,7 +82,7 @@ let image = play.seo.event.images.find(image => image.format === '3_4_1050');
 				{play.lang[lang]}
 			</div>
 			{
-				event.event_type && event.event_type.is_festival && (
+				event.is_festival && (
 					<div class='play-property label-before ev-festival' data-label={dictionary.festival[lang] + ': '}>
 						{event.event_name[lang]}
 					</div>
@@ -93,7 +93,7 @@ let image = play.seo.event.images.find(image => image.format === '3_4_1050');
 				<address class='play-property'>
 					{stage.fix_stage && stage.place_name}
 					{stage.fix_stage && <br />}
-					{stage.address.full_string}
+					{stage.address.full_address}
 				</address>
 			</div>
 			{
@@ -133,6 +133,6 @@ let image = play.seo.event.images.find(image => image.format === '3_4_1050');
 </section>
 
 <script>
-	const button = document.querySelector('.ev-button');
+	const button = document.querySelector<HTMLButtonElement>('.ev-button');
 	if (button && Date.parse(button.dataset.date + 'T' + button.dataset.time) < Date.now()) button.disabled = true;
 </script>

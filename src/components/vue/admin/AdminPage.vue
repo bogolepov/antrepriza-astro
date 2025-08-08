@@ -4,19 +4,19 @@ import { useRouter, useRoute } from 'vue-router';
 import { showMenu, smallScreen } from './lib/statesStore';
 import { EAuthRole } from '@scripts/auth';
 import { type TFirebaseConfig } from '@scripts/db/firebaseConfig';
-import { getPlays, getStages, getPerformances, getRepetitions } from '@scripts/db/antreprizaDB';
+// import { getPlays, getStages, getPerformances, getRepetitions } from '@scripts/db/antreprizaDB';
 import LetterSizeControl from './components/LetterSizeControl.vue';
-import type { TPlay, TStage, TPerformance, TRepetition } from '@scripts/db/baseTypes';
+// import type { TPlay, TStage, TPerformance, TRepetition } from '@scripts/db/baseTypes';
 
 import IconWhatsapp from './components/iconWhatsapp.vue';
 
 const router = useRouter();
 const route = useRoute();
 
-const plays = ref<Array<TPlay>>([]);
-const stages = ref<Array<TStage>>([]);
-const performances = ref<Array<TPerformance>>([]);
-const repetitions = ref<Array<TRepetition>>([]);
+// const plays = ref<Array<TPlay>>([]);
+// const stages = ref<Array<TStage>>([]);
+// const performances = ref<Array<TPerformance>>([]);
+// const repetitions = ref<Array<TRepetition>>([]);
 
 const fontSize = ref();
 
@@ -46,23 +46,23 @@ function updateFontSize(newFontSize: string) {
 	updatePageComposition();
 }
 
-function updatePlays(newPlays: TPlay[]) {
-	plays.value = newPlays;
-}
-function updateStages(newStages: TStage[]) {
-	stages.value = newStages;
-}
-function updatePerformances(newPerformances: TPerformance[]) {
-	performances.value = newPerformances;
-}
-function updateRepetitions(newRepetitions: TRepetition[]) {
-	repetitions.value = newRepetitions;
-}
+// function updatePlays(newPlays: TPlay[]) {
+// 	plays.value = newPlays;
+// }
+// function updateStages(newStages: TStage[]) {
+// 	stages.value = newStages;
+// }
+// function updatePerformances(newPerformances: TPerformance[]) {
+// 	performances.value = newPerformances;
+// }
+// function updateRepetitions(newRepetitions: TRepetition[]) {
+// 	repetitions.value = newRepetitions;
+// }
 
-provide('plays', { plays, updatePlays });
-provide('stages', { stages, updateStages });
-provide('performances', { performances, updatePerformances });
-provide('repetitions', { repetitions, updateRepetitions });
+// provide('plays', { plays, updatePlays });
+// provide('stages', { stages, updateStages });
+// provide('performances', { performances, updatePerformances });
+// provide('repetitions', { repetitions, updateRepetitions });
 provide('font-size', { updateFontSize });
 
 const emit = defineEmits<{
@@ -72,10 +72,10 @@ const emit = defineEmits<{
 window.addEventListener('resize', updatePageComposition);
 
 onBeforeMount(() => {
-	plays.value = getPlays();
-	stages.value = getStages();
-	performances.value = getPerformances();
-	repetitions.value = getRepetitions();
+	// plays.value = getPlays();
+	// stages.value = getStages();
+	// performances.value = getPerformances();
+	// repetitions.value = getRepetitions();
 	if (route.query.page) {
 		router.push('/admin' + route.query.page);
 	}
@@ -89,10 +89,10 @@ onBeforeMount(() => {
 			<LetterSizeControl class="letter-size-control" />
 			<nav>
 				<ul>
-					<li>
+					<!-- <li>
 						<router-link to="/admin/whatsapp">Сообщение&nbsp;&nbsp;<IconWhatsapp /> </router-link>
-					</li>
-					<li><router-link to="/admin/repetitions">Репетиции</router-link></li>
+					</li> -->
+					<!-- <li><router-link to="/admin/repetitions">Репетиции</router-link></li> -->
 					<li><router-link to="/admin/performances">Выступления</router-link></li>
 					<li><router-link to="/admin/plays">Спектакли</router-link></li>
 					<li><router-link to="/admin/stages">Сцены</router-link></li>

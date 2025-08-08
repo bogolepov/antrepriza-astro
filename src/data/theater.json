@@ -33,7 +33,7 @@
 			"fix_stage": true,
 			"name": { "ru": "Восток", "de": "Ost" },
 			"address": {
-				"full_string": "Boxhagener Str. 18, 10245 Berlin",
+				"full_address": "Boxhagener Str. 18, 10245 Berlin",
 				"street": "Boxhagener Str.",
 				"building": "18",
 				"index": "10245",
@@ -65,7 +65,7 @@
 			"fix_stage": true,
 			"name": { "ru": "Запад", "de": "West" },
 			"address": {
-				"full_string": "Carmerstr. 12, 10623 Berlin",
+				"full_address": "Carmerstr. 12, 10623 Berlin",
 				"street": "Carmerstr.",
 				"building": "12",
 				"index": "10623",
@@ -96,7 +96,7 @@
 			"fix_stage": false,
 			"name": { "ru": "Māra Fest Open Lab", "de": "Māra Fest Open Lab" },
 			"address": {
-				"full_string": "Kaniera iela 15, Riga, LV-1063, Latvia",
+				"full_address": "Kaniera iela 15, Riga, LV-1063, Latvia",
 				"street": "Kaniera iela",
 				"building": "15",
 				"index": "LV-1063",
@@ -112,7 +112,7 @@
 	"fix_stages": ["west"],
 	"studio": {
 		"address": {
-			"full_string": "Boxhagener Str. 18, 10245 Berlin",
+			"full_address": "Boxhagener Str. 18, 10245 Berlin",
 			"street": "Boxhagener Str.",
 			"building": "18",
 			"index": "10245",

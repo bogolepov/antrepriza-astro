@@ -1,6 +1,7 @@
 import type { IEvent, TPerformance, TRepetition, TStage, TWhatsappNote } from '@scripts/db/baseTypes';
-import { plays, stages } from './statesStore';
+import { getPlays, getStages } from './statesStore';
 import { getMonthName } from '@scripts/utils';
+import type { IStageJson } from '@scripts/adminpanel/types/json-files';
 
 export const enum ECheckboxStatus3 {
 	CHECKED,
@@ -25,9 +26,9 @@ export type TWhatsappItem = {
 	note: TWhatsappNote | string | undefined | null;
 };
 
-export function getStageSymbol(stage: TStage): string {
+export function getStageSymbol(stage: IStageJson): string {
 	if (!stage) return undefined;
-	if (stage.fixed) {
+	if (stage.fix_stage) {
 		if (stage.sid === 'west') return '🔹';
 		else if (stage.sid === 'ost') return '🔸';
 	}
@@ -104,15 +105,15 @@ export function getEventStageText(whatsappItem: TWhatsappItem): string {
 	)
 		return undefined;
 	const { stage_sid } = whatsappItem.obj as IEvent;
-	const stage = stages.value.find(stg => stg.sid === stage_sid);
+	const stage = getStages().find(stg => stg.sid === stage_sid);
 	if (!stage) return undefined;
 	return getStageSymbol(stage) + ' ' + stage.name.ru.toUpperCase();
 }
 
 export function getPlayName(play_sid: string): string {
-	const play = plays.value.find(ply => ply.sid === play_sid);
+	const play = getPlays().find(item => item.suffix === play_sid);
 	if (!play) return undefined;
-	return play.name.ru;
+	return play.title.ru;
 }
 //---------------------------------------
 //  text for memory's message

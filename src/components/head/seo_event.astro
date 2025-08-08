@@ -20,7 +20,7 @@ if (theater.fix_stages.includes(stage.sid)) performer = performer + ' - ' + stag
 
 let placeName = '';
 if (stage.fix_stage) placeName = stage.place_name;
-else if (event.event_type && event.event_type.is_festival) placeName = event.event_name[lang];
+else if (event.is_festival) placeName = event.event_name[lang];
 
 const startTime = time.split(':');
 const start = Number(startTime[0]) * 60 + Number(startTime[1]);

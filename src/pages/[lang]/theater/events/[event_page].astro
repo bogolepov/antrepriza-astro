@@ -20,8 +20,8 @@ export const getStaticPaths = (() => {
 		return events.map(event => {
 			let event_sid;
 			if (theater.fix_stages.includes(event.stage_sid)) event_sid = event.stage_sid;
-			else if (event.event_type && event.event_type.is_festival) event_sid = SID_FESTIVAL;
-			else if (event.event_type && event.event_type.is_tour) event_sid = SID_TOUR;
+			else if (event.is_festival) event_sid = SID_FESTIVAL;
+			else if (event.is_tour) event_sid = SID_TOUR;
 
 			let strEventDate = new Date(event.date)?.toLocaleDateString(lng.lang_code, {
 				year: 'numeric',

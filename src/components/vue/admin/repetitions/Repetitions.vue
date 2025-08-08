@@ -2,7 +2,7 @@
 import { ref, computed, onBeforeMount } from 'vue';
 import { onBeforeRouteLeave } from 'vue-router';
 import { performances, repetitions, showMenu, smallScreen, isDemo } from '../lib/statesStore';
-import { initPlays, initStages, initPerformances, initRepetitions } from '../lib/statesStore';
+import { initRepetitions } from '../lib/statesStore';
 import ChapterTitle from '../components/ChapterTitle.vue';
 import Repetition from './Repetition.vue';
 import PerformanceView from './PerformanceView.vue';
@@ -138,7 +138,9 @@ async function saveRepetitionsDB() {
 			>
 				<div>🎭</div>
 			</button>
-			<button v-show="repetitionsChanged" @click="saveRepetitionsDB" :disabled="isDemo" class="save-button">Сохранить</button>
+			<button v-show="repetitionsChanged" @click="saveRepetitionsDB" :disabled="isDemo" class="save-button">
+				Сохранить
+			</button>
 		</template>
 	</ChapterTitle>
 	<ul>

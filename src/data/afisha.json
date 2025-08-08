@@ -6,6 +6,7 @@
 		"play_sid": "kd",
 		"stage_sid": "west",
 		"free_place": true,
+		"is_tour": false,
 		"prices": ["standart_21", "reduce_12"]
 	},
 	{
@@ -385,7 +386,7 @@
 		"play_sid": "miks",
 		"stage_sid": "rlv1",
 		"free_place": true,
-		"event_type": { "is_festival": true },
+		"is_festival": true,
 		"event_name": { "ru": "Māra Fest Open Lab", "de": "Māra Fest Open Lab" },
 		"no_tickets": true,
 		"prices": [],

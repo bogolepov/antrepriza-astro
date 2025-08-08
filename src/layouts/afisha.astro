@@ -73,24 +73,19 @@ let iMonth: number = -1;
 							if (stage.fix_stage) {
 								stageNameText = dictionary.stage[lang] + ' - ' + stage.name[lang].toUpperCase();
 							} else {
-								if (event.event_type) {
-									if (event.event_type.is_festival)
-										stageNameText =
-											dictionary.festival[lang] +
-											' ' +
-											dictionary.opening_quote[lang] +
-											event.event_name[lang].toUpperCase() +
-											dictionary.closing_quote[lang];
-									else stageNameText = event.event_name[lang].toUpperCase();
-								}
+								if (event.is_festival)
+									stageNameText =
+										dictionary.festival[lang] +
+										' ' +
+										dictionary.opening_quote[lang] +
+										event.event_name[lang].toUpperCase() +
+										dictionary.closing_quote[lang];
+								else stageNameText = event.event_name[lang].toUpperCase();
 							}
 
 							return (
 								<li
-									class:list={[
-										'program-play-block hover-block hover-background',
-										{ festival: event.event_type && event.event_type.is_festival },
-									]}
+									class:list={['program-play-block hover-block hover-background', { festival: event.is_festival }]}
 									data-date={event.date}
 								>
 									<div class='program-play-text'>
@@ -103,7 +98,7 @@ let iMonth: number = -1;
 											{event.newyear && !event.canceled && !event.replaced && (
 												<div class='play-property-hot-notice'>{dictionary.newyear[lang]}</div>
 											)}
-											{event.event_type && !event.canceled && !event.replaced && event.event_type.is_festival && (
+											{!event.canceled && !event.replaced && event.is_festival && (
 												<div class='play-property-hot-notice'>{dictionary.festival[lang]}</div>
 											)}
 											<time class='program-date' data-day={playDate.toLocaleDateString(lang, { weekday: 'short' })}>
@@ -130,7 +125,7 @@ let iMonth: number = -1;
 											<address class='play-property'>
 												<span class='address-stage'>{stageNameText}</span>
 												<br />
-												{stage.address.full_string}
+												{stage.address.full_address}
 												<br />
 											</address>
 										</div>

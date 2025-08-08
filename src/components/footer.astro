@@ -72,7 +72,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/partner
 								<div class='info-text font-opacity0 bold'>
 									{dictionary.stage[lang] + ' - ' + stage.name[lang].toUpperCase()}
 								</div>
-								<div class='info-text font-opacity0'>{stage.address.full_string}</div>
+								<div class='info-text font-opacity0'>{stage.address.full_address}</div>
 							</a>
 						);
 				})

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onBeforeMount, ref } from 'vue';
 import ChapterTitle from '../components/ChapterTitle.vue';
-import { getSubscribers, subscribers } from '../lib/statesStore';
+import { getSubscribersNetlify, isDemo, subscriptionState, subscribers } from '../lib/statesStore';
 import { ESubscriptionState } from '@scripts/types/subscription';
 
 type TSubscriptionStateInfo = {
@@ -15,14 +15,12 @@ const stateList: TSubscriptionStateInfo[] = [
 	{ state: 'all', text: 'все в базе' },
 ];
 
-const sortState = ref<ESubscriptionState | 'all'>(ESubscriptionState.REG_CONFIRM);
-
 const showInit = ref(false);
 const showConfirm = ref(true);
 const showDelete = ref(false);
 
 async function handleBeforeMount() {
-	getSubscribers();
+	if (!isDemo.value) getSubscribersNetlify();
 }
 onBeforeMount(handleBeforeMount);
 </script>
@@ -30,17 +28,21 @@ onBeforeMount(handleBeforeMount);
 <template>
 	<ChapterTitle title="Подписчики на новости" />
 
-	<select v-model="sortState" class="state-select">
+	<select v-model="subscriptionState" class="state-select">
 		<option v-for="state in stateList" :value="state.state">
 			{{ state.text }}
 		</option>
 	</select>
 	<ul>
-		<template v-for="user in subscribers" :key="user.email">
-			<li v-show="sortState === user.state || sortState === 'all'">{{ user.email }}</li>
+		<template v-if="isDemo">
+			<li>Недоступно для демонстрационного режима.</li>
+		</template>
+		<template v-else>
+			<template v-for="user in subscribers" :key="user.email">
+				<li v-show="subscriptionState === user.state || subscriptionState === 'all'">{{ user.email }}</li>
+			</template>
 		</template>
 	</ul>
-	<!-- <button @click="addStage" :disabled="isDemo">Добавить сцену</button> -->
 </template>
 
 <style>

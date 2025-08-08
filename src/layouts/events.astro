@@ -34,12 +34,12 @@ theater.fix_stages.forEach(stage => {
 		events.push(newEventsGroup(FIX_STAGE, stage, list, stage, tabLabel));
 	}
 });
-list = actualProgram.filter(event => event.event_type && event.event_type.is_festival);
+list = actualProgram.filter(event => event.is_festival);
 if (list.length > 0) {
 	tabLabel = dictionary.festivals[lang];
 	events.push(newEventsGroup(FESTIVAL, undefined, list, SID_FESTIVAL, tabLabel));
 }
-list = actualProgram.filter(event => event.event_type && event.event_type.is_tour);
+list = actualProgram.filter(event => event.is_tour);
 if (list.length > 0) {
 	tabLabel = dictionary.tours[lang];
 	events.push(newEventsGroup(TOUR, undefined, list, SID_TOUR, tabLabel));

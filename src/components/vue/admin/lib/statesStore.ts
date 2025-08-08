@@ -1,21 +1,42 @@
 import { ref } from 'vue';
 import { EAuthRole } from '@scripts/auth';
-import type { TStage, TPlay, TWhatsappNote, TPerformance, TRepetition, TEventTickets } from '@scripts/db/baseTypes';
-import {
-	getPerformances,
-	getPlays,
-	getRepetitions,
-	getStages,
-	getWhatsappNotes,
-	getTickets,
-} from '@scripts/db/antreprizaDB';
-import {
-	extractSubscribersPanelPacketFromJson,
-	type TSubscriberPanel,
-	type TSubscribersPanelPacket,
-} from '@scripts/adminpanel/types/subscription';
+import { type TSubscriberPanel, type TSubscribersPanelPacket } from '@scripts/adminpanel/types/subscription';
 import { ENetlifyAction, netlifyFunction } from '@scripts/adminpanel/netlifyFunction';
 import { getCRC32 } from '@scripts/utils';
+import {
+	extractReservationsPanelPacketFromJson,
+	type TNamedEventReservation,
+	type TReservationsPanelPacket,
+} from '@scripts/types/reservation';
+import { ESubscriptionState } from '@scripts/types/subscription';
+
+import theater from '@data/theater.json';
+import playsJSON from '@data/plays.json';
+import afishaJSON from '@data/afisha.json';
+import pricesJSON from '@data/prices.json';
+import type { IPerformanceJson, IPlayJson, IPriceJson, IStageJson } from '@scripts/adminpanel/types/json-files';
+
+// ------------------- JSON files ----------------------
+
+const jsonPlays: IPlayJson[] = playsJSON;
+export function getPlays(): IPlayJson[] {
+	return jsonPlays;
+}
+
+const jsonStages: IStageJson[] = theater.stages;
+export function getStages(): IStageJson[] {
+	return jsonStages;
+}
+
+const afisha: IPerformanceJson[] = afishaJSON;
+export function getPerformances(): IPerformanceJson[] {
+	return afisha;
+}
+
+const jsonPrices: IPriceJson[] = pricesJSON;
+export function getPrices(): IPriceJson[] {
+	return jsonPrices;
+}
 
 // -----------------------------------------------------
 export const showMenu = ref(true);
@@ -27,140 +48,47 @@ export function setAuthRole(role: EAuthRole) {
 	else isDemo.value = false;
 }
 
+export const isActualPerformancesTickets = ref(true);
+export const isActualPerformancesAfisha = ref(true);
+export const subscriptionState = ref<ESubscriptionState | 'all'>(ESubscriptionState.REG_CONFIRM);
+
 // -----------------------------------------------------
-//                whatsapp notes
-// -----------------------------------------------------
-let gotPlays: boolean = false;
-export const plays = ref<Array<TPlay>>([]);
-export async function initPlays() {
-	if (gotPlays) return;
-	plays.value = await getPlays();
-	gotPlays = true;
-	initOptionListPlays();
-}
-export function commitPlays() {
-	updateOptionListPlays();
+
+export interface IExtNamedEventReservation extends TNamedEventReservation {
+	first_in_month?: boolean;
+	totalTickets?: number;
 }
 
-let gotStages: boolean = false;
-export const stages = ref<Array<TStage>>([]);
-export async function initStages() {
-	if (gotStages) return;
-	stages.value = await getStages();
-	gotStages = true;
-	initOptionListStages();
-}
-export function commitStages() {
-	updateOptionListStages();
-}
+let gotReservations: boolean = false;
+export const reservations = ref<IExtNamedEventReservation[]>([]);
+export async function getReservationsNetlify() {
+	if (gotReservations) return;
 
-let gotPerformances: boolean = false;
-export const performances = ref<Array<TPerformance>>([]);
-export async function initPerformances() {
-	if (gotPerformances) return;
-	await initPlays();
-	await initStages();
-	performances.value = await getPerformances();
-	gotPerformances = true;
-}
+	const handleResult = (isOk: boolean, message: string, packet: TReservationsPanelPacket) => {
+		if (isOk) {
+			const verifiedPacket = extractReservationsPanelPacketFromJson(JSON.stringify(packet));
+			if (verifiedPacket && packet.hash === getCRC32(packet.events)) {
+				reservations.value = packet.events;
+				gotReservations = true;
+			} else console.error('*VUE*  getReservations() : INVALID PACKET');
+		} else console.error('*VUE*  getReservations() error: ', message);
+	};
 
-let gotRepetitions: boolean = false;
-export const repetitions = ref<Array<TRepetition>>([]);
-export async function initRepetitions() {
-	if (gotRepetitions) return;
-	await initPlays();
-	await initStages();
-	await initPerformances();
-	repetitions.value = await getRepetitions();
-	gotRepetitions = true;
-}
-
-let gotWhatsappNotes: boolean = false;
-export const whatsappNotes = ref<Array<TWhatsappNote>>([]);
-export async function initWhatsappNotes() {
-	if (gotWhatsappNotes) return;
-	await initPlays();
-	await initStages();
-	await initPerformances();
-	await initRepetitions();
-	whatsappNotes.value = await getWhatsappNotes();
-	gotWhatsappNotes = true;
-}
-
-let gotTickets: boolean = false;
-export const tickets = ref<Array<TEventTickets>>([]);
-export async function initTickets() {
-	if (gotTickets) return;
-	await initPlays();
-	await initStages();
-	await initPerformances();
-	tickets.value = await getTickets();
-	gotTickets = true;
+	netlifyFunction(ENetlifyAction.GET_RESERVATIONS, handleResult);
 }
 
 let gotSubscribers: boolean = false;
-export const subscribers = ref<Array<TSubscriberPanel>>([]);
-export function getSubscribers() {
+export const subscribers = ref<TSubscriberPanel[]>([]);
+export function getSubscribersNetlify() {
 	if (gotSubscribers) return;
 
 	const handleResult = (isOk: boolean, message: string, packet: TSubscribersPanelPacket) => {
 		if (isOk) {
 			if (packet && packet.hash === getCRC32(packet.emails)) {
 				subscribers.value = packet.emails;
-				console.log('vue:');
-				console.log(subscribers.value);
 				gotSubscribers = true;
 			}
 		} else console.error('*VUE*  getSubscribers() error: ', message);
 	};
 	netlifyFunction(ENetlifyAction.GET_SUBSCRIBERS, handleResult);
-}
-
-// export function updateWhatsappNotes(notes: TWhatsappNote[]) {
-// 	whatsappNotes.value = [];
-// 	notes.forEach(note => whatsappNotes.value.push({ text: play.name.ru, value: play.sid, duration: play.duration }));
-// }
-
-// -----------------------------------------------------
-//         option lists for plays/stages
-// -----------------------------------------------------
-type TPlayOption = {
-	text: string;
-	value: string;
-	duration: number;
-};
-type TStageOption = {
-	text: string;
-	value: string;
-	fixed: boolean;
-};
-export const optionListStages = ref<TStageOption[]>([]);
-export const optionListPlays = ref<TPlayOption[]>([]);
-
-function initOptionListPlays() {
-	if (optionListPlays.value.length) return;
-	optionListPlays.value = [];
-	plays.value.forEach(play =>
-		optionListPlays.value.push({ text: play.name.ru, value: play.sid, duration: play.duration })
-	);
-}
-function updateOptionListPlays() {
-	optionListPlays.value = [];
-	plays.value.forEach(play =>
-		optionListPlays.value.push({ text: play.name.ru, value: play.sid, duration: play.duration })
-	);
-}
-
-function initOptionListStages() {
-	if (optionListStages.value.length) return;
-	optionListStages.value = [];
-	stages.value.forEach(stage =>
-		optionListStages.value.push({ text: stage.name.ru, value: stage.sid, fixed: stage.fixed })
-	);
-}
-function updateOptionListStages() {
-	optionListStages.value = [];
-	stages.value.forEach(stage =>
-		optionListStages.value.push({ text: stage.name.ru, value: stage.sid, fixed: stage.fixed })
-	);
 }

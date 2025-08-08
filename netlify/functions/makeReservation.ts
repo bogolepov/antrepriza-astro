@@ -4,7 +4,7 @@ import { makeHandlerResponse } from './lib/utils.ts';
 import { makeHtmlEmail } from './lib/emails/mainEmailTemplate.ts';
 import { makeContent, makeReservationsBlock } from './lib/emails/reservation.ts';
 import { type TMail, sendMails } from './lib/mailService.ts';
-import { addReservations, type TReservationExt } from './lib/db/makeReservationDB.ts';
+import { addReservations, type TDoReservationExt } from './lib/db/makeReservationDB.ts';
 import { type TNetlifyDataReservations } from '@scripts/types/reservation.ts';
 
 import dictionaryServer from '@data/dictionary_server.json';
@@ -28,9 +28,9 @@ export const handler: Handler = async (event, context) => {
 
 	const { lang, name, email, reservations, amount, when } = messageData;
 
-	let extReservations: TReservationExt[] = reservations as TReservationExt[];
+	let extDoReservations: TDoReservationExt[] = reservations as TDoReservationExt[];
 	try {
-		await addReservations(lang, name, email, when, extReservations);
+		await addReservations(lang, name, email, when, extDoReservations);
 	} catch (error) {
 		console.error(error);
 	}
@@ -38,7 +38,7 @@ export const handler: Handler = async (event, context) => {
 	const subject = dictionaryServer.email_reservation_subject[lang];
 	const transporterMail: string = process.env.ANTREPRIZA_EMAIL_TICKETS;
 
-	const htmlReservations = makeReservationsBlock(lang, extReservations, amount);
+	const htmlReservations = makeReservationsBlock(lang, extDoReservations, amount);
 
 	let clientMail: TMail = {
 		to: email,

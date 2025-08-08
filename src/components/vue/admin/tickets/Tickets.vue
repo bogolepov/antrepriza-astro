@@ -1,65 +1,44 @@
 <script setup lang="ts">
-import { ref, onBeforeMount, computed } from 'vue';
+import { onBeforeMount, computed, type ComputedRef } from 'vue';
 import ChapterTitle from '../components/ChapterTitle.vue';
-import { tickets, initTickets, isDemo } from '../lib/statesStore';
+import {
+	isDemo,
+	getReservationsNetlify,
+	type IExtNamedEventReservation,
+	reservations,
+	isActualPerformancesTickets,
+} from '../lib/statesStore';
 import TicketsEvent from './TicketsEvent.vue';
 import { ONE_DAY } from '@scripts/consts';
 import IconCalendar from '../components/iconCalendar.vue';
-import type { TEventTickets } from '@scripts/db/baseTypes';
 
-const isActualPerformances = ref(true);
-
-const ticketsToShow = computed(() => {
-	if (isDemo.value) return [];
-
-	let list = tickets.value;
-	let actualDate = new Date(Date.now() - ONE_DAY);
-	let onlyNumberDate =
-		actualDate.getFullYear().toString() +
-		(actualDate.getMonth() + 1).toString().padStart(2, '0') +
-		actualDate.getDate().toString().padStart(2, '0');
-
-	if (isActualPerformances.value === true) {
-		list = tickets.value.filter(item => {
-			const eventData: string[] = item.event_sid.split('_');
-			return Number(eventData[1]) > Number(onlyNumberDate);
-		});
+const performancesToShow: ComputedRef<IExtNamedEventReservation[]> = computed(() => {
+	let list: IExtNamedEventReservation[] = reservations.value;
+	if (isActualPerformancesTickets.value === true) {
+		list = reservations.value.filter(item => Date.parse(item.date) + ONE_DAY >= Date.now());
 	}
-
-	list = [...list].sort((item1, item2) => {
-		const eventData1: string[] = item1.event_sid.split('_');
-		const eventData2: string[] = item2.event_sid.split('_');
-		const date1 = eventData1[1] + eventData1[2];
-		const date2 = eventData2[1] + eventData2[2];
-		return Number(date1) - Number(date2);
-	});
-
-	makeListOfFirstEventsInMonths(list);
+	list = [...list].sort(
+		(item1, item2) => Date.parse(item1.date + 'T' + item1.time) - Date.parse(item2.date + 'T' + item2.time)
+	);
+	markFirstEventsInMonths(list);
 	return list;
 });
 
-let firstEventsInMonths: TEventTickets[];
-function makeListOfFirstEventsInMonths(list: TEventTickets[]) {
-	firstEventsInMonths = list.filter((item, index) => {
-		if (index === 0) return true;
-		const month = item.event_sid.split('_')[1].slice(4, 6);
-		const monthPrevItem = list[index - 1].event_sid.split('_')[1].slice(4, 6);
-		return month !== monthPrevItem;
+function markFirstEventsInMonths(list: IExtNamedEventReservation[]) {
+	list.forEach((event, index) => {
+		if (index === 0) event.first_in_month = true;
+		else event.first_in_month = new Date(list[index - 1].date).getMonth() !== new Date(event.date).getMonth();
 	});
 }
+
 function getMonthName(event_sid: string): string {
 	const onlyNumberDate = event_sid.split('_')[1];
 	const date = onlyNumberDate.slice(0, 4) + '.' + onlyNumberDate.slice(4, 6) + '.' + onlyNumberDate.slice(6);
 	return new Date(date).toLocaleString('ru', { month: 'long' });
 }
-function isfirstEventInMonth(event: TEventTickets): boolean {
-	return firstEventsInMonths.findIndex(item => item.event_sid == event.event_sid) !== -1;
-}
 
 async function handleBeforeMount() {
-	if (!isDemo.value) {
-		await initTickets();
-	}
+	if (!isDemo.value) getReservationsNetlify();
 }
 onBeforeMount(handleBeforeMount);
 </script>
@@ -68,9 +47,9 @@ onBeforeMount(handleBeforeMount);
 	<ChapterTitle title="Бронирования">
 		<template v-slot:actions-slot>
 			<button
-				@click="isActualPerformances = !isActualPerformances"
+				@click="isActualPerformancesTickets = !isActualPerformancesTickets"
 				class="expand-item-button icon-calendar"
-				:class="{ 'black-white-filter': !isActualPerformances }"
+				:class="{ 'black-white-filter': !isActualPerformancesTickets }"
 				title="Только предстоящие"
 			>
 				<IconCalendar />
@@ -82,8 +61,8 @@ onBeforeMount(handleBeforeMount);
 			<li>Недоступно для демонстрационного режима.</li>
 		</template>
 		<template v-else>
-			<template v-for="event in ticketsToShow" :key="event.event_sid">
-				<li v-show="isfirstEventInMonth(event)" class="month-item">{{ getMonthName(event.event_sid).toUpperCase() }}</li>
+			<template v-for="event in performancesToShow" :key="event.event_sid">
+				<li v-show="event.first_in_month" class="month-item">{{ getMonthName(event.event_sid).toUpperCase() }}</li>
 				<li>
 					<TicketsEvent :event />
 				</li>

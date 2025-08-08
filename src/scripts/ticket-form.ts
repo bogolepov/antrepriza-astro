@@ -1,6 +1,6 @@
 import * as consts from '@scripts/consts';
 import { isCartOpen, isTicketsAdded } from '@react-components/reservation/cartStore';
-import type { TOrderItem, TReservation } from './types/reservation';
+import type { TTicketItem, TDoReservation } from './types/reservation';
 
 import dictionary from '@data/dictionary.json';
 import plays from '@data/plays.json';
@@ -195,7 +195,7 @@ function handleToDistributor() {
 }
 
 function handleAddToCart() {
-	let reservations: TReservation[];
+	let reservations: TDoReservation[];
 	let value = window.localStorage.getItem(consts.STORE_RESERVATION_KEY);
 	if (value) reservations = JSON.parse(value);
 	else reservations = [];
@@ -206,10 +206,10 @@ function handleAddToCart() {
 	if (reservation) {
 		reservation.tickets.forEach(price_type => (price_type.count += getTicketCount(price_type.type)));
 	} else {
-		let newTickets: TOrderItem[] = [];
+		let newTickets: TTicketItem[] = [];
 		prices.forEach(price => newTickets.push({ type: price.type, count: getTicketCount(price.type) }));
 		// TODO: play_id => play_sid
-		let newReservation: TReservation = {
+		let newReservation: TDoReservation = {
 			date: afishaItem.date,
 			time: afishaItem.time,
 			play_id: afishaItem.play_id,
@@ -264,7 +264,7 @@ function getPlayTime() {
 }
 
 function getAddress() {
-	if (stage && stage.address) return stage.address.full_string;
+	if (stage && stage.address) return stage.address.full_address;
 	else return '';
 }
 function getPlaceName() {

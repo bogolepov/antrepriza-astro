@@ -38,7 +38,7 @@ let playsWithGrouppedDatesArray = Array.from(playsWithGrouppedDatesMap, ([key, v
 
 let giftTicketInfo = dictionary.giftticket_info[lang].replaceAll(
 	'{address}',
-	theater.stages[0].address.full_string.toUpperCase()
+	theater.stages[0].address.full_address.toUpperCase()
 );
 for (let price of prices) {
 	giftTicketInfo = giftTicketInfo.replaceAll('{' + price.type + '}', price.text_short[lang].toUpperCase());

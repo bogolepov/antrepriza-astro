@@ -1,19 +1,19 @@
 import { antreprizaDB } from './firebase';
 import { collection, doc, setDoc, updateDoc, arrayUnion } from 'firebase/firestore';
 import { getCountFromServer, query, documentId, where } from '@firebase/firestore';
-import type { TReservation, TOrderItem } from '@scripts/types/reservation';
+import type { TDoReservation } from '@scripts/types/reservation';
 import type { TReservationDB } from '@scripts/db/baseTypes';
 import { onlyNumbers, getRandomIntInclusive } from '@scripts/utils';
 import { COLLECTION_TICKETS } from '@netlify/lib/db/constsDB';
 
-export type TReservationExt = TReservation & {
+export type TDoReservationExt = TDoReservation & {
 	order_id: string;
 };
 
 function makeReservationId(date: string, time: string) {
 	return date.slice(5, 7) + date.slice(8) + time.slice(0, 2) + getRandomIntInclusive(4179, 9378).toString();
 }
-async function eventInTicketsExists(eventName: string): Promise<boolean> {
+async function eventExists(eventName: string): Promise<boolean> {
 	const snap = await getCountFromServer(
 		query(collection(antreprizaDB, COLLECTION_TICKETS), where(documentId(), '==', eventName))
 	);
@@ -25,7 +25,7 @@ export async function addReservations(
 	name: string,
 	email: string,
 	when: string,
-	reservations: TReservationExt[]
+	reservations: TDoReservationExt[]
 ) {
 	if (reservations?.length > 0) {
 		for (let event of reservations) {
@@ -41,10 +41,16 @@ export async function addReservations(
 			};
 			reservation.tickets = event.tickets.filter(ticket => ticket.count > 0);
 
-			if (await eventInTicketsExists(eventDocName)) {
+			if (await eventExists(eventDocName)) {
 				await updateDoc(doc(antreprizaDB, COLLECTION_TICKETS, eventDocName), { reservations: arrayUnion(reservation) });
 			} else {
-				await setDoc(doc(antreprizaDB, COLLECTION_TICKETS, eventDocName), { reservations: arrayUnion(reservation) });
+				await setDoc(doc(antreprizaDB, COLLECTION_TICKETS, eventDocName), {
+					reservations: arrayUnion(reservation),
+					play_sid: event.play_sid,
+					stage_sid: event.stage_sid,
+					date: event.date,
+					time: event.time,
+				});
 			}
 		}
 	}

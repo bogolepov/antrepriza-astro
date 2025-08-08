@@ -2,6 +2,7 @@ import { z } from 'zod/v4';
 
 export enum ENetlifyAction {
 	GET_SUBSCRIBERS = 'nf_get_subscribers', // response: TSubscribersPanelPacket
+	GET_RESERVATIONS = 'nf_get_reservations',
 }
 
 export const PanelRequestSchema = z.object({
@@ -16,7 +17,6 @@ export type TPanelRequest = z.infer<typeof PanelRequestSchema>;
 export type TPanelResponse = z.infer<typeof PanelResponseSchema>;
 
 export function extractPanelRequestFromJson(json_data: string): TPanelRequest | undefined {
-	console.log(json_data);
 	const result = PanelRequestSchema.safeParse(JSON.parse(json_data));
 	if (result.success) return result.data as TPanelRequest;
 	else return undefined;
@@ -42,7 +42,6 @@ export function netlifyFunction(
 			return response.json();
 		})
 		.then(data => {
-			console.log(data);
 			if (isOk) handleResult(true, data.message, data.packet);
 			else throw new Error(data.message);
 		})

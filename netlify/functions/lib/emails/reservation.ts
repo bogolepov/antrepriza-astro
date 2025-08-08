@@ -1,11 +1,11 @@
-import type { TReservationExt } from '../db/makeReservationDB';
+import type { TDoReservationExt } from '../db/makeReservationDB';
 import { fromHtmlToPlainText } from '../utils';
 import dictionaryServer from '@data/dictionary_server.json';
 import dictionary from '@data/dictionary.json';
 import theater from '@data/theater.json';
 import plays from '@data/plays.json';
 import prices from '@data/prices.json';
-import type { TOrderItem } from '@scripts/types/reservation';
+import type { TTicketItem } from '@scripts/types/reservation';
 
 export function makeContent(
 	lang: string,
@@ -88,7 +88,7 @@ ${diffText}\
 `;
 }
 
-export function makeReservationsBlock(lang: string, reservations: TReservationExt[], amount: number): string {
+export function makeReservationsBlock(lang: string, reservations: TDoReservationExt[], amount: number): string {
 	return `\
 <table border="0" cellspacing="0" role="presentation" style="width: 100%; margin: 0; padding: 15px 0 0 0; \
 border-top: 1px solid #d6d6d6; border-bottom: 1px solid #d6d6d6"><tbody>\
@@ -97,12 +97,12 @@ ${makeEventsRows(lang, reservations)}\
 `;
 }
 
-function getOrderIdText(event: TReservationExt): string {
+function getOrderIdText(event: TDoReservationExt): string {
 	if (event?.order_id) return '#' + event.order_id;
 	else return '';
 }
 
-function makeEventsRows(lang: string, reservations: TReservationExt[]): string {
+function makeEventsRows(lang: string, reservations: TDoReservationExt[]): string {
 	if (!reservations) return '';
 
 	let rows: string = '';
@@ -159,7 +159,7 @@ ${ticketsRows.html}\
 <tr><td style="font-size: 110%; line-height: 120%; color: #d6d6d6; font-weight: 700">\
 ${dictionaryServer.stage[lang]} - ${stage.name[lang].toUpperCase()}\
 </td></tr>\
-<tr><td style="font-size: 110%; line-height: 120%; color: #888888">${stage.address.full_string}</td></tr>\
+<tr><td style="font-size: 110%; line-height: 120%; color: #888888">${stage.address.full_address}</td></tr>\
 </tbody>\
 </table>\
 </td></tr>\
@@ -173,7 +173,7 @@ type TTicketsRows = {
 	html: string;
 };
 
-function makeTicketsRows(lang: string, tickets: TOrderItem[]): TTicketsRows | undefined {
+function makeTicketsRows(lang: string, tickets: TTicketItem[]): TTicketsRows | undefined {
 	if (!tickets) return;
 
 	let ticketsRows: string = '';

@@ -1,84 +1,17 @@
 <script setup lang="ts">
-import { ref, onBeforeMount } from 'vue';
-import { onBeforeRouteLeave } from 'vue-router';
-import { stages, initStages, showMenu, smallScreen, isDemo, commitStages } from '../lib/statesStore';
 import StageCard from './StageCard.vue';
 import ChapterTitle from '../components/ChapterTitle.vue';
-import type { TStage, TUniqStatus } from '@scripts/db/baseTypes';
-import { validateStageStructure, checkUniqueSIDs, EItemType } from '@scripts/db/baseTypes';
-import { saveStages, changedItems } from '@scripts/db/antreprizaDB';
+import type { IStageJson } from '@scripts/adminpanel/types/json-files';
+import { getStages } from '../lib/statesStore';
 
-const stagesChanged = ref(false);
-const maxStageId = ref(1);
-
-function checkStagesChanging() {
-	if (isDemo.value && stagesChanged.value) stagesChanged.value = false;
-	else stagesChanged.value = changedItems<TStage>(stages.value, EItemType.STAGE);
-}
-
-function addStage() {
-	maxStageId.value++;
-	let newStage = {} as TStage;
-	newStage = validateStageStructure(newStage);
-	newStage.name.ru = '...новая сцена';
-	newStage.id = maxStageId.value;
-	stages.value.push(newStage);
-
-	checkStagesChanging();
-}
-function deleteStage(stageId: number) {
-	let stage: TStage = stages.value.find(item => item.id === stageId);
-	if (stage && confirm(`Удалить сцену "${stage.name.ru}"?`)) {
-		stages.value = stages.value.filter(iStage => iStage.id !== stage.id);
-		checkStagesChanging();
-	}
-}
-
-async function saveStagesDB() {
-	// check uniq stages SID
-	const uniqStatus: TUniqStatus = checkUniqueSIDs<TStage>(stages.value);
-	if (!uniqStatus.isUniq) {
-		let stage1: string = stages.value[uniqStatus.firstItem].name.ru;
-		let stage2: string = stages.value[uniqStatus.secondItem].name.ru;
-		alert(`Текстовый идентификатор каждой сцены должен быть уникальным.\nИдентификатор повторяется у сцен "${stage1}" и "${stage2}"`);
-		return;
-	}
-	// save stages in AntreprizaDB
-	await saveStages(stages.value, commitStages);
-	// if stages were saved successfully, then button Save will be hidden:
-	checkStagesChanging();
-}
-
-async function handleBeforeMount() {
-	await initStages();
-	checkStagesChanging();
-
-	let maxId: number = maxStageId.value;
-	if (stages.value.length > 0) stages.value.forEach(item => (maxId = item.id > maxId ? item.id : maxId));
-	maxStageId.value = maxId;
-}
-onBeforeMount(handleBeforeMount);
-
-async function handleBeforeRouteLeave(to, from, next) {
-	if (stagesChanged.value === true && confirm('Сохранить изменения?')) {
-		await saveStagesDB();
-	}
-	if (smallScreen.value) showMenu.value = false;
-	next();
-}
-onBeforeRouteLeave(handleBeforeRouteLeave);
+const jsonStages: IStageJson[] = getStages();
 </script>
 
 <template>
-	<ChapterTitle title="Сцены, площадки">
-		<template v-slot:actions-slot>
-			<button v-show="stagesChanged" @click="saveStagesDB" :disabled="isDemo" class="save-button">Сохранить</button>
-		</template>
-	</ChapterTitle>
+	<ChapterTitle title="Сцены, площадки" />
 	<ul>
-		<template v-for="stage in stages" :key="stage.id">
-			<li><StageCard :stage @check-stages-changing="checkStagesChanging" @delete-stage="deleteStage" /></li>
+		<template v-for="stage in jsonStages" :key="stage.sid">
+			<li v-show="stage.fix_stage"><StageCard :stage /></li>
 		</template>
 	</ul>
-	<button @click="addStage" :disabled="isDemo">Добавить сцену</button>
 </template>
