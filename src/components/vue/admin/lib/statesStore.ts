@@ -1,6 +1,10 @@
 import { ref } from 'vue';
 import { EAuthRole } from '@scripts/auth';
-import { type TSubscriberPanel, type TSubscribersPanelPacket } from '@scripts/adminpanel/types/subscription';
+import {
+	extractSubscribersPanelPacketFromJson,
+	type TSubscriberPanel,
+	type TSubscribersPanelPacket,
+} from '@scripts/adminpanel/types/subscription';
 import { ENetlifyAction, netlifyFunction } from '@scripts/adminpanel/netlifyFunction';
 import { getCRC32 } from '@scripts/utils';
 import {
@@ -66,8 +70,8 @@ export async function getReservationsNetlify() {
 
 	const handleResult = (isOk: boolean, message: string, packet: TReservationsPanelPacket) => {
 		if (isOk) {
-			//const verifiedPacket = extractReservationsPanelPacketFromJson(JSON.stringify(packet));
-			if (/*verifiedPacket*/ packet && packet.hash === getCRC32(packet.events)) {
+			const verifiedPacket = extractReservationsPanelPacketFromJson(JSON.stringify(packet));
+			if (verifiedPacket && packet.hash === getCRC32(packet.events)) {
 				reservations.value = packet.events;
 				gotReservations = true;
 			} else console.error('*VUE*  getReservations() : INVALID PACKET');
@@ -84,7 +88,8 @@ export function getSubscribersNetlify() {
 
 	const handleResult = (isOk: boolean, message: string, packet: TSubscribersPanelPacket) => {
 		if (isOk) {
-			if (packet && packet.hash === getCRC32(packet.emails)) {
+			const verifiedPacket = extractSubscribersPanelPacketFromJson(JSON.stringify(packet));
+			if (verifiedPacket && packet.hash === getCRC32(packet.emails)) {
 				subscribers.value = packet.emails;
 				gotSubscribers = true;
 			}

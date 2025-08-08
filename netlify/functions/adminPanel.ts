@@ -25,6 +25,6 @@ export const handler: Handler = async (event, context) => {
 			const reservPacket: TReservationsPanelPacket = { events: reservList, hash: getCRC32(reservList) };
 			return makePanelResponse(200, '', reservPacket);
 		default:
-			return makePanelResponse(500, 'Необычный запрос: ' + request.action, undefined);
+			return makePanelResponse(400, 'Необычный запрос: ' + request.action, undefined);
 	}
 };

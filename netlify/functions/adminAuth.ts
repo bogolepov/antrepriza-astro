@@ -1,5 +1,6 @@
 import type { Handler } from '@netlify/functions';
 import { firebaseConfig } from './lib/db/firebaseConfig';
+import { makeHandlerResponse } from './lib/utils';
 
 export const handler: Handler = async (event, context) => {
 	const authData = JSON.parse(event.body);
@@ -20,11 +21,5 @@ export const handler: Handler = async (event, context) => {
 				firebaseConfig: firebaseConfig,
 			}),
 		};
-	else
-		return {
-			statusCode: 500,
-			body: JSON.stringify({
-				message: 'Internal Server Error',
-			}),
-		};
+	else return makeHandlerResponse(500, 'Internal Server Error');
 };
