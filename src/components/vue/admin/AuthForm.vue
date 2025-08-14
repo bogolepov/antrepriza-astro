@@ -1,62 +1,49 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import { EAuthRole } from '@scripts/auth';
+import { type TAuthPacket } from '@scripts/types/auth';
+import { ENetlifyEndpoint, netlify, type TNetlifyFrom, type TNetlifyTo } from '@scripts/netlify';
+import { getCookieAccessToken } from '@scripts/token-ck';
+import { saveAuthUserLS, type TAuthUser } from '@scripts/user-ck';
 
-const emit = defineEmits(['authorize']);
+const emit = defineEmits<{
+	login: [user: TAuthUser];
+}>();
 
-const fEmail: string = '';
 const login = ref('');
 const password = ref('');
-const email = ref(fEmail);
 const authError = ref('');
 
-const btnIsDisabled = computed(() => password.value.length === 0 || login.value.length === 0 || email.value !== fEmail);
+const btnIsDisabled = computed(() => !password.value.length || !login.value.length);
 
 const showPassword = ref(false);
 function showPasswordToogle(event) {
 	if ('Enter' === event.code || 'Space' === event.code) showPassword.value = !showPassword.value;
 }
 function submit(event) {
-	// console.log(event);
-	const authData = {
-		name: login.value,
-		message: password.value,
-		email: 'info@a.eu',
-	};
-	const options = {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-		},
-		body: JSON.stringify(authData),
-	};
+	const handleResponse = (response: TNetlifyFrom<never>): void => {
+		console.log(response);
 
-	const handleResult = (ok, isDemoMode, firebaseConfig) => {
-		if (ok) {
-			authError.value = '';
-			let role = EAuthRole.ADMIN;
-			if (isDemoMode) role = EAuthRole.DEMO;
-			emit('authorize', role, firebaseConfig);
+		if (response.ok) {
+			// console.log(response);
+
+			let accessToken = getCookieAccessToken();
+			const user = saveAuthUserLS(accessToken);
+
+			// console.log('COOKIE: ' + accessToken);
+
+			if (user?.roles?.length) {
+				emit('login', user);
+			} else console.error('*VUE*  auth() : INVALID PACKET');
 		} else {
-			authError.value = 'Введен неверный логин или пароль.';
+			// if(response.status === 500)
+			authError.value = response.message;
+			console.error('*VUE*  auth error: ', response.message);
 		}
 	};
 
-	let isOk;
-	fetch('/.netlify/functions/adminAuth', options)
-		.then(response => {
-			// console.log(response);
-
-			isOk = response.ok;
-			return response.json();
-		})
-		.then(data => {
-			// console.log(data.message);
-			if (isOk) {
-				handleResult(true, data?.demo, data.firebaseConfig);
-			} else throw new Error();
-		})
-		.catch(() => handleResult(false, undefined, undefined));
+	const packet: TAuthPacket = { name: login.value, message: password.value };
+	const dataTo: TNetlifyTo = { packet };
+	netlify(ENetlifyEndpoint.NETLIFY_ADMIN_AUTH, dataTo, handleResponse);
 }
 </script>
 
@@ -68,7 +55,6 @@ function submit(event) {
 			<input type="text" v-model.trim="login" required />
 			<label for="password">Пароль</label>
 			<div class="password-field">
-				<input type="hidden" v-model="email" />
 				<input v-if="showPassword" type="text" v-model="password" class="password-input" required />
 				<input v-else type="password" v-model="password" class="password-input" required />
 				<input type="checkbox" v-model="showPassword" id="show-password-checkbox" tabindex="-1" />

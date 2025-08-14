@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { isDemo } from '../lib/statesStore';
-
 interface Props {
 	title: string;
 	// showSaveButton: boolean;

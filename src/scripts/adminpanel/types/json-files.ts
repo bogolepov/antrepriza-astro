@@ -1,5 +1,4 @@
-import type { EPerformanceType } from '@scripts/db/baseTypes';
-import type { TMultiText } from '@scripts/types/base';
+import type { EPerformanceType, TMultiText } from '@scripts/types/base';
 
 export type TMultilang = { ru: string; de: string };
 

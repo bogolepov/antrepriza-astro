@@ -17,17 +17,10 @@ export const SubscriberSchema = z.object({
 	usid: z.number(),
 });
 
-export const SubscriptionPacketSchema = SubscriberSchema.extend({
-	check: z.string(),
-});
-
-export const SubscribersDBSchema = z.object({
-	users: z.array(SubscriberSchema),
-});
+export const SubscriptionPacketSchema = SubscriberSchema;
 
 export type TSubscriber = z.infer<typeof SubscriberSchema>;
 export type TSubscriptionPacket = z.infer<typeof SubscriptionPacketSchema>;
-export type TSubscribersDB = z.infer<typeof SubscribersDBSchema>;
 
 export function initSubscriptionPacket(
 	lang: string,
@@ -37,7 +30,7 @@ export function initSubscriptionPacket(
 	sid: number,
 	usid: number
 ): TSubscriptionPacket {
-	const packet: TSubscriptionPacket = { lang, state, email: '', obj: '', sid: 0, usid: 0, check: '' };
+	const packet: TSubscriptionPacket = { lang, state, email: '', obj: '', sid: 0, usid: 0 };
 	switch (state) {
 		case ESubscriptionState.REG_INIT:
 			packet.email = email;

@@ -1,5 +1,5 @@
 export enum EAuthRole {
-	UNAUTHORIZED = 'unauthorized',
+	// UNAUTHORIZED = 'unauthorized',
 	ADMIN = 'admin',
 	GUEST = 'guest',
 	DEMO = 'demo',

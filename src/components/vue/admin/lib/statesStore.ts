@@ -1,14 +1,14 @@
 import { ref } from 'vue';
 import { EAuthRole } from '@scripts/auth';
 import {
-	extractSubscribersPanelPacketFromJson,
+	SubscribersPanelPacketSchema,
 	type TSubscriberPanel,
 	type TSubscribersPanelPacket,
 } from '@scripts/adminpanel/types/subscription';
-import { ENetlifyAction, netlifyFunction } from '@scripts/adminpanel/netlifyFunction';
-import { getCRC32 } from '@scripts/utils';
+import { ENetlifyAction, type TPanelRequest } from '@scripts/adminpanel/types/netlify-db';
+import { extractSchemaFromJson } from '@scripts/utils';
 import {
-	extractReservationsPanelPacketFromJson,
+	ReservationsPanelPacketSchema,
 	type TNamedEventReservation,
 	type TReservationsPanelPacket,
 } from '@scripts/types/reservation';
@@ -19,6 +19,8 @@ import playsJSON from '@data/plays.json';
 import afishaJSON from '@data/afisha.json';
 import pricesJSON from '@data/prices.json';
 import type { IPerformanceJson, IPlayJson, IPriceJson, IStageJson } from '@scripts/adminpanel/types/json-files';
+import { ENetlifyEndpoint, netlify, type TNetlifyFrom, type TNetlifyTo } from '@scripts/netlify';
+import type { UserRole } from '@scripts/types/user-auth';
 
 // ------------------- JSON files ----------------------
 
@@ -45,12 +47,9 @@ export function getPrices(): IPriceJson[] {
 // -----------------------------------------------------
 export const showMenu = ref(true);
 export const smallScreen = ref(false);
-export const isDemo = ref(true);
 
-export function setAuthRole(role: EAuthRole) {
-	if (role === EAuthRole.DEMO) isDemo.value = true;
-	else isDemo.value = false;
-}
+export const authRoles = ref<UserRole[]>([]);
+export const authName = ref<string>('');
 
 export const isActualPerformancesTickets = ref(true);
 export const isActualPerformancesAfisha = ref(true);
@@ -68,17 +67,19 @@ export const reservations = ref<IExtNamedEventReservation[]>([]);
 export async function getReservationsNetlify() {
 	if (gotReservations) return;
 
-	const handleResult = (isOk: boolean, message: string, packet: TReservationsPanelPacket) => {
-		if (isOk) {
-			const verifiedPacket = extractReservationsPanelPacketFromJson(JSON.stringify(packet));
-			if (verifiedPacket && packet.hash === getCRC32(packet.events)) {
-				reservations.value = packet.events;
+	const handleResponse = (response: TNetlifyFrom<TReservationsPanelPacket>): void => {
+		if (response.ok) {
+			const verifiedPacket = extractSchemaFromJson(ReservationsPanelPacketSchema, JSON.stringify(response.packet));
+			if (verifiedPacket) {
+				reservations.value = verifiedPacket.events;
 				gotReservations = true;
-			} else console.error('*VUE*  getReservations() : INVALID PACKET');
-		} else console.error('*VUE*  getReservations() error: ', message);
+			}
+		} else console.error('*VUE*  getReservations() error: ', response.message);
 	};
 
-	netlifyFunction(ENetlifyAction.GET_RESERVATIONS, handleResult);
+	const packet: TPanelRequest = { action: ENetlifyAction.GET_RESERVATIONS };
+	const dataTo: TNetlifyTo = { packet, need_auth: true };
+	netlify(ENetlifyEndpoint.NETLIFY_ADMIN_PANEL, dataTo, handleResponse);
 }
 
 let gotSubscribers: boolean = false;
@@ -86,14 +87,25 @@ export const subscribers = ref<TSubscriberPanel[]>([]);
 export function getSubscribersNetlify() {
 	if (gotSubscribers) return;
 
-	const handleResult = (isOk: boolean, message: string, packet: TSubscribersPanelPacket) => {
-		if (isOk) {
-			const verifiedPacket = extractSubscribersPanelPacketFromJson(JSON.stringify(packet));
-			if (verifiedPacket && packet.hash === getCRC32(packet.emails)) {
-				subscribers.value = packet.emails;
+	const handleResponse = (response: TNetlifyFrom<TSubscribersPanelPacket>): void => {
+		if (response.ok) {
+			const verifiedPacket = extractSchemaFromJson(SubscribersPanelPacketSchema, JSON.stringify(response.packet));
+			if (verifiedPacket) {
+				subscribers.value = verifiedPacket.emails;
 				gotSubscribers = true;
 			}
-		} else console.error('*VUE*  getSubscribers() error: ', message);
+		} else console.error('*VUE*  getSubscribers() error: ', response.message);
 	};
-	netlifyFunction(ENetlifyAction.GET_SUBSCRIBERS, handleResult);
+
+	const packet: TPanelRequest = { action: ENetlifyAction.GET_SUBSCRIBERS };
+	const dataTo: TNetlifyTo = { packet, need_auth: true };
+
+	netlify(ENetlifyEndpoint.NETLIFY_ADMIN_PANEL, dataTo, handleResponse);
+}
+
+export function resetDataLogout() {
+	gotReservations = false;
+	gotSubscribers = false;
+	reservations.value = [];
+	subscribers.value = [];
 }

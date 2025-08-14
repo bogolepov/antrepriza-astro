@@ -2,15 +2,20 @@
 import { onBeforeMount, computed, type ComputedRef } from 'vue';
 import ChapterTitle from '../components/ChapterTitle.vue';
 import {
-	isDemo,
 	getReservationsNetlify,
 	type IExtNamedEventReservation,
 	reservations,
 	isActualPerformancesTickets,
+	authRoles,
 } from '../lib/statesStore';
 import TicketsEvent from './TicketsEvent.vue';
 import { ONE_DAY } from '@scripts/consts';
 import IconCalendar from '../components/iconCalendar.vue';
+import { UserRole } from '@scripts/types/user-auth';
+
+let hasAccess = computed<boolean>(() => {
+	return authRoles.value.includes(UserRole.ADMIN);
+});
 
 const performancesToShow: ComputedRef<IExtNamedEventReservation[]> = computed(() => {
 	let list: IExtNamedEventReservation[] = reservations.value;
@@ -38,7 +43,7 @@ function getMonthName(event_sid: string): string {
 }
 
 async function handleBeforeMount() {
-	if (!isDemo.value) getReservationsNetlify();
+	if (authRoles.value.includes(UserRole.ADMIN)) getReservationsNetlify();
 }
 onBeforeMount(handleBeforeMount);
 </script>
@@ -57,7 +62,7 @@ onBeforeMount(handleBeforeMount);
 		</template>
 	</ChapterTitle>
 	<ul>
-		<template v-if="isDemo">
+		<template v-if="!hasAccess">
 			<li>Недоступно для демонстрационного режима.</li>
 		</template>
 		<template v-else>

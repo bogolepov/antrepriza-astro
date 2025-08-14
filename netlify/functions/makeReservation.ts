@@ -1,17 +1,18 @@
 import type { Handler } from '@netlify/functions';
-import { LANG_LIST, EMAIL_REGEX } from '@scripts/consts.ts';
+import { LANG_LIST, EMAIL_REGEX, LANG_RU } from '@scripts/consts.ts';
 import { makeHandlerResponse } from './lib/utils.ts';
 import { makeHtmlEmail } from './lib/emails/mainEmailTemplate.ts';
 import { makeContent, makeReservationsBlock } from './lib/emails/reservation.ts';
 import { type TMail, sendMails } from './lib/mailService.ts';
 import { addReservations, type TDoReservationExt } from './lib/db/makeReservationDB.ts';
-import { type TNetlifyDataReservations } from '@scripts/types/reservation.ts';
+import { DoReservationPacketSchema, type TDoReservationPacket } from '@scripts/types/reservation.ts';
 
 import dictionaryServer from '@data/dictionary_server.json';
 import theater from '@data/theater.json';
 import plays from '@data/plays.json';
 import prices from '@data/prices.json';
 import afisha from '@data/afisha.json';
+import { extractSchemaFromJson } from '@scripts/utils.ts';
 
 type TMessageValidationResult = {
 	valid: boolean;
@@ -20,15 +21,18 @@ type TMessageValidationResult = {
 };
 
 export const handler: Handler = async (event, context) => {
-	const messageData: TNetlifyDataReservations = JSON.parse(event.body);
+	if (!event?.body) return makeHandlerResponse(400, dictionaryServer.nf__invalid_request[LANG_RU]);
+
+	const packet: TDoReservationPacket = extractSchemaFromJson(DoReservationPacketSchema, event.body);
+	if (!packet) return makeHandlerResponse(400, dictionaryServer.nf__empty_request_data[LANG_RU]);
 
 	// spam or not valid data checking
-	const { valid, errCode, errMessage } = validateMessage(messageData);
+	const { valid, errCode, errMessage } = validateCart(packet);
 	if (!valid) return makeHandlerResponse(errCode, errMessage);
 
-	const { lang, name, email, reservations, amount, when } = messageData;
+	const { lang, name, email, amount, when } = packet;
 
-	let extDoReservations: TDoReservationExt[] = reservations as TDoReservationExt[];
+	let extDoReservations: TDoReservationExt[] = packet.reservations as TDoReservationExt[];
 	try {
 		await addReservations(lang, name, email, when, extDoReservations);
 	} catch (error) {
@@ -57,7 +61,7 @@ export const handler: Handler = async (event, context) => {
 	else return makeHandlerResponse(500, dictionaryServer.nf__reservations__error[lang]);
 };
 
-function validateMessage(messageData: TNetlifyDataReservations): TMessageValidationResult {
+function validateCart(messageData: TDoReservationPacket): TMessageValidationResult {
 	// if message structure is not valid (a fake message), then a fake OK-result
 	const errResult: TMessageValidationResult = { valid: false, errCode: 200, errMessage: "'Email sent successfully'" };
 	if (!messageData || !messageData.lang || !LANG_LIST.includes(messageData.lang)) return errResult;

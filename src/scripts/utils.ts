@@ -1,3 +1,4 @@
+import { z } from 'zod/v4';
 import * as consts from '@scripts/consts';
 
 let pageLang;
@@ -68,4 +69,17 @@ export function getMonthName(monthNumber: string): string {
 	if (nMonth > 12) console.error('getMonthName: ' + monthNumber + ' - ERROR overflow!');
 	if (nMonth) nMonth--;
 	return new Date(2024, nMonth, 1).toLocaleString('ru', { month: 'long' });
+}
+
+export function extractSchemaFromJson<T extends z.ZodTypeAny>(schema: T, json_data: string): z.infer<T> | undefined {
+	try {
+		const parsed = JSON.parse(json_data);
+		const result = schema.safeParse(parsed);
+		if (result.success) {
+			return result.data;
+		}
+	} catch {
+		// JSON.parse ошибка или несовпадение схемы
+	}
+	return undefined;
 }

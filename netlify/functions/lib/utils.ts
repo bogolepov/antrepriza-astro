@@ -4,16 +4,22 @@ export function makeHandlerResponse(resCode: number, resMessage: string): Handle
 	if (resCode >= 400) console.error('resMessage: ' + resCode + ', ' + resMessage);
 	return {
 		statusCode: resCode,
+		headers: {
+			'Content-Type': 'application/json',
+		},
 		body: JSON.stringify({
 			message: resMessage,
 		}),
 	};
 }
 
-export function makePanelResponse(resCode: number, message: string, packet: any): HandlerResponse {
+export function makeMessagePacketResponse<T>(resCode: number, message: string, packet: T): HandlerResponse {
 	if (resCode >= 400) console.error('resMessage: ' + resCode + ', ' + message);
 	return {
 		statusCode: resCode,
+		headers: {
+			'Content-Type': 'application/json',
+		},
 		body: JSON.stringify({ message, packet }),
 	};
 }

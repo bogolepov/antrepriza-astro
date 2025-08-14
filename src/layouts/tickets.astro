@@ -120,7 +120,6 @@ for (let price of prices) {
 	<ul>
 		{
 			playsWithGrouppedDatesArray.map(item => {
-				// console.log("key: " + item.key);
 				let playInfo;
 				plays.some(piece => {
 					if (item.key === piece.suffix) {
@@ -240,7 +239,7 @@ for (let price of prices) {
 	};
 	const playCounters: Array<PlayCounter> = [];
 
-	let ticketBtns = document.querySelectorAll('.pink-button.book-ticket.open-book-form');
+	let ticketBtns = document.querySelectorAll<HTMLButtonElement>('.pink-button.book-ticket.open-book-form');
 	for (let btn of ticketBtns) {
 		let fullDate = btn.getAttribute('data-date') + 'T' + btn.getAttribute('data-time');
 

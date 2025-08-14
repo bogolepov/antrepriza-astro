@@ -1,6 +1,6 @@
 import * as consts from '@scripts/consts';
 import { isCartOpen, isTicketsAdded } from '@react-components/reservation/cartStore';
-import type { TTicketItem, TDoReservation } from './types/reservation';
+import type { TTicketItem, TDoReservationItem } from './types/reservation';
 
 import dictionary from '@data/dictionary.json';
 import plays from '@data/plays.json';
@@ -195,7 +195,7 @@ function handleToDistributor() {
 }
 
 function handleAddToCart() {
-	let reservations: TDoReservation[];
+	let reservations: TDoReservationItem[];
 	let value = window.localStorage.getItem(consts.STORE_RESERVATION_KEY);
 	if (value) reservations = JSON.parse(value);
 	else reservations = [];
@@ -209,7 +209,7 @@ function handleAddToCart() {
 		let newTickets: TTicketItem[] = [];
 		prices.forEach(price => newTickets.push({ type: price.type, count: getTicketCount(price.type) }));
 		// TODO: play_id => play_sid
-		let newReservation: TDoReservation = {
+		let newReservation: TDoReservationItem = {
 			date: afishaItem.date,
 			time: afishaItem.time,
 			play_id: afishaItem.play_id,

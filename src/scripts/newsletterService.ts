@@ -1,4 +1,5 @@
-import { sendSubscriptionPacket, validateSubscriptionPacketData } from './subscription';
+import { ENetlifyEndpoint, netlify, type TNetlifyFrom, type TNetlifyTo } from './netlify';
+import { validateSubscriptionPacketData } from './subscription';
 import { ESubscriptionState, initSubscriptionPacket, type TSubscriptionPacket } from './types/subscription';
 import { getCurrentPageLang } from './utils';
 import dictionary from '@data/dictionary.json';
@@ -29,16 +30,16 @@ export async function newsletterService() {
 		return;
 	}
 
-	const handleResult = (isOk: boolean, message: string) => {
+	const handleResponse = (response: TNetlifyFrom<never>): void => {
 		elemLoader.classList.remove('show');
-		showNewsletterServiceMessage(message, isOk);
+		showNewsletterServiceMessage(response.message, response.ok);
 	};
 
 	let packet: TSubscriptionPacket;
 	if (sid) packet = initSubscriptionPacket(lang, ESubscriptionState.REG_CONFIRM, '', obj, sid, 0);
 	else if (usid) packet = initSubscriptionPacket(lang, ESubscriptionState.REG_DELETE, '', obj, 0, usid);
 
-	if (!validateSubscriptionPacketData(packet, false)) {
+	if (!validateSubscriptionPacketData(packet)) {
 		showNewsletterServiceMessage(dictionary.err__incorrect_data[lang], false);
 		return;
 	}
@@ -46,5 +47,6 @@ export async function newsletterService() {
 	let elemLoader = document.querySelector('.newsletter-loader');
 	elemLoader.classList.add('show');
 
-	sendSubscriptionPacket(packet, handleResult);
+	const dataTo: TNetlifyTo = { packet };
+	netlify(ENetlifyEndpoint.NETLIFY_SUBSCRIPTION, dataTo, handleResponse);
 }

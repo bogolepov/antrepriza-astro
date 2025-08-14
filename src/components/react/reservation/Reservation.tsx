@@ -6,8 +6,7 @@ import CartButton from '@components/react/reservation/CartButton';
 import { isCartOpen, isTicketsAdded } from './cartStore';
 
 import { FROZEN_BOOK_TIME, STORE_RESERVATION_KEY } from '@scripts/consts';
-import type { TDoReservation } from '@scripts/types/reservation';
-// import type { Reservations } from '@netlify/lib/dbReservations';
+import type { TDoReservationItem } from '@scripts/types/reservation';
 
 import prices from '@data/prices.json';
 export function getPrice(price_type) {
@@ -26,7 +25,7 @@ export default function Reservation({ lang }) {
 		isCartOpen.set(!$isCartOpen);
 	};
 
-	let handleAddOneTicket = (play: TDoReservation, ticketType: string) => {
+	let handleAddOneTicket = (play: TDoReservationItem, ticketType: string) => {
 		const updReservations = reservations.map(play_item => {
 			if (play_item.date === play.date && play_item.time === play.time && play_item.play_sid === play.play_sid) {
 				//
@@ -83,12 +82,12 @@ export default function Reservation({ lang }) {
 	};
 
 	useEffect(() => {
-		let loadedReservations: TDoReservation[] = loadReservationsFromStorage();
+		let loadedReservations: TDoReservationItem[] = loadReservationsFromStorage();
 		updateReservations(loadedReservations);
 	}, [$isTicketsAdded]);
 
-	function loadReservationsFromStorage(): TDoReservation[] {
-		let loadedReservations: TDoReservation[];
+	function loadReservationsFromStorage(): TDoReservationItem[] {
+		let loadedReservations: TDoReservationItem[];
 		let lsValue = window.localStorage.getItem(STORE_RESERVATION_KEY);
 		if (lsValue) loadedReservations = JSON.parse(lsValue);
 		else loadedReservations = [];
@@ -97,7 +96,7 @@ export default function Reservation({ lang }) {
 		// then counter od CartButton and reservations-state will be updated
 		window.addEventListener('storage', e => {
 			if (e.key === STORE_RESERVATION_KEY) {
-				let updReservations: TDoReservation[] = JSON.parse(e.newValue);
+				let updReservations: TDoReservationItem[] = JSON.parse(e.newValue);
 				updateReservations(updReservations);
 			}
 		});
@@ -105,11 +104,11 @@ export default function Reservation({ lang }) {
 		return loadedReservations;
 	}
 
-	function saveReservationsToStorage(updReservations: TDoReservation[]) {
+	function saveReservationsToStorage(updReservations: TDoReservationItem[]) {
 		window.localStorage.setItem(STORE_RESERVATION_KEY, JSON.stringify(updReservations));
 	}
 
-	function updateReservations(updReservations: TDoReservation[]) {
+	function updateReservations(updReservations: TDoReservationItem[]) {
 		// validate reservations
 		updReservations.sort(
 			(play1, play2) => Date.parse(play1.date + 'T' + play1.time) - Date.parse(play2.date + 'T' + play2.time)
@@ -130,13 +129,13 @@ export default function Reservation({ lang }) {
 		return count;
 	};
 
-	function calcTicketsAtPlay(play: TDoReservation): number {
+	function calcTicketsAtPlay(play: TDoReservationItem): number {
 		let playCount: number = 0;
 		play.tickets.forEach(ticket_type => (playCount += ticket_type.count));
 		return playCount;
 	}
 
-	function calcTotalAmount(myReservations: TDoReservation[]): number {
+	function calcTotalAmount(myReservations: TDoReservationItem[]): number {
 		let amount: number = 0;
 		myReservations.map(item => {
 			item.tickets.map(ticket_type => {

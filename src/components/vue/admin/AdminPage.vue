@@ -2,21 +2,12 @@
 import { ref, onBeforeMount, provide } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { showMenu, smallScreen } from './lib/statesStore';
-import { EAuthRole } from '@scripts/auth';
-import { type TFirebaseConfig } from '@scripts/db/firebaseConfig';
-// import { getPlays, getStages, getPerformances, getRepetitions } from '@scripts/db/antreprizaDB';
 import LetterSizeControl from './components/LetterSizeControl.vue';
-// import type { TPlay, TStage, TPerformance, TRepetition } from '@scripts/db/baseTypes';
 
 import IconWhatsapp from './components/iconWhatsapp.vue';
 
 const router = useRouter();
 const route = useRoute();
-
-// const plays = ref<Array<TPlay>>([]);
-// const stages = ref<Array<TStage>>([]);
-// const performances = ref<Array<TPerformance>>([]);
-// const repetitions = ref<Array<TRepetition>>([]);
 
 const fontSize = ref();
 
@@ -46,36 +37,15 @@ function updateFontSize(newFontSize: string) {
 	updatePageComposition();
 }
 
-// function updatePlays(newPlays: TPlay[]) {
-// 	plays.value = newPlays;
-// }
-// function updateStages(newStages: TStage[]) {
-// 	stages.value = newStages;
-// }
-// function updatePerformances(newPerformances: TPerformance[]) {
-// 	performances.value = newPerformances;
-// }
-// function updateRepetitions(newRepetitions: TRepetition[]) {
-// 	repetitions.value = newRepetitions;
-// }
-
-// provide('plays', { plays, updatePlays });
-// provide('stages', { stages, updateStages });
-// provide('performances', { performances, updatePerformances });
-// provide('repetitions', { repetitions, updateRepetitions });
 provide('font-size', { updateFontSize });
 
 const emit = defineEmits<{
-	authorize: [role: EAuthRole, firebaseConfig?: TFirebaseConfig];
+	logout: [];
 }>();
 
 window.addEventListener('resize', updatePageComposition);
 
 onBeforeMount(() => {
-	// plays.value = getPlays();
-	// stages.value = getStages();
-	// performances.value = getPerformances();
-	// repetitions.value = getRepetitions();
 	if (route.query.page) {
 		router.push('/admin' + route.query.page);
 	}
@@ -100,7 +70,7 @@ onBeforeMount(() => {
 					<li><router-link to="/admin/subscribers">Подписчики</router-link></li>
 				</ul>
 			</nav>
-			<button class="logout-button" @click="$emit('authorize', EAuthRole.UNAUTHORIZED, undefined)">Выйти</button>
+			<button class="logout-button" @click="$emit('logout')">Выйти</button>
 		</aside>
 		<main>
 			<button v-show="smallScreen" @click="showMenu = true" class="open-menu-button">⇛</button>

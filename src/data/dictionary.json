@@ -99,6 +99,7 @@
 	"name_hint": { "ru": "Имя и фамилия", "de": "Vor- und Nachname" },
 	"message": { "ru": "Сообщение", "de": "Nachricht" },
 	"message_hint": { "ru": "Ваше сообщение", "de": "Anmerkungen" },
+	"message_length_note": { "ru": "{min}-{max} символов", "de": "{min}-{max} Zeichen" },
 	"question_btn_send": { "ru": "Отправить", "de": "Absenden" },
 	"radio_book_at_antrepriza": { "ru": "Забронировать на сайте Театра", "de": "Auf unserer Website buchen" },
 	"radio_book_at_kontramarka": { "ru": "Купить на Контрамарке", "de": "Bei Kontramarka kaufen" },

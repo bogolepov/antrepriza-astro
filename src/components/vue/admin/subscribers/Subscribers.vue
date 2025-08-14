@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { onBeforeMount, ref } from 'vue';
+import { computed, onBeforeMount, ref } from 'vue';
 import ChapterTitle from '../components/ChapterTitle.vue';
-import { getSubscribersNetlify, isDemo, subscriptionState, subscribers } from '../lib/statesStore';
+import { getSubscribersNetlify, subscriptionState, subscribers, authRoles } from '../lib/statesStore';
 import { ESubscriptionState } from '@scripts/types/subscription';
+import { UserRole } from '@scripts/types/user-auth';
 
 type TSubscriptionStateInfo = {
 	state: ESubscriptionState | 'all';
@@ -15,12 +16,12 @@ const stateList: TSubscriptionStateInfo[] = [
 	{ state: 'all', text: 'все в базе' },
 ];
 
-const showInit = ref(false);
-const showConfirm = ref(true);
-const showDelete = ref(false);
+let hasAccess = computed<boolean>(() => {
+	return authRoles.value.includes(UserRole.ADMIN);
+});
 
 async function handleBeforeMount() {
-	if (!isDemo.value) getSubscribersNetlify();
+	if (authRoles.value.includes(UserRole.ADMIN)) getSubscribersNetlify();
 }
 onBeforeMount(handleBeforeMount);
 </script>
@@ -34,7 +35,7 @@ onBeforeMount(handleBeforeMount);
 		</option>
 	</select>
 	<ul>
-		<template v-if="isDemo">
+		<template v-if="!hasAccess">
 			<li>Недоступно для демонстрационного режима.</li>
 		</template>
 		<template v-else>

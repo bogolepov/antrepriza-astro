@@ -1,5 +1,7 @@
 import { z } from 'zod/v4';
 
+// --------------------- reservation in DB --------------
+
 export const TicketItemSchema = z.object({
 	type: z.string(),
 	count: z.number(),
@@ -29,7 +31,6 @@ export const NamedEventReservationSchema = EventReservationSchema.extend({
 
 export const ReservationsPanelPacketSchema = z.object({
 	events: z.array(NamedEventReservationSchema),
-	hash: z.string(),
 });
 
 export type TTicketItem = z.infer<typeof TicketItemSchema>;
@@ -38,26 +39,25 @@ export type TEventReservation = z.infer<typeof EventReservationSchema>;
 export type TNamedEventReservation = z.infer<typeof NamedEventReservationSchema>;
 export type TReservationsPanelPacket = z.infer<typeof ReservationsPanelPacketSchema>;
 
-export function extractReservationsPanelPacketFromJson(json_data: string): TReservationsPanelPacket | undefined {
-	const result = ReservationsPanelPacketSchema.safeParse(JSON.parse(json_data));
-	if (result.success) return result.data as TReservationsPanelPacket;
-	else return undefined;
-}
+// --------------------- to do reservation --------------
 
-export type TDoReservation = {
-	date: string;
-	time: string;
-	play_id: number;
-	play_sid: string;
-	stage_sid: string;
-	tickets: TTicketItem[];
-};
+export const DoReservationItemSchema = z.object({
+	date: z.string(),
+	time: z.string(),
+	play_id: z.number(),
+	play_sid: z.string(),
+	stage_sid: z.string(),
+	tickets: z.array(TicketItemSchema),
+});
 
-export type TNetlifyDataReservations = {
-	lang: string;
-	name: string;
-	email: string;
-	reservations: TDoReservation[];
-	amount: number;
-	when: string;
-};
+export const DoReservationPacketSchema = z.object({
+	lang: z.string(),
+	name: z.string(),
+	email: z.string(),
+	reservations: z.array(DoReservationItemSchema),
+	amount: z.number(),
+	when: z.string(),
+});
+
+export type TDoReservationItem = z.infer<typeof DoReservationItemSchema>;
+export type TDoReservationPacket = z.infer<typeof DoReservationPacketSchema>;

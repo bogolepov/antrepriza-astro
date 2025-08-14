@@ -1,12 +1,11 @@
 import { antreprizaDB } from './firebase';
 import { collection, doc, setDoc, updateDoc, arrayUnion } from 'firebase/firestore';
 import { getCountFromServer, query, documentId, where } from '@firebase/firestore';
-import type { TDoReservation } from '@scripts/types/reservation';
-import type { TReservationDB } from '@scripts/db/baseTypes';
+import type { TDoReservationItem, TReservationItem } from '@scripts/types/reservation';
 import { onlyNumbers, getRandomIntInclusive } from '@scripts/utils';
 import { COLLECTION_TICKETS } from '@netlify/lib/db/constsDB';
 
-export type TDoReservationExt = TDoReservation & {
+export type TDoReservationExt = TDoReservationItem & {
 	order_id: string;
 };
 
@@ -31,7 +30,7 @@ export async function addReservations(
 		for (let event of reservations) {
 			const eventDocName = `${event.stage_sid}_${onlyNumbers(event.date)}_${onlyNumbers(event.time)}_${event.play_sid}`;
 			event.order_id = makeReservationId(event.date, event.time);
-			const reservation: TReservationDB = {
+			const reservation: TReservationItem = {
 				name: name,
 				email: email,
 				lang: lang,

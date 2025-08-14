@@ -2,8 +2,8 @@ import type { Handler, HandlerResponse } from '@netlify/functions';
 
 import { LANG_RU } from '@scripts/consts.ts';
 import { makeHandlerResponse } from '@netlify/lib/utils.ts';
-import { ESubscriptionState, type TSubscriptionPacket } from '@scripts/types/subscription.ts';
-import { extractSubscriptionPacketFromJson, validateSubscriptionPacketData } from '@scripts/subscription.ts';
+import { ESubscriptionState, SubscriptionPacketSchema, type TSubscriptionPacket } from '@scripts/types/subscription.ts';
+import { validateSubscriptionPacketData } from '@scripts/subscription.ts';
 import { type TMail, sendMails } from '@netlify/lib/mailService.ts';
 import { makeHtmlEmail } from '@netlify/lib/emails/mainEmailTemplate.ts';
 import { makeContentConfirmed, makeContentRegistration } from '@netlify/lib/emails/subscription.ts';
@@ -14,15 +14,16 @@ import {
 	registerEmail,
 	type TSubscriptionResult,
 } from '@netlify/lib/db/subscription.ts';
+import { extractSchemaFromJson } from '@scripts/utils';
 
 import dictionaryServer from '@data/dictionary_server.json';
 
 export const handler: Handler = async (event, context) => {
 	if (!event || !event.body) return makeHandlerResponse(400, dictionaryServer.nf__invalid_request[LANG_RU]);
 
-	const packet: TSubscriptionPacket = extractSubscriptionPacketFromJson(event.body);
+	const packet: TSubscriptionPacket = extractSchemaFromJson(SubscriptionPacketSchema, event.body);
 	if (!packet) return makeHandlerResponse(400, dictionaryServer.nf__empty_request_data[LANG_RU]);
-	if (!validateSubscriptionPacketData(packet, true))
+	if (!validateSubscriptionPacketData(packet))
 		return makeHandlerResponse(400, dictionaryServer.nf__invalid_format[LANG_RU]);
 
 	switch (packet.state) {

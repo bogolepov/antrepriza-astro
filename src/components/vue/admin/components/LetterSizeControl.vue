@@ -39,7 +39,14 @@ function changeSize(event: KeyboardEvent, size: string): void {
 				@keypress="changeSize($event, size)"
 				tabindex="0"
 			>
-				<input type="radio" @click="letterSize = size" :id="size" name="letter-sizes" :checked="size === letterSize" tabindex="-1" />
+				<input
+					type="radio"
+					@click="letterSize = size"
+					:id="size"
+					name="letter-sizes"
+					:checked="size === letterSize"
+					tabindex="-1"
+				/>
 				<label :for="size">A</label>
 			</div>
 		</div>

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useStore } from '@nanostores/react';
 import { isCartOpen } from './cartStore';
 
-import { type TNetlifyDataReservations, type TDoReservation } from '@scripts/types/reservation';
+import type { TDoReservationPacket, TDoReservationItem } from '@scripts/types/reservation';
 
 import '@styles/cart.css';
 import '@styles/loader.css';
@@ -11,14 +11,15 @@ import dictionary from '@data/dictionary.json';
 
 import Order from '@components/react/reservation/Order';
 import FinalReservationForm from '@components/react/reservation/FinalReservationForm';
+import { ENetlifyEndpoint, netlify, type TNetlifyFrom, type TNetlifyTo } from '@scripts/netlify';
 
 interface ICart {
 	lang: string;
-	tickets: TDoReservation[];
+	tickets: TDoReservationItem[];
 	totalAmount: number;
 	handleCloseClick: () => void;
-	handleAddTicket: (play: TDoReservation, ticket_type: string) => void;
-	handleRemoveTicket: (play: TDoReservation, ticket_type: string, count: number) => void;
+	handleAddTicket: (play: TDoReservationItem, ticket_type: string) => void;
+	handleRemoveTicket: (play: TDoReservationItem, ticket_type: string, count: number) => void;
 	handleReservationDone: () => void;
 }
 export function Cart({
@@ -55,40 +56,33 @@ export function Cart({
 			hour: '2-digit',
 			minute: '2-digit',
 		};
-		let bookTime = now.toLocaleDateString(lang, dateOptions);
+		let bookTime: string = now.toLocaleDateString(lang, dateOptions);
 
-		const emailData: TNetlifyDataReservations = {
-			lang: lang,
-			name: name,
-			email: email,
-			reservations: tickets,
+		const validTickets: TDoReservationItem[] = JSON.parse(JSON.stringify(tickets));
+		validTickets.forEach(event => {
+			event.tickets = event.tickets.filter(t => t.count > 0);
+		});
+
+		const packet: TDoReservationPacket = {
+			lang,
+			name,
+			email,
+			reservations: validTickets,
 			amount: totalAmount,
 			when: bookTime,
 		};
 
-		const options = {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify(emailData),
+		const handleResponse = (response: TNetlifyFrom<never>): void => {
+			if (response.ok) {
+				handleResult(true, null);
+				handleReservationDone();
+			} else {
+				handleResult(false, response.message);
+			}
 		};
 
-		let isOk: boolean;
-		await fetch('/.netlify/functions/makeReservation', options)
-			.then(response => {
-				isOk = response.ok;
-				return response.json();
-			})
-			.then(data => {
-				if (isOk) {
-					handleResult(true, null);
-					handleReservationDone();
-				} else throw new Error(data.message);
-			})
-			.catch(err => {
-				handleResult(false, err.message);
-			});
+		const dataTo: TNetlifyTo = { packet };
+		netlify(ENetlifyEndpoint.NETLIFY_MAKE_RESERVATION, dataTo, handleResponse);
 	};
 
 	return (

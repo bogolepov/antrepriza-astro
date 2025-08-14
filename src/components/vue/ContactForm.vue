@@ -5,15 +5,8 @@ import theater from '@data/theater.json';
 import SendingLoader from './Loader.vue';
 import ResultMessageBox from './MessageBox.vue';
 import { getEmailAddressError, validEmailAddressFormat } from '@scripts/utils';
-import {
-	getMessageError,
-	isValidContactForm,
-	MSG_MAX_LENGTH,
-	MSG_MIN_LENGTH,
-	sendContactForm,
-	validMessage,
-} from '@scripts/contact_form';
-import type { TContactForm } from '@scripts/types/contactForm';
+import { getMessageError, isValidContactForm, sendContactForm, validMessage } from '@scripts/contact_form';
+import { MSG_MAX_LENGTH, MSG_MIN_LENGTH, type TContactForm } from '@scripts/types/contactForm';
 import { MAX_EMAIL_LENGTH, MIN_EMAIL_LENGTH } from '@scripts/consts';
 
 const sendingLoaderRefName = 'contact-form-loader-ctrl';
@@ -46,6 +39,11 @@ const message = ref<string>('');
 
 const errEmail = ref<string>('');
 const errMessage = ref<string>('');
+
+let placeholderMessage = `${dictionary.message_hint[lang]} (${dictionary.message_length_note[lang]})`;
+placeholderMessage = placeholderMessage
+	.replace('{min}', MSG_MIN_LENGTH.toString())
+	.replace('{max}', MSG_MAX_LENGTH.toString());
 
 function resetForm() {
 	validationMode.value = false;
@@ -166,7 +164,7 @@ function closeMessageBox() {
 			id="qff-message"
 			v-model.trim="message"
 			class="form-input qff"
-			:placeholder="dictionary.message_hint[lang]"
+			:placeholder="placeholderMessage"
 			:minlength="MSG_MIN_LENGTH"
 			:maxlength="MSG_MAX_LENGTH"
 			rows="5"

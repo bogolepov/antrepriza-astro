@@ -1,7 +1,7 @@
 import dictionary from '@data/dictionary.json';
 import { getCurrentPageLang, getEmailAddressError, validEmailAddressFormat } from '@scripts/utils';
 import { ESubscriptionState, initSubscriptionPacket, type TSubscriptionPacket } from '@scripts/types/subscription';
-import { sendSubscriptionPacket } from '@scripts/subscription';
+import { ENetlifyEndpoint, netlify, type TNetlifyFrom, type TNetlifyTo } from '@scripts/netlify';
 
 let messageTimer: ReturnType<typeof setTimeout>;
 function resetMessageTimer() {
@@ -64,16 +64,18 @@ export async function submitNewsletterForm(event) {
 		return;
 	}
 
-	const handleResult = (isOk: boolean, message: string) => {
+	const handleResponse = (response: TNetlifyFrom<never>): void => {
 		emailInput.value = '';
 		emailInputLoader.style.display = 'none';
 		emailInputLoader.innerText = '';
-		showNewsletterMessage(message, !isOk);
+		showNewsletterMessage(response.message, !response.ok);
 	};
 
 	emailInputLoader.innerText = emailInput.value;
 	emailInputLoader.style.display = 'block';
 
 	let packet: TSubscriptionPacket = initSubscriptionPacket(lang, ESubscriptionState.REG_INIT, emailAddress, '', 0, 0);
-	sendSubscriptionPacket(packet, handleResult);
+	const dataTo: TNetlifyTo = { packet };
+
+	netlify(ENetlifyEndpoint.NETLIFY_SUBSCRIPTION, dataTo, handleResponse);
 }

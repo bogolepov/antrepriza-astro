@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { EPerformanceType } from '@scripts/db/baseTypes';
 import { onlyNumbers } from '@scripts/utils';
 import type { IExtendedPerformanceJson, IPlayJson, IStageJson } from '@scripts/adminpanel/types/json-files';
 
 import theater from '@data/theater.json';
 import jsonPlays from '@data/plays.json';
+import { EPerformanceType } from '@scripts/types/base';
 
 const stages: IStageJson[] = theater.stages;
 const plays: IPlayJson[] = jsonPlays;

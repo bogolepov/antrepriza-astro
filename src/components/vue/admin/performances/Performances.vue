@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, type ComputedRef } from 'vue';
+import { computed, type ComputedRef } from 'vue';
 import ChapterTitle from '../components/ChapterTitle.vue';
 import Performance from './Performance.vue';
 import { ONE_DAY } from '@scripts/consts';

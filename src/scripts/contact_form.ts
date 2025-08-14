@@ -1,10 +1,8 @@
 import { LANG_LIST } from './consts';
-import { ContactFormSchema, type TContactForm } from './types/contactForm';
+import { ENetlifyEndpoint, netlify, type TNetlifyFrom, type TNetlifyTo } from './netlify';
+import { MSG_MAX_LENGTH, MSG_MIN_LENGTH, type TContactForm } from './types/contactForm';
 import { validEmailAddressFormat } from './utils';
 import dictionary from '@data/dictionary.json';
-
-export const MSG_MIN_LENGTH = 10;
-export const MSG_MAX_LENGTH = 2000;
 
 export function validMessage(msg: string): boolean {
 	return msg?.length >= MSG_MIN_LENGTH && msg?.length <= MSG_MAX_LENGTH;
@@ -19,37 +17,12 @@ export function getMessageError(message: string): string {
 export function sendContactForm(formData: TContactForm, handleSendResult: (isOk: boolean, msg: string) => void): void {
 	formData.subject = codeSubject(formData);
 
-	const options = {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-		},
-		body: JSON.stringify(formData),
+	const handleResponse = (response: TNetlifyFrom<never>): void => {
+		handleSendResult(response.ok, response.message);
 	};
 
-	let isOk: boolean;
-	fetch('/.netlify/functions/contactForm', options)
-		.then(response => {
-			isOk = response.ok;
-			return response.json();
-		})
-		.then(data => {
-			// console.log(data.message);
-			if (isOk) handleSendResult(true, data.message);
-			else throw new Error(data.message);
-		})
-		.catch(err => handleSendResult(false, err.message));
-}
-
-export function extractContactFormFromJson(json_data: string): TContactForm | undefined {
-	const result = ContactFormSchema.safeParse(JSON.parse(json_data));
-	if (result.success) {
-		const contactForm: TContactForm = result.data;
-		return contactForm;
-	} else {
-		// console.error('Ошибка валидации:', z.treeifyError(result.error));
-		return undefined;
-	}
+	const dataTo: TNetlifyTo = { packet: formData };
+	netlify(ENetlifyEndpoint.NETLIFY_CONTACT_FORM, dataTo, handleResponse);
 }
 
 export function isValidContactForm(contactForm: TContactForm, emptySubject: boolean): boolean {

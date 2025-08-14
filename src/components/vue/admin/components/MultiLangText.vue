@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { LANG_LIST } from '@scripts/consts';
-import type { TMultiText } from '@scripts/db/baseTypes';
-import { computed } from 'vue';
+import type { TMultiText } from '@scripts/types/base';
 
 interface Props {
 	multiText: TMultiText;

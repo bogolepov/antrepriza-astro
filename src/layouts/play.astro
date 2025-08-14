@@ -160,10 +160,8 @@ const ignoreExCreators: string[] = ['light', 'sound', 'stage_setup'];
 								if (!ignoreExCreators.includes(creator.type))
 									person = person.concat(theater.ex_people.filter(person => person.id === person_id));
 								if (!person.length) {
-									console.log('PLAY: a person with id ' + person_id + " isn't found !!!");
 									return <div class='no-creators' />;
 								}
-								// if (person.length > 1) console.log("PLAY: MORE THAN ONE PERSON have THE SAME ID ["  + person_id + "] !!!");
 								return person.map(_person => {
 									if (_person.suffix)
 										return (
@@ -221,28 +219,24 @@ const ignoreExCreators: string[] = ['light', 'sound', 'stage_setup'];
 						<div class='list-item-right'>
 							{character.actors.map((actor_id, i) => {
 								let actor = theater.people.filter(person => person.id === actor_id);
-								if (!actor.length) {
-									// console.log("PLAY: an actor with id " + actor_id + "isn't found !!!");
-									return;
-								}
-								// if (actor.length > 1) console.log("PLAY: MORE THAN ONE PERSON have THE SAME ID ["  + actor_id + "] !!!");
-								return actor.map(_actor => {
-									const hasPage: boolean = _actor.suffix && _actor.suffix.length > 1;
-									return (
-										<div>
-											{hasPage && (
-												<a class='person-link' href={`/${lang}/theater/people/${_actor.suffix}/`}>
-													{_actor.name[lang]} {_actor.surname[lang]}
-												</a>
-											)}
-											{!hasPage && (
-												<span>
-													{_actor.name[lang]} {_actor.surname[lang]}
-												</span>
-											)}
-										</div>
-									);
-								});
+								if (actor.length)
+									return actor.map(_actor => {
+										const hasPage: boolean = _actor.suffix && _actor.suffix.length > 1;
+										return (
+											<div>
+												{hasPage && (
+													<a class='person-link' href={`/${lang}/theater/people/${_actor.suffix}/`}>
+														{_actor.name[lang]} {_actor.surname[lang]}
+													</a>
+												)}
+												{!hasPage && (
+													<span>
+														{_actor.name[lang]} {_actor.surname[lang]}
+													</span>
+												)}
+											</div>
+										);
+									});
 							})}
 						</div>
 					</li>
@@ -265,7 +259,7 @@ const ignoreExCreators: string[] = ['light', 'sound', 'stage_setup'];
 <script>
 	let playCounter = 0;
 
-	let ticketBtns = document.querySelectorAll('.pink-button.book-ticket.open-book-form');
+	let ticketBtns = document.querySelectorAll<HTMLButtonElement>('.pink-button.book-ticket.open-book-form');
 	for (let btn of ticketBtns) {
 		let fullDate = btn.getAttribute('data-date') + 'T' + btn.getAttribute('data-time');
 
@@ -285,7 +279,7 @@ const ignoreExCreators: string[] = ['light', 'sound', 'stage_setup'];
 	}
 
 	if (playCounter === 0) {
-		let elemPlayDates = document.querySelector('.play-dates');
+		let elemPlayDates = document.querySelector<HTMLElement>('.play-dates');
 		elemPlayDates.hidden = true;
 	}
 </script>

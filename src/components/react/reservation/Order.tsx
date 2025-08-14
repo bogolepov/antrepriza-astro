@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import type { TDoReservation } from '@scripts/types/reservation';
+import type { TDoReservationItem } from '@scripts/types/reservation';
 
 import plays from '@data/plays.json';
 import theater from '@data/theater.json';
@@ -8,9 +8,9 @@ import prices from '@data/prices.json';
 
 interface IOrder {
 	lang: string;
-	play: TDoReservation;
-	handleAddTicket: (play: TDoReservation, ticket_type: string) => void;
-	handleRemoveTicket: (play: TDoReservation, ticket_type: string, count: number) => void;
+	play: TDoReservationItem;
+	handleAddTicket: (play: TDoReservationItem, ticket_type: string) => void;
+	handleRemoveTicket: (play: TDoReservationItem, ticket_type: string, count: number) => void;
 }
 
 export default function Order({ lang, play, handleAddTicket, handleRemoveTicket }: IOrder) {
