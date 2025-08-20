@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { defineAsyncComponent, onBeforeMount } from 'vue';
-import { authName, authRoles, resetDataLogout } from './lib/statesStore';
+import { defineAsyncComponent, onBeforeMount, watch } from 'vue';
+import { authName, authRoles, loggedOut, resetDataLogout } from './lib/statesStore';
 import AuthForm from './AuthForm.vue';
 import { removeAuthUserLS, saveAuthUserLS, type TAuthUser } from '@scripts/user-ck';
 import { getCookieAccessToken, logoutCookie } from '@scripts/token-ck';
@@ -13,6 +13,7 @@ const AdminPage = defineAsyncComponent(() => import('./AdminPage.vue'));
 function Logout(): void {
 	authRoles.value = [];
 	authName.value = '';
+	loggedOut.value = true;
 	removeAuthUserLS();
 	logoutCookie();
 	resetDataLogout();
@@ -20,7 +21,14 @@ function Logout(): void {
 function Login(user: TAuthUser) {
 	authRoles.value = user.roles ? user.roles : [];
 	authName.value = user.name;
+	loggedOut.value = false;
 }
+
+watch(loggedOut, newValue => {
+	if (newValue) {
+		Logout();
+	}
+});
 
 onBeforeMount(() => {
 	const token = getCookieAccessToken();

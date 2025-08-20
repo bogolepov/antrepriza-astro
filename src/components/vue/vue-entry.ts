@@ -13,13 +13,13 @@ const Tickets = () => import('@vue-components/admin/tickets/Tickets.vue');
 export default (app: App) => {
 	if (!import.meta.env.SSR) {
 		const routes = [
-			{ path: '/admin/performances', component: Performances, alias: '/admin' },
+			{ path: '/admin/performances/', component: Performances, alias: '/admin/' },
 			// { path: '/admin/repetitions', component: Repetition },
-			{ path: '/admin/plays', component: Plays },
-			{ path: '/admin/stages', component: Stages },
+			{ path: '/admin/plays/', component: Plays },
+			{ path: '/admin/stages/', component: Stages },
 			// { path: '/admin/whatsapp', component: Whatsapp },
-			{ path: '/admin/tickets', component: Tickets },
-			{ path: '/admin/subscribers', component: Subscribers },
+			{ path: '/admin/tickets/', component: Tickets },
+			{ path: '/admin/subscribers/', component: Subscribers },
 		];
 
 		const router = createRouter({

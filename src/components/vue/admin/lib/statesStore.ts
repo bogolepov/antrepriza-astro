@@ -1,5 +1,4 @@
 import { ref } from 'vue';
-import { EAuthRole } from '@scripts/auth';
 import {
 	SubscribersPanelPacketSchema,
 	type TSubscriberPanel,
@@ -13,14 +12,15 @@ import {
 	type TReservationsPanelPacket,
 } from '@scripts/types/reservation';
 import { ESubscriptionState } from '@scripts/types/subscription';
+import type { IPerformanceJson, IPlayJson, IPriceJson, IStageJson } from '@scripts/adminpanel/types/json-files';
+import { ENetlifyEndpoint, netlify, type TNetlifyFrom, type TNetlifyTo } from '@scripts/netlify';
+import type { UserRole } from '@scripts/types/user-auth';
+import { getCookieAccessToken } from '@scripts/token-ck';
 
 import theater from '@data/theater.json';
 import playsJSON from '@data/plays.json';
 import afishaJSON from '@data/afisha.json';
 import pricesJSON from '@data/prices.json';
-import type { IPerformanceJson, IPlayJson, IPriceJson, IStageJson } from '@scripts/adminpanel/types/json-files';
-import { ENetlifyEndpoint, netlify, type TNetlifyFrom, type TNetlifyTo } from '@scripts/netlify';
-import type { UserRole } from '@scripts/types/user-auth';
 
 // ------------------- JSON files ----------------------
 
@@ -50,6 +50,7 @@ export const smallScreen = ref(false);
 
 export const authRoles = ref<UserRole[]>([]);
 export const authName = ref<string>('');
+export const loggedOut = ref<boolean>(true);
 
 export const isActualPerformancesTickets = ref(true);
 export const isActualPerformancesAfisha = ref(true);
@@ -74,7 +75,10 @@ export async function getReservationsNetlify() {
 				reservations.value = verifiedPacket.events;
 				gotReservations = true;
 			}
-		} else console.error('*VUE*  getReservations() error: ', response.message);
+		} else {
+			// console.error('*VUE*  getReservations() error: ', response.message);
+			if (response.status === 401 && !getCookieAccessToken()) loggedOut.value = true;
+		}
 	};
 
 	const packet: TPanelRequest = { action: ENetlifyAction.GET_RESERVATIONS };
@@ -94,7 +98,10 @@ export function getSubscribersNetlify() {
 				subscribers.value = verifiedPacket.emails;
 				gotSubscribers = true;
 			}
-		} else console.error('*VUE*  getSubscribers() error: ', response.message);
+		} else {
+			// console.error('*VUE*  getSubscribers() error: ', response.message);
+			if (response.status === 401 && !getCookieAccessToken()) loggedOut.value = true;
+		}
 	};
 
 	const packet: TPanelRequest = { action: ENetlifyAction.GET_SUBSCRIBERS };

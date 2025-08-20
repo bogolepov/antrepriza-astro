@@ -63,7 +63,7 @@ onBeforeMount(handleBeforeMount);
 	</ChapterTitle>
 	<ul>
 		<template v-if="!hasAccess">
-			<li>Недоступно для демонстрационного режима.</li>
+			<li>Недостаточно прав для просмотра.</li>
 		</template>
 		<template v-else>
 			<template v-for="event in performancesToShow" :key="event.event_sid">

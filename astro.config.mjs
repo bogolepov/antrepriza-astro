@@ -10,7 +10,10 @@ let now = new Date();
 
 function isNoIndex(url) {
 	let lowUrl = url.toLowerCase();
-	if (lowUrl.includes('https://antrepriza.eu/ru/theater/people/') || lowUrl.includes('https://antrepriza.eu/de/theater/people/')) {
+	if (
+		lowUrl.includes('https://antrepriza.eu/ru/theater/people/') ||
+		lowUrl.includes('https://antrepriza.eu/de/theater/people/')
+	) {
 		let urlArr = lowUrl.split('/');
 		let i = urlArr.indexOf('people');
 		if (i !== -1 && i < urlArr.length - 1 && urlArr[i + 1] === 'alm') return false;
@@ -20,7 +23,10 @@ function isNoIndex(url) {
 }
 function isEvents(url) {
 	let lowUrl = url.toLowerCase();
-	if (lowUrl.includes('https://antrepriza.eu/ru/theater/events/') || lowUrl.includes('https://antrepriza.eu/de/theater/events/')) {
+	if (
+		lowUrl.includes('https://antrepriza.eu/ru/theater/events/') ||
+		lowUrl.includes('https://antrepriza.eu/de/theater/events/')
+	) {
 		return true;
 	}
 	return false;
@@ -49,7 +55,10 @@ function isSpecialPage(url) {
 			return true;
 		default:
 			plays.map(play => {
-				if (`https://antrepriza.eu/de/plays/${play.suffix}/` === url || `https://antrepriza.eu/ru/plays/${play.suffix}/` === url)
+				if (
+					`https://antrepriza.eu/de/plays/${play.suffix}/` === url ||
+					`https://antrepriza.eu/ru/plays/${play.suffix}/` === url
+				)
 					return true;
 			});
 			return false;
@@ -60,12 +69,12 @@ function isSpecialPage(url) {
 export default defineConfig({
 	site: 'https://antrepriza.eu',
 	redirects: {
-		'/admin/repetitions': '/admin?page=/repetitions',
-		'/admin/performances': '/admin?page=/performances',
-		'/admin/stages': '/admin?page=/stages',
-		'/admin/plays': '/admin?page=/plays',
-		'/admin/tickets': '/admin?page=/tickets',
-		'/admin/whatsapp': '/admin?page=/whatsapp',
+		// '/admin/repetitions/': '/admin?page=/repetitions',
+		// '/admin/performances/': '/admin?page=/performances',
+		// '/admin/stages/': '/admin?page=/stages',
+		// '/admin/plays/': '/admin?page=/plays',
+		// '/admin/tickets/': '/admin?page=/tickets',
+		// '/admin/whatsapp/': '/admin?page=/whatsapp',
 	},
 	integrations: [
 		react(),

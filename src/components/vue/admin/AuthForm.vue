@@ -24,20 +24,14 @@ function submit(event) {
 		console.log(response);
 
 		if (response.ok) {
-			// console.log(response);
-
 			let accessToken = getCookieAccessToken();
 			const user = saveAuthUserLS(accessToken);
-
-			// console.log('COOKIE: ' + accessToken);
 
 			if (user?.roles?.length) {
 				emit('login', user);
 			} else console.error('*VUE*  auth() : INVALID PACKET');
 		} else {
-			// if(response.status === 500)
 			authError.value = response.message;
-			console.error('*VUE*  auth error: ', response.message);
 		}
 	};
 

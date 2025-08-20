@@ -4,9 +4,9 @@ export const ACCESS_COOKIE_NAME = '__Host_at';
 export const REFRESH_COOKIE_NAME = '__Host_rt';
 export const COOKIE_PATH_ADMIN = '/admin';
 
-function getCookie(key: string): undefined | string {
-	if (!document.cookie) return undefined;
-	let cookie = document.cookie.split(';').find(item => item.split('=')[0].trim() === key);
+function getCookie(cookies: string, key: string): undefined | string {
+	if (!cookies) return undefined;
+	let cookie = cookies.split(';').find(item => item.split('=')[0].trim() === key);
 	return cookie ? decodeURIComponent(cookie.split('=')[1]) : undefined;
 }
 
@@ -15,7 +15,13 @@ function removeCookie(name: string) {
 }
 
 export function getCookieAccessToken(): string {
-	return getCookie(ACCESS_COOKIE_NAME);
+	return getCookie(document.cookie, ACCESS_COOKIE_NAME);
+}
+export function getHeaderCookieAccessToken(cookies: string): string {
+	return getCookie(cookies, ACCESS_COOKIE_NAME);
+}
+export function getHeaderCookieRefreshToken(cookies: string): string {
+	return getCookie(cookies, REFRESH_COOKIE_NAME);
 }
 
 export function logoutCookie() {

@@ -7,6 +7,12 @@ export const enum ENetlifyEndpoint {
 	NETLIFY_MAKE_RESERVATION = '/.netlify/functions/makeReservation',
 }
 
+export interface TBodyFromNetlify<T> {
+	message?: string;
+	error_code?: number;
+	packet?: T;
+}
+
 export type TNetlifyTo = {
 	packet: any;
 	need_auth?: boolean;
@@ -42,9 +48,8 @@ export function netlify<T>(
 			result.status = response.status;
 			return response.json();
 		})
-		.then(data => {
-			if (!result.ok) console.log(data);
-
+		.then((data: TBodyFromNetlify<T>) => {
+			// if (!result.ok) console.log(data);
 			if (data.message) result.message = data.message;
 			if (result.ok && data.packet) result.packet = data.packet;
 

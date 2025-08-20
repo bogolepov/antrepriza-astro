@@ -24,3 +24,8 @@ export function getRolesForLogin(login: string): UserRole[] {
 	if (users.includes(l)) roles.push(UserRole.USER);
 	return roles;
 }
+
+export function checkAccess(userRoles: UserRole[], needRole: UserRole) {
+	if (userRoles) return userRoles.includes(needRole);
+	return false;
+}

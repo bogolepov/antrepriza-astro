@@ -1,27 +1,18 @@
 import type { HandlerResponse } from '@netlify/functions';
+import { type TBodyFromNetlify } from '@scripts/netlify';
 
-export function makeHandlerResponse(resCode: number, resMessage: string): HandlerResponse {
-	if (resCode >= 400) console.error('resMessage: ' + resCode + ', ' + resMessage);
-	return {
+export function makeHandlerResponse<T>(resCode: number, message: string, packet: T = undefined): HandlerResponse {
+	const bodyObj: TBodyFromNetlify<T> = {};
+	if (message) bodyObj.message = message;
+	if (packet) bodyObj.packet = packet;
+	const response: HandlerResponse = {
 		statusCode: resCode,
 		headers: {
 			'Content-Type': 'application/json',
 		},
-		body: JSON.stringify({
-			message: resMessage,
-		}),
+		body: JSON.stringify(bodyObj),
 	};
-}
-
-export function makeMessagePacketResponse<T>(resCode: number, message: string, packet: T): HandlerResponse {
-	if (resCode >= 400) console.error('resMessage: ' + resCode + ', ' + message);
-	return {
-		statusCode: resCode,
-		headers: {
-			'Content-Type': 'application/json',
-		},
-		body: JSON.stringify({ message, packet }),
-	};
+	return response;
 }
 
 export function fromHtmlToPlainText(str: string): string {

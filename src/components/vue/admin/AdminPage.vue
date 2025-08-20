@@ -9,7 +9,7 @@ import IconWhatsapp from './components/iconWhatsapp.vue';
 const router = useRouter();
 const route = useRoute();
 
-const fontSize = ref();
+const fontSize = ref<string>('');
 
 function updatePageComposition() {
 	let desktopWidth: number = 16 * 31;
@@ -47,7 +47,7 @@ window.addEventListener('resize', updatePageComposition);
 
 onBeforeMount(() => {
 	if (route.query.page) {
-		router.push('/admin' + route.query.page);
+		router.push('/admin' + route.query.page + '/');
 	}
 });
 </script>
@@ -63,11 +63,11 @@ onBeforeMount(() => {
 						<router-link to="/admin/whatsapp">Сообщение&nbsp;&nbsp;<IconWhatsapp /> </router-link>
 					</li> -->
 					<!-- <li><router-link to="/admin/repetitions">Репетиции</router-link></li> -->
-					<li><router-link to="/admin/performances">Выступления</router-link></li>
-					<li><router-link to="/admin/plays">Спектакли</router-link></li>
-					<li><router-link to="/admin/stages">Сцены</router-link></li>
-					<li><router-link to="/admin/tickets">Бронирования</router-link></li>
-					<li><router-link to="/admin/subscribers">Подписчики</router-link></li>
+					<li><router-link to="/admin/performances/">Выступления</router-link></li>
+					<li><router-link to="/admin/plays/">Спектакли</router-link></li>
+					<li><router-link to="/admin/stages/">Сцены</router-link></li>
+					<li><router-link to="/admin/tickets/">Бронирования</router-link></li>
+					<li><router-link to="/admin/subscribers/">Подписчики</router-link></li>
 				</ul>
 			</nav>
 			<button class="logout-button" @click="$emit('logout')">Выйти</button>

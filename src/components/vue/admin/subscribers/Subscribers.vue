@@ -36,7 +36,7 @@ onBeforeMount(handleBeforeMount);
 	</select>
 	<ul>
 		<template v-if="!hasAccess">
-			<li>Недоступно для демонстрационного режима.</li>
+			<li>Недостаточно прав для просмотра.</li>
 		</template>
 		<template v-else>
 			<template v-for="user in subscribers" :key="user.email">
