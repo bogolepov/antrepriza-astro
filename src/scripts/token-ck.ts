@@ -2,7 +2,7 @@ import { ENetlifyEndpoint, netlify, type TNetlifyFrom, type TNetlifyTo } from '.
 
 export const ACCESS_COOKIE_NAME = '__Host_at';
 export const REFRESH_COOKIE_NAME = '__Host_rt';
-export const COOKIE_PATH_ADMIN = '/admin';
+export const COOKIE_PATH_ADMIN = '/'; // '/admin';
 
 function getCookie(cookies: string, key: string): undefined | string {
 	if (!cookies) return undefined;
