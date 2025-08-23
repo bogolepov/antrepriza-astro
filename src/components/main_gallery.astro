@@ -26,8 +26,9 @@ let actualProgram = program.filter(performance => Date.parse(performance.date) >
 // 	}
 // });
 // let playsWithGrouppedDatesArray = Array.from(playsWithGrouppedDatesMap, ([key, value]) => ({ key, value }));
-let firstSlide = true;
 let strLoading;
+let strFetchPriority;
+let decoding;
 
 ---
 <script>
@@ -75,14 +76,19 @@ let strLoading;
     <div class="swiper">
       <div class="swiper-wrapper">
         {
-          plays.map(play => {
+          plays.map((play, i) => {
             if (play.suffix === 'pip' ) return;
 
-            if (firstSlide) {
+            // if (!i || i===1 || i === plays.length-1) {
               strLoading = "eager";
-              firstSlide = false;
-            }
-            else strLoading = "lazy";
+              strFetchPriority = "high";
+              decoding = "auto"
+            // }
+            // else {
+            //   strLoading = "lazy";
+            //   strFetchPriority = "low";
+            //   decoding = "async";
+            // }
 
             let perform = actualProgram.find(performance => performance.play_sid === play.suffix);
             let isPremiere = (perform && actualProgram.find(performance => performance.play_sid === play.suffix && performance.premiere));
@@ -100,10 +106,11 @@ let strLoading;
 
                       formats={['webp']} 
                       fallbackFormat='jpg'
-                      decoding="async"
                       widths={[290, 350, 450, 580]}
                       sizes={'(max-width: 360px) 290px, (max-width: 480px) 350px, (max-width: 560px) 450px, 580px'}
                       loading={strLoading}
+                      fetchpriority={strFetchPriority}
+                      decoding={decoding}
                       quality="100"
 
                       alt={play.title[lang]} />
