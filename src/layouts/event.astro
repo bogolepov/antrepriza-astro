@@ -33,7 +33,7 @@ event.prices.forEach(price_type => {
 	}
 });
 
-let image_path = '/public/assets/kontra/';
+let image_path = process.env.MODE === process.env.MODE_LOCALHOST ? '/public/assets/kontra/' : '/assets/kontra/';
 // if (process.env.MODE === process.env.MODE_BRANCH) image_root = '/assets/';
 // else {
 // 	image_root = (process.env.MODE === process.env.MODE_PRODUCTION ? theater.our_website_link : '/public') + '/assets/';
