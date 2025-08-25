@@ -29,7 +29,7 @@ const endTime = `${Math.floor(end / 60)}:${end % 60}`;
 
 let images = [];
 if (play?.seo?.event?.images) {
-	play.seo.event.images.forEach(image => images.push(theater.our_website_link + '/assets/' + image.url));
+	play.seo.event.images.forEach(image => images.push(theater.our_website_link + '/assets/event/' + image.url));
 } else {
 	images.push(theater.our_website_link + '/assets/logo_1920t.png');
 }

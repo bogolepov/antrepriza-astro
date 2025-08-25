@@ -15,8 +15,8 @@
 			"landscape": "eop.jpg",
 			"landscape_16_9": "eop_16_9.jpg",
 			"portrait": "eop_poster.jpg",
-			"afisha": "kontra_eop.jpg",
 			"facebook": "fb_eop_soon.jpg",
+			"pub_kontra": "kontra_eop.webp",
 			"minimum": ""
 		},
 		"lang": { "ru": "русский", "de": "Russisch" },
@@ -41,7 +41,7 @@
 				"de": "Basierend auf dem Roman von M.Bulgakow „Der Meister und Margarita“. Mystik, 16+. Auf Russisch."
 			},
 			"open_graph": {
-				"image": { "url": "afisha_eop.jpg", "type": "image/jpeg" }
+				"image": { "url": "eop_soon_1200t.jpg", "type": "image/jpeg" }
 			},
 			"event": {
 				"images": [
@@ -70,8 +70,8 @@
 			"landscape": "katzenhaus.jpg",
 			"landscape_16_9": "katzenhaus_16_9.jpg",
 			"portrait": "kd_poster.jpg",
-			"afisha": "afisha_kd.jpg",
 			"facebook": "fb_kd.jpg",
+			"pub_kontra": "kontra_kd.webp",
 			"minimum": ""
 		},
 		"lang": { "ru": "русский", "de": "Russisch" },
@@ -161,8 +161,8 @@
 			"landscape": "n32.jpg",
 			"landscape_16_9": "n32_16_9.jpg",
 			"portrait": "n32_poster.jpg",
-			"afisha": "kontra_n32.jpg",
 			"facebook": "fb_n32.jpg",
+			"pub_kontra": "kontra_n32.webp",
 			"minimum": ""
 		},
 		"lang": { "ru": "русский", "de": "Russisch" },
@@ -242,8 +242,8 @@
 			"landscape": "steppke_und_karl_son.jpg",
 			"landscape_16_9": "steppke_und_karl_son_16_9.jpg",
 			"portrait": "steppke_und_karl_son_poster.jpg",
-			"afisha": "kontra_miks.jpg",
 			"facebook": "fb_miks.jpg",
+			"pub_kontra": "kontra_miks.webp",
 			"minimum": ""
 		},
 		"lang": { "ru": "русский", "de": "Russisch" },
@@ -341,8 +341,8 @@
 			"landscape": "steppke_und_karlson.jpg",
 			"landscape_16_9": "steppke_und_karlson_16_9.jpg",
 			"portrait": "steppke_und_karlson_poster.jpg",
-			"afisha": "kontra_mik.jpg",
 			"facebook": "fb_mik.jpg",
+			"pub_kontra": "kontra_mik.webp",
 			"minimum": ""
 		},
 		"lang": { "ru": "русский", "de": "Russisch" },
@@ -410,8 +410,8 @@
 			"landscape": "gefaerliche_kurve.jpg",
 			"landscape_16_9": "gefaerliche_kurve_16_9.jpg",
 			"portrait": "gefaerliche_kurve_poster.jpg",
-			"afisha": "kontra_op.jpg",
 			"facebook": "fb_op.jpg",
+			"pub_kontra": "kontra_op.webp",
 			"minimum": ""
 		},
 		"lang": { "ru": "русский", "de": "Russisch" },
@@ -484,8 +484,8 @@
 			"landscape": "teure_wohnung.jpg",
 			"landscape_16_9": "teure_wohnung_16_9.jpg",
 			"portrait": "teure_wohnung_poster.jpg",
-			"afisha": "kontra_dk.jpg",
 			"facebook": "fb_dk.jpg",
+			"pub_kontra": "kontra_dk.webp",
 			"minimum": ""
 		},
 		"lang": { "ru": "русский", "de": "Russisch" },
@@ -580,8 +580,8 @@
 		"posters": {
 			"landscape": "sieg_oder_verrat.jpg",
 			"portrait": "sieg_oder_verrat_poster.jpg",
-			"afisha": "afisha_pip.jpg",
 			"facebook": "fb_pip.jpg",
+			"pub_kontra": "kontra_pip.webp",
 			"minimum": ""
 		},
 		"lang": { "ru": "русский", "de": "Russisch" },
@@ -673,8 +673,8 @@
 			"landscape": "drei_schwestern.jpg",
 			"landscape_16_9": "drei_schwestern_16_9.jpg",
 			"portrait": "drei_schwestern_poster.jpg",
-			"afisha": "kontra_ts.jpg",
 			"facebook": "fb_ts.jpg",
+			"pub_kontra": "kontra_ts.webp",
 			"minimum": ""
 		},
 		"lang": { "ru": "русский", "de": "Russisch" },
@@ -753,7 +753,7 @@
 				"de": "Nach dem Stück von A.Tschechow. Drama, 14+. Auf Russisch."
 			},
 			"open_graph": {
-				"image": { "url": "ts_1200wt.jpg", "type": "image/jpeg" }
+				"image": { "url": "ts_1200t.jpg", "type": "image/jpeg" }
 			},
 			"event": {
 				"images": [

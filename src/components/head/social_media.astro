@@ -14,7 +14,7 @@ if (play_sid) play = plays.find(item => item.suffix === play_sid);
 let imageUrl = theater.our_website_link + '/assets/logo_1200t.png';
 let imageType = 'image/png';
 if (play?.seo?.open_graph?.image) {
-	imageUrl = theater.our_website_link + '/assets/' + play.seo.open_graph.image.url;
+	imageUrl = theater.our_website_link + '/assets/og/' + play.seo.open_graph.image.url;
 	imageType = play.seo.open_graph.image.type;
 }
 if (play?.seo?.description) ogDescription = play.seo.description[lang];

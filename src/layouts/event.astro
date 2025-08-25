@@ -33,22 +33,22 @@ event.prices.forEach(price_type => {
 	}
 });
 
-let image_root;
-if (process.env.MODE === process.env.MODE_BRANCH) image_root = '/assets/';
-else {
-	image_root = (process.env.MODE === process.env.MODE_PRODUCTION ? theater.our_website_link : '/public') + '/assets/';
-}
-let image = play.seo.event.images.find(image => image.format === '3_4_1050');
+let image_path = '/public/assets/kontra/';
+// if (process.env.MODE === process.env.MODE_BRANCH) image_root = '/assets/';
+// else {
+// 	image_root = (process.env.MODE === process.env.MODE_PRODUCTION ? theater.our_website_link : '/public') + '/assets/';
+// }
+let image_url = play.posters.pub_kontra;
 ---
 
 <section class='event'>
 	<div class='ev-event-flex'>
 		{
-			play && event && play.posters.afisha && (
+			play && event && image_url && (
 				<div class='ev-flex-item-poster'>
 					<img
 						class='image-wrapper-landscape float ev-poster'
-						src={image_root + image.url}
+						src={image_path + image_url}
 						loading='eager'
 						alt={play.title[lang]}
 						width='280px'
