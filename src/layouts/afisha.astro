@@ -18,9 +18,11 @@ import { Picture } from 'astro:assets';
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/posters/landscape/*.{jpeg,jpg}');
 // if (!images[url]) throw new Error(`"${url}" does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif}"`);
 
-program.sort((play1, play2) => Date.parse(play1.date + 'T' + play1.time) - Date.parse(play2.date + 'T' + play2.time));
-
 let actualProgram = program.filter(performance => Date.parse(performance.date) + ONE_DAY >= Date.now());
+actualProgram.sort(
+	(play1, play2) => Date.parse(play1.date + 'T' + play1.time) - Date.parse(play2.date + 'T' + play2.time)
+);
+
 let gropedProgram = [];
 
 if (actualProgram.length > 0) {
@@ -39,8 +41,6 @@ if (actualProgram.length > 0) {
 		}
 	}
 }
-
-let iMonth: number = -1;
 ---
 
 <section class='program'>
@@ -56,7 +56,7 @@ let iMonth: number = -1;
 					<h2 class='month-title'>
 						{monthName}&ensp;{strYear}
 					</h2>
-					<ul class='month-list' data-counter={monthProgram.events.length.toString()}>
+					<ul class='month-list'>
 						{monthProgram.events.map(event => {
 							let play = plays.find(item => item.suffix === event.play_sid);
 							if (!play) {
@@ -174,15 +174,11 @@ let iMonth: number = -1;
 <script>
 	let eventBlocks = document.querySelectorAll('.program-play-block');
 	for (let eventBlock of eventBlocks) {
-		let thePlayDay = new Date(Date.parse(eventBlock.getAttribute('data-date') + 'T00:00:00'));
+		let thePlayDay = new Date(eventBlock.getAttribute('data-date') + 'T00:00:00');
 
 		thePlayDay.setDate(thePlayDay.getDate() + 1);
 		if (thePlayDay.valueOf() <= Date.now()) {
-			(eventBlock as HTMLElement).hidden = true;
-			let list = eventBlock.closest('ul');
-			if (list) {
-				list.setAttribute('data-counter', (parseInt(list.getAttribute('data-counter')) - 1).toString());
-			}
+			eventBlock.remove();
 		} else {
 			let btn = eventBlock.querySelector<HTMLButtonElement>('.pink-button.book-ticket');
 			if (btn) {
@@ -192,5 +188,11 @@ let iMonth: number = -1;
 				}
 			}
 		}
+	}
+
+	const monthBlocks = document.querySelectorAll('.month-program');
+	for (let month of monthBlocks) {
+		const events = month.querySelectorAll('.program-play-block');
+		if (!events.length) month.remove();
 	}
 </script>

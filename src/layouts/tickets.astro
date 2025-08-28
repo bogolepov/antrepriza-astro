@@ -18,12 +18,12 @@ import { Picture } from 'astro:assets';
 
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/posters/landscape/*.{jpeg,jpg,png}');
 
-program.sort((play1, play2) => Date.parse(play1.date + 'T' + play1.time) - Date.parse(play2.date + 'T' + play2.time));
-
-let actualProgram = program.filter(
+const actualProgram = program.filter(
 	performance => Date.parse(performance.date) + ONE_DAY >= Date.now() && !performance.no_tickets
 );
-// let actualProgram = program;
+actualProgram.sort(
+	(play1, play2) => Date.parse(play1.date + 'T' + play1.time) - Date.parse(play2.date + 'T' + play2.time)
+);
 
 let playsWithGrouppedDatesMap = new Map();
 actualProgram.forEach(element => {
@@ -235,7 +235,7 @@ for (let price of prices) {
 <script>
 	type PlayCounter = {
 		play_sid: string;
-		count: number;
+		upcoming_events: number;
 	};
 	const playCounters: Array<PlayCounter> = [];
 
@@ -244,14 +244,12 @@ for (let price of prices) {
 		let fullDate = btn.getAttribute('data-date') + 'T' + btn.getAttribute('data-time');
 
 		if (Date.parse(fullDate) <= Date.now()) {
-			//(btn as HTMLElement).hidden = true;
 			btn.disabled = true;
-			// (btn as HTMLElement).disabled = true;
 		} else {
 			const playSid = btn.getAttribute('data-play');
 			const playCounter = playCounters.find(item => item.play_sid === playSid);
-			if (playCounter) playCounter.count++;
-			else playCounters.push({ play_sid: playSid, count: 1 });
+			if (playCounter) playCounter.upcoming_events++;
+			else playCounters.push({ play_sid: playSid, upcoming_events: 1 });
 		}
 	}
 
@@ -259,6 +257,6 @@ for (let price of prices) {
 	for (let block of playBolcks) {
 		const playSid = block.getAttribute('data-play');
 		const playCounter = playCounters.find(item => item.play_sid === playSid);
-		if (!playCounter || playCounter.count < 1) (block as HTMLElement).hidden = true;
+		if (!playCounter || playCounter.upcoming_events < 1) block.remove();
 	}
 </script>

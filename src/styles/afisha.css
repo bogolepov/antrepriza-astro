@@ -1,6 +1,3 @@
-.month-program:has(.month-list[data-counter='0']) {
-	display: none;
-}
 .month-title {
 	font-size: clamp(1.55rem, 3.7vw, 2.7rem);
 	font-weight: var(--font-extra-weight);
