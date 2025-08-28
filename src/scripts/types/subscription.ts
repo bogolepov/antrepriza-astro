@@ -44,6 +44,7 @@ export function initSubscriptionPacket(
 			packet.usid = usid;
 			return packet;
 		default:
+			const check: never = state;
 			return packet;
 	}
 }

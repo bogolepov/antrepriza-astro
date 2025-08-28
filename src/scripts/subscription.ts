@@ -16,6 +16,7 @@ function validMainData(packet: TSubscriptionPacket): boolean {
 		case ESubscriptionState.REG_DELETE:
 			return packet.obj.length === SUBSCRIPTION_OBJ_LENGTH && !packet.sid && packet.usid && !packet.email.length;
 		default:
+			const check: never = packet.state;
 			return false;
 	}
 }

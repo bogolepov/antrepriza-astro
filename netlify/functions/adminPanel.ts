@@ -31,6 +31,7 @@ async function internalHandler(
 			const reservPacket: TReservationsPanelPacket = { events: reservList };
 			return makeHandlerResponse(200, undefined, reservPacket);
 		default:
+			const check: never = data.action;
 			return makeHandlerResponse(400, 'Необычный запрос: ' + data.action);
 	}
 }

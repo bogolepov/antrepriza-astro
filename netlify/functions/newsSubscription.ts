@@ -33,6 +33,8 @@ export const handler: Handler = async (event, context) => {
 			return await emailConfirmation(packet);
 		case ESubscriptionState.REG_DELETE:
 			return await emailRemoving(packet);
+		default:
+			const check: never = packet.state;
 	}
 };
 
