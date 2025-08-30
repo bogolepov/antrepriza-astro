@@ -31,6 +31,21 @@ function isEvents(url) {
 	}
 	return false;
 }
+function isActualEvent(url) {
+	let urlArr = lowUrl.split('/');
+	let i = urlArr.indexOf('events');
+	if (i + 1 < urlArr.length) {
+		let eventName = urlArr[i + 1];
+		let nameArr = eventName.split('_');
+		if (nameArr.length > 1 && nameArr[1].length === 8) {
+			let evDate = nameArr[1];
+			let now = new Date();
+			let nowDate = now.toISOString().split('T')[0].replace('-', '');
+			return evDate > nowDate;
+		}
+	}
+	return false;
+}
 function isVerySpecialPage(url) {
 	switch (url) {
 		case 'https://antrepriza.eu/de/program/':
@@ -100,7 +115,8 @@ export default defineConfig({
 			serialize(item) {
 				if (isNoIndex(item.url)) return undefined;
 				if (isEvents(item.url)) {
-					item.changefreq = 'weekly';
+					let actualEvent = isActualEvent(item.url);
+					item.changefreq = actualEvent ? 'weekly' : 'yearly';
 					item.lastmod = now;
 					item.priority = 0.5;
 				}
