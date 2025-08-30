@@ -32,7 +32,7 @@ function isEvents(url) {
 	return false;
 }
 function isActualEvent(url) {
-	let urlArr = lowUrl.split('/');
+	let urlArr = url.split('/');
 	let i = urlArr.indexOf('events');
 	if (i + 1 < urlArr.length) {
 		let eventName = urlArr[i + 1];
