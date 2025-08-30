@@ -109,7 +109,7 @@
 			"place_website": ""
 		}
 	],
-	"fix_stages": ["west"],
+	"fix_stages_actual": ["west"],
 	"studio": {
 		"address": {
 			"full_address": "Boxhagener Str. 18, 10245 Berlin",

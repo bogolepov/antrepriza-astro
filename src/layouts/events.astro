@@ -27,7 +27,7 @@ let newEventsGroup = function (type, stage_sid, list, sid, tabLabel) {
 let list;
 let tabLabel;
 // added fix stages
-theater.fix_stages.forEach(stage => {
+theater.fix_stages_actual.forEach(stage => {
 	list = actualProgram.filter(event => event.stage_sid === stage);
 	if (list.length > 0) {
 		tabLabel = dictionary.stage[lang] + ' ' + theater.stages.find(stg => stg.sid === stage).name[lang].toUpperCase();

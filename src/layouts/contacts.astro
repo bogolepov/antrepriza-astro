@@ -29,7 +29,7 @@ const components = await Astro.glob('@layouts/content/theater/contact*.astro');
 		</div>
 	</div>
 	{
-		theater.fix_stages.map(stg_sid => {
+		theater.fix_stages_actual.map(stg_sid => {
 			let stage = theater.stages.find(stg => stg.sid === stg_sid);
 			if (stage) {
 				return (

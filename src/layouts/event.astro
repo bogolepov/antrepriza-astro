@@ -18,7 +18,7 @@ let stage = theater.stages.find(stg => stg.sid === event.stage_sid);
 let stageNameText = dictionary.stage[lang] + ' ' + stage.name[lang].toUpperCase();
 
 let performer = theater.longTheaterName[lang];
-if (theater.fix_stages.includes(stage.sid)) performer = performer + ' - ' + stage.name[lang].toUpperCase();
+if (stage.fix_stage) performer = performer + ' - ' + stage.name[lang].toUpperCase();
 
 let ticketsName = '';
 let ticketsPrice = '';

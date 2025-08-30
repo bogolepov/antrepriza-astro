@@ -64,7 +64,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/partner
 				</a>
 			</div>
 			{
-				theater.fix_stages.map(fstg => {
+				theater.fix_stages_actual.map(fstg => {
 					let stage = theater.stages.find(stg => fstg === stg.sid);
 					if (stage)
 						return (

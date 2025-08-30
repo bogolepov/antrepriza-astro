@@ -19,7 +19,7 @@ export const getStaticPaths = (() => {
 	return theater.languages.flatMap(lng => {
 		return events.map(event => {
 			let event_sid;
-			if (theater.fix_stages.includes(event.stage_sid)) event_sid = event.stage_sid;
+			if (theater.stages.find(st => st.sid === event.stage_sid)?.fix_stage) event_sid = event.stage_sid;
 			else if (event.is_festival) event_sid = SID_FESTIVAL;
 			else if (event.is_tour) event_sid = SID_TOUR;
 
