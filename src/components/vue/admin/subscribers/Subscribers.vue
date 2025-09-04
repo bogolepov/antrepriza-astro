@@ -4,6 +4,7 @@ import ChapterTitle from '../components/ChapterTitle.vue';
 import { getSubscribersNetlify, subscriptionState, subscribers, authRoles } from '../lib/statesStore';
 import { ESubscriptionState } from '@scripts/types/subscription';
 import { UserRole } from '@scripts/types/user-auth';
+import IconUpdate from '../components/iconUpdate.vue';
 
 type TSubscriptionStateInfo = {
 	state: ESubscriptionState | 'all';
@@ -20,6 +21,10 @@ let hasAccess = computed<boolean>(() => {
 	return authRoles.value.includes(UserRole.ADMIN);
 });
 
+async function updateSubscribers() {
+	if (authRoles.value.includes(UserRole.ADMIN)) getSubscribersNetlify(true);
+}
+
 async function handleBeforeMount() {
 	if (authRoles.value.includes(UserRole.ADMIN)) getSubscribersNetlify();
 }
@@ -27,7 +32,13 @@ onBeforeMount(handleBeforeMount);
 </script>
 
 <template>
-	<ChapterTitle title="Подписчики на новости" />
+	<ChapterTitle title="Подписчики на новости">
+		<template v-slot:actions-slot>
+			<button @click="updateSubscribers" class="expand-item-button icon-calendar" title="Обновить данные">
+				<IconUpdate />
+			</button>
+		</template>
+	</ChapterTitle>
 
 	<select v-model="subscriptionState" class="state-select">
 		<option v-for="state in stateList" :value="state.state">

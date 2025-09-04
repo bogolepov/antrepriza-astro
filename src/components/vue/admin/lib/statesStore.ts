@@ -65,8 +65,8 @@ export interface IExtNamedEventReservation extends TNamedEventReservation {
 
 let gotReservations: boolean = false;
 export const reservations = ref<IExtNamedEventReservation[]>([]);
-export async function getReservationsNetlify() {
-	if (gotReservations) return;
+export async function getReservationsNetlify(update: boolean = false) {
+	if (!update && gotReservations) return;
 
 	const handleResponse = (response: TNetlifyFrom<TReservationsPanelPacket>): void => {
 		if (response.ok) {
@@ -88,8 +88,8 @@ export async function getReservationsNetlify() {
 
 let gotSubscribers: boolean = false;
 export const subscribers = ref<TSubscriberPanel[]>([]);
-export function getSubscribersNetlify() {
-	if (gotSubscribers) return;
+export function getSubscribersNetlify(update: boolean = false) {
+	if (!update && gotSubscribers) return;
 
 	const handleResponse = (response: TNetlifyFrom<TSubscribersPanelPacket>): void => {
 		if (response.ok) {

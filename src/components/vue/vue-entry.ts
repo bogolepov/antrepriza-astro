@@ -13,7 +13,7 @@ const Tickets = () => import('@vue-components/admin/tickets/Tickets.vue');
 export default (app: App) => {
 	if (!import.meta.env.SSR) {
 		const routes = [
-			{ path: '/admin/performances/', component: Performances, alias: '/admin/' },
+			{ path: '/admin/performances/', component: Performances, alias: ['/admin', '/admin/', '/admin/index.html'] },
 			// { path: '/admin/repetitions', component: Repetition },
 			{ path: '/admin/plays/', component: Plays },
 			{ path: '/admin/stages/', component: Stages },

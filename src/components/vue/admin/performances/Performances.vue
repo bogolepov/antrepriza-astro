@@ -21,6 +21,10 @@ const performancesToShow: ComputedRef<IExtendedPerformanceJson[]> = computed(() 
 	return list;
 });
 
+const calendarIconTitle = computed(() => {
+	return isActualPerformancesAfisha.value ? 'Показать все' : 'Только предстоящие';
+});
+
 function markFirstEventsInMonths(list: IExtendedPerformanceJson[]) {
 	list.forEach((event, index) => {
 		if (index === 0) event.first_in_month = true;
@@ -40,7 +44,7 @@ function getMonthName(date: string): string {
 				@click="isActualPerformancesAfisha = !isActualPerformancesAfisha"
 				class="expand-item-button icon-calendar"
 				:class="{ 'black-white-filter': !isActualPerformancesAfisha }"
-				title="Только предстоящие"
+				:title="calendarIconTitle"
 			>
 				<IconCalendar />
 			</button>

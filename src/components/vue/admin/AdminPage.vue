@@ -47,7 +47,7 @@ window.addEventListener('resize', updatePageComposition);
 
 onBeforeMount(() => {
 	if (route.query.page) {
-		router.push('/admin' + route.query.page + '/');
+		router.push('/admin' + route.query.page);
 	}
 });
 </script>

@@ -11,6 +11,7 @@ import {
 import TicketsEvent from './TicketsEvent.vue';
 import { ONE_DAY } from '@scripts/consts';
 import IconCalendar from '../components/iconCalendar.vue';
+import IconUpdate from '../components/iconUpdate.vue';
 import { UserRole } from '@scripts/types/user-auth';
 
 let hasAccess = computed<boolean>(() => {
@@ -29,6 +30,10 @@ const performancesToShow: ComputedRef<IExtNamedEventReservation[]> = computed(()
 	return list;
 });
 
+const calendarIconTitle = computed(() => {
+	return isActualPerformancesTickets.value ? 'Показать все' : 'Только предстоящие';
+});
+
 function markFirstEventsInMonths(list: IExtNamedEventReservation[]) {
 	list.forEach((event, index) => {
 		if (index === 0) event.first_in_month = true;
@@ -42,6 +47,10 @@ function getMonthName(event_sid: string): string {
 	return new Date(date).toLocaleString('ru', { month: 'long' });
 }
 
+async function updateTickets() {
+	if (authRoles.value.includes(UserRole.ADMIN)) getReservationsNetlify(true);
+}
+
 async function handleBeforeMount() {
 	if (authRoles.value.includes(UserRole.ADMIN)) getReservationsNetlify();
 }
@@ -51,11 +60,14 @@ onBeforeMount(handleBeforeMount);
 <template>
 	<ChapterTitle title="Бронирования">
 		<template v-slot:actions-slot>
+			<button @click="updateTickets" class="expand-item-button icon-calendar" title="Обновить данные">
+				<IconUpdate />
+			</button>
 			<button
 				@click="isActualPerformancesTickets = !isActualPerformancesTickets"
 				class="expand-item-button icon-calendar"
 				:class="{ 'black-white-filter': !isActualPerformancesTickets }"
-				title="Только предстоящие"
+				:title="calendarIconTitle"
 			>
 				<IconCalendar />
 			</button>
