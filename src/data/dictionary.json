@@ -213,6 +213,10 @@
 		"ru": "Дорогие зрители!!! 24 мая в 19:30 вместо спектакля «НЕЗНАКОМКА 32» состоится спектакль «МАЛЫШ И КАРЛ(СОН)».",
 		"de": "Liebe Gäste!!! Am 24. Mai um 19:30 Uhr findet anstelle des Theaterstücks „DIE UNBEKANNTE 32“ das Theaterstück „STEPPKE UND KARL(SON)“ statt."
 	},
+	"scam": {
+		"ru": "Осторожно, МОШЕННИКИ! Появились случаи продажи несуществующих подарочных сертификатов от имени Театра. Обращаем ваше внимание, что любое финансовое взаимодействие осуществляется либо через Kontramarka.de, либо непосредственно в самом театре. Берегите себя и свои средства!",
+		"de": "Achtung, BETRÜGER! Es sind Fälle aufgetreten, bei denen nicht existierende Gutscheine im Namen des Theaters verkauft wurden. Bitte beachten Sie, dass jegliche finanzielle Transaktionen entweder über Kontramarka.de oder direkt im Theater erfolgen. Schützen Sie sich und Ihr Geld!"
+	},
 	"err__empty_email": { "ru": "Укажите email-адрес", "de": "Dieses Feld muss zwingend ausgefüllt sein." },
 	"err__email_not_correct": {
 		"ru": "Введите корректный email-адрес.",
