@@ -85,10 +85,11 @@ export default defineConfig({
 	site: 'https://antrepriza.eu',
 	redirects: {
 		// '/admin/repetitions/': '/admin?page=/repetitions',
-		// '/admin/performances/': '/admin?page=/performances',
-		// '/admin/stages/': '/admin?page=/stages',
-		// '/admin/plays/': '/admin?page=/plays',
-		// '/admin/tickets/': '/admin?page=/tickets',
+		'/admin/performances/': '/admin?page=/performances/',
+		'/admin/stages/': '/admin?page=/stages/',
+		'/admin/plays/': '/admin?page=/plays/',
+		'/admin/tickets/': '/admin?page=/tickets/',
+		'/admin/subscribers/': '/admin?page=/subscribers/',
 		// '/admin/whatsapp/': '/admin?page=/whatsapp',
 	},
 	integrations: [
