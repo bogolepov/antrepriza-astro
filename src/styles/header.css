@@ -84,7 +84,6 @@ header {
 	color: var(--colorFont);
 	background-color: var(--colorBkgForm);
 	border-bottom: var(--toolbarBorderWeight) solid var(--colorBorderForm);
-	font-family: 'Roboto', Verdana, Arial, Tahoma, sans-serif;
 	font-weight: var(--font-normal-weight);
 	letter-spacing: 1px;
 	user-select: none;
@@ -221,7 +220,8 @@ header:not(:has(.burger-switcher:checked)) .burger-menu {
 	transform: scaleY(0);
 }
 
-header:not(:has(.burger-switcher:checked)) .burger-menu:has(a:focus-visible, label:focus-visible, .submenu-icon:focus-visible) {
+header:not(:has(.burger-switcher:checked))
+	.burger-menu:has(a:focus-visible, label:focus-visible, .submenu-icon:focus-visible) {
 	transform: scaleY(1);
 }
 

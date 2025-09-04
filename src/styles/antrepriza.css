@@ -271,7 +271,7 @@ html,
 body {
 	color: var(--colorFont);
 	background-color: var(--colorBkgPage);
-	font-family: 'Roboto', Verdana, Arial, Tahoma, sans-serif;
+	font-family: 'RobotoFlex', Verdana, Arial, Tahoma, sans-serif;
 	font-weight: var(--font-normal-weight);
 	height: 100%;
 }
