@@ -4,7 +4,6 @@
 
 .play-block {
 	position: relative;
-	font-family: 'Roboto', Verdana, Arial, Tahoma, sans-serif;
 	font-weight: var(--font-normal-weight);
 	padding: 15px 10px;
 	display: flex;
