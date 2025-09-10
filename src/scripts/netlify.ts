@@ -1,10 +1,11 @@
 export const enum ENetlifyEndpoint {
-	NETLIFY_ADMIN_PANEL = '/.netlify/functions/adminPanel',
-	NETLIFY_SUBSCRIPTION = '/.netlify/functions/newsSubscription',
-	NETLIFY_ADMIN_AUTH = '/.netlify/functions/adminAuth',
-	NETLIFY_ADMIN_LOGOUT = '/.netlify/functions/adminLogout',
-	NETLIFY_CONTACT_FORM = '/.netlify/functions/contactForm',
-	NETLIFY_MAKE_RESERVATION = '/.netlify/functions/makeReservation',
+	NETLIFY_ADMIN_PANEL = '/api/adminPanel',
+	NETLIFY_SUBSCRIPTION = '/api/newsSubscription',
+	NETLIFY_ADMIN_AUTH = '/api/adminAuth',
+	NETLIFY_ADMIN_AUTH_GOOGLE = '/api/adminAuthGoogle',
+	NETLIFY_ADMIN_LOGOUT = '/api/adminLogout',
+	NETLIFY_CONTACT_FORM = '/api/contactForm',
+	NETLIFY_MAKE_RESERVATION = '/api/makeReservation',
 }
 
 export interface TBodyFromNetlify<T> {

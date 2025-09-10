@@ -93,9 +93,7 @@ export async function withAuth(
 	// new tokens, if need
 	if (!validAccessToken && validRefreshToken) {
 		const user: TAuthUser = {
-			login: '',
 			name: userRefreshPayload.name,
-			id: userRefreshPayload.id,
 			roles: userRefreshPayload.roles,
 		};
 
