@@ -41,7 +41,7 @@ export const handler: Handler = async (event: HandlerEvent, context: HandlerCont
 				code,
 				client_id: getEnv(ENV.OAUTH_GOOGLE_CLIENT_ID) ?? '',
 				client_secret: getEnv(ENV.OAUTH_GOOGLE_CLIENT_SECRET) ?? '',
-				redirect_uri: getEnv(ENV.ROOT_URL)?.concat('/.netlify/functions/adminAuthGoogle2'),
+				redirect_uri: getEnv(ENV.ROOT_URL)?.concat('/api/adminAuthGoogle2'),
 				grant_type: 'authorization_code',
 			}),
 		});
