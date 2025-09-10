@@ -83,3 +83,23 @@ export function extractSchemaFromJson<T extends z.ZodTypeAny>(schema: T, json_da
 	}
 	return undefined;
 }
+
+export function generateRandomString(length) {
+	const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'; // Символы для генерации
+	let result = '';
+	for (let i = 0; i < length; i++) {
+		result += chars.charAt(Math.floor(Math.random() * chars.length));
+	}
+	return result;
+}
+
+export function generateBase64RandomUriString(length) {
+	const randomBytes = new Uint8Array(length);
+	crypto.getRandomValues(randomBytes);
+
+	// Преобразование байтов в строку base64
+	const base64String = btoa(String.fromCharCode(...randomBytes));
+
+	// URL-кодирование, чтобы сделать её полностью безопасной для URI (некоторые символы base64 могут быть несовместимы с URL)
+	return encodeURIComponent(base64String).replace(/%25/g, '%'); // Очистка двойного кодирования
+}

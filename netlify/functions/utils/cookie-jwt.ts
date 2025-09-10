@@ -36,7 +36,6 @@ export function createRefreshCookie(user: TAuthUser): string {
 	const plRefresh: UserRefreshPayload = {
 		name: user.name,
 		roles: user.roles,
-		id: user.id,
 	};
 	const refreshToken = jwt.sign(plRefresh, getEnv(ENV.JWT_REFRESH_SECRET), { expiresIn: REFRESH_TOKEN_TIME });
 	return cookie(REFRESH_COOKIE_NAME, refreshToken, {

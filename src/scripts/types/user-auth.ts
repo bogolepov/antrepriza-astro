@@ -19,5 +19,5 @@ export interface UserAccessPayload {
 }
 
 export interface UserRefreshPayload extends UserAccessPayload {
-	id: number;
+	// id: number;
 }

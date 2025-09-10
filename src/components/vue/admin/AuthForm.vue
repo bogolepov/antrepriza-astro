@@ -4,6 +4,7 @@ import { type TAuthPacket } from '@scripts/types/auth';
 import { ENetlifyEndpoint, netlify, type TNetlifyFrom, type TNetlifyTo } from '@scripts/netlify';
 import { getCookieAccessToken } from '@scripts/token-ck';
 import { saveAuthUserLS, type TAuthUser } from '@scripts/user-ck';
+import GoogleButton from './components/GoogleButton.vue';
 
 const emit = defineEmits<{
 	login: [user: TAuthUser];
@@ -68,7 +69,10 @@ function submit(event) {
 				</label>
 			</div>
 			<p v-show="authError.length > 0" class="auth-error">{{ authError }}</p>
-			<button @click.prevent="submit" :disabled="btnIsDisabled">Войти</button>
+			<button class="login-button" @click.prevent="submit" :disabled="btnIsDisabled">Войти</button>
+			<div class="other-ways">
+				<GoogleButton />
+			</div>
 		</form>
 	</main>
 </template>
@@ -100,19 +104,38 @@ main {
 	max-width: min(100px, var(--form-width), 45dvw);
 	margin: 0 auto 1rem auto;
 }
+.other-ways {
+	grid-column: 1 / 3;
+	display: grid;
+	place-items: center;
+	margin-top: 1rem;
+	padding-top: 2rem;
+	border-top: 1px solid var(--colorBkgDisabledBtn);
+	position: relative;
+}
+.other-ways::before {
+	content: 'или';
+	position: absolute;
+	top: 0;
+	transform: translateY(-50%);
+	line-height: 1;
+	padding: 0 1rem;
+	font-size: 1.05em;
+	background-color: var(--colorBkgPage);
+}
 
 .auth-form label {
 	width: var(--label-width);
 }
 .auth-form input,
-.auth-form button {
+.auth-form .login-button {
 	line-height: 1.1;
 	max-width: calc(var(--form-width-vw) - var(--label-width));
 	background-color: var(--colorBkgInput);
 	border: 1px solid var(--colorBkgTicketsBtn);
 }
 
-.auth-form button {
+.auth-form .login-button {
 	grid-column: 1 / 3;
 	justify-self: end;
 	margin-top: 1rem;
@@ -121,7 +144,7 @@ main {
 	user-select: none;
 	cursor: pointer;
 }
-.auth-form button[disabled] {
+.auth-form .login-button[disabled] {
 	border-color: var(--colorBkgDisabledBtn);
 	cursor: default;
 }
@@ -176,7 +199,8 @@ main {
 		width: var(--form-width);
 	}
 	.logo,
-	.auth-form button {
+	.auth-form .login-button,
+	.other-ways {
 		grid-column: 1 / 2;
 	}
 	.auth-form input {

@@ -1,15 +1,19 @@
 <script setup lang="ts">
-import { ref, onBeforeMount, provide } from 'vue';
+import { ref, onBeforeMount, provide, computed } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
-import { showMenu, smallScreen } from './lib/statesStore';
+import { authRoles, showMenu, smallScreen } from './lib/statesStore';
 import LetterSizeControl from './components/LetterSizeControl.vue';
 
 import IconWhatsapp from './components/iconWhatsapp.vue';
+import { UserRole } from '@scripts/types/user-auth';
 
 const router = useRouter();
 const route = useRoute();
 
 const fontSize = ref<string>('');
+const isAdmin = computed(() => {
+	return authRoles.value.includes(UserRole.ADMIN);
+});
 
 function updatePageComposition() {
 	let desktopWidth: number = 16 * 31;
@@ -66,8 +70,8 @@ onBeforeMount(() => {
 					<li><router-link to="/admin/performances/">Выступления</router-link></li>
 					<li><router-link to="/admin/plays/">Спектакли</router-link></li>
 					<li><router-link to="/admin/stages/">Сцены</router-link></li>
-					<li><router-link to="/admin/tickets/">Бронирования</router-link></li>
-					<li><router-link to="/admin/subscribers/">Подписчики</router-link></li>
+					<li v-if="isAdmin"><router-link to="/admin/tickets/">Бронирования</router-link></li>
+					<li v-if="isAdmin"><router-link to="/admin/subscribers/">Подписчики</router-link></li>
 				</ul>
 			</nav>
 			<button class="logout-button" @click="$emit('logout')">Выйти</button>
