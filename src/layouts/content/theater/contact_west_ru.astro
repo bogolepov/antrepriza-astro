@@ -1,11 +1,24 @@
+---
+const { google_link } = Astro.props;
+---
+
 <h4>Как проехать</h4>
 <div>
-<span class="font-opacity1">U-Bahn:</span> U1 (Uhlandstr.), U2 (Zoologischer Garten, Ernst-Reuter-Platz)<br>
-<span class="font-opacity1">S-Bahn:</span> S3 / S5 / S7 / S9 (Savignyplatz)<br>
-<span class="font-opacity1">Автобус:</span> 109 / 245 / M45 (Steinplatz), 101 / M49 / X34 (Savignyplatz), 109 / 110 / M19 / M29 / X10 (U Uhlandstr.)
+	<span class='font-opacity1'>U-Bahn:</span> U1 (Uhlandstr.), U2 (Zoologischer Garten, Ernst-Reuter-Platz)<br />
+	<span class='font-opacity1'>S-Bahn:</span> S3 / S5 / S7 / S9 (Savignyplatz)<br />
+	<span class='font-opacity1'>Автобус:</span> 109 / 245 / M45 (Steinplatz), 101 / M49 / X34 (Savignyplatz), 109 / 110 / M19
+	/ M29 / X10 (U Uhlandstr.)
 </div>
-<div class="ext-links">
-Театр на <a href="https://maps.app.goo.gl/XuoSoEqFraCquYmN9" target="_blank"	rel="noopener external">Google Картах</a> <br>
-В Театр на общественном транспорте? <a href="https://www.vbb.de/fahrinfo" target="_blank"	rel="noopener external">Найти маршрут</a> <br>
-В Театр на велосипеде? <a href="https://www.komoot.com/de-de/plan?p[0]&p[1][loc]=52.50703,13.32422&sport=touringbicycle" target="_blank"	rel="noopener external">Komoot</a>
+<div class='ext-links'>
+	Театр на <a href={google_link} target='_blank' rel='noopener external'>Google Картах</a>
+	<br />
+	В Театр на общественном транспорте? <a href='https://www.vbb.de/fahrinfo' target='_blank' rel='noopener external'
+		>Найти маршрут</a
+	>
+	<br />
+	В Театр на велосипеде? <a
+		href='https://www.komoot.com/de-de/plan?p[0]&p[1][loc]=52.50703,13.32422&sport=touringbicycle'
+		target='_blank'
+		rel='noopener external'>Komoot</a
+	>
 </div>

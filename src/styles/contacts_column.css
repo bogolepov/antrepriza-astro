@@ -15,12 +15,8 @@
 }
 
 .contact .contact-flex-column {
-	/* margin: 1em auto 2em auto; */
 	width: 100%;
-	/* max-width: 1100px; */
-
 	display: flex;
-	flex-direction: row-reverse;
 	flex-wrap: wrap;
 	column-gap: var(--column-gap);
 	row-gap: 2em;
