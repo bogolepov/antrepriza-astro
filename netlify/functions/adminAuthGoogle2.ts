@@ -31,6 +31,8 @@ export const handler: Handler = async (event: HandlerEvent, context: HandlerCont
 	// if (params.state != state) return errorResponse(400, 'Incorrect authorization state');
 
 	const code = params.code;
+	const uri_path =
+		process.env.MODE === process.env.MODE_LOCALHOST ? '/.netlify/functions/adminAuthGoogle2' : '/api/adminAuthGoogle2';
 
 	try {
 		// 1. Обмен code на токены
@@ -41,7 +43,7 @@ export const handler: Handler = async (event: HandlerEvent, context: HandlerCont
 				code,
 				client_id: getEnv(ENV.OAUTH_GOOGLE_CLIENT_ID) ?? '',
 				client_secret: getEnv(ENV.OAUTH_GOOGLE_CLIENT_SECRET) ?? '',
-				redirect_uri: getEnv(ENV.ROOT_URL)?.concat('/api/adminAuthGoogle2'),
+				redirect_uri: getEnv(ENV.ROOT_URL)?.concat(uri_path),
 				grant_type: 'authorization_code',
 			}),
 		});

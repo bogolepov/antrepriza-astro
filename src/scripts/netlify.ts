@@ -3,6 +3,7 @@ export const enum ENetlifyEndpoint {
 	NETLIFY_SUBSCRIPTION = '/api/newsSubscription',
 	NETLIFY_ADMIN_AUTH = '/api/adminAuth',
 	NETLIFY_ADMIN_AUTH_GOOGLE = '/api/adminAuthGoogle',
+	NETLIFY_ADMIN_AUTH_GOOGLE2 = '/api/adminAuthGoogle2',
 	NETLIFY_ADMIN_LOGOUT = '/api/adminLogout',
 	NETLIFY_CONTACT_FORM = '/api/contactForm',
 	NETLIFY_MAKE_RESERVATION = '/api/makeReservation',
