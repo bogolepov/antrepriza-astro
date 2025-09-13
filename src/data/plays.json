@@ -7,9 +7,9 @@
 		"author": { "ru": "А.Володарский", "de": "A.Wolodarski" },
 		"author_full": { "ru": "Александр Володарский", "de": "Alexander Wolodarski" },
 		"genre": { "ru": "музыкальная трагикомедия", "de": "musikalische Tragikomödie" },
-		"length": 145,
+		"length": 90,
 		"break": true,
-		"age": "16+",
+		"age": "18+",
 		"description": { "ru": "play_sss_ru", "de": "play_sss_de" },
 		"posters": {
 			"landscape": "soon.jpg",
@@ -22,13 +22,20 @@
 		"lang": { "ru": "русский", "de": "Russisch" },
 		"lang_id": "ru",
 		"url_kontramarka": "https://www.kontramarka.de/tour/teatr-antrepriza-spektakl-evangelie-ot-pilata/",
-		"characters": [],
+		"characters": [
+			{ "id": 1, "name": { "ru": "Майя Михайловна", "de": "Maja Michailowna" }, "actors": [140] },
+			{ "id": 2, "name": { "ru": "Склероз", "de": "Sklerose" }, "actors": [141] },
+			{ "id": 3, "name": { "ru": "Рома Оськин", "de": "Roma Oskin" }, "actors": [103] },
+			{ "id": 4, "name": { "ru": "Арчил  Микельтадзе", "de": "Archil Mikeltadze" }, "actors": [103] },
+			{ "id": 5, "name": { "ru": "Есафов", "de": "Esafov" }, "actors": [103] }
+		],
 		"creators": [
 			{ "type": "regie", "people": [8] },
 			{ "type": "light", "people": [9] },
 			{ "type": "sound", "people": [9] },
 			{ "type": "graphic_design", "people": [] },
-			{ "type": "photographer", "people": [5] },
+			{ "type": "photographer", "people": [10] },
+			{ "type": "costumes", "people": [124] },
 			{ "type": "stage_setup", "people": [] }
 		],
 		"seo": {
