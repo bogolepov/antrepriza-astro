@@ -12,9 +12,9 @@
 		"age": "18+",
 		"description": { "ru": "play_sss_ru", "de": "play_sss_de" },
 		"posters": {
-			"landscape": "soon.jpg",
-			"landscape_16_9": "soon_16_9.jpg",
-			"portrait": "soon_poster.jpg",
+			"landscape": "sss.jpg",
+			"landscape_16_9": "sss_16_9.jpg",
+			"portrait": "sss_poster.jpg",
 			"facebook": "fb_soon.jpg",
 			"pub_kontra": "afisha_sss.webp",
 			"minimum": ""
