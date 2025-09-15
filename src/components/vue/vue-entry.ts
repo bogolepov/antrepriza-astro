@@ -1,5 +1,6 @@
 import type { App } from 'vue';
 import { createRouter, createWebHistory } from 'vue-router';
+import { createPinia } from 'pinia';
 
 // import Repetition from '@vue-components/admin/repetitions/Repetitions.vue';
 import Performances from '@vue-components/admin/performances/Performances.vue';
@@ -28,6 +29,6 @@ export default (app: App) => {
 			linkActiveClass: 'active',
 			linkExactActiveClass: 'active',
 		});
-		app.use(router);
+		app.use(router).use(createPinia());
 	}
 };

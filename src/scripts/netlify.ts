@@ -34,6 +34,8 @@ export function netlify<T>(
 	dataTo: TNetlifyTo,
 	handleResponse: (response: TNetlifyFrom<T>) => void
 ) {
+	//console.log('netlify() : ', endpoint);
+
 	const options: RequestInit = {
 		method: 'POST',
 		headers: {

@@ -24,7 +24,7 @@ export function getHeaderCookieRefreshToken(cookies: string): string {
 	return getCookie(cookies, REFRESH_COOKIE_NAME);
 }
 
-export function logoutCookie() {
+export function resetAuthCookies() {
 	removeCookie(ACCESS_COOKIE_NAME);
 
 	const handleResponse = (response: TNetlifyFrom<never>): void => {};

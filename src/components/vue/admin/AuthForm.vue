@@ -3,12 +3,9 @@ import { ref, computed } from 'vue';
 import { type TAuthPacket } from '@scripts/types/auth';
 import { ENetlifyEndpoint, netlify, type TNetlifyFrom, type TNetlifyTo } from '@scripts/netlify';
 import { getCookieAccessToken } from '@scripts/token-ck';
-import { saveAuthUserLS, type TAuthUser } from '@scripts/user-ck';
+import { getUserFromToken } from '@scripts/user-ck';
 import GoogleButton from './components/GoogleButton.vue';
-
-const emit = defineEmits<{
-	login: [user: TAuthUser];
-}>();
+import { useAuthStore } from './stores/AuthStore';
 
 const login = ref('');
 const password = ref('');
@@ -22,14 +19,12 @@ function showPasswordToogle(event) {
 }
 function submit(event) {
 	const handleResponse = (response: TNetlifyFrom<never>): void => {
-		console.log(response);
-
 		if (response.ok) {
 			let accessToken = getCookieAccessToken();
-			const user = saveAuthUserLS(accessToken);
-
+			const user = getUserFromToken(accessToken);
 			if (user?.roles?.length) {
-				emit('login', user);
+				const authStore = useAuthStore();
+				authStore.logIn(user.name, user.roles);
 			} else console.error('*VUE*  auth() : INVALID PACKET');
 		} else {
 			authError.value = response.message;

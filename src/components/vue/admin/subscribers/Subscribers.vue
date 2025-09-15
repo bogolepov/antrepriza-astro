@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import { computed, onBeforeMount, ref } from 'vue';
 import ChapterTitle from '../components/ChapterTitle.vue';
-import { getSubscribersNetlify, subscriptionState, subscribers, authRoles } from '../lib/statesStore';
 import { ESubscriptionState } from '@scripts/types/subscription';
 import { UserRole } from '@scripts/types/user-auth';
 import IconUpdate from '../components/iconUpdate.vue';
+import { useAuthStore } from '../stores/AuthStore';
+import { useDbStore } from '../stores/DBStore';
+
+const authStore = useAuthStore();
+const dbStore = useDbStore();
 
 type TSubscriptionStateInfo = {
 	state: ESubscriptionState | 'all';
@@ -17,16 +21,18 @@ const stateList: TSubscriptionStateInfo[] = [
 	{ state: 'all', text: 'все в базе' },
 ];
 
+const subscriptionState = ref<ESubscriptionState | 'all'>(ESubscriptionState.REG_CONFIRM);
+
 let hasAccess = computed<boolean>(() => {
-	return authRoles.value.includes(UserRole.ADMIN);
+	return authStore.userRoles.includes(UserRole.ADMIN);
 });
 
 async function updateSubscribers() {
-	if (authRoles.value.includes(UserRole.ADMIN)) getSubscribersNetlify(true);
+	if (hasAccess) dbStore.getSubscribersNetlify(true);
 }
 
 async function handleBeforeMount() {
-	if (authRoles.value.includes(UserRole.ADMIN)) getSubscribersNetlify();
+	if (hasAccess) dbStore.getSubscribersNetlify();
 }
 onBeforeMount(handleBeforeMount);
 </script>
@@ -34,7 +40,12 @@ onBeforeMount(handleBeforeMount);
 <template>
 	<ChapterTitle title="Подписчики на новости">
 		<template v-slot:actions-slot>
-			<button @click="updateSubscribers" class="expand-item-button icon-calendar" title="Обновить данные">
+			<button
+				v-if="hasAccess"
+				@click="updateSubscribers"
+				class="expand-item-button icon-calendar"
+				title="Обновить данные"
+			>
 				<IconUpdate />
 			</button>
 		</template>
@@ -46,13 +57,13 @@ onBeforeMount(handleBeforeMount);
 		</option>
 	</select>
 	<ul>
-		<template v-if="!hasAccess">
-			<li>Недостаточно прав для просмотра.</li>
-		</template>
-		<template v-else>
-			<template v-for="user in subscribers" :key="user.email">
+		<template v-if="hasAccess">
+			<template v-for="user in dbStore.subscribers" :key="user.email">
 				<li v-show="subscriptionState === user.state || subscriptionState === 'all'">{{ user.email }}</li>
 			</template>
+		</template>
+		<template v-else>
+			<li>Недостаточно прав для просмотра.</li>
 		</template>
 	</ul>
 </template>

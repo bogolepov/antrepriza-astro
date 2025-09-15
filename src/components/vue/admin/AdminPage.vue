@@ -1,18 +1,22 @@
 <script setup lang="ts">
 import { ref, onBeforeMount, provide, computed } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
-import { authRoles, showMenu, smallScreen } from './lib/statesStore';
+import { showMenu, smallScreen } from './lib/statesStore';
 import LetterSizeControl from './components/LetterSizeControl.vue';
 
 import IconWhatsapp from './components/iconWhatsapp.vue';
 import { UserRole } from '@scripts/types/user-auth';
+import { useAuthStore } from './stores/AuthStore';
+import { resetAuthCookies } from '@scripts/token-ck';
 
 const router = useRouter();
 const route = useRoute();
 
+const authStore = useAuthStore();
+
 const fontSize = ref<string>('');
 const isAdmin = computed(() => {
-	return authRoles.value.includes(UserRole.ADMIN);
+	return authStore.userRoles.includes(UserRole.ADMIN);
 });
 
 function updatePageComposition() {
@@ -41,11 +45,12 @@ function updateFontSize(newFontSize: string) {
 	updatePageComposition();
 }
 
-provide('font-size', { updateFontSize });
+function logOut() {
+	resetAuthCookies();
+	useAuthStore().logOut();
+}
 
-const emit = defineEmits<{
-	logout: [];
-}>();
+provide('font-size', { updateFontSize });
 
 window.addEventListener('resize', updatePageComposition);
 
@@ -74,7 +79,8 @@ onBeforeMount(() => {
 					<li v-if="isAdmin"><router-link to="/admin/subscribers/">Подписчики</router-link></li>
 				</ul>
 			</nav>
-			<button class="logout-button" @click="$emit('logout')">Выйти</button>
+			<!-- <button class="logout-button" @click="$emit('logout')">Выйти</button> -->
+			<button class="logout-button" @click="logOut()">Выйти</button>
 		</aside>
 		<main>
 			<button v-show="smallScreen" @click="showMenu = true" class="open-menu-button">⇛</button>
