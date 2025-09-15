@@ -16,7 +16,5 @@ export async function getSubscriptionsList(): Promise<TSubscriberPanel[]> {
 		list.push({ email: eDoc.id, state: data.state });
 	});
 
-	console.log(list);
-
 	return list;
 }

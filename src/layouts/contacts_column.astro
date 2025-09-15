@@ -56,7 +56,9 @@ const singleColumn: boolean = theater.fix_stages_actual.length < 2;
 								<div class='description'>
 									{components.map(component => {
 										if (component.file.replace(/^.*[\\/]/, '') === stage.contact_file[lang]) {
-											return <component.default stage_name={stage.name[lang]} />;
+											return (
+												<component.default stage_name={stage.name[lang]} google_link={stage.google_map.link[lang]} />
+											);
 										}
 									})}
 								</div>

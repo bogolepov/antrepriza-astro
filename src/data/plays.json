@@ -1,5 +1,61 @@
 [
 	{
+		"id": 12,
+		"suffix": "sss",
+		"title": { "ru": "Селфи со Склерозом", "de": "Selfie mit Sklerose" },
+		"alt_title": { "ru": "Селфи\u00A0со Склерозом", "de": "Selfie\u00A0mit Sklerose" },
+		"author": { "ru": "А.Володарский", "de": "A.Wolodarski" },
+		"author_full": { "ru": "Александр Володарский", "de": "Alexander Wolodarski" },
+		"genre": { "ru": "музыкальная трагикомедия", "de": "musikalische Tragikomödie" },
+		"length": 90,
+		"break": true,
+		"age": "18+",
+		"description": { "ru": "play_sss_ru", "de": "play_sss_de" },
+		"posters": {
+			"landscape": "soon.jpg",
+			"landscape_16_9": "soon_16_9.jpg",
+			"portrait": "soon_poster.jpg",
+			"facebook": "fb_soon.jpg",
+			"pub_kontra": "kontra_eop.webp",
+			"minimum": ""
+		},
+		"lang": { "ru": "русский", "de": "Russisch" },
+		"lang_id": "ru",
+		"url_kontramarka": "https://www.kontramarka.de/tour/teatr-antrepriza-spektakl-evangelie-ot-pilata/",
+		"characters": [
+			{ "id": 1, "name": { "ru": "Майя Михайловна", "de": "Maja Michailowna" }, "actors": [140] },
+			{ "id": 2, "name": { "ru": "Склероз", "de": "Sklerose" }, "actors": [141] },
+			{ "id": 3, "name": { "ru": "Рома Оськин", "de": "Roma Oskin" }, "actors": [103] },
+			{ "id": 4, "name": { "ru": "Арчил  Микельтадзе", "de": "Archil Mikeltadze" }, "actors": [103] },
+			{ "id": 5, "name": { "ru": "Есафов", "de": "Esafov" }, "actors": [103] }
+		],
+		"creators": [
+			{ "type": "regie", "people": [8] },
+			{ "type": "light", "people": [9] },
+			{ "type": "sound", "people": [9] },
+			{ "type": "graphic_design", "people": [] },
+			{ "type": "photographer", "people": [10] },
+			{ "type": "costumes", "people": [124] },
+			{ "type": "stage_setup", "people": [] }
+		],
+		"seo": {
+			"description": {
+				"ru": "По роману М.Булгакова «Мастер и Маргарита». Мистика, 16+. На русском языке.",
+				"de": "Basierend auf dem Roman von M.Bulgakow „Der Meister und Margarita“. Mystik, 16+. Auf Russisch."
+			},
+			"open_graph": {
+				"image": { "url": "eop_soon_1200t.jpg", "type": "image/jpeg" }
+			},
+			"event": {
+				"images": [
+					{ "format": "19_6", "url": "eop_soon_1920t.jpg" },
+					{ "format": "3_4", "url": "kontra_eop_1920t.jpg" },
+					{ "format": "3_4_1050", "url": "kontra_eop_1050t.webp" }
+				]
+			}
+		}
+	},
+	{
 		"id": 11,
 		"suffix": "eop",
 		"title": { "ru": "Евангелие от Пилата", "de": "Evangelium des Pilatus" },

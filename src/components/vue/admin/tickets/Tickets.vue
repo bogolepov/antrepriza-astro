@@ -1,27 +1,27 @@
 <script setup lang="ts">
-import { onBeforeMount, computed, type ComputedRef } from 'vue';
+import { onBeforeMount, computed, type ComputedRef, ref } from 'vue';
 import ChapterTitle from '../components/ChapterTitle.vue';
-import {
-	getReservationsNetlify,
-	type IExtNamedEventReservation,
-	reservations,
-	isActualPerformancesTickets,
-	authRoles,
-} from '../lib/statesStore';
 import TicketsEvent from './TicketsEvent.vue';
 import { ONE_DAY } from '@scripts/consts';
 import IconCalendar from '../components/iconCalendar.vue';
 import IconUpdate from '../components/iconUpdate.vue';
 import { UserRole } from '@scripts/types/user-auth';
+import { useAuthStore } from '../stores/AuthStore';
+import { useDbStore, type IExtNamedEventReservation } from '../stores/DBStore';
+
+const authStore = useAuthStore();
+const dbStore = useDbStore();
+
+const isActualPerformancesTickets = ref(true);
 
 let hasAccess = computed<boolean>(() => {
-	return authRoles.value.includes(UserRole.ADMIN);
+	return authStore.userRoles.includes(UserRole.ADMIN);
 });
 
 const performancesToShow: ComputedRef<IExtNamedEventReservation[]> = computed(() => {
-	let list: IExtNamedEventReservation[] = reservations.value;
+	let list: IExtNamedEventReservation[] = dbStore.reservations;
 	if (isActualPerformancesTickets.value === true) {
-		list = reservations.value.filter(item => Date.parse(item.date) + ONE_DAY >= Date.now());
+		list = dbStore.reservations.filter(item => Date.parse(item.date) + ONE_DAY >= Date.now());
 	}
 	list = [...list].sort(
 		(item1, item2) => Date.parse(item1.date + 'T' + item1.time) - Date.parse(item2.date + 'T' + item2.time)
@@ -48,11 +48,11 @@ function getMonthName(event_sid: string): string {
 }
 
 async function updateTickets() {
-	if (authRoles.value.includes(UserRole.ADMIN)) getReservationsNetlify(true);
+	if (hasAccess) dbStore.getReservationsNetlify(true);
 }
 
 async function handleBeforeMount() {
-	if (authRoles.value.includes(UserRole.ADMIN)) getReservationsNetlify();
+	if (hasAccess) dbStore.getReservationsNetlify();
 }
 onBeforeMount(handleBeforeMount);
 </script>
@@ -60,7 +60,7 @@ onBeforeMount(handleBeforeMount);
 <template>
 	<ChapterTitle title="Бронирования">
 		<template v-slot:actions-slot>
-			<button @click="updateTickets" class="expand-item-button icon-calendar" title="Обновить данные">
+			<button v-if="hasAccess" @click="updateTickets" class="expand-item-button icon-calendar" title="Обновить данные">
 				<IconUpdate />
 			</button>
 			<button
@@ -74,16 +74,16 @@ onBeforeMount(handleBeforeMount);
 		</template>
 	</ChapterTitle>
 	<ul>
-		<template v-if="!hasAccess">
-			<li>Недостаточно прав для просмотра.</li>
-		</template>
-		<template v-else>
+		<template v-if="hasAccess">
 			<template v-for="event in performancesToShow" :key="event.event_sid">
 				<li v-show="event.first_in_month" class="month-item">{{ getMonthName(event.event_sid).toUpperCase() }}</li>
 				<li>
 					<TicketsEvent :event />
 				</li>
 			</template>
+		</template>
+		<template v-else>
+			<li>Недостаточно прав для просмотра.</li>
 		</template>
 	</ul>
 </template>

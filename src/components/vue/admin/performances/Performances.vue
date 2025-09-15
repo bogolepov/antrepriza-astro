@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { computed, type ComputedRef } from 'vue';
+import { computed, ref, type ComputedRef } from 'vue';
 import ChapterTitle from '../components/ChapterTitle.vue';
 import Performance from './Performance.vue';
 import { ONE_DAY } from '@scripts/consts';
 import IconCalendar from '../components/iconCalendar.vue';
 import type { IExtendedPerformanceJson, IPerformanceJson } from '@scripts/adminpanel/types/json-files';
-import { getPerformances, isActualPerformancesAfisha } from '../lib/statesStore';
+import { getPerformances } from '../lib/statesStore';
+
+const isActualPerformancesAfisha = ref(true);
 
 const performances: IPerformanceJson[] = getPerformances();
 

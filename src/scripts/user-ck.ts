@@ -1,23 +1,18 @@
-import type { UserAccessPayload, UserRefreshPayload, UserRole } from './types/user-auth';
-
-const LS_AUTH_TOKEN = 'auth_token';
+import type { UserAccessPayload, UserRole } from './types/user-auth';
 
 export type TAuthUser = {
 	name: string;
 	roles: UserRole[];
 };
 
-export function saveAuthUserLS(token: string): TAuthUser {
-	localStorage.removeItem(LS_AUTH_TOKEN);
-	if (!token) return;
+export function getUserFromToken(token: string): TAuthUser {
+	if (!token) return null;
 
-	let roles: UserRole[] = [];
-	let name: string = 'unknown';
+	let user: TAuthUser = { name: 'unknown', roles: [] };
 	const userPayload = getUserPayload<UserAccessPayload>(token);
-	if (userPayload?.name) name = userPayload.name;
-	if (userPayload?.roles) roles = userPayload.roles;
-	let user: TAuthUser = { name, roles };
-	localStorage.setItem(LS_AUTH_TOKEN, JSON.stringify(user));
+	if (!userPayload) return undefined;
+	if (userPayload?.name) user.name = userPayload.name;
+	if (userPayload?.roles) user.roles = userPayload.roles;
 	return user;
 }
 
@@ -30,8 +25,4 @@ export function getUserPayload<T>(token: string): T {
 		}
 	}
 	return undefined;
-}
-
-export function removeAuthUserLS() {
-	localStorage.removeItem(LS_AUTH_TOKEN);
 }

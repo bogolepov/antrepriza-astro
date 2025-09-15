@@ -47,10 +47,10 @@
 			"place_website": "https://www.neue-buehne-friedrichshain.de",
 			"google_map": {
 				"embed": {
-					"ru": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2428.140103368497!2d13.452496277010766!3d52.51280353676181!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a84fd5bec47e5d%3A0x65732bc3c69a9a74!2zVGhlYXRlciBBbnRyZXByaXphIC8g0KLQtdCw0YLRgCDQkNC90YLRgNC10L_RgNC40LfQsCDQkdC10YDQu9C40L0!5e0!3m2!1sru!2sde!4v1709339311966!5m2!1sru!2sde",
-					"de": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2428.1402822157715!2d13.455071199999997!3d52.512800299999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a84fd5bec47e5d%3A0x65732bc3c69a9a74!2zVGhlYXRlciBBbnRyZXByaXphIC8g0KLQtdCw0YLRgCDQkNC90YLRgNC10L_RgNC40LfQsCDQkdC10YDQu9C40L0!5e0!3m2!1sde!2sde!4v1710883843700!5m2!1sde!2sde"
+					"ru": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4856.220936923683!2d13.450725391208861!3d52.51333986468818!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a84e5dc85d2a09%3A0xf6af6892081e0a4b!2sBoxhagener%20Str.%2018%2C%2010245%20Berlin!5e0!3m2!1sru!2sde!4v1757537696930!5m2!1sru!2sde",
+					"de": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4856.220936923683!2d13.450725391208861!3d52.51333986468818!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a84e5dc85d2a09%3A0xf6af6892081e0a4b!2sBoxhagener%20Str.%2018%2C%2010245%20Berlin!5e0!3m2!1sde!2sde!4v1757537780799!5m2!1sde!2sde"
 				},
-				"link": { "ru": "https://maps.app.goo.gl/Zf7CodRv697mrqi3A", "de": "https://maps.app.goo.gl/42HBERx4ougbd7BU6" }
+				"link": { "ru": "https://maps.app.goo.gl/fcg8zVhdq7weT1Kc7", "de": "https://maps.app.goo.gl/d25M57GjaYcz36mm7" }
 			},
 			"geo": {
 				"latitude": 52.5128,
@@ -109,7 +109,7 @@
 			"place_website": ""
 		}
 	],
-	"fix_stages_actual": ["west"],
+	"fix_stages_actual": ["west", "ost"],
 	"studio": {
 		"address": {
 			"full_address": "Boxhagener Str. 18, 10245 Berlin",
@@ -156,7 +156,8 @@
 	"director": 1,
 	"team": [1, 8, 7, 2, 9, 5],
 	"actors": [
-		1, 100, 130, 101, 103, 105, 111, 119, 108, 109, 110, 104, 107, 138, 112, 132, 116, 133, 124, 134, 139, 135, 118, 123
+		1, 100, 130, 101, 103, 105, 111, 119, 108, 109, 110, 104, 107, 138, 112, 132, 116, 133, 124, 134, 139, 135, 118,
+		140, 141, 123
 	],
 	"ex_actors": [3, 102, 106, 117, 121, 122, 125, 126, 128, 129, 131],
 	"people": [
@@ -211,6 +212,14 @@
 			"name": { "ru": "Андрей", "de": "Andrii" },
 			"surname": { "ru": "Будукевич", "de": "Budukevych" },
 			"jobs": ["job_light", "job_sound"]
+		},
+		{
+			"id": 10,
+			"photo": "no-photo.jpg",
+			"gender": "m",
+			"name": { "ru": "Наум", "de": "Naum" },
+			"surname": { "ru": "Ардышев", "de": "Ardyschew" },
+			"jobs": ["photographer"]
 		},
 		{
 			"id": 100,
@@ -410,6 +419,22 @@
 			"gender": "m",
 			"name": { "ru": "Мар", "de": "Mar" },
 			"surname": { "ru": "", "de": "" }
+		},
+		{
+			"id": 140,
+			"suffix": "dv",
+			"photo": "no-photo.jpg",
+			"gender": "f",
+			"name": { "ru": "Дарья", "de": "Daria" },
+			"surname": { "ru": "Варгун", "de": "Wargun" }
+		},
+		{
+			"id": 141,
+			"suffix": "gv",
+			"photo": "no-photo.jpg",
+			"gender": "m",
+			"name": { "ru": "Григорий", "de": "Gregory" },
+			"surname": { "ru": "Варгун", "de": "Wargun" }
 		}
 	],
 	"ex_people": [
