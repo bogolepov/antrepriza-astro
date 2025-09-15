@@ -40,17 +40,17 @@
 		],
 		"seo": {
 			"description": {
-				"ru": "По роману М.Булгакова «Мастер и Маргарита». Мистика, 16+. На русском языке.",
-				"de": "Basierend auf dem Roman von M.Bulgakow „Der Meister und Margarita“. Mystik, 16+. Auf Russisch."
+				"ru": "По пьесе А.Володарского «Селфи со Склерозом». Музыкальная трагикомедия, 18+. На русском языке.",
+				"de": "Basierend auf dem Stück von A.Volodarsky „Selfie mit Sklerose“. Musikalische Tragikomödie, 18+. Auf Russisch."
 			},
 			"open_graph": {
-				"image": { "url": "eop_soon_1200t.jpg", "type": "image/jpeg" }
+				"image": { "url": "soon_1200.jpg", "type": "image/jpeg" }
 			},
 			"event": {
 				"images": [
-					{ "format": "19_6", "url": "eop_soon_1920t.jpg" },
-					{ "format": "3_4", "url": "kontra_eop_1920t.jpg" },
-					{ "format": "3_4_1050", "url": "kontra_eop_1050t.webp" }
+					{ "format": "19_6", "url": "soon_1920.jpg" },
+					{ "format": "3_4", "url": "afisha_sss_1920.jpg" },
+					{ "format": "3_4_1050", "url": "afisha_sss_1050.webp" }
 				]
 			}
 		}
