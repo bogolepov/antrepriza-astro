@@ -64,7 +64,7 @@ onBeforeMount(() => {
 <template>
 	<div class="admin-page" :class="{ 'small-screen': smallScreen }">
 		<aside v-show="showMenu">
-			<button v-show="smallScreen" @click="showMenu = false" class="close-menu-button">⇚</button>
+			<button v-show="smallScreen" @click="showMenu = false" class="menu-button close">⇚ <span>Меню</span></button>
 			<LetterSizeControl class="letter-size-control" />
 			<nav>
 				<ul>
@@ -83,7 +83,7 @@ onBeforeMount(() => {
 			<button class="logout-button" @click="logOut()">Выйти</button>
 		</aside>
 		<main>
-			<button v-show="smallScreen" @click="showMenu = true" class="open-menu-button">⇛</button>
+			<button v-show="smallScreen" @click="showMenu = true" class="menu-button open"><span>Меню</span> ⇛</button>
 			<RouterView />
 		</main>
 	</div>
@@ -107,18 +107,31 @@ aside {
 	padding: 2rem 1rem;
 	z-index: 5;
 }
-.close-menu-button {
+
+.menu-button {
 	position: absolute;
 	top: 0;
-	right: 0;
 	padding: 0 0.75rem;
 	background-color: transparent;
 	border: 0;
-	border-left: 1px solid var(--color-border);
 	font-size: 1.25em;
 	user-select: none;
 	cursor: pointer;
 }
+.menu-button.close {
+	right: 0;
+	border-left: 1px solid var(--color-border);
+}
+.menu-button.open {
+	left: 0;
+	margin: 0;
+	border-right: 1px solid var(--color-border);
+}
+.menu-button > span {
+	color: var(--colorFontDate);
+	font-weight: 500;
+}
+
 .logout-button {
 	margin-top: 1.2rem;
 	width: 100%;
@@ -148,20 +161,6 @@ main > ul {
 	margin-top: 0.65rem;
 	padding-top: 0.5rem;
 	border-top: 4px double var(--color-border);
-}
-
-.open-menu-button {
-	position: absolute;
-	top: 0;
-	left: 0;
-	padding: 0 0.75rem;
-	margin: 0;
-	background-color: transparent;
-	border: 0;
-	border-right: 1px solid var(--color-border);
-	font-size: 1.25em;
-	user-select: none;
-	cursor: pointer;
 }
 
 .letter-size-control {

@@ -1,24 +1,24 @@
 ---
-import "@components/social_pages/social_pages.css"
+import '@components/social_pages/social_pages.css';
 
-import { Icon } from 'astro-icon/components'
+import { Icon } from 'astro-icon/components';
 
-const {add_classes} = Astro.props;
+const { add_classes } = Astro.props;
 
-import theater from '@data/theater.json'
-
+import theater from '@data/theater.json';
 ---
 
-<ul class:list={["social-list", add_classes]}>
-  {
-    theater.social_pages.map((socialPage) => {
-      return (
-        <li>
-          <a href={socialPage.url} target="_blank"	rel="noopener external">
-            <Icon name={socialPage.name.toLowerCase()} class="social-icon" />
-          </a>
-        </li>
-      );
-    } )
-  }
+<ul class:list={['social-list', add_classes]} itemscope itemtype='http://schema.org/SocialMediaPosting'>
+	{
+		theater.social_pages.map(socialPage => {
+			return (
+				<li>
+					<a href={socialPage.url} target='_blank' rel='noopener external' itemprop='url'>
+						<Icon name={socialPage.name.toLowerCase()} class='social-icon' />
+					</a>
+					<meta itemprop='name' content={socialPage.name} />
+				</li>
+			);
+		})
+	}
 </ul>

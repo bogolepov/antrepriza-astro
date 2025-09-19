@@ -59,16 +59,6 @@ export const useAuthStore = defineStore('AuthStore', () => {
 			userName.value = user.name;
 			userRoles.value = user.roles;
 		}
-		// const rawState = localStorage.getItem(LS_AUTH_STORE);
-		// if (rawState) {
-		// 	try {
-		// 		const { roles, name } = JSON.parse(rawState) as TAuthUser;
-		// 		userRoles.value = roles;
-		// 		userName.value = name;
-		// 	} catch (e) {
-		// 		console.warn('Load auth state error: ', e);
-		// 	}
-		// }
 	}
 	_loadState();
 
