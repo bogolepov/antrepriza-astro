@@ -15,6 +15,10 @@ export function getCurrentPageLang(): string | undefined {
 	return undefined;
 }
 
+export function capitalLetter(str) {
+	return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
 export function onlyNumbers(text: string): string {
 	return text?.replace(/[^0-9]/g, '');
 }
@@ -64,7 +68,7 @@ export function getCRC32(obj: Object): string {
 
 // month: '1', '2', ... , '12', '01', '02', ... , '12'
 export function getMonthName(monthNumber: string): string {
-	let nMonth: number = Number(monthNumber);
+	let nMonth: number = +monthNumber;
 	if (!nMonth) console.error('getMonthName: ' + monthNumber + ' - ERROR!');
 	if (nMonth > 12) console.error('getMonthName: ' + monthNumber + ' - ERROR overflow!');
 	if (nMonth) nMonth--;
