@@ -6,6 +6,8 @@ const { lang } = Astro.props;
 
 const mainStage = theater.stages.find(stg => stg.sid === 'west');
 
+// 	sameAs: [theater.social_pages[0].url, theater.social_pages[1].url, theater.social_pages[2].url],
+
 const json: string = JSON.stringify({
 	'@context': 'https://schema.org',
 	'@type': 'Organization',
@@ -15,7 +17,6 @@ const json: string = JSON.stringify({
 	description: dictionary.description_index[lang],
 	email: theater.email,
 	telephone: theater.phone,
-	sameAs: [theater.social_pages[0].url, theater.social_pages[1].url, theater.social_pages[2].url],
 	address: {
 		'@type': 'PostalAddress',
 		streetAddress: mainStage.address.street + ' ' + mainStage.address.building,
