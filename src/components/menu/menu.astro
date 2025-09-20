@@ -13,7 +13,7 @@ const pathname: string = new URL(Astro.request.url).pathname;
 const currentPath: string[] = pathname.split('/').filter(Boolean);
 ---
 
-<nav itemscope itemtype='http://schema.org/SiteNavigationElement'>
+<nav>
 	<ul class:list={['main-menu', add_classes]}>
 		{
 			theater.menu_main.map(main_menu_item => {
@@ -37,12 +37,7 @@ const currentPath: string[] = pathname.split('/').filter(Boolean);
 								},
 							]}
 						>
-							{isLink && (
-								<a href={`/${lang}/${main_menu_item.url}/`} itemprop='url'>
-									{dictionary[main_menu_item.dict_word][lang]}
-								</a>
-                <meta itemprop='name' content={dictionary[main_menu_item.dict_word][lang]} />
-							)}
+							{isLink && <a href={`/${lang}/${main_menu_item.url}/`}>{dictionary[main_menu_item.dict_word][lang]}</a>}
 							{!isLink && dictionary[main_menu_item.dict_word][lang]}
 							{hasSubmenu && (
 								<Icon name='drop-down' class='submenu-icon' role='button' aria-label={dictionary.aria_submenu[lang]} />
@@ -65,16 +60,16 @@ const currentPath: string[] = pathname.split('/').filter(Boolean);
 										return (
 											<li>
 												<a
-													class:list={[{
+													class:list={[
+														{
 															active_link:
 																currentPath[1] === main_menu_item.submenu_folder && currentPath[2] === submenuItemLink,
-														},]}
-													href={`/${lang}/${main_menu_item.submenu_folder}/${submenuItemLink}/`} 
-                          itemprop='url'
+														},
+													]}
+													href={`/${lang}/${main_menu_item.submenu_folder}/${submenuItemLink}/`}
 												>
 													{submenuItemLabel}
 												</a>
-                        <meta itemprop='name' content={submenuItemLabel} />
 											</li>
 										);
 									})}
