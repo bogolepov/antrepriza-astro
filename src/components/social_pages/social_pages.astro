@@ -8,15 +8,14 @@ const { add_classes } = Astro.props;
 import theater from '@data/theater.json';
 ---
 
-<ul class:list={['social-list', add_classes]} itemscope itemtype='http://schema.org/SocialMediaPosting'>
+<ul class:list={['social-list', add_classes]}>
 	{
 		theater.social_pages.map(socialPage => {
 			return (
 				<li>
-					<a href={socialPage.url} target='_blank' rel='noopener external' itemprop='url'>
+					<a href={socialPage.url} target='_blank' rel='noopener external'>
 						<Icon name={socialPage.name.toLowerCase()} class='social-icon' />
 					</a>
-					<meta itemprop='name' content={socialPage.name} />
 				</li>
 			);
 		})
