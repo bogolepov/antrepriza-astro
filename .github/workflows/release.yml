@@ -5,6 +5,11 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write # нужно для пуша коммитов и тегов
+  issues: write # чтобы semantic-release мог создавать issues
+  pull-requests: write # если автогенерацию PR
+
 jobs:
   release:
     runs-on: ubuntu-latest
