@@ -26,6 +26,7 @@ export async function addReservations(
 	when: string,
 	reservations: TDoReservationExt[]
 ) {
+	// console.log('DB: addReservations');
 	if (reservations?.length > 0) {
 		for (let event of reservations) {
 			const eventDocName = `${event.stage_sid}_${onlyNumbers(event.date)}_${onlyNumbers(event.time)}_${event.play_sid}`;
@@ -40,16 +41,28 @@ export async function addReservations(
 			};
 			reservation.tickets = event.tickets.filter(ticket => ticket.count > 0);
 
-			if (await eventExists(eventDocName)) {
-				await updateDoc(doc(antreprizaDB, COLLECTION_TICKETS, eventDocName), { reservations: arrayUnion(reservation) });
-			} else {
-				await setDoc(doc(antreprizaDB, COLLECTION_TICKETS, eventDocName), {
-					reservations: arrayUnion(reservation),
-					play_sid: event.play_sid,
-					stage_sid: event.stage_sid,
-					date: event.date,
-					time: event.time,
-				});
+			// console.log('reservation: ', reservation);
+			try {
+				// console.log('check, if event doc exists');
+				if (await eventExists(eventDocName)) {
+					// console.log('  result: event doc EXISTS');
+					// console.log('UPDATE information in event doc with the new reservation');
+					await updateDoc(doc(antreprizaDB, COLLECTION_TICKETS, eventDocName), {
+						reservations: arrayUnion(reservation),
+					});
+				} else {
+					// console.log('  result: event doc NOT exists');
+					// console.log('CREATE new event doc with the reservation');
+					await setDoc(doc(antreprizaDB, COLLECTION_TICKETS, eventDocName), {
+						reservations: arrayUnion(reservation),
+						play_sid: event.play_sid,
+						stage_sid: event.stage_sid,
+						date: event.date,
+						time: event.time,
+					});
+				}
+			} catch (error) {
+				console.error(error);
 			}
 		}
 	}
