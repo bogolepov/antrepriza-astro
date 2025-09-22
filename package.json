@@ -35,8 +35,13 @@
 		"zod": "^3.25.76"
 	},
 	"devDependencies": {
+		"@semantic-release/changelog": "github:semantic-release/changelog",
+		"@semantic-release/git": "github:semantic-release/git",
+		"@semantic-release/github": "github:semantic-release/github",
+		"@semantic-release/npm": "github:semantic-release/npm",
 		"@types/nodemailer": "^6.4.17",
 		"prettier": "^3.4.2",
-		"prettier-plugin-astro": "^0.14.1"
+		"prettier-plugin-astro": "^0.14.1",
+		"semantic-release": "^24.2.9"
 	}
 }
