@@ -1,3 +1,15 @@
+# [1.1.0](https://github.com/bogolepov/antrepriza-astro/compare/v1.0.0...v1.1.0) (2025-09-25)
+
+
+### Bug Fixes
+
+* Description to the play sss added ([28b469e](https://github.com/bogolepov/antrepriza-astro/commit/28b469ef626ea68785b54a65f2ceb82f4caf0406))
+
+
+### Features
+
+* Photos to the play sss gallery added ([f4f0563](https://github.com/bogolepov/antrepriza-astro/commit/f4f0563f58109205d2f5146bfbd9615b8fccb54e))
+
 # 1.0.0 (2025-09-22)
 
 
