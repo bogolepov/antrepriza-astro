@@ -423,7 +423,7 @@
 		{
 			"id": 140,
 			"suffix": "dv",
-			"photo": "no-photo.jpg",
+			"photo": "dv.jpg",
 			"gender": "f",
 			"name": { "ru": "Дарья", "de": "Daria" },
 			"surname": { "ru": "Варгун", "de": "Wargun" }
@@ -431,7 +431,7 @@
 		{
 			"id": 141,
 			"suffix": "gv",
-			"photo": "no-photo.jpg",
+			"photo": "gv.jpg",
 			"gender": "m",
 			"name": { "ru": "Григорий", "de": "Gregory" },
 			"surname": { "ru": "Варгун", "de": "Wargun" }
