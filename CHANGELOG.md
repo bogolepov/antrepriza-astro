@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/bogolepov/antrepriza-astro/compare/v1.1.0...v1.2.0) (2025-09-29)
+
+
+### Features
+
+* Photos of two actors added and Program changed ([db1b8df](https://github.com/bogolepov/antrepriza-astro/commit/db1b8df7f24aa2662427d4780c7703eedaf42e9e))
+
 # [1.1.0](https://github.com/bogolepov/antrepriza-astro/compare/v1.0.0...v1.1.0) (2025-09-25)
 
 
