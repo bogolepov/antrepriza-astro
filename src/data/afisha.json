@@ -37,15 +37,6 @@
 		"prices": ["standart_21", "reduce_12"]
 	},
 	{
-		"date": "2025-11-28",
-		"time": "19:30",
-		"play_id": 11,
-		"play_sid": "eop",
-		"stage_sid": "west",
-		"free_place": true,
-		"prices": ["standart_21", "reduce_12"]
-	},
-	{
 		"date": "2025-10-19",
 		"time": "16:00",
 		"play_id": 10,
@@ -67,10 +58,11 @@
 	{
 		"date": "2025-10-17",
 		"time": "19:30",
-		"play_id": 11,
-		"play_sid": "eop",
+		"play_id": 12,
+		"play_sid": "sss",
 		"stage_sid": "west",
 		"free_place": true,
+		"premiere": true,
 		"prices": ["standart_21", "reduce_12"]
 	},
 	{
