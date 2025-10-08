@@ -111,8 +111,6 @@
 .carusel-play-image {
 	width: min-content;
 	height: 100%;
-	/* -webkit-transform: scaleX(-1);
-	transform: scaleX(-1); */
 }
 
 .carusel-picture {
@@ -133,16 +131,13 @@
 	filter: grayscale(20%);
 }
 
-/* --------------------------------------------------- */
-/* -------------------- block ------------------------ */
-/* --------------- carusel-play-info ----------------- */
-/* --------------------------------------------------- */
 .carusel-play-info {
 	position: absolute;
 	top: 0;
 	left: max(-50px, min(-5px, -4.2vw));
 	right: 0;
 	height: 100%;
+	font-size: clamp(max(11px, 0.85rem), min(3.5vh, 3.5vw), 1.5rem);
 
 	display: flex;
 	flex-direction: column;
@@ -152,7 +147,6 @@
 .carusel-play-info-premiere {
 	justify-self: flex-start;
 	width: min-content;
-	font-size: clamp(13px, min(3.5vh, 5vw), 24px);
 	font-weight: 900;
 	color: var(--colorPremiereFontMainGallery);
 	text-transform: uppercase;
@@ -167,7 +161,7 @@
 	width: min-content;
 	flex-wrap: wrap;
 	color: var(--colorSmallFontMainGallery);
-	font-size: clamp(14px, min(7vh, 10vw), 56px);
+	font-size: 2.4em;
 	line-height: 1.15em;
 	letter-spacing: 0.05em;
 	font-weight: 900;
@@ -178,43 +172,25 @@
 .carusel-play-details {
 	color: var(--colorSmallFontMainGallery);
 	flex-wrap: wrap;
-	font-size: clamp(13px, min(3.5vh, 5vw), 24px);
 	line-height: 1.2em;
 	letter-spacing: 0.05em;
 	font-weight: var(--font-bold-weight);
 	padding-bottom: clamp(8px, min(3.5vh, 5vw), 25px);
 }
 
-/* --------------------------------------------------- */
-/* ---------------- HOVER animation ------------------ */
-/* ------------------- for card ---------------------- */
-/* --------------------------------------------------- */
 .carusel-play-card {
-	/* --rotate-x: -45deg;
-	--rotate-y: -45deg;
-	perspective: 500px;
-	transform-style: preserve-3d; */
 	transition: transform 1000ms ease;
 }
 
 @media (hover: hover) {
 	.carusel-play-card:hover {
-		/* transform: scale3d(1.05, 1.05, 10); */
 		transform: scale(1.05, 1.05);
 	}
 }
 
-/* .carusel-play-image:hover {
-	transform: rotateX(var(--rotate-x)) rotateY(var(--rotate-y));
-} */
-
 .carusel-play-title {
 	transform: translate3d(0, 0, 80px);
 }
-
-/* .carusel-play-title:hover {
-	transform: rotateX(var(--rotate-x)) rotateY(var(--rotate-y));
-} */
 
 .carusel-play-info-premiere,
 .carusel-play-details {

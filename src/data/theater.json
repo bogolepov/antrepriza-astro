@@ -435,6 +435,38 @@
 			"gender": "m",
 			"name": { "ru": "Григорий", "de": "Gregory" },
 			"surname": { "ru": "Варгун", "de": "Wargun" }
+		},
+		{
+			"id": 142,
+			"suffix": "",
+			"photo": "no-photo.jpg",
+			"gender": "m",
+			"name": { "ru": "Юрий", "de": "Yuri" },
+			"surname": { "ru": "Разорёнов", "de": "Razorenov" }
+		},
+		{
+			"id": 143,
+			"suffix": "",
+			"photo": "no-photo.jpg",
+			"gender": "f",
+			"name": { "ru": "Диана", "de": "Diana" },
+			"surname": { "ru": "Казакова", "de": "Kazakova" }
+		},
+		{
+			"id": 144,
+			"suffix": "",
+			"photo": "no-photo.jpg",
+			"gender": "f",
+			"name": { "ru": "Ярослава", "de": "Yaroslava" },
+			"surname": { "ru": "Левченко", "de": "Levchenko" }
+		},
+		{
+			"id": 145,
+			"suffix": "",
+			"photo": "no-photo.jpg",
+			"gender": "m",
+			"name": { "ru": "Дмитрий", "de": "Dmitriy" },
+			"surname": { "ru": "Кречетов", "de": "Krechetov" }
 		}
 	],
 	"ex_people": [
