@@ -1,5 +1,92 @@
 [
 	{
+		"id": 13,
+		"suffix": "zzd",
+		"title": { "ru": "За закрытыми дверями", "de": "Geschlossene Gesellschaft" },
+		"alt_title": { "ru": "За\u00A0закрытыми дверями", "de": "Geschlossene Gesellschaft" },
+		"author": { "ru": "Ж.Сартр", "de": "JP. Sartre" },
+		"author_full": { "ru": "Жан-Поль Сартр", "de": "Jean-Paul Sartre" },
+		"genre": { "ru": "психологическая драма", "de": "Drama" },
+		"length": 115,
+		"break": true,
+		"age": "16+",
+		"description": { "ru": "play_zzd_ru", "de": "play_zzd_de" },
+		"posters": {
+			"landscape": "zzd.jpg",
+			"landscape_16_9": "zzd_16_9.jpg",
+			"portrait": "zzd_poster.jpg",
+			"facebook": "fb_zzd.jpg",
+			"pub_kontra": "kontra_zzd.webp",
+			"minimum": ""
+		},
+		"lang": { "ru": "русский", "de": "Russisch" },
+		"lang_id": "ru",
+		"url_kontramarka": "https://www.kontramarka.de/tour/teatr-antrepriza-spektakl-za-zakrytymi-dveryami/",
+		"characters": [
+			{
+				"id": 1,
+				"name": { "ru": "Жозеф Гарсен", "de": "Maja Michailowna" },
+				"description": {
+					"ru": "журналист, сбежавший от войны и своей трусости",
+					"de": "ein Journalist, der vor dem Krieg und seiner eigenen Feigheit floh"
+				},
+				"actors": [142]
+			},
+			{
+				"id": 2,
+				"name": { "ru": "Инес Серрано", "de": "Sklerose" },
+				"description": {
+					"ru": "служащая почты, чья прямота и жестокость становятся орудием пытки",
+					"de": "eine Postangestellte, deren Direktheit und Grausamkeit zu einem Folterinstrument werden"
+				},
+				"actors": [143]
+			},
+			{
+				"id": 3,
+				"name": { "ru": "Эстель Риго", "de": "Roma Oskin" },
+				"description": {
+					"ru": "светская дама, скрывающая за своей элегантностью страшные поступки",
+					"de": "eine gesellschaftliche Dame, die hinter ihrer Eleganz schreckliche Taten verbirgt"
+				},
+				"actors": [144]
+			},
+			{
+				"id": 4,
+				"name": { "ru": "Коридорный", "de": "Archil Mikeltadze" },
+				"description": {
+					"ru": "равнодушный слуга, исполняющий формальности ада",
+					"de": "ein gleichgültiger Diener, der die Formalitäten der Hölle erfüllt"
+				},
+				"actors": [145]
+			}
+		],
+		"creators": [
+			{ "type": "regie", "people": [110] },
+			{ "type": "light", "people": [9] },
+			{ "type": "sound", "people": [9] },
+			{ "type": "graphic_design", "people": [] },
+			{ "type": "photographer", "people": [] },
+			{ "type": "costumes", "people": [] },
+			{ "type": "stage_setup", "people": [] }
+		],
+		"seo": {
+			"description": {
+				"ru": "По пьесе Жан-Поль Сартра «За закрытыми дверями». Психологическая драма, 16+. На русском языке.",
+				"de": "Basierend auf dem Stück von Jean-Paul Sartre „Geschlossene Gesellschaft“. Drama, 16+. Auf Russisch."
+			},
+			"open_graph": {
+				"image": { "url": "zzd_1200t.jpg", "type": "image/png" }
+			},
+			"event": {
+				"images": [
+					{ "format": "19_6", "url": "zzd_fb_19_6_1920.jpg" },
+					{ "format": "3_4", "url": "zzd_kontra_1920.jpg" },
+					{ "format": "3_4_1050", "url": "zzd_kontra_1050.webp" }
+				]
+			}
+		}
+	},
+	{
 		"id": 12,
 		"suffix": "sss",
 		"title": { "ru": "Селфи со Склерозом", "de": "Selfie mit Sklerose" },
@@ -21,7 +108,7 @@
 		},
 		"lang": { "ru": "русский", "de": "Russisch" },
 		"lang_id": "ru",
-		"url_kontramarka": "https://www.kontramarka.de/tour/teatr-antrepriza-spektakl-evangelie-ot-pilata/",
+		"url_kontramarka": "https://www.kontramarka.de/tour/teatr-antrepriza-spektakl-selfi-so-sklerozom/",
 		"characters": [
 			{ "id": 1, "name": { "ru": "Майя Михайловна", "de": "Maja Michailowna" }, "actors": [140] },
 			{ "id": 2, "name": { "ru": "Склероз", "de": "Sklerose" }, "actors": [141] },
@@ -49,8 +136,8 @@
 			"event": {
 				"images": [
 					{ "format": "19_6", "url": "soon_1920.jpg" },
-					{ "format": "3_4", "url": "afisha_sss_1920.jpg" },
-					{ "format": "3_4_1050", "url": "afisha_sss_1050.webp" }
+					{ "format": "3_4", "url": "sss_afisha_1920.jpg" },
+					{ "format": "3_4_1050", "url": "sss_afisha_1050.webp" }
 				]
 			}
 		}
@@ -101,9 +188,9 @@
 			},
 			"event": {
 				"images": [
-					{ "format": "19_6", "url": "eop_soon_1920t.jpg" },
-					{ "format": "3_4", "url": "kontra_eop_1920t.jpg" },
-					{ "format": "3_4_1050", "url": "kontra_eop_1050t.webp" }
+					{ "format": "19_6", "url": "eop_fb_19_6_1920.jpg" },
+					{ "format": "3_4", "url": "eop_kontra_1920.jpg" },
+					{ "format": "3_4_1050", "url": "eop_kontra_1050.webp" }
 				]
 			}
 		}
@@ -194,9 +281,9 @@
 			},
 			"event": {
 				"images": [
-					{ "format": "19_6", "url": "kd_1920t.jpg" },
-					{ "format": "3_4", "url": "afisha_kd_1920t.jpg" },
-					{ "format": "3_4_1050", "url": "afisha_kd_1050t.webp" }
+					{ "format": "19_6", "url": "kd_fb_16_9_1920.jpg" },
+					{ "format": "3_4", "url": "kd_afisha_1920.jpg" },
+					{ "format": "3_4_1050", "url": "kd_afisha_1050.webp" }
 				]
 			}
 		}
@@ -275,9 +362,9 @@
 			},
 			"event": {
 				"images": [
-					{ "format": "19_6", "url": "n32_1920t.jpg" },
-					{ "format": "3_4", "url": "kontra_n32_1920t.jpg" },
-					{ "format": "3_4_1050", "url": "kontra_n32_1050t.webp" }
+					{ "format": "19_6", "url": "n32_fb_19_6_1920.jpg" },
+					{ "format": "3_4", "url": "n32_kontra_1920.jpg" },
+					{ "format": "3_4_1050", "url": "n32_kontra_1050.webp" }
 				]
 			}
 		}
@@ -372,9 +459,9 @@
 			},
 			"event": {
 				"images": [
-					{ "format": "19_6", "url": "miks_1920t.jpg" },
-					{ "format": "3_4", "url": "kontra_miks_1920t.jpg" },
-					{ "format": "3_4_1050", "url": "kontra_miks_1050t.webp" }
+					{ "format": "19_6", "url": "miks_fb_19_6_1920.jpg" },
+					{ "format": "3_4", "url": "miks_kontra_1920.jpg" },
+					{ "format": "3_4_1050", "url": "miks_kontra_1050.webp" }
 				]
 			}
 		}
@@ -443,9 +530,9 @@
 			},
 			"event": {
 				"images": [
-					{ "format": "19_6", "url": "mik_1920t.jpg" },
-					{ "format": "3_4", "url": "kontra_mik_1920t.jpg" },
-					{ "format": "3_4_1050", "url": "kontra_mik_1050t.webp" }
+					{ "format": "19_6", "url": "mik_fb_19_6_1920.jpg" },
+					{ "format": "3_4", "url": "mik_kontra_1920.jpg" },
+					{ "format": "3_4_1050", "url": "mik_kontra_1050.webp" }
 				]
 			}
 		}
@@ -515,9 +602,9 @@
 			},
 			"event": {
 				"images": [
-					{ "format": "19_6", "url": "op_1920t.jpg" },
-					{ "format": "3_4", "url": "kontra_op_1920t.jpg" },
-					{ "format": "3_4_1050", "url": "kontra_op_1050t.webp" }
+					{ "format": "19_6", "url": "op_fb_19_6_1920.jpg" },
+					{ "format": "3_4", "url": "op_kontra_1920.jpg" },
+					{ "format": "3_4_1050", "url": "op_kontra_1050.webp" }
 				]
 			}
 		}
@@ -614,9 +701,9 @@
 			},
 			"event": {
 				"images": [
-					{ "format": "19_6", "url": "dk_1920t.jpg" },
-					{ "format": "3_4", "url": "kontra_dk_1920t.jpg" },
-					{ "format": "3_4_1050", "url": "kontra_dk_1050t.webp" }
+					{ "format": "19_6", "url": "dk_fb_19_6_1920.jpg" },
+					{ "format": "3_4", "url": "dk_kontra_1920.jpg" },
+					{ "format": "3_4_1050", "url": "dk_kontra_1050.webp" }
 				]
 			}
 		}
@@ -813,9 +900,9 @@
 			},
 			"event": {
 				"images": [
-					{ "format": "19_6", "url": "ts_1920wt.jpg" },
-					{ "format": "3_4", "url": "kontra_ts_1920t.jpg" },
-					{ "format": "3_4_1050", "url": "kontra_ts_1050t.webp" }
+					{ "format": "19_6", "url": "ts_fb_19_6_1920.jpg" },
+					{ "format": "3_4", "url": "ts_kontra_1920.jpg" },
+					{ "format": "3_4_1050", "url": "ts_kontra_1050.webp" }
 				]
 			}
 		}
