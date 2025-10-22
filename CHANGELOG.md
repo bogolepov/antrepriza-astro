@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/bogolepov/antrepriza-astro/compare/v1.2.0...v1.2.1) (2025-10-22)
+
+
+### Bug Fixes
+
+*  Program updated ([56cc305](https://github.com/bogolepov/antrepriza-astro/commit/56cc305656e42f5d3437fa91ecfa167add9c5988))
+
 # [1.2.0](https://github.com/bogolepov/antrepriza-astro/compare/v1.1.0...v1.2.0) (2025-09-29)
 
 
