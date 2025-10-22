@@ -28,12 +28,11 @@
 	},
 	{
 		"date": "2025-11-29",
-		"time": "19:30",
-		"play_id": 12,
-		"play_sid": "sss",
+		"time": "16:00",
+		"play_id": 6,
+		"play_sid": "mik",
 		"stage_sid": "west",
 		"free_place": true,
-		"premiere": true,
 		"prices": ["standart_21", "reduce_12"]
 	},
 	{
