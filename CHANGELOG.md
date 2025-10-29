@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/bogolepov/antrepriza-astro/compare/v1.2.1...v1.3.0) (2025-10-29)
+
+
+### Features
+
+* 2 plays added (descriptions, pages, pictures etc); program updated ([149f5e0](https://github.com/bogolepov/antrepriza-astro/commit/149f5e0e1dbf5c30299455815f0193e8856b30af))
+
 ## [1.2.1](https://github.com/bogolepov/antrepriza-astro/compare/v1.2.0...v1.2.1) (2025-10-22)
 
 
