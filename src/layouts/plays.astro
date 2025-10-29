@@ -13,7 +13,7 @@ import { Picture } from 'astro:assets';
 
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/posters/landscape/*.{jpeg,jpg}');
 
-const PLAYS_ORDER = ['sss', 'zzd', 'eop', 'n32', 'ts', 'dk', 'miks', 'op', 'pip', 'mik', 'kd'];
+const PLAYS_ORDER = ['ngupb', 'mp', 'sss', 'zzd', 'eop', 'n32', 'ts', 'dk', 'miks', 'op', 'pip', 'mik', 'kd'];
 
 // plays.sort((play1, play2) => play1.alt_title[lang].toLowerCase().localeCompare(play2.alt_title[lang].toLowerCase(), lang));
 program.sort((play1, play2) => Date.parse(play1.date + 'T' + play1.time) - Date.parse(play2.date + 'T' + play2.time));
@@ -29,6 +29,7 @@ let actualProgram = program.filter(performance => Date.parse(performance.date) >
 				let play = plays.find(item => item.suffix === play_sid);
 				let performs = actualProgram.filter(performance => performance.play_sid === play.suffix);
 				let isPremiere = performs && performs.length > 0 && performs.find(item => item.premiere);
+				let isNewYear = performs && performs.length > 0 && performs.find(item => item.newyear);
 				return (
 					<li class='play-block hover-block hover-background'>
 						<div class='play-block-image'>
@@ -47,6 +48,7 @@ let actualProgram = program.filter(performance => Date.parse(performance.date) >
 						<div class='play-block-info'>
 							<div class='play-info-name'>
 								{isPremiere && <div class='play-property-hot-notice'>{dictionary.premiere[lang]}</div>}
+								{isNewYear && <div class='play-property-hot-notice'>{dictionary.newyear[lang]}</div>}
 								<a class='stretch-link' href={`/${lang}/plays/${play.suffix}/`}>
 									<h3 class='play-title'>{play.alt_title[lang]}</h3>
 								</a>

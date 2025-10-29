@@ -1,0 +1,5 @@
+<p><i>„Der kleine Prinz“</i> ist eine poetische Parabel von Antoine de Saint-Exupéry über Kindheit, Liebe, Freundschaft und Verantwortung.</p>
+<p>Die Geschichte erzählt von einem Piloten, der in der Wüste notlandet und dort einem geheimnisvollen Jungen begegnet, der von einem fernen Planeten kommt. Auf seiner Reise entdeckt der kleine Prinz die Welt der Erwachsenen – Menschen, die mit Eitelkeit, Macht und Reichtum beschäftigt sind und vergessen haben, was wirklich zählt.
+Auf der Erde erfährt er das Geheimnis des Herzens, als er der Füchsin begegnet, die ihn eine große Wahrheit lehrt:
+<i>„Man sieht nur mit dem Herzen gut. Das Wesentliche ist für die Augen unsichtbar.“</i></p>
+<p>Durch einfache Bilder und Metaphern spricht Saint-Exupéry über die tiefsten menschlichen Gefühle – über Liebe, Treue und die Verantwortung für die, die man sich vertraut gemacht hat. Es ist eine Geschichte über die Reinheit der Seele, die Erwachsene oft verlieren, und über die Suche nach dem Sinn des Lebens, den nur das Herz eines Kindes wirklich versteht.</p>
