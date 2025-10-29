@@ -148,6 +148,8 @@ section.play {
 }
 
 .list-item {
+	--column-gap: 0.37em;
+
 	display: flex;
 	flex-direction: row;
 	width: 100%;
@@ -162,14 +164,14 @@ section.play {
 .list-item-left {
 	width: 50%;
 	text-align: end;
-	padding-right: 5px;
+	padding-right: var(--column-gap);
 	color: var(--colorFont-Op0);
 }
 
 .list-item-right {
 	width: 50%;
 	text-align: start;
-	padding-left: 5px;
+	padding-left: var(--column-gap);
 }
 
 .person-link {

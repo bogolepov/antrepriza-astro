@@ -18,16 +18,57 @@
 		"prices": ["standart_21", "reduce_12"]
 	},
 	{
-		"date": "2025-11-30",
-		"time": "16:00",
-		"play_id": 6,
-		"play_sid": "mik",
+		"date": "2025-12-14",
+		"time": "17:00",
+		"play_id": 14,
+		"play_sid": "mp",
 		"stage_sid": "west",
 		"free_place": true,
+		"premiere": true,
 		"prices": ["standart_21", "reduce_12"]
 	},
 	{
-		"date": "2025-11-29",
+		"date": "2025-12-14",
+		"time": "14:00",
+		"play_id": 15,
+		"play_sid": "ngupb",
+		"stage_sid": "west",
+		"free_place": true,
+		"newyear": true,
+		"prices": ["standart_21", "reduce_12"]
+	},
+	{
+		"date": "2025-12-14",
+		"time": "11:00",
+		"play_id": 15,
+		"play_sid": "ngupb",
+		"stage_sid": "west",
+		"free_place": true,
+		"newyear": true,
+		"prices": ["standart_21", "reduce_12"]
+	},
+	{
+		"date": "2025-12-13",
+		"time": "14:00",
+		"play_id": 15,
+		"play_sid": "ngupb",
+		"stage_sid": "west",
+		"free_place": true,
+		"newyear": true,
+		"prices": ["standart_21", "reduce_12"]
+	},
+	{
+		"date": "2025-12-13",
+		"time": "11:00",
+		"play_id": 15,
+		"play_sid": "ngupb",
+		"stage_sid": "west",
+		"free_place": true,
+		"newyear": true,
+		"prices": ["standart_21", "reduce_12"]
+	},
+	{
+		"date": "2025-11-30",
 		"time": "16:00",
 		"play_id": 6,
 		"play_sid": "mik",

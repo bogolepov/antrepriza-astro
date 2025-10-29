@@ -222,6 +222,23 @@
 			"jobs": ["photographer"]
 		},
 		{
+			"id": 11,
+			"photo": "no-photo.jpg",
+			"gender": "m",
+			"name": { "ru": "Василий", "de": "Vasiliy" },
+			"surname": { "ru": "Марченко", "de": "Marchenko" },
+			"jobs": ["job_sound"]
+		},
+		{
+			"id": 12,
+			"photo": "no-photo.jpg",
+			"suffix": "alal",
+			"gender": "f",
+			"name": { "ru": "Алина", "de": "Alina" },
+			"surname": { "ru": "Алексеева", "de": "Alekseeva" },
+			"jobs": ["job_regisseur"]
+		},
+		{
 			"id": 100,
 			"suffix": "sl",
 			"photo": "sl.jpg",
@@ -467,6 +484,70 @@
 			"gender": "m",
 			"name": { "ru": "Дмитрий", "de": "Dmitriy" },
 			"surname": { "ru": "Кречетов", "de": "Krechetov" }
+		},
+		{
+			"id": 146,
+			"suffix": "",
+			"photo": "no-photo.jpg",
+			"gender": "f",
+			"name": { "ru": "Мария", "de": "Maria" },
+			"surname": { "ru": "Мартыненко", "de": "Martynenko" }
+		},
+		{
+			"id": 147,
+			"suffix": "",
+			"photo": "no-photo.jpg",
+			"gender": "f",
+			"name": { "ru": "Елена", "de": "Elena" },
+			"surname": { "ru": "Богоутдинова", "de": "Bogoutdinova" }
+		},
+		{
+			"id": 148,
+			"suffix": "",
+			"photo": "no-photo.jpg",
+			"gender": "f",
+			"name": { "ru": "Елена", "de": "Elena" },
+			"surname": { "ru": "Кипнис", "de": "Kipnis" }
+		},
+		{
+			"id": 149,
+			"suffix": "",
+			"photo": "no-photo.jpg",
+			"gender": "f",
+			"name": { "ru": "Анна", "de": "Anna" },
+			"surname": { "ru": "Мискес-Петренко", "de": "Miskes-Petrenko" }
+		},
+		{
+			"id": 150,
+			"suffix": "",
+			"photo": "no-photo.jpg",
+			"gender": "f",
+			"name": { "ru": "Ярослава", "de": "Yaroslava" },
+			"surname": { "ru": "Тимошенко", "de": "Timoshenko" }
+		},
+		{
+			"id": 151,
+			"suffix": "",
+			"photo": "no-photo.jpg",
+			"gender": "f",
+			"name": { "ru": "Татьяна", "de": "Tatyana" },
+			"surname": { "ru": "Кичкина", "de": "Kichkina" }
+		},
+		{
+			"id": 152,
+			"suffix": "",
+			"photo": "no-photo.jpg",
+			"gender": "m",
+			"name": { "ru": "Евгений", "de": "Evgeny" },
+			"surname": { "ru": "Лель", "de": "Lel" }
+		},
+		{
+			"id": 153,
+			"suffix": "",
+			"photo": "no-photo.jpg",
+			"gender": "f",
+			"name": { "ru": "Ева", "de": "Eva" },
+			"surname": { "ru": "Шаламова", "de": "Shalamova" }
 		}
 	],
 	"ex_people": [

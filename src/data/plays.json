@@ -1,5 +1,173 @@
 [
 	{
+		"id": 15,
+		"suffix": "ngupb",
+		"title": { "ru": "Новый год у поганых болот", "de": "Silvester bei den fauligen Sümpfen" },
+		"alt_title": {
+			"ru": "Новый\u00A0год у\u00A0поганых\u00A0болот",
+			"de": "Silvester\u00A0bei den\u00A0fauligen\u00A0Sümpfen"
+		},
+		"author": { "ru": "К.Фролов", "de": "K.Frolov" },
+		"author_full": { "ru": "Константин Фролов", "de": "Konstantin Frolov" },
+		"genre": { "ru": "волшебная сказка с чудесами", "de": "zauberhaftes Märchen mit Wundern" },
+		"length": 55,
+		"break": false,
+		"age": "3+",
+		"description": { "ru": "play_ngupb_ru", "de": "play_ngupb_de" },
+		"posters": {
+			"landscape": "ngupb.jpg",
+			"landscape_16_9": "ngupb_16_9.jpg",
+			"portrait": "ngupb_poster.jpg",
+			"facebook": "fb_ngupb.jpg",
+			"pub_kontra": "kontra_ngupb.webp",
+			"minimum": ""
+		},
+		"lang": { "ru": "русский", "de": "Russisch" },
+		"lang_id": "ru",
+		"url_kontramarka": "https://www.kontramarka.de/tour/teatr-antrepriza-novyy-god-u-poganyh-bolot/",
+		"characters": [
+			{
+				"id": 1,
+				"name": { "ru": "Леший", "de": " Waldgeist Leshi" },
+				"actors": [103]
+			},
+			{
+				"id": 2,
+				"name": { "ru": "Кикимора", "de": "Kikimora" },
+				"actors": [147, 132]
+			},
+			{
+				"id": 3,
+				"name": { "ru": "Разбойница", "de": "Räuberin" },
+				"actors": [148, 149]
+			},
+			{
+				"id": 4,
+				"name": { "ru": "Ворона", "de": "Krähe" },
+				"actors": [150, 151]
+			},
+			{
+				"id": 5,
+				"name": { "ru": "Водяной", "de": "Wassermann" },
+				"actors": [119, 152]
+			},
+			{
+				"id": 6,
+				"name": { "ru": "Зайчиха", "de": "Häsin" },
+				"actors": [138, 153]
+			}
+		],
+		"creators": [
+			{ "type": "regie", "people": [12] },
+			{ "type": "light", "people": [9] },
+			{ "type": "sound", "people": [9] },
+			{ "type": "graphic_design", "people": [] },
+			{ "type": "photographer", "people": [] },
+			{ "type": "costumes", "people": [] },
+			{ "type": "stage_setup", "people": [] }
+		],
+		"seo": {
+			"description": {
+				"ru": "По одноименной сказке Константина Фролова «Новый год у поганых болот». Волшебная сказка с чудесами, 3+. На русском языке.",
+				"de": "Basierend auf dem gleichnamigen Märchen von Konstantin Frolov „Silvester bei den fauligen Sümpfen“. Zauberhaftes Märchen mit Wundern, 3+. Auf Russisch."
+			},
+			"open_graph": {
+				"image": { "url": "ngupb_1200t.png", "type": "image/png" }
+			},
+			"event": {
+				"images": [
+					{ "format": "19_6", "url": "ngupb_fb_19_6_1920.jpg" },
+					{ "format": "3_4", "url": "ngupb_kontra_1920.jpg" },
+					{ "format": "3_4_1050", "url": "ngupb_kontra_1050.webp" }
+				]
+			}
+		}
+	},
+	{
+		"id": 14,
+		"suffix": "mp",
+		"title": { "ru": "Маленький принц", "de": "Der kleine Prinz" },
+		"alt_title": { "ru": "Маленький принц", "de": "Der\u00A0kleine Prinz" },
+		"author": { "ru": "А.Сент-Экзюпери", "de": "A.Saint-Exupéry" },
+		"author_full": { "ru": "Антуан де Сент-Экзюпери", "de": "Antoine de Saint-Exupéry" },
+		"genre": { "ru": "сказка для детей и взрослых", "de": "Märchen für Kinder und Erwachsene" },
+		"length": 55,
+		"break": false,
+		"age": "5+",
+		"description": { "ru": "play_mp_ru", "de": "play_mp_de" },
+		"posters": {
+			"landscape": "mp.jpg",
+			"landscape_16_9": "mp_16_9.jpg",
+			"portrait": "mp_poster.jpg",
+			"facebook": "fb_mp.jpg",
+			"pub_kontra": "kontra_mp.webp",
+			"minimum": ""
+		},
+		"lang": { "ru": "русский", "de": "Russisch" },
+		"lang_id": "ru",
+		"url_kontramarka": "https://www.kontramarka.de/tour/teatr-antrepriza-spektakl-malenkiy-princ/",
+		"characters": [
+			{
+				"id": 1,
+				"name": { "ru": "Маленький принц", "de": "Kleiner Prinz" },
+				"actors": [144]
+			},
+			{
+				"id": 2,
+				"name": { "ru": "Лётчик", "de": "Flieger" },
+				"actors": [142]
+			},
+			{
+				"id": 3,
+				"name": { "ru": "Лиса", "de": "Füchsin" },
+				"actors": [146]
+			},
+			{
+				"id": 4,
+				"name": {
+					"ru": "Роза, Змея, Деловой человек, Фонарщик",
+					"de": "Rose, Schlange, Geschäftsmann, Laternenanzünder"
+				},
+				"actors": [143]
+			},
+			{
+				"id": 5,
+				"name": {
+					"ru": "Король, Географ, Человек с телефоном",
+					"de": "König, Geograf, Mensch mit Telefon"
+				},
+				"actors": [145]
+			}
+		],
+		"creators": [
+			{ "type": "regie", "people": [110] },
+			{ "type": "job_scriptwriter", "people": [142] },
+			{ "type": "job_sound", "people": [11] },
+			{ "type": "light", "people": [9] },
+			{ "type": "sound", "people": [9] },
+			{ "type": "costumes", "people": [144] },
+			{ "type": "graphic_design", "people": [] },
+			{ "type": "photographer", "people": [] },
+			{ "type": "stage_setup", "people": [] }
+		],
+		"seo": {
+			"description": {
+				"ru": "По повести Антуана де Сент-Экзюпери «Маленький принц». Сказка для детей и взрослых, 5+. На русском языке.",
+				"de": "Basierend auf der Erzählung von Antoine de Saint-Exupéry „Der kleine Prinz“. Märchen für Kinder und Erwachsene, 5+. Auf Russisch."
+			},
+			"open_graph": {
+				"image": { "url": "mp_1200t.png", "type": "image/png" }
+			},
+			"event": {
+				"images": [
+					{ "format": "19_6", "url": "mp_fb_19_6_1920.jpg" },
+					{ "format": "3_4", "url": "mp_kontra_1920.jpg" },
+					{ "format": "3_4_1050", "url": "mp_kontra_1050.webp" }
+				]
+			}
+		}
+	},
+	{
 		"id": 13,
 		"suffix": "zzd",
 		"title": { "ru": "За закрытыми дверями", "de": "Geschlossene Gesellschaft" },

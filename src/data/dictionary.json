@@ -71,6 +71,7 @@
 	"actress": { "ru": "Актриса", "de": "Schauspielerin" },
 	"job_regisseur": { "ru": "Режиссер", "de": "Regisseur" },
 	"job_producer": { "ru": "Продюсер", "de": "Produzent" },
+	"job_scriptwriter": { "ru": "Сценарист", "de": "Drehbuchautor" },
 	"job_light": { "ru": "Художник по свету", "de": "Lichttechniker" },
 	"job_sound": { "ru": "Звукорежиссер", "de": "Tonregisseur" },
 	"job_administrator": { "ru": "Администратор", "de": "Verwalter" },
