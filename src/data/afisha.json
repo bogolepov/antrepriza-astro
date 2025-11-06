@@ -84,6 +84,7 @@
 		"stage_sid": "west",
 		"free_place": true,
 		"premiere": true,
+		"sold_out": true,
 		"prices": ["standart_21", "reduce_12"]
 	},
 	{
