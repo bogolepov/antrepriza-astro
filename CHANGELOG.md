@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/bogolepov/antrepriza-astro/compare/v1.3.0...v1.4.0) (2025-11-14)
+
+
+### Features
+
+* Program is updated, a new actress is added ([13cddd9](https://github.com/bogolepov/antrepriza-astro/commit/13cddd9817b48315399c16a0319a94ea5144075c))
+
 # [1.3.0](https://github.com/bogolepov/antrepriza-astro/compare/v1.2.1...v1.3.0) (2025-10-29)
 
 
