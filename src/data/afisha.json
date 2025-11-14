@@ -1,5 +1,32 @@
 [
 	{
+		"date": "2026-02-22",
+		"time": "16:00",
+		"play_id": 6,
+		"play_sid": "mik",
+		"stage_sid": "west",
+		"free_place": true,
+		"prices": ["standart_21", "reduce_12"]
+	},
+	{
+		"date": "2026-02-21",
+		"time": "19:30",
+		"play_id": 13,
+		"play_sid": "zzd",
+		"stage_sid": "west",
+		"free_place": true,
+		"prices": ["standart_24_5", "reduce_12"]
+	},
+	{
+		"date": "2026-02-21",
+		"time": "16:00",
+		"play_id": 14,
+		"play_sid": "mp",
+		"stage_sid": "west",
+		"free_place": true,
+		"prices": ["standart_21", "reduce_12"]
+	},
+	{
 		"date": "2025-12-18",
 		"time": "19:30",
 		"play_id": 4,
@@ -76,6 +103,15 @@
 		"stage_sid": "west",
 		"free_place": true,
 		"sold_out": true,
+		"prices": ["standart_21", "reduce_12"]
+	},
+	{
+		"date": "2025-11-30",
+		"time": "14:00",
+		"play_id": 6,
+		"play_sid": "mik",
+		"stage_sid": "west",
+		"free_place": true,
 		"prices": ["standart_21", "reduce_12"]
 	},
 	{
