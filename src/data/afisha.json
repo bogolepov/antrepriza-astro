@@ -24,6 +24,7 @@
 		"play_sid": "suk",
 		"stage_sid": "west",
 		"free_place": true,
+		"premiere": true,
 		"prices": ["standart_21", "reduce_12"]
 	},
 	{

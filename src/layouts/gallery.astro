@@ -1,10 +1,12 @@
 ---
 const { lang } = Astro.props;
 
+import { getPlayName, needMarker } from '@scripts/play';
 import plays from '@data/plays.json';
 plays.sort((play1, play2) =>
-	play1.alt_title[lang].toLowerCase().localeCompare(play2.alt_title[lang].toLowerCase(), lang)
+	getPlayName(play1, lang).toLowerCase().localeCompare(getPlayName(play2, lang).toLowerCase(), lang)
 );
+
 
 import '@styles/gallery.css';
 import photos from '@data/plays_photos.json';
@@ -32,7 +34,7 @@ const facebookImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets
 							<div class='block-title'>
 								<h2>
 									<a href={`/${lang}/plays/${play.suffix}/`}>
-									{play.title[lang].toUpperCase()}{play.lang_marker && <sup> {play.lang_marker}</sup>}
+									{getPlayName(play, lang).toUpperCase()}{needMarker(play, lang) && <sup> {play.lang_marker}</sup>}
 									</a>
 								</h2>
 
@@ -104,7 +106,7 @@ const facebookImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets
 													'(max-width: 380px) 320px, (max-width: 540px) 460px, (max-width: 700px) 600px, (max-width: 830px) 720px, 900px'
 												}
 												quality='100'
-												alt={play.title[lang]}
+												alt={getPlayName(play, lang)}
 											/>
 										</div>
 									</div>

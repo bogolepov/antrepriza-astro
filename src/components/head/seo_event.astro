@@ -6,6 +6,7 @@ import program from '@data/afisha.json';
 import prices from '@data/prices.json';
 
 import { ONE_DAY } from '@scripts/consts';
+import { getPlayName, needMarker } from '@scripts/play';
 
 const { lang, play_sid, date, time, description } = Astro.props;
 
@@ -44,9 +45,9 @@ const schema = {
 		dictionary.play_word[lang] +
 		' ' +
 		dictionary.opening_quote[lang] +
-		play.title[lang] +
+		getPlayName(play, lang) +
 		dictionary.closing_quote[lang] +
-		(play.lang_marker ? ' [' + play.lang_marker + ']' : ''),
+		(needMarker(play, lang) ? ' [' + play.lang_marker + ']' : ''),
 	description: description,
 	startDate: date + 'T' + time,
 	endDate: date + 'T' + endTime,

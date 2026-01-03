@@ -8,6 +8,7 @@ import plays from '@data/plays.json';
 import dictionary from '@data/dictionary.json';
 import theater from '@data/theater.json';
 import program from '@data/afisha.json';
+import { getPlayName } from '@scripts/play';
 
 export const getStaticPaths = (() => {
 	const SID_FESTIVAL = 'festival';
@@ -33,7 +34,7 @@ export const getStaticPaths = (() => {
 				dictionary.play_word[lng.lang_code] +
 				' ' +
 				dictionary.opening_quote[lng.lang_code] +
-				play.title[lng.lang_code] +
+				getPlayName(play, lng.lang_code) +
 				dictionary.closing_quote[lng.lang_code] +
 				' [' +
 				strEventDate +

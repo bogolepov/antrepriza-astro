@@ -9,6 +9,7 @@ import theater from '@data/theater.json';
 import program from '@data/afisha.json';
 
 import { ONE_DAY } from '@scripts/consts';
+import { getPlayName, needMarker } from '@scripts/play';
 
 program.sort((play1, play2) => Date.parse(play1.date + 'T' + play1.time) - Date.parse(play2.date + 'T' + play2.time));
 let actualProgram = program.filter(performance => Date.parse(performance.date) + ONE_DAY >= Date.now());
@@ -110,8 +111,8 @@ let isFirstTab = true;
 										</div>
 										<div class='font-opacity1'>{event.time}</div>
 										<div>
-											{play.title[lang]}
-											{play.lang_marker && <sup>{play.lang_marker}</sup>}
+											{getPlayName(play, lang)}
+											{needMarker(play, lang) && <sup>{play.lang_marker}</sup>}
 										</div>
 									</a>
 								</li>

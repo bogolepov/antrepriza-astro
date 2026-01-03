@@ -10,6 +10,7 @@ import program from '@data/afisha.json';
 import prices from '@data/prices.json';
 
 import TicketBookButton from '@components/ticket_book_button.astro';
+import { getPlayName, needMarker } from '@scripts/play';
 
 let play = plays.find(item => item.suffix === play_sid);
 let event = program.find(item => item.play_sid === play_sid && item.date === date && item.time === time);
@@ -50,7 +51,7 @@ let image_url = play.posters.pub_kontra;
 						class='image-wrapper-landscape float ev-poster'
 						src={image_path + image_url}
 						loading='eager'
-						alt={play.title[lang]}
+						alt={getPlayName(play, lang)}
 						width='280px'
 					/>
 				</div>
@@ -71,7 +72,7 @@ let image_url = play.posters.pub_kontra;
 			}
 			<h2 class='ev-name'>
 				{dictionary.play_word[lang]}
-				{play.title[lang].toUpperCase()}{play.lang_marker && <sup> {play.lang_marker}</sup>}
+				{getPlayName(play, lang).toUpperCase()}{needMarker(play, lang) && <sup> {play.lang_marker}</sup>}
 			</h2>
 			<div class='ev-performer'>{performer}</div>
 			<div class:list={['ev-when', { canceled: event.canceled || event.replaced }]}>

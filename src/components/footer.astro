@@ -100,7 +100,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/partner
 				<div><a class='footer-text-link' href={`/${lang}/impressum/`}>{dictionary.impressum[lang]}</a></div>
 				<div><a class='footer-text-link' href={`/${lang}/privacy-policy/`}>{dictionary.privacy_policy[lang]}</a></div>
 			</div>
-			<div class='copyright-year font-opacity1 lh-1-1'>© 2025 {theater.longTheaterName[lang]}</div>
+			<div class='copyright-year font-opacity1 lh-1-1'>© {current_year} {theater.longTheaterName[lang]}</div>
 		</div>
 		<div class='footer-flex-item flex2'>
 			<div class='footer-partners'>

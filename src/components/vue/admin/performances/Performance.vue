@@ -6,6 +6,7 @@ import type { IExtendedPerformanceJson, IPlayJson, IStageJson } from '@scripts/a
 import theater from '@data/theater.json';
 import jsonPlays from '@data/plays.json';
 import { EPerformanceType } from '@scripts/types/base';
+import { getPlayName } from '@scripts/play';
 
 const stages: IStageJson[] = theater.stages;
 const plays: IPlayJson[] = jsonPlays;
@@ -25,7 +26,7 @@ if (currStage) {
 } else stageName = '-';
 
 let currPlay = plays.find(play => play.suffix === performance.play_sid);
-const playName = currPlay ? currPlay.title.ru : '';
+const playName = currPlay ? getPlayName(currPlay, 'ru') : '';
 
 let date = new Date('2024-01-01T' + performance.time);
 date.setMinutes(date.getMinutes() + currPlay.length);

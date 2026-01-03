@@ -14,9 +14,10 @@ import Toolbar from '@components/toolbar/toolbar.astro';
 import BurgerButton from './burger_button/burger_button.astro';
 
 import '@styles/header.css';
+import { getPlayAltName } from '@scripts/play';
 
 plays.sort((play1, play2) =>
-	play1.alt_title[lang].toLowerCase().localeCompare(play2.alt_title[lang].toLowerCase(), lang)
+	getPlayAltName(play1, lang).toLowerCase().localeCompare(getPlayAltName(play2, lang).toLowerCase(), lang)
 );
 
 const pathname: string = new URL(Astro.request.url).pathname;
