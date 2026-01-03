@@ -18,8 +18,7 @@ export const getStaticPaths = (() => {
 				dictionary.opening_quote[lng.lang_code] +
 				play.title[lng.lang_code] +
 				dictionary.closing_quote[lng.lang_code];
-			if (play.title_notice && play.title_notice[lng.lang_code])
-				aTitle = aTitle + ' [' + play.title_notice[lng.lang_code] + ']';
+			if (play.lang_marker) aTitle = aTitle + ' [' + play.lang_marker + ']';
 			return {
 				params: { lang: lng.lang_code, id_suffix: play.suffix },
 				props: { pageLang: lng.lang_code, pageTitle: aTitle, playSID: play.suffix },

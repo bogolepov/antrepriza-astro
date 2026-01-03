@@ -13,7 +13,7 @@ import { Picture } from 'astro:assets';
 
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/posters/landscape/*.{jpeg,jpg}');
 
-const PLAYS_ORDER = ['ngupb', 'mp', 'sss', 'zzd', 'eop', 'n32', 'ts', 'dk', 'miks', 'op', 'pip', 'mik', 'kd'];
+const PLAYS_ORDER = ['suk', 'ngupb', 'mp', 'sss', 'zzd', 'eop', 'n32', 'ts', 'dk', 'miks', 'op', 'pip', 'mik', 'kd'];
 
 // plays.sort((play1, play2) => play1.alt_title[lang].toLowerCase().localeCompare(play2.alt_title[lang].toLowerCase(), lang));
 program.sort((play1, play2) => Date.parse(play1.date + 'T' + play1.time) - Date.parse(play2.date + 'T' + play2.time));
@@ -50,7 +50,10 @@ let actualProgram = program.filter(performance => Date.parse(performance.date) >
 								{isPremiere && <div class='play-property-hot-notice'>{dictionary.premiere[lang]}</div>}
 								{isNewYear && <div class='play-property-hot-notice'>{dictionary.newyear[lang]}</div>}
 								<a class='stretch-link' href={`/${lang}/plays/${play.suffix}/`}>
-									<h3 class='play-title'>{play.alt_title[lang]}</h3>
+									<h3 class='play-title'>
+										{play.alt_title[lang]}&nbsp;
+										{play.lang_marker && <sup>{play.lang_marker}</sup>}
+									</h3>
 								</a>
 							</div>
 							<div class='play-info-author'>{play.author_full[lang]}</div>

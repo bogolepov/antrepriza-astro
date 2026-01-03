@@ -69,7 +69,10 @@ let image_url = play.posters.pub_kontra;
 					<div class='play-property-hot-notice'>{dictionary.newyear[lang]}</div>
 				)
 			}
-			<h2 class='ev-name'>{dictionary.play_word[lang]} {play.title[lang].toUpperCase()}</h2>
+			<h2 class='ev-name'>
+				{dictionary.play_word[lang]}
+				{play.title[lang].toUpperCase()}{play.lang_marker && <sup> {play.lang_marker}</sup>}
+			</h2>
 			<div class='ev-performer'>{performer}</div>
 			<div class:list={['ev-when', { canceled: event.canceled || event.replaced }]}>
 				<div class='ev-date'>{date}</div>

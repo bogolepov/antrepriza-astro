@@ -111,7 +111,7 @@ if (actualProgram.length > 0) {
 
 										<a class='program-title stretch-link' href={`/${lang}/plays/${play.suffix}/`}>
 											<h3 class:list={['play-title', { canceled: event.canceled || event.replaced }]}>
-												{play.alt_title[lang]}
+												{play.alt_title[lang]} {play.lang_marker && <sup>{play.lang_marker}</sup>}
 											</h3>
 										</a>
 

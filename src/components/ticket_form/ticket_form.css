@@ -13,6 +13,10 @@
 	text-transform: uppercase;
 	/* padding-bottom: 0.1em; */
 }
+.ticket-form .play-name sup {
+	color: var(--colorFontDate);
+	font-weight: bold;
+}
 
 .ticket-form .play-descr {
 	color: var(--colorFont-Op1);

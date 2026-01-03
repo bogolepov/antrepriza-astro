@@ -74,6 +74,10 @@
 	text-align: start;
 	padding-left: 5px;
 }
+.flex-job-right sup {
+	color: var(--colorFontDate);
+	font-weight: 500;
+}
 
 .play-link {
 	text-decoration: underline;

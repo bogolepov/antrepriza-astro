@@ -39,6 +39,9 @@
 	grid-area: play-name;
 	align-self: start;
 }
+.tickets-play-name sup {
+	color: var(--colorFontDate);
+}
 
 .tickets-play-info {
 	grid-area: info;

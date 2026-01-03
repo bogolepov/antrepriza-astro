@@ -30,6 +30,9 @@
 
 	margin: 0px;
 }
+.play-info-name sup {
+	color: var(--colorFontDate);
+}
 
 .play-info-author {
 	margin: 0px;

@@ -184,6 +184,10 @@
 	text-align: center;
 	width: 2em;
 }
+.order-flex.play sup {
+	font-weight: bold;
+	color: var(--colorFontDate);
+}
 
 .order-flex .item-name {
 	flex-grow: 2;

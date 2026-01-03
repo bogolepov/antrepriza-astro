@@ -48,9 +48,11 @@ const currentPath: string[] = pathname.split('/').filter(Boolean);
 								{submenu_list.map(submenu_item => {
 									let submenuItemLink;
 									let submenuItemLabel;
+									let submenuLangMarker;
 									if (main_menu_item.submenu_folder === 'plays') {
 										submenuItemLink = submenu_item.suffix;
 										submenuItemLabel = submenu_item.alt_title[lang];
+										if (submenu_item.lang_marker) submenuLangMarker = submenu_item.lang_marker;
 									} else if (main_menu_item.submenu_folder === 'theater') {
 										submenuItemLink = submenu_item.url;
 										submenuItemLabel = dictionary[submenu_item.dict_word][lang];
@@ -68,6 +70,7 @@ const currentPath: string[] = pathname.split('/').filter(Boolean);
 												href={`/${lang}/${main_menu_item.submenu_folder}/${submenuItemLink}/`}
 											>
 												{submenuItemLabel}
+												{submenuLangMarker && <sup>{submenuLangMarker}</sup>}
 											</a>
 										</li>
 									);
