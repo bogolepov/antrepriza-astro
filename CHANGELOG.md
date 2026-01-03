@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/bogolepov/antrepriza-astro/compare/v1.6.0...v1.7.0) (2026-01-03)
+
+
+### Features
+
+* 'Neue Bühne Friedrichshain' changed to 'Theatre Pool' and added as partner ([25ed53c](https://github.com/bogolepov/antrepriza-astro/commit/25ed53cd5b46e5614152af0694b403ff46d31b0d))
+
 # [1.6.0](https://github.com/bogolepov/antrepriza-astro/compare/v1.5.0...v1.6.0) (2026-01-03)
 
 
