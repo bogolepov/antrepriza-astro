@@ -41,10 +41,10 @@
 				"district": "Friedrichshain",
 				"country": "Deutschland"
 			},
-			"place_name": "Neue Bühne Friedrichshain",
-			"place_name_short": "NBF",
+			"place_name": "Theatre Pool",
+			"place_name_short": "TP",
 			"show_place_name": true,
-			"place_website": "https://www.neue-buehne-friedrichshain.de",
+			"place_website": "https://www.theatrepool.com/",
 			"google_map": {
 				"embed": {
 					"ru": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4856.220936923683!2d13.450725391208861!3d52.51333986468818!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a84e5dc85d2a09%3A0xf6af6892081e0a4b!2sBoxhagener%20Str.%2018%2C%2010245%20Berlin!5e0!3m2!1sru!2sde!4v1757537696930!5m2!1sru!2sde",
@@ -684,6 +684,15 @@
 			}
 		},
 		{
+			"name": { "ru": "Theatre Pool", "de": "Theatre Pool" },
+			"logo": "theatrepoollogo.png",
+			"url": "https://www.theatrepool.com/",
+			"description": {
+				"ru": "Многолетний партнер Театра Антреприза. Сцена и репетиционные залы Theatre Pool стали домом для нашего Театра.",
+				"de": null
+			}
+		},
+		{
 			"name": { "ru": "Kontramarka", "de": "Kontramarka" },
 			"logo": "logo_kontramarka_t.png",
 			"url": "https://www.kontramarka.de",
@@ -713,15 +722,6 @@
 		}
 	],
 	"ex_partners": [
-		{
-			"name": { "ru": "Neue Bühne Friedrichshain", "de": "Neue Bühne Friedrichshain" },
-			"logo": "logo_nbf_t.png",
-			"url": "https://www.neue-buehne-friedrichshain.de/",
-			"description": {
-				"ru": "Многолетний партнер Театра Антреприза. Сцена и репетиционные залы NBF стали домом для нашего Театра.",
-				"de": null
-			}
-		},
 		{
 			"name": { "ru": "Fonds Soziokultur", "de": "Fonds Soziokultur" },
 			"logo": "logo_fonds_soziokultur_t.png",
