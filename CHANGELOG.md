@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/bogolepov/antrepriza-astro/compare/v1.4.0...v1.5.0) (2026-01-03)
+
+
+### Features
+
+* 1. Play Steppke und Karlson (DE) added. Lang marker added. 2. Program updated ([e66f9e7](https://github.com/bogolepov/antrepriza-astro/commit/e66f9e7be3a842a3f81750c1632c912d1f265519))
+
 # [1.4.0](https://github.com/bogolepov/antrepriza-astro/compare/v1.3.0...v1.4.0) (2025-11-14)
 
 
