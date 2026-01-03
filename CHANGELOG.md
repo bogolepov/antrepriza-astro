@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/bogolepov/antrepriza-astro/compare/v1.5.0...v1.6.0) (2026-01-03)
+
+
+### Features
+
+* View of play titles with lang_marker uodated ([16dec02](https://github.com/bogolepov/antrepriza-astro/commit/16dec029e8fa04a2f9ac70c8c64f024af59ac2ff))
+
 # [1.5.0](https://github.com/bogolepov/antrepriza-astro/compare/v1.4.0...v1.5.0) (2026-01-03)
 
 
