@@ -6,6 +6,7 @@ import theater from '@data/theater.json';
 import plays from '@data/plays.json';
 import prices from '@data/prices.json';
 import type { TTicketItem } from '@scripts/types/reservation';
+import { getPlayName, needMarker } from '@scripts/play';
 
 export function makeContent(
 	lang: string,
@@ -112,8 +113,8 @@ function makeEventsRows(lang: string, reservations: TDoReservationExt[]): string
 		// console.log(event);
 
 		let play = plays.find(item => item.id === event.play_id); // play - thisPlay
-		let playName: string = play.title[lang];
-		let playLangMarker = play.lang_marker;
+		let playName: string = getPlayName(play, lang);
+		let playLangMarker = needMarker(play, lang) ? play.lang_marker : '';
 		let playDate = new Date(event.date);
 		let options: Intl.DateTimeFormatOptions = {
 			year: 'numeric',

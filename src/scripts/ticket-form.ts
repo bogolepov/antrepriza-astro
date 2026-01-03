@@ -7,6 +7,7 @@ import plays from '@data/plays.json';
 import theater from '@data/theater.json';
 import prices from '@data/prices.json';
 import afisha from '@data/afisha.json';
+import { getPlayName, needMarker } from '@scripts/play';
 
 let afishaItem;
 let stage;
@@ -136,7 +137,8 @@ function openForm(event, button) {
 	}
 	if (afishaItem && playItem) {
 		elemPlayTitle.innerHTML =
-			playItem.title[currLang] + (playItem.lang_marker ? '<sup> ' + playItem.lang_marker + '</sup>' : '');
+			getPlayName(playItem, currLang) +
+			(needMarker(playItem, currLang) ? '<sup> ' + playItem.lang_marker + '</sup>' : '');
 		elemPlayDescription.innerHTML = getPlayDescription();
 		elemDate.innerHTML = getPlayDate();
 		elemTime.innerHTML = getPlayTime();

@@ -15,7 +15,7 @@ export function getCurrentPageLang(): string | undefined {
 	return undefined;
 }
 
-export function capitalLetter(str) {
+export function capitalLetter(str: string): string {
 	return str.charAt(0).toUpperCase() + str.slice(1);
 }
 

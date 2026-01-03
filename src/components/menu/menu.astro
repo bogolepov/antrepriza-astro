@@ -6,6 +6,7 @@ import { Icon } from 'astro-icon/components';
 import dictionary from '@data/dictionary.json';
 import theater from '@data/theater.json';
 import plays from '@data/plays.json';
+import { getPlayAltName, needMarker } from '@scripts/play';
 
 const { lang, add_classes } = Astro.props;
 
@@ -51,8 +52,8 @@ const currentPath: string[] = pathname.split('/').filter(Boolean);
 									let submenuLangMarker;
 									if (main_menu_item.submenu_folder === 'plays') {
 										submenuItemLink = submenu_item.suffix;
-										submenuItemLabel = submenu_item.alt_title[lang];
-										if (submenu_item.lang_marker) submenuLangMarker = submenu_item.lang_marker;
+										submenuItemLabel = getPlayAltName(submenu_item, lang);
+										if (needMarker(submenu_item, lang)) submenuLangMarker = submenu_item.lang_marker;
 									} else if (main_menu_item.submenu_folder === 'theater') {
 										submenuItemLink = submenu_item.url;
 										submenuItemLabel = dictionary[submenu_item.dict_word][lang];

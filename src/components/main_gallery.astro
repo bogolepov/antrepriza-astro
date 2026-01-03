@@ -4,6 +4,8 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import '@styles/carusel_main.css';
 
+import { getPlayAltName, getPlayName } from '@scripts/play';
+
 const { lang } = Astro.props;
 
 import program from '@data/afisha.json';
@@ -103,7 +105,7 @@ let decoding;
 								class='swiper-slide'
 								data-play={play.suffix}
 								href={`/${lang}/plays/${play.suffix}/`}
-								aria-label={dictionary.play_word[lang] + ' ' + play.title[lang]}
+								aria-label={dictionary.play_word[lang] + ' ' + getPlayName(play, lang)}
 							>
 								<div class='carusel-play-card'>
 									<div class='carusel-play-image'>
@@ -118,12 +120,12 @@ let decoding;
 											fetchpriority={strFetchPriority}
 											decoding={decoding}
 											quality='100'
-											alt={play.title[lang]}
+											alt={getPlayName(play, lang)}
 										/>
 									</div>
 									<div class='carusel-play-info'>
 										{isPremiere && <div class='carusel-play-info-premiere'>{dictionary.premiere[lang]}</div>}
-										<div class='carusel-play-title'>{play.alt_title[lang]}</div>
+										<div class='carusel-play-title'>{getPlayAltName(play, lang)}</div>
 										<div class='carusel-play-details'>
 											{play.genre[lang]}, {play.age}
 											<br />

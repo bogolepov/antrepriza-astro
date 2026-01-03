@@ -15,6 +15,8 @@ import TicketBookButton from '@components/ticket_book_button.astro';
 import Gallery from '@components/play_gallery.astro';
 import YoutubePlayerCore from '@components/youtube_player/youtube_player_core.astro';
 
+import { getPlayName, needMarker } from '@scripts/play';
+
 import { getEntry } from 'astro:content';
 
 let play = plays.find(_play => _play.suffix === play_sid);
@@ -46,7 +48,7 @@ const ignoreExCreators: string[] = ['light', 'sound', 'stage_setup'];
 
 <section class='play'>
 	<h1 class='play-title'>
-		{play.title[lang].toUpperCase()}{play.lang_marker && <sup> {play.lang_marker}</sup>}
+		{getPlayName(play, lang).toUpperCase()}{needMarker(play, lang) && <sup> {play.lang_marker}</sup>}
 	</h1>
 	<div class='play-author'>{play.author_full[lang].toUpperCase()}</div>
 	{
@@ -63,7 +65,7 @@ const ignoreExCreators: string[] = ['light', 'sound', 'stage_setup'];
 						'(max-width: 380px) 320px, (max-width: 540px) 460px, (max-width: 700px) 600px, (max-width: 830px) 720px, 900px'
 					}
 					quality='100'
-					alt={play.title[lang]}
+					alt={getPlayName(play, lang)}
 				/>
 			</div>
 		)
@@ -200,7 +202,7 @@ const ignoreExCreators: string[] = ['light', 'sound', 'stage_setup'];
 							sizes={
 								'(max-width: 360px) 300px, (max-width: 560px) 480px, (max-width: 750px) 640px, (max-width: 940px) 810px, 940px'
 							}
-							alt={play.alt_title[lang]}
+							alt={getPlayName(play, lang)}
 						/>
 					)}
 				</div>

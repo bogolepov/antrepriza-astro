@@ -5,6 +5,7 @@ import plays from '@data/plays.json';
 import theater from '@data/theater.json';
 import dictionary from '@data/dictionary.json';
 import prices from '@data/prices.json';
+import { getPlayName, needMarker } from '@scripts/play';
 
 interface IOrder {
 	lang: string;
@@ -14,12 +15,13 @@ interface IOrder {
 }
 
 export default function Order({ lang, play, handleAddTicket, handleRemoveTicket }: IOrder) {
-	const getPlayName = () => {
-		return plays.find(item => item.suffix === play.play_sid).title[lang];
+	const getNameOfPlay = () => {
+		const playItem = plays.find(item => item.suffix === play.play_sid);
+		return getPlayName(playItem, lang);
 	};
 	const getLangMarker = () => {
 		const playItem = plays.find(item => item.suffix === play.play_sid);
-		return playItem?.lang_marker || null;
+		return needMarker(playItem, lang) ? playItem?.lang_marker : null;
 	};
 	const getPlayDate = () => {
 		let playDate = new Date(play.date);
@@ -36,7 +38,7 @@ export default function Order({ lang, play, handleAddTicket, handleRemoveTicket 
 		return null;
 	};
 
-	const playName = useMemo(getPlayName, []);
+	const playName = useMemo(getNameOfPlay, []);
 	const playLangMarker = useMemo(getLangMarker, []);
 	const playDate = useMemo(getPlayDate, []);
 	const playStageName = useMemo(getStageName, []);

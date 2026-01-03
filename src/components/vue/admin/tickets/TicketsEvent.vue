@@ -4,6 +4,7 @@ import { getPerformances, getPlays, type IExtNamedEventReservation } from '../li
 import { onlyNumbers } from '@scripts/utils';
 import type { IPerformanceJson, IPlayJson } from '@scripts/adminpanel/types/json-files';
 import OrderItem from './OrderItem.vue';
+import { getPlayName } from '@scripts/play';
 
 interface Props {
 	event: IExtNamedEventReservation;
@@ -29,7 +30,7 @@ event.reservations.forEach(item => item.tickets.forEach(it => (event.totalTicket
 	<div class="item-title" @click="showCard = !showCard">
 		<h3>
 			<span class="item-title-date">[{{ performance.date }} {{ performance.time }}]</span>
-			{{ play.title.ru }}
+			{{ getPlayName(play, 'ru') }}
 		</h3>
 		<div class="item-title-actions">
 			<button class="expand-item-button card-button">

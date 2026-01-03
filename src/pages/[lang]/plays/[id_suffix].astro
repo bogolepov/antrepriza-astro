@@ -8,6 +8,7 @@ import PlayLayout from '@layouts/play_v1.astro';
 import plays from '@data/plays.json';
 import dictionary from '@data/dictionary.json';
 import theater from '@data/theater.json';
+import { getPlayName, needMarker } from '@scripts/play';
 
 export const getStaticPaths = (() => {
 	return theater.languages.flatMap(lng => {
@@ -16,9 +17,9 @@ export const getStaticPaths = (() => {
 				dictionary.play_word[lng.lang_code] +
 				' ' +
 				dictionary.opening_quote[lng.lang_code] +
-				play.title[lng.lang_code] +
+				getPlayName(play, lng.lang_code) +
 				dictionary.closing_quote[lng.lang_code];
-			if (play.lang_marker) aTitle = aTitle + ' [' + play.lang_marker + ']';
+			if (needMarker(play, lng.lang_code)) aTitle = aTitle + ' [' + play.lang_marker + ']';
 			return {
 				params: { lang: lng.lang_code, id_suffix: play.suffix },
 				props: { pageLang: lng.lang_code, pageTitle: aTitle, playSID: play.suffix },

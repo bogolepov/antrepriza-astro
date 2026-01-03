@@ -18,6 +18,7 @@ import { getEntry } from 'astro:content';
 
 import type { ImageMetadata } from 'astro';
 import { Picture } from 'astro:assets';
+import { getPlayName, needMarker } from '@scripts/play';
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*/*.{jpeg,jpg}');
 
 let person = theater.people.find(item => item.id.toString() === person_id);
@@ -46,16 +47,22 @@ let playsRegie = plays.filter(play => {
 	return regies && regies.people.includes(person.id);
 });
 
-let playsActor = [];
+type ActorPlay = {
+	play_name: string;
+	play_suffix: string;
+	play_marker?: string;
+	characters: string;
+};
+let playsActor: ActorPlay[] = [];
 plays.filter(play => {
 	let characters = play.characters.filter(character => character.actors.includes(person.id));
 	if (!characters || characters.length === 0) return false;
 	let strCharacters = '';
 	characters.forEach((character, i) => (strCharacters = strCharacters + (i === 0 ? '' : ', ') + character.name[lang]));
 	playsActor.push({
-		play_name: play.title[lang],
+		play_name: getPlayName(play, lang),
 		play_suffix: play.suffix,
-		lang_marker: play.lang_marker,
+		play_marker: needMarker(play, lang) ? play.lang_marker : undefined,
 		characters: strCharacters,
 	});
 	return true;
@@ -147,9 +154,9 @@ let strLoading;
 										<div class='flex-job-right'>
 											<div>
 												<a class='play-link' href={`/${lang}/plays/${play.suffix}/`}>
-													{play.title[lang]}
+													{getPlayName(play, lang)}
 												</a>
-												{play.lang_marker && <sup> {play.lang_marker}</sup>}
+												{needMarker(play, lang) && <sup> {play.lang_marker}</sup>}
 											</div>
 										</div>
 									</li>
@@ -176,7 +183,7 @@ let strLoading;
 												<a class='play-link' href={`/${lang}/plays/${play.play_suffix}/`}>
 													{play.play_name}
 												</a>
-												{play.lang_marker && <sup> {play.lang_marker}</sup>}
+												{play.play_marker && <sup> {play.play_marker}</sup>}
 											</div>
 										</div>
 									</li>

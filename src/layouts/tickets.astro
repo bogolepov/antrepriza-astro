@@ -15,6 +15,7 @@ import TicketBookButton from '@components/ticket_book_button.astro';
 
 import type { ImageMetadata } from 'astro';
 import { Picture } from 'astro:assets';
+import { getPlayAltName, getPlayName, needMarker } from '@scripts/play';
 
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/posters/landscape/*.{jpeg,jpg,png}');
 
@@ -149,8 +150,8 @@ for (let price of prices) {
 									)}
 									<a class='stretch-link' href={`/${lang}/plays/${playInfo.suffix}/`}>
 										<h3 class='play-title'>
-											{playInfo.alt_title[lang]}
-											{playInfo.lang_marker && <sup>{playInfo.lang_marker}</sup>}
+											{getPlayAltName(playInfo, lang)}
+											{needMarker(playInfo, lang) && <sup>{playInfo.lang_marker}</sup>}
 										</h3>
 									</a>
 								</div>
@@ -224,7 +225,7 @@ for (let price of prices) {
 									widths={[300, 420, 540, 640]}
 									sizes={'(max-width: 360px) 300px, (max-width: 500px) 420px, (max-width: 640px) 540px, 640px'}
 									quality='100'
-									alt={playInfo.alt_title[lang]}
+									alt={getPlayName(playInfo, lang)}
 								/>
 							</div>
 						</li>

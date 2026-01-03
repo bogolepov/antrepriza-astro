@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import MultiLangText from '../components/MultiLangText.vue';
 import type { IPlayJson } from '@scripts/adminpanel/types/json-files';
+import { getPlayName } from '@scripts/play';
 
 interface Props {
 	play: IPlayJson;
@@ -13,7 +14,7 @@ const showCard = ref(false);
 
 <template>
 	<div class="item-title" @click="showCard = !showCard">
-		<h3>{{ play.title.ru }}</h3>
+		<h3>{{ getPlayName(play, 'ru') }}</h3>
 	</div>
 	<ul v-show="showCard" class="item-card">
 		<li>
