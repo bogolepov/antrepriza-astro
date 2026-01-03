@@ -135,7 +135,8 @@ function openForm(event, button) {
 		console.error('No STAGE information!');
 	}
 	if (afishaItem && playItem) {
-		elemPlayTitle.innerHTML = playItem.title[currLang];
+		elemPlayTitle.innerHTML =
+			playItem.title[currLang] + (playItem.lang_marker ? '<sup> ' + playItem.lang_marker + '</sup>' : '');
 		elemPlayDescription.innerHTML = getPlayDescription();
 		elemDate.innerHTML = getPlayDate();
 		elemTime.innerHTML = getPlayTime();

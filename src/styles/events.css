@@ -15,6 +15,10 @@
 .events li {
 	font-weight: var(--font-normal-weight);
 }
+.events li sup {
+	font-weight: 500;
+	color: var(--colorFontDate);
+}
 
 .evs-flex-tabs {
 	display: flex;

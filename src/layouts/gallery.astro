@@ -31,7 +31,9 @@ const facebookImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets
 						<form>
 							<div class='block-title'>
 								<h2>
-									<a href={`/${lang}/plays/${play.suffix}/`}>{play.title[lang].toUpperCase()}</a>
+									<a href={`/${lang}/plays/${play.suffix}/`}>
+									{play.title[lang].toUpperCase()}{play.lang_marker && <sup> {play.lang_marker}</sup>}
+									</a>
 								</h2>
 
 								<div class='media-flex-top tabs'>

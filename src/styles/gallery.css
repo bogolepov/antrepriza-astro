@@ -21,6 +21,9 @@
 	letter-spacing: 0.04em;
 	text-transform: uppercase;
 }
+.gallery .block-title sup {
+	color: var(--colorFontDate);
+}
 
 .after-gallery {
 	position: relative;

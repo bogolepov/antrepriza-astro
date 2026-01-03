@@ -52,7 +52,12 @@ plays.filter(play => {
 	if (!characters || characters.length === 0) return false;
 	let strCharacters = '';
 	characters.forEach((character, i) => (strCharacters = strCharacters + (i === 0 ? '' : ', ') + character.name[lang]));
-	playsActor.push({ play_name: play.title[lang], play_suffix: play.suffix, characters: strCharacters });
+	playsActor.push({
+		play_name: play.title[lang],
+		play_suffix: play.suffix,
+		lang_marker: play.lang_marker,
+		characters: strCharacters,
+	});
 	return true;
 });
 
@@ -144,6 +149,7 @@ let strLoading;
 												<a class='play-link' href={`/${lang}/plays/${play.suffix}/`}>
 													{play.title[lang]}
 												</a>
+												{play.lang_marker && <sup> {play.lang_marker}</sup>}
 											</div>
 										</div>
 									</li>
@@ -170,6 +176,7 @@ let strLoading;
 												<a class='play-link' href={`/${lang}/plays/${play.play_suffix}/`}>
 													{play.play_name}
 												</a>
+												{play.lang_marker && <sup> {play.lang_marker}</sup>}
 											</div>
 										</div>
 									</li>

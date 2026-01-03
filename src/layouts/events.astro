@@ -109,7 +109,10 @@ let isFirstTab = true;
 											{playDate.getFullYear().toString().padStart(4, '0')}
 										</div>
 										<div class='font-opacity1'>{event.time}</div>
-										<div>{play.title[lang]}</div>
+										<div>
+											{play.title[lang]}
+											{play.lang_marker && <sup>{play.lang_marker}</sup>}
+										</div>
 									</a>
 								</li>
 							);

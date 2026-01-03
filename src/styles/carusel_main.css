@@ -158,7 +158,7 @@
 }
 
 .carusel-play-title {
-	width: min-content;
+	/* width: min-content; */
 	flex-wrap: wrap;
 	color: var(--colorSmallFontMainGallery);
 	font-size: 2.4em;

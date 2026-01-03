@@ -1,5 +1,75 @@
 [
 	{
+		"id": 16,
+		"suffix": "suk",
+		"title": { "ru": "Малыш и Карлсон", "de": "Steppke und Karlson" },
+		"alt_title": { "ru": "Малыш\u00A0и Карлсон", "de": "Steppke\u00A0und Karlson" },
+		"author": { "ru": "А.Линдгрен", "de": "A.Lindgren" },
+		"author_full": { "ru": "Астрид Линдгрен", "de": "Astrid Lindgren" },
+		"genre": { "ru": "детский", "de": "für Kinder" },
+		"length": 50,
+		"break": false,
+		"age": "3+",
+		"description": { "ru": "play_mik_ru", "de": "play_mik_de" },
+		"posters": {
+			"landscape": "suk.jpg",
+			"landscape_16_9": "suk_16_9.jpg",
+			"portrait": "suk_poster.jpg",
+			"facebook": "fb_suk.jpg",
+			"pub_kontra": "kontra_suk.webp",
+			"minimum": ""
+		},
+		"lang": { "ru": "немецкий", "de": "Deutsch" },
+		"lang_id": "de",
+		"lang_marker": "DE",
+		"url_kontramarka": "https://www.kontramarka.de/tour/teatr-antrepriza-spektakl-malysh-i-karlson/",
+		"characters": [
+			{ "id": 1, "name": { "ru": "Малыш", "de": "Steppke" }, "actors": [154] },
+			{
+				"id": 2,
+				"name": { "ru": "Карлсон", "de": "Karlson" },
+				"description": { "ru": "летающий человек", "de": "fliegender Mann" },
+				"actors": [132]
+			},
+			{
+				"id": 3,
+				"name": { "ru": "Фрау Свантесон", "de": "Frau Swantenson" },
+				"description": { "ru": "мама Малыша", "de": "Steppkes Mutter" },
+				"actors": [108]
+			},
+			{
+				"id": 4,
+				"name": { "ru": "Фрекен Бок", "de": "Freken Bok" },
+				"description": { "ru": "домработница Свантесонов", "de": "Swantensons Haushälterin" },
+				"actors": [148, 116]
+			}
+		],
+		"creators": [
+			{ "type": "regie", "people": [103] },
+			{ "type": "light", "people": [9] },
+			{ "type": "sound", "people": [9] },
+			{ "type": "graphic_design", "people": [6] },
+			{ "type": "photographer", "people": [] },
+			{ "type": "stage_setup", "people": [] }
+		],
+		"seo": {
+			"description": {
+				"ru": "Для детей по мотивам повести А.Линдгрен. Приключения, 3+. На немецком языке.",
+				"de": "Für Kinder nach der Geschichte von A.Lindgren. Abenteuer, 3+. Auf Deutsch."
+			},
+			"open_graph": {
+				"image": { "url": "suk_1200t.jpg", "type": "image/jpeg" }
+			},
+			"event": {
+				"images": [
+					{ "format": "19_6", "url": "suk_fb_19_6_1920.jpg" },
+					{ "format": "3_4", "url": "suk_kontra_1920.jpg" },
+					{ "format": "3_4_1050", "url": "suk_kontra_1050.webp" }
+				]
+			}
+		}
+	},
+	{
 		"id": 15,
 		"suffix": "ngupb",
 		"title": { "ru": "Новый год у поганых болот", "de": "Silvester bei den fauligen Sümpfen" },
@@ -658,6 +728,7 @@
 		},
 		"lang": { "ru": "русский", "de": "Russisch" },
 		"lang_id": "ru",
+		"lang_marker": "RU",
 		"url_kontramarka": "https://www.kontramarka.de/tour/teatr-antrepriza-spektakl-malysh-i-karlson/",
 		"characters": [
 			{ "id": 1, "name": { "ru": "Малыш", "de": "Steppke" }, "actors": [110, 118] },

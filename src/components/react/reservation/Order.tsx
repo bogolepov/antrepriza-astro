@@ -17,6 +17,10 @@ export default function Order({ lang, play, handleAddTicket, handleRemoveTicket 
 	const getPlayName = () => {
 		return plays.find(item => item.suffix === play.play_sid).title[lang];
 	};
+	const getLangMarker = () => {
+		const playItem = plays.find(item => item.suffix === play.play_sid);
+		return playItem?.lang_marker || null;
+	};
 	const getPlayDate = () => {
 		let playDate = new Date(play.date);
 		let options: Intl.DateTimeFormatOptions = {
@@ -33,6 +37,7 @@ export default function Order({ lang, play, handleAddTicket, handleRemoveTicket 
 	};
 
 	const playName = useMemo(getPlayName, []);
+	const playLangMarker = useMemo(getLangMarker, []);
 	const playDate = useMemo(getPlayDate, []);
 	const playStageName = useMemo(getStageName, []);
 	const ticketTypes = useMemo(() => {
@@ -54,7 +59,10 @@ export default function Order({ lang, play, handleAddTicket, handleRemoveTicket 
 					</svg>
 				</div>
 				<div>
-					<h6 className='play-name'>{playName}</h6>
+					<h6 className='play-name'>
+						{playName}
+						{playLangMarker && <sup> {playLangMarker}</sup>}
+					</h6>
 					{playStageName && (
 						<div className='play-stage'>{dictionary.stage[lang] + ' - ' + playStageName.toUpperCase()}</div>
 					)}

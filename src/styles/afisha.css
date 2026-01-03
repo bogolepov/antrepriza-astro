@@ -60,6 +60,9 @@
 	grid-area: title;
 	align-self: first baseline;
 }
+.program-title sup {
+	color: var(--colorFontDate);
+}
 
 .program-info {
 	grid-area: info;

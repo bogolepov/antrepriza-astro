@@ -92,6 +92,10 @@
 	font-size: 0.93em;
 	padding: 0.5em 0 0.2em 1em;
 }
+.submenu-list sup {
+	font-weight: bold;
+	color: var(--colorFontDate);
+}
 
 .active_link {
 	color: var(--colorAntreprizaRed);

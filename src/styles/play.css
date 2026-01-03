@@ -24,6 +24,9 @@ section.play {
 	align-self: self-start;
 	word-wrap: break-word;
 }
+.play-title sup {
+	color: var(--colorFontDate);
+}
 
 .play-author,
 .next-plays-label {

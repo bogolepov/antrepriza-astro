@@ -45,7 +45,10 @@ const ignoreExCreators: string[] = ['light', 'sound', 'stage_setup'];
 ---
 
 <section class='play'>
-	<h1 class='play-title'>{thisPlay.title[lang].toUpperCase()}</h1>
+	<h1 class='play-title'>
+		{thisPlay.title[lang].toUpperCase()}
+		{thisPlay.lang_marker && <sup>{thisPlay.lang_marker}</sup>}
+	</h1>
 	<div class='play-author'>{thisPlay.author_full[lang].toUpperCase()}</div>
 	{
 		(thisPlay.trailer_embed || thisPlay.posters.landscape_16_9) && (

@@ -45,7 +45,8 @@ const schema = {
 		' ' +
 		dictionary.opening_quote[lang] +
 		play.title[lang] +
-		dictionary.closing_quote[lang],
+		dictionary.closing_quote[lang] +
+		(play.lang_marker ? ' [' + play.lang_marker + ']' : ''),
 	description: description,
 	startDate: date + 'T' + time,
 	endDate: date + 'T' + endTime,

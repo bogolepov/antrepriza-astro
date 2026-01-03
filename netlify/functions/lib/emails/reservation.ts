@@ -113,6 +113,7 @@ function makeEventsRows(lang: string, reservations: TDoReservationExt[]): string
 
 		let play = plays.find(item => item.id === event.play_id); // play - thisPlay
 		let playName: string = play.title[lang];
+		let playLangMarker = play.lang_marker;
 		let playDate = new Date(event.date);
 		let options: Intl.DateTimeFormatOptions = {
 			year: 'numeric',
@@ -139,7 +140,9 @@ function makeEventsRows(lang: string, reservations: TDoReservationExt[]): string
 </td>\
 <td style="vertical-align: top">\
 <table border="0" cellspacing="0" role="presentation" style="width: 100%; margin: 0; padding: 0 0 12px 0"><tbody>\
-<tr><td style="font-size: 180%; line-height: 110%; color: #d6d6d6; font-weight: 600">${playName.toUpperCase()}</td></tr>\
+<tr><td style="font-size: 180%; line-height: 110%; color: #d6d6d6; font-weight: 600">\
+${playName.toUpperCase()}<sup style="color: #87605e"> ${playLangMarker}</sup>\
+</td></tr>\
 <tr><td style="font-size: 110%; line-height: 120%; color: #d6d6d6; font-weight: 300; padding: 0 0 4px 0">\
 ${play.genre[lang]}, ${play.age}, ${dictionaryServer.play_lang[play.lang_id][lang]}\
 </td></tr>\

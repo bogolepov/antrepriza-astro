@@ -148,7 +148,10 @@ for (let price of prices) {
 										<div class='play-property-hot-notice'>{dictionary.newyear[lang]}</div>
 									)}
 									<a class='stretch-link' href={`/${lang}/plays/${playInfo.suffix}/`}>
-										<h3 class='play-title'>{playInfo.alt_title[lang]}</h3>
+										<h3 class='play-title'>
+											{playInfo.alt_title[lang]}
+											{playInfo.lang_marker && <sup>{playInfo.lang_marker}</sup>}
+										</h3>
 									</a>
 								</div>
 								<div class='tickets-play-info'>
