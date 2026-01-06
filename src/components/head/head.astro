@@ -52,12 +52,11 @@ const addSeoEvent = seo_event === 'true';
 	<meta name='mobile-web-app-capable' content='yes' />
 	<meta name='theme-color' content='#87605e' />
 	{isCanonicalIndex && <link rel='canonical' href={theater.our_website_link + pathname} />}
-	<link rel='icon' href='/favicon32.ico' sizes='32x32' />
-	<link rel='icon' href='/favicon.ico' sizes='48x48' />
-	<link rel='icon' type='image/png' href='/favicon.png' sizes='32x32' />
-	<link rel='icon' type='image/png' href='/favicon.png' sizes='48x48' />
-	<link rel='icon' type='image/png' href='/favicon96.png' sizes='96x96' />
+	<link rel='icon' type='image/png' href='/favicon-96x96.png' sizes='96x96' />
 	<link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+	<link rel='shortcut icon' href='/favicon.ico' />
+	<link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png' />
+	<link rel='manifest' href='/site.webmanifest' />
 	{
 		theater.languages.map(lng => {
 			return (
