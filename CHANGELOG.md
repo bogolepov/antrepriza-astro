@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/bogolepov/antrepriza-astro/compare/v1.7.0...v1.8.0) (2026-01-06)
+
+
+### Features
+
+* favicon updated (multi platform) ([1dfded6](https://github.com/bogolepov/antrepriza-astro/commit/1dfded65fcccd13dab89dde3e29b9f465bedb548))
+
 # [1.7.0](https://github.com/bogolepov/antrepriza-astro/compare/v1.6.0...v1.7.0) (2026-01-03)
 
 
