@@ -106,19 +106,43 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/partner
 			<div class='footer-partners'>
 				<div class='title font-opacity1'>{dictionary.partners[lang].toUpperCase()}</div>
 				<ul class='logo-flex'>
-					<li class='logo-75 hover-block'>
+					<li class='logo-50 hover-block'>
 						<a href='https://svoi.berlin/' target='_blank' rel='noopener external'>
 							<Picture
 								class:list={'image-wrapper-landscape black-white-filter'}
 								src={images['/src/assets/partners/logo_svoi_t.png']()}
 								formats={['webp']}
-								sizes={'75px'}
-								widths={[75]}
+								sizes={'70px'}
+								widths={[70]}
 								alt='Svoi.Berlin'
 							/>
 						</a>
 					</li>
-					<li class='logo-75 hover-block'>
+					<li class='logo-50 hover-block'>
+						<a href='https://www.theatrepool.com/' target='_blank' rel='noopener external'>
+							<Picture
+								class:list={'image-wrapper-landscape black-white-filter'}
+								src={images['/src/assets/partners/theatrepoollogo.png']()}
+								formats={['webp']}
+								sizes={'70px'}
+								widths={[70]}
+								alt='Kontramarka'
+							/>
+						</a>
+					</li>
+					<li class='logo-70 hover-block'>
+						<a href='https://www.kontramarka.de/' target='_blank' rel='noopener external'>
+							<Picture
+								class:list={'image-wrapper-landscape black-white-filter'}
+								src={images['/src/assets/partners/logo_kontramarka.png']()}
+								formats={['webp']}
+								sizes={'75px'}
+								widths={[75]}
+								alt='Kontramarka'
+							/>
+						</a>
+					</li>
+					<li class='logo-50 hover-block'>
 						<a href='https://www.av-huette.de/' target='_blank' rel='noopener external'>
 							<Picture
 								class:list={'image-wrapper-landscape black-white-filter'}
@@ -127,18 +151,6 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/partner
 								sizes={'75px'}
 								widths={[75]}
 								alt='Akademischer Verein Hütte'
-							/>
-						</a>
-					</li>
-					<li class='logo-120 hover-block'>
-						<a href='https://www.kontramarka.de/' target='_blank' rel='noopener external'>
-							<Picture
-								class:list={'image-wrapper-landscape black-white-filter'}
-								src={images['/src/assets/partners/logo_kontramarka_t.png']()}
-								formats={['webp']}
-								sizes={'120px'}
-								widths={[120]}
-								alt='Kontramarka'
 							/>
 						</a>
 					</li>
