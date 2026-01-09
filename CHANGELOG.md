@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/bogolepov/antrepriza-astro/compare/v1.8.0...v1.9.0) (2026-01-09)
+
+
+### Features
+
+* Kontramarka to Footer added ([7e0ed8a](https://github.com/bogolepov/antrepriza-astro/commit/7e0ed8ac7ed9e93b0ec63969a5735ac7ca504c97))
+
 # [1.8.0](https://github.com/bogolepov/antrepriza-astro/compare/v1.7.0...v1.8.0) (2026-01-06)
 
 
