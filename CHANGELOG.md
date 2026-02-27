@@ -1,3 +1,11 @@
+# [1.11.0](https://github.com/bogolepov/antrepriza-astro/compare/v1.10.0...v1.11.0) (2026-02-27)
+
+
+### Features
+
+* Program updated ([7b72bc6](https://github.com/bogolepov/antrepriza-astro/commit/7b72bc6f9835d621be24026e1b0cc5e50ab5d241))
+* Theater team updated ([38b445e](https://github.com/bogolepov/antrepriza-astro/commit/38b445e36b903d6b312aebd34a711d8981292ce9))
+
 # [1.10.0](https://github.com/bogolepov/antrepriza-astro/compare/v1.9.0...v1.10.0) (2026-02-22)
 
 
