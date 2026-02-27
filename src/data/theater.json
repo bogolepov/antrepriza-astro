@@ -296,14 +296,6 @@
 			"surname": { "ru": "Парахина", "de": "Parakhina" }
 		},
 		{
-			"id": 109,
-			"suffix": "th",
-			"photo": "th.jpg",
-			"gender": "m",
-			"name": { "ru": "Томас", "de": "Thomas" },
-			"surname": { "ru": "Хекельманн", "de": "Häckelmann" }
-		},
-		{
 			"id": 110,
 			"suffix": "kt",
 			"photo": "kt2.jpg",
@@ -368,14 +360,6 @@
 			"surname": { "ru": "Дмитриева", "de": "Dmitrieva" }
 		},
 		{
-			"id": 130,
-			"suffix": "ink",
-			"photo": "ink.jpg",
-			"gender": "f",
-			"name": { "ru": "Инесе", "de": "Inese" },
-			"surname": { "ru": "Крылова", "de": "Krilova" }
-		},
-		{
 			"id": 132,
 			"suffix": "bol",
 			"photo": "bol.jpg",
@@ -420,22 +404,6 @@
 			"gender": "f",
 			"name": { "ru": "Александра", "de": "Aleksandra" },
 			"surname": { "ru": "Сарана", "de": "Sarana" }
-		},
-		{
-			"id": 138,
-			"suffix": "elms",
-			"photo": "no-photo.jpg",
-			"gender": "f",
-			"name": { "ru": "Элина", "de": "Elina" },
-			"surname": { "ru": "Мискес", "de": "Mieskes" }
-		},
-		{
-			"id": 139,
-			"suffix": "mar",
-			"photo": "mar.jpg",
-			"gender": "m",
-			"name": { "ru": "Мар", "de": "Mar" },
-			"surname": { "ru": "", "de": "" }
 		},
 		{
 			"id": 140,
@@ -602,6 +570,14 @@
 			"jobs": ["actor"]
 		},
 		{
+			"id": 109,
+			"suffix": "th",
+			"photo": "th.jpg",
+			"gender": "m",
+			"name": { "ru": "Томас", "de": "Thomas" },
+			"surname": { "ru": "Хекельманн", "de": "Häckelmann" }
+		},
+		{
 			"id": 117,
 			"suffix": "anak",
 			"photo": "anak.jpg",
@@ -664,12 +640,36 @@
 			"surname": { "ru": "Гнездилов", "de": "Gnesdilov" }
 		},
 		{
+			"id": 130,
+			"suffix": "ink",
+			"photo": "ink.jpg",
+			"gender": "f",
+			"name": { "ru": "Инесе", "de": "Inese" },
+			"surname": { "ru": "Крылова", "de": "Krilova" }
+		},
+		{
 			"id": 131,
 			"suffix": "sg",
 			"photo": "sh.jpg",
 			"gender": "f",
 			"name": { "ru": "София", "de": "Sofiia" },
 			"surname": { "ru": "Гейко", "de": "Heiko" }
+		},
+		{
+			"id": 138,
+			"suffix": "elms",
+			"photo": "no-photo.jpg",
+			"gender": "f",
+			"name": { "ru": "Элина", "de": "Elina" },
+			"surname": { "ru": "Мискес", "de": "Mieskes" }
+		},
+		{
+			"id": 139,
+			"suffix": "mar",
+			"photo": "mar.jpg",
+			"gender": "m",
+			"name": { "ru": "Мар", "de": "Mar" },
+			"surname": { "ru": "", "de": "" }
 		}
 	],
 	"logo_empty": "logo_empty.png",
