@@ -889,31 +889,31 @@
 				"id": 3,
 				"name": { "ru": "Алексей Андреевич", "de": "Alexej Andreewitsch" },
 				"description": { "ru": "в молодости", "de": "im jungen Alter" },
-				"actors": [119]
+				"actors": [157, 119]
 			},
 			{
 				"id": 4,
 				"name": { "ru": "Наташа", "de": "Natascha" },
 				"description": { "ru": "их дочь", "de": "ihre Tochter" },
-				"actors": [111]
+				"actors": [148, 111]
 			},
 			{
 				"id": 5,
 				"name": { "ru": "Матвей (Мотя)", "de": "Matwej (Motja)" },
 				"description": { "ru": "сын Наташи", "de": "Nataschas Sohn" },
-				"actors": [106]
+				"actors": [155, 106]
 			},
 			{
 				"id": 6,
 				"name": { "ru": "Гаянэ Гаэтановна", "de": "Gajane Gaetanowna" },
 				"description": { "ru": "риелтор", "de": "Maklerin" },
-				"actors": [102, 105]
+				"actors": [102, 147, 156]
 			},
 			{
 				"id": 7,
 				"name": { "ru": "Олег Васильевич", "de": "Oleg Wasiljewitsch" },
 				"description": { "ru": "покупатель", "de": "Käufer" },
-				"actors": [3]
+				"actors": [3, 152]
 			},
 			{
 				"id": 8,
