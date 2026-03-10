@@ -1,3 +1,11 @@
+# [1.12.0](https://github.com/bogolepov/antrepriza-astro/compare/v1.11.0...v1.12.0) (2026-03-10)
+
+
+### Features
+
+* Emails back to [@antrepriza](https://github.com/antrepriza).eu (new SSL-Certificate) ([5e3365b](https://github.com/bogolepov/antrepriza-astro/commit/5e3365b953ebdf46dacc69f2d31fe1ab985541c9))
+* Team updated, new actors added, play "Teure Wohnung" updated (actors) ([60c2994](https://github.com/bogolepov/antrepriza-astro/commit/60c29944da80e07bccfbdc17c26070b41c6b8c46))
+
 # [1.11.0](https://github.com/bogolepov/antrepriza-astro/compare/v1.10.0...v1.11.0) (2026-02-27)
 
 
