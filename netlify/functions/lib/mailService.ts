@@ -11,15 +11,14 @@ export async function sendMails(
 	lang: string,
 	transporterMail: string,
 	clientMail: TMail,
-	antreprizaMail: TMail
+	antreprizaMail: TMail,
 ): Promise<boolean>;
 export async function sendMails(
 	lang: string,
 	transporterMail: string,
 	clientMail: TMail,
-	antreprizaMail?: TMail
+	antreprizaMail?: TMail,
 ): Promise<boolean> {
-	/*
 	const transporter =
 		process.env.MODE === process.env.MODE_LOCALHOST
 			? nodemailer.createTransport({
@@ -32,28 +31,23 @@ export async function sendMails(
 			: nodemailer.createTransport({
 					pool: true,
 					host: process.env.ANTREPRIZA_SMTP_HOST,
-					port: 587,
-					secure: false, // use TLS
-					ignoreTLS: true,
+					port: 465,
+					secure: true,
 					auth: {
 						user: transporterMail,
 						pass: process.env.ANTREPRIZA_SMTP_PASSWORD,
 					},
+					// debug: true,  // включите, чтобы увидеть больше логов
+					// logger: true,
 				});
-	*/
-	const transporter = nodemailer.createTransport({
-		service: 'gmail',
-		auth: {
-			user: process.env.ANTREPRIZA_GMAIL_EMAIL,
-			pass: process.env.ANTREPRIZA_GMAIL_PASSWORD,
-		},
-	});
 
 	const fromEmailDescription: string = `${theater.longTheaterName[lang]} `;
-	// const fromEmail: string = process.env.MODE === process.env.MODE_LOCALHOST
-	// 		? `${fromEmailDescription}<${process.env.ANTREPRIZA_GMAIL_EMAIL}>`
-	// 		: `${fromEmailDescription}<${transporterMail}>`;
-	const fromEmail: string = `${fromEmailDescription}<${process.env.ANTREPRIZA_GMAIL_EMAIL}>`;
+	const fromEmail: string =
+		process.env.MODE === process.env.MODE_LOCALHOST
+			? `${fromEmailDescription}<${process.env.ANTREPRIZA_GMAIL_EMAIL}>`
+			: `${fromEmailDescription}<${transporterMail}>`;
+	// const fromEmail: string = `${fromEmailDescription}<${transporterMail}>`;
+	// const fromEmail: string = `${fromEmailDescription}<${process.env.ANTREPRIZA_GMAIL_EMAIL}>`;
 	const mailOptionsClient = {
 		from: fromEmail,
 		to: clientMail.to,
