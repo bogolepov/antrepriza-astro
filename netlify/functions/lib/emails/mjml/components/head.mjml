@@ -1,0 +1,39 @@
+<mj-attributes>
+	<mj-font
+		name="Roboto"
+		href="https://fonts.googleapis.com/css2?family=Roboto:ital,wdth,wght@0,75..100,100..900;1,75..100,100..900&display=swap&subset=cyrillic"
+	/>
+	<mj-all font-family="Roboto, Verdana, Arial, sans-serif" padding="0" />
+	<mj-body background-color="#292929" width="640px" />
+	<mj-text font-size="16px" font-weight="400" color="#d6d6d6" padding="0 0 15px 0" line-height="1.2" />
+	<mj-class name="body-wrapper" width="600px" padding="35px 20px" />
+	<mj-class name="list-item" padding="0 0 3px 20px" />
+
+	<mj-class
+		name="action-button"
+		font-family="Roboto, Verdana, Arial"
+		background-color="transparent"
+		color="#87605e"
+		border="1px solid #87605e"
+		font-size="16px"
+		padding="20px 0 40px 0"
+		text-decoration="none"
+	/>
+</mj-attributes>
+<mj-style inline="inline">
+	.link-nostyle {
+		color: inherit;
+		text-decoration: none;
+	}
+	.info-table td {
+		font-family: Roboto, Verdana, Arial, sans-serif;
+		font-size: 16px;
+		color: #d6d6d6;
+		padding: 0;
+	}
+	.info-table .info-label {
+		width: 70px;
+		font-weight: 400;
+		white-space: nowrap;
+	}
+</mj-style>

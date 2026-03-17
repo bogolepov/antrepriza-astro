@@ -8,6 +8,10 @@
 		"ru": "Подтвердите подписку на новости",
 		"de": "Newsletter-Anmeldung bestätigen"
 	},
+	"email_news_subscription_reg_subject_preview": {
+		"ru": "Запрос подтверждения подписки на новости Театра Антреприза Берлин",
+		"de": "Anfrage zur Bestätigung des Newsletter-Abonnements des Theaters Antrepriza Berlin"
+	},
 	"email_news_subscription_confirmed_subject": {
 		"ru": "У вас новый подписчик",
 		"de": "Sie haben einen neuen Abonnenten"
@@ -41,6 +45,10 @@
 	"email_contact_form_text_antrepriza": {
 		"ru": "Новый запрос на сайте через Форму обратной связи.",
 		"de": "Sie haben eine neue Rückfrage auf der Webseite."
+	},
+	"email_reservation_preview_subject": {
+		"ru": "Подтверждение бронирования билетов",
+		"de": "Ticketreservierungsbestätigung"
 	},
 	"email_reservation_text": {
 		"ru": "Ваши билеты успешно зарезервированы. Ниже Вы найдете информацию по бронированию.",

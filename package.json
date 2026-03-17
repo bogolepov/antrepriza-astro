@@ -4,10 +4,12 @@
 	"version": "1.19.02",
 	"scripts": {
 		"dev": "astro dev",
+		"ndev": "netlify dev",
 		"start": "astro dev",
 		"build": "astro build",
 		"preview": "astro preview",
-		"astro": "astro"
+		"astro": "astro",
+		"build-emails": "rimraf --glob ./netlify/functions/lib/emails/html/*.html && mjml ./netlify/functions/lib/emails/mjml/*.mjml -o ./netlify/functions/lib/emails/html"
 	},
 	"dependencies": {
 		"@astrojs/netlify": "^6.5.4",
@@ -16,15 +18,14 @@
 		"@astrojs/vue": "^5.1.0",
 		"@nanostores/react": "^0.7.3",
 		"@netlify/functions": "^4.1.12",
-		"@types/nodemailer": "^6.4.17",
-		"@types/react": "^18.3.12",
-		"@types/react-dom": "^18.3.1",
 		"astro": "^5.12.7",
 		"astro-icon": "^1.1.5",
 		"firebase": "^11.10.0",
+		"handlebars": "^4.7.8",
 		"jsonwebtoken": "^9.0.2",
+		"mjml": "^4.18.0",
 		"nanostores": "^0.10.3",
-		"nodemailer": "^6.10.1",
+		"nodemailer": "^7.0.12",
 		"pinia": "^3.0.3",
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1",
@@ -39,9 +40,13 @@
 		"@semantic-release/git": "github:semantic-release/git",
 		"@semantic-release/github": "github:semantic-release/github",
 		"@semantic-release/npm": "github:semantic-release/npm",
-		"@types/nodemailer": "^6.4.17",
+		"@types/handlebars": "^4.0.40",
+		"@types/nodemailer": "^7.0.4",
+		"@types/react": "^18.3.12",
+		"@types/react-dom": "^18.3.1",
 		"prettier": "^3.4.2",
 		"prettier-plugin-astro": "^0.14.1",
-		"semantic-release": "^24.2.9"
+		"rimraf": "^6.1.2",
+		"semantic-release": "^25.0.2"
 	}
 }
