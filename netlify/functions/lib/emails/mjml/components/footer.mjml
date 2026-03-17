@@ -1,0 +1,33 @@
+<mj-section>
+	<mj-column>
+		<mj-social icon-size="30px" mode="horizontal" inner-padding="0 10px">
+			{{#if facebook_url}}
+			<mj-social-element
+				name="facebook-noshare"
+				href="{{facebook_url}}"
+				src="https://antrepriza.eu/assets/facebook.svg"
+				color="#87605e"
+				background-color="transparent"
+			/>
+			{{/if}}
+			{{#if youtube_url}}
+			<mj-social-element
+				name="youtube"
+				href="{{youtube_url}}"
+				src="https://antrepriza.eu/assets/youtube.svg"
+				color="#87605e"
+				background-color="transparent"
+			/>
+			{{/if}}
+			{{#if instagram_url}}
+			<mj-social-element
+				name="instagram"
+				href="{{instagram_url}}"
+				src="https://antrepriza.eu/assets/instagram.svg"
+				color="#87605e"
+				background-color="transparent"
+			/>
+			{{/if}}
+		</mj-social>
+	</mj-column>
+</mj-section>

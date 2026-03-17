@@ -1,0 +1,26 @@
+<mjml lang="{{lang}}">
+	<mj-head>
+		<mj-title>{{ subject }}</mj-title>
+		<mj-preview>{{ previewSubject }}</mj-preview>
+		<mj-include path="./components/head.mjml" />
+	</mj-head>
+	<mj-body>
+		<mj-wrapper mj-class="body-wrapper">
+			<mj-include path="./components/header.mjml" />
+			<mj-section>
+				<mj-column>
+					<mj-text>{{ hello }}</mj-text>
+					<mj-text>{{ happy_text }}</mj-text>
+					<mj-text>{{ verify_text }}</mj-text>
+					<mj-button mj-class="action-button" align="left" href="{{verify_url}}"> {{ buttonText }} </mj-button>
+					<mj-text>{{ regards }}</mj-text>
+					<mj-text>
+						{{ team }}<br />
+						<a href="{{theater_url}}" style="color: #d6d6d6">{{ theater_url_text }}</a>
+					</mj-text>
+				</mj-column>
+			</mj-section>
+			<mj-include path="./components/footer.mjml" />
+		</mj-wrapper>
+	</mj-body>
+</mjml>

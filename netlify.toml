@@ -10,7 +10,7 @@
 
 [functions]
   node_bundler = "esbuild"
-	included_files = []
+	included_files = ["netlify/functions/lib/emails/html/*.html"]
 
 [[redirects]]
   from = "/api/*"

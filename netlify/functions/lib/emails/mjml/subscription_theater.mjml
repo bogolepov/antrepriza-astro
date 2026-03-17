@@ -1,0 +1,21 @@
+<mjml lang="ru">
+	<mj-head>
+		<mj-title>Новый подписчик</mj-title>
+		<mj-preview>Новый подписчик на театральные мероприятия и новости</mj-preview>
+		<mj-include path="./components/head.mjml" />
+	</mj-head>
+	<mj-body>
+		<mj-wrapper mj-class="body-wrapper">
+			<mj-section>
+				<mj-column>
+					<mj-table css-class="info-table">
+						<tr>
+							<td class="info-label">E-Mail:</td>
+							<td>{{ email }}</td>
+						</tr>
+					</mj-table>
+				</mj-column>
+			</mj-section>
+		</mj-wrapper>
+	</mj-body>
+</mjml>

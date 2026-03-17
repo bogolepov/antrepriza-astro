@@ -1,6 +1,67 @@
 import nodemailer from 'nodemailer';
 import theater from '@data/theater.json';
 
+// import { promises as fs } from 'fs';
+import { readFileSync } from 'fs';
+import path from 'path';
+import Handlebars from 'handlebars';
+
+const TEMPLATES_DIR = path.resolve(__dirname, './lib/emails/html');
+
+export const TemplateNames = {
+	reservations: 'reservations',
+	subscription_user_verify: 'subscription_user',
+	subscription_theater_confirm: 'subscription_theater',
+} as const;
+
+export type TemplateNames = (typeof TemplateNames)[keyof typeof TemplateNames];
+
+export type SubscriptionUserVariables = {
+	lang: string;
+	subject: string;
+	previewSubject: string;
+	hello: string;
+	happy_text: string;
+	verify_text: string;
+	verify_url: string;
+	buttonText: string;
+	regards: string;
+	team: string;
+	theater_url: string;
+	theater_url_text: string;
+	facebook_url?: string;
+	youtube_url?: string;
+	instagram_url?: string;
+};
+export type SubscriptionTheaterVariables = {
+	email: string;
+};
+
+// async function getHdbrTemplate(templateName: TemplateNames): Promise<string> {
+// 	const filePath = path.join(TEMPLATES_DIR, `${templateName}.html`);
+// 	return await fs.readFile(filePath, 'utf8');
+// }
+function getHdbrTemplate(templateName: TemplateNames) {
+	const filePath = path.join(TEMPLATES_DIR, `${templateName}.html`);
+	return readFileSync(filePath, 'utf8');
+}
+
+export function getEmailHtml(
+	templateName: TemplateNames,
+	emailVariables: SubscriptionUserVariables | SubscriptionTheaterVariables,
+) {
+	// const hdbrTemplateContent = await getHdbrTemplate(templateName);
+	try {
+		const hdbrTemplateContent = getHdbrTemplate(templateName);
+		const template = Handlebars.compile(hdbrTemplateContent);
+		return template(emailVariables);
+	} catch (error) {
+		console.error('Prepare EEmail [fatal]:');
+		console.error(error);
+		return undefined;
+	}
+}
+
 export type TMail = {
 	to: string;
 	subject: string;
