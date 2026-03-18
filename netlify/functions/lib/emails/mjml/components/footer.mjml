@@ -1,6 +1,6 @@
 <mj-section>
 	<mj-column>
-		<mj-social icon-size="30px" mode="horizontal" inner-padding="0 10px">
+		<mj-social icon-size="26px" mode="horizontal" inner-padding="0 10px">
 			{{#if facebook_url}}
 			<mj-social-element
 				name="facebook-noshare"
