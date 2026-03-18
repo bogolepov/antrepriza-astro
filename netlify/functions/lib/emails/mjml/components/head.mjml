@@ -36,4 +36,7 @@
 		font-weight: 400;
 		white-space: nowrap;
 	}
+	.pink-image img {
+		color: #87605e;
+	}
 </mj-style>
