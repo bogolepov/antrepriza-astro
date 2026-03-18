@@ -26,6 +26,7 @@
 				src="https://antrepriza.eu/assets/instagram.svg"
 				color="#87605e"
 				background-color="transparent"
+				css-class="pink-image"
 			/>
 			{{/if}}
 		</mj-social>
