@@ -5,8 +5,7 @@
 			<mj-social-element
 				name="facebook-noshare"
 				href="{{facebook_url}}"
-				src="https://antrepriza.eu/assets/facebook.svg"
-				color="#87605e"
+				src="https://antrepriza.eu/assets/facebook-braun.svg"
 				background-color="transparent"
 			/>
 			{{/if}}
@@ -14,8 +13,7 @@
 			<mj-social-element
 				name="youtube"
 				href="{{youtube_url}}"
-				src="https://antrepriza.eu/assets/youtube.svg"
-				color="#87605e"
+				src="https://antrepriza.eu/assets/youtube-braun.svg"
 				background-color="transparent"
 			/>
 			{{/if}}
@@ -23,10 +21,8 @@
 			<mj-social-element
 				name="instagram"
 				href="{{instagram_url}}"
-				src="https://antrepriza.eu/assets/instagram.svg"
-				color="#87605e"
+				src="https://antrepriza.eu/assets/instagram-braun.svg"
 				background-color="transparent"
-				css-class="pink-image"
 			/>
 			{{/if}}
 		</mj-social>
