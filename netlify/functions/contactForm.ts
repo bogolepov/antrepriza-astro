@@ -65,19 +65,19 @@ export const handler: Handler = async (event, context) => {
 
 	const { transporter, emailFrom, emailToAntrepriza } = createTransporter(process.env.ANTREPRIZA_EMAIL_INFO, lang);
 	if (
-		!sendMail(transporter, {
+		!(await sendMail(transporter, {
 			from: emailFrom,
 			to: emailToAntrepriza,
 			subject: subject,
 			html: getEmailHtml(TemplateNames.contact_form, getHtmlVariables(true)),
-		})
+		}))
 	) {
 		return makeHandlerResponse(500, dictionaryServer.nf__contact_form__send_error[lang]);
 	} else {
 		// Отправляем письмо клиенту только если письмо для Антрепризы успешно отправлено
 		// Результат отправки письма клиенту не критичен, поэтому не обрабатываем
 		// возможные ошибки при отправке клиентского письма
-		sendMail(transporter, {
+		await sendMail(transporter, {
 			from: emailFrom,
 			to: email,
 			subject: subject,
