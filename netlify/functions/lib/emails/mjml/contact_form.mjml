@@ -37,7 +37,9 @@
 						</tr>
 						<tr>
 							<td class="info-label">{{ email_label }}</td>
-							<td>{{ email }}</td>
+							<td>
+								<a href="mailto:{{email}}" style="color: #d6d6d6">{{ email }}</a>
+							</td>
 						</tr>
 						<tr>
 							<td class="info-label">{{ message_label }}</td>
