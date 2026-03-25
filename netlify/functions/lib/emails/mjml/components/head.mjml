@@ -6,7 +6,9 @@
 	<mj-all font-family="Roboto, Verdana, Arial, sans-serif" padding="0" />
 	<mj-body background-color="#292929" width="640px" />
 	<mj-text font-size="16px" font-weight="400" color="#d6d6d6" padding="0 0 15px 0" line-height="1.2" />
+	<mj-divider border-width="1px" border-style="solid" border-color="#d6d6d6" />
 	<mj-class name="body-wrapper" width="600px" padding="35px 20px" />
+	<mj-class name="title" font-size="20px" font-weight="500" />
 	<mj-class name="list-item" padding="0 0 3px 20px" />
 
 	<mj-class
@@ -15,7 +17,8 @@
 		background-color="transparent"
 		color="#87605e"
 		border="1px solid #87605e"
-		font-size="16px"
+		font-size="17px"
+		font-weight="500"
 		padding="20px 0 40px 0"
 		text-decoration="none"
 	/>
@@ -25,7 +28,8 @@
 		color: inherit;
 		text-decoration: none;
 	}
-	.info-table td {
+	.info-table td,
+	.info-table-cf td {
 		font-family: Roboto, Verdana, Arial, sans-serif;
 		font-size: 16px;
 		color: #d6d6d6;
@@ -34,6 +38,18 @@
 	.info-table .info-label {
 		width: 70px;
 		font-weight: 400;
+		white-space: nowrap;
+	}
+
+	.info-table-cf td {
+		padding-bottom: 10px;
+		vertical-align: top;
+	}
+	.info-table-cf .info-label {
+		width: 37%;
+		padding-right: 8px;
+		font-weight: 400;
+		color: #888888;
 		white-space: nowrap;
 	}
 </mj-style>

@@ -1,0 +1,54 @@
+<mjml lang="{{lang}}">
+	<mj-head>
+		<mj-title>{{ subject }}</mj-title>
+		<mj-include path="./components/head.mjml" />
+	</mj-head>
+	<mj-body>
+		<mj-wrapper mj-class="body-wrapper">
+			<mj-include path="./components/header.mjml" />
+			<mj-section>
+				<mj-column>
+					<mj-text mj-class="title">{{ hello }}</mj-text>
+					<mj-text>
+						{{ main_text }}
+						{{#if timestamp}}
+						<div style="font-size: 90%; line-height: 120%; color: #888888; font-weight: 500">[{{ timestamp }}]</div>
+						{{/if}}
+					</mj-text>
+					<!-- {{#unless timestamp}} -->
+					<mj-text>
+						{{ team }}<br />
+						<a href="{{{theater_url}}}/{{lang}}" style="color: #d6d6d6">{{{ theater_url_text }}}</a>
+					</mj-text>
+					<!-- {{/unless}} -->
+					<mj-divider />
+				</mj-column>
+			</mj-section>
+			<mj-section>
+				<mj-column>
+					<mj-table css-class="info-table-cf" padding="15px 0 15px 0">
+						<tr>
+							<td class="info-label">{{ topic_label }}</td>
+							<td>{{ topic }}</td>
+						</tr>
+						<tr>
+							<td class="info-label">{{ name_label }}</td>
+							<td>{{ name }}</td>
+						</tr>
+						<tr>
+							<td class="info-label">{{ email_label }}</td>
+							<td>
+								<a href="mailto:{{email}}" style="color: #d6d6d6">{{ email }}</a>
+							</td>
+						</tr>
+						<tr>
+							<td class="info-label">{{ message_label }}</td>
+							<td>{{ message }}</td>
+						</tr>
+					</mj-table>
+				</mj-column>
+			</mj-section>
+			<mj-include path="./components/footer.mjml" />
+		</mj-wrapper>
+	</mj-body>
+</mjml>

@@ -9,7 +9,9 @@
 		"build": "astro build",
 		"preview": "astro preview",
 		"astro": "astro",
-		"build-emails": "rimraf --glob ./netlify/functions/lib/emails/html/*.html && mjml ./netlify/functions/lib/emails/mjml/*.mjml -o ./netlify/functions/lib/emails/html"
+		"build-emails": "rimraf --glob ./netlify/functions/lib/emails/html/*.html && mjml ./netlify/functions/lib/emails/mjml/*.mjml -o ./netlify/functions/lib/emails/html && node ./netlify/functions/lib/emails/postprocess-html.mjs",
+		"build-emails-prod": "rimraf --glob ./netlify/functions/lib/emails/html/*.html && mjml ./netlify/functions/lib/emails/mjml/*.mjml -o ./netlify/functions/lib/emails/html && node ./netlify/functions/lib/emails/postprocess-html.mjs --prod",
+		"build-emails2": "node ./netlify/functions/lib/emails/build-emails.mjs"
 	},
 	"dependencies": {
 		"@astrojs/netlify": "^6.5.4",

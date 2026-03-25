@@ -8,7 +8,9 @@ import {
 	type SubscriptionUserVariables,
 	type TMail,
 	TemplateNames,
+	createTransporter,
 	getEmailHtml,
+	sendMail,
 	sendMails,
 } from '@netlify/lib/mailService.ts';
 import { makeHtmlEmail } from '@netlify/lib/emails/mainEmailTemplate.ts';
@@ -62,33 +64,43 @@ async function emailRegistration(packet: TSubscriptionPacket): Promise<HandlerRe
 		hello: dictionaryServer.dear_audience[lang] + (lang === 'ru' ? '!' : ','),
 		happy_text: dictionaryServer.email_subscription_text[lang],
 		verify_text: dictionaryServer.email_subscription_text2[lang],
-		verify_url: `https://antrepriza.eu/${lang}/newsletter?obj=${obj}&sid=${sid}`,
+		verify_url: `${theater.our_website_link}/${lang}/newsletter?obj=${obj}&sid=${sid}`,
 		buttonText: dictionaryServer.email_subscription_button_text[lang],
 		regards: dictionaryServer.email_subscription_text3[lang],
 		team: theater.longTheaterName[lang],
-		theater_url: theater.our_website_link + '/' + lang + '/',
-		theater_url_text: theater.our_website_text,
-		facebook_url: theater.social_pages.find(p => p.name === 'Facebook')?.url,
-		youtube_url: theater.social_pages.find(p => p.name === 'Youtube')?.url,
-		instagram_url: theater.social_pages.find(p => p.name === 'Instagram')?.url,
 	};
 
-	const transporterMail: string = process.env.ANTREPRIZA_EMAIL_SUBSCRIPTION;
-	const subjectClient: string = dictionaryServer.email_news_subscription_reg_subject[lang];
-	const clientMail: TMail = {
-		to: email,
-		subject: subjectClient,
-		// html: makeHtmlEmail(lang, subjectClient, makeContentRegistration(lang, email, obj, sid)),
-		html: getEmailHtml(TemplateNames.subscription_user_verify, htmlVariables),
-	};
-	if (!clientMail.html) {
-		return makeHandlerResponse(500, dictionaryServer.email_service_error[lang]);
+	const subject: string = dictionaryServer.email_news_subscription_reg_subject[lang];
+
+	const { transporter, emailFrom } = createTransporter(process.env.ANTREPRIZA_EMAIL_SUBSCRIPTION, lang);
+	if (
+		!(await sendMail(transporter, {
+			from: emailFrom,
+			to: email,
+			subject: subject,
+			html: getEmailHtml(TemplateNames.subscription_user_verify, htmlVariables),
+		}))
+	) {
+		return makeHandlerResponse(500, dictionaryServer.nf__email_registration__error[lang]);
 	}
 
-	const isSent = await sendMails(lang, transporterMail, clientMail);
+	return makeHandlerResponse(200, dictionaryServer.nf__email_registration__ok[lang]);
 
-	if (isSent) return makeHandlerResponse(200, dictionaryServer.nf__email_registration__ok[lang]);
-	else return makeHandlerResponse(500, dictionaryServer.nf__email_registration__error[lang]);
+	// const transporterMail: string = process.env.ANTREPRIZA_EMAIL_SUBSCRIPTION;
+	// const clientMail: TMail = {
+	// 	to: email,
+	// 	subject: subject,
+	// 	// html: makeHtmlEmail(lang, subjectClient, makeContentRegistration(lang, email, obj, sid)),
+	// 	html: getEmailHtml(TemplateNames.subscription_user_verify, htmlVariables),
+	// };
+	// if (!clientMail.html) {
+	// 	return makeHandlerResponse(500, dictionaryServer.email_service_error[lang]);
+	// }
+
+	// const isSent = await sendMails(lang, transporterMail, clientMail);
+
+	// if (isSent) return makeHandlerResponse(200, dictionaryServer.nf__email_registration__ok[lang]);
+	// else return makeHandlerResponse(500, dictionaryServer.nf__email_registration__error[lang]);
 }
 
 async function emailConfirmation(packet: TSubscriptionPacket): Promise<HandlerResponse> {
@@ -99,27 +111,42 @@ async function emailConfirmation(packet: TSubscriptionPacket): Promise<HandlerRe
 		return makeHandlerResponse(500, dictionaryServer.email_service_error[lang]);
 	}
 
-	const transporterMail: string = process.env.ANTREPRIZA_EMAIL_SUBSCRIPTION;
-	const subjectClient: string = dictionaryServer.email_news_subscription_confirmed_subject[lang];
-	const email: string =
-		process.env.MODE === process.env.MODE_PRODUCTION
-			? process.env.ANTREPRIZA_EMAIL_SUBSCRIPTION
-			: process.env.ANTREPRIZA_EMAIL_BOGOLEPOV;
-
+	const subject: string = dictionaryServer.email_news_subscription_confirmed_subject[lang];
 	const htmlVariables: SubscriptionTheaterVariables = {
 		email: res.subscriber.email,
 	};
 
-	const clientMail: TMail = {
-		to: email,
-		subject: subjectClient,
-		// html: makeHtmlEmail(lang, subjectClient, makeContentConfirmed(res.subscriber)),
-		html: getEmailHtml(TemplateNames.subscription_theater_confirm, htmlVariables),
-	};
+	const { transporter, emailFrom, emailToAntrepriza } = createTransporter(
+		process.env.ANTREPRIZA_EMAIL_SUBSCRIPTION,
+		lang,
+	);
 
-	await sendMails(lang, transporterMail, clientMail);
+	await sendMail(transporter, {
+		from: emailFrom,
+		to: emailToAntrepriza,
+		subject: subject,
+		html: getEmailHtml(TemplateNames.subscription_theater_confirm, htmlVariables),
+	});
 
 	return makeHandlerResponse(200, dictionaryServer.nf__email_confirmation__ok[lang]);
+
+	// const transporterMail: string = process.env.ANTREPRIZA_EMAIL_SUBSCRIPTION;
+	// const subjectClient: string = dictionaryServer.email_news_subscription_confirmed_subject[lang];
+	// const email: string =
+	// 	process.env.MODE === process.env.MODE_PRODUCTION
+	// 		? process.env.ANTREPRIZA_EMAIL_SUBSCRIPTION
+	// 		: process.env.ANTREPRIZA_EMAIL_BOGOLEPOV;
+
+	// const clientMail: TMail = {
+	// 	to: email,
+	// 	subject: subjectClient,
+	// 	// html: makeHtmlEmail(lang, subjectClient, makeContentConfirmed(res.subscriber)),
+	// 	html: getEmailHtml(TemplateNames.subscription_theater_confirm, htmlVariables),
+	// };
+
+	// await sendMails(lang, transporterMail, clientMail);
+
+	// return makeHandlerResponse(200, dictionaryServer.nf__email_confirmation__ok[lang]);
 }
 
 async function emailRemoving(packet: TSubscriptionPacket): Promise<HandlerResponse> {
