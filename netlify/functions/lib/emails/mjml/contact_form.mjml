@@ -12,7 +12,7 @@
 					<mj-text>
 						{{ main_text }}
 						{{#if timestamp}}
-						<div style="font-size: 90%; line-height: 120%; color: #888888; font-weight: 500">{{ timestamp }}</div>
+						<div style="font-size: 90%; line-height: 120%; color: #888888; font-weight: 500">[{{ timestamp }}]</div>
 						{{/if}}
 					</mj-text>
 					<!-- {{#unless timestamp}} -->
