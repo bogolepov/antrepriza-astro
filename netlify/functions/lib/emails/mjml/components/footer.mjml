@@ -1,30 +1,24 @@
 <mj-section>
 	<mj-column>
 		<mj-social icon-size="26px" mode="horizontal" inner-padding="0 10px">
-			{{#if facebook_url}}
 			<mj-social-element
 				name="facebook-noshare"
-				href="{{facebook_url}}"
-				src="https://antrepriza.eu/assets/facebook-braun.svg"
+				href="{{{facebook_url}}}"
+				src="{{{theater_url}}}/assets/facebook-braun.svg"
 				background-color="transparent"
 			/>
-			{{/if}}
-			{{#if youtube_url}}
 			<mj-social-element
 				name="youtube"
-				href="{{youtube_url}}"
-				src="https://antrepriza.eu/assets/youtube-braun.svg"
+				href="{{{youtube_url}}}"
+				src="{{{theater_url}}}/assets/youtube-braun.svg"
 				background-color="transparent"
 			/>
-			{{/if}}
-			{{#if instagram_url}}
 			<mj-social-element
 				name="instagram"
-				href="{{instagram_url}}"
-				src="https://antrepriza.eu/assets/instagram-braun.svg"
+				href="{{{instagram_url}}}"
+				src="{{{theater_url}}}/assets/instagram-braun.svg"
 				background-color="transparent"
 			/>
-			{{/if}}
 		</mj-social>
 	</mj-column>
 </mj-section>

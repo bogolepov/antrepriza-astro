@@ -1,8 +1,8 @@
 <mj-section>
 	<mj-column>
 		<mj-image
-			src="https://antrepriza.eu/assets/logo-{{lang}}-braun.svg"
-			href="https://antrepriza.eu/{{lang}}"
+			src="{{{theater_url}}}/assets/logo-{{lang}}-braun.svg"
+			href="{{{theater_url}}}/{{lang}}"
 			alt="Theater Antrepriza Berlin"
 			align="center"
 			width="148px"

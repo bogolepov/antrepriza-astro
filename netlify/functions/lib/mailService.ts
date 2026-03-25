@@ -1,7 +1,6 @@
 import nodemailer from 'nodemailer';
 import theater from '@data/theater.json';
 
-// import { promises as fs } from 'fs';
 import { readFileSync } from 'fs';
 import path from 'path';
 import Handlebars from 'handlebars';
@@ -12,6 +11,7 @@ export const TemplateNames = {
 	reservations: 'reservations',
 	subscription_user_verify: 'subscription_user',
 	subscription_theater_confirm: 'subscription_theater',
+	contact_form: 'contact_form',
 } as const;
 
 export type TemplateNames = (typeof TemplateNames)[keyof typeof TemplateNames];
@@ -27,20 +27,28 @@ export type SubscriptionUserVariables = {
 	buttonText: string;
 	regards: string;
 	team: string;
-	theater_url: string;
-	theater_url_text: string;
-	facebook_url?: string;
-	youtube_url?: string;
-	instagram_url?: string;
 };
 export type SubscriptionTheaterVariables = {
 	email: string;
 };
+export type ContactFormVariables = {
+	lang: string;
+	subject: string;
+	// previewSubject: string;
+	hello: string;
+	main_text: string;
+	timestamp?: string;
+	team: string;
+	topic_label: string;
+	topic: string;
+	name_label: string;
+	name: string;
+	email_label: string;
+	email: string;
+	message_label: string;
+	message: string;
+};
 
-// async function getHdbrTemplate(templateName: TemplateNames): Promise<string> {
-// 	const filePath = path.join(TEMPLATES_DIR, `${templateName}.html`);
-// 	return await fs.readFile(filePath, 'utf8');
-// }
 function getHdbrTemplate(templateName: TemplateNames) {
 	const filePath = path.join(TEMPLATES_DIR, `${templateName}.html`);
 	return readFileSync(filePath, 'utf8');
@@ -48,9 +56,8 @@ function getHdbrTemplate(templateName: TemplateNames) {
 
 export function getEmailHtml(
 	templateName: TemplateNames,
-	emailVariables: SubscriptionUserVariables | SubscriptionTheaterVariables,
+	emailVariables: SubscriptionUserVariables | SubscriptionTheaterVariables | ContactFormVariables,
 ) {
-	// const hdbrTemplateContent = await getHdbrTemplate(templateName);
 	try {
 		const hdbrTemplateContent = getHdbrTemplate(templateName);
 		const template = Handlebars.compile(hdbrTemplateContent);
@@ -62,24 +69,12 @@ export function getEmailHtml(
 	}
 }
 
-export type TMail = {
-	to: string;
-	subject: string;
-	html: string;
+export type TransporterInfo = {
+	transporter: nodemailer.Transporter;
+	emailFrom: string;
+	emailToAntrepriza: string;
 };
-export async function sendMails(lang: string, transporterMail: string, clientMail: TMail): Promise<boolean>;
-export async function sendMails(
-	lang: string,
-	transporterMail: string,
-	clientMail: TMail,
-	antreprizaMail: TMail,
-): Promise<boolean>;
-export async function sendMails(
-	lang: string,
-	transporterMail: string,
-	clientMail: TMail,
-	antreprizaMail?: TMail,
-): Promise<boolean> {
+export function createTransporter(transporterMail: string, lang: string): TransporterInfo {
 	const transporter =
 		process.env.MODE === process.env.MODE_LOCALHOST
 			? nodemailer.createTransport({
@@ -103,14 +98,63 @@ export async function sendMails(
 				});
 
 	const fromEmailDescription: string = `${theater.longTheaterName[lang]} `;
-	const fromEmail: string =
+	const emailFrom: string =
 		process.env.MODE === process.env.MODE_LOCALHOST
 			? `${fromEmailDescription}<${process.env.ANTREPRIZA_GMAIL_EMAIL}>`
 			: `${fromEmailDescription}<${transporterMail}>`;
 	// const fromEmail: string = `${fromEmailDescription}<${transporterMail}>`;
 	// const fromEmail: string = `${fromEmailDescription}<${process.env.ANTREPRIZA_GMAIL_EMAIL}>`;
+
+	const emailToAntrepriza: string =
+		process.env.MODE === process.env.MODE_PRODUCTION ? transporterMail : process.env.ANTREPRIZA_EMAIL_BOGOLEPOV;
+
+	return { transporter, emailFrom, emailToAntrepriza };
+}
+
+export type TMailData = {
+	from: string;
+	to: string;
+	subject: string;
+	html: string;
+};
+
+export async function sendMail(transporter: nodemailer.Transporter, mailData: TMailData): Promise<boolean> {
+	try {
+		if (mailData.html === undefined) {
+			throw new Error('Email HTML content is undefined');
+		}
+		await transporter.sendMail(mailData);
+		return true;
+	} catch (error) {
+		console.error('Nodemailer: sendEmail() [fatal]:');
+		console.error(error);
+		return false;
+	}
+}
+
+export type TMail = {
+	to: string;
+	subject: string;
+	html: string;
+};
+
+export async function sendMails(lang: string, transporterMail: string, clientMail: TMail): Promise<boolean>;
+export async function sendMails(
+	lang: string,
+	transporterMail: string,
+	clientMail: TMail,
+	antreprizaMail: TMail,
+): Promise<boolean>;
+export async function sendMails(
+	lang: string,
+	transporterMail: string,
+	clientMail: TMail,
+	antreprizaMail?: TMail,
+): Promise<boolean> {
+	const { transporter, emailFrom, emailToAntrepriza } = createTransporter(transporterMail, lang);
+
 	const mailOptionsClient = {
-		from: fromEmail,
+		from: emailFrom,
 		to: clientMail.to,
 		subject: clientMail.subject,
 		html: clientMail.html,
@@ -120,12 +164,9 @@ export async function sendMails(
 		await transporter.sendMail(mailOptionsClient);
 
 		if (antreprizaMail) {
-			const antreprizaMailTo: string =
-				process.env.MODE === process.env.MODE_PRODUCTION ? transporterMail : process.env.ANTREPRIZA_EMAIL_BOGOLEPOV;
-
 			const mailOptionsAntrepriza = {
-				from: fromEmail,
-				to: antreprizaMailTo,
+				from: emailFrom,
+				to: emailToAntrepriza,
 				subject: antreprizaMail.subject,
 				html: antreprizaMail.html,
 			};
