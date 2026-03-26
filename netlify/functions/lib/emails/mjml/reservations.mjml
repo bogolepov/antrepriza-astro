@@ -1,7 +1,6 @@
 <mjml lang="{{lang}}">
 	<mj-head>
 		<mj-title>{{ subject }}</mj-title>
-		<mj-preview>{{ previewSubject }}</mj-preview>
 		<mj-include path="./components/head.mjml" />
 	</mj-head>
 	<mj-body>
@@ -9,25 +8,138 @@
 			<mj-include path="./components/header.mjml" />
 			<mj-section>
 				<mj-column>
-					{{#if emailForAntrepriza}}
-					<mj-text font-size="20px" line-height="24px" font-weight="500">У вас новое бронирование билетов</mj-text>
-					{{else}}
-					<mj-text font-size="20px" line-height="24px" font-weight="500"> Добрый вечер, Vadim Romanov! </mj-text>
-					<mj-text> Ваши билеты успешно зарезервированы. Ниже Вы найдете информацию по бронированию. </mj-text>
+					<!-- {{#if theaterBlock}} -->
+					<mj-text font-size="20px" line-height="24px" font-weight="500">{{ theaterBlock.main_text }}</mj-text>
+					<mj-table css-class="info-table-booking" padding="0 0 15px 0">
+						<tr>
+							<td class="info-label">{{ theaterBlock.name_label }} :</td>
+							<td>{{ theaterBlock.name }}</td>
+						</tr>
+						<tr>
+							<td class="info-label">{{ theaterBlock.email_label }} :</td>
+							<td>
+								<a href="mailto:{{theaterBlock.email}}" style="color: #d6d6d6">{{ theaterBlock.email }}</a>
+							</td>
+						</tr>
+						<tr>
+							<td class="info-label">{{ theaterBlock.when_label }} :</td>
+							<td>{{ theaterBlock.when }}</td>
+						</tr>
+					</mj-table>
+					<!-- {{/if}} -->
+					<!-- {{#if userBlock}} -->
+					<mj-text font-size="20px" line-height="24px" font-weight="500">{{ userBlock.hello }}</mj-text>
+					<mj-text>{{ userBlock.main_text }}</mj-text>
 					<mj-text>
-						Где мы находимся и как к нам проехать Вы можете посмотреть
-						<mj-link href="https://antrepriza.eu/ru/theater/contact/">здесь</mj-link>.
+						{{ userBlock.location_text }}
+						<a href="{{{theater_url}}}/{{lang}}/theater/contact/" style="color: #87605e; font-weight: 700">
+							{{ userBlock.location_url_text }} </a
+						>.
 					</mj-text>
-					<mj-text padding-bottom="0"> Обратите внимание, что: </mj-text>
-					<mj-text mj-class="list-item">
-						- оплата зарезервированных билетов производится в наличной форме перед спектаклем на входе;
+					<mj-text padding-bottom="3px"> {{ userBlock.note_list }} </mj-text>
+					<mj-text mj-class="list-item">{{ userBlock.note_item1 }}</mj-text>
+					<mj-text mj-class="list-item">{{ userBlock.note_item2 }}</mj-text>
+					<mj-text mj-class="list-item">{{ userBlock.note_item3 }}</mj-text>
+					<mj-text padding-bottom="7px" padding-top="12px">{{ userBlock.reservation_introduce }}</mj-text>
+					<!-- {{/if}} -->
+					<mj-divider />
+					<mj-table css-class="info-table" padding="15px 0 0 0">
+						{{#each reservations}}
+						<tr>
+							<td style="vertical-align: top; padding: 0 0 20px 0">
+								<table border="0" cellspacing="0" role="presentation" style="width: 100%; margin: 0; padding: 0">
+									<tbody>
+										<tr>
+											<td style="font-size: 85%; line-height: 120%; color: #888888; font-weight: 400; padding: 3px 0 0 0">
+												{{ this.id }}
+											</td>
+										</tr>
+										<tr>
+											<td style="font-size: 115%; line-height: 120%; color: #87605e; font-weight: 600; padding: 0">{{ this.date }}</td>
+										</tr>
+										<tr>
+											<td style="font-size: 115%; line-height: 120%; color: #87605e; font-weight: 600; padding: 0">{{ this.time }}</td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+							<td style="vertical-align: top; padding: 0 0 20px 0">
+								<table border="0" cellspacing="0" role="presentation" style="width: 100%; margin: 0; padding: 0 0 12px 0">
+									<tbody>
+										<tr>
+											<td style="font-size: 27px; line-height: 110%; color: #d6d6d6; font-weight: 600; padding: 0">
+												{{ this.event_name }}
+												{{#if this.event_name_marker}}
+												<sup style="color: #87605e"> {{ this.event_name_marker }}</sup>
+												{{/if}}
+											</td>
+										</tr>
+										<tr>
+											<td style="font-size: 110%; line-height: 120%; color: #d6d6d6; font-weight: 400; padding: 0">
+												{{ this.event_description }}
+											</td>
+										</tr>
+										<tr>
+											<td style="padding: 10px 0 10px 15px; vertical-align: top">
+												<table
+													border="0"
+													role="presentation"
+													style="width: 100%; margin: 0; border-spacing: 12px 0; text-align: right; color: #888888"
+												>
+													<tbody>
+														{{#each this.tickets}}
+														<tr>
+															<td style="line-height: 110%; text-align: left; vertical-align: top; color: #888888; padding: 0">
+																{{ this.type }}
+															</td>
+															<td style="vertical-align: top; color: #888888; padding: 0">{{ this.price }}</td>
+															<td style="vertical-align: top; color: #888888; padding: 0">{{ this.count }}</td>
+															<td style="vertical-align: top; color: #888888; padding: 0">{{ this.amount }}</td>
+														</tr>
+														{{/each}}
+														<tr>
+															<td colspan="4" style="padding: 2px 0 0 0; border-bottom: 1px solid #888888"></td>
+														</tr>
+														<tr>
+															<td colspan="2" style="padding: 3px 0 0 0; text-align: left; vertical-align: top; color: #888888">
+																{{ this.total_amount_label }}
+															</td>
+															<td colspan="2" style="padding: 3px 0 0 0; vertical-align: top; color: #888888">
+																{{ this.total_amount }}
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</td>
+										</tr>
+										<tr>
+											<td style="font-size: 110%; line-height: 120%; color: #d6d6d6; font-weight: 700; padding: 0">
+												{{ this.stage_name }}
+											</td>
+										</tr>
+										<tr>
+											<td style="font-size: 110%; line-height: 120%; color: #888888; padding: 0">{{ this.stage_address }}</td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+						{{/each}}
+					</mj-table>
+					<mj-divider padding-bottom="15px" />
+					<!-- {{#if userBlock}} -->
+					<mj-text>
+						{{ userBlock.review_introduce }}
+						<a href="{{{ review_google_url }}}" style="line-height: 120%; color: #87605e; font-weight: 700">Google</a>
+						{{ userBlock.review_introduce2 }}
+						<a href="{{{ review_facebook_url }}}" style="line-height: 120%; color: #87605e; font-weight: 700">Facebook</a>!
 					</mj-text>
-					<mj-text mj-class="list-item"> - бар принимает к оплате также только наличность; </mj-text>
-					<mj-text mj-class="list-item" padding-bottom="15px">
-						- театр открывает свои двери за 30 минут до начала спектакля.
+					<mj-text>{{ userBlock.regards }}</mj-text>
+					<mj-text>
+						{{ userBlock.team }}<br />
+						<a href="{{{theater_url}}}/{{lang}}" style="color: #d6d6d6">{{{ theater_url_text }}}</a>
 					</mj-text>
-					{{/if}}
-					<mj-button mj-class="action-button" href="{{emailVerifyUrl}}"> Verify Email </mj-button>
+					<!-- {{/if}} -->
 				</mj-column>
 			</mj-section>
 			<mj-include path="./components/footer.mjml" />

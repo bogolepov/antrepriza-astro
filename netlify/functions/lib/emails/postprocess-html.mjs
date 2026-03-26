@@ -18,6 +18,8 @@ const replacements = {
 	facebook_url: theater.social_pages?.find(p => p.name === 'Facebook')?.url || '#',
 	instagram_url: theater.social_pages?.find(p => p.name === 'Instagram')?.url || '#',
 	youtube_url: theater.social_pages?.find(p => p.name === 'YouTube')?.url || '#',
+	review_google_url: theater.review_links.find(p => p.name === 'Google')?.link || '#',
+	review_facebook_url: theater.review_links.find(p => p.name === 'Facebook')?.link || '#',
 };
 
 console.log('Замены, которые будут применены:');

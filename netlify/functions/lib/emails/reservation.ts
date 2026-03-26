@@ -14,7 +14,7 @@ export function makeContent(
 	email: string,
 	htmlReservations: string,
 	when: string,
-	toAntrepriza: boolean
+	toAntrepriza: boolean,
 ): string {
 	let diffText: string;
 
@@ -25,16 +25,12 @@ ${dictionaryServer.new_reservation_text[lang]}\
 </td></tr>\
 <tr>\
 <td style="line-height: 120%; color: #d6d6d6; vertical-align: top">${dictionaryServer.lang_name[lang]} :</td>\
-<td style="line-height: 120%; color: #d6d6d6; vertical-align: top; padding: 0 0 5px 8px">${fromHtmlToPlainText(
-			name
-		)}</td>\
+<td style="line-height: 120%; color: #d6d6d6; vertical-align: top; padding: 0 0 5px 8px">${fromHtmlToPlainText(name)}</td>\
 </tr>\
 <tr>\
 <td style="line-height: 120%; color: #d6d6d6; vertical-align: top">Email :</td>\
 <td style="line-height: 120%; color: #d6d6d6; vertical-align: top; padding: 0 0 5px 8px">
-<a href='${'mailto:' + fromHtmlToPlainText(email)}' style="line-height: 120%; color: #d6d6d6">${fromHtmlToPlainText(
-			email
-		)}</a></td>\
+<a href='${'mailto:' + fromHtmlToPlainText(email)}' style="line-height: 120%; color: #d6d6d6">${fromHtmlToPlainText(email)}</a></td>\
 </tr>\
 <tr>\
 <td style="line-height: 120%; color: #d6d6d6; vertical-align: top">${dictionaryServer.lang_when[lang]} :</td>\
@@ -51,10 +47,7 @@ ${dictionaryServer.new_reservation_text[lang]}\
 			else return dictionaryServer.good_evening[lang];
 		};
 		const strHello =
-			getHello(dateOfReservation.getHours()) +
-			(lang === 'ru' ? ', ' : ' ') +
-			fromHtmlToPlainText(name) +
-			(lang === 'ru' ? '!' : '.');
+			getHello(dateOfReservation.getHours()) + (lang === 'ru' ? ', ' : ' ') + fromHtmlToPlainText(name) + (lang === 'ru' ? '!' : '.');
 		const strWelcome1_WithLinks = makeLinks(dictionaryServer.email_reservation_welcome1[lang]);
 
 		diffText = `\
@@ -69,7 +62,7 @@ ${dictionaryServer.email_reservation_where_link_text[lang]}</a>.\
 <tr><td style="line-height: 120%; color: #d6d6d6; padding: 0 0 3px 20px">${dictionaryServer.email_reservation_note1[lang]}</td></tr>\
 <tr><td style="line-height: 120%; color: #d6d6d6; padding: 0 0 3px 20px">${dictionaryServer.email_reservation_note2[lang]}</td></tr>\
 <tr><td style="line-height: 120%; color: #d6d6d6; padding: 0 0 20px 20px">${dictionaryServer.email_reservation_note3[lang]}</td></tr>\
-<tr><td style="line-height: 120%; color: #d6d6d6; padding-bottom: 5px">${dictionaryServer.email_reservation_note4[lang]}</td></tr>\
+<tr><td style="line-height: 120%; color: #d6d6d6; padding-bottom: 5px">${dictionaryServer.email_reservation_introduce[lang]}</td></tr>\
 <tr><td>${htmlReservations}</td></tr>\
 <tr><td style="line-height: 120%; color: #d6d6d6; padding: 20px 0 15px 0">${strWelcome1_WithLinks}</td></tr>\
 <tr><td style="line-height: 120%; color: #d6d6d6; padding: 0 0 15px 0">${dictionaryServer.email_reservation_welcome2[lang]}</td></tr>\
@@ -110,8 +103,6 @@ function makeEventsRows(lang: string, reservations: TDoReservationExt[]): string
 
 	// console.log('events: ' + reservations.length.toString());
 	reservations.forEach((event, index) => {
-		// console.log(event);
-
 		let play = plays.find(item => item.id === event.play_id); // play - thisPlay
 		let playName: string = getPlayName(play, lang);
 		let playLangMarker = needMarker(play, lang) ? play.lang_marker : '';
@@ -132,9 +123,7 @@ function makeEventsRows(lang: string, reservations: TDoReservationExt[]): string
 			`\
 <tr><td style="vertical-align: top">\
 <table border="0" cellspacing="0" role="presentation" style="width: 100%; margin: 0; padding: 0"><tbody>\
-<tr><td style="font-size: 85%; line-height: 120%; color: #888888; font-weight: 400; padding: 3px 0 0 0">${getOrderIdText(
-				event
-			)}</td></tr>\
+<tr><td style="font-size: 85%; line-height: 120%; color: #888888; font-weight: 400; padding: 3px 0 0 0">${getOrderIdText(event)}</td></tr>\
 <tr><td style="font-size: 115%; line-height: 120%; color: #87605e; font-weight: 600">${strDate}</td></tr>\
 <tr><td style="font-size: 115%; line-height: 120%; color: #87605e; font-weight: 600">${event.time}</td></tr>\
 </tbody></table>\
@@ -152,9 +141,7 @@ ${play.genre[lang]}, ${play.age}, ${dictionaryServer.play_lang[play.lang_id][lan
 ${ticketsRows.html}\
 <tr><td colspan="4" style="padding-top: 2px; border-bottom: 1px solid #888888"></td></tr>\
 <tr>\
-<td colspan="2" style="padding-top: 3px; text-align: left; vertical-align: top; color: #888888">${
-				dictionary.total_amount[lang]
-			}</td>\
+<td colspan="2" style="padding-top: 3px; text-align: left; vertical-align: top; color: #888888">${dictionary.total_amount[lang]}</td>\
 <td colspan="2" style="padding-top: 3px; vertical-align: top; color: #888888">${ticketsRows.amount}€</td>\
 </tr>\
 </tbody>\
@@ -208,7 +195,7 @@ function makeLinks(text: string): string {
 		theater.review_links.forEach(item => {
 			text = text.replace(
 				`%${item.name}`,
-				`<a href='${item.link}' style="line-height: 120%; color: #87605e; font-weight: 700">${item.name}</a>`
+				`<a href='${item.link}' style="line-height: 120%; color: #87605e; font-weight: 700">${item.name}</a>`,
 			);
 		});
 	}
