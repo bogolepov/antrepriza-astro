@@ -78,13 +78,21 @@
 		"ru": "- театр открывает свои двери за 30 минут до начала спектакля.",
 		"de": "- Unser Theater öffnet seine Türen 30 Minuten vor Vorstellungsbeginn"
 	},
-	"email_reservation_note4": {
+	"email_reservation_introduce": {
 		"ru": "Ваши бронирования: ",
 		"de": "Ihre Reservierungen: "
 	},
 	"email_reservation_welcome1": {
 		"ru": "Мы будем рады Вашему визиту в наш театр и Вашим отзывам в %Google и %Facebook!",
 		"de": "Wir freuen uns auf Ihren Besuch in unserem Theater und Ihre Bewertungen auf %Google und %Facebook!"
+	},
+	"email_review_introduce": {
+		"ru": "Мы будем рады Вашему визиту в наш театр и Вашим отзывам в ",
+		"de": "Wir freuen uns auf Ihren Besuch in unserem Theater und Ihre Bewertungen auf "
+	},
+	"email_review_introduce2": {
+		"ru": " и ",
+		"de": " und "
 	},
 	"email_reservation_welcome2": {
 		"ru": "С нетерпением ждем Вас!",

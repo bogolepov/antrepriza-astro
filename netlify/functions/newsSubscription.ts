@@ -6,15 +6,11 @@ import { validateSubscriptionPacketData } from '@scripts/subscription.ts';
 import {
 	type SubscriptionTheaterVariables,
 	type SubscriptionUserVariables,
-	type TMail,
 	TemplateNames,
 	createTransporter,
 	getEmailHtml,
 	sendMail,
-	sendMails,
 } from '@netlify/lib/mailService.ts';
-import { makeHtmlEmail } from '@netlify/lib/emails/mainEmailTemplate.ts';
-import { makeContentConfirmed, makeContentRegistration } from '@netlify/lib/emails/subscription.ts';
 import {
 	confirmEmail,
 	deleteEmail,
@@ -85,22 +81,6 @@ async function emailRegistration(packet: TSubscriptionPacket): Promise<HandlerRe
 	}
 
 	return makeHandlerResponse(200, dictionaryServer.nf__email_registration__ok[lang]);
-
-	// const transporterMail: string = process.env.ANTREPRIZA_EMAIL_SUBSCRIPTION;
-	// const clientMail: TMail = {
-	// 	to: email,
-	// 	subject: subject,
-	// 	// html: makeHtmlEmail(lang, subjectClient, makeContentRegistration(lang, email, obj, sid)),
-	// 	html: getEmailHtml(TemplateNames.subscription_user_verify, htmlVariables),
-	// };
-	// if (!clientMail.html) {
-	// 	return makeHandlerResponse(500, dictionaryServer.email_service_error[lang]);
-	// }
-
-	// const isSent = await sendMails(lang, transporterMail, clientMail);
-
-	// if (isSent) return makeHandlerResponse(200, dictionaryServer.nf__email_registration__ok[lang]);
-	// else return makeHandlerResponse(500, dictionaryServer.nf__email_registration__error[lang]);
 }
 
 async function emailConfirmation(packet: TSubscriptionPacket): Promise<HandlerResponse> {
@@ -129,24 +109,6 @@ async function emailConfirmation(packet: TSubscriptionPacket): Promise<HandlerRe
 	});
 
 	return makeHandlerResponse(200, dictionaryServer.nf__email_confirmation__ok[lang]);
-
-	// const transporterMail: string = process.env.ANTREPRIZA_EMAIL_SUBSCRIPTION;
-	// const subjectClient: string = dictionaryServer.email_news_subscription_confirmed_subject[lang];
-	// const email: string =
-	// 	process.env.MODE === process.env.MODE_PRODUCTION
-	// 		? process.env.ANTREPRIZA_EMAIL_SUBSCRIPTION
-	// 		: process.env.ANTREPRIZA_EMAIL_BOGOLEPOV;
-
-	// const clientMail: TMail = {
-	// 	to: email,
-	// 	subject: subjectClient,
-	// 	// html: makeHtmlEmail(lang, subjectClient, makeContentConfirmed(res.subscriber)),
-	// 	html: getEmailHtml(TemplateNames.subscription_theater_confirm, htmlVariables),
-	// };
-
-	// await sendMails(lang, transporterMail, clientMail);
-
-	// return makeHandlerResponse(200, dictionaryServer.nf__email_confirmation__ok[lang]);
 }
 
 async function emailRemoving(packet: TSubscriptionPacket): Promise<HandlerResponse> {

@@ -1,9 +1,5 @@
 <mj-attributes>
-	<mj-font
-		name="Roboto"
-		href="https://fonts.googleapis.com/css2?family=Roboto:ital,wdth,wght@0,75..100,100..900;1,75..100,100..900&display=swap&subset=cyrillic"
-	/>
-	<mj-all font-family="Roboto, Verdana, Arial, sans-serif" padding="0" />
+	<mj-all font-family="Arial, sans-serif" padding="0" />
 	<mj-body background-color="#292929" width="640px" />
 	<mj-text font-size="16px" font-weight="400" color="#d6d6d6" padding="0 0 15px 0" line-height="1.2" />
 	<mj-divider border-width="1px" border-style="solid" border-color="#d6d6d6" />
@@ -13,7 +9,7 @@
 
 	<mj-class
 		name="action-button"
-		font-family="Roboto, Verdana, Arial"
+		font-family="Arial"
 		background-color="transparent"
 		color="#87605e"
 		border="1px solid #87605e"
@@ -29,8 +25,9 @@
 		text-decoration: none;
 	}
 	.info-table td,
-	.info-table-cf td {
-		font-family: Roboto, Verdana, Arial, sans-serif;
+	.info-table-cf td,
+	.info-table-booking td {
+		font-family: Arial, sans-serif;
 		font-size: 16px;
 		color: #d6d6d6;
 		padding: 0;
@@ -39,6 +36,12 @@
 		width: 70px;
 		font-weight: 400;
 		white-space: nowrap;
+	}
+	.info-table-booking .info-label {
+		width: 25%;
+		font-weight: 400;
+		white-space: nowrap;
+		padding-bottom: 5px;
 	}
 
 	.info-table-cf td {
@@ -51,5 +54,16 @@
 		font-weight: 400;
 		color: #888888;
 		white-space: nowrap;
+	}
+	.event-date {
+		font-size: 115%;
+		color: #87605e;
+		font-weight: 600;
+	}
+	.reservation-id {
+		font-size: 85%;
+		color: #888888;
+		font-weight: 400;
+		padding: 3px 0 0 0;
 	}
 </mj-style>

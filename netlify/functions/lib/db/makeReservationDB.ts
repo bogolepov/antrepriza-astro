@@ -13,19 +13,11 @@ function makeReservationId(date: string, time: string) {
 	return date.slice(5, 7) + date.slice(8) + time.slice(0, 2) + getRandomIntInclusive(4179, 9378).toString();
 }
 async function eventExists(eventName: string): Promise<boolean> {
-	const snap = await getCountFromServer(
-		query(collection(antreprizaDB, COLLECTION_TICKETS), where(documentId(), '==', eventName))
-	);
+	const snap = await getCountFromServer(query(collection(antreprizaDB, COLLECTION_TICKETS), where(documentId(), '==', eventName)));
 	return snap.data().count > 0;
 }
 
-export async function addReservations(
-	lang: string,
-	name: string,
-	email: string,
-	when: string,
-	reservations: TDoReservationExt[]
-) {
+export async function addReservations(lang: string, name: string, email: string, when: string, reservations: TDoReservationExt[]) {
 	// console.log('DB: addReservations');
 	if (reservations?.length > 0) {
 		for (let event of reservations) {

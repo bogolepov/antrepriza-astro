@@ -1,14 +1,11 @@
 import type { Handler } from '@netlify/functions';
 import { ContactFormSchema, type TContactForm } from '@scripts/types/contactForm.ts';
 import { isValidContactForm } from '@scripts/contact_form';
-import { makeHtmlEmail } from './lib/emails/mainEmailTemplate.ts';
 import {
 	type ContactFormVariables,
-	type TMail,
 	TemplateNames,
 	createTransporter,
 	getEmailHtml,
-	sendMails,
 	sendMail,
 } from './lib/mailService.ts';
 import { fromHtmlToPlainText, makeHandlerResponse, nonBreakingSpace } from './lib/utils.ts';
@@ -17,7 +14,6 @@ import theater from '@data/theater.json';
 import { LANG_RU } from '@scripts/consts.ts';
 import { extractSchemaFromJson } from '@scripts/utils.ts';
 import { getHello } from './utils/time.ts';
-import { create } from 'handlebars';
 
 export const handler: Handler = async (event, context) => {
 	if (!event || !event.body) return makeHandlerResponse(400, dictionaryServer.nf__invalid_request[LANG_RU]);
@@ -85,26 +81,6 @@ export const handler: Handler = async (event, context) => {
 		});
 		return makeHandlerResponse(200, dictionaryServer.nf__contact_form__ok[lang]);
 	}
-	/*
-	const transporterMail: string = process.env.ANTREPRIZA_EMAIL_INFO;
-	let clientMail: TMail = {
-		to: email,
-		subject: subject,
-		// html: makeHtmlEmail(lang, topic, makeContent(contactForm, false)),
-		html: getEmailHtml(TemplateNames.contact_form, getHtmlVariables(false)),
-	};
-	let antreprizaMail: TMail = {
-		to: '',
-		subject: subject,
-		// html: makeHtmlEmail(lang, topic, makeContent(contactForm, true)),
-		html: getEmailHtml(TemplateNames.contact_form, getHtmlVariables(true)),
-	};
-
-	const isSent = await sendMails(lang, transporterMail, clientMail, antreprizaMail);
-
-	if (isSent) return makeHandlerResponse(200, dictionaryServer.nf__contact_form__ok[lang]);
-	else return makeHandlerResponse(500, dictionaryServer.nf__contact_form__send_error[lang]);
-	*/
 };
 
 function makeContent(contactForm: TContactForm, toAntrepriza: boolean): string {

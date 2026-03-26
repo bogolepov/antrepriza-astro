@@ -49,6 +49,55 @@ export type ContactFormVariables = {
 	message: string;
 };
 
+export type EmailReservation = {
+	id: string;
+	date: string;
+	time: string;
+	event_name: string;
+	event_name_marker?: string;
+	event_description: string;
+	stage_name: string;
+	stage_address: string;
+	tickets: {
+		type: string;
+		price: string;
+		count: string;
+		amount: string;
+	}[];
+	total_amount_label: string;
+	total_amount: string;
+};
+
+export type ReservationsVariables = {
+	lang: string;
+	subject: string;
+	theaterBlock?: {
+		main_text: string;
+		name_label: string;
+		name: string;
+		email_label: string;
+		email: string;
+		when_label: string;
+		when: string;
+	};
+	userBlock?: {
+		hello: string;
+		main_text: string;
+		location_text: string;
+		location_url_text: string;
+		note_list: string;
+		note_item1: string;
+		note_item2: string;
+		note_item3: string;
+		reservation_introduce: string;
+		review_introduce: string;
+		review_introduce2: string;
+		regards: string;
+		team: string;
+	};
+	reservations: EmailReservation[];
+};
+
 function getHdbrTemplate(templateName: TemplateNames) {
 	const filePath = path.join(TEMPLATES_DIR, `${templateName}.html`);
 	return readFileSync(filePath, 'utf8');
@@ -56,7 +105,7 @@ function getHdbrTemplate(templateName: TemplateNames) {
 
 export function getEmailHtml(
 	templateName: TemplateNames,
-	emailVariables: SubscriptionUserVariables | SubscriptionTheaterVariables | ContactFormVariables,
+	emailVariables: SubscriptionUserVariables | SubscriptionTheaterVariables | ContactFormVariables | ReservationsVariables,
 ) {
 	try {
 		const hdbrTemplateContent = getHdbrTemplate(templateName);
@@ -139,18 +188,8 @@ export type TMail = {
 };
 
 export async function sendMails(lang: string, transporterMail: string, clientMail: TMail): Promise<boolean>;
-export async function sendMails(
-	lang: string,
-	transporterMail: string,
-	clientMail: TMail,
-	antreprizaMail: TMail,
-): Promise<boolean>;
-export async function sendMails(
-	lang: string,
-	transporterMail: string,
-	clientMail: TMail,
-	antreprizaMail?: TMail,
-): Promise<boolean> {
+export async function sendMails(lang: string, transporterMail: string, clientMail: TMail, antreprizaMail: TMail): Promise<boolean>;
+export async function sendMails(lang: string, transporterMail: string, clientMail: TMail, antreprizaMail?: TMail): Promise<boolean> {
 	const { transporter, emailFrom, emailToAntrepriza } = createTransporter(transporterMail, lang);
 
 	const mailOptionsClient = {
