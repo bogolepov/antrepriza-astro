@@ -4,6 +4,7 @@ import theater from '@data/theater.json';
 import { readFileSync } from 'fs';
 import path from 'path';
 import Handlebars from 'handlebars';
+import type { ContactFormVariables, ReservationsVariables, SubscriptionTheaterVariables, SubscriptionUserVariables } from './mailVariables';
 
 const TEMPLATES_DIR = path.resolve(__dirname, './lib/emails/html');
 
@@ -15,88 +16,6 @@ export const TemplateNames = {
 } as const;
 
 export type TemplateNames = (typeof TemplateNames)[keyof typeof TemplateNames];
-
-export type SubscriptionUserVariables = {
-	lang: string;
-	subject: string;
-	previewSubject: string;
-	hello: string;
-	happy_text: string;
-	verify_text: string;
-	verify_url: string;
-	buttonText: string;
-	regards: string;
-	team: string;
-};
-export type SubscriptionTheaterVariables = {
-	email: string;
-};
-export type ContactFormVariables = {
-	lang: string;
-	subject: string;
-	// previewSubject: string;
-	hello: string;
-	main_text: string;
-	timestamp?: string;
-	team: string;
-	topic_label: string;
-	topic: string;
-	name_label: string;
-	name: string;
-	email_label: string;
-	email: string;
-	message_label: string;
-	message: string;
-};
-
-export type EmailReservation = {
-	id: string;
-	date: string;
-	time: string;
-	event_name: string;
-	event_name_marker?: string;
-	event_description: string;
-	stage_name: string;
-	stage_address: string;
-	tickets: {
-		type: string;
-		price: string;
-		count: string;
-		amount: string;
-	}[];
-	total_amount_label: string;
-	total_amount: string;
-};
-
-export type ReservationsVariables = {
-	lang: string;
-	subject: string;
-	theaterBlock?: {
-		main_text: string;
-		name_label: string;
-		name: string;
-		email_label: string;
-		email: string;
-		when_label: string;
-		when: string;
-	};
-	userBlock?: {
-		hello: string;
-		main_text: string;
-		location_text: string;
-		location_url_text: string;
-		note_list: string;
-		note_item1: string;
-		note_item2: string;
-		note_item3: string;
-		reservation_introduce: string;
-		review_introduce: string;
-		review_introduce2: string;
-		regards: string;
-		team: string;
-	};
-	reservations: EmailReservation[];
-};
 
 function getHdbrTemplate(templateName: TemplateNames) {
 	const filePath = path.join(TEMPLATES_DIR, `${templateName}.html`);
@@ -176,51 +95,6 @@ export async function sendMail(transporter: nodemailer.Transporter, mailData: TM
 		return true;
 	} catch (error) {
 		console.error('Nodemailer: sendEmail() [fatal]:');
-		console.error(error);
-		return false;
-	}
-}
-
-export type TMail = {
-	to: string;
-	subject: string;
-	html: string;
-};
-
-export async function sendMails(lang: string, transporterMail: string, clientMail: TMail): Promise<boolean>;
-export async function sendMails(lang: string, transporterMail: string, clientMail: TMail, antreprizaMail: TMail): Promise<boolean>;
-export async function sendMails(lang: string, transporterMail: string, clientMail: TMail, antreprizaMail?: TMail): Promise<boolean> {
-	const { transporter, emailFrom, emailToAntrepriza } = createTransporter(transporterMail, lang);
-
-	const mailOptionsClient = {
-		from: emailFrom,
-		to: clientMail.to,
-		subject: clientMail.subject,
-		html: clientMail.html,
-	};
-
-	try {
-		await transporter.sendMail(mailOptionsClient);
-
-		if (antreprizaMail) {
-			const mailOptionsAntrepriza = {
-				from: emailFrom,
-				to: emailToAntrepriza,
-				subject: antreprizaMail.subject,
-				html: antreprizaMail.html,
-			};
-
-			try {
-				await transporter.sendMail(mailOptionsAntrepriza);
-			} catch (error) {
-				console.error('Email to Antrepriza [not fatal]:');
-				console.error(error);
-			}
-		}
-
-		return true;
-	} catch (error) {
-		console.error('Email to client [fatal]:');
 		console.error(error);
 		return false;
 	}

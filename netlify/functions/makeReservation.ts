@@ -1,18 +1,7 @@
 import type { Handler } from '@netlify/functions';
 import { LANG_LIST, EMAIL_REGEX, LANG_RU } from '@scripts/consts.ts';
 import { fromHtmlToPlainText, makeHandlerResponse } from './lib/utils.ts';
-import { makeHtmlEmail } from './lib/emails/mainEmailTemplate.ts';
-import { makeContent, makeReservationsBlock } from './lib/emails/reservation.ts';
-import {
-	type EmailReservation,
-	type ReservationsVariables,
-	type TMail,
-	TemplateNames,
-	createTransporter,
-	getEmailHtml,
-	sendMail,
-	sendMails,
-} from './lib/mailService.ts';
+import { TemplateNames, createTransporter, getEmailHtml, sendMail } from './lib/mailService.ts';
 import { addReservations, type TDoReservationExt } from './lib/db/makeReservationDB.ts';
 import { DoReservationPacketSchema, type TDoReservationPacket } from '@scripts/types/reservation.ts';
 
@@ -25,6 +14,7 @@ import afisha from '@data/afisha.json';
 import { extractSchemaFromJson } from '@scripts/utils.ts';
 import { getPlayName, needMarker } from '@scripts/play';
 import { getHello } from './utils/time.ts';
+import type { EmailReservation, ReservationsVariables } from './lib/mailVariables.ts';
 
 type TMessageValidationResult = {
 	valid: boolean;
@@ -157,29 +147,6 @@ export const handler: Handler = async (event, context) => {
 		});
 		return makeHandlerResponse(200, dictionaryServer.nf__reservations__ok[lang]);
 	}
-
-	/*
-	const subject = dictionaryServer.email_reservation_subject[lang];
-	const transporterMail: string = process.env.ANTREPRIZA_EMAIL_TICKETS;
-
-	const htmlReservations = makeReservationsBlock(lang, extDoReservations, amount);
-
-	let clientMail: TMail = {
-		to: email,
-		subject: subject,
-		html: makeHtmlEmail(lang, subject, makeContent(lang, name, email, htmlReservations, when, false)),
-	};
-	let antreprizaMail: TMail = {
-		to: '',
-		subject: subject,
-		html: makeHtmlEmail(lang, subject, makeContent(lang, name, email, htmlReservations, when, true)),
-	};
-
-	const isSent = await sendMails(lang, transporterMail, clientMail, antreprizaMail);
-
-	if (isSent) return makeHandlerResponse(200, dictionaryServer.nf__reservations__ok[lang]);
-	else return makeHandlerResponse(500, dictionaryServer.nf__reservations__error[lang]);
-	*/
 };
 
 function validateCart(messageData: TDoReservationPacket): TMessageValidationResult {
