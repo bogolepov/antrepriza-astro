@@ -3,33 +3,20 @@ import { LANG_RU } from '@scripts/consts.ts';
 import { makeHandlerResponse } from '@netlify/lib/utils.ts';
 import { ESubscriptionState, SubscriptionPacketSchema, type TSubscriptionPacket } from '@scripts/types/subscription.ts';
 import { validateSubscriptionPacketData } from '@scripts/subscription.ts';
-import {
-	type SubscriptionTheaterVariables,
-	type SubscriptionUserVariables,
-	TemplateNames,
-	createTransporter,
-	getEmailHtml,
-	sendMail,
-} from '@netlify/lib/mailService.ts';
-import {
-	confirmEmail,
-	deleteEmail,
-	ESubscriptionError,
-	registerEmail,
-	type TSubscriptionResult,
-} from '@netlify/lib/db/subscription.ts';
+import { TemplateNames, createTransporter, getEmailHtml, sendMail } from '@netlify/lib/mailService.ts';
+import { confirmEmail, deleteEmail, ESubscriptionError, registerEmail, type TSubscriptionResult } from '@netlify/lib/db/subscription.ts';
 import { extractSchemaFromJson } from '@scripts/utils';
 
 import dictionaryServer from '@data/dictionary_server.json';
 import theater from '@data/theater.json';
+import type { SubscriptionTheaterVariables, SubscriptionUserVariables } from './lib/mailVariables';
 
 export const handler: Handler = async (event, context) => {
 	if (!event || !event.body) return makeHandlerResponse(400, dictionaryServer.nf__invalid_request[LANG_RU]);
 
 	const packet: TSubscriptionPacket = extractSchemaFromJson(SubscriptionPacketSchema, event.body);
 	if (!packet) return makeHandlerResponse(400, dictionaryServer.nf__empty_request_data[LANG_RU]);
-	if (!validateSubscriptionPacketData(packet))
-		return makeHandlerResponse(400, dictionaryServer.nf__invalid_format[LANG_RU]);
+	if (!validateSubscriptionPacketData(packet)) return makeHandlerResponse(400, dictionaryServer.nf__invalid_format[LANG_RU]);
 
 	switch (packet.state) {
 		case ESubscriptionState.REG_INIT:
@@ -96,10 +83,7 @@ async function emailConfirmation(packet: TSubscriptionPacket): Promise<HandlerRe
 		email: res.subscriber.email,
 	};
 
-	const { transporter, emailFrom, emailToAntrepriza } = createTransporter(
-		process.env.ANTREPRIZA_EMAIL_SUBSCRIPTION,
-		lang,
-	);
+	const { transporter, emailFrom, emailToAntrepriza } = createTransporter(process.env.ANTREPRIZA_EMAIL_SUBSCRIPTION, lang);
 
 	await sendMail(transporter, {
 		from: emailFrom,
