@@ -24,7 +24,7 @@
 		"lang_marker": "DE",
 		"url_kontramarka": "https://www.kontramarka.de/tour/teatr-antrepriza-spektakl-malysh-i-karlson/",
 		"characters": [
-			{ "id": 1, "name": { "ru": "Малыш", "de": "Steppke" }, "actors": [154] },
+			{ "id": 1, "name": { "ru": "Малыш", "de": "Steppke" }, "actors": [155, 154] },
 			{
 				"id": 2,
 				"name": { "ru": "Карлсон", "de": "Karlson" },
