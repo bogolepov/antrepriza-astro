@@ -46,6 +46,10 @@
 	{ "filename": "img_9452.jpg", "is_landscape": true, "suffix": "person", "author": 5, "people": [116] },
 	{ "filename": "img_9490.jpg", "is_landscape": true, "suffix": "person", "author": 5, "people": [116] },
 	{ "filename": "img_9471.jpg", "is_landscape": true, "suffix": "person", "author": 5, "people": [116] },
+	{ "filename": "IMG_060.jpg", "is_landscape": false, "suffix": "person", "author": 0, "people": [1] },
+	{ "filename": "IMG_470.jpg", "is_landscape": false, "suffix": "person", "author": 0, "people": [1] },
+	{ "filename": "IMG_720.jpg", "is_landscape": false, "suffix": "person", "author": 0, "people": [1] },
+	{ "filename": "IMG_763.jpg", "is_landscape": false, "suffix": "person", "author": 0, "people": [1] },
 
 	{ "filename": null, "is_landscape": true, "suffix": "person", "author": 0, "people": [] }
 ]

@@ -79,23 +79,88 @@ export function createTransporter(transporterMail: string, lang: string): Transp
 	return { transporter, emailFrom, emailToAntrepriza };
 }
 
+export function createTransporterDomain(transporterMail: string, lang: string): TransporterInfo {
+	const transporter = nodemailer.createTransport({
+		pool: true,
+		host: process.env.ANTREPRIZA_SMTP_HOST,
+		port: 465,
+		secure: true,
+		auth: {
+			user: transporterMail,
+			pass: process.env.ANTREPRIZA_SMTP_PASSWORD,
+		},
+		// debug: true,  // включите, чтобы увидеть больше логов
+		// logger: true,
+	});
+
+	const fromEmailDescription: string = `${theater.longTheaterName[lang]} `;
+	const emailFrom: string = `${fromEmailDescription}<${transporterMail}>`;
+
+	const emailToAntrepriza: string =
+		process.env.MODE === process.env.MODE_PRODUCTION ? transporterMail : process.env.ANTREPRIZA_EMAIL_BOGOLEPOV;
+
+	return { transporter, emailFrom, emailToAntrepriza };
+}
+
+function createTransporterGmail(lang: string): TransporterInfo {
+	const transporter = nodemailer.createTransport({
+		service: 'gmail',
+		auth: {
+			user: process.env.ANTREPRIZA_GMAIL_EMAIL,
+			pass: process.env.ANTREPRIZA_GMAIL_PASSWORD,
+		},
+	});
+	const fromEmailDescription: string = `${theater.longTheaterName[lang]} `;
+	const emailFrom: string = `${fromEmailDescription}<${process.env.ANTREPRIZA_GMAIL_EMAIL}>`;
+
+	const emailToAntrepriza: string =
+		process.env.MODE === process.env.MODE_PRODUCTION ? process.env.ANTREPRIZA_GMAIL_EMAIL : process.env.ANTREPRIZA_EMAIL_BOGOLEPOV;
+
+	return { transporter, emailFrom, emailToAntrepriza };
+}
+
 export type TMailData = {
 	from: string;
 	to: string;
 	subject: string;
-	html: string;
+	html?: string;
 };
 
 export async function sendMail(transporter: nodemailer.Transporter, mailData: TMailData): Promise<boolean> {
+	return await sendMailCore(transporter, mailData, false);
+}
+
+async function sendMailCore(transporter: nodemailer.Transporter, mailData: TMailData, isAlternate: boolean): Promise<boolean> {
+	if (mailData.html === undefined) {
+		console.error('Email HTML content is undefined');
+		return false;
+	}
+	let sent: boolean = false;
 	try {
-		if (mailData.html === undefined) {
-			throw new Error('Email HTML content is undefined');
+		const result = await transporter.sendMail(mailData);
+		sent = true;
+		if (result.rejected.length > 0) {
+			// сервер отказал конкретным адресам
+			console.warn('Some emails were rejected', result.rejected);
 		}
-		await transporter.sendMail(mailData);
+		if (result.accepted.length === 0) {
+			throw new Error('Email(s) not accepted by SMTP server', { cause: result });
+		}
 		return true;
 	} catch (error) {
-		console.error('Nodemailer: sendEmail() [fatal]:');
+		console.error(`Nodemailer: sendEmail() [FATAL, ${mailData.from}${isAlternate ? ', alternate transporter' : ''}]:`);
 		console.error(error);
+		if (!sent && !isAlternate) {
+			const { transporter: gmailTransporter, emailFrom } = createTransporterGmail(mailData.from.includes('Б') ? 'ru' : 'de');
+			const gmailData: TMailData = {
+				from: emailFrom,
+				to: mailData.to,
+				subject: mailData.subject,
+				html: mailData.html,
+			};
+
+			return await sendMailCore(gmailTransporter, gmailData, true);
+		}
 		return false;
 	}
 }
