@@ -74,7 +74,7 @@ let isActor = theater.actors.find(id => id === person.id) || theater.ex_actors.f
 // { "filename": "IMG__3171.jpg", "is_landscape": true, "play_id": 1, "author": 5, "people": [1, 100, 106] },
 let photos = [
 	plays_photos.filter(photo => photo.people.find(id => person.id === id) && photo.is_landscape),
-	person_photos.filter(photo => photo.people.find(id => person.id === id) && photo.is_landscape),
+	person_photos.filter(photo => photo.people.find(id => person.id === id) /* && photo.is_landscape */),
 	studio_photos.filter(photo => photo.people.find(id => person.id === id) && photo.is_landscape),
 ];
 
@@ -235,18 +235,8 @@ let strLoading;
 								})}
 							</div>
 							<div class='swiper-pagination' />
-							<div
-								class='swiper-button-prev'
-								tabindex='0'
-								role='button'
-								aria-label={dictionary.aria_slide_prev[lang]}
-							/>
-							<div
-								class='swiper-button-next'
-								tabindex='0'
-								role='button'
-								aria-label={dictionary.aria_slide_prev[lang]}
-							/>
+							<div class='swiper-button-prev' tabindex='0' role='button' aria-label={dictionary.aria_slide_prev[lang]} />
+							<div class='swiper-button-next' tabindex='0' role='button' aria-label={dictionary.aria_slide_prev[lang]} />
 						</div>
 					</div>
 				</div>
