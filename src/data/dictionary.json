@@ -25,6 +25,7 @@
 	"themeTextDark": { "ru": "Темная тема", "de": "Dunkelmodus" },
 	"themeTextLight": { "ru": "Светлая тема", "de": "Lightmodus" },
 	"play_word": { "ru": "Спектакль", "de": "Die Aufführung" },
+	"archive": { "ru": "Архив", "de": "Archiv" },
 	"genre": { "ru": "Жанр", "de": "Genre" },
 	"language": { "ru": "Язык", "de": "Sprache" },
 	"festival": { "ru": "Фестиваль", "de": "Festival" },

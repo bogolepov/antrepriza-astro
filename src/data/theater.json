@@ -153,6 +153,8 @@
 			"de": "https://www.google.com/maps/d/u/1/embed?mid=1soJFsl0X19TJlfa9XAMe2pjGwADZUSY&ehbc=2E312F"
 		}
 	},
+	"plays_special_order": ["vnhbd", "suk", "ngupb", "mp", "sss", "zzd", "eop", "n32", "ts", "dk", "miks", "op", "pip", "mik", "kd"],
+	"plays_archive": ["eop", "zzd", "mp", "ngupb", "pip"],
 	"director": 1,
 	"team": [1, 8, 7, 2, 9, 5],
 	"actors": [
@@ -573,6 +575,14 @@
 			"gender": "m",
 			"name": { "ru": "Кай", "de": "Kai" },
 			"surname": { "ru": "Гаркнис", "de": "Garknis" }
+		},
+		{
+			"id": 159,
+			"suffix": "",
+			"photo": "no-photo.jpg",
+			"gender": "f",
+			"name": { "ru": "Ксения", "de": "Ksenia" },
+			"surname": { "ru": "Попова", "de": "Popova" }
 		}
 	],
 	"ex_people": [

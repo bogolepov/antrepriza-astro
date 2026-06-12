@@ -5,6 +5,7 @@ const { lang } = Astro.props;
 
 import program from '@data/afisha.json';
 import dictionary from '@data/dictionary.json';
+import theater from '@data/theater.json';
 
 import plays from '@data/plays.json';
 
@@ -14,7 +15,9 @@ import { getPlayAltName, getPlayName, needMarker } from '@scripts/play';
 
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/posters/landscape/*.{jpeg,jpg}');
 
-const PLAYS_ORDER = ['suk', 'ngupb', 'mp', 'sss', 'zzd', 'eop', 'n32', 'ts', 'dk', 'miks', 'op', 'pip', 'mik', 'kd'];
+const ARCHIVE_SID = 'archive';
+let playList = theater.plays_special_order.filter(play => !theater.plays_archive.includes(play));
+if (theater.plays_archive.length) playList = playList.concat(ARCHIVE_SID, theater.plays_archive);
 
 program.sort((play1, play2) => Date.parse(play1.date + 'T' + play1.time) - Date.parse(play2.date + 'T' + play2.time));
 
@@ -25,7 +28,14 @@ let actualProgram = program.filter(performance => Date.parse(performance.date) >
 	<h1 class='section-title'>{dictionary.plays[lang]}</h1>
 	<ul>
 		{
-			PLAYS_ORDER.map(play_sid => {
+			playList.map(play_sid => {
+				if (play_sid === ARCHIVE_SID)
+					return (
+						<li class='play-block archive'>
+							<h2>{dictionary.archive[lang]}</h2>
+						</li>
+					);
+
 				let play = plays.find(item => item.suffix === play_sid);
 				let performs = actualProgram.filter(performance => performance.play_sid === play.suffix);
 				let isPremiere = performs && performs.length > 0 && performs.find(item => item.premiere);

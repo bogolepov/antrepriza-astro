@@ -1,5 +1,54 @@
 [
 	{
+		"id": 17,
+		"suffix": "vnhbd",
+		"title": { "ru": "Вечера на хуторе близ Диканьки", "de": "Abende auf dem Weiler bei Dikanka" },
+		"alt_title": { "ru": "Вечера\u00A0на хуторе\u00A0близ Диканьки", "de": "Abende auf\u00A0dem\u00A0Weiler bei\u00A0Dikanka" },
+		"author": { "ru": "Н.Гоголь", "de": "N.Gogol" },
+		"author_full": { "ru": "Николай Гоголь", "de": "Nikolai Gogol" },
+		"genre": { "ru": "мистическая комедия", "de": "mystische Komödie" },
+		"length": 110,
+		"break": true,
+		"age": "14+",
+		"description": { "ru": "play_vnhbd_ru", "de": "play_vnhbd_de" },
+		"posters": {
+			"landscape": "soon.jpg",
+			"landscape_16_9": "soon_16_9.jpg",
+			"portrait": "soon_poster.jpg",
+			"facebook": "fb_soon.jpg",
+			"pub_kontra": "kontra_soon_vnhbd.webp",
+			"minimum": ""
+		},
+		"lang": { "ru": "русский, украинский", "de": "Russisch, Ukrainisch" },
+		"lang_id": "ru",
+		"url_kontramarka": "",
+		"characters": [],
+		"creators": [
+			{ "type": "regie", "people": [1] },
+			{ "type": "light", "people": [9] },
+			{ "type": "sound", "people": [9] },
+			{ "type": "graphic_design", "people": [] },
+			{ "type": "photographer", "people": [] },
+			{ "type": "stage_setup", "people": [] }
+		],
+		"seo": {
+			"description": {
+				"ru": "По одноименной книге-сборнику рассказов Николая Гоголя «Вечера на хуторе близ Диканьки». Мистическая комедия, 14+. На русском и украинском языках.",
+				"de": "Basierend auf Nikolai Gogols gleichnamiger Kurzgeschichtensammlung „Abende auf dem Weiler bei Dikanka“. Mystische Komödie, 14+. Auf Russisch und Ukrainisch."
+			},
+			"open_graph": {
+				"image": { "url": "soon_1200.jpg", "type": "image/jpeg" }
+			},
+			"event": {
+				"images": [
+					{ "format": "19_6", "url": "soon_1920.jpg" },
+					{ "format": "3_4", "url": "suk_kontra_1920.jpg" },
+					{ "format": "3_4_1050", "url": "soon_vnhbd_kontra_1050.webp" }
+				]
+			}
+		}
+	},
+	{
 		"id": 16,
 		"suffix": "suk",
 		"title": { "ru": "Малыш и Карлсон", "de": "Steppke und Karlson" },
@@ -48,7 +97,7 @@
 			{ "type": "regie", "people": [103] },
 			{ "type": "light", "people": [9] },
 			{ "type": "sound", "people": [9] },
-			{ "type": "graphic_design", "people": [6] },
+			{ "type": "graphic_design", "people": [] },
 			{ "type": "photographer", "people": [] },
 			{ "type": "stage_setup", "people": [] }
 		],
@@ -557,7 +606,7 @@
 					"ru": "молодой человек под валютной ипотекой",
 					"de": "Mann unter Hypothek"
 				},
-				"actors": [119, 110]
+				"actors": [119, 157]
 			},
 			{
 				"id": 2,
@@ -566,7 +615,7 @@
 					"ru": "девушка Славика",
 					"de": "Slawiks Freundin"
 				},
-				"actors": [118, 138, 105]
+				"actors": [156, 159, 118]
 			},
 			{
 				"id": 3,

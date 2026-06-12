@@ -14,6 +14,18 @@
 	border-top: 1px solid;
 }
 
+.play-block.archive {
+	padding: 25px 10px;
+	justify-content: center;
+}
+.play-block.archive h2 {
+	text-transform: uppercase;
+	font-weight: 600;
+	letter-spacing: 0.05em;
+	color: var(--colorFontDate);
+	font-size: clamp(1.7rem, 4.2vw, 2rem);
+}
+
 .play-block-info {
 	flex-grow: 2;
 	min-width: 55vw;
