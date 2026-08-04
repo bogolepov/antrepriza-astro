@@ -7,14 +7,14 @@
 		"author": { "ru": "Н.Гоголь", "de": "N.Gogol" },
 		"author_full": { "ru": "Николай Гоголь", "de": "Nikolai Gogol" },
 		"genre": { "ru": "мистическая комедия", "de": "mystische Komödie" },
-		"length": 110,
-		"break": true,
-		"age": "14+",
+		"length": 80,
+		"break": false,
+		"age": "12+",
 		"description": { "ru": "play_vnhbd_ru", "de": "play_vnhbd_de" },
 		"posters": {
-			"landscape": "soon.jpg",
+			"landscape": "vnhbd.jpg",
 			"landscape_16_9": "soon_16_9.jpg",
-			"portrait": "soon_poster.jpg",
+			"portrait": "vnhbd.jpg",
 			"facebook": "fb_soon.jpg",
 			"pub_kontra": "kontra_soon_vnhbd.webp",
 			"minimum": ""
@@ -22,9 +22,95 @@
 		"lang": { "ru": "русский, украинский", "de": "Russisch, Ukrainisch" },
 		"lang_id": "ru",
 		"url_kontramarka": "",
-		"characters": [],
+		"characters": [
+			{
+				"id": 1,
+				"name": { "ru": "Вакула", "de": "Wakula" },
+				"actors": [157]
+			},
+			{
+				"id": 2,
+				"name": { "ru": "Оксана", "de": "Oxana" },
+				"actors": [100, 153, 163]
+			},
+			{
+				"id": 3,
+				"name": { "ru": "Солоха", "de": "Solocha" },
+				"actors": [148]
+			},
+			{
+				"id": 4,
+				"name": { "ru": "Черт", "de": "Der Teufel" },
+				"actors": [133, 160, 164]
+			},
+			{
+				"id": 5,
+				"name": { "ru": "Казак Чуб", "de": "Kosak Tschub" },
+				"actors": [165, 164]
+			},
+			{
+				"id": 6,
+				"name": { "ru": "Дьяк", "de": "Küster" },
+				"actors": [141, 161]
+			},
+			{
+				"id": 7,
+				"name": { "ru": "Жена дьяка", "de": "Küstersfrau" },
+				"actors": [135]
+			},
+			{
+				"id": 8,
+				"name": { "ru": "Хивря", "de": "Chiwrja" },
+				"actors": [108]
+			},
+			{
+				"id": 9,
+				"name": { "ru": "Переперчиха", "de": "Perepertschicha" },
+				"actors": [148, 134]
+			},
+			{
+				"id": 10,
+				"name": { "ru": "Кум Панас", "de": "Gevatter Panas" },
+				"actors": [166, 167]
+			},
+			{
+				"id": 11,
+				"name": { "ru": "Одарка", "de": "Odarka" },
+				"actors": [132, 153]
+			},
+			{
+				"id": 12,
+				"name": { "ru": "Марыся", "de": "Marysja" },
+				"actors": [162, 163]
+			},
+			{
+				"id": 13,
+				"name": { "ru": "Екатерина Вторая", "de": "Zarin Katharina II" },
+				"actors": [124]
+			},
+			{
+				"id": 14,
+				"name": { "ru": "Потемкин", "de": "Fürst Potjomkin" },
+				"actors": [165, 164]
+			},
+			{
+				"id": 15,
+				"name": { "ru": "Зубов", "de": "Subow" },
+				"actors": [166, 167]
+			},
+			{
+				"id": 16,
+				"name": { "ru": "Орлов", "de": "Orlow" },
+				"actors": [161, 160]
+			},
+			{
+				"id": 17,
+				"name": { "ru": "3 парубка", "de": "Drei Burschen" },
+				"actors": [165, 166, 160, 161, 164, 167]
+			}
+		],
 		"creators": [
-			{ "type": "regie", "people": [1] },
+			{ "type": "regie", "people": [8] },
 			{ "type": "light", "people": [9] },
 			{ "type": "sound", "people": [9] },
 			{ "type": "graphic_design", "people": [] },
