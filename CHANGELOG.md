@@ -1,3 +1,31 @@
+# [1.13.0](https://github.com/bogolepov/antrepriza-astro/compare/v1.12.0...v1.13.0) (2026-09-05)
+
+
+### Bug Fixes
+
+* 1.  Dependencies updated. New version Astro. Code refactorin for new version ([a613be2](https://github.com/bogolepov/antrepriza-astro/commit/a613be2a032ac7b65db310e1c574efc5cbe688ff))
+* colored svg-images in MJML ([e122a22](https://github.com/bogolepov/antrepriza-astro/commit/e122a22999f816854254dcbdeeea14b60ce5e778))
+* colored svg-images in MJML ([58b1573](https://github.com/bogolepov/antrepriza-astro/commit/58b15733a9b5974706f564bf191e48dd2094c988))
+* Fixing of transition from Astro 5 to Astro 7 and from Swiper 11 to Swiper 14 ([7ed0d9c](https://github.com/bogolepov/antrepriza-astro/commit/7ed0d9c638739ed8703b6a61f1fa1e5058df302a))
+* Fixing of transition from Astro 5 to Astro 7 and from Swiper 11 to Swiper 14 ([a84c657](https://github.com/bogolepov/antrepriza-astro/commit/a84c6574302e2033317b9d183c9aac3793d641de))
+* Fixing of transition from Astro 5 to Astro 7 and from Swiper 11 to Swiper 14 ([4301cf9](https://github.com/bogolepov/antrepriza-astro/commit/4301cf943bdb721e2855937db14aa63b300cff3a))
+* Kolja Garkun updated and his photos added, SUK updated and photos added with Nikolay Garkun added ([ff5a47d](https://github.com/bogolepov/antrepriza-astro/commit/ff5a47d5fd5431b93e661d65ef02fcff87104ac3))
+* Paypal link changed (wrong link, not worked) ([5ce4bee](https://github.com/bogolepov/antrepriza-astro/commit/5ce4bee337a58d17f64a70b2060fe4642b85846f))
+* Paypal link changed (wrong link, not worked) ([0ca573a](https://github.com/bogolepov/antrepriza-astro/commit/0ca573a6cf0cdd26bf6f0c40617e9a4a14a53ac9))
+* size of images in emails ([a916269](https://github.com/bogolepov/antrepriza-astro/commit/a91626941976759b96cfa2b12e49c1b52421eece))
+
+
+### Features
+
+* 1. sendEmail uses Gmail Transporter as alternate way to send email, if the base transporter doesn't work 2. Program updated 3. Photos of Mamontov added to person gallery (is_landscape = false !!!) ([03eaa02](https://github.com/bogolepov/antrepriza-astro/commit/03eaa02eb69084159350d60b575ab266bb75116c))
+* MJML and Handlebars added to work with emails (now at subscription and [new!] contact form service) ([8e10306](https://github.com/bogolepov/antrepriza-astro/commit/8e1030616c5ed3bb07d7fdb821bc44946675b3f3))
+* MJML and Handlebars added to work with emails (now at subscription and [new!] contact form service) ([a697401](https://github.com/bogolepov/antrepriza-astro/commit/a6974014430831a867955da4c28550f0d9b20517))
+* MJML and Handlebars added to work with emails (now at subscription and [new!] contact form service) ([b86b9e3](https://github.com/bogolepov/antrepriza-astro/commit/b86b9e3c07096a32515e785b9ec89ca875f34531))
+* MJML and Handlebars added to work with emails (now at subscription and [new!] contact form service) ([213d130](https://github.com/bogolepov/antrepriza-astro/commit/213d1307e2e938b3ec92ace0fa7418c00ed11773))
+* MJML and Handlebars added to work with emails (now at subscription and [new!] contact form service). Error at sending ContactForm emails fixed. ([d0d5fdb](https://github.com/bogolepov/antrepriza-astro/commit/d0d5fdb4d2e625f10c8fb47d52c49ed431cd0702))
+* MJML and Handlebars added to work with emails (now only at subscription service) ([4f8601b](https://github.com/bogolepov/antrepriza-astro/commit/4f8601b20509f04f278d6b020ba99c06bd501571))
+* MJML and Handlebars added to work with emails at tickets reservations ([0484cae](https://github.com/bogolepov/antrepriza-astro/commit/0484cae08c23674c55772c9984651fc10556337c))
+
 # [1.12.0](https://github.com/bogolepov/antrepriza-astro/compare/v1.11.0...v1.12.0) (2026-03-10)
 
 
