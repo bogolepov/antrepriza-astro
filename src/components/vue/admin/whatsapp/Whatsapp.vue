@@ -8,7 +8,7 @@ import WhatsappItem from './WhatsappItem.vue';
 import WhatsappControlItem from './WhatsappControlItem.vue';
 import { ONE_DAY } from '@scripts/consts';
 import { type IItem, type TWhatsappNote, EWhatsappNoteType } from '@scripts/db/baseTypes';
-import { saveWhatsappNotes, changedWhatsappNotes } from '@scripts/db/antreprizaDB';
+// import { saveWhatsappNotes, changedWhatsappNotes } from '@scripts/db/antreprizaDB';
 import IconWhatsapp from '../components/iconWhatsapp.vue';
 import { type TWhatsappItem, ECheckboxStatus3, EWAItemType, memTextItem } from '../lib/whatsapp_types';
 
@@ -39,7 +39,7 @@ onBeforeMount(handleBeforeMount);
 
 async function handleBeforeRouteLeave(to, from, next) {
 	if (eventsNotesChanged.value === true && confirm('Сохранить изменения?')) {
-		await saveWhatsappNotesDB();
+		// await saveWhatsappNotesDB();
 	}
 	if (smallScreen.value) showMenu.value = false;
 	next();
@@ -66,7 +66,7 @@ function makeWhatsappItems() {
 	listRepetitions = listRepetitions.filter(item => Date.parse(item.date) + ONE_DAY >= Date.now());
 
 	let list = [...listPerformances, ...listRepetitions].sort(
-		(item1, item2) => Date.parse(item1.date + 'T' + item1.time_start) - Date.parse(item2.date + 'T' + item2.time_start)
+		(item1, item2) => Date.parse(item1.date + 'T' + item1.time_start) - Date.parse(item2.date + 'T' + item2.time_start),
 	);
 
 	let noteType: EWhatsappNoteType;
@@ -109,7 +109,7 @@ watch(
 			if (item.type === EWAItemType.REPETITION) item.visible = showRepetitions.value;
 		});
 		updateMonthItemsVisibility();
-	}
+	},
 );
 
 function insertMonthItems() {
@@ -162,7 +162,7 @@ function updateMonthItemsVisibility() {
 function checkWhatsappNotesChanging() {
 	if (isDemo.value) eventsNotesChanged.value = false;
 	else {
-		eventsNotesChanged.value = changedWhatsappNotes(whatsappNotes.value);
+		// eventsNotesChanged.value = changedWhatsappNotes(whatsappNotes.value);
 	}
 }
 
@@ -196,7 +196,7 @@ function handleGeneralCheckStatus(checked: boolean) {
 
 async function saveWhatsappNotesDB() {
 	// save whatsapp notes in AntreprizaDB
-	await saveWhatsappNotes(whatsappNotes.value);
+	// await saveWhatsappNotes(whatsappNotes.value);
 	// if notes were saved successfully, then button Save will be hidden:
 	checkWhatsappNotesChanging();
 }
@@ -207,7 +207,7 @@ const showSaveButton = computed(() => {
 });
 
 async function handleSaveButton() {
-	if (!previewMode.value) await saveWhatsappNotesDB();
+	// if (!previewMode.value) await saveWhatsappNotesDB();
 }
 function handleWhatsappButton() {
 	if (!isDemo.value) previewMode.value = !previewMode.value;
@@ -258,7 +258,7 @@ function hadleRemoveEventNote(eventSID: string, type: EWAItemType): void {
 			(item.obj as IItem).sid === eventSID &&
 			item.note &&
 			(item.note as TWhatsappNote).note_type === noteType &&
-			(item.note as TWhatsappNote).sid === eventSID
+			(item.note as TWhatsappNote).sid === eventSID,
 	);
 	if (indexItem === -1) {
 		console.error(`whatsapp item: ${eventSID} NOT FOUND!!!`);
