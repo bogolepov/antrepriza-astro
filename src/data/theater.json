@@ -308,11 +308,11 @@
 		},
 		{
 			"id": 108,
-			"suffix": "vp",
-			"photo": "vp.jpg",
+			"suffix": "vl",
+			"photo": "vl.jpg",
 			"gender": "f",
 			"name": { "ru": "Вера", "de": "Vera" },
-			"surname": { "ru": "Парахина", "de": "Parakhina" }
+			"surname": { "ru": "Лофинг", "de": "Lofing" }
 		},
 		{
 			"id": 110,
