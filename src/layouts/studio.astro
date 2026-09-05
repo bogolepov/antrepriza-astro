@@ -76,6 +76,7 @@ let strLoading;
 			},
 
 			navigation: {
+				addIcons: false,
 				nextEl: '.swiper-button-next',
 				prevEl: '.swiper-button-prev',
 			},
@@ -140,18 +141,8 @@ let strLoading;
 								})}
 							</div>
 							<div class='swiper-pagination' />
-							<div
-								class='swiper-button-prev'
-								tabindex='0'
-								role='button'
-								aria-label={dictionary.aria_slide_prev[lang]}
-							/>
-							<div
-								class='swiper-button-next'
-								tabindex='0'
-								role='button'
-								aria-label={dictionary.aria_slide_prev[lang]}
-							/>
+							<div class='swiper-button-prev' tabindex='0' role='button' aria-label={dictionary.aria_slide_prev[lang]} />
+							<div class='swiper-button-next' tabindex='0' role='button' aria-label={dictionary.aria_slide_prev[lang]} />
 						</div>
 					</div>
 				</div>

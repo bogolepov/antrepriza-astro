@@ -28,6 +28,8 @@
 
 .swiper .swiper-button-prev,
 .swiper .swiper-button-next {
+	display: grid;
+	place-items: center;
 	top: unset;
 	bottom: 2px;
 	color: var(--colorFontDate);
@@ -49,33 +51,22 @@
 .swiper .swiper-button-prev::after {
 	content: '‹';
 	font-size: clamp(30px, 6.8vw, 50px);
-	line-height: 100%;
+	line-height: 1;
 	position: absolute;
-	bottom: 1px;
-	left: clamp(6.8px, 1.4vw, 8.5px);
+	transform: translateX(-6%) translateY(-6%);
 }
 .swiper .swiper-button-next::after {
 	content: '›';
 	font-size: clamp(30px, 6.8vw, 50px);
-	line-height: 100%;
+	line-height: 1;
 	position: absolute;
-	bottom: 1px;
-	right: clamp(6.8px, 1.4vw, 8.5px);
+	transform: translateX(6%) translateY(-6%);
 }
 
 @media screen and (max-width: 230px) {
-	/* .swiper .swiper-button-prev,
-	.swiper .swiper-button-next {
-		display: none;
-	} */
-
 	.swiper .swiper-pagination {
 		display: none;
 	}
-}
-
-.swiper .swiper-pagination {
-	/* bottom: clamp(0%, min(4vh, 6vw), 5%); */
 }
 
 .swiper .swiper-slide {
