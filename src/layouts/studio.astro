@@ -53,12 +53,12 @@ let strLoading;
 
 <script>
 	import Swiper from 'swiper';
-	import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+	import { Navigation, Pagination, Autoplay, Keyboard } from 'swiper/modules';
 
 	let swiper_studio;
 	document.addEventListener('DOMContentLoaded', () => {
 		swiper_studio = new Swiper('.swiper', {
-			modules: [Navigation, Pagination, Autoplay],
+			modules: [Navigation, Pagination, Autoplay, Keyboard],
 			direction: 'horizontal',
 			loop: true,
 			slidesPerView: 'auto',
@@ -141,8 +141,8 @@ let strLoading;
 								})}
 							</div>
 							<div class='swiper-pagination' />
-							<div class='swiper-button-prev' tabindex='0' role='button' aria-label={dictionary.aria_slide_prev[lang]} />
-							<div class='swiper-button-next' tabindex='0' role='button' aria-label={dictionary.aria_slide_prev[lang]} />
+							<button class='swiper-button-prev' role='button' aria-label={dictionary.aria_slide_prev[lang]} />
+							<button class='swiper-button-next' role='button' aria-label={dictionary.aria_slide_next[lang]} />
 						</div>
 					</div>
 				</div>

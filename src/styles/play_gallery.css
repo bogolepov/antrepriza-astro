@@ -33,6 +33,7 @@
 	top: unset;
 	bottom: 2px;
 	color: var(--colorFontDate);
+	background-color: transparent;
 	line-height: 0;
 	border-radius: 50%;
 	border: 2px solid var(--colorFontDate);

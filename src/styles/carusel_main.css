@@ -31,10 +31,10 @@
 .swiper .swiper-button-next {
 	display: grid;
 	place-items: center;
-
 	top: unset;
 	bottom: var(--swiper-pagination-bottom, 4%);
 	color: var(--colorFontDate);
+	background-color: transparent;
 	line-height: 0;
 	border-radius: 50%;
 	border: 2px solid var(--colorFontDate);
