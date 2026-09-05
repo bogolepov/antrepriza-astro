@@ -17,7 +17,7 @@ import YoutubePlayerCore from '@components/youtube_player/youtube_player_core.as
 
 import { getPlayName, needMarker } from '@scripts/play';
 
-import { getEntry, render } from 'astro:content';
+import { getCollection, getEntry, render } from 'astro:content';
 
 let play = plays.find(_play => _play.suffix === play_sid);
 
@@ -35,6 +35,9 @@ let strDuration = '';
 if (play.length >= 60) strDuration = Math.trunc(play.length / 60) + dictionary.hour_short[lang] + '\u00A0';
 strDuration = strDuration + (play.length % 60).toString().padStart(2, '0') + dictionary.minute_short[lang];
 strDuration = strDuration + ', ' + (play.break ? dictionary.break[lang] : dictionary.break_no[lang]);
+
+const entries = await getCollection('plays');
+console.log(entries.map(entry => entry.id));
 
 const description: string = play.description[lang] ? play.description[lang] : 'play_empty';
 const entry = await getEntry('plays', description);
