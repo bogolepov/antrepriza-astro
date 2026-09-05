@@ -17,16 +17,13 @@ import YoutubePlayerCore from '@components/youtube_player/youtube_player_core.as
 
 import { getPlayName, needMarker } from '@scripts/play';
 
-import { getEntry } from 'astro:content';
+import { getEntry, render } from 'astro:content';
 
 let play = plays.find(_play => _play.suffix === play_sid);
 
 let dates = program.filter(performance => performance.play_sid === play_sid);
 dates = dates.filter(performance => Date.parse(performance.date) + ONE_DAY >= Date.now());
-dates.sort(
-	(perform1, perform2) =>
-		Date.parse(perform1.date + 'T' + perform1.time) - Date.parse(perform2.date + 'T' + perform2.time)
-);
+dates.sort((perform1, perform2) => Date.parse(perform1.date + 'T' + perform1.time) - Date.parse(perform2.date + 'T' + perform2.time));
 
 let gallery = photos.filter(photo => photo.filename && photo.suffix === play.suffix && photo.is_landscape);
 
@@ -41,7 +38,8 @@ strDuration = strDuration + ', ' + (play.break ? dictionary.break[lang] : dictio
 
 const description: string = play.description[lang] ? play.description[lang] : 'play_empty';
 const entry = await getEntry('plays', description);
-const { Content } = await entry.render();
+if (!entry) throw new Error(`Play "${description}" not found`);
+const { Content } = await render(entry);
 
 const ignoreExCreators: string[] = ['light', 'sound', 'stage_setup'];
 ---
@@ -61,9 +59,7 @@ const ignoreExCreators: string[] = ['light', 'sound', 'stage_setup'];
 					fallbackFormat='jpg'
 					loading='eager'
 					widths={[320, 460, 600, 720, 900]}
-					sizes={
-						'(max-width: 380px) 320px, (max-width: 540px) 460px, (max-width: 700px) 600px, (max-width: 830px) 720px, 900px'
-					}
+					sizes={'(max-width: 380px) 320px, (max-width: 540px) 460px, (max-width: 700px) 600px, (max-width: 830px) 720px, 900px'}
 					quality='100'
 					alt={getPlayName(play, lang)}
 				/>
@@ -161,8 +157,7 @@ const ignoreExCreators: string[] = ['light', 'sound', 'stage_setup'];
 									//console.error("PLAY: a person with id " + person_id + " isn't found !!!");
 									return <div class='no-creators' />;
 								}
-								if (person.length > 1)
-									console.error('PLAY: MORE THAN ONE PERSON have THE SAME ID [' + person_id + '] !!!');
+								if (person.length > 1) console.error('PLAY: MORE THAN ONE PERSON have THE SAME ID [' + person_id + '] !!!');
 								return person.map(_person => {
 									if (_person.suffix)
 										return (
@@ -199,9 +194,7 @@ const ignoreExCreators: string[] = ['light', 'sound', 'stage_setup'];
 							formats={['webp']}
 							fallbackFormat='jpg'
 							widths={[300, 480, 640, 810, 940]}
-							sizes={
-								'(max-width: 360px) 300px, (max-width: 560px) 480px, (max-width: 750px) 640px, (max-width: 940px) 810px, 940px'
-							}
+							sizes={'(max-width: 360px) 300px, (max-width: 560px) 480px, (max-width: 750px) 640px, (max-width: 940px) 810px, 940px'}
 							alt={getPlayName(play, lang)}
 						/>
 					)}

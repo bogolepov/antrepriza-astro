@@ -7,7 +7,7 @@ import ContactFormButton from '@vue-components/ContactFormButton.vue';
 
 import '@styles/contacts_column.css';
 
-const components = await Astro.glob('@layouts/content/theater/contact*.astro');
+const components = Object.values(import.meta.glob('./content/theater/contact*.astro', { eager: true }));
 
 const singleColumn: boolean = theater.fix_stages_actual.length < 2;
 ---
@@ -17,14 +17,10 @@ const singleColumn: boolean = theater.fix_stages_actual.length < 2;
 	<h3>{theater.longTheaterName[lang]}</h3>
 	<div class='contact-details'>
 		<div class='info-text'>
-			<a href={'tel:' + theater.phone}
-				>{dictionary.telephone[lang]}: <span class='font-opacity1 phone-number'>{theater.phone}</span></a
-			>
+			<a href={'tel:' + theater.phone}>{dictionary.telephone[lang]}: <span class='font-opacity1 phone-number'>{theater.phone}</span></a>
 		</div>
 		<div class='info-text'>
-			<a href={'mailto:' + theater.email}
-				>{dictionary.email[lang]}: <span class='font-opacity1'>{theater.email}</span></a
-			>
+			<a href={'mailto:' + theater.email}>{dictionary.email[lang]}: <span class='font-opacity1'>{theater.email}</span></a>
 		</div>
 		<div class='info-text'>
 			<ContactFormButton client:idle text={dictionary.contact_form_name[lang]} lang={lang} />
@@ -56,9 +52,7 @@ const singleColumn: boolean = theater.fix_stages_actual.length < 2;
 								<div class='description'>
 									{components.map(component => {
 										if (component.file.replace(/^.*[\\/]/, '') === stage.contact_file[lang]) {
-											return (
-												<component.default stage_name={stage.name[lang]} google_link={stage.google_map.link[lang]} />
-											);
+											return <component.default stage_name={stage.name[lang]} google_link={stage.google_map.link[lang]} />;
 										}
 									})}
 								</div>

@@ -22,8 +22,7 @@ let thisPlay = plays.find(play => play.suffix === play_sid);
 let thisPlayDates = program.filter(performance => performance.play_sid === play_sid);
 thisPlayDates = thisPlayDates.filter(performance => Date.parse(performance.date) + ONE_DAY >= Date.now());
 thisPlayDates.sort(
-	(perform1, perform2) =>
-		Date.parse(perform1.date + 'T' + perform1.time) - Date.parse(perform2.date + 'T' + perform2.time)
+	(perform1, perform2) => Date.parse(perform1.date + 'T' + perform1.time) - Date.parse(perform2.date + 'T' + perform2.time),
 );
 
 let gallery = photos.filter(photo => photo.filename && photo.suffix === thisPlay.suffix && photo.is_landscape);
@@ -40,6 +39,7 @@ strDuration = strDuration + ', ' + (thisPlay.break ? dictionary.break[lang] : di
 
 const description: string = thisPlay.description[lang] ? thisPlay.description[lang] : 'play_empty';
 const entry = await getEntry('plays', description);
+if (!entry) throw new Error(`Play "${description}" not found`);
 const { Content } = await render(entry);
 
 const ignoreExCreators: string[] = ['light', 'sound', 'stage_setup'];
@@ -64,9 +64,7 @@ const ignoreExCreators: string[] = ['light', 'sound', 'stage_setup'];
 							fallbackFormat='jpg'
 							loading='eager'
 							widths={[300, 480, 640, 810, 940]}
-							sizes={
-								'(max-width: 360px) 300px, (max-width: 560px) 480px, (max-width: 750px) 640px, (max-width: 940px) 810px, 940px'
-							}
+							sizes={'(max-width: 360px) 300px, (max-width: 560px) 480px, (max-width: 750px) 640px, (max-width: 940px) 810px, 940px'}
 							alt={getPlayName(thisPlay, lang)}
 						/>
 					)}
@@ -200,9 +198,7 @@ const ignoreExCreators: string[] = ['light', 'sound', 'stage_setup'];
 					fallbackFormat='jpg'
 					loading='eager'
 					widths={[320, 460, 600, 720, 900]}
-					sizes={
-						'(max-width: 380px) 320px, (max-width: 540px) 460px, (max-width: 700px) 600px, (max-width: 830px) 720px, 900px'
-					}
+					sizes={'(max-width: 380px) 320px, (max-width: 540px) 460px, (max-width: 700px) 600px, (max-width: 830px) 720px, 900px'}
 					quality='100'
 					alt={getPlayName(thisPlay, lang)}
 				/>

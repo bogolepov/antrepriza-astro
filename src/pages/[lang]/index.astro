@@ -1,29 +1,27 @@
 ---
-import theater from '@data/theater.json'
-import dictionary from '@data/dictionary.json'
+import theater from '@data/theater.json';
+import dictionary from '@data/dictionary.json';
 
-export function getStaticPaths () {
-  return theater.languages.map(lng => {
-    return {
-      params: {lang: lng.lang_code},
-      props: {pageLang: lng.lang_code, pageTitle: ""},
-    };
-  });
+export function getStaticPaths() {
+	return theater.languages.map(lng => {
+		return {
+			params: { lang: lng.lang_code },
+			props: { pageLang: lng.lang_code, pageTitle: '' },
+		};
+	});
 }
 
 const { pageLang, pageTitle } = Astro.props;
 
-import AntreprizaLayout from "../../layouts/AntreprizaLayout.astro";
-import PlaysCarusel from "@components/main_gallery.astro"
-import AfishaLayout from "@layouts/afisha.astro";
+import AntreprizaLayout from '../../layouts/AntreprizaLayout.astro';
+import PlaysCarusel from '@components/main_gallery.astro';
+import AfishaLayout from '@layouts/afisha.astro';
 ---
 
-<AntreprizaLayout title={pageTitle} lang={pageLang} description={dictionary.description_index[pageLang]} ticket_form = "yes">
-  <div>
-    <PlaysCarusel lang={pageLang}>
-  </div>
-  <div class="page-separator"></div>
-  <AfishaLayout lang={pageLang} hide_section_title={true}/>
+<AntreprizaLayout title={pageTitle} lang={pageLang} description={dictionary.description_index[pageLang]} ticket_form='yes'>
+	<div>
+		<PlaysCarusel lang={pageLang} />
+	</div>
+	<div class='page-separator'></div>
+	<AfishaLayout lang={pageLang} hide_section_title={true} />
 </AntreprizaLayout>
-
-
