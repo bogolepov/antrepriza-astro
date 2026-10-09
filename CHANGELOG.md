@@ -1,3 +1,10 @@
+## [1.13.1](https://github.com/bogolepov/antrepriza-astro/compare/v1.13.0...v1.13.1) (2026-10-09)
+
+
+### Bug Fixes
+
+* actors list updated ([d538c7a](https://github.com/bogolepov/antrepriza-astro/commit/d538c7a32e8646def70748b1fb803c6678d4dfad))
+
 # [1.13.0](https://github.com/bogolepov/antrepriza-astro/compare/v1.12.0...v1.13.0) (2026-09-05)
 
 
