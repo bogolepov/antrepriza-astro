@@ -31,7 +31,7 @@
 			{
 				"id": 2,
 				"name": { "ru": "Оксана", "de": "Oxana" },
-				"actors": [100, 153, 163]
+				"actors": [100, 163]
 			},
 			{
 				"id": 3,
@@ -41,17 +41,17 @@
 			{
 				"id": 4,
 				"name": { "ru": "Черт", "de": "Der Teufel" },
-				"actors": [133, 160, 164]
+				"actors": [133]
 			},
 			{
 				"id": 5,
 				"name": { "ru": "Казак Чуб", "de": "Kosak Tschub" },
-				"actors": [165, 164]
+				"actors": [1]
 			},
 			{
 				"id": 6,
 				"name": { "ru": "Дьяк", "de": "Küster" },
-				"actors": [141, 161]
+				"actors": [3]
 			},
 			{
 				"id": 7,
@@ -61,27 +61,27 @@
 			{
 				"id": 8,
 				"name": { "ru": "Хивря", "de": "Chiwrja" },
-				"actors": [108]
+				"actors": [108, 134]
 			},
 			{
 				"id": 9,
 				"name": { "ru": "Переперчиха", "de": "Perepertschicha" },
-				"actors": [148, 134]
+				"actors": [169]
 			},
 			{
 				"id": 10,
 				"name": { "ru": "Кум Панас", "de": "Gevatter Panas" },
-				"actors": [166, 167]
+				"actors": [166]
 			},
 			{
 				"id": 11,
 				"name": { "ru": "Одарка", "de": "Odarka" },
-				"actors": [132, 153]
+				"actors": [132]
 			},
 			{
 				"id": 12,
 				"name": { "ru": "Марыся", "de": "Marysja" },
-				"actors": [162, 163]
+				"actors": [163]
 			},
 			{
 				"id": 13,
@@ -96,12 +96,12 @@
 			{
 				"id": 15,
 				"name": { "ru": "Зубов", "de": "Subow" },
-				"actors": [166, 167]
+				"actors": [166]
 			},
 			{
 				"id": 16,
 				"name": { "ru": "Орлов", "de": "Orlow" },
-				"actors": [161, 160]
+				"actors": [168]
 			},
 			{
 				"id": 17,
@@ -111,10 +111,12 @@
 		],
 		"creators": [
 			{ "type": "regie", "people": [8] },
+			{ "type": "job_stage_production", "people": [14] },
 			{ "type": "light", "people": [9] },
-			{ "type": "sound", "people": [9] },
+			{ "type": "sound", "people": [13] },
+			{ "type": "job_decoration", "people": [15] },
 			{ "type": "graphic_design", "people": [] },
-			{ "type": "photographer", "people": [] },
+			{ "type": "photographer", "people": [5] },
 			{ "type": "stage_setup", "people": [] }
 		],
 		"seo": {
