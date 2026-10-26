@@ -156,12 +156,12 @@
 	"plays_special_order": ["vnhbd", "suk", "ngupb", "mp", "sss", "zzd", "eop", "n32", "ts", "dk", "miks", "op", "pip", "mik", "kd"],
 	"plays_archive": ["eop", "zzd", "mp", "ngupb", "pip"],
 	"director": 1,
-	"team": [1, 8, 7, 2, 9, 5],
+	"team": [1, 8, 7, 2, 9, 5, 13, 15, 14],
 	"actors": [
-		1, 100, 101, 3, 102, 103, 111, 119, 108, 104, 107, 154, 155, 112, 132, 116, 148, 133, 156, 124, 159, 134, 135, 140, 141, 160, 162, 161,
+		1, 100, 101, 3, 102, 103, 111, 119, 108, 104, 107, 154, 155, 112, 132, 116, 148, 133, 156, 124, 159, 134, 135, 162, 163, 168, 169, 170,
 		123
 	],
-	"ex_actors": [106, 105, 109, 110, 117, 118, 121, 122, 125, 126, 128, 129, 130, 131, 138, 139, 147],
+	"ex_actors": [106, 105, 109, 110, 117, 118, 121, 122, 125, 126, 128, 129, 130, 131, 138, 139, 140, 141, 147, 160, 161],
 	"people": [
 		{
 			"id": 1,
@@ -248,6 +248,30 @@
 			"name": { "ru": "Алина", "de": "Alina" },
 			"surname": { "ru": "Алексеева", "de": "Alekseeva" },
 			"jobs": ["job_regisseur"]
+		},
+		{
+			"id": 13,
+			"photo": "mil.jpg",
+			"gender": "m",
+			"name": { "ru": "Николай", "de": "Mykola" },
+			"surname": { "ru": "Илларионов", "de": "Illarionov" },
+			"jobs": ["job_sound"]
+		},
+		{
+			"id": 14,
+			"photo": "ilj.jpg",
+			"gender": "m",
+			"name": { "ru": "Илья", "de": "Ilya" },
+			"surname": { "ru": "Иоффе", "de": "Joffe" },
+			"jobs": ["job_stage_production"]
+		},
+		{
+			"id": 15,
+			"photo": "tr.jpg",
+			"gender": "f",
+			"name": { "ru": "Татьяна", "de": "Tatjana" },
+			"surname": { "ru": "Реттер", "de": "Retter" },
+			"jobs": ["job_decoration_f"]
 		},
 		{
 			"id": 100,
@@ -417,22 +441,6 @@
 			"surname": { "ru": "Сарана", "de": "Sarana" }
 		},
 		{
-			"id": 140,
-			"suffix": "dv",
-			"photo": "dv.jpg",
-			"gender": "f",
-			"name": { "ru": "Дарья", "de": "Daria" },
-			"surname": { "ru": "Варгун", "de": "Wargun" }
-		},
-		{
-			"id": 141,
-			"suffix": "gv",
-			"photo": "gv.jpg",
-			"gender": "m",
-			"name": { "ru": "Григорий", "de": "Gregory" },
-			"surname": { "ru": "Варгун", "de": "Wargun" }
-		},
-		{
 			"id": 142,
 			"suffix": "",
 			"photo": "no-photo.jpg",
@@ -569,22 +577,6 @@
 			"surname": { "ru": "Попова", "de": "Popova" }
 		},
 		{
-			"id": 160,
-			"suffix": "nm",
-			"photo": "nm.jpg",
-			"gender": "m",
-			"name": { "ru": "Назарет", "de": "Nazaret" },
-			"surname": { "ru": "Магдесиев", "de": "Magdesiev" }
-		},
-		{
-			"id": 161,
-			"suffix": "bg",
-			"photo": "bg.jpg",
-			"gender": "m",
-			"name": { "ru": "Богдан", "de": "Bohdan" },
-			"surname": { "ru": "Гудков", "de": "Hudkov" }
-		},
-		{
 			"id": 162,
 			"suffix": "hm",
 			"photo": "hm.jpg",
@@ -594,8 +586,8 @@
 		},
 		{
 			"id": 163,
-			"suffix": "",
-			"photo": "no-photo.jpg",
+			"suffix": "vib",
+			"photo": "vib.jpg",
 			"gender": "f",
 			"name": { "ru": "Виктория", "de": "Viktoria" },
 			"surname": { "ru": "Берг", "de": "Berg" }
@@ -631,6 +623,30 @@
 			"gender": "m",
 			"name": { "ru": "Алишер", "de": "Alisher" },
 			"surname": { "ru": "Янгиров", "de": "Yangirov" }
+		},
+		{
+			"id": 168,
+			"suffix": "lh",
+			"photo": "lh.jpg",
+			"gender": "f",
+			"name": { "ru": "Людмила", "de": "Liudmila" },
+			"surname": { "ru": "Хентце", "de": "Hentze" }
+		},
+		{
+			"id": 169,
+			"suffix": "eld",
+			"photo": "eld.jpg",
+			"gender": "f",
+			"name": { "ru": "Елена", "de": "Elena" },
+			"surname": { "ru": "Дмитриева", "de": "Dmitrieva" }
+		},
+		{
+			"id": 170,
+			"suffix": "elr",
+			"photo": "elr.jpg",
+			"gender": "f",
+			"name": { "ru": "Елена", "de": "Elena" },
+			"surname": { "ru": "Рутц", "de": "Rutz" }
 		}
 	],
 	"ex_people": [
@@ -770,12 +786,44 @@
 			"surname": { "ru": "", "de": "" }
 		},
 		{
+			"id": 140,
+			"suffix": "dv",
+			"photo": "dv.jpg",
+			"gender": "f",
+			"name": { "ru": "Дарья", "de": "Daria" },
+			"surname": { "ru": "Варгун", "de": "Wargun" }
+		},
+		{
+			"id": 141,
+			"suffix": "gv",
+			"photo": "gv.jpg",
+			"gender": "m",
+			"name": { "ru": "Григорий", "de": "Gregory" },
+			"surname": { "ru": "Варгун", "de": "Wargun" }
+		},
+		{
 			"id": 147,
 			"suffix": "elb",
 			"photo": "elb.jpg",
 			"gender": "f",
 			"name": { "ru": "Елена", "de": "Elena" },
 			"surname": { "ru": "Богоутдинова", "de": "Bogoutdinova" }
+		},
+		{
+			"id": 160,
+			"suffix": "nm",
+			"photo": "nm.jpg",
+			"gender": "m",
+			"name": { "ru": "Назарет", "de": "Nazaret" },
+			"surname": { "ru": "Магдесиев", "de": "Magdesiev" }
+		},
+		{
+			"id": 161,
+			"suffix": "bg",
+			"photo": "bg.jpg",
+			"gender": "m",
+			"name": { "ru": "Богдан", "de": "Bohdan" },
+			"surname": { "ru": "Гудков", "de": "Hudkov" }
 		}
 	],
 	"logo_empty": "logo_empty.png",
