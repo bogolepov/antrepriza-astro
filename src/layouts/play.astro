@@ -238,6 +238,11 @@ const ignoreExCreators: string[] = ['light', 'sound', 'stage_setup'];
 										);
 									});
 							})}
+							{character.actors_note?.[lang] && (
+								<div>
+									<span>{character.actors_note?.[lang]}</span>
+								</div>
+							)}
 						</div>
 					</li>
 				);

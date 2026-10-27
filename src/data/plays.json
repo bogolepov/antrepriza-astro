@@ -91,7 +91,7 @@
 			{
 				"id": 14,
 				"name": { "ru": "Потемкин", "de": "Fürst Potjomkin" },
-				"actors": [165, 164]
+				"actors": [170]
 			},
 			{
 				"id": 15,
@@ -105,8 +105,9 @@
 			},
 			{
 				"id": 17,
-				"name": { "ru": "3 парубка", "de": "Drei Burschen" },
-				"actors": [165, 166, 160, 161, 164, 167]
+				"name": { "ru": "Девчата и парубки", "de": "Mädchen und Burschen" },
+				"actors": [],
+				"actors_note": { "ru": "актеры и студенты театра Антреприза", "de": "Schauspieler und Studierende des Theaters Antrepriza" }
 			}
 		],
 		"creators": [
