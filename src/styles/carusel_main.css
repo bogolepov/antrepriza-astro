@@ -10,13 +10,6 @@
 	max-height: 120vw;
 }
 
-.main-gallery-position:not(.swiper-ready) .swiper-slide {
-	visibility: hidden;
-}
-.main-gallery-position.swiper-ready .swiper-slide {
-	visibility: visible;
-}
-
 .swiper {
 	--colorSmallFontMainGallery: var(--grey-13);
 	--colorBigFontMainGallery: rgb(125, 81, 79);
@@ -77,6 +70,7 @@
 .swiper .swiper-slide {
 	width: auto;
 	height: 80%;
+	aspect-ratio: 116 / 137;
 	top: clamp(0%, min(5.5vh, 7vw), var(--swiper-pagination-bottom, 6%));
 }
 
@@ -114,7 +108,7 @@
 	align-items: center;
 }
 .carusel-play-image {
-	width: min-content;
+	width: 100%;
 	height: 100%;
 }
 

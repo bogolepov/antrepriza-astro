@@ -16,9 +16,7 @@ import BurgerButton from './burger_button/burger_button.astro';
 import '@styles/header.css';
 import { getPlayAltName } from '@scripts/play';
 
-plays.sort((play1, play2) =>
-	getPlayAltName(play1, lang).toLowerCase().localeCompare(getPlayAltName(play2, lang).toLowerCase(), lang)
-);
+plays.sort((play1, play2) => getPlayAltName(play1, lang).toLowerCase().localeCompare(getPlayAltName(play2, lang).toLowerCase(), lang));
 
 const pathname: string = new URL(Astro.request.url).pathname;
 const currentPath: string[] = pathname.split('/').filter(Boolean);
@@ -85,11 +83,7 @@ const currentPath: string[] = pathname.split('/').filter(Boolean);
 			</div>
 		</div>
 		<div class='navigator-logo-item'>
-			<a
-				href={`/${lang}/`}
-				class:list={{ active_link: currentPath[1] === undefined }}
-				aria-label={dictionary.main_page[lang]}
-			>
+			<a href={`/${lang}/`} class:list={{ active_link: currentPath[1] === undefined }} aria-label={dictionary.main_page[lang]}>
 				<Icon name={'logo-' + lang} class='icon-logo-text' />
 				<Icon name='logo' class='icon-logo' />
 			</a>
