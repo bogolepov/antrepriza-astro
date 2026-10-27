@@ -61,12 +61,6 @@ let actualProgram = program.filter(performance => Date.parse(performance.date) >
 				delay: 3500,
 				disableOnInteraction: true,
 			},
-
-			on: {
-				init() {
-					gallery.classList.add('swiper-ready');
-				},
-			},
 		});
 	}
 </script>
@@ -83,6 +77,7 @@ let actualProgram = program.filter(performance => Date.parse(performance.date) >
 						const strLoading = isPriority ? 'eager' : 'lazy';
 						const strFetchPriority = isPriority ? 'high' : 'auto';
 						const decoding = 'async';
+						console.log(play.title);
 
 						let perform = actualProgram.find(performance => performance.play_sid === play.suffix);
 						let isPremiere = perform && actualProgram.find(performance => performance.play_sid === play.suffix && performance.premiere);
