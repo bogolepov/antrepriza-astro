@@ -1,3 +1,10 @@
+# [1.14.0](https://github.com/bogolepov/antrepriza-astro/compare/v1.13.3...v1.14.0) (2026-10-27)
+
+
+### Features
+
+* cloudflare statistic added ([9ab0967](https://github.com/bogolepov/antrepriza-astro/commit/9ab0967a7cd7e72e1036fbb8ad4c4379117bb1eb))
+
 ## [1.13.3](https://github.com/bogolepov/antrepriza-astro/compare/v1.13.2...v1.13.3) (2026-10-27)
 
 
