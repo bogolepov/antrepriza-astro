@@ -63,5 +63,10 @@ let runLine: boolean = false;
 		{reservation !== 'no' && <Reservation client:only='react' lang={lang} />}
 		{pageNeedTicketForm && <TicketForm lang={lang} inert />}
 		<input type='checkbox' id='theme-switcher' tabindex='-1' aria-label={dictionary.aria_theme_switch[lang]} checked />
+		<!-- Cloudflare Web Analytics -->
+		<script
+			type='module'
+			src='https://static.cloudflareinsights.com/beacon.min.js'
+			data-cf-beacon='{"token": "9a9672f884d146c19b4b852d58b4e29b"}'></script><!-- End Cloudflare Web Analytics -->
 	</body>
 </html>
