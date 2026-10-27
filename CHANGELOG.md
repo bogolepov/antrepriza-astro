@@ -1,3 +1,10 @@
+## [1.13.3](https://github.com/bogolepov/antrepriza-astro/compare/v1.13.2...v1.13.3) (2026-10-27)
+
+
+### Bug Fixes
+
+* actors at play 'vbhnd' updated ([037e2fe](https://github.com/bogolepov/antrepriza-astro/commit/037e2fe1f4e54c7b972a8e91cfae4cb337f7f4a2))
+
 ## [1.13.2](https://github.com/bogolepov/antrepriza-astro/compare/v1.13.1...v1.13.2) (2026-10-26)
 
 
