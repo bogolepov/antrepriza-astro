@@ -10,21 +10,25 @@
 	max-height: 120vw;
 }
 
+.main-gallery-position:not(.swiper-ready) .swiper-slide {
+	visibility: hidden;
+}
+.main-gallery-position.swiper-ready .swiper-slide {
+	visibility: visible;
+}
+
 .swiper {
 	--colorSmallFontMainGallery: var(--grey-13);
 	--colorBigFontMainGallery: rgb(125, 81, 79);
 	--colorPremiereFontMainGallery: #ce040b;
-	/* --colorBkgMainGallery: var(--grey-56); */
 }
 
 .swiper {
-	display: flex;
 	width: 100%;
 	height: 100%;
 	margin: 0;
 	position: relative;
 	background-color: var(--colorBkgMainGallery);
-	/* background-color: var(--colorBkgMainGallery); */
 }
 
 .swiper .swiper-button-prev,
@@ -71,7 +75,7 @@
 }
 
 .swiper .swiper-slide {
-	width: min-content;
+	width: auto;
 	height: 80%;
 	top: clamp(0%, min(5.5vh, 7vw), var(--swiper-pagination-bottom, 6%));
 }
