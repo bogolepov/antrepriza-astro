@@ -1,3 +1,10 @@
+## [1.14.2](https://github.com/bogolepov/antrepriza-astro/compare/v1.14.1...v1.14.2) (2026-10-27)
+
+
+### Bug Fixes
+
+* main gallery delay ([3f0dfc6](https://github.com/bogolepov/antrepriza-astro/commit/3f0dfc607bef084932f0b5982a9af4c7fe62c47c))
+
 ## [1.14.1](https://github.com/bogolepov/antrepriza-astro/compare/v1.14.0...v1.14.1) (2026-10-27)
 
 
