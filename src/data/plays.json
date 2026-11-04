@@ -13,10 +13,10 @@
 		"description": { "ru": "play_vnhbd_ru", "de": "play_vnhbd_de" },
 		"posters": {
 			"landscape": "vnhbd.jpg",
-			"landscape_16_9": "soon_16_9.jpg",
+			"landscape_16_9": "vnhbd_16_9.jpg",
 			"portrait": "vnhbd.jpg",
 			"facebook": "fb_soon.jpg",
-			"pub_kontra": "kontra_soon_vnhbd.webp",
+			"pub_kontra": "kontra_vnhbd.webp",
 			"minimum": ""
 		},
 		"lang": { "ru": "русский, украинский", "de": "Russisch, Ukrainisch" },
@@ -131,8 +131,8 @@
 			"event": {
 				"images": [
 					{ "format": "19_6", "url": "soon_1920.jpg" },
-					{ "format": "3_4", "url": "suk_kontra_1920.jpg" },
-					{ "format": "3_4_1050", "url": "soon_vnhbd_kontra_1050.webp" }
+					{ "format": "3_4", "url": "vnhbd_kontra_1920.jpg" },
+					{ "format": "3_4_1050", "url": "vnhbd_kontra_1050.webp" }
 				]
 			}
 		}
