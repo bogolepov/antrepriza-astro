@@ -80,7 +80,8 @@
 }
 
 .event a {
-	padding: 0.8em 0 1.8em 0;
+	margin: 0.8em 0 1.8em 0;
+	width: fit-content;
 }
 
 .event:not(:has(.ev-button)) a {
