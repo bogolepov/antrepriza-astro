@@ -1,3 +1,10 @@
+## [1.14.3](https://github.com/bogolepov/antrepriza-astro/compare/v1.14.2...v1.14.3) (2026-11-04)
+
+
+### Bug Fixes
+
+* photos to play vnhbd added ([9de6f56](https://github.com/bogolepov/antrepriza-astro/commit/9de6f56ed7af7d330c6b8e93fa7bd806e4c40c4b))
+
 ## [1.14.2](https://github.com/bogolepov/antrepriza-astro/compare/v1.14.1...v1.14.2) (2026-10-27)
 
 
