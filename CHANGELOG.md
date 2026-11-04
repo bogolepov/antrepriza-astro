@@ -1,3 +1,10 @@
+## [1.14.4](https://github.com/bogolepov/antrepriza-astro/compare/v1.14.3...v1.14.4) (2026-11-04)
+
+
+### Bug Fixes
+
+* event page ([884d682](https://github.com/bogolepov/antrepriza-astro/commit/884d6829552871f40244ea688735699d7a28b8e9))
+
 ## [1.14.3](https://github.com/bogolepov/antrepriza-astro/compare/v1.14.2...v1.14.3) (2026-11-04)
 
 
