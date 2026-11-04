@@ -15,7 +15,7 @@
 			"landscape": "vnhbd.jpg",
 			"landscape_16_9": "vnhbd_16_9.jpg",
 			"portrait": "vnhbd.jpg",
-			"facebook": "fb_soon.jpg",
+			"facebook": "fb_vnhbd.jpg",
 			"pub_kontra": "kontra_vnhbd.webp",
 			"minimum": ""
 		},
@@ -126,11 +126,11 @@
 				"de": "Basierend auf Nikolai Gogols gleichnamiger Kurzgeschichtensammlung „Abende auf dem Weiler bei Dikanka“. Mystische Komödie, 14+. Auf Russisch und Ukrainisch."
 			},
 			"open_graph": {
-				"image": { "url": "soon_1200.jpg", "type": "image/jpeg" }
+				"image": { "url": "vnhbd_1200t.png", "type": "image/png" }
 			},
 			"event": {
 				"images": [
-					{ "format": "19_6", "url": "soon_1920.jpg" },
+					{ "format": "19_6", "url": "vnhbd_fb_19_6_1920.jpg" },
 					{ "format": "3_4", "url": "vnhbd_kontra_1920.jpg" },
 					{ "format": "3_4_1050", "url": "vnhbd_kontra_1050.webp" }
 				]
