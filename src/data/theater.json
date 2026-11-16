@@ -274,6 +274,14 @@
 			"jobs": ["job_decoration_f"]
 		},
 		{
+			"id": 16,
+			"photo": "no-photo.jpg",
+			"gender": "f",
+			"name": { "ru": "Жанна", "de": "Zhanna" },
+			"surname": { "ru": "Якимова", "de": "Yakimova" },
+			"jobs": ["costumes"]
+		},
+		{
 			"id": 100,
 			"suffix": "sl",
 			"photo": "sl.jpg",

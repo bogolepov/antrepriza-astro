@@ -116,6 +116,7 @@
 			{ "type": "light", "people": [9] },
 			{ "type": "sound", "people": [13] },
 			{ "type": "job_decoration", "people": [15] },
+			{ "type": "costumes", "people": [124, 16] },
 			{ "type": "graphic_design", "people": [] },
 			{ "type": "photographer", "people": [5] },
 			{ "type": "stage_setup", "people": [] }
