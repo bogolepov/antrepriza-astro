@@ -1,3 +1,10 @@
+## [1.14.8](https://github.com/bogolepov/antrepriza-astro/compare/v1.14.7...v1.14.8) (2026-11-17)
+
+
+### Bug Fixes
+
+* afisha updated ([9f5a90e](https://github.com/bogolepov/antrepriza-astro/commit/9f5a90e5ed46f262ef7b2cae6cf476b26564a790))
+
 ## [1.14.7](https://github.com/bogolepov/antrepriza-astro/compare/v1.14.6...v1.14.7) (2026-11-16)
 
 
