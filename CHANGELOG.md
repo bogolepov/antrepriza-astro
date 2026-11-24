@@ -1,3 +1,10 @@
+## [1.14.9](https://github.com/bogolepov/antrepriza-astro/compare/v1.14.8...v1.14.9) (2026-11-24)
+
+
+### Bug Fixes
+
+* kontramarka url was empty for play vnhbd ([d9528a1](https://github.com/bogolepov/antrepriza-astro/commit/d9528a1e7db3744d1e1ffa9bdc3f05267e17b570))
+
 ## [1.14.8](https://github.com/bogolepov/antrepriza-astro/compare/v1.14.7...v1.14.8) (2026-11-17)
 
 
